@@ -1,0 +1,152 @@
+{
+  "error_classification_checklist": [
+    {
+      "id": "recoverable-detection",
+      "description": "Identify recoverable errors (user can retry or take alternative action)",
+      "signals": [
+        "validation failure",
+        "conflict (resource exists)",
+        "rate limit exceeded",
+        "network timeout",
+        "temporary unavailable",
+        "missing required field",
+        "field exceeds max length"
+      ],
+      "http_status": 400,
+      "example": "Start date must be before end date"
+    },
+    {
+      "id": "invariant-detection",
+      "description": "Identify invariant failures (system is in invalid state, halt required)",
+      "signals": [
+        "INVARIANT_VIOLATION",
+        "exactly one active session",
+        "data integrity corruption",
+        "constraint violation",
+        "multiple active",
+        "already exists uniquely",
+        "structural error"
+      ],
+      "http_status": 500,
+      "example": "Cannot create session; active session already exists"
+    },
+    {
+      "id": "api-response-shape",
+      "description": "Verify all API error responses follow standard structure",
+      "required_fields": ["error", "message"],
+      "optional_fields": ["details", "code"],
+      "pattern": "{ error: \"CODE\", message: \"...\", details?: {...} }",
+      "signals": ["error:", "message:", "details:"]
+    },
+    {
+      "id": "validation-errors",
+      "description": "Check validation errors return 400 with VALIDATION_ERROR code",
+      "condition": "Input schema validation fails",
+      "required_response": {
+        "status": 400,
+        "error": "VALIDATION_ERROR",
+        "details": { "field": "fieldName" }
+      },
+      "signals": ["Zod.parse", "schema validation", "400"]
+    },
+    {
+      "id": "invariant-errors",
+      "description": "Check invariant violations return 500 with INVARIANT_VIOLATION code",
+      "condition": "System state invariant broken",
+      "required_response": {
+        "status": 500,
+        "error": "INVARIANT_VIOLATION",
+        "code": "descriptive_code"
+      },
+      "signals": ["500", "INVARIANT_VIOLATION", "halt"]
+    },
+    {
+      "id": "no-raw-errors",
+      "description": "Ensure no raw error objects are returned to client",
+      "forbidden": [
+        "Error.message from catch block",
+        "Stack traces",
+        "Database error messages",
+        "System error details"
+      ],
+      "signals": ["catch (error)", "error.message", "stack trace"]
+    },
+    {
+      "id": "error-boundary",
+      "description": "UI components wrapped in React Error Boundary",
+      "location": "Feature modules, not AppShell",
+      "prevents": "Local failure from crashing entire app",
+      "signals": ["ErrorBoundary", "componentDidCatch", "getDerivedStateFromError"]
+    },
+    {
+      "id": "retry-affordance",
+      "description": "Recoverable errors show retry option in UI",
+      "applies_to": "400/409 errors",
+      "not_for": "500 errors (no retry)",
+      "signals": ["retry button", "try again", "recoverable: true"]
+    },
+    {
+      "id": "invariant-no-retry",
+      "description": "Invariant failures show fatal message (no retry)",
+      "applies_to": "500 errors",
+      "message": "System error, please refresh",
+      "signals": ["500", "fatal", "recoverable: false"]
+    },
+    {
+      "id": "error-logging",
+      "description": "All errors logged internally with request.log.error()",
+      "required": true,
+      "includes": [
+        "error code",
+        "error message",
+        "user id (if authenticated)",
+        "timestamp",
+        "request context"
+      ],
+      "excludes": [
+        "user email",
+        "credentials",
+        "tokens"
+      ],
+      "signals": ["request.log.error", "logger.error"]
+    },
+    {
+      "id": "error-code-consistency",
+      "description": "Error codes consistent across application",
+      "standard_codes": [
+        "VALIDATION_ERROR (400)",
+        "CONFLICT (409)",
+        "NOT_FOUND (404)",
+        "UNAUTHORIZED (401)",
+        "FORBIDDEN (403)",
+        "INVARIANT_VIOLATION (500)",
+        "DATABASE_ERROR (500)"
+      ],
+      "check": "Use standard codes; add custom codes only if documented"
+    },
+    {
+      "id": "no-behavior-change",
+      "description": "Error handling does NOT change execution behavior",
+      "rule": "Only logging and responses change; execution flow same",
+      "forbidden": [
+        "Modifying session state due to error",
+        "Changing lifecycle based on error type",
+        "Skipping persistence due to validation error"
+      ],
+      "signals": ["state change on error", "skip persistence"]
+    }
+  ],
+  "validation_order": [
+    "error-classification",
+    "api-response-shape",
+    "validation-errors",
+    "invariant-errors",
+    "no-raw-errors",
+    "error-boundary",
+    "retry-affordance",
+    "invariant-no-retry",
+    "error-logging",
+    "error-code-consistency",
+    "no-behavior-change"
+  ]
+}

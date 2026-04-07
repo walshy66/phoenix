@@ -1,0 +1,20 @@
+{
+  "lastUpdated": "2025-01-01T00:00:00.000Z",
+  "note": "Run 'node scripts/scrape-playhq.js' to update scores",
+  "scores": [
+    {
+      "id": "1",
+      "date": "2025-01-01",
+      "competition": "Bendigo Basketball Association",
+      "homeTeam": "Bendigo Phoenix",
+      "awayTeam": "Opponent",
+      "homeScore": 85,
+      "awayScore": 72,
+      "status": "completed"
+    }
+  ],
+  "ladder": [
+    { "rank": 1, "team": "Bendigo Phoenix", "played": 1, "won": 1, "lost": 0, "drawn": 0, "points": 2 },
+    { "rank": 2, "team": "Opponent", "played": 1, "won": 0, "lost": 1, "drawn": 0, "points": 0 }
+  ]
+}

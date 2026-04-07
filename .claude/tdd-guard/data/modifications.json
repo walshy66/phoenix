@@ -1,0 +1,12 @@
+{
+  "session_id": "e54e07ee-5a3a-468a-ab9d-29f55c9892ed",
+  "transcript_path": "/home/cameron/.claude/projects/-home-cameron-projects-coachcw/e54e07ee-5a3a-468a-ab9d-29f55c9892ed.jsonl",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Edit",
+  "tool_input": {
+    "file_path": "/home/cameron/projects/coachcw/app/src/services/api-client.ts",
+    "old_string": "async function request<T>(path: string, init?: RequestInit): Promise<T> {",
+    "new_string": "export async function request<T>(path: string, init?: RequestInit): Promise<T> {",
+    "replace_all": false
+  }
+}

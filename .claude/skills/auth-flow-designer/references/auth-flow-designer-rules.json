@@ -1,0 +1,152 @@
+{
+  "auth_flow_rules": [
+    {
+      "id": "identity_key",
+      "rule": "Auth identity is (provider, subject) - immutable once set",
+      "examples": [
+        { "provider": "google", "subject": "123456789" },
+        { "provider": "github", "subject": "user_ghid_12345" }
+      ],
+      "forbidden": [
+        "email (can change)",
+        "username (can be spoofed)",
+        "phone (can change)"
+      ],
+      "enforcement": "Database unique constraint on (provider, subject)"
+    },
+    {
+      "id": "one_user_per_identity",
+      "rule": "Exactly one User per auth identity - never duplicates",
+      "check": "SELECT COUNT(*) FROM users WHERE provider=? AND subject=?",
+      "expected_result": "0 or 1 (never >1)",
+      "violation_error": "DUPLICATE_USER_IDENTITY",
+      "violation_handling": "Block, log as CRITICAL, alert ops"
+    },
+    {
+      "id": "login_flow_order",
+      "rule": "Login must follow exact sequence",
+      "sequence": [
+        "1. Validate proof (password, OAuth token)",
+        "2. If invalid → AUTH_INVALID_CREDENTIALS (no distinction)",
+        "3. Resolve identity to User",
+        "4. If User not found → USER_NOT_RESOLVED",
+        "5. Create session",
+        "6. Return session token"
+      ],
+      "critical": "Never create User during login"
+    },
+    {
+      "id": "signup_flow_order",
+      "rule": "Signup must follow exact sequence",
+      "sequence": [
+        "1. Validate proof",
+        "2. If invalid → AUTH_INVALID_CREDENTIALS",
+        "3. Check if identity already mapped",
+        "4. If mapped → Treat as login (return session)",
+        "5. If not mapped → Create User AND map identity (atomic)",
+        "6. Create session",
+        "7. Return session token"
+      ],
+      "critical": "Never reveal that identity already exists"
+    },
+    {
+      "id": "anti_enumeration",
+      "rule": "Login/signup failures never reveal account existence",
+      "checks": [
+        "Unknown identity and wrong password return same error",
+        "Signup with existing identity doesn't say 'account exists'",
+        "Response shape identical for both cases",
+        "Response timing identical (no timing side-channels)"
+      ],
+      "required_error": "AUTH_INVALID_CREDENTIALS",
+      "forbidden_errors": [
+        "ACCOUNT_NOT_FOUND",
+        "ACCOUNT_EXISTS",
+        "IDENTITY_ALREADY_MAPPED"
+      ]
+    },
+    {
+      "id": "logout_flow_order",
+      "rule": "Logout must be idempotent",
+      "sequence": [
+        "1. Accept session token",
+        "2. Find and invalidate session",
+        "3. Return success (even if session already invalid)"
+      ],
+      "critical": "Never delete User or identity mapping"
+    },
+    {
+      "id": "session_creation",
+      "rule": "Sessions created AFTER User is resolved",
+      "forbidden_pattern": "Create session before User exists",
+      "required_pattern": "Resolve User → Create Session",
+      "check": "Session.userId must reference existing User"
+    },
+    {
+      "id": "error_semantics",
+      "rule": "Auth errors use standard codes only",
+      "required_codes": [
+        "AUTH_INVALID_CREDENTIALS (proof validation fails)",
+        "USER_NOT_RESOLVED (identity maps to no User)",
+        "DUPLICATE_USER_IDENTITY (system error)",
+        "AUTH_REQUIRED (no session provided)"
+      ],
+      "forbidden_custom_codes": [
+        "ACCOUNT_NOT_FOUND",
+        "ACCOUNT_EXISTS",
+        "IDENTITY_MISMATCH"
+      ]
+    },
+    {
+      "id": "identity_immutability",
+      "rule": "Once identity → User mapping exists, never change it",
+      "forbidden": [
+        "Updating (provider, subject) for existing User",
+        "Merging two User accounts",
+        "Transferring identity to different User"
+      ],
+      "consequence": "Violates Feature 050 invariants"
+    },
+    {
+      "id": "multiuser_isolation",
+      "rule": "Auth flows must never leak data across users",
+      "checks": [
+        "Login for User A never returns User B's session",
+        "Signup never maps existing identity to different User",
+        "Sessions are User-specific"
+      ]
+    },
+    {
+      "id": "proof_validation",
+      "rule": "Proof validation must be provider-specific",
+      "examples": [
+        "OAuth: Validate token with provider",
+        "Password: Hash and compare",
+        "SAML: Validate assertion"
+      ],
+      "requirement": "Follow provider's security guidelines"
+    },
+    {
+      "id": "session_lifecycle",
+      "rule": "Auth doesn't change session lifecycle or execution semantics",
+      "forbidden": [
+        "Changing session.status based on auth",
+        "Skipping execution steps due to auth",
+        "Modifying invariants based on auth"
+      ],
+      "enforcement": "Session lifecycle is independent of auth"
+    }
+  ],
+  "validation_order": [
+    "identity_key",
+    "one_user_per_identity",
+    "login_flow_order",
+    "signup_flow_order",
+    "anti_enumeration",
+    "logout_flow_order",
+    "session_creation",
+    "error_semantics",
+    "identity_immutability",
+    "multiuser_isolation"
+  ]
+}

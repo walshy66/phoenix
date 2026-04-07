@@ -1,0 +1,214 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+
+const resources = [
+  {
+    title: 'U12 Defensive Fundamentals',
+    description: 'A comprehensive guide to teaching defensive principles for under-12 players. Covers stance, footwork, help defence and communication.',
+    category: 'Defence',
+    ageGroup: 'U12',
+    type: 'pdf' as const,
+    url: '#',
+  },
+  {
+    title: 'Dribble Drive Offence Overview',
+    description: 'Introduction to the dribble-drive motion offence, ideal for U14 and above. Includes spacing concepts, reads and progression drills.',
+    category: 'Offence',
+    ageGroup: 'U14',
+    type: 'pdf' as const,
+    url: '#',
+  },
+  {
+    title: 'Ball-Handling Drills — Beginner',
+    description: 'A series of ball-handling drills suitable for players just starting out. Easy to run at training with minimal equipment needed.',
+    category: 'Drills',
+    ageGroup: 'U8',
+    type: 'link' as const,
+    url: '#',
+  },
+  {
+    title: 'Court Time Calculator',
+    description: 'Generate an even court time rotation for 7–9 players across 2 × 20 minute halves. Keeps exactly 5 players on court at all times.',
+    category: 'Tools',
+    ageGroup: 'All Ages',
+    type: 'link' as const,
+    url: '/court-time-calculator',
+  },
+];
+
+const ageGroups = ['All Ages', 'U8', 'U10', 'U12', 'U14', 'U16', 'U18', 'Senior'];
+const categories = ['All Categories', 'Defence', 'Offence', 'Drills', 'Fundamentals', 'Game Plans', 'Tools'];
+---
+
+<BaseLayout title="Coaching Resources" description="Coaching resources for Bendigo Phoenix Basketball Club coaches — drills, plays, training materials and more.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Coach Toolkit</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">COACHING RESOURCES</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        Drills, plays, training plans and materials to help our coaches develop great players.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="bg-white border-b border-gray-100 sticky top-16 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+        <div>
+          <p class="text-xs text-gray-500 font-medium mb-1.5 uppercase tracking-wide">Age Group</p>
+          <div class="flex flex-wrap gap-1.5" id="age-filters">
+            {ageGroups.map((group, i) => (
+              <button
+                data-age={group === 'All Ages' ? 'all' : group}
+                class={`filter-btn age-filter flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium transition-colors border ${i === 0 ? 'bg-brand-purple text-white border-brand-purple active' : 'bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite'}`}
+              >
+                {group}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div class="sm:border-l sm:border-gray-200 sm:pl-4">
+          <p class="text-xs text-gray-500 font-medium mb-1.5 uppercase tracking-wide">Category</p>
+          <div class="flex flex-wrap gap-1.5" id="category-filters">
+            {categories.map((cat, i) => (
+              <button
+                data-category={cat === 'All Categories' ? 'all' : cat}
+                class={`filter-btn cat-filter flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium transition-colors border ${i === 0 ? 'bg-brand-gold text-white border-brand-gold active' : 'bg-white text-brand-gold border-brand-gold hover:bg-yellow-50'}`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Grid -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <div id="resources-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {resources.map(resource => (
+          <ResourceCard
+            title={resource.title}
+            description={resource.description}
+            category={resource.category}
+            ageGroup={resource.ageGroup}
+            type={resource.type}
+            url={resource.url}
+          />
+        ))}
+      </div>
+
+      <div id="no-results" class="hidden text-center py-16">
+        <span class="text-5xl mb-4 block">🔍</span>
+        <p class="text-gray-500 text-lg">No resources match your current filters.</p>
+        <button id="clear-filters" class="mt-4 text-brand-purple font-medium hover:text-brand-gold underline text-sm">
+          Clear all filters
+        </button>
+      </div>
+
+      <!-- Add Resource CTA -->
+      <div class="mt-12 text-center bg-white rounded-xl p-8 border border-dashed border-brand-purple">
+        <p class="text-brand-purple font-bold text-lg mb-2">More resources coming soon!</p>
+        <p class="text-gray-500 text-sm mb-4">
+          Coaches wanting to submit resources or materials for this library, please contact us.
+        </p>
+        <a
+          href="mailto:hello@bendigophoenix.org.au?subject=Coaching%20Resource%20Submission"
+          class="inline-flex items-center gap-2 bg-brand-purple text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-purple-800 transition-colors"
+        >
+          Submit a Resource
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  let activeAge = 'all';
+  let activeCategory = 'all';
+
+  function applyFilters() {
+    const cards = document.querySelectorAll('#resources-grid [data-category]');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category') || '';
+      const cardAge = card.getAttribute('data-age') || '';
+
+      const ageMatch = activeAge === 'all' || cardAge === activeAge;
+      const catMatch = activeCategory === 'all' || cardCategory === activeCategory;
+
+      if (ageMatch && catMatch) {
+        (card as HTMLElement).style.display = 'flex';
+        visibleCount++;
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+
+    const noResults = document.getElementById('no-results');
+    if (noResults) {
+      noResults.classList.toggle('hidden', visibleCount > 0);
+    }
+  }
+
+  // Age filters
+  document.querySelectorAll('.age-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeAge = btn.getAttribute('data-age') || 'all';
+      document.querySelectorAll('.age-filter').forEach(b => {
+        b.classList.remove('active', 'bg-brand-purple', 'text-white');
+        b.classList.add('bg-white', 'text-brand-purple');
+      });
+      btn.classList.add('active', 'bg-brand-purple', 'text-white');
+      btn.classList.remove('bg-white', 'text-brand-purple');
+      applyFilters();
+    });
+  });
+
+  // Category filters
+  document.querySelectorAll('.cat-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.getAttribute('data-category') || 'all';
+      document.querySelectorAll('.cat-filter').forEach(b => {
+        b.classList.remove('active', 'bg-brand-gold', 'text-white');
+        b.classList.add('bg-white', 'text-brand-gold');
+      });
+      btn.classList.add('active', 'bg-brand-gold', 'text-white');
+      btn.classList.remove('bg-white', 'text-brand-gold');
+      applyFilters();
+    });
+  });
+
+  // Clear filters
+  document.getElementById('clear-filters')?.addEventListener('click', () => {
+    activeAge = 'all';
+    activeCategory = 'all';
+    document.querySelectorAll('.age-filter').forEach((b, i) => {
+      if (i === 0) {
+        b.classList.add('active', 'bg-brand-purple', 'text-white');
+      } else {
+        b.classList.remove('active', 'bg-brand-purple', 'text-white');
+        b.classList.add('bg-white', 'text-brand-purple');
+      }
+    });
+    document.querySelectorAll('.cat-filter').forEach((b, i) => {
+      if (i === 0) {
+        b.classList.add('active', 'bg-brand-gold', 'text-white');
+      } else {
+        b.classList.remove('active', 'bg-brand-gold', 'text-white');
+        b.classList.add('bg-white', 'text-brand-gold');
+      }
+    });
+    applyFilters();
+  });
+</script>

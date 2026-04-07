@@ -1,0 +1,849 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Court Time Calculator"
+  description="Generate an even court time rotation for 7–9 players across 2 × 20 minute halves."
+>
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Coach Toolkit</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">COURT TIME CALCULATOR</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        Enter your roster of 7–9 players and generate an even court time rotation across both halves.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+
+    <!-- Session Data Notice — always visible -->
+    <div class="bg-amber-50 border border-brand-gold rounded-lg p-4 mb-8" role="note" aria-label="Session data notice">
+      <div class="flex gap-3">
+        <span class="text-brand-gold text-lg flex-shrink-0" aria-hidden="true">&#9888;</span>
+        <p class="text-sm text-gray-700">
+          <strong class="text-brand-black">Your data is not saved.</strong>
+          Player names and the generated plan exist only in this browser tab. If you close or refresh the page, all data will be lost.
+        </p>
+      </div>
+    </div>
+
+    <!-- SECTION: Roster Entry -->
+    <section id="section-roster-entry">
+      <h2 class="text-xl font-bold text-brand-black mb-1">Enter Player Roster</h2>
+      <p class="text-gray-500 text-sm mb-6">Add 7–9 player names. The order you enter them is their roster order.</p>
+
+      <div id="form-error-summary" class="hidden bg-red-50 border border-red-300 rounded-lg p-4 mb-6" role="alert">
+        <p class="text-red-700 text-sm font-medium" id="form-error-message"></p>
+      </div>
+
+      <form id="roster-form" novalidate>
+        <div id="player-inputs" class="space-y-3 mb-6">
+          <!-- Player 1 -->
+          <div class="player-row" id="row-player-1">
+            <label for="input-player-1" class="block text-sm font-medium text-gray-700 mb-1">Player 1</label>
+            <input
+              type="text"
+              id="input-player-1"
+              name="player-1"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-1"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-1" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 2 -->
+          <div class="player-row" id="row-player-2">
+            <label for="input-player-2" class="block text-sm font-medium text-gray-700 mb-1">Player 2</label>
+            <input
+              type="text"
+              id="input-player-2"
+              name="player-2"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-2"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-2" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 3 -->
+          <div class="player-row" id="row-player-3">
+            <label for="input-player-3" class="block text-sm font-medium text-gray-700 mb-1">Player 3</label>
+            <input
+              type="text"
+              id="input-player-3"
+              name="player-3"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-3"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-3" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 4 -->
+          <div class="player-row" id="row-player-4">
+            <label for="input-player-4" class="block text-sm font-medium text-gray-700 mb-1">Player 4</label>
+            <input
+              type="text"
+              id="input-player-4"
+              name="player-4"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-4"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-4" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 5 -->
+          <div class="player-row" id="row-player-5">
+            <label for="input-player-5" class="block text-sm font-medium text-gray-700 mb-1">Player 5</label>
+            <input
+              type="text"
+              id="input-player-5"
+              name="player-5"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-5"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-5" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 6 -->
+          <div class="player-row" id="row-player-6">
+            <label for="input-player-6" class="block text-sm font-medium text-gray-700 mb-1">Player 6</label>
+            <input
+              type="text"
+              id="input-player-6"
+              name="player-6"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-6"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-6" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 7 -->
+          <div class="player-row" id="row-player-7">
+            <label for="input-player-7" class="block text-sm font-medium text-gray-700 mb-1">Player 7</label>
+            <input
+              type="text"
+              id="input-player-7"
+              name="player-7"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-7"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-7" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 8 (hidden by default) -->
+          <div class="player-row hidden" id="row-player-8">
+            <label for="input-player-8" class="block text-sm font-medium text-gray-700 mb-1">Player 8</label>
+            <input
+              type="text"
+              id="input-player-8"
+              name="player-8"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-8"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-8" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+          <!-- Player 9 (hidden by default) -->
+          <div class="player-row hidden" id="row-player-9">
+            <label for="input-player-9" class="block text-sm font-medium text-gray-700 mb-1">Player 9</label>
+            <input
+              type="text"
+              id="input-player-9"
+              name="player-9"
+              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
+              autocomplete="off"
+              aria-describedby="error-player-9"
+              placeholder="Enter player name"
+            />
+            <span id="error-player-9" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
+          </div>
+        </div>
+
+        <!-- Add / Remove Player buttons -->
+        <div class="flex gap-3 mb-8">
+          <button
+            type="button"
+            id="btn-add-player"
+            class="h-11 px-4 rounded-lg border border-brand-purple text-brand-purple text-sm font-medium hover:bg-brand-offwhite transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
+          >
+            + Add Player
+          </button>
+          <button
+            type="button"
+            id="btn-remove-player"
+            class="h-11 px-4 rounded-lg border border-gray-300 text-gray-600 text-sm font-medium hover:bg-gray-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
+            disabled
+          >
+            - Remove Player
+          </button>
+        </div>
+
+        <!-- Submit -->
+        <button
+          type="submit"
+          class="w-full h-11 bg-brand-purple text-white font-bold rounded-lg hover:bg-purple-800 transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+        >
+          Next: Select Starting Five
+        </button>
+      </form>
+    </section>
+
+    <!-- SECTION: Starter Selection (hidden by default) -->
+    <section id="section-starter-selection" class="hidden">
+      <div class="flex items-center justify-between mb-1">
+        <h2 class="text-xl font-bold text-brand-black">Select Starting Five</h2>
+        <button
+          type="button"
+          id="btn-back-to-roster"
+          class="text-sm text-brand-purple font-medium hover:text-purple-800 underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple rounded"
+        >
+          Back to Roster
+        </button>
+      </div>
+      <p class="text-gray-500 text-sm mb-2">Select exactly 5 players to start the first half.</p>
+      <p id="starter-count" class="text-brand-purple font-bold text-sm mb-6">0 of 5 selected</p>
+
+      <div id="starter-list" class="space-y-2 mb-8" role="group" aria-label="Starting five selection">
+        <!-- Populated by JavaScript -->
+      </div>
+
+      <button
+        type="button"
+        id="btn-generate"
+        disabled
+        class="w-full h-11 bg-brand-purple text-white font-bold rounded-lg transition-colors text-sm disabled:opacity-40 disabled:cursor-not-allowed hover:bg-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+      >
+        Generate Plan
+      </button>
+      <p id="generate-error" class="hidden text-red-600 text-sm mt-3">Plan generation failed. Please try again.</p>
+    </section>
+
+    <!-- SECTION: Plan Display (hidden by default) -->
+    <section id="section-plan-display" class="hidden">
+      <h2 class="text-xl font-bold text-brand-black mb-4">Rotation Plan</h2>
+
+      <!-- Gantt chart -->
+      <div id="gantt-container" class="mb-4">
+        <!-- Gantt chart rendered by JavaScript -->
+      </div>
+
+      <!-- Accessible text summary -->
+      <details id="gantt-summary" class="mt-4 mb-6 border border-gray-200 rounded-lg" aria-label="Court time summary — player-by-player breakdown">
+        <summary class="px-4 py-3 cursor-pointer text-sm font-medium text-brand-black hover:bg-gray-50 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple">Court time summary</summary>
+        <div id="gantt-summary-content" class="px-4 pb-4 pt-2">
+          <!-- Populated by JavaScript -->
+        </div>
+      </details>
+
+      <!-- Actions -->
+      <div class="flex flex-col sm:flex-row gap-3">
+        <button
+          id="btn-start-over"
+          type="button"
+          class="h-11 flex-1 bg-brand-purple text-white font-bold rounded-lg hover:bg-purple-800 transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
+        >
+          Start Over
+        </button>
+        <button
+          id="btn-export-pdf"
+          type="button"
+          disabled
+          aria-label="Export substitution sheet as PDF"
+          class="h-11 flex-1 bg-gray-200 text-gray-500 font-bold rounded-lg text-sm opacity-50 cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
+        >
+          Export PDF
+        </button>
+      </div>
+      <p id="pdf-error" class="hidden text-red-600 text-sm mt-3">PDF export failed. Please try again.</p>
+    </section>
+
+  </div>
+</BaseLayout>
+
+<script>
+  import { generateRotationPlan, derivePlayerSchedules } from '../lib/court-time/algorithm';
+  import type { Player, RotationPlan, PlayerSchedule } from '../lib/court-time/types';
+
+  // ---------------------------------------------------------------------------
+  // App state
+  // ---------------------------------------------------------------------------
+  type AppState = 'roster-entry' | 'starter-selection' | 'plan-display';
+
+  let appState: AppState = 'roster-entry';
+  let players: Player[] = [];
+  let selectedIds = new Set<string>();
+  let currentPlan: RotationPlan | null = null;
+  let currentSchedules: PlayerSchedule[] = [];
+
+  // ---------------------------------------------------------------------------
+  // DOM refs
+  // ---------------------------------------------------------------------------
+  const sectionRosterEntry = document.getElementById('section-roster-entry')!;
+  const sectionStarterSelection = document.getElementById('section-starter-selection')!;
+  const sectionPlanDisplay = document.getElementById('section-plan-display')!;
+
+  const rosterForm = document.getElementById('roster-form') as HTMLFormElement;
+  const btnAddPlayer = document.getElementById('btn-add-player') as HTMLButtonElement;
+  const btnRemovePlayer = document.getElementById('btn-remove-player') as HTMLButtonElement;
+  const btnBackToRoster = document.getElementById('btn-back-to-roster') as HTMLButtonElement;
+  const btnGenerate = document.getElementById('btn-generate') as HTMLButtonElement;
+  const starterList = document.getElementById('starter-list')!;
+  const starterCount = document.getElementById('starter-count')!;
+  const formErrorSummary = document.getElementById('form-error-summary')!;
+  const formErrorMessage = document.getElementById('form-error-message')!;
+
+  // ---------------------------------------------------------------------------
+  // Render dispatch
+  // ---------------------------------------------------------------------------
+  function render(): void {
+    sectionRosterEntry.classList.toggle('hidden', appState !== 'roster-entry');
+    sectionStarterSelection.classList.toggle('hidden', appState !== 'starter-selection');
+    sectionPlanDisplay.classList.toggle('hidden', appState !== 'plan-display');
+  }
+
+  // ---------------------------------------------------------------------------
+  // Roster helpers
+  // ---------------------------------------------------------------------------
+  function getPlayerRows(): HTMLElement[] {
+    return Array.from(document.querySelectorAll<HTMLElement>('.player-row'));
+  }
+
+  function getVisibleRows(): HTMLElement[] {
+    return getPlayerRows().filter(row => !row.classList.contains('hidden'));
+  }
+
+  function updateAddRemoveButtons(): void {
+    const count = getVisibleRows().length;
+    btnAddPlayer.disabled = count >= 9;
+    btnRemovePlayer.disabled = count <= 7;
+  }
+
+  function clearValidationErrors(): void {
+    const inputs = document.querySelectorAll<HTMLInputElement>('.player-input');
+    inputs.forEach(input => {
+      input.removeAttribute('aria-invalid');
+      input.classList.remove('border-red-500');
+      input.classList.add('border-gray-300');
+    });
+    for (let i = 1; i <= 9; i++) {
+      const errorSpan = document.getElementById(`error-player-${i}`);
+      if (errorSpan) {
+        errorSpan.classList.add('hidden');
+        errorSpan.textContent = '';
+      }
+    }
+    formErrorSummary.classList.add('hidden');
+    formErrorMessage.textContent = '';
+  }
+
+  // ---------------------------------------------------------------------------
+  // Add / Remove player
+  // ---------------------------------------------------------------------------
+  btnAddPlayer.addEventListener('click', () => {
+    const rows = getPlayerRows();
+    const firstHidden = rows.find(row => row.classList.contains('hidden'));
+    if (firstHidden) {
+      firstHidden.classList.remove('hidden');
+      updateAddRemoveButtons();
+    }
+  });
+
+  btnRemovePlayer.addEventListener('click', () => {
+    const visible = getVisibleRows();
+    if (visible.length <= 7) return;
+    const last = visible[visible.length - 1];
+    // Clear the input value
+    const input = last.querySelector<HTMLInputElement>('.player-input');
+    if (input) {
+      input.value = '';
+      input.removeAttribute('aria-invalid');
+    }
+    // Clear error span
+    const errorSpan = last.querySelector<HTMLElement>('[role="alert"]');
+    if (errorSpan) {
+      errorSpan.classList.add('hidden');
+      errorSpan.textContent = '';
+    }
+    last.classList.add('hidden');
+    updateAddRemoveButtons();
+  });
+
+  // ---------------------------------------------------------------------------
+  // Roster form submission
+  // ---------------------------------------------------------------------------
+  rosterForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    clearValidationErrors();
+
+    const visible = getVisibleRows();
+    let hasError = false;
+
+    // Count check
+    if (visible.length < 7 || visible.length > 9) {
+      formErrorSummary.classList.remove('hidden');
+      formErrorMessage.textContent = `You must have between 7 and 9 players. Currently: ${visible.length}.`;
+      return;
+    }
+
+    // Blank name check
+    const collectedPlayers: Player[] = [];
+    visible.forEach((row, idx) => {
+      const rowNum = parseInt(row.id.replace('row-player-', ''), 10);
+      const input = row.querySelector<HTMLInputElement>('.player-input')!;
+      const errorSpan = document.getElementById(`error-player-${rowNum}`)!;
+      const trimmed = input.value.trim();
+
+      if (!trimmed) {
+        input.setAttribute('aria-invalid', 'true');
+        input.classList.remove('border-gray-300');
+        input.classList.add('border-red-500');
+        errorSpan.textContent = 'Player name is required.';
+        errorSpan.classList.remove('hidden');
+        hasError = true;
+      } else {
+        collectedPlayers.push({ id: `p${idx}`, name: trimmed });
+      }
+    });
+
+    if (hasError) {
+      formErrorSummary.classList.remove('hidden');
+      formErrorMessage.textContent = 'Please enter a name for each player highlighted below.';
+      return;
+    }
+
+    // All valid — transition to starter selection
+    players = collectedPlayers;
+    selectedIds = new Set();
+    populateStarterList();
+    appState = 'starter-selection';
+    render();
+  });
+
+  // ---------------------------------------------------------------------------
+  // Starter selection
+  // ---------------------------------------------------------------------------
+  function populateStarterList(): void {
+    starterList.innerHTML = '';
+    selectedIds.clear();
+    updateStarterCount();
+    btnGenerate.disabled = true;
+
+    players.forEach(player => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.dataset.playerId = player.id;
+      btn.setAttribute('aria-pressed', 'false');
+      btn.className = [
+        'starter-toggle',
+        'w-full h-11 px-4 rounded-lg border-2 border-gray-200',
+        'flex items-center gap-3 text-left text-sm font-medium',
+        'transition-colors hover:border-brand-purple hover:bg-brand-offwhite',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple',
+      ].join(' ');
+      btn.innerHTML = `
+        <span class="starter-indicator w-5 h-5 rounded border-2 border-gray-300 flex-shrink-0 flex items-center justify-center" aria-hidden="true"></span>
+        <span>${escapeHtml(player.name)}</span>
+      `;
+      btn.addEventListener('click', () => toggleStarter(player.id));
+      starterList.appendChild(btn);
+    });
+  }
+
+  function escapeHtml(str: string): string {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function toggleStarter(playerId: string): void {
+    const btn = starterList.querySelector<HTMLButtonElement>(`[data-player-id="${playerId}"]`)!;
+    const isSelected = selectedIds.has(playerId);
+
+    if (isSelected) {
+      // Deselect
+      selectedIds.delete(playerId);
+      btn.setAttribute('aria-pressed', 'false');
+      btn.classList.remove('border-brand-purple', 'bg-brand-offwhite');
+      btn.classList.add('border-gray-200');
+      const indicator = btn.querySelector<HTMLElement>('.starter-indicator')!;
+      indicator.classList.remove('bg-brand-purple', 'border-brand-purple');
+      indicator.classList.add('border-gray-300');
+      indicator.innerHTML = '';
+    } else {
+      // Only allow if fewer than 5 selected
+      if (selectedIds.size >= 5) return;
+      selectedIds.add(playerId);
+      btn.setAttribute('aria-pressed', 'true');
+      btn.classList.add('border-brand-purple', 'bg-brand-offwhite');
+      btn.classList.remove('border-gray-200');
+      const indicator = btn.querySelector<HTMLElement>('.starter-indicator')!;
+      indicator.classList.add('bg-brand-purple', 'border-brand-purple');
+      indicator.classList.remove('border-gray-300');
+      indicator.innerHTML = '<svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+    }
+
+    updateStarterCount();
+    enforceSelectionLimit();
+  }
+
+  function updateStarterCount(): void {
+    const count = selectedIds.size;
+    starterCount.textContent = `${count} of 5 selected`;
+    btnGenerate.disabled = count !== 5;
+  }
+
+  function enforceSelectionLimit(): void {
+    const buttons = starterList.querySelectorAll<HTMLButtonElement>('.starter-toggle');
+    const atLimit = selectedIds.size >= 5;
+    buttons.forEach(btn => {
+      const id = btn.dataset.playerId!;
+      if (!selectedIds.has(id)) {
+        btn.disabled = atLimit;
+        if (atLimit) {
+          btn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Gantt chart rendering
+  // ---------------------------------------------------------------------------
+
+  function truncateName(name: string, maxLen = 30): string {
+    return name.length > maxLen ? name.slice(0, maxLen - 1) + '…' : name;
+  }
+
+  function renderGantt(schedules: PlayerSchedule[]): void {
+    const container = document.getElementById('gantt-container')!;
+
+    // Time axis minutes
+    const axisTicks = [0, 5, 10, 15, 20, 25, 30, 35, 40];
+
+    // Build the chart HTML
+    let html = `<div class="overflow-x-auto">`;
+    html += `<div style="min-width:600px; position:relative; padding-left:120px;">`;
+
+    // ---- Time axis ----
+    html += `<div style="position:relative; height:24px; margin-bottom:4px;">`;
+    for (const tick of axisTicks) {
+      const pct = (tick / 40) * 100;
+      const alignStyle = tick === 0
+        ? 'transform:none; left:0;'
+        : tick === 40
+          ? 'transform:translateX(-100%); left:100%;'
+          : 'transform:translateX(-50%);';
+      html += `<span style="position:absolute; left:${pct}%; ${alignStyle} font-size:11px; color:#6b7280; white-space:nowrap;">${tick}'</span>`;
+    }
+    html += `</div>`;
+
+    // ---- Player rows ----
+    for (const schedule of schedules) {
+      const label = truncateName(schedule.player.name);
+      html += `<div style="display:flex; align-items:center; margin-bottom:6px; position:relative;">`;
+      // Player name label (sits to the left via negative margin on the parent padding)
+      html += `<div style="position:absolute; left:-120px; width:116px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; font-weight:500; color:#111;" title="${escapeHtml(schedule.player.name)}">${escapeHtml(label)}</div>`;
+      // Timeline bar area
+      html += `<div style="position:relative; flex:1; height:32px;">`;
+
+      for (const stint of schedule.stints) {
+        const widthPct = (stint.durationMinutes / 40) * 100;
+        const leftPct = (stint.startMinute / 40) * 100;
+        const minWidthPx = 8;
+        const bgStyle = stint.type === 'on-court'
+          ? 'background:var(--color-brand-purple, #5b2d8e);'
+          : 'background:var(--color-brand-offwhite, #f5f3ee); border:1px solid #d1d5db;';
+        const title = `${schedule.player.name}: ${stint.type} min ${stint.startMinute}–${stint.endMinute}`;
+        html += `<div style="position:absolute; top:0; bottom:0; left:${leftPct}%; width:${widthPct}%; min-width:${minWidthPx}px; ${bgStyle} border-radius:3px;" title="${escapeHtml(title)}"></div>`;
+      }
+
+      html += `</div>`; // timeline
+      html += `</div>`; // row
+    }
+
+    // ---- Half-time marker ----
+    html += `<div style="position:absolute; left:calc(120px + 50%); top:24px; bottom:0; width:2px; background:var(--color-brand-gold, #c8a84b); pointer-events:none; z-index:1;" aria-hidden="true"></div>`;
+
+    // ---- Half labels ----
+    html += `<div style="position:relative; height:20px; margin-top:4px;">`;
+    html += `<span style="position:absolute; left:25%; transform:translateX(-50%); font-size:11px; color:#6b7280;">Half 1</span>`;
+    html += `<span style="position:absolute; left:75%; transform:translateX(-50%); font-size:11px; color:#6b7280;">Half 2</span>`;
+    html += `</div>`;
+
+    html += `</div>`; // min-width wrapper
+    html += `</div>`; // overflow-x-auto
+
+    container.innerHTML = html;
+
+    // ---- Accessible summary ----
+    const summaryContent = document.getElementById('gantt-summary-content')!;
+    let summaryHtml = `<ul class="space-y-1">`;
+    for (const schedule of schedules) {
+      const onCourtMinutes = schedule.stints
+        .filter(s => s.type === 'on-court')
+        .reduce((sum, s) => sum + s.durationMinutes, 0);
+      summaryHtml += `<li class="text-sm text-gray-700"><span class="font-medium">${escapeHtml(schedule.player.name)}</span>: ${onCourtMinutes} min on court</li>`;
+    }
+    summaryHtml += `</ul>`;
+    summaryContent.innerHTML = summaryHtml;
+  }
+
+  // ---------------------------------------------------------------------------
+  // PDF Export
+  // ---------------------------------------------------------------------------
+  async function exportPdf(plan: RotationPlan): Promise<void> {
+    const pdfError = document.getElementById('pdf-error')!;
+    try {
+      const { jsPDF } = await import('jspdf');
+
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const marginLeft = 20;
+      const marginRight = 20;
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const workingWidth = pageWidth - marginLeft - marginRight; // 170mm
+      let y = 20; // current y cursor
+
+      // Helper: write a line and advance y
+      function writeLine(text: string, opts: { bold?: boolean; size?: number; indent?: number } = {}): void {
+        const fontSize = opts.size ?? 11;
+        const indent = opts.indent ?? 0;
+        doc.setFontSize(fontSize);
+        doc.setFont('helvetica', opts.bold ? 'bold' : 'normal');
+        const lines = doc.splitTextToSize(text, workingWidth - indent);
+        doc.text(lines, marginLeft + indent, y);
+        y += (fontSize * 0.3528 + 1) * (Array.isArray(lines) ? lines.length : 1);
+      }
+
+      function addVerticalSpace(mm: number): void {
+        y += mm;
+      }
+
+      // Header
+      writeLine('Bendigo Phoenix — Court Time Calculator', { bold: true, size: 14 });
+      addVerticalSpace(3);
+
+      const dateStr = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
+      const playerCount = plan.roster.length;
+      writeLine(`${dateStr} — ${playerCount} players`, { size: 10 });
+      addVerticalSpace(6);
+
+      // Separator line
+      doc.setLineWidth(0.3);
+      doc.line(marginLeft, y, pageWidth - marginRight, y);
+      addVerticalSpace(5);
+
+      // Helper: render one half section
+      function renderHalf(halfIndex: 0 | 1): void {
+        const half = plan.halves[halfIndex];
+        const halfLabel = halfIndex === 0 ? 'First Half' : 'Second Half';
+
+        writeLine(halfLabel, { bold: true, size: 13 });
+        addVerticalSpace(2);
+
+        // Starting lineup
+        const starterNames = half.startingFive.map(p => p.name).join(', ');
+        const starterPrefix = halfIndex === 1
+          ? 'Starting (algorithm selected): '
+          : 'Starting: ';
+        writeLine(starterPrefix + starterNames, { size: 10, indent: 2 });
+        addVerticalSpace(4);
+
+        // Substitution events
+        if (half.substitutions.length === 0) {
+          writeLine('No substitutions this half.', { size: 10, indent: 2 });
+        } else {
+          const sorted = [...half.substitutions].sort((a, b) => a.gameClockMinute - b.gameClockMinute);
+          for (const event of sorted) {
+            // Countdown format: remaining = 20 - elapsed
+            const remaining = 20 - event.gameClockMinute;
+            const display = String(remaining).padStart(2, '0') + ':00';
+
+            const inNames = event.playersComingOn.map(p => p.name).join(', ');
+            const outNames = event.playersSittingDown.map(p => p.name).join(', ');
+            const line = `${display} — ${inNames} IN, ${outNames} OUT`;
+            writeLine(line, { size: 10, indent: 2 });
+            addVerticalSpace(1);
+
+            // Thin separator between events
+            doc.setLineWidth(0.1);
+            doc.setDrawColor(200, 200, 200);
+            doc.line(marginLeft + 2, y, pageWidth - marginRight, y);
+            doc.setDrawColor(0, 0, 0);
+            addVerticalSpace(2);
+          }
+        }
+
+        addVerticalSpace(4);
+      }
+
+      renderHalf(0);
+
+      // Half-time divider
+      doc.setLineWidth(0.5);
+      doc.line(marginLeft, y, pageWidth - marginRight, y);
+      addVerticalSpace(5);
+
+      renderHalf(1);
+
+      // Footer
+      const footerText = 'Generated by Bendigo Phoenix Coach Toolkit — session data not saved';
+      doc.setFontSize(8);
+      doc.setFont('helvetica', 'normal');
+      doc.setTextColor(150, 150, 150);
+      const footerY = doc.internal.pageSize.getHeight() - 10;
+      doc.text(footerText, pageWidth / 2, footerY, { align: 'center' });
+      doc.setTextColor(0, 0, 0);
+
+      // iOS-safe download
+      const isIos = /iP(ad|hone|od)/i.test(navigator.userAgent);
+      if (isIos) {
+        window.open(doc.output('bloburl') as unknown as string, '_blank');
+      } else {
+        doc.save('court-time-calculator.pdf');
+      }
+
+      pdfError.classList.add('hidden');
+    } catch (err) {
+      console.error('PDF export error:', err);
+      pdfError.classList.remove('hidden');
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Generate Plan — wired in Window 3
+  // ---------------------------------------------------------------------------
+  btnGenerate.addEventListener('click', () => {
+    if (selectedIds.size !== 5) return;
+
+    // Build starting five from selected IDs, preserving roster order
+    const startingFive: Player[] = players.filter(p => selectedIds.has(p.id));
+
+    const generateError = document.getElementById('generate-error')!;
+    generateError.classList.add('hidden');
+
+    try {
+      currentPlan = generateRotationPlan(players, startingFive);
+      currentSchedules = derivePlayerSchedules(currentPlan);
+    } catch (err) {
+      console.error('Plan generation failed:', err);
+      generateError.classList.remove('hidden');
+      return;
+    }
+
+    appState = 'plan-display';
+    render();
+    renderGantt(currentSchedules);
+
+    // Enable Export PDF button (Task 9)
+    const btnExport = document.getElementById('btn-export-pdf') as HTMLButtonElement;
+    btnExport.disabled = false;
+    btnExport.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
+    btnExport.classList.add('bg-brand-purple', 'text-white', 'hover:bg-purple-800');
+
+    // Wire export click (attach once; guard against double-attach via currentPlan check)
+    btnExport.onclick = () => {
+      if (currentPlan) exportPdf(currentPlan);
+    };
+  });
+
+  // ---------------------------------------------------------------------------
+  // Back to roster
+  // ---------------------------------------------------------------------------
+  btnBackToRoster.addEventListener('click', () => {
+    appState = 'roster-entry';
+    render();
+    // Player name inputs remain populated (FR-017a)
+  });
+
+  // ---------------------------------------------------------------------------
+  // Start Over
+  // ---------------------------------------------------------------------------
+  const btnStartOver = document.getElementById('btn-start-over') as HTMLButtonElement;
+
+  btnStartOver.addEventListener('click', () => {
+    // Clear plan state
+    currentPlan = null;
+    currentSchedules = [];
+
+    // Clear Gantt and summary
+    document.getElementById('gantt-container')!.innerHTML = '';
+    const summaryContent = document.getElementById('gantt-summary-content');
+    if (summaryContent) summaryContent.innerHTML = '';
+
+    // Clear all player name inputs
+    for (let i = 1; i <= 9; i++) {
+      const input = document.getElementById(`input-player-${i}`) as HTMLInputElement | null;
+      if (input) {
+        input.value = '';
+        input.removeAttribute('aria-invalid');
+        input.classList.remove('border-red-500');
+        input.classList.add('border-gray-300');
+      }
+      const errorSpan = document.getElementById(`error-player-${i}`);
+      if (errorSpan) {
+        errorSpan.classList.add('hidden');
+        errorSpan.textContent = '';
+      }
+    }
+    // Hide rows 8 & 9 (restore default 7-player view)
+    for (let i = 8; i <= 9; i++) {
+      const row = document.getElementById(`row-player-${i}`);
+      if (row) row.classList.add('hidden');
+    }
+
+    // Reset summary error
+    formErrorSummary.classList.add('hidden');
+    formErrorMessage.textContent = '';
+
+    // Reset starter selection
+    players = [];
+    selectedIds = new Set();
+    starterList.innerHTML = '';
+    starterCount.textContent = '0 of 5 selected';
+    btnGenerate.disabled = true;
+
+    // Hide plan generation error if visible
+    const generateError = document.getElementById('generate-error');
+    if (generateError) generateError.classList.add('hidden');
+
+    // Re-disable Export PDF button (AC-8, FR-028)
+    const btnExport = document.getElementById('btn-export-pdf') as HTMLButtonElement;
+    btnExport.disabled = true;
+    btnExport.onclick = null;
+    btnExport.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
+    btnExport.classList.remove('bg-brand-purple', 'text-white', 'hover:bg-purple-800');
+
+    // Hide PDF error if visible
+    const pdfError = document.getElementById('pdf-error');
+    if (pdfError) pdfError.classList.add('hidden');
+
+    updateAddRemoveButtons();
+    appState = 'roster-entry';
+    render();
+  });
+
+  // ---------------------------------------------------------------------------
+  // Initial state
+  // ---------------------------------------------------------------------------
+  updateAddRemoveButtons();
+  render();
+</script>

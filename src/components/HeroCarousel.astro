@@ -1,0 +1,433 @@
+---
+/**
+ * HeroCarousel — landscape hero carousel with a top-to-bottom card flip.
+ *
+ * Transition mechanic (X-axis flip, like a calendar flip):
+ *   1. Current slide tips away from the viewer (top edge recedes, rotateX 0→90deg)
+ *   2. New slide rolls in from behind (rotateX -90deg→0)
+ *   The two halves are timed to meet at the midpoint so it reads as one
+ *   continuous flip rather than two separate moves.
+ *
+ * Aspect-ratio handling:
+ *   Images use object-fit:contain — never cropped, letterboxed to bgColor.
+ *
+ * Slide shape: { image?, alt?, title?, caption?, bgColor? }
+ */
+
+interface Slide {
+  image?: string;
+  alt?: string;
+  title?: string;
+  caption?: string;
+  bgColor?: string;
+}
+
+interface Props {
+  slides: Slide[];
+  autoAdvanceMs?: number;
+}
+
+const { slides, autoAdvanceMs = 10000 } = Astro.props;
+const count = slides.length;
+---
+
+<div
+  class="hero-slider"
+  data-count={count}
+  data-interval={autoAdvanceMs}
+  aria-label="Club updates"
+  aria-roledescription="carousel"
+>
+  <!-- ── Image viewport ───────────────────────────────────── -->
+  <div class="slider-viewport" aria-live="polite">
+
+    {slides.map((slide, i) => (
+      <div
+        class={`slide${i === 0 ? ' is-active' : ''}`}
+        data-slide={i}
+        role="group"
+        aria-roledescription="slide"
+        aria-label={`Slide ${i + 1} of ${count}${slide.title ? ` — ${slide.title}` : ''}`}
+        aria-hidden={i !== 0 ? 'true' : 'false'}
+      >
+        {slide.image ? (
+          <img
+            src={slide.image}
+            alt={slide.alt ?? slide.title ?? ''}
+            class="slide-img"
+            style={`background-color: ${slide.bgColor ?? '#111111'};`}
+            loading={i === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+          />
+        ) : (
+          <div
+            class="slide-placeholder"
+            style={`background: ${
+              slide.bgColor
+                ? `linear-gradient(135deg, ${slide.bgColor} 0%, #0d0d0d 100%)`
+                : 'linear-gradient(135deg, #573F93 0%, #111111 100%)'
+            };`}
+            aria-hidden="true"
+          >
+            <span class="placeholder-logo">🏀</span>
+          </div>
+        )}
+      </div>
+    ))}
+
+    <button class="slider-arrow slider-prev" aria-label="Previous slide">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <button class="slider-arrow slider-next" aria-label="Next slide">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ── Footer: caption + dots — always below the image ──── -->
+  <div class="slider-footer">
+    <div class="slide-captions">
+      {slides.map((slide, i) => (
+        <div
+          class={`slide-caption${i === 0 ? ' is-active' : ''}`}
+          data-caption={i}
+          aria-hidden={i !== 0 ? 'true' : 'false'}
+        >
+          {slide.title   && <p class="caption-title">{slide.title}</p>}
+          {slide.caption && <p class="caption-body">{slide.caption}</p>}
+        </div>
+      ))}
+    </div>
+
+    <div class="slider-dots" role="tablist" aria-label="Slide indicators">
+      {slides.map((_, i) => (
+        <button
+          class={`slider-dot${i === 0 ? ' is-active' : ''}`}
+          data-dot={i}
+          role="tab"
+          aria-label={`Go to slide ${i + 1}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+        />
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  /* ── Card wrapper ────────────────────────────────────────── */
+  .hero-slider {
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+      0 30px 80px rgba(0,0,0,0.45),
+      0 0 0 1px rgba(139,117,54,0.25);
+  }
+
+  /* ── Viewport — perspective needed for the 3D flip ──────── */
+  .slider-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    background: #111;
+    overflow: hidden;
+    /* Perspective applied here so all child transforms share the same vanishing point */
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+  }
+
+  @media (max-width: 480px) {
+    .slider-viewport { aspect-ratio: 4 / 3; }
+  }
+
+  /* ── Slides — stacked absolutely ────────────────────────── */
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+    /* Keep the back face hidden so slides don't bleed through each other */
+    backface-visibility: hidden;
+    transform-origin: center center;
+  }
+
+  .slide.is-active {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: auto;
+    transform: rotateX(0deg);
+  }
+
+  /* ── Flip keyframes ──────────────────────────────────────── */
+
+  /*
+   * Exit (first half of the flip):
+   * Top edge recedes away from viewer — card tips downward and disappears.
+   */
+  @keyframes flipOut {
+    from {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+    to {
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+  }
+
+  /*
+   * Enter (second half of the flip):
+   * New card arrives from "behind" the top and rotates down to flat.
+   */
+  @keyframes flipIn {
+    from {
+      transform: rotateX(-90deg);
+      opacity: 0;
+    }
+    to {
+      transform: rotateX(0deg);
+      opacity: 1;
+    }
+  }
+
+  /* Applied by JS */
+  .slide.is-exiting {
+    opacity: 1;
+    z-index: 3;
+    pointer-events: none;
+    animation: flipOut 0.35s ease-in forwards;
+  }
+
+  .slide.is-entering {
+    opacity: 1;
+    z-index: 2;
+    pointer-events: none;
+    /* Delay matches the exit duration so the new card arrives just as the old one disappears */
+    animation: flipIn 0.35s ease-out 0.3s both;
+  }
+
+  /* ── Image / placeholder ─────────────────────────────────── */
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .slide-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .placeholder-logo {
+    font-size: clamp(3rem, 8vw, 6rem);
+    opacity: 0.35;
+    user-select: none;
+  }
+
+  /* ── Arrows ──────────────────────────────────────────────── */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(139,117,54,0.55);
+    background: rgba(17,17,17,0.55);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    backdrop-filter: blur(6px);
+  }
+
+  .slider-arrow:hover {
+    background: #8B7536;
+    border-color: #8B7536;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .slider-arrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .slider-prev { left: 16px; }
+  .slider-next { right: 16px; }
+
+  @media (max-width: 480px) {
+    .slider-arrow { width: 38px; height: 38px; }
+    .slider-prev  { left: 8px; }
+    .slider-next  { right: 8px; }
+  }
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  .slider-footer {
+    background: #1a1030;
+    padding: 18px 24px 20px;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .slide-captions { width: 100%; text-align: center; }
+  .slide-caption  { display: none; }
+  .slide-caption.is-active { display: block; }
+
+  .caption-title {
+    color: #fff;
+    font-weight: 800;
+    font-size: clamp(1rem, 2.5vw, 1.35rem);
+    line-height: 1.25;
+    margin: 0 0 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .caption-body {
+    color: rgba(255,255,255,0.6);
+    font-size: clamp(0.8rem, 1.5vw, 0.95rem);
+    line-height: 1.4;
+    margin: 0;
+  }
+
+  /* ── Dots ────────────────────────────────────────────────── */
+  .slider-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .slider-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s, width 0.25s;
+  }
+
+  .slider-dot.is-active {
+    background: #8B7536;
+    transform: scale(1.3);
+    width: 24px;
+    border-radius: 5px;
+  }
+</style>
+
+<script>
+  const EXIT_DURATION  = 350;  // ms — matches flipOut duration
+  const ENTER_DELAY    = 300;  // ms — slight overlap for smoothness
+  const TOTAL_DURATION = EXIT_DURATION + ENTER_DELAY;
+
+  document.querySelectorAll<HTMLElement>('.hero-slider').forEach(slider => {
+    const count    = parseInt(slider.dataset.count    ?? '1',     10);
+    const interval = parseInt(slider.dataset.interval ?? '10000', 10);
+    const slides   = Array.from(slider.querySelectorAll<HTMLElement>('.slide'));
+    const captions = Array.from(slider.querySelectorAll<HTMLElement>('.slide-caption'));
+    const dots     = Array.from(slider.querySelectorAll<HTMLElement>('.slider-dot'));
+    const prevBtn  = slider.querySelector<HTMLButtonElement>('.slider-prev')!;
+    const nextBtn  = slider.querySelector<HTMLButtonElement>('.slider-next')!;
+
+    let active    = 0;
+    let animating = false;
+    let timer: ReturnType<typeof setInterval>;
+
+    function goTo(nextIndex: number) {
+      if (animating || nextIndex === active) return;
+      animating = true;
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+
+      const outSlide = slides[active];
+      const inSlide  = slides[nextIndex];
+
+      // Stage incoming slide so it's ready (but animation handles opacity)
+      inSlide.style.zIndex = '2';
+
+      // Trigger the flip animations
+      outSlide.classList.add('is-exiting');
+      inSlide.classList.add('is-entering');
+
+      // Update captions + dots at the midpoint (feels most natural)
+      setTimeout(() => updateUI(nextIndex), EXIT_DURATION);
+
+      // Settle state after both halves complete
+      setTimeout(() => {
+        outSlide.classList.remove('is-active', 'is-exiting');
+        outSlide.style.zIndex = '';
+        outSlide.setAttribute('aria-hidden', 'true');
+
+        inSlide.classList.remove('is-entering');
+        inSlide.classList.add('is-active');
+        inSlide.style.zIndex = '';
+        inSlide.setAttribute('aria-hidden', 'false');
+
+        active    = nextIndex;
+        animating = false;
+        prevBtn.disabled = false;
+        nextBtn.disabled = false;
+      }, TOTAL_DURATION + 50);
+    }
+
+    function updateUI(index: number) {
+      captions.forEach((c, i) => {
+        c.classList.toggle('is-active', i === index);
+        c.setAttribute('aria-hidden', String(i !== index));
+      });
+      dots.forEach((d, i) => {
+        d.classList.toggle('is-active', i === index);
+        d.setAttribute('aria-selected', String(i === index));
+      });
+    }
+
+    function next() { goTo(((active + 1) % count + count) % count); }
+    function prev() { goTo(((active - 1) % count + count) % count); }
+
+    function startTimer() { clearInterval(timer); timer = setInterval(next, interval); }
+    function stopTimer()  { clearInterval(timer); }
+
+    nextBtn.addEventListener('click', () => { next(); startTimer(); });
+    prevBtn.addEventListener('click', () => { prev(); startTimer(); });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { goTo(i); startTimer(); });
+    });
+
+    slider.addEventListener('mouseenter', stopTimer);
+    slider.addEventListener('mouseleave', startTimer);
+
+    let tx = 0;
+    slider.addEventListener('touchstart', (e: TouchEvent) => { tx = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', (e: TouchEvent) => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 45) { dx < 0 ? next() : prev(); startTimer(); }
+    }, { passive: true });
+
+    slider.setAttribute('tabindex', '0');
+    slider.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft')  { prev(); startTimer(); }
+      if (e.key === 'ArrowRight') { next(); startTimer(); }
+    });
+
+    startTimer();
+  });
+</script>

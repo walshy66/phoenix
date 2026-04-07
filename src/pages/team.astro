@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const players = [
+  { name: 'Player Name', role: 'Guard', number: '1', category: 'players' },
+  { name: 'Player Name', role: 'Forward', number: '5', category: 'players' },
+  { name: 'Player Name', role: 'Centre', number: '10', category: 'players' },
+  { name: 'Player Name', role: 'Guard', number: '12', category: 'players' },
+  { name: 'Player Name', role: 'Forward', number: '23', category: 'players' },
+  { name: 'Player Name', role: 'Guard', number: '7', category: 'players' },
+];
+
+const coaches = [
+  { name: 'Head Coach', role: 'Head Coach', number: '', category: 'coaches' },
+  { name: 'Assistant Coach', role: 'Assistant Coach', number: '', category: 'coaches' },
+];
+
+const managers = [
+  { name: 'Team Manager', role: 'Team Manager', number: '', category: 'managers' },
+];
+
+const allMembers = [...players, ...coaches, ...managers];
+---
+
+<BaseLayout title="Team" description="Meet the Bendigo Phoenix Basketball team — players, coaches and managers.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">MEET THE TEAM</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        The talented individuals who make Bendigo Phoenix Basketball Club.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Tabs -->
+  <section class="bg-white border-b border-gray-100 sticky top-16 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-1 overflow-x-auto py-3" id="filter-tabs">
+        {['all', 'players', 'coaches', 'managers'].map(tab => (
+          <button
+            data-filter={tab}
+            class={`filter-btn flex-shrink-0 px-5 py-2 rounded-full text-sm font-medium transition-colors duration-150 border ${tab === 'all' ? 'bg-brand-purple text-white border-brand-purple active' : 'bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite'}`}
+          >
+            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Cards -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6" id="team-grid">
+        {allMembers.map(member => (
+          <div
+            data-category={member.category}
+            class="member-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover"
+          >
+            <!-- Photo placeholder -->
+            <div class="h-44 bg-brand-purple flex flex-col items-center justify-center relative">
+              <div class="absolute top-0 left-0 right-0 h-1 bg-brand-gold"></div>
+              <div class="w-20 h-20 rounded-full bg-purple-700 flex items-center justify-center text-4xl">
+                👤
+              </div>
+              {member.number && (
+                <span class="absolute bottom-3 right-3 text-brand-gold font-black text-xl">
+                  #{member.number}
+                </span>
+              )}
+            </div>
+            <div class="p-4">
+              <h3 class="font-bold text-brand-black text-sm leading-tight">{member.name}</h3>
+              <p class="text-brand-purple text-xs font-medium mt-1">{member.role}</p>
+              <span class="inline-block mt-2 text-xs px-2 py-0.5 rounded-full bg-brand-offwhite text-gray-500 capitalize">
+                {member.category}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Placeholder message -->
+      <div class="mt-12 text-center bg-white rounded-xl p-8 border border-dashed border-brand-purple">
+        <p class="text-brand-purple font-bold text-lg mb-2">Team roster coming soon!</p>
+        <p class="text-gray-500 text-sm">Player photos and full profiles will be added when available.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const memberCards = document.querySelectorAll('.member-card');
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      // Update active state
+      filterButtons.forEach(b => {
+        b.classList.remove('active', 'bg-brand-purple', 'text-white', 'border-brand-purple');
+        b.classList.add('bg-white', 'text-brand-purple', 'border-brand-purple');
+      });
+      btn.classList.add('active', 'bg-brand-purple', 'text-white');
+      btn.classList.remove('bg-white', 'text-brand-purple');
+
+      // Filter cards
+      memberCards.forEach(card => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

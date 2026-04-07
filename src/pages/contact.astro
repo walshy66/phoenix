@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact" description="Contact Bendigo Phoenix Basketball Club — address, email and social media.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Get In Touch</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">CONTACT US</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        We'd love to hear from you. Reach out with any questions or enquiries.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact Cards -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Address -->
+        <div class="card-hover bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-purple flex items-center justify-center text-2xl">
+            📍
+          </div>
+          <div>
+            <h3 class="font-bold text-brand-black text-base mb-2">Our Address</h3>
+            <address class="not-italic text-gray-500 text-sm leading-relaxed">
+              C/- Bendigo Stadium<br />
+              Inglis Street<br />
+              West Bendigo VIC 3550
+            </address>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="card-hover bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-purple flex items-center justify-center text-2xl">
+            ✉️
+          </div>
+          <div>
+            <h3 class="font-bold text-brand-black text-base mb-2">Email Us</h3>
+            <div class="space-y-2">
+              <div class="flex items-start gap-3">
+                <span class="text-xs font-medium">General Enquiries</span>
+                <a href="mailto:hello@bendigophoenix.org.au" class="text-brand-purple hover:text-brand-gold transition-colors">
+                  hello@bendigophoenix.org.au
+                </a>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-xs font-medium">President</span>
+                <a href="mailto:president@bendigophoenix.org.au" class="text-brand-purple hover:text-brand-gold transition-colors">
+                  president@bendigophoenix.org.au
+                </a>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-xs font-medium">Treasurer</span>
+                <a href="mailto:treasurer@bendigophoenix.org.au" class="text-brand-purple hover:text-brand-gold transition-colors">
+                  treasurer@bendigophoenix.org.au
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social -->
+        <div class="card-hover bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-brand-purple flex items-center justify-center text-2xl">
+            📱
+          </div>
+          <div class="w-full">
+            <h3 class="font-bold text-brand-black text-base mb-3">Social Media</h3>
+            <div class="space-y-3">
+              <a
+                href="https://facebook.com/phoenixunitedbasketball"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 p-2.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors group"
+              >
+                <span class="text-xl">📘</span>
+                <div>
+                  <p class="text-xs font-bold text-blue-800">Facebook</p>
+                  <p class="text-xs text-blue-600 group-hover:underline">phoenixunitedbasketball</p>
+                </div>
+              </a>
+              <a
+                href="https://instagram.com/bendigophoenix"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 p-2.5 rounded-lg hover:opacity-90 transition-opacity group"
+                style="background: linear-gradient(135deg, #f9f0ff, #fce4ff);"
+              >
+                <span class="text-xl">📷</span>
+                <div>
+                  <p class="text-xs font-bold" style="color: #7c3aed;">Instagram</p>
+                  <p class="text-xs group-hover:underline" style="color: #a855f7;">@bendigophoenix</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

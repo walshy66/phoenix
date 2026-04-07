@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-purple: #573F93;
+  --color-brand-gold: #8B7536;
+  --color-brand-black: #111111;
+  --color-brand-offwhite: #F4F5F7;
+  --color-brand-white: #FFFFFF;
+
+  --animate-fade-up: fadeUp 0.6s ease-out forwards;
+  --animate-fade-in: fadeIn 0.8s ease-out forwards;
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+:root {
+  --color-purple: #573F93;
+  --color-gold: #8B7536;
+  --color-black: #111111;
+  --color-offwhite: #F4F5F7;
+  --color-white: #FFFFFF;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-offwhite);
+  color: var(--color-black);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Hero animations */
+@keyframes heroSlideIn {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeUpStagger {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGold {
+  0%, 100% { border-color: #8B7536; }
+  50% { border-color: #c4a84e; }
+}
+
+.animate-hero-title {
+  animation: heroSlideIn 0.9s ease-out forwards;
+}
+
+.animate-hero-subtitle {
+  animation: heroSlideIn 0.9s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-hero-cta {
+  animation: heroFadeIn 0.8s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+.stagger-1 { animation: fadeUpStagger 0.6s ease-out 0.1s forwards; opacity: 0; }
+.stagger-2 { animation: fadeUpStagger 0.6s ease-out 0.25s forwards; opacity: 0; }
+.stagger-3 { animation: fadeUpStagger 0.6s ease-out 0.4s forwards; opacity: 0; }
+.stagger-4 { animation: fadeUpStagger 0.6s ease-out 0.55s forwards; opacity: 0; }
+.stagger-5 { animation: fadeUpStagger 0.6s ease-out 0.7s forwards; opacity: 0; }
+
+/* Card hover */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(87, 63, 147, 0.2);
+}
+
+/* Gold underline */
+.gold-accent::after {
+  content: '';
+  display: block;
+  height: 3px;
+  width: 60px;
+  background-color: #8B7536;
+  margin-top: 8px;
+}
+
+/* Sponsor marquee */
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Accordion */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion-content.open {
+  max-height: 500px;
+}
+
+/* Table overflow */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Filter button active */
+.filter-btn.active {
+  background-color: var(--color-purple);
+  color: white;
+}
+
+/* Resource card */
+.resource-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.resource-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(87, 63, 147, 0.15);
+}
+
+/* Score card win pulse */
+.win-indicator {
+  animation: pulseGold 2s ease-in-out infinite;
+}
+
+/* Mobile menu */
+#mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+#mobile-menu.open {
+  max-height: 500px;
+}

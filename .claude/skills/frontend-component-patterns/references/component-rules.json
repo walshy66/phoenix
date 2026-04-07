@@ -1,0 +1,127 @@
+{
+  "non_negotiable_rules": [
+    {
+      "id": "appshell-required",
+      "rule": "Every routed page renders inside AppShell",
+      "violation": "Page implements its own nav shell (custom <nav>, sidebar, bottom bar)",
+      "fix": "Remove custom nav. Page returns PageHeader + PageBody content only.",
+      "principle": "UI Architecture — Global Navigation & Layout Shell"
+    },
+    {
+      "id": "two-layouts-only",
+      "rule": "Two layout modes: Handheld (phone + tablet) and Desktop",
+      "violation": "Tablet-specific layout variant created separately from handheld",
+      "fix": "Tablets use handheld rules. No md: breakpoint exceptions for tablets.",
+      "principle": "UI Architecture — Responsive & Device Behaviours"
+    },
+    {
+      "id": "navigation-config-only",
+      "rule": "navigation.config.ts is the only place nav items are defined",
+      "violation": "Nav item added inside a component, page, or feature file",
+      "fix": "Add entry to navigation.config.ts only",
+      "principle": "UI Architecture — Source of Truth (Navigation)"
+    },
+    {
+      "id": "server-source-of-truth",
+      "rule": "All domain state derived from server responses",
+      "violation": "Client infers domain state from localStorage, component state, or URL params",
+      "fix": "Fetch from server endpoint, derive UI behaviour from response",
+      "principle": "Constitution VI — Backend Authority"
+    },
+    {
+      "id": "shared-primitives",
+      "rule": "Feature folders compose shared primitives, not re-implement them",
+      "violation": "Feature creates its own Card, Button, or layout component",
+      "fix": "Import from @/components/ui/ or @/components/layout/",
+      "principle": "UI Architecture — Component Standards"
+    },
+    {
+      "id": "tailwind-only",
+      "rule": "Styling uses Tailwind utilities only",
+      "violation": "Arbitrary values [13px], inline styles, or feature-local CSS files",
+      "fix": "Use Tailwind utility classes. Use shared tokens for colours.",
+      "principle": "UI Architecture — Component Standards"
+    },
+    {
+      "id": "keyboard-accessible",
+      "rule": "All interactive elements are keyboard accessible",
+      "violation": "onClick without onKeyDown, or div used as button without role/tabIndex",
+      "fix": "Add role=button, tabIndex=0, onKeyDown handler for Enter/Space",
+      "principle": "UI Architecture — Accessibility & Interaction"
+    },
+    {
+      "id": "focus-states-visible",
+      "rule": "Focus states must be visible on all interactive elements",
+      "violation": "outline: none without replacement focus indicator",
+      "fix": "Use focus:ring-2 focus:ring-offset-2 or equivalent visible indicator",
+      "principle": "UI Architecture — Accessibility & Interaction"
+    },
+    {
+      "id": "tap-targets",
+      "rule": "Mobile tap targets minimum 44x44px",
+      "violation": "Small icon buttons or links below 44px in either dimension",
+      "fix": "Add min-h-[44px] min-w-[44px] or equivalent padding",
+      "principle": "UI Architecture — Accessibility & Interaction"
+    },
+    {
+      "id": "no-local-breakpoints",
+      "rule": "Layout decisions derive from shared breakpoints only",
+      "violation": "window.innerWidth checks, custom media queries in feature CSS",
+      "fix": "Use Tailwind md: breakpoint (defined in tailwind.config.ts)",
+      "principle": "UI Architecture — Responsive & Device Behaviours"
+    }
+  ],
+  "required_states": [
+    {
+      "state": "loading",
+      "component": "Skeleton or spinner",
+      "pattern": "if (isLoading) return <FeatureSkeleton />"
+    },
+    {
+      "state": "error",
+      "component": "ErrorState with retry",
+      "pattern": "if (error) return <ErrorState message={error.message} onRetry={refetch} />"
+    },
+    {
+      "state": "empty",
+      "component": "EmptyState with guidance",
+      "pattern": "if (!data || data.length === 0) return <EmptyState message='...' hint='...' />"
+    },
+    {
+      "state": "data",
+      "component": "Feature content",
+      "pattern": "return <FeatureContent data={data} />"
+    }
+  ],
+  "folder_structure": {
+    "feature_code": "app/src/features/{feature-slug}/",
+    "shared_primitives": "app/src/components/ui/",
+    "layout_components": "app/src/components/layout/",
+    "routing_layer": "app/src/pages/ (thin — imports from features only)",
+    "navigation_config": "app/src/navigation.config.ts"
+  },
+  "shared_primitives": [
+    { "name": "Card", "import": "@/components/ui/Card", "use": "Content containers" },
+    { "name": "Button", "import": "@/components/ui/Button", "use": "All clickable actions" },
+    { "name": "Badge", "import": "@/components/ui/Badge", "use": "Status labels" },
+    { "name": "Tabs", "import": "@/components/ui/Tabs", "use": "Section switching" },
+    { "name": "PageHeader", "import": "@/components/layout/PageHeader", "use": "Every page top" },
+    { "name": "PageBody", "import": "@/components/layout/PageBody", "use": "Every page content area" },
+    { "name": "EmptyState", "import": "@/components/ui/EmptyState", "use": "Zero-data states" },
+    { "name": "ErrorState", "import": "@/components/ui/ErrorState", "use": "Error display with retry" },
+    { "name": "Skeleton", "import": "@/components/ui/Skeleton", "use": "Loading states" }
+  ],
+  "colour_conventions": {
+    "background_primary": "bg-slate-900",
+    "background_surface": "bg-slate-800",
+    "background_elevated": "bg-slate-700",
+    "text_primary": "text-slate-100",
+    "text_secondary": "text-slate-400",
+    "note": "Check existing components for accent colour — do not introduce new accent colours"
+  },
+  "retry_rules": {
+    "max_auto_retries": 1,
+    "further_retries": "require explicit user intent (button click)",
+    "idempotency": "retries must not create duplicate domain entities — backend must be idempotent"
+  }
+}

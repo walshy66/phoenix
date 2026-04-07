@@ -1,0 +1,43 @@
+---
+const sponsors = [
+  { name: 'Sponsor One' },
+  { name: 'Sponsor Two' },
+  { name: 'Sponsor Three' },
+  { name: 'Sponsor Four' },
+  { name: 'Sponsor Five' },
+  { name: 'Sponsor Six' },
+];
+---
+
+<section class="bg-brand-offwhite py-10 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 mb-6">
+    <h2 class="text-center text-brand-purple font-bold text-sm uppercase tracking-widest">
+      OUR PROUD SPONSORS
+    </h2>
+    <div class="h-0.5 w-16 bg-brand-gold mx-auto mt-2"></div>
+  </div>
+
+  <div class="relative overflow-hidden">
+    <!-- Fade edges -->
+    <div class="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to right, #F4F5F7, transparent);"></div>
+    <div class="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to left, #F4F5F7, transparent);"></div>
+
+    <div class="marquee-track flex gap-6 w-max">
+      <!-- Duplicate for seamless loop -->
+      {[...sponsors, ...sponsors].map((sponsor, i) => (
+        <div
+          key={i}
+          class="w-40 h-20 bg-gray-200 border-2 border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0 hover:border-brand-purple transition-colors duration-200"
+        >
+          <span class="text-gray-500 text-sm font-medium">{sponsor.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <p class="text-center text-brand-purple text-sm mt-6 font-medium">
+    <a href="/get-involved#sponsors" class="hover:text-brand-gold transition-colors underline underline-offset-2">
+      Become a Sponsor
+    </a>
+  </p>
+</section>

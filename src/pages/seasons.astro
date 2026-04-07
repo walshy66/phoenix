@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Seasons" description="Bendigo Phoenix Basketball season draw, costs, registration and grading information.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+      <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">SEASONS</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        Find out everything you need to know about the current season — draw, registration, costs and grading.
+      </p>
+    </div>
+  </section>
+
+  <!-- Current Season -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">2025 Season</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Season Card 1 -->
+        <div class="rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+          <div class="h-40 relative flex items-center justify-center" style="background: linear-gradient(135deg, #573F93, #3a2a6e);">
+            <span class="text-6xl">🏀</span>
+            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-gold"></div>
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">Registration Open</span>
+            <h3 class="font-bold text-brand-black text-lg mb-2">Senior Competition</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Open-age men's and women's competitions running through the Bendigo Basketball Association season.
+            </p>
+          </div>
+        </div>
+
+        <!-- Season Card 2 -->
+        <div class="rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+          <div class="h-40 relative flex items-center justify-center" style="background: linear-gradient(135deg, #8B7536, #6b5a2a);">
+            <span class="text-6xl">⭐</span>
+            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-purple"></div>
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">Registration Open</span>
+            <h3 class="font-bold text-brand-black text-lg mb-2">Junior Competitions</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Junior programs from U8 through to U18, catering to all skill levels across Central Victoria.
+            </p>
+          </div>
+        </div>
+
+        <!-- Season Card 3 -->
+        <div class="rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+          <div class="h-40 relative flex items-center justify-center" style="background: linear-gradient(135deg, #111111, #333333);">
+            <span class="text-6xl">🏆</span>
+            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-gold"></div>
+          </div>
+          <div class="p-5">
+            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full mb-3">Coming Soon</span>
+            <h3 class="font-bold text-brand-black text-lg mb-2">Representative Teams</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Tryouts and information for representative squads will be announced — stay tuned!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Dates -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Key Dates</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { label: 'Registration Opens', date: 'TBC', icon: '📋' },
+          { label: 'Grading Sessions', date: 'TBC', icon: '📊' },
+          { label: 'Season Starts', date: 'TBC', icon: '🏀' },
+          { label: 'Finals', date: 'TBC', icon: '🏆' },
+        ].map(item => (
+          <div class="bg-white rounded-xl p-5 border border-gray-100 flex items-center gap-4">
+            <span class="text-3xl">{item.icon}</span>
+            <div>
+              <p class="text-brand-purple font-bold text-sm">{item.label}</p>
+              <p class="text-gray-500 text-sm mt-0.5">{item.date}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-gray-500 text-sm mt-4 italic">
+        * Dates to be confirmed. Check back here or follow us on social media for updates.
+      </p>
+    </div>
+  </section>
+
+  <!-- Costs Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Registration Costs</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="table-responsive">
+        <table class="w-full min-w-[500px] border-collapse">
+          <thead>
+            <tr class="bg-brand-purple text-white">
+              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide rounded-tl-lg">Age Group</th>
+              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide">Category</th>
+              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide">Registration Fee</th>
+              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide rounded-tr-lg">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { age: 'U8 / U10', category: 'Junior', fee: 'TBC', notes: 'Intro program' },
+              { age: 'U12 / U14', category: 'Junior', fee: 'TBC', notes: '' },
+              { age: 'U16 / U18', category: 'Junior', fee: 'TBC', notes: '' },
+              { age: 'Senior', category: 'Open Age', fee: 'TBC', notes: 'Men & Women' },
+            ].map((row, i) => (
+              <tr class={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-brand-offwhite'}`}>
+                <td class="px-6 py-4 text-sm font-medium text-brand-black">{row.age}</td>
+                <td class="px-6 py-4 text-sm text-gray-600">{row.category}</td>
+                <td class="px-6 py-4 text-sm font-bold text-brand-purple">{row.fee}</td>
+                <td class="px-6 py-4 text-sm text-gray-500">{row.notes}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Slam Dunk callout -->
+      <div class="mt-8 p-5 rounded-xl border-2 border-brand-gold bg-yellow-50 flex gap-4 items-start">
+        <span class="text-3xl">🤝</span>
+        <div>
+          <h3 class="font-bold text-brand-black text-base mb-1">Need Financial Assistance?</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Our <a href="/about#slam-dunk" class="text-brand-purple font-semibold hover:text-brand-gold underline">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
+            Contact us confidentially at <a href="mailto:hello@bendigophoenix.org.au" class="text-brand-purple font-semibold hover:text-brand-gold">hello@bendigophoenix.org.au</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grading Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Grading Information</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Grading sessions are used to place players in the most appropriate competition grade to ensure
+            the best possible experience for all participants.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            All new players are required to attend a grading session. Returning players may be placed in grades
+            based on their previous season's performance.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            Grading dates will be announced closer to the season start. Watch our social media and check back here for updates.
+          </p>
+        </div>
+        <div class="bg-white rounded-xl p-6 border border-gray-100">
+          <h3 class="font-bold text-brand-purple text-base mb-4">What to Bring to Grading</h3>
+          <ul class="space-y-3">
+            {[
+              'Basketball shoes and appropriate sports clothing',
+              'Water bottle',
+              'Completed registration form',
+              'Any previous season stats or team info if available',
+            ].map(item => (
+              <li class="flex items-start gap-2 text-sm text-gray-600">
+                <span class="text-brand-gold font-bold mt-0.5">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,203 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+
+const resources = [
+  {
+    title: 'Nutrition Guide for Junior Athletes',
+    description: 'A practical guide on eating well for young basketball players. Covers pre-game meals, hydration and recovery nutrition for peak performance.',
+    category: 'Nutrition',
+    ageGroup: 'U14',
+    type: 'pdf' as const,
+    url: '#',
+  },
+  {
+    title: 'Mental Skills: Staying Focused Under Pressure',
+    description: 'Tips and techniques for maintaining focus during games and training. Covers breathing exercises, positive self-talk and visualisation.',
+    category: 'Mental Skills',
+    ageGroup: 'U16',
+    type: 'link' as const,
+    url: '#',
+  },
+  {
+    title: 'Official Basketball Rules — Junior Summary',
+    description: 'A simplified breakdown of the key rules of basketball for junior players and their parents. Great reference before your first game.',
+    category: 'Rules',
+    ageGroup: 'U8',
+    type: 'pdf' as const,
+    url: '#',
+  },
+];
+
+const ageGroups = ['All Ages', 'U8', 'U10', 'U12', 'U14', 'U16', 'U18', 'Senior'];
+const categories = ['All Categories', 'Nutrition', 'Mental Skills', 'Drills', 'Rules', 'Development'];
+---
+
+<BaseLayout title="Player Resources" description="Player resources for Bendigo Phoenix Basketball Club — nutrition, mental skills, drills, rules and development.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Player Toolkit</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">PLAYER RESOURCES</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        Everything you need to grow as a player — nutrition, mental skills, rules and development guides.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="bg-white border-b border-gray-100 sticky top-16 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+        <div>
+          <p class="text-xs text-gray-500 font-medium mb-1.5 uppercase tracking-wide">Age Group</p>
+          <div class="flex flex-wrap gap-1.5" id="age-filters">
+            {ageGroups.map((group, i) => (
+              <button
+                data-age={group === 'All Ages' ? 'all' : group}
+                class={`filter-btn age-filter flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium transition-colors border ${i === 0 ? 'bg-brand-purple text-white border-brand-purple active' : 'bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite'}`}
+              >
+                {group}
+              </button>
+            ))}
+          </div>
+        </div>
+        <div class="sm:border-l sm:border-gray-200 sm:pl-4">
+          <p class="text-xs text-gray-500 font-medium mb-1.5 uppercase tracking-wide">Category</p>
+          <div class="flex flex-wrap gap-1.5" id="category-filters">
+            {categories.map((cat, i) => (
+              <button
+                data-category={cat === 'All Categories' ? 'all' : cat}
+                class={`filter-btn cat-filter flex-shrink-0 px-3 py-1 rounded-full text-xs font-medium transition-colors border ${i === 0 ? 'bg-brand-gold text-white border-brand-gold active' : 'bg-white text-brand-gold border-brand-gold hover:bg-yellow-50'}`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Grid -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <div id="resources-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {resources.map(resource => (
+          <ResourceCard
+            title={resource.title}
+            description={resource.description}
+            category={resource.category}
+            ageGroup={resource.ageGroup}
+            type={resource.type}
+            url={resource.url}
+          />
+        ))}
+      </div>
+
+      <div id="no-results" class="hidden text-center py-16">
+        <span class="text-5xl mb-4 block">🔍</span>
+        <p class="text-gray-500 text-lg">No resources match your current filters.</p>
+        <button id="clear-filters" class="mt-4 text-brand-purple font-medium hover:text-brand-gold underline text-sm">
+          Clear all filters
+        </button>
+      </div>
+
+      <!-- Add Resource CTA -->
+      <div class="mt-12 text-center bg-white rounded-xl p-8 border border-dashed border-brand-purple">
+        <p class="text-brand-purple font-bold text-lg mb-2">More resources coming soon!</p>
+        <p class="text-gray-500 text-sm mb-4">
+          Have a resource you'd like to share with fellow players? Get in touch with us.
+        </p>
+        <a
+          href="mailto:hello@bendigophoenix.org.au?subject=Player%20Resource%20Submission"
+          class="inline-flex items-center gap-2 bg-brand-purple text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-purple-800 transition-colors"
+        >
+          Submit a Resource
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  let activeAge = 'all';
+  let activeCategory = 'all';
+
+  function applyFilters() {
+    const cards = document.querySelectorAll('#resources-grid [data-category]');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category') || '';
+      const cardAge = card.getAttribute('data-age') || '';
+
+      const ageMatch = activeAge === 'all' || cardAge === activeAge;
+      const catMatch = activeCategory === 'all' || cardCategory === activeCategory;
+
+      if (ageMatch && catMatch) {
+        (card as HTMLElement).style.display = 'flex';
+        visibleCount++;
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+
+    const noResults = document.getElementById('no-results');
+    if (noResults) {
+      noResults.classList.toggle('hidden', visibleCount > 0);
+    }
+  }
+
+  document.querySelectorAll('.age-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeAge = btn.getAttribute('data-age') || 'all';
+      document.querySelectorAll('.age-filter').forEach(b => {
+        b.classList.remove('active', 'bg-brand-purple', 'text-white');
+        b.classList.add('bg-white', 'text-brand-purple');
+      });
+      btn.classList.add('active', 'bg-brand-purple', 'text-white');
+      btn.classList.remove('bg-white', 'text-brand-purple');
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.cat-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.getAttribute('data-category') || 'all';
+      document.querySelectorAll('.cat-filter').forEach(b => {
+        b.classList.remove('active', 'bg-brand-gold', 'text-white');
+        b.classList.add('bg-white', 'text-brand-gold');
+      });
+      btn.classList.add('active', 'bg-brand-gold', 'text-white');
+      btn.classList.remove('bg-white', 'text-brand-gold');
+      applyFilters();
+    });
+  });
+
+  document.getElementById('clear-filters')?.addEventListener('click', () => {
+    activeAge = 'all';
+    activeCategory = 'all';
+    document.querySelectorAll('.age-filter').forEach((b, i) => {
+      if (i === 0) {
+        b.classList.add('active', 'bg-brand-purple', 'text-white');
+      } else {
+        b.classList.remove('active', 'bg-brand-purple', 'text-white');
+        b.classList.add('bg-white', 'text-brand-purple');
+      }
+    });
+    document.querySelectorAll('.cat-filter').forEach((b, i) => {
+      if (i === 0) {
+        b.classList.add('active', 'bg-brand-gold', 'text-white');
+      } else {
+        b.classList.remove('active', 'bg-brand-gold', 'text-white');
+        b.classList.add('bg-white', 'text-brand-gold');
+      }
+    });
+    applyFilters();
+  });
+</script>

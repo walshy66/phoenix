@@ -1,0 +1,16 @@
+{
+  "testModules": [
+    {
+      "moduleId": "/home/cameron/projects/coachcw/app/src/features/__tests__/feature-rendering.test.tsx",
+      "tests": [
+        {
+          "name": "gated surface is not in DOM when EXERCISE_BUILDER is false",
+          "fullName": "feature rendering — surface absent from DOM when disabled > gated surface is not in DOM when EXERCISE_BUILDER is false",
+          "state": "passed"
+        }
+      ]
+    }
+  ],
+  "unhandledErrors": [],
+  "reason": "passed"
+}

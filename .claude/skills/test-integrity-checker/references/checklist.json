@@ -1,0 +1,82 @@
+{
+  "checks": [
+    {
+      "id": "server-once",
+      "name": "Server Lifecycle Rule",
+      "description": "Server must be created exactly once per test file in beforeAll, never in beforeEach",
+      "severity": "CRITICAL",
+      "paths": ["api/", "app/", "specs/"],
+      "signals": ["createServer", "buildApp", "beforeAll", "beforeEach"],
+      "violation": "Server created in beforeEach (N × test count)",
+      "fix": "Move createServer to beforeAll block"
+    },
+    {
+      "id": "no-conn-manager",
+      "name": "Connection Management Rule",
+      "description": "No manual connectionManager connect/disconnect calls inside tests",
+      "severity": "CRITICAL",
+      "paths": ["api/", "app/"],
+      "signals": ["connectionManager.connect", "connectionManager.disconnect", "database.connect"],
+      "violation": "beforeEach/afterEach calls connection management",
+      "fix": "Remove connection calls; connections are global during test run"
+    },
+    {
+      "id": "no-app-close",
+      "name": "Server Teardown Rule",
+      "description": "app.close() must only be in final afterAll, not in afterEach",
+      "severity": "CRITICAL",
+      "paths": ["api/", "app/"],
+      "signals": ["app.close()", "server.close()", "afterEach"],
+      "violation": "app.close() called in afterEach (breaks subsequent tests)",
+      "fix": "Move app.close() to final afterAll; use data cleanup in afterEach"
+    },
+    {
+      "id": "no-implicit-seed",
+      "name": "Zero-State Validity Rule",
+      "description": "Tests must not rely on implicit global seeded state or previous test execution",
+      "severity": "HIGH",
+      "paths": ["api/", "app/"],
+      "signals": ["seed", "global", "beforeEach", "hardcodedValue", "expect(...).toBe(N)"],
+      "violation": "Test assumes data from seed or previous tests",
+      "fix": "Each test must explicitly create its required data"
+    },
+    {
+      "id": "data-isolation",
+      "name": "Per-Test Data Cleanup",
+      "description": "Tests should clean up their data after completion",
+      "severity": "HIGH",
+      "paths": ["api/", "app/"],
+      "signals": ["afterEach", "deleteMany", "truncate"],
+      "violation": "No data cleanup between tests",
+      "fix": "Add afterEach block with prisma.table.deleteMany() for all tables used"
+    }
+  ],
+  "principle_vii_rules": {
+    "rule_1": "Server creation MUST be in beforeAll, NEVER in beforeEach",
+    "rule_2": "Database connections are process-global; NEVER call connect/disconnect in tests",
+    "rule_3": "app.close() MUST be in final afterAll, NEVER in afterEach",
+    "rule_4": "Tests MUST NOT rely on implicit seeded state; create own data"
+  },
+  "violations_reference": {
+    "server_in_beforeEach": {
+      "severity": "CRITICAL",
+      "impact": "Creates N new servers (one per test), causes interference and resource leaks",
+      "fix": "Move to beforeAll block"
+    },
+    "connection_management_in_tests": {
+      "severity": "CRITICAL",
+      "impact": "Breaks connection management; other tests lose database access",
+      "fix": "Remove all connectionManager.connect/disconnect calls"
+    },
+    "app_close_in_afterEach": {
+      "severity": "CRITICAL",
+      "impact": "Closes server for all subsequent tests in suite",
+      "fix": "Move to final afterAll block; use data deletion in afterEach"
+    },
+    "implicit_seed_assumptions": {
+      "severity": "HIGH",
+      "impact": "Tests fail if seed doesn't run; order-dependent failures",
+      "fix": "Explicitly create required data in each test"
+    }
+  }
+}

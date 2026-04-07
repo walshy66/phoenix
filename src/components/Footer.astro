@@ -1,0 +1,93 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-brand-purple text-white mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center flex-shrink-0">
+            <span class="text-white font-bold text-lg leading-none">P</span>
+          </div>
+          <div>
+            <p class="text-white font-bold text-sm tracking-widest uppercase">BENDIGO</p>
+            <p class="font-bold text-sm tracking-widest uppercase" style="color: #8B7536;">PHOENIX</p>
+          </div>
+        </div>
+        <p class="text-purple-200 text-sm leading-relaxed">
+          Where Community Meets Competition. Proudly serving basketball in Central Victoria.
+        </p>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Contact Us</h3>
+        <address class="not-italic space-y-2 text-sm text-purple-200">
+          <p class="flex items-start gap-2">
+            <span class="mt-0.5">📍</span>
+            <span>
+              C/- Bendigo Stadium<br />
+              Inglis Street<br />
+              West Bendigo VIC 3550
+            </span>
+          </p>
+          <p class="flex items-center gap-2">
+            <span>✉️</span>
+            <a
+              href="mailto:hello@bendigophoenix.org.au"
+              class="hover:text-brand-gold transition-colors duration-150"
+            >
+              hello@bendigophoenix.org.au
+            </a>
+          </p>
+        </address>
+      </div>
+
+      <!-- Follow Us -->
+      <div>
+        <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Follow Us</h3>
+        <div class="space-y-2">
+          <a
+            href="https://facebook.com/phoenixunitedbasketball"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-sm text-purple-200 hover:text-brand-gold transition-colors duration-150"
+          >
+            <span>📘</span> Facebook
+          </a>
+          <a
+            href="https://instagram.com/bendigophoenix"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 text-sm text-purple-200 hover:text-brand-gold transition-colors duration-150"
+          >
+            <span>📷</span> Instagram
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
+        <div class="space-y-1">
+          <a href="/seasons" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Seasons</a>
+          <a href="/get-involved" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Get Involved</a>
+          <a href="/coaching-resources" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Coaching Resources</a>
+          <a href="/contact" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Contact</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-purple-700 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-purple-300 text-xs">
+        &copy; {currentYear} Bendigo Phoenix Basketball Club. All rights reserved.
+      </p>
+      <p class="text-purple-400 text-xs">
+        Compete in the Bendigo Basketball Association
+      </p>
+    </div>
+  </div>
+</footer>

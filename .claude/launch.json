@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "API (Fastify)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "api"],
+      "port": 3333
+    },
+    {
+      "name": "Frontend (Vite)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev", "--prefix", "app", "--", "--host", "--port", "5173"],
+      "port": 5173
+    }
+  ]
+}

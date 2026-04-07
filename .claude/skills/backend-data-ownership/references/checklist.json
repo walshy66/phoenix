@@ -1,0 +1,123 @@
+{
+  "principles": {
+    "rule_1": "Backend Authority: Server is sole source of truth",
+    "rule_2": "Invariants: Must be enforced server-side, never bypass-able",
+    "rule_3": "Invariant Failures: Must be explicit errors, not graceful degradation",
+    "rule_4": "Identity Boundary: Only userId accepted at API boundary",
+    "rule_5": "Error Semantics: 401/403/404/500 have distinct meanings"
+  },
+  "checks": [
+    {
+      "id": "userid-scope",
+      "name": "userId Scoping",
+      "description": "All data queries must be scoped by userId, not frontend-provided athleteId",
+      "severity": "CRITICAL",
+      "paths": ["api/src/repositories/", "api/src/services/", "api/src/routes/"],
+      "signals": ["athleteId as parameter", "findUnique without userId check", "findMany without userId filter"],
+      "violation": "Frontend provides athleteId, server doesn't verify ownership"
+    },
+    {
+      "id": "ownership-check",
+      "name": "Ownership Verification",
+      "description": "Before mutating data, verify the user owns it",
+      "severity": "CRITICAL",
+      "paths": ["api/src/repositories/", "api/src/services/"],
+      "signals": ["update", "delete", "create", "without ownership check"],
+      "violation": "Mutation happens without verifying user owns the data"
+    },
+    {
+      "id": "repository-constructor",
+      "name": "Repository Scoping",
+      "description": "Repository constructor accepts userId and enforces scoping",
+      "severity": "HIGH",
+      "paths": ["api/src/repositories/"],
+      "signals": ["class Repository", "constructor", "userId"],
+      "violation": "Repository not scoped by userId in constructor"
+    },
+    {
+      "id": "invariant-enforcement",
+      "name": "Invariant Enforcement",
+      "description": "Invariants checked and enforced at database level",
+      "severity": "HIGH",
+      "paths": ["api/src/services/", "api/src/routes/"],
+      "signals": ["findFirst", "count", "where", "error handling"],
+      "violation": "Invariant checked only on client, not enforced server-side"
+    },
+    {
+      "id": "auth-boundary",
+      "name": "Authentication Boundary",
+      "description": "Auth check present on all protected routes",
+      "severity": "CRITICAL",
+      "paths": ["api/src/routes/"],
+      "signals": ["app.get", "app.post", "onRequest", "authenticate"],
+      "violation": "Protected route missing onRequest: [app.authenticate]"
+    },
+    {
+      "id": "error-semantics",
+      "name": "Error Response Semantics",
+      "description": "401/403/404/500 used with correct meanings",
+      "severity": "HIGH",
+      "paths": ["api/src/routes/", "api/src/services/"],
+      "signals": ["401 Unauthorized", "403 Forbidden", "404 Not Found", "500 Internal"],
+      "violation": "Wrong status code for error condition"
+    },
+    {
+      "id": "contract-marking",
+      "name": "Contract Documentation",
+      "description": "Code marked with CONTRACT: DATA_OWNERSHIP and AUTH_IDENTITY",
+      "severity": "MEDIUM",
+      "paths": ["api/src/repositories/", "api/src/routes/"],
+      "signals": ["CONTRACT:", "DATA_OWNERSHIP", "AUTH_IDENTITY"],
+      "violation": "Ownership enforcement present but not documented with CONTRACT marker"
+    }
+  ],
+  "error_semantics": {
+    "401": {
+      "meaning": "No valid user identity",
+      "usage": "User not logged in OR no session",
+      "correct": "if (!request.user) return 401"
+    },
+    "403": {
+      "meaning": "Valid user but no access to resource",
+      "usage": "User authenticated but doesn't own the data",
+      "correct": "if (user.id !== ownerId) return 403"
+    },
+    "404": {
+      "meaning": "Resource not found",
+      "usage": "Data doesn't exist (can also hide 403 for privacy)",
+      "correct": "if (!resource) return 404"
+    },
+    "500": {
+      "meaning": "Invariant violation or unexpected error",
+      "usage": "System is in invalid state",
+      "correct": "if (invariantBroken) return 500"
+    }
+  },
+  "violation_patterns": {
+    "frontend_athleteId": {
+      "pattern": "Frontend passes athleteId directly to API",
+      "risk": "Any user can fetch any athlete's data",
+      "fix": "Use userId from session; derive athleteId server-side"
+    },
+    "no_ownership_check": {
+      "pattern": "Mutation happens without verifying ownership",
+      "risk": "Any user can modify any data",
+      "fix": "Verify user.id == data.owner.userId before update"
+    },
+    "client_invariant_check": {
+      "pattern": "Client checks invariant, server doesn't enforce",
+      "risk": "Race condition; invariant can be violated",
+      "fix": "Check invariant server-side atomically before mutation"
+    },
+    "implicit_scoping": {
+      "pattern": "Repository not scoped by userId; each method checks ownership",
+      "risk": "Easy to forget check; hard to audit; repetitive",
+      "fix": "Constructor takes userId; all methods implicitly scoped"
+    },
+    "graceful_degradation": {
+      "pattern": "Invariant failure returns empty result instead of error",
+      "risk": "Hides real problems; client can't recover properly",
+      "fix": "Return explicit error (409 or 500) for invariant violations"
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "structure_checklist": [
+    {
+      "id": "frontmatter",
+      "description": "YAML frontmatter present, valid, starts at line 1",
+      "required_fields": ["name", "description"],
+      "signals": ["---", "name:", "description:"],
+      "check": "First 5 lines contain valid YAML with name and description"
+    },
+    {
+      "id": "name-match",
+      "description": "YAML name matches folder name exactly (kebab-case)",
+      "required": true,
+      "example": "Folder 'error-semantics-enforcer' → name: error-semantics-enforcer",
+      "signals": ["kebab-case", "no underscores", "lowercase only"]
+    },
+    {
+      "id": "skill-body",
+      "description": "SKILL.md body follows standard sections",
+      "sections": [
+        "When to Use",
+        "Core Principles",
+        "How to Use / Workflow",
+        "Output Format",
+        "Validation/Quality Checks",
+        "Troubleshooting"
+      ],
+      "signals": ["##", "###", "headers", "structure"]
+    },
+    {
+      "id": "references-folder",
+      "description": "references/ folder exists with supporting materials",
+      "optional": true,
+      "contents": ["checklist.json", "definitions.md", "rules.json"],
+      "signals": ["references/", ".json", ".md files"]
+    },
+    {
+      "id": "examples-folder",
+      "description": "examples/ folder exists with templates and samples",
+      "optional": true,
+      "contents": ["template.md", "example-output.json", "sample-report.md"],
+      "signals": ["examples/", "template", "sample", "output"]
+    },
+    {
+      "id": "scripts-folder",
+      "description": "scripts/ folder exists with executable utilities",
+      "optional": true,
+      "contents": ["validate.sh", "generate.py", "audit.js"],
+      "signals": ["scripts/", ".sh", ".py", "executable"]
+    },
+    {
+      "id": "line-length",
+      "description": "SKILL.md under 500 lines (move excess to references/)",
+      "limit": 500,
+      "guidance": "If longer, extract to references/ and link from SKILL.md"
+    },
+    {
+      "id": "naming-conventions",
+      "description": "All names follow kebab-case convention",
+      "rules": [
+        "Folder name: kebab-case",
+        "YAML name: kebab-case",
+        "File names: kebab-case or snake_case for configs",
+        "No underscores in skill name",
+        "Lowercase only"
+      ],
+      "examples_good": [
+        "error-semantics-enforcer",
+        "auth-flow-designer",
+        "backend-data-ownership"
+      ],
+      "examples_bad": [
+        "error_handler",
+        "ErrorHandler",
+        "error-handler-and-validator"
+      ]
+    },
+    {
+      "id": "description-quality",
+      "description": "Description is clear and includes 'Use when...'",
+      "length": "50-150 words",
+      "must_include": [
+        "What the skill does",
+        "Use when...",
+        "Trigger phrases"
+      ],
+      "example": "Enforce Principle V (Observability & Error Semantics) by implementing clear, structured error responses. Use when building routes, services, or reviewing error handling for compliance."
+    },
+    {
+      "id": "code-examples",
+      "description": "Code examples are real (not placeholders)",
+      "signals": ["```typescript", "```json", "```bash", "actual code"],
+      "check": "Examples use real file paths and valid syntax"
+    },
+    {
+      "id": "trigger-phrases",
+      "description": "3-5 specific trigger phrases defined",
+      "guidance": "Be specific; avoid vague triggers like 'anything related to'",
+      "examples": [
+        "Building a Fastify route",
+        "Adding validation to a route",
+        "Structuring error responses"
+      ]
+    }
+  ],
+  "validation_order": [
+    "frontmatter",
+    "name-match",
+    "naming-conventions",
+    "description-quality",
+    "skill-body",
+    "code-examples",
+    "references-folder",
+    "examples-folder",
+    "line-length"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "completeness_gate": {
+    "description": "All items must pass before handing spec to analyze agent",
+    "items": [
+      { "id": "summary-clean", "check": "Summary is one paragraph, no implementation detail" },
+      { "id": "stories-scenarios", "check": "Every user story has at least one Given/When/Then scenario" },
+      { "id": "p1-independent", "check": "P1 stories are independently releasable without P2/P3" },
+      { "id": "nongoals-as-requirements", "check": "Every non-goal from FEATURE.md appears as a MUST NOT requirement" },
+      { "id": "fr-single-assertion", "check": "Every FR is a single testable assertion" },
+      { "id": "ac-minimum-set", "check": "Minimum AC set covered: auth, empty state, ownership, layout" },
+      { "id": "edge-cases-zero-state", "check": "Edge cases include zero-state and ownership boundary" },
+      { "id": "compliance-no-fail", "check": "Constitutional compliance section present with no FAIL items" },
+      { "id": "no-implementation-detail", "check": "No file paths, framework names, or library calls anywhere in spec" }
+    ]
+  },
+  "minimum_ac_set": [
+    { "id": "AC-AUTH", "description": "401 returned for unauthenticated request" },
+    { "id": "AC-HAPPY", "description": "Authenticated user with data gets correct response" },
+    { "id": "AC-EMPTY", "description": "Empty state returns 200 with empty collection, not error" },
+    { "id": "AC-OWNERSHIP", "description": "Request for another user's data returns 404 (not 403)" },
+    { "id": "AC-HANDHELD", "description": "Handheld layout renders correctly (single column, tap targets)" },
+    { "id": "AC-DESKTOP", "description": "Desktop layout renders within AppShell with sidebar" },
+    { "id": "AC-ERROR", "description": "Backend failure shows structured error state with retry" }
+  ],
+  "fr_language": {
+    "hard_requirement": "System MUST",
+    "explicit_prohibition": "System MUST NOT",
+    "optional": "System MAY"
+  },
+  "priority_rules": {
+    "P1": "Must ship for feature to have value. Independently releasable as MVP.",
+    "P2": "Significant value add. Ships after P1 is stable.",
+    "P3": "Nice to have. Deprioritised if time is constrained."
+  },
+  "failure_modes": [
+    {
+      "id": "untestable-ac",
+      "description": "Acceptance criteria too vague to test",
+      "signal": "AC contains words like 'correctly', 'appropriately', 'as expected', 'should work'"
+    },
+    {
+      "id": "missing-invariants",
+      "description": "Spec describes happy path only, no error or ownership cases",
+      "signal": "No 401, 404, or empty state ACs present"
+    },
+    {
+      "id": "nongoal-not-enforced",
+      "description": "Non-goal stated in intent but not converted to MUST NOT requirement",
+      "signal": "FEATURE.md has items in 'What This Is NOT' that don't appear in requirements"
+    },
+    {
+      "id": "constitutional-violation",
+      "description": "Spec describes client-side inference, athleteId at boundary, or custom nav shell",
+      "signal": "Frontend 'calculates', 'determines', or 'infers' domain state"
+    },
+    {
+      "id": "scope-ambiguity",
+      "description": "Requirement has two reasonable interpretations",
+      "signal": "FR uses vague terms without a defined threshold or condition"
+    }
+  ]
+}

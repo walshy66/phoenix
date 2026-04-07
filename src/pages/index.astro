@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SponsorStrip from '../components/SponsorStrip.astro';
+import ScoreCard from '../components/ScoreCard.astro';
+import HeroCarousel from '../components/HeroCarousel.astro';
+
+/**
+ * HERO CAROUSEL SLIDES
+ * --------------------
+ * Add, remove or reorder slides here. Each slide can have:
+ *   image    — path to image in /images/ or /public/ (optional)
+ *   alt      — screen-reader description of the image
+ *   title    — short bold label shown at the bottom of the card
+ *   caption  — smaller descriptive text under the title
+ *   bgColor  — letterbox background colour (default #111111)
+ *              Use a colour that suits the image — e.g. dark for photos,
+ *              white (#fff) for infographics with white backgrounds.
+ *
+ * Images of ANY aspect ratio are supported — they are never cropped.
+ * Portrait infographics and landscape photos both display cleanly.
+ */
+const heroSlides = [
+  {
+    title: 'Season Registration Open',
+    caption: 'Sign up now for 2025 — all ages welcome',
+    bgColor: '#3a2a6e',
+  },
+  {
+    title: 'Game Day — Saturday 10am',
+    caption: 'Bendigo Stadium, Inglis Street',
+    bgColor: '#111111',
+  },
+  {
+    title: 'Junior Development Clinic',
+    caption: 'Ages 8–14 · Free for registered players',
+    bgColor: '#1a3a1a',
+  },
+  {
+    title: 'Slam Dunk Bridging Fund',
+    caption: 'No player left behind — ask us how',
+    bgColor: '#5a3a00',
+  },
+  {
+    title: 'Follow Us on Instagram',
+    caption: '@bendigophoenix',
+    bgColor: '#2a1a3a',
+  },
+];
+
+const quickLinks = [
+  {
+    title: 'Seasons',
+    href: '/seasons',
+    icon: '🗓️',
+    desc: 'Current draw, fixtures, registration & more',
+  },
+  {
+    title: 'Team',
+    href: '/team',
+    icon: '🏀',
+    desc: 'Meet our players, coaches and staff',
+  },
+  {
+    title: 'Get Involved',
+    href: '/get-involved',
+    icon: '🙌',
+    desc: 'Volunteer, sponsor or attend our events',
+  },
+  {
+    title: 'Coaching Resources',
+    href: '/coaching-resources',
+    icon: '📋',
+    desc: 'Drills, plays and training materials',
+  },
+];
+
+const recentScores = [
+  {
+    homeTeam: 'Bendigo Phoenix',
+    awayTeam: 'Rivals FC',
+    homeScore: 85,
+    awayScore: 72,
+    date: '2025-03-15',
+    competition: 'BBA Senior',
+  },
+  {
+    homeTeam: 'North Stars',
+    awayTeam: 'Bendigo Phoenix',
+    homeScore: 60,
+    awayScore: 78,
+    date: '2025-03-08',
+    competition: 'BBA Senior',
+  },
+  {
+    homeTeam: 'Bendigo Phoenix',
+    awayTeam: 'Eastern Eagles',
+    homeScore: 91,
+    awayScore: 84,
+    date: '2025-03-01',
+    competition: 'BBA U18',
+  },
+];
+---
+
+<BaseLayout title="Home">
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — full-width landscape carousel
+       ═══════════════════════════════════════════════════════ -->
+  <section
+    class="hero-section"
+    style="background: linear-gradient(160deg, #573F93 0%, #3a2a6e 50%, #111111 100%);"
+  >
+    <div class="hero-carousel-wrap">
+      <HeroCarousel slides={heroSlides} autoAdvanceMs={10000} />
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <svg class="w-5 h-5 text-white opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- Latest Results Ticker -->
+  <section class="py-8 bg-brand-black overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 mb-4">
+      <h2 class="text-white text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand-gold inline-block animate-pulse"></span>
+        Latest Results
+      </h2>
+    </div>
+    <div class="relative overflow-hidden">
+      <div class="flex gap-6 px-4 overflow-x-auto pb-2">
+        {recentScores.map(score => (
+          <div class="flex-shrink-0 w-72">
+            <ScoreCard
+              homeTeam={score.homeTeam}
+              awayTeam={score.awayTeam}
+              homeScore={score.homeScore}
+              awayScore={score.awayScore}
+              date={score.date}
+              competition={score.competition}
+            />
+          </div>
+        ))}
+        <div class="flex-shrink-0 w-72 flex items-center justify-center">
+          <a
+            href="/scores"
+            class="block text-center px-6 py-4 rounded-xl border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-colors font-bold text-sm"
+          >
+            View All Scores &amp; Ladder &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Link Cards -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Explore</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {quickLinks.map(link => (
+          <a
+            href={link.href}
+            class="card-hover bg-brand-purple rounded-xl p-6 flex flex-col items-start gap-3 group"
+          >
+            <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl" style="background-color: rgba(139,117,54,0.2);">
+              {link.icon}
+            </div>
+            <h3 class="text-white font-bold text-lg group-hover:text-brand-gold transition-colors">
+              {link.title}
+            </h3>
+            <p class="text-purple-200 text-sm leading-relaxed">{link.desc}</p>
+            <span class="mt-auto text-brand-gold text-sm font-medium flex items-center gap-1">
+              Learn more
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsor Strip -->
+  <SponsorStrip />
+</BaseLayout>
+
+<style>
+  /* ─── Hero section ───────────────────────────────────── */
+  .hero-section {
+    padding-top: 72px;   /* clear fixed nav */
+    padding-bottom: 40px;
+  }
+
+  /* ─── Carousel wrapper — max-width + padding ─────────── */
+  .hero-carousel-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  @media (min-width: 640px) {
+    .hero-carousel-wrap { padding: 0 28px; }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-carousel-wrap { padding: 0 48px; }
+  }
+
+  /* ─── Scroll hint ────────────────────────────────────── */
+  .hero-scroll-hint {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    animation: bounce 1.8s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(6px); }
+  }
+</style>

@@ -1,0 +1,72 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  ageGroup: string;
+  type: 'video' | 'image' | 'pdf' | 'link';
+  url: string;
+  thumbnail?: string;
+}
+
+const { title, description, category, ageGroup, type, url, thumbnail } = Astro.props;
+
+const typeIcons: Record<string, string> = {
+  video: '🎬',
+  image: '🖼️',
+  pdf: '📄',
+  link: '🔗',
+};
+
+const typeColors: Record<string, string> = {
+  video: 'bg-purple-100 text-brand-purple',
+  image: 'bg-yellow-100 text-yellow-800',
+  pdf: 'bg-red-100 text-red-700',
+  link: 'bg-green-100 text-green-700',
+};
+---
+
+<div class="resource-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col" data-category={category} data-age={ageGroup}>
+  <!-- Thumbnail / header -->
+  <div class="h-36 bg-brand-purple flex items-center justify-center relative overflow-hidden">
+    {thumbnail ? (
+      <img src={thumbnail} alt={title} class="w-full h-full object-cover" />
+    ) : (
+      <div class="text-center">
+        <span class="text-5xl">{typeIcons[type] || '📁'}</span>
+      </div>
+    )}
+    <!-- Gold top accent bar -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-brand-gold"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-4 flex flex-col flex-1">
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class={`text-xs font-medium px-2 py-0.5 rounded-full ${typeColors[type] || 'bg-gray-100 text-gray-600'}`}>
+        {typeIcons[type]} {type.charAt(0).toUpperCase() + type.slice(1)}
+      </span>
+      <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-brand-purple text-white">
+        {ageGroup}
+      </span>
+      <span class="text-xs font-medium px-2 py-0.5 rounded-full bg-brand-offwhite text-brand-purple border border-brand-purple">
+        {category}
+      </span>
+    </div>
+
+    <h3 class="text-brand-black font-bold text-base mb-2 line-clamp-2">{title}</h3>
+    <p class="text-gray-600 text-sm leading-relaxed flex-1 line-clamp-3">{description}</p>
+
+    <a
+      href={url}
+      target={url.startsWith('/') ? undefined : '_blank'}
+      rel={url.startsWith('/') ? undefined : 'noopener noreferrer'}
+      class="mt-4 inline-flex items-center justify-center gap-2 bg-brand-purple text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-purple-800 transition-colors duration-150"
+    >
+      View Resource
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+</div>

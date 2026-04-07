@@ -1,0 +1,115 @@
+{
+  "blockers": [
+    {
+      "id": "tests-fail",
+      "description": "Test suite fails",
+      "principle": "II",
+      "command": "cd api && npm test && cd app && npm test"
+    },
+    {
+      "id": "typescript-errors",
+      "description": "TypeScript compilation errors",
+      "principle": "II",
+      "command": "cd api && npx tsc --noEmit && cd app && npx tsc --noEmit"
+    },
+    {
+      "id": "invariant-client-only",
+      "description": "Invariant enforced client-side only — not on server",
+      "principle": "VI"
+    },
+    {
+      "id": "athleteId-at-boundary",
+      "description": "athleteId accepted as URL parameter or request body field",
+      "principle": "VI - Identity Boundary"
+    },
+    {
+      "id": "server-in-beforeEach",
+      "description": "Fastify server created in beforeEach instead of beforeAll",
+      "principle": "VII"
+    },
+    {
+      "id": "no-test-for-new-behaviour",
+      "description": "New behaviour exists with no test coverage",
+      "principle": "II"
+    },
+    {
+      "id": "ac-without-test",
+      "description": "Acceptance criterion in spec has no corresponding test",
+      "principle": "IX"
+    },
+    {
+      "id": "nongoal-implemented",
+      "description": "Something listed as non-goal in spec has been implemented",
+      "principle": "IX"
+    },
+    {
+      "id": "ownership-check-missing",
+      "description": "Mutation executes without verifying ownership",
+      "principle": "VI"
+    }
+  ],
+  "changes_required": [
+    {
+      "id": "wrong-folder",
+      "description": "Feature component or module placed in wrong folder",
+      "fix": "Move to app/src/features/{slug}/ or api/src/modules/{slug}/"
+    },
+    {
+      "id": "todo-in-code",
+      "description": "TODO or FIXME comment left in implementation",
+      "fix": "Remove comment or create follow-up roadmap task"
+    },
+    {
+      "id": "contract-marker-missing",
+      "description": "Ownership-enforcing code missing CONTRACT: marker",
+      "fix": "Add CONTRACT: DATA_OWNERSHIP or CONTRACT: AUTH_IDENTITY comment"
+    },
+    {
+      "id": "wrong-error-code",
+      "description": "Non-standard or incorrect HTTP status code used",
+      "fix": "Use 401 (no identity), 403 (no access), 400 (validation), 500 (invariant)"
+    },
+    {
+      "id": "raw-error-returned",
+      "description": "Raw database error or stack trace returned to client",
+      "fix": "Catch error, log internally, return structured { error, message }"
+    },
+    {
+      "id": "no-auth-on-route",
+      "description": "Protected route missing onRequest: [app.authenticate]",
+      "fix": "Add authentication guard to route definition"
+    },
+    {
+      "id": "frontend-infers-state",
+      "description": "Frontend component infers server state from local logic",
+      "fix": "Derive all state from server response"
+    },
+    {
+      "id": "custom-primitive",
+      "description": "Feature re-implements a shared UI primitive",
+      "fix": "Use existing shared component from common UI layer"
+    }
+  ],
+  "warnings": [
+    {
+      "id": "error-not-logged",
+      "description": "Error caught but not logged before re-throw or swallow",
+      "fix": "Add request.log.error(error) before re-throw"
+    },
+    {
+      "id": "long-file",
+      "description": "File exceeds 300 lines",
+      "fix": "Consider splitting into smaller modules"
+    },
+    {
+      "id": "any-type",
+      "description": "TypeScript any type used without comment justification",
+      "fix": "Add inline comment explaining why any is necessary here"
+    }
+  ],
+  "status_definitions": {
+    "APPROVED": "All checks pass, ready to merge",
+    "CHANGES_REQUIRED": "Non-blocking issues found, must be resolved before merge",
+    "BLOCKED": "Constitutional violation found, cannot merge until resolved"
+  }
+}

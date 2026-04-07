@@ -1,0 +1,185 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const policies = [
+  {
+    title: 'Code of Conduct',
+    content: 'All players, coaches, officials and spectators are expected to uphold the highest standards of sportsmanship and respect. Any behaviour that is deemed unsportsmanlike or abusive will not be tolerated. We are committed to providing a safe and welcoming environment for all.',
+  },
+  {
+    title: 'Registration & Eligibility',
+    content: 'Players must be registered before participating in any official competition. Registration must be completed through the club and approved by Basketball Victoria. Age eligibility is determined by the player\'s age as of January 1 of the competition year.',
+  },
+  {
+    title: 'Uniform Policy',
+    content: 'All players are required to wear the official Bendigo Phoenix uniform during competition. Uniforms must be clean and in good condition. Playing without the correct uniform may result in non-participation at the discretion of the referee.',
+  },
+  {
+    title: 'Player Welfare',
+    content: 'The wellbeing of our players is our highest priority. We are committed to providing a safe environment free from bullying, harassment and discrimination. Any concerns should be reported to the Club President or Team Manager immediately.',
+  },
+  {
+    title: 'Photography & Social Media',
+    content: 'Photos and videos of minors must only be taken with parental consent. Images of players should not be posted on social media without permission. All club-related social media activity should be respectful and positive.',
+  },
+  {
+    title: 'Grievance Procedure',
+    content: 'Any grievances should first be addressed informally with the relevant party. If unresolved, a formal complaint may be lodged with the Club Committee in writing. All complaints will be handled fairly, promptly and confidentially.',
+  },
+];
+---
+
+<BaseLayout title="About" description="Learn about Bendigo Phoenix Basketball Club, our mission, policies and the Slam Dunk Bridging Fund.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Our Story</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">ABOUT US</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Our Mission</h2>
+          <div class="h-1 w-12 bg-brand-gold mb-6"></div>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Bendigo Phoenix Basketball Club has been a cornerstone of basketball in Central Victoria.
+            Our club is committed to developing players of all ages while fostering a strong community spirit.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            We compete in the Bendigo Basketball Association competitions and are passionate about growing the
+            sport in our region. From our youngest junior players to our senior competitors, we strive to
+            provide pathways for every level of player.
+          </p>
+          <p class="text-gray-600 leading-relaxed">
+            At Bendigo Phoenix, we believe basketball is more than just a game — it's a vehicle for building
+            character, friendships and community connections that last a lifetime.
+          </p>
+        </div>
+        <div class="space-y-4">
+          {[
+            { icon: '🤝', title: 'Community First', desc: 'We put our community at the heart of everything we do.' },
+            { icon: '⭐', title: 'Development Focused', desc: 'Helping every player reach their potential, whatever their skill level.' },
+            { icon: '🏆', title: 'Competitive Spirit', desc: 'Striving for excellence on and off the court.' },
+            { icon: '❤️', title: 'Inclusive Culture', desc: 'Basketball for everyone — no one gets left behind.' },
+          ].map(val => (
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-offwhite border border-gray-100">
+              <span class="text-3xl flex-shrink-0">{val.icon}</span>
+              <div>
+                <h3 class="font-bold text-brand-black text-sm">{val.title}</h3>
+                <p class="text-gray-500 text-sm mt-0.5">{val.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slam Dunk Bridging Fund -->
+  <section id="slam-dunk" class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <div class="rounded-2xl border-2 border-brand-gold bg-white overflow-hidden">
+        <div class="bg-brand-gold px-6 py-4">
+          <h2 class="text-white font-black text-xl uppercase tracking-wide">🏀 Slam Dunk Bridging Fund</h2>
+        </div>
+        <div class="p-6 sm:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <p class="text-gray-700 leading-relaxed mb-4">
+                The Slam Dunk Bridging Fund exists to ensure no player misses out on the opportunity to play
+                basketball due to financial hardship.
+              </p>
+              <p class="text-gray-600 leading-relaxed mb-4">
+                If you or your family are experiencing financial difficulty and need assistance with registration
+                fees, please contact us confidentially. All applications are handled with complete discretion
+                and respect.
+              </p>
+              <p class="text-gray-600 leading-relaxed">
+                We believe every young person deserves the chance to play and benefit from the life lessons
+                that sport provides. This fund makes that possible.
+              </p>
+            </div>
+            <div class="bg-brand-offwhite rounded-xl p-6 flex flex-col items-center justify-center text-center gap-4">
+              <span class="text-5xl">🤝</span>
+              <h3 class="font-bold text-brand-purple text-lg">Apply Confidentially</h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Contact us at any time — your privacy is completely protected.
+              </p>
+              <a
+                href="mailto:hello@bendigophoenix.org.au?subject=Slam%20Dunk%20Bridging%20Fund%20Enquiry"
+                class="inline-flex items-center gap-2 bg-brand-purple text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-purple-800 transition-colors"
+              >
+                ✉️ Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Policies -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Club Policies</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="space-y-3" id="accordion">
+        {policies.map((policy, i) => (
+          <div class="rounded-xl border border-gray-100 overflow-hidden">
+            <button
+              class="accordion-toggle w-full text-left px-5 py-4 flex items-center justify-between bg-white hover:bg-brand-offwhite transition-colors duration-150"
+              data-index={i}
+              aria-expanded="false"
+            >
+              <span class="font-bold text-brand-black text-sm">{policy.title}</span>
+              <svg
+                class="w-5 h-5 text-brand-purple flex-shrink-0 transition-transform duration-200"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            <div class="accordion-content px-5">
+              <p class="text-gray-600 text-sm leading-relaxed py-4 border-t border-gray-100">{policy.content}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const toggles = document.querySelectorAll('.accordion-toggle');
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling as HTMLElement;
+      const icon = toggle.querySelector('svg');
+      const isOpen = content?.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+      document.querySelectorAll('.accordion-toggle svg').forEach(i => (i as HTMLElement).style.transform = '');
+      document.querySelectorAll('.accordion-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+
+      // Open clicked if it was closed
+      if (!isOpen && content) {
+        content.classList.add('open');
+        if (icon) icon.style.transform = 'rotate(180deg)';
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

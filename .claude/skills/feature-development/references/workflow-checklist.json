@@ -1,0 +1,102 @@
+{
+  "pre_flight": [
+    {
+      "id": "branch-check",
+      "description": "Confirm on correct feature branch",
+      "command": "git branch --show-current",
+      "expected": "{feature-slug}"
+    },
+    {
+      "id": "spec-exists",
+      "description": "specs/{slug}/spec.md exists and is complete",
+      "path": "specs/{slug}/spec.md",
+      "required": true
+    },
+    {
+      "id": "plan-exists",
+      "description": "specs/{slug}/plan.md exists",
+      "path": "specs/{slug}/plan.md",
+      "required": true
+    },
+    {
+      "id": "tasks-exists",
+      "description": "specs/{slug}/tasks.md exists with atomic tasks",
+      "path": "specs/{slug}/tasks.md",
+      "required": true
+    },
+    {
+      "id": "no-uncommitted",
+      "description": "No uncommitted changes from previous work",
+      "command": "git status --porcelain",
+      "expected": ""
+    }
+  ],
+  "task_execution_cycle": [
+    {
+      "phase": "RED",
+      "description": "Write failing test",
+      "steps": [
+        "Identify what the task requires the system to do",
+        "Write the test that proves it works",
+        "Run the test and confirm it FAILS",
+        "If test passes without implementation — the test is wrong, fix it"
+      ],
+      "command": "cd api && npm test -- --run {test-file-path}"
+    },
+    {
+      "phase": "GREEN",
+      "description": "Write minimal implementation",
+      "steps": [
+        "Write minimum code to make the test pass",
+        "Do not add functionality beyond what the test requires",
+        "Run the test and confirm it PASSES",
+        "Run full test suite and confirm no regressions"
+      ],
+      "commands": [
+        "cd api && npm test",
+        "cd app && npm test"
+      ]
+    },
+    {
+      "phase": "REFACTOR",
+      "description": "Optional — clean up without changing behaviour",
+      "steps": [
+        "Refactor for clarity if needed",
+        "Run tests again — must still pass"
+      ]
+    },
+    {
+      "phase": "COMMIT",
+      "description": "Mark ledger and commit",
+      "steps": [
+        "Mark task [x] in specs/{slug}/tasks.md",
+        "Stage all changes",
+        "Commit with message referencing task number"
+      ],
+      "commit_format": "feat({slug}): {task description} [task-N]"
+    }
+  ],
+  "scope_lock_triggers": [
+    "Task requires modifying a file outside the feature's declared scope",
+    "Task requires a schema migration not in plan.md",
+    "Task reveals a spec ambiguity that could go multiple ways",
+    "Task would require changing a CONTRACT: marker",
+    "Task touches another feature's module"
+  ],
+  "constitution_checks": {
+    "principle_ii": "Failing test must exist before implementation",
+    "principle_vi": "All queries scoped by userId, invariants enforced server-side",
+    "principle_vii": "Server created in beforeAll, no app.close() in afterEach",
+    "principle_ix": "No drift from established folder structure and naming conventions"
+  },
+  "end_of_feature_gates": [
+    "All tasks in tasks.md marked [x]",
+    "cd api && npm test — all pass",
+    "cd app && npm test — all pass",
+    "No regressions introduced",
+    "CONTRACT markers present on ownership-enforcing code",
+    "No scope expansion without explicit approval",
+    "Commits reference task numbers",
+    "tasks.md ledger is accurate"
+  ]
+}

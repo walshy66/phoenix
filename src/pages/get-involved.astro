@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const events = [
+  {
+    date: 'TBC',
+    title: 'Season Launch Event',
+    description: 'Join us for the official launch of the 2025 season. Meet the teams, coaches and enjoy a fun-filled basketball afternoon.',
+    category: 'Club Event',
+  },
+  {
+    date: 'TBC',
+    title: 'Junior Clinic',
+    description: 'Free basketball clinic for juniors aged 8-14. Learn fundamental skills from our experienced coaches.',
+    category: 'Clinic',
+  },
+  {
+    date: 'TBC',
+    title: 'Community Open Day',
+    description: 'Come down and see what Bendigo Phoenix is all about. Open to everyone — bring the whole family!',
+    category: 'Community',
+  },
+  {
+    date: 'TBC',
+    title: 'Fundraiser Night',
+    description: 'An evening of basketball and community to raise funds for club development. Stay tuned for details.',
+    category: 'Fundraiser',
+  },
+];
+
+const sponsorTiers = [
+  {
+    tier: 'Gold Sponsor',
+    amount: 'Contact us',
+    perks: ['Logo on jerseys', 'Major website presence', 'Social media shoutouts', 'Event recognition'],
+    accent: '#8B7536',
+  },
+  {
+    tier: 'Silver Sponsor',
+    amount: 'Contact us',
+    perks: ['Logo on team banner', 'Website listing', 'Social media mentions'],
+    accent: '#573F93',
+  },
+  {
+    tier: 'Bronze Sponsor',
+    amount: 'Contact us',
+    perks: ['Website listing', 'Acknowledgment in club communications'],
+    accent: '#111111',
+  },
+];
+---
+
+<BaseLayout title="Get Involved" description="Get involved with Bendigo Phoenix Basketball — events, sponsorship and volunteering opportunities.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Community</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">GET INVOLVED</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        There are many ways to be part of the Phoenix family — play, volunteer, sponsor or support.
+      </p>
+    </div>
+  </section>
+
+  <!-- Events Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Upcoming Events</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {events.map(event => (
+          <div class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
+            <div class="h-2 bg-brand-purple"></div>
+            <div class="p-5 flex flex-col flex-1">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-brand-offwhite text-brand-purple border border-brand-purple">
+                  {event.category}
+                </span>
+                <span class="text-xs text-gray-400 font-medium">{event.date}</span>
+              </div>
+              <h3 class="font-bold text-brand-black text-base mb-2">{event.title}</h3>
+              <p class="text-gray-500 text-sm leading-relaxed flex-1">{event.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors Section -->
+  <section id="sponsors" class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Sponsorship</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-4"></div>
+      <p class="text-gray-600 mb-8 max-w-2xl">
+        Sponsoring Bendigo Phoenix Basketball Club is a great way to connect with the local community
+        while supporting the growth of basketball in Central Victoria.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        {sponsorTiers.map(tier => (
+          <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+            <div class="h-2" style={`background-color: ${tier.accent};`}></div>
+            <div class="p-6">
+              <h3 class="font-black text-brand-black text-xl mb-1">{tier.tier}</h3>
+              <p class="text-brand-purple font-bold text-sm mb-4">{tier.amount}</p>
+              <ul class="space-y-2">
+                {tier.perks.map(perk => (
+                  <li class="flex items-center gap-2 text-sm text-gray-600">
+                    <span class="text-brand-gold font-bold">✓</span>
+                    {perk}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="mailto:hello@bendigophoenix.org.au?subject=Sponsorship%20Enquiry"
+                class="mt-6 block text-center py-2.5 rounded-lg text-sm font-bold text-white transition-colors"
+                style={`background-color: ${tier.accent};`}
+              >
+                Get in Touch
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Current Sponsors display -->
+      <div class="bg-white rounded-xl p-6 border border-gray-100">
+        <h3 class="font-bold text-brand-purple text-sm uppercase tracking-wide mb-4">Current Sponsors</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div class="h-16 bg-gray-100 rounded-lg flex items-center justify-center border border-dashed border-gray-300">
+              <span class="text-xs text-gray-400">Sponsor {i + 1}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Volunteers Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl mx-auto bg-brand-purple rounded-2xl p-8 text-center">
+        <span class="text-5xl mb-4 block">🙋</span>
+        <h2 class="text-2xl font-black text-white uppercase tracking-wide mb-3">Volunteer With Us</h2>
+        <div class="h-1 w-12 bg-brand-gold mx-auto mb-5"></div>
+        <p class="text-purple-200 leading-relaxed mb-4">
+          Our club relies on the generosity of volunteers to operate. Whether you can help with score-keeping,
+          canteen duty, event organisation or social media — every contribution makes a difference.
+        </p>
+        <p class="text-purple-200 leading-relaxed mb-8">
+          We welcome parents, community members and basketball enthusiasts of all backgrounds.
+          No experience necessary — just a willingness to help!
+        </p>
+        <a
+          href="mailto:hello@bendigophoenix.org.au?subject=Volunteering%20Enquiry"
+          class="inline-flex items-center gap-2 bg-brand-gold text-white px-8 py-4 rounded-lg font-bold text-base hover:opacity-90 transition-opacity"
+        >
+          ✉️ Express Your Interest
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

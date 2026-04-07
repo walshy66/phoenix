@@ -1,0 +1,209 @@
+{
+  "logging_rules": [
+    {
+      "id": "never_log_passwords",
+      "rule": "Never log passwords, tokens, secrets, or credential material",
+      "forbidden_fields": [
+        "password",
+        "auth_token",
+        "session_token",
+        "refresh_token",
+        "api_key",
+        "secret",
+        "credential",
+        "proof",
+        "oauth_token"
+      ],
+      "consequence": "Credential leakage, account compromise",
+      "enforcement": "Code review, automated scanning"
+    },
+    {
+      "id": "never_log_pii",
+      "rule": "Never log email addresses, names, phone numbers in plaintext",
+      "forbidden_fields": [
+        "email",
+        "email_address",
+        "name",
+        "full_name",
+        "phone",
+        "phone_number",
+        "address",
+        "social_security_number"
+      ],
+      "safe_alternative": "Use identity_hash or omit",
+      "enforcement": "Code review, data redaction"
+    },
+    {
+      "id": "never_log_existence_signals",
+      "rule": "Never log data that reveals account existence",
+      "forbidden_messages": [
+        "account not found",
+        "email not registered",
+        "account already exists",
+        "identity already registered",
+        "user not found"
+      ],
+      "example_wrong": "{ reason: 'ACCOUNT_NOT_FOUND' }",
+      "example_correct": "{ reason: 'INVALID_CREDENTIALS' }",
+      "purpose": "Prevent account enumeration via logs"
+    },
+    {
+      "id": "always_log_violations",
+      "rule": "Always log ownership violations and invariant breaks",
+      "required_events": [
+        "OWNERSHIP_VIOLATION",
+        "INVARIANT_VIOLATION",
+        "UNAUTHORIZED_ACCESS"
+      ],
+      "minimum_fields": [
+        "event",
+        "timestamp",
+        "user_id_hash",
+        "resource_type",
+        "severity"
+      ],
+      "never_suppress": true,
+      "consequence": "Omitting violations hides security incidents"
+    },
+    {
+      "id": "logging_is_not_behavior",
+      "rule": "Logging must never change execution behavior",
+      "forbidden": [
+        "Skipping operation if logging fails",
+        "Changing response based on logging",
+        "Altering state for logging purposes",
+        "Modifying session lifecycle for logging"
+      ],
+      "principle": "Logging is side effect only"
+    },
+    {
+      "id": "use_identity_hash",
+      "rule": "Use one-way hash for user identifiers in logs",
+      "approach": "SHA256(user_id)",
+      "properties": {
+        "one_way": true,
+        "non_reversible": true,
+        "consistent_per_user": true,
+        "cannot_enumerate": true
+      },
+      "example": {
+        "wrong": "user_id: '42'",
+        "correct": "user_id_hash: 'abc123def456...'"
+      }
+    },
+    {
+      "id": "distinguish_audit_from_application",
+      "rule": "Separate audit logs (security) from application logs (operational)",
+      "audit_logs": {
+        "purpose": "Security, compliance, incident response",
+        "events": ["LOGIN_SUCCESS", "LOGIN_FAILURE", "OWNERSHIP_VIOLATION"],
+        "storage": "Durable, encrypted, restricted access",
+        "retention": "Long-term (1+ years)"
+      },
+      "application_logs": {
+        "purpose": "Debugging, monitoring, error tracking",
+        "events": ["Flow progress", "non-sensitive errors"],
+        "storage": "Standard logging",
+        "retention": "Short-term (7-30 days)"
+      }
+    },
+    {
+      "id": "anti_enumeration_in_logs",
+      "rule": "Login failures must use identical logging for unknown vs. wrong password",
+      "check": [
+        "Unknown identity → reason: INVALID_CREDENTIALS",
+        "Wrong password → reason: INVALID_CREDENTIALS",
+        "Same log format for both",
+        "Same log timing for both"
+      ],
+      "consequence": "If different, attacker can enumerate accounts via logs"
+    },
+    {
+      "id": "login_failure_logging",
+      "rule": "Log login failures safely",
+      "required_fields": {
+        "event": "LOGIN_FAILURE",
+        "timestamp": "ISO8601",
+        "reason": "INVALID_CREDENTIALS (always)",
+        "identity_hash": "one-way hash of provider+subject"
+      },
+      "forbidden_fields": [
+        "email",
+        "username",
+        "real_user_id",
+        "whether_account_exists",
+        "which_field_wrong"
+      ]
+    },
+    {
+      "id": "ownership_violation_logging",
+      "rule": "Log ownership violations without exposing resource IDs",
+      "required_fields": [
+        "event: OWNERSHIP_VIOLATION",
+        "user_id_hash: (hashed)",
+        "resource_type: (string like 'session', 'athlete_data')",
+        "severity: CRITICAL",
+        "timestamp: ISO8601"
+      ],
+      "forbidden_fields": [
+        "user_id (plaintext)",
+        "resource_id (plaintext)",
+        "owner_id (plaintext)"
+      ]
+    },
+    {
+      "id": "session_logging_order",
+      "rule": "Log session creation AFTER user resolution, BEFORE return",
+      "sequence": [
+        "1. Resolve user",
+        "2. Create session",
+        "3. Log: SESSION_CREATED",
+        "4. Return session token"
+      ],
+      "never_log_before": "User resolution"
+    },
+    {
+      "id": "logout_logging_idempotency",
+      "rule": "Log logout even if session already invalid (idempotent)",
+      "pattern": "Always return success, always log"
+    },
+    {
+      "id": "safe_hash_function",
+      "rule": "Use cryptographic hash (not truncation)",
+      "safe": ["SHA256", "SHA512", "Argon2"],
+      "unsafe": ["Simple truncation", "reversible encoding"],
+      "requirement": "Must be one-way, non-reversible"
+    },
+    {
+      "id": "structured_logging",
+      "rule": "Use structured JSON logging for audit events",
+      "format": "JSON with fixed fields (no free-form text)",
+      "benefits": [
+        "Searchable and analyzable",
+        "Machine-readable for SIEM",
+        "Consistent format"
+      ]
+    },
+    {
+      "id": "audit_trail_durability",
+      "rule": "Audit logs must be durable and immutable",
+      "properties": [
+        "Append-only (never deleted, only added)",
+        "Encrypted in transit and at rest",
+        "Replicated/backed up",
+        "Access restricted to security team"
+      ]
+    }
+  ],
+  "validation_order": [
+    "never_log_passwords",
+    "never_log_pii",
+    "never_log_existence_signals",
+    "always_log_violations",
+    "use_identity_hash",
+    "anti_enumeration_in_logs",
+    "login_failure_logging",
+    "ownership_violation_logging",
+    "structured_logging"
+  ]
+}

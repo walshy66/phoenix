@@ -1,0 +1,64 @@
+{
+  "checks": [
+    {
+      "id": "drop-rename",
+      "name": "Destructive Operations Detection",
+      "description": "Detect DROP/RENAME operations that can delete or orphan data",
+      "severity": "CRITICAL",
+      "paths": ["api/schema.prisma", "api/migrations/"],
+      "signals": ["DROP TABLE", "DROP COLUMN", "RENAME COLUMN", "ALTER TABLE"],
+      "question": "This change will affect existing data. Do you have a backup?"
+    },
+    {
+      "id": "required-default",
+      "name": "New Field Defaults",
+      "description": "New required fields must have defaults or explicit backfill plan",
+      "severity": "HIGH",
+      "paths": ["api/schema.prisma", "api/migrations/"],
+      "signals": ["required", "@default", "NOT NULL"],
+      "question": "New required field detected. What's the backfill strategy for existing rows?"
+    },
+    {
+      "id": "enum-safety",
+      "name": "Enum Compatibility",
+      "description": "Enum changes must not break existing application logic or data",
+      "severity": "HIGH",
+      "paths": ["api/schema.prisma", "api/src/"],
+      "signals": ["enum", "switch", "case", "default:"],
+      "question": "Enum change detected. Are all existing values still valid in your code?"
+    },
+    {
+      "id": "nullable-conversion",
+      "name": "Nullability Changes",
+      "description": "Converting required field to optional is safe; optional to required needs migration plan",
+      "severity": "HIGH",
+      "paths": ["api/schema.prisma"],
+      "signals": ["?", "required: true", "required: false"],
+      "question": "Changing field nullability. How will existing data be handled?"
+    },
+    {
+      "id": "type-change",
+      "name": "Field Type Changes",
+      "description": "Type conversions may lose data or break validation",
+      "severity": "MEDIUM",
+      "paths": ["api/schema.prisma"],
+      "signals": ["String", "Int", "DateTime", "Boolean", "Decimal"],
+      "question": "Changing field type. Is a data conversion/validation strategy needed?"
+    }
+  ],
+  "decision_tree": {
+    "step_1": "Is this change destructive (DROP/RENAME)?",
+    "step_1_yes": "BLOCKED - Ask for backup/rollback plan",
+    "step_1_no": "Continue to step 2",
+    "step_2": "Is this adding a new required field?",
+    "step_2_yes": "Check for @default or backfill plan",
+    "step_2_has_plan": "OK - Continue",
+    "step_2_no_plan": "BLOCKED - Needs default or migration plan",
+    "step_2_no": "Continue to step 3",
+    "step_3": "Is this modifying an enum?",
+    "step_3_yes": "Check existing code for enum usage",
+    "step_3_safe": "OK - All values still valid",
+    "step_3_unsafe": "BLOCKED - Values removed/renamed (needs code updates first)",
+    "step_3_no": "READY - Safe to apply"
+  }
+}

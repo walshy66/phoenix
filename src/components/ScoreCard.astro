@@ -1,0 +1,89 @@
+---
+interface Props {
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number | null;
+  awayScore: number | null;
+  date: string;
+  competition: string;
+  status?: string;
+}
+
+const { homeTeam, awayTeam, homeScore, awayScore, date, competition, status = 'completed' } = Astro.props;
+
+const isPhoenixHome = homeTeam.toLowerCase().includes('phoenix');
+const phoenixScore = isPhoenixHome ? homeScore : awayScore;
+const opponentScore = isPhoenixHome ? awayScore : homeScore;
+
+let result: 'win' | 'loss' | 'draw' | 'pending' = 'pending';
+if (status === 'completed' && phoenixScore !== null && opponentScore !== null) {
+  if (phoenixScore > opponentScore) result = 'win';
+  else if (phoenixScore < opponentScore) result = 'loss';
+  else result = 'draw';
+}
+
+const resultStyles = {
+  win: 'bg-brand-gold text-white',
+  loss: 'bg-gray-600 text-white',
+  draw: 'bg-gray-400 text-white',
+  pending: 'bg-gray-200 text-gray-600',
+};
+
+const resultLabels = {
+  win: 'W',
+  loss: 'L',
+  draw: 'D',
+  pending: 'TBD',
+};
+
+const formattedDate = new Date(date).toLocaleDateString('en-AU', {
+  weekday: 'short',
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+<div class={`card-hover bg-white rounded-xl overflow-hidden shadow-sm border ${result === 'win' ? 'border-brand-gold win-indicator' : 'border-gray-100'} flex flex-col`}>
+  <!-- Header -->
+  <div class="bg-brand-black px-4 py-2 flex items-center justify-between">
+    <span class="text-gray-400 text-xs font-medium uppercase tracking-wide">{competition}</span>
+    <span class={`text-xs font-bold px-2 py-0.5 rounded-full ${resultStyles[result]}`}>
+      {resultLabels[result]}
+    </span>
+  </div>
+
+  <!-- Scores -->
+  <div class="p-4 flex items-center justify-between gap-4">
+    <!-- Home team -->
+    <div class={`flex-1 text-center ${isPhoenixHome ? 'text-brand-purple font-bold' : 'text-gray-600'}`}>
+      <p class={`text-sm font-semibold leading-tight mb-2 ${isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+        {homeTeam}
+      </p>
+      <p class="text-3xl font-bold">
+        {homeScore !== null ? homeScore : '-'}
+      </p>
+    </div>
+
+    <!-- VS divider -->
+    <div class="flex flex-col items-center">
+      <span class="text-gray-400 text-sm font-bold">VS</span>
+      <div class="w-0.5 h-8 bg-gray-200 my-1"></div>
+    </div>
+
+    <!-- Away team -->
+    <div class={`flex-1 text-center ${!isPhoenixHome ? 'text-brand-purple font-bold' : 'text-gray-600'}`}>
+      <p class={`text-sm font-semibold leading-tight mb-2 ${!isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+        {awayTeam}
+      </p>
+      <p class="text-3xl font-bold">
+        {awayScore !== null ? awayScore : '-'}
+      </p>
+    </div>
+  </div>
+
+  <!-- Date footer -->
+  <div class="px-4 pb-3 text-center">
+    <span class="text-gray-400 text-xs">{formattedDate}</span>
+  </div>
+</div>
