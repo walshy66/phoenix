@@ -1,0 +1,57 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  date: string;
+  image: string;
+  time?: string;
+  location?: string;
+  description?: string;
+  category?: string;
+  onClick?: () => void;
+}
+
+const { id, title, date, image, time, location, description, category, onClick } = Astro.props;
+
+// Format date for display
+const formattedDate = new Date(date).toLocaleDateString('en-AU', {
+  weekday: 'short',
+  day: 'numeric',
+  month: 'short'
+});
+
+// Format time if provided
+const formattedTime = time ? time : null;
+</style>
+
+<div class="event-card bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col hover:shadow-md transition-shadow duration-200 cursor-pointer" tabindex="0" role="button" aria-label="View details for {title}" on:click={onClick}>
+  <!-- Image -->
+  <div class="relative h-48">
+    <img
+      src={image}
+      alt={`${title} — ${date}`}
+      class="w-full h-full object-cover"
+      onerror="this.onerror=null; this.src='/images/placeholder-event.jpg'; this.alt='Event placeholder: {title} — {date}';"
+    >
+    {/* Category badge if provided */}
+    {category && (
+      <div class="absolute top-3 left-3 flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-brand-offwhite text-brand-purple border border-brand-purple">
+        {category}
+      </div>
+    )}
+  </div>
+
+  <!-- Content -->
+  <div class="p-5 flex flex-col flex-1">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-brand-offwhite text-brand-purple border border-brand-purple">
+        {category || 'Event'}
+      </span>
+      <span class="text-xs text-gray-400 font-medium">{formattedDate}{formattedTime ? ` • ${formattedTime}` : ''}</span>
+    </div>
+    <h3 class="font-bold text-brand-black text-base mb-2 line-clamp-2">{title}</h3>
+    {description && (
+      <p class="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-2">{description}</p>
+    )}
+  </div>
+</div>

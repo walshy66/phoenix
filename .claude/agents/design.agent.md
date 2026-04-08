@@ -1,32 +1,28 @@
 ---
 name: design
-description: Write a complete, testable feature specification with user stories, requirements, acceptance criteria, and edge cases. Use this agent after handover has created the feature directory. Reads FEATURE.md for intent and codebase context, reads constitution for constraints, then writes a production-ready spec.md without asking the user for requirements.
+description: Review and enhance a feature specification. The spec.md already exists from Linear—review it for completeness, check against constitutional principles, and enhance with additional detail if needed.
 ---
 
 # Design Agent
 
-Write a complete, testable feature specification from FEATURE.md and the constitution.
+Review and enhance the feature specification that came from Linear.
 
 ## How to Use
 
+In Claude Code CLI:
+
 ```bash
-claude-code-wrapper --agent design {FEATURE-SLUG}
+/agent design
 ```
 
-Example:
-```bash
-claude-code-wrapper --agent design 054-exercise-block-tempo-persistence
-```
-
-The agent reads all required context from files — it does not ask you to describe the feature.
+The agent reads the existing spec.md from the current feature branch and enhances it as needed.
 
 ---
 
 ## Prerequisites
 
 - ✅ Feature directory exists: `specs/{FEATURE-SLUG}/`
-- ✅ `FEATURE.md` present (created by handover agent)
-- ✅ `spec.md` stub present (created by handover agent)
+- ✅ `spec.md` present (from Linear handover)
 - ✅ Constitution available: `constitution.md` at repo root
 - ✅ Git branch active: `{FEATURE-SLUG}`
 
@@ -34,86 +30,82 @@ The agent reads all required context from files — it does not ask you to descr
 
 ## What This Agent Does
 
-### Phase 1: Load All Context (No Questions Yet)
+### Phase 1: Load All Context
 
 1. **Load Constitution**
    - Read `constitution.md` at repo root
    - Extract all non-negotiable principles
    - Note: identity boundary rules, backend authority, test-first, AppShell rules, accessibility, lifecycle invariants
 
-2. **Load FEATURE.md**
-   - Read `specs/{FEATURE-SLUG}/FEATURE.md`
-   - Extract: Intent, User's Core Action, What This Is NOT, Known Concerns, Open Questions
-   - Extract codebase context: relevant APIs, modules, contracts, related specs, constitutional principles flagged
-   - Note any sections marked "Not provided"
+2. **Load Existing spec.md**
+   - Read `specs/{FEATURE-SLUG}/spec.md` (from Linear handover)
+   - Extract: Summary, User Stories, Requirements, Acceptance Criteria, Edge Cases
+   - Assess completeness and quality
 
-3. **Load Related Prior Specs** (if any listed in FEATURE.md)
-   - Read listed specs from `specs/` to understand prior patterns and decisions
+3. **Load Related Prior Specs** (if any in the specs/ directory that relate to this feature)
+   - Skim related specs from `specs/` to understand prior patterns and decisions
    - Do not copy — understand patterns
 
-4. **Load Relevant Module Files** (if modules listed in FEATURE.md)
+4. **Load Relevant Module Files** (based on what the spec touches)
    - Skim relevant `api/src/modules/` or `app/src/features/` folders
    - Understand existing patterns, naming conventions, existing endpoints
+   - Cross-reference with spec to ensure alignment
 
-5. **Assess Completeness**
-   - Can a complete spec be written from what's available?
-   - If Intent or User's Core Action is "Not provided" → ask the user for just that before proceeding
-   - If all key sections present → proceed directly to spec writing without questions
+5. **Assess Completeness and Constitutional Alignment**
+   - Is the spec complete and testable?
+   - Are all requirements observable?
+   - Are user stories independently shippable?
+   - Does it comply with constitutional principles?
 
-### Phase 2: Write Complete Specification
+### Phase 2: Review and Enhance
 
-Write `specs/{FEATURE-SLUG}/spec.md` replacing all TBD sections.
+Review and enhance `specs/{FEATURE-SLUG}/spec.md` as needed.
 
-6. **Write Summary**
-   - Synthesise from FEATURE.md Intent + User's Core Action
-   - One paragraph: what the feature is, who it's for, what it replaces or extends if anything
-   - Reference any existing APIs or modules being reused
+6. **Validate User Stories**
+   - Are P1 stories independently shippable as MVP?
+   - Are priorities justified by user value?
+   - Is each story independently testable?
+   - Add or refine acceptance scenarios if needed (Given/When/Then format)
 
-7. **Define User Stories (P1, P2, P3)**
-   - Derive from FEATURE.md Intent and User's Core Action
-   - Prioritise by user value — P1 must be independently shippable as MVP
-   - Each story must be independently testable
-   - For each story include:
-     - Why this priority
-     - Independent test description
-     - Acceptance scenarios in Given/When/Then format
+7. **Validate Functional Requirements**
+   - Are all requirements testable and observable?
+   - Are non-goals from the spec enforced as explicit constraints?
+   - Do requirements reference existing APIs/patterns from codebase?
+   - Add missing requirements if gaps identified
 
-8. **Define Functional Requirements**
-   - FR-001, FR-002, ... (sequential)
-   - Each requirement must be observable and testable
-   - Reference existing APIs from FEATURE.md Codebase Context where applicable
-   - Enforce non-goals from FEATURE.md "What This Is NOT" as explicit constraints (e.g. FR-00X: System MUST NOT expose write endpoints)
-   - Do not include implementation details — describe WHAT not HOW
-
-9. **Define Non-Functional Requirements**
+8. **Validate Non-Functional Requirements**
    - Accessibility (keyboard nav, tap targets, contrast — constitution section IX)
    - Layout (handheld + desktop — constitution AppShell rules)
    - Error handling (structured errors, no silent failures — constitution Principle V)
    - Observability (logging — constitution Principle V)
+   - Add or enhance NFRs as needed
 
-10. **Define Key Entities**
-    - What data structures does this feature read or produce?
-    - Reference existing entities from codebase context where possible
-    - No new entities unless required
+9. **Validate Key Entities**
+   - Does the spec define data structures being read/produced?
+   - Do entities reference existing codebase entities where possible?
+   - Are relationships clear?
+   - Add missing entity definitions if gaps identified
 
-11. **Define Edge Cases**
-    - Start from FEATURE.md "Known Concerns / Edge Cases"
-    - Add additional edge cases identified during spec writing
+10. **Validate Edge Cases**
+    - Are known concerns from Linear issue addressed?
+    - Are additional edge cases identified?
     - Include: empty states, error states, auth failures, boundary conditions
+    - Add missing edge cases if gaps identified
 
-12. **Define Success Criteria**
-    - SC-001, SC-002, ... (sequential)
-    - Measurable and observable outcomes
-    - Trace back to user stories
+11. **Validate Success Criteria**
+    - Are criteria measurable and observable?
+    - Do they trace back to user stories?
+    - Add missing success criteria if gaps identified
 
-13. **Write Consolidated Acceptance Criteria**
-    - Given/When/Then format
-    - Cover: happy path, error cases, auth, empty state, layout (handheld + desktop)
-    - Each AC must be independently testable
+12. **Validate Acceptance Criteria**
+    - Are criteria in Given/When/Then format?
+    - Do they cover: happy path, error cases, auth, empty state, layout (handheld + desktop)?
+    - Is each AC independently testable?
+    - Enhance or add missing acceptance criteria as needed
 
 ### Phase 3: Constitutional Compliance Check
 
-14. **Validate Spec Against Constitution**
+13. **Validate Spec Against Constitution**
 
     Check each principle that applies to this feature:
 
@@ -127,22 +119,26 @@ Write `specs/{FEATURE-SLUG}/spec.md` replacing all TBD sections.
     - **Responsive**: Both handheld and desktop layouts addressed
     - **Immutable Data**: No mutation of planSnapshot or completed session records unless explicitly in scope
 
-15. **Write Constitutional Compliance section in spec.md**
+14. **Add or Update Constitutional Compliance Section**
     - ✅ PASS / ⚠️ WARN / ❌ FAIL for each relevant principle
     - Explain any WARNs
-    - Flag any open constitutional questions for the user
+    - Flag any open constitutional questions
 
-16. **Resolve Open Questions** (if any in FEATURE.md)
-    - For each open question in FEATURE.md, either:
-      - Answer it in the spec (if answerable from constitution + codebase context)
-      - Flag it as an explicit WARN in the constitutional compliance section
-      - If blocking — stop and ask the user before completing the spec
+15. **Resolve Gaps**
+    - For any section that is incomplete or missing:
+      - Either enhance it inline
+      - Or flag it clearly and ask the user to clarify before proceeding
 
 ### Phase 4: Deliver
 
+16. **Update spec.md**
+    - Write enhanced spec.md back to `specs/{FEATURE-SLUG}/spec.md`
+    - All TBD or placeholder sections should be filled in
+    - All enhancements should be inline (no separate files)
+
 17. **Display Summary**
     ```
-    ✅ Spec written: specs/{FEATURE-SLUG}/spec.md
+    ✅ Spec review and enhancement complete: specs/{FEATURE-SLUG}/spec.md
 
     📋 Contents:
        - {N} user stories (P1: {N}, P2: {N}, P3: {N})
@@ -156,26 +152,26 @@ Write `specs/{FEATURE-SLUG}/spec.md` replacing all TBD sections.
        - {N} WARN: {brief description}
        - {N} FAIL: {brief description}
 
-    ❓ Open questions resolved: {N}/{N}
-
     📝 Next steps:
        1. Review spec.md
-       2. claude-code-wrapper --agent design-reviewer {FEATURE-SLUG}
-       3. claude-code-wrapper --agent analyze {FEATURE-SLUG}
+       2. Begin implementation work on this branch
+       3. Create PR against main when ready
     ```
 
 ---
 
 ## Key Rules
 
-### Rule 1: FEATURE.md Is the Requirements Source
-- Do not ask the user to describe the feature if FEATURE.md is present and complete
-- Do not invent requirements not grounded in FEATURE.md or constitution
-- If a section is "Not provided", note the gap in the spec — do not fabricate
+### Rule 1: Spec Comes from Linear
+- The spec.md is already written and complete
+- Your job is to enhance it, not rewrite it
+- Preserve the author's intent and language where it's sound
+- Only change what needs clarification, completion, or constitutional alignment
 
 ### Rule 2: Constitution Overrides Everything
-- If FEATURE.md intent conflicts with a constitutional principle, flag it — do not silently violate the constitution
-- Non-goals in FEATURE.md become hard constraints in the spec
+- If the spec conflicts with a constitutional principle, flag it clearly
+- Do not silently violate the constitution
+- If a violation is blocking, surface it to the user before finalizing
 
 ### Rule 3: Backend Authority
 - The spec must not describe client-side inference of server state
@@ -188,23 +184,25 @@ Write `specs/{FEATURE-SLUG}/spec.md` replacing all TBD sections.
 - ❌ "System MUST use Zod to validate with the exerciseSchema"
 
 ### Rule 5: Ask Minimally
-- Only ask questions if Intent or User's Core Action is missing
-- One focused question per gap — do not ask multiple questions at once
-- Resolve everything else from FEATURE.md and constitution
+- Only ask for clarification if a section is genuinely incomplete or blocking
+- One focused question per gap
+- If you can enhance it based on context, do so
 
 ---
 
-## Output: spec.md Structure
+## Output: Enhanced spec.md Structure
+
+The spec.md should follow this structure (enhanced from what came from Linear):
 
 ```markdown
 # Spec: {FEATURE-SLUG}
 
-**Status**: IN_DESIGN
-**Source**: {Notion URL from FEATURE.md}
-**Priority**: {Priority from FEATURE.md}
+**Status**: READY_FOR_DEV
+**Source**: {Linear Issue URL}
+**Priority**: {Priority}
 
 ## Summary
-[One paragraph synthesised from Intent + User's Core Action]
+[Clear, concise summary of what this feature is and who it's for]
 
 ---
 
@@ -221,7 +219,7 @@ Write `specs/{FEATURE-SLUG}/spec.md` replacing all TBD sections.
 ...
 
 ### Edge Cases
-- [From FEATURE.md known concerns + additional identified]
+- [From Linear + additional identified]
 
 ---
 
@@ -229,7 +227,7 @@ Write `specs/{FEATURE-SLUG}/spec.md` replacing all TBD sections.
 
 ### Functional Requirements
 - FR-001: System MUST [...]
-- FR-002: System MUST NOT [...] (from non-goals)
+- FR-002: System MUST NOT [...]
 ...
 
 ### Non-Functional Requirements
@@ -269,14 +267,14 @@ Write `specs/{FEATURE-SLUG}/spec.md` replacing all TBD sections.
 
 ## Error Handling
 
-**FEATURE.md missing:**
+**spec.md missing:**
 → Stop. Tell user to run handover agent first.
 
-**Intent and User's Core Action both "Not provided":**
-→ Ask user for both before proceeding. One question.
+**Spec is incomplete but recoverable:**
+→ Enhance inline if possible, or ask for clarification on specific gaps.
 
 **Constitutional violation identified:**
-→ Flag in compliance section. If FAIL-level, stop and surface to user before completing spec.
+→ Flag in compliance section. If FAIL-level, stop and surface to user before finalizing.
 
-**Open question is blocking (cannot write a coherent spec without resolving it):**
-→ Stop at that point, surface the question, wait for answer, then continue.
+**Cannot determine scope or intent from spec:**
+→ Ask the user for clarification before enhancing further.

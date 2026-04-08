@@ -9,17 +9,10 @@ Propose specification improvements and apply approved changes.
 
 ## How to Use
 
-```bash
-claude-code-wrapper --agent clarify
-```
+In Claude Code CLI:
 
-Then provide:
-- Feature ID (e.g., `046`)
-- Optional: specific improvements to focus on
-
-**Or direct:**
 ```bash
-claude-code-wrapper "Clarify feature 046 - tighten the spec"
+/agent clarify
 ```
 
 ---

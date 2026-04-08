@@ -9,17 +9,10 @@ Break implementation plan into atomic, execution-window-grouped, implementation-
 
 ## How to Use
 
-```bash
-claude-code-wrapper --agent tasks
-```
+In Claude Code CLI:
 
-Then provide:
-- Feature ID (e.g., `047`)
-- Optional: specific areas to focus on
-
-**Or direct:**
 ```bash
-claude-code-wrapper "Create tasks for feature 047"
+/agent tasks
 ```
 
 ---
