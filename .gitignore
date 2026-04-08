@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# claude settings
+.claude/settings.json
+.claude/settings.local.json
+.claude/settings-anth.json
+.claude/settings-openrouter.json
