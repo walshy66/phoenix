@@ -9,17 +9,10 @@ Write a complete implementation plan with technical approach and phased delivery
 
 ## How to Use
 
-```bash
-claude-code-wrapper --agent plan
-```
+In Claude Code CLI:
 
-Then provide:
-- Feature ID (e.g., `046`)
-- Optional: specific technical context or constraints
-
-**Or direct:**
 ```bash
-claude-code-wrapper "Plan feature 046 - user preferences implementation"
+/agent plan
 ```
 
 ---

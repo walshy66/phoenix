@@ -1,0 +1,104 @@
+---
+import EventTile from './EventTile.astro';
+
+// Read and parse events from events.md
+const eventsData = await import('../data/events.md?raw');
+
+// Parse the markdown frontmatter blocks
+function parseEvents(raw: string) {
+  const blocks = raw.split(/^---\s*$/m);
+  const events: Record<string, string>[] = [];
+
+  for (let i = 1; i < blocks.length; i += 2) {
+    const frontmatter = blocks[i].trim();
+    if (!frontmatter) continue;
+
+    try {
+      const event: Record<string, string> = {};
+      frontmatter.split('\n').forEach(line => {
+        const [key, ...valueParts] = line.split(': ');
+        if (key && valueParts.length > 0) {
+          const value = valueParts.join(': ').trim();
+          const cleanedValue = value.replace(/^["']|["']$/g, '');
+          event[key.trim()] = cleanedValue;
+        }
+      });
+
+      if (event.id && event.title && event.date && event.image && event.status) {
+        events.push(event);
+      }
+    } catch (e) {
+      console.warn('Failed to parse event block:', frontmatter.slice(0, 100));
+    }
+  }
+
+  return events;
+}
+
+const allEvents = parseEvents(eventsData.default);
+
+const today = new Date();
+const upcomingEvents = allEvents
+  .filter(event => event.status === 'upcoming' && new Date(event.date) >= today)
+  .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+const pastEvents = allEvents
+  .filter(event => event.status === 'past' && new Date(event.date) < today)
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<!-- Upcoming Events Section -->
+<section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    {upcomingEvents.length > 0 ? (
+      <>
+        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Upcoming Events</h2>
+        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {upcomingEvents.map(event => (
+            <EventTile
+              id={event.id}
+              title={event.title}
+              date={event.date}
+              time={event.time || undefined}
+              location={event.location || undefined}
+              description={event.description || undefined}
+              image={event.image}
+              category={event.category || 'Event'}
+            />
+          ))}
+        </div>
+      </>
+    ) : (
+      <p class="text-gray-500 text-center py-8">No upcoming events scheduled. Check back soon!</p>
+    )}
+  </div>
+</section>
+
+<!-- Past Events Section -->
+{pastEvents.length > 0 ? (
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Past Events</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {pastEvents.map(event => (
+          <EventTile
+            id={event.id}
+            title={event.title}
+            date={event.date}
+            time={event.time || undefined}
+            location={event.location || undefined}
+            description={event.description || undefined}
+            image={event.image}
+            category={event.category || 'Event'}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+) : (
+  <p class="text-gray-500 text-center py-8 bg-brand-offwhite">No past events to display.</p>
+)}
