@@ -68,7 +68,7 @@
     document.getElementById('modal-title')!.textContent = event.title;
     const img = document.getElementById('modal-image') as HTMLImageElement;
     img.src = event.image;
-    img.alt = `${event.title} — ${formattedDate}`;
+    img.alt = event.alt || `${event.title} — ${formattedDate}`;
     document.getElementById('modal-date')!.textContent = formattedDate;
 
     const catEl = document.getElementById('modal-category')!;

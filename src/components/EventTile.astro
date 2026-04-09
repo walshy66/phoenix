@@ -4,13 +4,14 @@ interface Props {
   title: string;
   date: string;
   image: string;
+  alt?: string;
   time?: string;
   location?: string;
   description?: string;
   category?: string;
 }
 
-const { id, title, date, image, time, location, description, category } = Astro.props;
+const { id, title, date, image, alt, time, location, description, category } = Astro.props;
 
 // Format date for display
 const formattedDate = new Date(date).toLocaleDateString('en-AU', {
@@ -22,7 +23,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-AU', {
 const formattedTime = time || null;
 
 // Serialize event data for the modal
-const eventData = JSON.stringify({ id, title, date, image, time, location, description, category });
+const eventData = JSON.stringify({ id, title, date, image, alt, time, location, description, category });
 ---
 
 <div
@@ -36,7 +37,7 @@ const eventData = JSON.stringify({ id, title, date, image, time, location, descr
   <div class="relative h-48">
     <img
       src={image}
-      alt={`${title} — ${date}`}
+      alt={alt || `${title} — ${date}`}
       class="w-full h-full object-cover"
       onerror="this.onerror=null; this.src='/images/placeholder-event.jpg';"
     >
