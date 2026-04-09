@@ -4,13 +4,14 @@ interface Props {
   title: string;
   date: string;
   image: string;
+  alt?: string;
   time?: string;
   location?: string;
   description?: string;
   category?: string;
 }
 
-const { id, title, date, image, time, location, description, category } = Astro.props;
+const { id, title, date, image, alt, time, location, description, category } = Astro.props;
 
 // Format date for display
 const formattedDate = new Date(date).toLocaleDateString('en-AU', {
@@ -21,8 +22,13 @@ const formattedDate = new Date(date).toLocaleDateString('en-AU', {
 
 const formattedTime = time || null;
 
+// Check if this is a month-based event (title is like "Month Year")
+const monthPattern = /^(January|February|March|April|May|June|July|August|September|October|November|December) \d{4}$/;
+const isMonthEvent = monthPattern.test(title);
+const displayCategory = category || (isMonthEvent ? 'Month' : 'Event');
+
 // Serialize event data for the modal
-const eventData = JSON.stringify({ id, title, date, image, time, location, description, category });
+const eventData = JSON.stringify({ id, title, date, image, alt, time, location, description, category });
 ---
 
 <div
@@ -36,22 +42,17 @@ const eventData = JSON.stringify({ id, title, date, image, time, location, descr
   <div class="relative h-48">
     <img
       src={image}
-      alt={`${title} — ${date}`}
+      alt={alt || `${title} — ${date}`}
       class="w-full h-full object-cover"
       onerror="this.onerror=null; this.src='/images/placeholder-event.jpg';"
     >
-    {category && (
-      <div class="absolute top-3 left-3 flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium bg-brand-offwhite text-brand-purple border border-brand-purple">
-        {category}
-      </div>
-    )}
   </div>
 
   <!-- Content -->
   <div class="p-5 flex flex-col flex-1">
     <div class="flex items-center justify-between mb-3">
       <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-brand-offwhite text-brand-purple border border-brand-purple">
-        {category || 'Event'}
+        {displayCategory}
       </span>
       <span class="text-xs text-gray-400 font-medium">{formattedDate}{formattedTime ? ` • ${formattedTime}` : ''}</span>
     </div>

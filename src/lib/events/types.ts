@@ -10,6 +10,7 @@ export interface Event {
   status: 'upcoming' | 'past'; // Controls which section
 
   // Optional fields
+  alt?: string;            // Descriptive alt text for image (WCAG compliance)
   time?: string;           // HH:MM (24-hour, AEST)
   location?: string;       // Venue/location name
   description?: string;    // Event description (max 500 chars recommended)
