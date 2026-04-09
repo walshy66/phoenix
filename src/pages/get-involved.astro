@@ -91,22 +91,43 @@ const sponsorTiers = [
           <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Upcoming Events</h2>
           <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-          <div class="flex overflow-x-auto gap-6 pb-2">
-            {upcomingEvents.map(event => (
-              <div class="flex-shrink-0 min-w-[calc(25% - 1.5rem)]">
-                <EventTile
-                  id={event.id}
-                  title={event.title}
-                  date={event.date}
-                  time={event.time || undefined}
-                  location={event.location || undefined}
-                  description={event.description || undefined}
-                  image={event.image}
-                  alt={event.alt || undefined}
-                  category={event.category || 'Event'}
-                />
+          <div class="relative">
+            <!-- Carousel Container -->
+            <div class="overflow-hidden">
+              <div class="carousel-upcoming transition-transform duration-300 ease-in-out flex gap-6" style={`transform: translateX(0)`}>
+                {upcomingEvents.map(event => (
+                  <div class="flex-shrink-0 w-1/4">
+                    <EventTile
+                      id={event.id}
+                      title={event.title}
+                      date={event.date}
+                      time={event.time || undefined}
+                      location={event.location || undefined}
+                      description={event.description || undefined}
+                      image={event.image}
+                      alt={event.alt || undefined}
+                      category={event.category || 'Event'}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            <!-- Navigation Arrows -->
+            {upcomingEvents.length > 4 && (
+              <>
+                <button class="carousel-prev-upcoming absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Previous events">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button class="carousel-next-upcoming absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Next events">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </>
+            )}
           </div>
         </>
       ) : (
@@ -121,22 +142,43 @@ const sponsorTiers = [
         <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Past Events</h2>
         <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-        <div class="flex overflow-x-auto gap-6 pb-2">
-          {pastEvents.map(event => (
-            <div class="flex-shrink-0 min-w-[calc(25% - 1.5rem)]">
-              <EventTile
-                id={event.id}
-                title={event.title}
-                date={event.date}
-                time={event.time || undefined}
-                location={event.location || undefined}
-                description={event.description || undefined}
-                image={event.image}
-                alt={event.alt || undefined}
-                category={event.category || 'Event'}
-              />
+        <div class="relative">
+          <!-- Carousel Container -->
+          <div class="overflow-hidden">
+            <div class="carousel-past transition-transform duration-300 ease-in-out flex gap-6" style={`transform: translateX(0)`}>
+              {pastEvents.map(event => (
+                <div class="flex-shrink-0 w-1/4">
+                  <EventTile
+                    id={event.id}
+                    title={event.title}
+                    date={event.date}
+                    time={event.time || undefined}
+                    location={event.location || undefined}
+                    description={event.description || undefined}
+                    image={event.image}
+                    alt={event.alt || undefined}
+                    category={event.category || 'Event'}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          <!-- Navigation Arrows -->
+          {pastEvents.length > 4 && (
+            <>
+              <button class="carousel-prev-past absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Previous events">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button class="carousel-next-past absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Next events">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </>
+          )}
         </div>
       </div>
     </section>
@@ -221,4 +263,42 @@ const sponsorTiers = [
       </div>
     </div>
   </section>
+
+  <script>
+    function setupCarousel(carouselSelector: string, prevBtnSelector: string, nextBtnSelector: string) {
+      const carousel = document.querySelector(carouselSelector) as HTMLElement;
+      const prevBtn = document.querySelector(prevBtnSelector) as HTMLButtonElement;
+      const nextBtn = document.querySelector(nextBtnSelector) as HTMLButtonElement;
+
+      if (!carousel || !prevBtn || !nextBtn) return;
+
+      let position = 0;
+      const cardWidth = carousel.children[0]?.getBoundingClientRect().width || 0;
+      const gap = 24; // 6 * 4px (gap-6)
+      const cardPlusGap = cardWidth + gap;
+      const maxPosition = -(carousel.children.length - 4) * cardPlusGap;
+
+      function updateCarousel() {
+        carousel.style.transform = `translateX(${position}px)`;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (position < 0) {
+          position += cardPlusGap;
+          updateCarousel();
+        }
+      });
+
+      nextBtn.addEventListener('click', () => {
+        if (position > maxPosition) {
+          position -= cardPlusGap;
+          updateCarousel();
+        }
+      });
+    }
+
+    // Setup both carousels
+    setupCarousel('.carousel-upcoming', '.carousel-prev-upcoming', '.carousel-next-upcoming');
+    setupCarousel('.carousel-past', '.carousel-prev-past', '.carousel-next-past');
+  </script>
 </BaseLayout>
