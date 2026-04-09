@@ -1,92 +1,125 @@
 ---
-id: "bendigo-phoenix-vs-albury"
-title: "Bendigo Phoenix vs Albury"
-date: "2026-05-15"
-time: "19:30"
-location: "Bendigo Basketball Stadium"
-description: "Home game — support your team! Come cheer on the Phoenix."
-image: "/images/events/may-match.png"
-status: "upcoming"
-updated: "2026-04-08"
----
-
----
-id: "junior-clinic-april"
-title: "Junior Clinic"
-date: "2026-04-10"
-time: "10:00"
-location: "Bendigo Basketball Stadium"
-description: "Free basketball clinic for juniors aged 8-14. Learn fundamental skills from our experienced coaches."
-image: "/images/events/junior-clinic.jpg"
+id: "events-march-2026"
+title: "Coming Up March 2026"
+date: "2026-03-01"
+image: "/images/events/PHOENIX_events_march26.png"
+alt: "Coming Up March 2026 poster with club Sunday training, finals started, player journal entries and winners, and welcome to club day."
 status: "past"
-updated: "2026-04-08"
 ---
 
 ---
-id: "community-open-day"
-title: "Community Open Day"
-date: "2026-03-20"
-location: "Bendigo Basketball Stadium"
-description: "Come down and see what Bendigo Phoenix is all about. Open to everyone — bring the whole family!"
-image: "/images/events/open-day.jpg"
+id: "events-february-2026"
+title: "Coming Up February 2026"
+date: "2026-02-01"
+image: "/images/events/Phoenix_events_Feb26.png"
+alt: "Coming Up February 2026 poster with club Sunday training, Bendigo Spirit final, club training survey, Good Sports votes, and winter registration opening soon."
 status: "past"
-updated: "2026-04-08"
 ---
 
 ---
-id: "fundraiser-night"
-title: "Fundraiser Night"
-date: "2026-06-20"
-time: "18:00"
-location: "Bendigo Town Hall"
-description: "An evening of basketball and community to raise funds for club development. Stay tuned for details."
-image: "/images/events/fundraiser.jpg"
-status: "upcoming"
-updated: "2026-04-08"
----
-
----
-id: "season-launch-event"
-title: "Season Launch Event"
-date: "2026-04-05"
-description: "Join us for the official launch of the 2026 season. Meet the teams, coaches and enjoy a fun-filled basketball afternoon."
-image: "/images/events/season-launch.jpg"
+id: "events-january-2026"
+title: "Coming Up January 2026"
+date: "2026-01-01"
+image: "/images/events/PHOENIX_events_January26.png"
+alt: "Coming Up January 2026 poster with Melbourne United in Bendigo and BBA games start dates."
 status: "past"
-updated: "2026-04-08"
 ---
 
 ---
-id: "women's-fitness-class"
-title: "Women's Fitness Class"
-date: "2026-05-22"
-time: "09:00"
-location: "Bendigo Basketball Stadium"
-description: "Weekly fitness class for women of all ages and fitness levels. Low-impact exercises focused on basketball-specific movements."
-image: "/images/events/womens-fitness.jpg"
-status: "upcoming"
-updated: "2026-04-08"
+id: "events-december-2025"
+title: "Coming Up December 2025"
+date: "2025-12-01"
+image: "/images/events/PHOENIX_events_December25.png"
+alt: "Coming Up December 2025 poster with last club training, last BBA games, Phoenix vs Bullets, and Christmas Day messaging."
+status: "past"
 ---
 
 ---
-id: "skills-development-workshop"
-title: "Skills Development Workshop"
-date: "2026-05-18"
-time: "14:00"
-location: "Bendigo Basketball Stadium"
-description: "Advanced skills workshop focusing on shooting, ball handling, and defensive techniques for intermediate players."
-image: "/images/events/skills-workshop.jpg"
-status: "upcoming"
-updated: "2026-04-08"
+id: "events-october-2025"
+title: "Coming Up October 2025"
+date: "2025-10-01"
+image: "/images/events/PHOENIX_events_October25.png"
+alt: "Coming Up October 2025 poster with club training, grading game round 1, team name rules, club coach course, and player journal goals."
+status: "past"
 ---
 
 ---
-id: "end-of-season-celebration"
-title: "End of Season Celebration"
-date: "2026-08-30"
-time: "17:00"
-location: "Bendigo Basketball Stadium"
-description: "Celebrate the end of the 2026 season with awards, food, and fun activities for the whole family."
-image: "/images/events/end-season-celebration.jpg"
-status: "upcoming"
-updated: "2026-04-08"
+id: "events-september-2025"
+title: "Coming Up September 2025"
+date: "2025-09-01"
+image: "/images/events/PHOENIX_events_September25.png"
+alt: "Coming Up September 2025 poster with registrations closed, grading day, finals rounds, and team announcements."
+status: "past"
+---
+
+---
+id: "events-august-2025"
+title: "Coming Up August 2025"
+date: "2025-08-01"
+image: "/images/events/PHOENIX_events_August25.png"
+alt: "Coming Up August 2025 poster with summer season registrations, Braves tryouts, uniform update, and finals timing."
+status: "past"
+---
+
+---
+id: "events-july-2025"
+title: "Coming Up July 2025"
+date: "2025-07-01"
+image: "/images/events/PHOENIX_events_July25.png"
+alt: "Coming Up July 2025 poster with player journal check-in, school holidays, winter skills clinic, and BBA games back on."
+status: "past"
+---
+
+---
+id: "skills-clinic-winter-2025-s2"
+title: "Winter Skills Clinic Session 2"
+date: "2025-07-14"
+image: "/images/events/PHOENIX_SkillsClinic_2025Winter_2.png"
+alt: "Winter skills clinic session 2 poster for junior players aged 5 to 17 at Red Energy Arena."
+status: "past"
+---
+
+---
+id: "skills-clinic-winter-2025-s1"
+title: "Winter Skills Clinic Session 1"
+date: "2025-07-07"
+image: "/images/events/PHOENIX_SkillsClinic_2025Winter_1.png"
+alt: "Winter skills clinic session 1 poster for junior players aged 5 to 17 at Red Energy Arena."
+status: "past"
+---
+
+---
+id: "events-june-2025"
+title: "Coming Up June 2025"
+date: "2025-06-01"
+image: "/images/events/PHOENIX_events_June25.png"
+alt: "Coming Up June 2025 poster with Good Sports Week and daytime ladies basketball events."
+status: "past"
+---
+
+---
+id: "fuel-and-focus-2025"
+title: "Fuel and Focus Program"
+date: "2025-05-01"
+image: "/images/events/FuelAndFocus.png"
+alt: "Fuel and Focus program poster for men aged 16 plus with date, time, location, and registration call to action."
+status: "past"
+---
+
+---
+id: "new-training-session-2025"
+title: "New Training Session"
+date: "2025-05-01"
+image: "/images/events/PHOENIX_Social_NEWTrainingSession.jpg"
+alt: "New session training graphic for Wednesday 7pm open court with all players welcome and no coaches."
+status: "past"
+---
+
+---
+id: "events-may-2025"
+title: "Coming Up May 2025"
+date: "2025-05-01"
+image: "/images/events/PHOENIX_events_May25.png"
+alt: "Coming Up May 2025 poster with Fuel and Focus workshop, uniforms required, and winter season start dates."
+status: "past"
 ---
