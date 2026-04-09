@@ -60,7 +60,23 @@ A player or family member lands on the website, navigates to Resources, and sees
 2. **Given** user is on the Player Resources page, **When** they look at the page header/title, **Then** they see "Player Resources" prominently displayed
 3. **Given** user is on either Resources page, **When** they look at the page, **Then** they see a clear way to navigate back to the Resources menu or home
 
-### User Story 3 – Resources Menu Visual Consistency (Priority: P2)
+### User Story 3 – Filter and Discover Coaching Resources (Priority: P1)
+
+A coach lands on the Coaching Resources page and sees a filterable list of training materials. They use age group and skill category filters to narrow down resources relevant to their coaching level and players' age group.
+
+**Why this priority**: Filters are essential for resource discoverability. Without them, large resource lists become unusable; with them, coaches find relevant materials quickly.
+
+**Independent Test**: Can be tested by applying filters and verifying that only matching resources render. Ensures the filtering logic works correctly and improves UX.
+
+**Acceptance Scenarios**:
+1. **Given** user is on Coaching Resources page, **When** they view the filter bar, **Then** they see filter button groups for categories (Defence, Offence, Drills, Tools) and age groups (U12, U14, U16+)
+2. **Given** user clicks a filter button (e.g., "Defence"), **When** the filter is applied, **Then** only resources with that category display and the button shows a selected/active state
+3. **Given** user has one or more filters active, **When** they click a selected filter button, **Then** the filter is deselected and all matching resources return to view
+4. **Given** user applies filters that result in no matching resources, **When** no resources render, **Then** a "No results" message displays with an option to clear filters
+5. **Given** user applies filters and then reloads the page, **When** the page reloads, **Then** filters reset to default (no filters active) and all resources display
+6. **Given** user applies filters on desktop, **When** they view the sticky filter bar, **Then** the bar remains visible while scrolling through resources without blocking more than 15% of viewport
+
+### User Story 4 – Resources Menu Visual Consistency (Priority: P2)
 
 The Resources menu item is styled consistently with other main navigation items and uses brand colors appropriately. It's clear this is a navigation entry point, and the visual hierarchy matches the rest of the site.
 
@@ -73,6 +89,35 @@ The Resources menu item is styled consistently with other main navigation items 
 2. **Given** "Resources" is hovered or focused, **When** a submenu or dropdown appears, **Then** the submenu clearly shows the two options (Coaching/Player) with consistent styling
 3. **Given** user is on a mobile device, **When** they view the navigation, **Then** the Resources menu and its options are accessible and readable
 
+### User Story 5 – Keyboard Navigation for Filter Controls (Priority: P1)
+
+A user with keyboard-only access navigates to Coaching Resources and uses Tab, Shift+Tab, and arrow keys to select filters without a mouse.
+
+**Why this priority**: Accessibility is a core principle. Keyboard-only users must be able to access all functionality. Filters are a key feature, so they must be fully keyboard-navigable.
+
+**Independent Test**: Can be tested by removing mouse access and navigating filters using keyboard only. Verifies WCAG 2.1 AA compliance for keyboard navigation.
+
+**Acceptance Scenarios**:
+1. **Given** user has keyboard-only access, **When** they Tab through the page, **Then** all filter buttons receive keyboard focus (visible focus indicator with at least 3:1 contrast ratio)
+2. **Given** a filter button is focused, **When** user presses Enter or Space, **Then** the filter is toggled on/off and resources update without page reload
+3. **Given** multiple filter buttons in a group are visible, **When** user is focused on one filter button and presses Left/Right arrow keys, **Then** focus moves to the previous/next filter button in that group (logical keyboard navigation)
+4. **Given** user has focused filters active, **When** they press Tab to move to the next control, **Then** all focused filters remain visually highlighted during navigation
+
+### User Story 6 – Mobile Experience for Resources Pages (Priority: P1)
+
+A player accesses Coaching Resources on a mobile phone (320px width) and can read, filter, and interact with resources without horizontal scrolling or tiny touch targets.
+
+**Why this priority**: Mobile traffic is significant; filters must be fully functional and usable on small screens. Touch targets must meet WCAG guidelines.
+
+**Independent Test**: Can be tested by viewing pages on 320px viewport (Chrome DevTools mobile emulation). Verifies no horizontal overflow and touch targets are at least 44x44px.
+
+**Acceptance Scenarios**:
+1. **Given** user is on a mobile device (320px width), **When** they view the filter bar, **Then** filter buttons wrap to multiple rows without horizontal overflow and remain fully visible
+2. **Given** user is on mobile, **When** they interact with filter buttons, **Then** each button's touch target is at least 44x44px (WCAG mobile guidelines) with adequate spacing between buttons
+3. **Given** filter bar is sticky on mobile, **When** user scrolls to view resources, **Then** filter bar remains visible and occupies no more than 15% of viewport (allowing resources to be visible)
+4. **Given** user is on mobile, **When** they view resource cards, **Then** all text is readable (minimum 16px font size or readable with standard mobile zoom) and cards are fully tappable
+5. **Given** user is on mobile, **When** they apply a filter, **Then** the page scrolls to show the first resource card (no content hidden above the fold)
+
 ---
 
 ## Work Breakdown: 3 Independent Parts
@@ -84,22 +129,30 @@ The feature can be delivered as **3 independent parallel streams**. Each part is
 **What**: Wire up the Resources menu item in the main navigation and create a gateway/router page (or landing page) that displays two clear options: Coaching Resources and Player Resources. Handle menu state and routing logic.
 
 **Deliverables**:
-- Update main navigation component to include a "Resources" entry
-- Create a Resources index/landing page (`/resources` or equivalent) that presents two clearly clickable options
-- Implement routing to `/resources/coaching` and `/resources/players` paths
-- Ensure Resources menu item is visually distinct and brand-compliant
-- Add breadcrumb or back-navigation support
+- Update main navigation component (`src/components/Navbar.astro`) to include a "Resources" entry
+- Create a Resources index/landing page (`src/pages/resources/index.astro`) that presents two clearly clickable option buttons
+- Implement routing to `/resources/coaching` and `/resources/players` paths via Astro file-based routing
+- Ensure Resources menu item is visually distinct and brand-compliant (use purple `#573F93` and gold `#8B7536`)
+- Add breadcrumb or back-navigation support (e.g., "Home > Resources" breadcrumb on index page)
+- Create `/resources/index.astro` as a gateway page with:
+  - Page title: "Resources"
+  - Hero section introducing two audience paths (Coaching vs. Players)
+  - Two large, clickable buttons: "Coaching Resources" and "Player Resources"
+  - Brief descriptions under each button explaining the target audience
+  - Responsive design matching existing site layout
 
 **Dependencies**: None. Can be completed independently.
 
 **Acceptance**:
-- Menu item appears in navigation across all pages
-- Clicking "Resources" navigates to a landing/index page
-- Landing page displays two buttons/links: "Coaching Resources" and "Player Resources"
-- Clicking each option navigates to the correct route
-- Menu item styling matches brand guidelines
+- Menu item appears in navigation across all pages with proper styling
+- Clicking "Resources" in navbar navigates to `/resources/index.astro`
+- Landing page displays two prominent buttons: "Coaching Resources" and "Player Resources"
+- Clicking each button navigates to the correct route (`/resources/coaching` or `/resources/players`)
+- Menu item styling uses brand colors and matches visual hierarchy of other top-level nav items
+- Landing page is responsive (works on mobile 320px, tablet 768px, desktop 1024px)
+- Breadcrumb or back navigation is visible on landing page
 
-**Testing**: Visual QA + link testing. No content dependencies.
+**Testing**: Visual QA + link testing + responsive design testing. No content dependencies.
 
 ---
 
@@ -123,8 +176,14 @@ The feature can be delivered as **3 independent parallel streams**. Each part is
 - Layout is responsive (mobile, tablet, desktop)
 - Sections are labeled and styled (placeholders for content are acceptable)
 - Navigation back to parent/home works
+- Filter bar displays with category and age group filter buttons
+- Filters are fully functional (clicking toggles selection, resources update)
+- Filter buttons are keyboard-accessible (Tab, Enter/Space, arrow keys work)
+- Touch targets on mobile are at least 44x44px with no horizontal overflow
+- "No results" message displays when filters return zero resources
+- Broken resource links are logged (see Logging & Observability section)
 
-**Testing**: Page rendering + responsive design QA. No content review required.
+**Testing**: Page rendering + responsive design QA + filter interaction testing + keyboard navigation testing + mobile testing.
 
 ---
 
@@ -148,8 +207,14 @@ The feature can be delivered as **3 independent parallel streams**. Each part is
 - Layout is responsive (mobile, tablet, desktop)
 - Sections are labeled and styled (placeholders for content are acceptable)
 - Navigation back to parent/home works
+- Filter bar displays with category and age group filter buttons
+- Filters are fully functional (clicking toggles selection, resources update)
+- Filter buttons are keyboard-accessible (Tab, Enter/Space, arrow keys work)
+- Touch targets on mobile are at least 44x44px with no horizontal overflow
+- "No results" message displays when filters return zero resources
+- Broken resource links are logged (see Logging & Observability section)
 
-**Testing**: Page rendering + responsive design QA. No content review required.
+**Testing**: Page rendering + responsive design QA + filter interaction testing + keyboard navigation testing + mobile testing.
 
 ---
 
@@ -165,6 +230,21 @@ The feature can be delivered as **3 independent parallel streams**. Each part is
 - **FR-006**: Users MUST be able to navigate back to the Resources menu or home from either sub-page
 - **FR-007**: All Resources pages MUST be responsive and render correctly on mobile (320px+), tablet (768px+), and desktop (1024px+)
 - **FR-008**: Resources menu item styling MUST use brand colors (primary purple `#573F93`, accent gold `#8B7536`) and match the visual hierarchy of other main nav items
+- **FR-009**: System MUST provide filter controls on both Coaching and Player Resources pages with category and age group filter buttons
+- **FR-010**: System MUST allow users to apply/remove filters and update displayed resources in real-time without page reload
+- **FR-011**: System MUST display a "No results" message with a "Clear filters" button when applied filters return zero matching resources
+- **FR-012**: All filter buttons MUST be keyboard-accessible and support Tab, Enter/Space, and arrow key navigation per WCAG 2.1 AA standards
+- **FR-013**: System MUST render filter buttons with touch targets of at least 44x44px on mobile devices
+- **FR-014**: System MUST log filter interactions (filter name, selected value, timestamp) to analytics/telemetry for usage insights
+- **FR-015**: System MUST log broken resource links (404s, timeouts, or redirect failures) with resource ID and URL for monitoring
+
+### Non-Functional Requirements
+
+- **NFR-001**: All pages MUST load within 2 seconds on simulated 3G connection (measured via Lighthouse performance audit with 3G throttling in Chrome DevTools)
+- **NFR-002**: All pages MUST be responsive and render correctly at 320px (mobile), 768px (tablet), and 1024px (desktop) breakpoints
+- **NFR-003**: All interactive elements MUST pass WCAG 2.1 Level AA accessibility standards including color contrast (4.5:1 for text, 3:1 for graphics), keyboard navigation, and focus indicators
+- **NFR-004**: Filter state MUST reset on page reload (filters do not persist via URL parameters or localStorage in MVP)
+- **NFR-005**: All console output MUST be error-free when interacting with filters, applying/removing filters, and navigating between pages
 
 ### Key Entities
 
@@ -175,16 +255,131 @@ The feature can be delivered as **3 independent parallel streams**. Each part is
 
 ---
 
+## Content Management Strategy
+
+### Resource Data Structure
+
+Each resource object MUST have the following properties:
+
+```
+{
+  id: string (unique identifier)
+  title: string (resource name, max 100 chars)
+  description: string (brief description of content, max 300 chars)
+  category: string (one of: "Defence", "Offence", "Drills", "Tools" for coaching; "Nutrition", "Mental Skills", "Rules", "Development" for players)
+  ageGroup: string (one of: "U12", "U14", "U16+")
+  type: string (one of: "pdf", "link", "video", "document")
+  url: string (absolute URL or internal path; external links open in new tab)
+  imageUrl: string (optional; fallback icon shown if missing)
+  dateAdded: string (ISO 8601 date when resource was added)
+}
+```
+
+### Adding & Managing Resources
+
+**MVP Approach (Static/Hardcoded)**:
+- Resources are defined in `src/data/resources.md` or as a frontmatter array in page components
+- New resources are added by editing the data file and rebuilding the site via `npm run build`
+- Changes are deployed via SFTP to VentraIP
+
+**Future Expansion**:
+- A CMS integration (Decap CMS, Sanity, Prismic) could allow coaches/admins to add resources via a web interface
+- A backend API could fetch resources from a database
+- For now, the MVP uses static data to avoid backend complexity
+
+### Content Lifecycle
+
+1. **Creation**: Coach or club admin identifies a new resource (URL, PDF, document)
+2. **Metadata Entry**: Resource details (title, description, category, age group, type) are documented
+3. **Validation**: URL is tested to ensure it's not broken; image (if provided) is verified
+4. **Addition**: Resource entry is added to `src/data/resources.md` or page frontmatter
+5. **Build & Deploy**: Site is rebuilt and deployed to VentraIP via SFTP
+6. **Monitoring**: Broken links are logged and monitored via error tracking
+
+### Content Ownership
+
+- **Coaching Resources**: Managed by coaching staff or designated coach
+- **Player Resources**: Managed by club administrators or player development lead
+- All resources MUST be reviewed for accuracy and relevance before publication
+
+---
+
+## Logging & Observability
+
+### Filter Interaction Logging
+
+Every time a user applies or removes a filter, the system MUST log:
+- `event_type`: "filter_applied" | "filter_removed"
+- `page`: "coaching_resources" | "player_resources"
+- `filter_category`: "category" | "ageGroup"
+- `filter_value`: the selected category or age group (e.g., "Defence", "U12")
+- `timestamp`: ISO 8601 datetime
+- `user_session_id`: anonymous session ID (no PII)
+
+**Implementation**: Use browser console logging (development) or a telemetry service like Google Analytics or Segment (production). Filters should emit a custom event that can be tracked.
+
+**Example**:
+```javascript
+// When user clicks a filter button
+logEvent({
+  event_type: "filter_applied",
+  page: "coaching_resources",
+  filter_category: "category",
+  filter_value: "Defence",
+  timestamp: new Date().toISOString()
+});
+```
+
+### Broken Link Monitoring
+
+When a resource link fails to load (404, timeout, or redirect failure), the system MUST log:
+- `event_type`: "broken_link_detected"
+- `page`: "coaching_resources" | "player_resources"
+- `resource_id`: the resource's unique ID
+- `resource_url`: the URL that failed
+- `http_status`: HTTP status code (e.g., 404, 503) or error type (e.g., "timeout")
+- `timestamp`: ISO 8601 datetime
+
+**Implementation**: Resource cards should validate links on render. A failed image load (onerror handler) or broken link click should trigger logging. This can be sent to an error tracking service (Sentry, Rollbar, or custom logging endpoint).
+
+**Example**:
+```javascript
+// In ResourceCard component, when link fails
+logError({
+  event_type: "broken_link_detected",
+  page: "coaching_resources",
+  resource_id: resource.id,
+  resource_url: resource.url,
+  http_status: 404,
+  timestamp: new Date().toISOString()
+});
+```
+
+### Error Tracking
+
+All JavaScript errors that occur during filter operations or resource card rendering MUST be logged with:
+- Error message
+- Stack trace
+- Page and component where error occurred
+- Timestamp
+
+This data helps identify issues with filters, missing resources, or broken functionality. Use Sentry or similar service for production error tracking.
+
+---
+
 ## Success Criteria
 
 ### Measurable Outcomes
 
-- **SC-001**: All three parts (menu, coaching page, player page) render without console errors or broken links
-- **SC-002**: Users can reach Coaching Resources and Player Resources pages from the main navigation in fewer than 3 clicks
-- **SC-003**: Both Resources sub-pages load in under 2 seconds on a 3G connection (simulated)
-- **SC-004**: All pages pass responsive design testing across common breakpoints (mobile 320px, tablet 768px, desktop 1024px)
-- **SC-005**: Coaching and Player Resources pages have distinct visual treatment (color accents, layout) so users understand they are different audience sections
-- **SC-006**: Back navigation and breadcrumbs work reliably, reducing user confusion about page hierarchy
+- **SC-001**: All three parts (menu, index, coaching page, player page) render without console errors or broken links. Measured by: running page in browser DevTools and verifying console is clean (0 errors/warnings related to feature).
+- **SC-002**: Users can reach Coaching Resources and Player Resources pages from the main navigation in fewer than 3 clicks. Measured by: clicking "Resources" menu → seeing two options → clicking one of them (3 clicks total). All links should work without errors.
+- **SC-003**: Both Resources sub-pages load within 2 seconds on simulated 3G connection. Measured by: running Lighthouse audit in Chrome DevTools with "Throttle: Slow 3G" setting and verifying Largest Contentful Paint (LCP) < 2s.
+- **SC-004**: All pages pass responsive design testing across 320px, 768px, and 1024px breakpoints. Measured by: viewing pages in Chrome DevTools device emulation at each breakpoint and verifying: (1) no horizontal scrolling, (2) text is readable without zoom, (3) buttons/links are tappable, (4) filter buttons wrap gracefully on mobile without overflow.
+- **SC-005**: Coaching and Player Resources pages have distinct visual treatment (color accents, layout, typography) so users understand they are different audience sections. Measured by: visual inspection showing each page has unique hero color, section headers, and messaging.
+- **SC-006**: Back navigation (breadcrumb, back button, or Resources menu link) works reliably, reducing user confusion about page hierarchy. Measured by: clicking back navigation from each Resources page returns user to `/resources` or home without errors.
+- **SC-007**: Filter buttons on both Resources pages are fully keyboard-accessible with visible focus indicators. Measured by: navigating to each page using keyboard only (Tab, Shift+Tab, Enter, Space, arrow keys) and verifying all filters can be applied/removed without mouse.
+- **SC-008**: Filter logging is functional and events are emitted for each filter interaction. Measured by: opening browser DevTools, applying filters, and verifying console logs or network requests show filter events being recorded.
+- **SC-009**: Broken resource links are detected and logged. Measured by: clicking a broken resource link or observing a failed image load, then verifying error is logged to console or error tracking service.
 
 ---
 
