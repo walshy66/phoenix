@@ -46,27 +46,18 @@
       weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
     });
 
-    document.getElementById('modal-title')!.textContent = event.title;
+    // Set image and alt text
     const img = document.getElementById('modal-image') as HTMLImageElement;
     img.src = event.image;
     img.alt = event.alt || `${event.title} — ${formattedDate}`;
+
+    // Update hidden metadata for accessibility
+    document.getElementById('modal-title')!.textContent = event.title;
     document.getElementById('modal-date')!.textContent = formattedDate;
-
-    const catEl = document.getElementById('modal-category')!;
-    if (event.category) { catEl.textContent = event.category; catEl.classList.remove('hidden'); }
-    else { catEl.classList.add('hidden'); }
-
-    const timeWrap = document.getElementById('modal-time-wrap')!;
-    if (event.time) { document.getElementById('modal-time')!.textContent = event.time; timeWrap.classList.remove('hidden'); }
-    else { timeWrap.classList.add('hidden'); }
-
-    const locWrap = document.getElementById('modal-location-wrap')!;
-    if (event.location) { document.getElementById('modal-location')!.textContent = event.location; locWrap.classList.remove('hidden'); }
-    else { locWrap.classList.add('hidden'); }
-
-    const descWrap = document.getElementById('modal-desc-wrap')!;
-    if (event.description) { document.getElementById('modal-description')!.textContent = event.description; descWrap.classList.remove('hidden'); }
-    else { descWrap.classList.add('hidden'); }
+    document.getElementById('modal-category')!.textContent = event.category || '';
+    document.getElementById('modal-time')!.textContent = event.time || '';
+    document.getElementById('modal-location')!.textContent = event.location || '';
+    document.getElementById('modal-description')!.textContent = event.description || '';
 
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
