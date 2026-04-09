@@ -1,72 +1,72 @@
 ---
 id: "events-march-2026"
-title: "Coming Up March 2026"
+title: "March 2026"
 date: "2026-03-01"
 image: "/images/events/PHOENIX_events_march26.png"
-alt: "Coming Up March 2026 poster with club Sunday training, finals started, player journal entries and winners, and welcome to club day."
+alt: "March 2026 poster with club Sunday training, finals started, player journal entries and winners, and welcome to club day."
 status: "past"
 ---
 
 ---
 id: "events-february-2026"
-title: "Coming Up February 2026"
+title: "February 2026"
 date: "2026-02-01"
 image: "/images/events/Phoenix_events_Feb26.png"
-alt: "Coming Up February 2026 poster with club Sunday training, Bendigo Spirit final, club training survey, Good Sports votes, and winter registration opening soon."
+alt: "February 2026 poster with club Sunday training, Bendigo Spirit final, club training survey, Good Sports votes, and winter registration opening soon."
 status: "past"
 ---
 
 ---
 id: "events-january-2026"
-title: "Coming Up January 2026"
+title: "January 2026"
 date: "2026-01-01"
 image: "/images/events/PHOENIX_events_January26.png"
-alt: "Coming Up January 2026 poster with Melbourne United in Bendigo and BBA games start dates."
+alt: "January 2026 poster with Melbourne United in Bendigo and BBA games start dates."
 status: "past"
 ---
 
 ---
 id: "events-december-2025"
-title: "Coming Up December 2025"
+title: "December 2025"
 date: "2025-12-01"
 image: "/images/events/PHOENIX_events_December25.png"
-alt: "Coming Up December 2025 poster with last club training, last BBA games, Phoenix vs Bullets, and Christmas Day messaging."
+alt: "December 2025 poster with last club training, last BBA games, Phoenix vs Bullets, and Christmas Day messaging."
 status: "past"
 ---
 
 ---
 id: "events-october-2025"
-title: "Coming Up October 2025"
+title: "October 2025"
 date: "2025-10-01"
 image: "/images/events/PHOENIX_events_October25.png"
-alt: "Coming Up October 2025 poster with club training, grading game round 1, team name rules, club coach course, and player journal goals."
+alt: "October 2025 poster with club training, grading game round 1, team name rules, club coach course, and player journal goals."
 status: "past"
 ---
 
 ---
 id: "events-september-2025"
-title: "Coming Up September 2025"
+title: "September 2025"
 date: "2025-09-01"
 image: "/images/events/PHOENIX_events_September25.png"
-alt: "Coming Up September 2025 poster with registrations closed, grading day, finals rounds, and team announcements."
+alt: "September 2025 poster with registrations closed, grading day, finals rounds, and team announcements."
 status: "past"
 ---
 
 ---
 id: "events-august-2025"
-title: "Coming Up August 2025"
+title: "August 2025"
 date: "2025-08-01"
 image: "/images/events/PHOENIX_events_August25.png"
-alt: "Coming Up August 2025 poster with summer season registrations, Braves tryouts, uniform update, and finals timing."
+alt: "August 2025 poster with summer season registrations, Braves tryouts, uniform update, and finals timing."
 status: "past"
 ---
 
 ---
 id: "events-july-2025"
-title: "Coming Up July 2025"
+title: "July 2025"
 date: "2025-07-01"
 image: "/images/events/PHOENIX_events_July25.png"
-alt: "Coming Up July 2025 poster with player journal check-in, school holidays, winter skills clinic, and BBA games back on."
+alt: "July 2025 poster with player journal check-in, school holidays, winter skills clinic, and BBA games back on."
 status: "past"
 ---
 
@@ -90,10 +90,10 @@ status: "past"
 
 ---
 id: "events-june-2025"
-title: "Coming Up June 2025"
+title: "June 2025"
 date: "2025-06-01"
 image: "/images/events/PHOENIX_events_June25.png"
-alt: "Coming Up June 2025 poster with Good Sports Week and daytime ladies basketball events."
+alt: "June 2025 poster with Good Sports Week and daytime ladies basketball events."
 status: "past"
 ---
 
@@ -117,9 +117,9 @@ status: "past"
 
 ---
 id: "events-may-2025"
-title: "Coming Up May 2025"
+title: "May 2025"
 date: "2025-05-01"
 image: "/images/events/PHOENIX_events_May25.png"
-alt: "Coming Up May 2025 poster with Fuel and Focus workshop, uniforms required, and winter season start dates."
+alt: "May 2025 poster with Fuel and Focus workshop, uniforms required, and winter season start dates."
 status: "past"
 ---
