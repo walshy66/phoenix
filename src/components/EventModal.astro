@@ -4,55 +4,36 @@
 ---
 
 <div id="event-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="relative w-full max-w-2xl mx-4 max-h-[90vh]">
-    <!-- Modal Content -->
-    <div class="bg-white rounded-xl shadow-2xl max-h-[90vh] overflow-y-auto">
-      <!-- Header -->
-      <div class="flex items-center justify-between p-6 border-b border-gray-100">
-        <div class="flex-1">
-          <h2 id="modal-title" class="text-2xl font-bold text-brand-black"></h2>
-          <span id="modal-category" class="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-offwhite text-brand-purple hidden"></span>
-        </div>
-        <button
-          id="modal-close"
-          class="rounded-full p-2 text-gray-400 hover:text-gray-600 transition-colors duration-200"
-          aria-label="Close modal"
-        >
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+  <div class="relative mx-4">
+    <!-- Close button (overlay) -->
+    <button
+      id="modal-close"
+      class="absolute -top-10 right-0 rounded-full p-2 text-white hover:text-gray-300 transition-colors duration-200 z-10"
+      aria-label="Close modal"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
 
-      <!-- Image -->
-      <div class="relative h-48">
-        <img
-          id="modal-image"
-          src=""
-          alt=""
-          class="w-full h-full object-cover"
-          onerror="this.onerror=null; this.src='/images/placeholder-event.jpg';"
-        >
-      </div>
+    <!-- Image at 75% size for readability -->
+    <img
+      id="modal-image"
+      src=""
+      alt=""
+      class="max-w-2xl max-h-[85vh] object-contain"
+      onerror="this.onerror=null; this.src='/images/placeholder-event.jpg';"
+    >
+  </div>
 
-      <!-- Details -->
-      <div class="p-6 space-y-4">
-        <div class="space-y-2">
-          <p class="text-gray-600 text-sm">
-            <span class="font-medium text-brand-black">Date:</span> <span id="modal-date"></span>
-            <span id="modal-time-wrap" class="ml-4 hidden">• <span class="font-medium text-brand-black">Time:</span> <span id="modal-time"></span></span>
-          </p>
-          <p id="modal-location-wrap" class="text-gray-600 text-sm hidden">
-            <span class="font-medium text-brand-black">Location:</span> <span id="modal-location"></span>
-          </p>
-        </div>
-
-        <div id="modal-desc-wrap" class="space-y-2 hidden">
-          <p class="font-medium text-brand-black mb-2">Description</p>
-          <p id="modal-description" class="text-gray-700 leading-relaxed"></p>
-        </div>
-      </div>
-    </div>
+  <!-- Hidden metadata for accessibility -->
+  <h2 id="modal-title" class="sr-only"></h2>
+  <div id="modal-metadata" class="sr-only">
+    <span id="modal-date"></span>
+    <span id="modal-category"></span>
+    <span id="modal-time"></span>
+    <span id="modal-location"></span>
+    <span id="modal-description"></span>
   </div>
 </div>
 
