@@ -91,19 +91,21 @@ const sponsorTiers = [
           <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Upcoming Events</h2>
           <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="flex overflow-x-auto gap-6 pb-2">
             {upcomingEvents.map(event => (
-              <EventTile
-                id={event.id}
-                title={event.title}
-                date={event.date}
-                time={event.time || undefined}
-                location={event.location || undefined}
-                description={event.description || undefined}
-                image={event.image}
-                alt={event.alt || undefined}
-                category={event.category || 'Event'}
-              />
+              <div class="flex-shrink-0 min-w-[calc(25% - 1.5rem)]">
+                <EventTile
+                  id={event.id}
+                  title={event.title}
+                  date={event.date}
+                  time={event.time || undefined}
+                  location={event.location || undefined}
+                  description={event.description || undefined}
+                  image={event.image}
+                  alt={event.alt || undefined}
+                  category={event.category || 'Event'}
+                />
+              </div>
             ))}
           </div>
         </>
@@ -119,19 +121,21 @@ const sponsorTiers = [
         <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Past Events</h2>
         <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="flex overflow-x-auto gap-6 pb-2">
           {pastEvents.map(event => (
-            <EventTile
-              id={event.id}
-              title={event.title}
-              date={event.date}
-              time={event.time || undefined}
-              location={event.location || undefined}
-              description={event.description || undefined}
-              image={event.image}
-              alt={event.alt || undefined}
-              category={event.category || 'Event'}
-            />
+            <div class="flex-shrink-0 min-w-[calc(25% - 1.5rem)]">
+              <EventTile
+                id={event.id}
+                title={event.title}
+                date={event.date}
+                time={event.time || undefined}
+                location={event.location || undefined}
+                description={event.description || undefined}
+                image={event.image}
+                alt={event.alt || undefined}
+                category={event.category || 'Event'}
+              />
+            </div>
           ))}
         </div>
       </div>
