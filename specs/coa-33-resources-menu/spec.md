@@ -62,7 +62,7 @@ A player or family member lands on the website, navigates to Resources, and sees
 
 ### User Story 3 – Filter and Discover Coaching Resources (Priority: P1)
 
-A coach lands on the Coaching Resources page and sees a filterable list of training materials. They use age group and skill category filters to narrow down resources relevant to their coaching level and players' age group.
+A coach lands on the Coaching Resources page and sees a filterable list of training materials. They use age group and skill category filters to narrow down resources relevant to their coaching level and players' age group. Player filters are entirely separate from Coaching filters, with distinct categories specific to each audience (Coaching: Defence, Offence, Drills, Tools; Players: Nutrition, Mental Skills, Rules, Development).
 
 **Why this priority**: Filters are essential for resource discoverability. Without them, large resource lists become unusable; with them, coaches find relevant materials quickly.
 
@@ -72,9 +72,9 @@ A coach lands on the Coaching Resources page and sees a filterable list of train
 1. **Given** user is on Coaching Resources page, **When** they view the filter bar, **Then** they see filter button groups for categories (Defence, Offence, Drills, Tools) and age groups (U12, U14, U16+)
 2. **Given** user clicks a filter button (e.g., "Defence"), **When** the filter is applied, **Then** only resources with that category display and the button shows a selected/active state
 3. **Given** user has one or more filters active, **When** they click a selected filter button, **Then** the filter is deselected and all matching resources return to view
-4. **Given** user applies filters that result in no matching resources, **When** no resources render, **Then** a "No results" message displays with an option to clear filters
+4. **Given** user applies filters that result in no matching resources, **When** no resources render, **Then** a "No results" message displays with a prominent "Clear filters" button (or "Reset filters" link) allowing one-click removal of all active filters to restore full view
 5. **Given** user applies filters and then reloads the page, **When** the page reloads, **Then** filters reset to default (no filters active) and all resources display
-6. **Given** user applies filters on desktop, **When** they view the sticky filter bar, **Then** the bar remains visible while scrolling through resources without blocking more than 15% of viewport
+6. **Given** user applies filters on desktop, **When** they view the sticky filter bar, **Then** the bar remains visible while scrolling through resources without blocking more than 15% of viewport. Implementation: CSS `position: sticky; top: 0; z-index: 10;` ensures bar sticks below navbar. Bar height must be optimized (e.g., 60-80px on desktop, 80-100px on mobile) so it does not cover resource cards. Bar background must have full opacity and contrast to ensure readability behind it
 
 ### User Story 4 – Resources Menu Visual Consistency (Priority: P2)
 
@@ -100,8 +100,9 @@ A user with keyboard-only access navigates to Coaching Resources and uses Tab, S
 **Acceptance Scenarios**:
 1. **Given** user has keyboard-only access, **When** they Tab through the page, **Then** all filter buttons receive keyboard focus (visible focus indicator with at least 3:1 contrast ratio)
 2. **Given** a filter button is focused, **When** user presses Enter or Space, **Then** the filter is toggled on/off and resources update without page reload
-3. **Given** multiple filter buttons in a group are visible, **When** user is focused on one filter button and presses Left/Right arrow keys, **Then** focus moves to the previous/next filter button in that group (logical keyboard navigation)
-4. **Given** user has focused filters active, **When** they press Tab to move to the next control, **Then** all focused filters remain visually highlighted during navigation
+3. **Given** multiple filter buttons in a group are visible, **When** user is focused on one filter button and presses Left/Right arrow keys, **Then** focus moves to the previous/next filter button in that group (logical keyboard navigation within group). When reaching the last button, Left arrow wraps to first button in group; when reaching first button, Right arrow wraps to last button in group
+4. **Given** user is on the last filter button, **When** they press Down arrow, **Then** focus moves to the next category group (e.g., from age group to category). Down arrow is optional/advisory for moving between filter groups; focus can also advance via Tab
+5. **Given** user has focused filters active, **When** they press Tab to move to the next control, **Then** all focused filters remain visually highlighted during navigation
 
 ### User Story 6 – Mobile Experience for Resources Pages (Priority: P1)
 
@@ -133,13 +134,27 @@ The feature can be delivered as **3 independent parallel streams**. Each part is
 - Create a Resources index/landing page (`src/pages/resources/index.astro`) that presents two clearly clickable option buttons
 - Implement routing to `/resources/coaching` and `/resources/players` paths via Astro file-based routing
 - Ensure Resources menu item is visually distinct and brand-compliant (use purple `#573F93` and gold `#8B7536`)
-- Add breadcrumb or back-navigation support (e.g., "Home > Resources" breadcrumb on index page)
+- Add breadcrumb navigation on the Resources index page: `<nav aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li>Resources</li></ol></nav>` (HTML structure with semantic nav, aria-label, and matching site styling)
 - Create `/resources/index.astro` as a gateway page with:
   - Page title: "Resources"
   - Hero section introducing two audience paths (Coaching vs. Players)
   - Two large, clickable buttons: "Coaching Resources" and "Player Resources"
   - Brief descriptions under each button explaining the target audience
   - Responsive design matching existing site layout
+
+**File Structure**: Use Astro file-based routing (standard `.astro` file placement):
+```
+src/
+  pages/
+    resources/
+      index.astro           (gateway/landing page)
+      coaching.astro        (Coaching Resources page)
+      players.astro         (Player Resources page)
+  components/
+    Navbar.astro            (updated to include Resources menu item)
+  data/
+    resources.md            (resource definitions with separate coaching/player categories)
+```
 
 **Dependencies**: None. Can be completed independently.
 
@@ -228,23 +243,23 @@ The feature can be delivered as **3 independent parallel streams**. Each part is
 - **FR-004**: System MUST route `/resources/players` to a dedicated Player Resources page
 - **FR-005**: Clicking a Resources option MUST navigate to the correct route without page reload errors
 - **FR-006**: Users MUST be able to navigate back to the Resources menu or home from either sub-page
-- **FR-007**: All Resources pages MUST be responsive and render correctly on mobile (320px+), tablet (768px+), and desktop (1024px+)
+- **FR-007**: All Resources pages MUST render correctly at mobile (320px width), tablet (768px width), and desktop (1024px width) breakpoints with: (1) no horizontal scrolling, (2) readable text (minimum 16px font or readable with standard zoom), (3) tappable buttons (44x44px minimum touch target), (4) no content hidden above the fold on mobile after applying filters
 - **FR-008**: Resources menu item styling MUST use brand colors (primary purple `#573F93`, accent gold `#8B7536`) and match the visual hierarchy of other main nav items
-- **FR-009**: System MUST provide filter controls on both Coaching and Player Resources pages with category and age group filter buttons
-- **FR-010**: System MUST allow users to apply/remove filters and update displayed resources in real-time without page reload
+- **FR-009**: System MUST provide filter controls on both Coaching and Player Resources pages with category and age group filter buttons. Filter logic: Multiple selections within the same category type (e.g., Defence AND Offence) use OR logic (show resources matching ANY selected category). Selections across different category types (e.g., Defence + U12) use AND logic (show resources matching BOTH criteria). Example: "Defence OR Offence" AND "U12" returns resources tagged with (Defence or Offence) and U12 age group
+- **FR-010**: System MUST allow users to apply/remove filters and update displayed resources in real-time without page reload. Filters are exclusive per resource: a resource appears if it matches the selected criteria (not multiple resources per filter selection)
 - **FR-011**: System MUST display a "No results" message with a "Clear filters" button when applied filters return zero matching resources
 - **FR-012**: All filter buttons MUST be keyboard-accessible and support Tab, Enter/Space, and arrow key navigation per WCAG 2.1 AA standards
 - **FR-013**: System MUST render filter buttons with touch targets of at least 44x44px on mobile devices
 - **FR-014**: System MUST log filter interactions (filter name, selected value, timestamp) to analytics/telemetry for usage insights
-- **FR-015**: System MUST log broken resource links (404s, timeouts, or redirect failures) with resource ID and URL for monitoring
+- **FR-015**: System MUST log broken resource links with resource ID and URL for monitoring. Broken links include: HTTP 4xx/5xx status codes, request timeouts (>5 seconds), redirect loops, CORS failures, or failed image loads (onerror event). Log details: event_type, page, resource_id, resource_url, http_status/error_type, timestamp
 
 ### Non-Functional Requirements
 
 - **NFR-001**: All pages MUST load within 2 seconds on simulated 3G connection (measured via Lighthouse performance audit with 3G throttling in Chrome DevTools)
 - **NFR-002**: All pages MUST be responsive and render correctly at 320px (mobile), 768px (tablet), and 1024px (desktop) breakpoints
 - **NFR-003**: All interactive elements MUST pass WCAG 2.1 Level AA accessibility standards including color contrast (4.5:1 for text, 3:1 for graphics), keyboard navigation, and focus indicators
-- **NFR-004**: Filter state MUST reset on page reload (filters do not persist via URL parameters or localStorage in MVP)
-- **NFR-005**: All console output MUST be error-free when interacting with filters, applying/removing filters, and navigating between pages
+- **NFR-004**: All console output MUST be error-free when interacting with filters, applying/removing filters, and navigating between pages (formerly NFR-005)
+- **NFR-005**: Filter operations (applying/removing filters, re-rendering resources list) MUST complete within 100ms on desktop devices and 200ms on mobile devices (measured using performance.mark/measure in browser DevTools)
 
 ### Key Entities
 
@@ -266,7 +281,11 @@ Each resource object MUST have the following properties:
   id: string (unique identifier)
   title: string (resource name, max 100 chars)
   description: string (brief description of content, max 300 chars)
-  category: string (one of: "Defence", "Offence", "Drills", "Tools" for coaching; "Nutrition", "Mental Skills", "Rules", "Development" for players)
+  audience: string (one of: "coaching" | "players" — REQUIRED to separate content types)
+  category: string (
+    if audience="coaching": one of "Defence", "Offence", "Drills", "Tools"
+    if audience="players": one of "Nutrition", "Mental Skills", "Rules", "Development"
+  )
   ageGroup: string (one of: "U12", "U14", "U16+")
   type: string (one of: "pdf", "link", "video", "document")
   url: string (absolute URL or internal path; external links open in new tab)
@@ -274,6 +293,8 @@ Each resource object MUST have the following properties:
   dateAdded: string (ISO 8601 date when resource was added)
 }
 ```
+
+**Constraint**: Resources on the Coaching page MUST have `audience: "coaching"` and categories from the coaching list. Resources on the Player page MUST have `audience: "players"` and categories from the player list. Filter logic MUST respect this separation.
 
 ### Adding & Managing Resources
 
@@ -298,9 +319,19 @@ Each resource object MUST have the following properties:
 
 ### Content Ownership
 
-- **Coaching Resources**: Managed by coaching staff or designated coach
-- **Player Resources**: Managed by club administrators or player development lead
-- All resources MUST be reviewed for accuracy and relevance before publication
+- **Coaching Resources**: Managed by coaching staff or designated coach. Owner can add/remove resources from `src/data/resources.md` and trigger rebuilds
+- **Player Resources**: Managed by club administrators or player development lead. Owner can add/remove resources from `src/data/resources.md` and trigger rebuilds. All player resources MUST be reviewed and approved by the club president or designated approver before publication to ensure they align with club policies and values
+- All resources MUST be reviewed for accuracy, relevance, and appropriateness before publication
+
+### Placeholder Content Strategy
+
+**For MVP launch**, pages MUST include sample resources (e.g., 3-5 example resources per page) in `src/data/resources.md` to demonstrate the filtering system and layout. These sample resources should:
+- Cover all filter categories (Coaching: Defence, Offence, Drills, Tools; Players: Nutrition, Mental Skills, Rules, Development)
+- Include multiple age groups (U12, U14, U16+) to allow meaningful filter combinations
+- Use realistic titles and descriptions (e.g., "Full Court Press Defence Drill - U14", "Nutrition Guide for Young Athletes")
+- Link to existing public URLs (team wiki, external guides, or temporary placeholder links) that are verified to be accessible
+
+**Empty state** (when no filters match): Display "No resources match your filters." with "Clear filters" button. Do not leave page blank or show error message.
 
 ---
 
@@ -316,7 +347,7 @@ Every time a user applies or removes a filter, the system MUST log:
 - `timestamp`: ISO 8601 datetime
 - `user_session_id`: anonymous session ID (no PII)
 
-**Implementation**: Use browser console logging (development) or a telemetry service like Google Analytics or Segment (production). Filters should emit a custom event that can be tracked.
+**Implementation**: For MVP, use Google Analytics 4 (gtag.js) for tracking filter interactions as custom events. If Google Analytics is not configured, fallback to custom logging: send filter events via POST to a custom endpoint (e.g., `/api/logs`) which stores them in a server-side log file or database. Development environments may use browser console logging. Events MUST include: event_type, page, filter_category, filter_value, timestamp, user_session_id (anonymous, no PII).
 
 **Example**:
 ```javascript
