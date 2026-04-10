@@ -4,7 +4,7 @@ interface Props {
   description: string;
   category: string;
   ageGroup: string;
-  type: 'video' | 'image' | 'pdf' | 'link';
+  type: 'video' | 'image' | 'pdf' | 'link' | 'document';
   url: string;
   thumbnail?: string;
 }
@@ -16,6 +16,7 @@ const typeIcons: Record<string, string> = {
   image: '🖼️',
   pdf: '📄',
   link: '🔗',
+  document: '📝',
 };
 
 const typeColors: Record<string, string> = {
@@ -23,6 +24,7 @@ const typeColors: Record<string, string> = {
   image: 'bg-yellow-100 text-yellow-800',
   pdf: 'bg-red-100 text-red-700',
   link: 'bg-green-100 text-green-700',
+  document: 'bg-blue-100 text-blue-700',
 };
 ---
 

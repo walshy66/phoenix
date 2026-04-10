@@ -1,0 +1,566 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import coachingResources from '../../data/coaching-resources.json';
+import playerResources from '../../data/player-resources.json';
+import managerResources from '../../data/manager-resources.json';
+import { getAvailableAgeGroups, getAvailableCategories } from '../../lib/resources/filters';
+
+const ageGroups = getAvailableAgeGroups();
+const coachingCategories = getAvailableCategories('coaching');
+const playerCategories = getAvailableCategories('players');
+const managerCategories = getAvailableCategories('managers');
+
+const allCoaching = coachingResources;
+const allPlayers = playerResources;
+const allManagers = managerResources;
+
+const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Submission&body=Resource%20Title%3A%0AResource%20URL%3A%0ADescription%3A%0ACategory%3A%0AAge%20Group%3A`;
+---
+
+<BaseLayout title="Resources" description="Access coaching and player resources for Bendigo Phoenix Basketball Club — drills, guides, tools and development materials.">
+
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+      <ol class="flex items-center gap-2 text-sm text-gray-500">
+        <li><a href="/" class="hover:text-brand-purple transition-colors">Home</a></li>
+        <li class="text-gray-300" aria-hidden="true">/</li>
+        <li class="text-brand-purple font-medium" aria-current="page">Resources</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+      <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Club Hub</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">PHOENIX RESOURCES</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        Coaching drills, player development guides, rules references, and club tools — all in one place.
+      </p>
+    </div>
+  </section>
+
+  <!-- Tab Bar -->
+  <div class="bg-white border-b border-gray-200" role="tablist" aria-label="Resource sections" id="tab-bar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-0">
+        <button
+          id="tab-coaching"
+          role="tab"
+          aria-selected="true"
+          aria-controls="panel-coaching"
+          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-brand-purple text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
+        >
+          Coaching Resources
+        </button>
+        <button
+          id="tab-players"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-players"
+          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
+        >
+          Player Resources
+        </button>
+        <!-- Manager tab: hidden from public, visible to managers with direct URL or reveal -->
+        <button
+          id="tab-managers"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-managers"
+          class="tab-btn hidden px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
+        >
+          Manager Resources
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Filter Bar -->
+  <div id="filter-bar" class="bg-white border-b border-gray-100 shadow-sm sticky z-40" style="top: 64px;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+
+      <!-- Coaching filters -->
+      <div id="filters-coaching" class="space-y-2">
+        <!-- Age Group row -->
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by age group">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Age</span>
+          {ageGroups.map((ag) => (
+            <button
+              class="filter-chip age-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
+              data-tag={ag}
+              aria-pressed="false"
+            >
+              {ag}
+            </button>
+          ))}
+        </div>
+        <!-- Category row -->
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Category</span>
+          {coachingCategories.map((cat) => (
+            <button
+              class="filter-chip cat-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
+              data-tag={cat}
+              aria-pressed="false"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <!-- Active filter summary + clear -->
+        <div class="flex items-center gap-3 pt-1">
+          <span id="coaching-filter-summary" class="text-xs text-gray-400 hidden">Filters active</span>
+          <button
+            id="coaching-clear-btn"
+            class="text-xs font-semibold text-brand-purple underline underline-offset-2 hover:text-purple-800 hidden"
+            aria-label="Clear all coaching filters"
+          >
+            Clear filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Manager filters (hidden) -->
+      <div id="filters-managers" class="space-y-2 hidden">
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by age group">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Age</span>
+          {ageGroups.map((ag) => (
+            <button
+              class="filter-chip age-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
+              data-tag={ag}
+              aria-pressed="false"
+            >
+              {ag}
+            </button>
+          ))}
+        </div>
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Category</span>
+          {managerCategories.map((cat) => (
+            <button
+              class="filter-chip cat-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
+              data-tag={cat}
+              aria-pressed="false"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <div class="flex items-center gap-3 pt-1">
+          <span id="managers-filter-summary" class="text-xs text-gray-400 hidden">Filters active</span>
+          <button
+            id="managers-clear-btn"
+            class="text-xs font-semibold text-brand-purple underline underline-offset-2 hover:text-purple-800 hidden"
+            aria-label="Clear all manager filters"
+          >
+            Clear filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Player filters -->
+      <div id="filters-players" class="space-y-2 hidden">
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by age group">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Age</span>
+          {ageGroups.map((ag) => (
+            <button
+              class="filter-chip age-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
+              data-tag={ag}
+              aria-pressed="false"
+            >
+              {ag}
+            </button>
+          ))}
+        </div>
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
+          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Category</span>
+          {playerCategories.map((cat) => (
+            <button
+              class="filter-chip cat-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
+              data-tag={cat}
+              aria-pressed="false"
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+        <div class="flex items-center gap-3 pt-1">
+          <span id="players-filter-summary" class="text-xs text-gray-400 hidden">Filters active</span>
+          <button
+            id="players-clear-btn"
+            class="text-xs font-semibold text-brand-purple underline underline-offset-2 hover:text-purple-800 hidden"
+            aria-label="Clear all player filters"
+          >
+            Clear filters
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tab Panels -->
+  <div class="bg-brand-offwhite min-h-screen py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- Coaching Panel -->
+      <div id="panel-coaching" role="tabpanel" aria-labelledby="tab-coaching">
+        <div id="coaching-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {allCoaching.map((resource) => (
+            <article
+              class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200"
+              data-age={resource.ageGroup}
+              data-category={resource.category}
+            >
+              <div class="h-1 w-full" style="background: #573F93;"></div>
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-start justify-between gap-2 mb-3">
+                  <span class="inline-block text-xs font-bold uppercase tracking-wider text-brand-purple bg-purple-50 px-2 py-1 rounded">
+                    {resource.category}
+                  </span>
+                  <span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap">
+                    {resource.ageGroup}
+                  </span>
+                </div>
+                <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
+                  {resource.title}
+                </h3>
+                <p class="text-gray-600 text-sm leading-relaxed flex-1">
+                  {resource.description}
+                </p>
+                <div class="mt-4">
+                  <a
+                    href={resource.url}
+                    class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
+                    aria-label={`Access ${resource.title}`}
+                  >
+                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- No results -->
+        <div id="coaching-no-results" class="hidden text-center py-16">
+          <p class="text-gray-500 text-base mb-4">No coaching resources match the selected filters.</p>
+          <button
+            id="coaching-no-results-clear"
+            class="text-sm font-bold text-brand-purple underline underline-offset-2 hover:text-purple-800"
+          >
+            Clear filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Player Panel -->
+      <div id="panel-players" role="tabpanel" aria-labelledby="tab-players" class="hidden">
+        <div id="players-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {allPlayers.map((resource) => (
+            <article
+              class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-gold transition-all duration-200"
+              data-age={resource.ageGroup}
+              data-category={resource.category}
+            >
+              <div class="h-1 w-full" style="background: #8B7536;"></div>
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-start justify-between gap-2 mb-3">
+                  <span class="inline-block text-xs font-bold uppercase tracking-wider px-2 py-1 rounded" style="color: #8B7536; background: #fdf8ec;">
+                    {resource.category}
+                  </span>
+                  <span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap">
+                    {resource.ageGroup}
+                  </span>
+                </div>
+                <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
+                  {resource.title}
+                </h3>
+                <p class="text-gray-600 text-sm leading-relaxed flex-1">
+                  {resource.description}
+                </p>
+                <div class="mt-4">
+                  <a
+                    href={resource.url}
+                    class="inline-flex items-center gap-2 text-sm font-bold hover:opacity-80 transition-opacity"
+                    style="color: #8B7536;"
+                    aria-label={`Access ${resource.title}`}
+                  >
+                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- No results -->
+        <div id="players-no-results" class="hidden text-center py-16">
+          <p class="text-gray-500 text-base mb-4">No player resources match the selected filters.</p>
+          <button
+            id="players-no-results-clear"
+            class="text-sm font-bold text-brand-purple underline underline-offset-2 hover:text-purple-800"
+          >
+            Clear filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Manager Panel (hidden) -->
+      <div id="panel-managers" role="tabpanel" aria-labelledby="tab-managers" class="hidden">
+        <div id="managers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {allManagers.map((resource) => (
+            <article
+              class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200"
+              data-age={resource.ageGroup}
+              data-category={resource.category}
+            >
+              <div class="h-1 w-full" style="background: #573F93;"></div>
+              <div class="p-5 flex flex-col flex-1">
+                <div class="flex items-start justify-between gap-2 mb-3">
+                  <span class="inline-block text-xs font-bold uppercase tracking-wider text-brand-purple bg-purple-50 px-2 py-1 rounded">
+                    {resource.category}
+                  </span>
+                  <span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap">
+                    {resource.ageGroup}
+                  </span>
+                </div>
+                <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
+                  {resource.title}
+                </h3>
+                <p class="text-gray-600 text-sm leading-relaxed flex-1">
+                  {resource.description}
+                </p>
+                <div class="mt-4">
+                  <a
+                    href={resource.url}
+                    class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
+                    aria-label={`Access ${resource.title}`}
+                  >
+                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <div id="managers-no-results" class="hidden text-center py-16">
+          <p class="text-gray-500 text-base mb-4">No manager resources match the selected filters.</p>
+          <button
+            id="managers-no-results-clear"
+            class="text-sm font-bold text-brand-purple underline underline-offset-2 hover:text-purple-800"
+          >
+            Clear filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Submit a Resource -->
+      <div class="mt-16 border-t border-gray-200 pt-12 text-center">
+        <h2 class="text-brand-black font-black text-2xl uppercase tracking-tight mb-3">Submit a Resource</h2>
+        <p class="text-gray-600 text-sm max-w-md mx-auto mb-6">
+          Know of a great drill, guide, or tool that should be here? Share it with the club.
+        </p>
+        <a
+          href={submitHref}
+          class="inline-flex items-center gap-2 font-bold text-sm px-6 py-3 rounded-lg text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-purple min-h-[44px]"
+          style="background: #573F93;"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Submit a Resource
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</BaseLayout>
+
+<script>
+  // ── Tab state ──────────────────────────────────────────────────────────────
+  type Tab = 'coaching' | 'players' | 'managers';
+  let activeTab: Tab = 'coaching';
+
+  const tabCoaching  = document.getElementById('tab-coaching')  as HTMLButtonElement;
+  const tabPlayers   = document.getElementById('tab-players')   as HTMLButtonElement;
+  const tabManagers  = document.getElementById('tab-managers')  as HTMLButtonElement;
+  const panelCoaching  = document.getElementById('panel-coaching')!;
+  const panelPlayers   = document.getElementById('panel-players')!;
+  const panelManagers  = document.getElementById('panel-managers')!;
+  const filtersCoaching  = document.getElementById('filters-coaching')!;
+  const filtersPlayers   = document.getElementById('filters-players')!;
+  const filtersManagers  = document.getElementById('filters-managers')!;
+
+  const allTabs    = [tabCoaching, tabPlayers, tabManagers];
+  const allPanels  = [panelCoaching, panelPlayers, panelManagers];
+  const allFilters = [filtersCoaching, filtersPlayers, filtersManagers];
+  const tabIds: Tab[] = ['coaching', 'players', 'managers'];
+
+  function switchTab(tab: Tab) {
+    activeTab = tab;
+    allTabs.forEach((btn, i) => {
+      const active = tabIds[i] === tab;
+      btn.setAttribute('aria-selected', String(active));
+      btn.classList.toggle('border-brand-purple', active);
+      btn.classList.toggle('text-brand-purple', active);
+      btn.classList.toggle('border-transparent', !active);
+      btn.classList.toggle('text-gray-500', !active);
+      allPanels[i].classList.toggle('hidden', !active);
+      allFilters[i].classList.toggle('hidden', !active);
+    });
+    clearFilters(tab);
+  }
+
+  tabCoaching.addEventListener('click', () => switchTab('coaching'));
+  tabPlayers.addEventListener('click',  () => switchTab('players'));
+  tabManagers.addEventListener('click', () => switchTab('managers'));
+
+  // Keyboard nav for tab bar (Left/Right arrows with wrap, skip hidden tabs)
+  allTabs.forEach((btn, idx, arr) => {
+    btn.addEventListener('keydown', (e: KeyboardEvent) => {
+      const visibleTabs = arr.filter(b => !b.classList.contains('hidden'));
+      const visIdx = visibleTabs.indexOf(btn);
+      if (e.key === 'ArrowRight') {
+        const next = visibleTabs[(visIdx + 1) % visibleTabs.length];
+        next.focus();
+        switchTab(tabIds[arr.indexOf(next)]);
+      } else if (e.key === 'ArrowLeft') {
+        const prev = visibleTabs[(visIdx - 1 + visibleTabs.length) % visibleTabs.length];
+        prev.focus();
+        switchTab(tabIds[arr.indexOf(prev)]);
+      }
+    });
+  });
+
+  // ── Filter state ───────────────────────────────────────────────────────────
+  const selectedTags: Record<Tab, Set<string>> = {
+    coaching: new Set(),
+    players:  new Set(),
+    managers: new Set(),
+  };
+
+  function logFilterEvent(action: string, tag: string, tab: Tab) {
+    console.log('[Resources Filter]', { action, tag, tab, timestamp: new Date().toISOString() });
+  }
+
+  function applyFilters(tab: Tab) {
+    const tags = selectedTags[tab];
+    const gridId       = `${tab}-grid`;
+    const noResultsId  = `${tab}-no-results`;
+    const summaryId    = `${tab}-filter-summary`;
+    const clearBtnId   = `${tab}-clear-btn`;
+
+    const grid = document.getElementById(gridId)!;
+    const noResults = document.getElementById(noResultsId)!;
+    const summary   = document.getElementById(summaryId)!;
+    const clearBtn  = document.getElementById(clearBtnId)!;
+
+    const cards = grid.querySelectorAll<HTMLElement>('.resource-card');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const age = card.dataset.age ?? '';
+      const cat = card.dataset.category ?? '';
+      const visible = tags.size === 0 || tags.has(age) || tags.has(cat);
+      card.style.display = visible ? '' : 'none';
+      if (visible) visibleCount++;
+    });
+
+    noResults.classList.toggle('hidden', visibleCount > 0);
+    grid.classList.toggle('hidden', visibleCount === 0);
+
+    const hasFilters = tags.size > 0;
+    summary.classList.toggle('hidden', !hasFilters);
+    clearBtn.classList.toggle('hidden', !hasFilters);
+    if (hasFilters) {
+      summary.textContent = `${tags.size} filter${tags.size > 1 ? 's' : ''} active`;
+    }
+  }
+
+  function clearFilters(tab: Tab) {
+    selectedTags[tab].clear();
+    const containerId = `filters-${tab}`;
+    const container = document.getElementById(containerId)!;
+    container.querySelectorAll<HTMLButtonElement>('.filter-chip').forEach(btn => {
+      btn.setAttribute('aria-pressed', 'false');
+      btn.classList.remove('bg-brand-purple', 'text-white', 'border-brand-purple', 'bg-amber-700');
+      btn.classList.add('border-gray-200', 'text-gray-600');
+    });
+    applyFilters(tab);
+  }
+
+  function setupFilterChips(containerId: string, tab: Tab) {
+    const container = document.getElementById(containerId)!;
+    const chips = container.querySelectorAll<HTMLButtonElement>('.filter-chip');
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const tag = chip.dataset.tag!;
+        const isPressed = chip.getAttribute('aria-pressed') === 'true';
+
+        if (isPressed) {
+          selectedTags[tab].delete(tag);
+          chip.setAttribute('aria-pressed', 'false');
+          chip.classList.remove('bg-brand-purple', 'text-white', 'border-brand-purple');
+          chip.classList.add('border-gray-200', 'text-gray-600');
+          logFilterEvent('remove', tag, tab);
+        } else {
+          selectedTags[tab].add(tag);
+          chip.setAttribute('aria-pressed', 'true');
+          chip.classList.add('bg-brand-purple', 'text-white', 'border-brand-purple');
+          chip.classList.remove('border-gray-200', 'text-gray-600');
+          logFilterEvent('add', tag, tab);
+        }
+        applyFilters(tab);
+      });
+
+      // Keyboard: Enter/Space toggle (handled natively for button, but Space needs explicit for non-default)
+      chip.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          chip.click();
+        }
+      });
+
+      // Arrow key navigation within the chip group
+      chip.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          const allChips = Array.from(chips);
+          const idx = allChips.indexOf(chip);
+          const next = e.key === 'ArrowRight'
+            ? allChips[(idx + 1) % allChips.length]
+            : allChips[(idx - 1 + allChips.length) % allChips.length];
+          (next as HTMLButtonElement).focus();
+        }
+      });
+    });
+  }
+
+  setupFilterChips('filters-coaching', 'coaching');
+  setupFilterChips('filters-players', 'players');
+  setupFilterChips('filters-managers', 'managers');
+
+  // Clear buttons
+  (['coaching', 'players', 'managers'] as Tab[]).forEach(tab => {
+    document.getElementById(`${tab}-clear-btn`)?.addEventListener('click', () => clearFilters(tab));
+    document.getElementById(`${tab}-no-results-clear`)?.addEventListener('click', () => clearFilters(tab));
+  });
+</script>

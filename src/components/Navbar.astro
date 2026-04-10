@@ -6,12 +6,8 @@ const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Get Involved', href: '/get-involved' },
   { label: 'Scores', href: '/scores' },
+  { label: 'Resources', href: '/resources' },
   { label: 'Contact', href: '/contact' },
-];
-
-const resourceLinks = [
-  { label: 'Coaching Resources', href: '/coaching-resources' },
-  { label: 'Player Resources', href: '/player-resources' },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -46,35 +42,6 @@ const currentPath = Astro.url.pathname;
           </a>
         ))}
 
-        <!-- Resources dropdown -->
-        <div class="relative">
-          <button
-            id="resources-btn"
-            class={`px-3 py-2 rounded text-sm font-medium transition-colors duration-150 flex items-center gap-1 ${
-              currentPath.includes('resources')
-                ? 'text-brand-gold border-b-2 border-brand-gold'
-                : 'text-white hover:text-brand-gold'
-            }`}
-            aria-haspopup="true"
-            aria-expanded="false"
-            aria-controls="resources-menu"
-          >
-            Resources
-            <svg id="resources-chevron" class="w-4 h-4 transition-transform duration-150" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-          <div id="resources-menu" class="absolute right-0 top-full mt-1 w-52 bg-white rounded shadow-lg py-1 hidden z-50">
-            {resourceLinks.map(link => (
-              <a
-                href={link.href}
-                class="block px-4 py-2 text-sm text-brand-black hover:bg-brand-offwhite hover:text-brand-purple transition-colors"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
       </div>
 
       <!-- Mobile hamburger -->
@@ -110,43 +77,11 @@ const currentPath = Astro.url.pathname;
           {link.label}
         </a>
       ))}
-      <div class="pt-1 pb-1">
-        <p class="px-3 py-1 text-xs text-purple-300 uppercase tracking-wider font-medium">Resources</p>
-        {resourceLinks.map(link => (
-          <a
-            href={link.href}
-            class="block px-3 py-2 rounded text-sm font-medium text-white hover:text-brand-gold hover:bg-purple-800 transition-colors"
-          >
-            {link.label}
-          </a>
-        ))}
-      </div>
     </div>
   </div>
 </nav>
 
 <script>
-  // Resources dropdown
-  const resourcesBtn = document.getElementById('resources-btn');
-  const resourcesMenu = document.getElementById('resources-menu');
-  const resourcesChevron = document.getElementById('resources-chevron');
-
-  resourcesBtn?.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = !resourcesMenu?.classList.contains('hidden');
-    resourcesMenu?.classList.toggle('hidden', isOpen);
-    resourcesChevron?.classList.toggle('rotate-180', !isOpen);
-    resourcesBtn.setAttribute('aria-expanded', String(!isOpen));
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!resourcesBtn?.contains(e.target as Node)) {
-      resourcesMenu?.classList.add('hidden');
-      resourcesChevron?.classList.remove('rotate-180');
-      resourcesBtn?.setAttribute('aria-expanded', 'false');
-    }
-  });
-
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobile-menu');
   const hamburgerIcon = document.getElementById('hamburger-icon');
