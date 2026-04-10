@@ -2,47 +2,43 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorStrip from '../components/SponsorStrip.astro';
 import ScoreCard from '../components/ScoreCard.astro';
-import HeroCarousel from '../components/HeroCarousel.astro';
+import HeroCircularCarousel from '../components/HeroCircularCarousel.astro';
 
 /**
  * HERO CAROUSEL SLIDES
  * --------------------
- * Add, remove or reorder slides here. Each slide can have:
- *   image    — path to image in /images/ or /public/ (optional)
+ * Add, remove or reorder slides here. Each slide must have:
+ *   image    — path to portrait infographic image in /images/hero/
  *   alt      — screen-reader description of the image
- *   title    — short bold label shown at the bottom of the card
- *   caption  — smaller descriptive text under the title
- *   bgColor  — letterbox background colour (default #111111)
- *              Use a colour that suits the image — e.g. dark for photos,
- *              white (#fff) for infographics with white backgrounds.
+ *   bgColor  — background colour shown while image loads (optional, default: #1a1030)
  *
- * Images of ANY aspect ratio are supported — they are never cropped.
- * Portrait infographics and landscape photos both display cleanly.
+ * Images display in 3:4 portrait format (e.g. 420×560px recommended).
+ * Use portrait-orientation infographics for best visual impact.
  */
 const heroSlides = [
   {
-    title: 'Season Registration Open',
-    caption: 'Sign up now for 2025 — all ages welcome',
+    image: '/images/hero/season-registration.png',
+    alt: 'Season Registration Open — Sign up now for 2025, all ages welcome',
     bgColor: '#3a2a6e',
   },
   {
-    title: 'Game Day — Saturday 10am',
-    caption: 'Bendigo Stadium, Inglis Street',
+    image: '/images/hero/game-day.png',
+    alt: 'Game Day — Saturday 10am at Bendigo Stadium, Inglis Street',
     bgColor: '#111111',
   },
   {
-    title: 'Junior Development Clinic',
-    caption: 'Ages 8–14 · Free for registered players',
+    image: '/images/hero/junior-clinic.png',
+    alt: 'Junior Development Clinic — Ages 8 to 14, free for registered players',
     bgColor: '#1a3a1a',
   },
   {
-    title: 'Slam Dunk Bridging Fund',
-    caption: 'No player left behind — ask us how',
+    image: '/images/hero/bridging-fund.png',
+    alt: 'Slam Dunk Bridging Fund — No player left behind, ask us how',
     bgColor: '#5a3a00',
   },
   {
-    title: 'Follow Us on Instagram',
-    caption: '@bendigophoenix',
+    image: '/images/hero/instagram.png',
+    alt: 'Follow Bendigo Phoenix on Instagram at @bendigophoenix',
     bgColor: '#2a1a3a',
   },
 ];
@@ -104,14 +100,14 @@ const recentScores = [
 
 <BaseLayout title="Home">
   <!-- ═══════════════════════════════════════════════════════
-       HERO — full-width landscape carousel
+       HERO — portrait circular card carousel
        ═══════════════════════════════════════════════════════ -->
   <section
     class="hero-section"
     style="background: linear-gradient(160deg, #573F93 0%, #3a2a6e 50%, #111111 100%);"
   >
     <div class="hero-carousel-wrap">
-      <HeroCarousel slides={heroSlides} autoAdvanceMs={10000} />
+      <HeroCircularCarousel slides={heroSlides} />
     </div>
 
     <!-- Scroll indicator -->
