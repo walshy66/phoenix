@@ -81,7 +81,7 @@ const showNav = count >= 2;
             alt={slide.alt}
             class="slide-img"
             loading={i === 0 ? 'eager' : 'lazy'}
-            decoding="async"
+            decoding={i === 0 ? 'auto' : 'async'}
           />
         </div>
       ))}
