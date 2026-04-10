@@ -1,0 +1,167 @@
+[
+  {
+    "id": "coaching-001",
+    "title": "Defensive Positioning for U12",
+    "description": "A guide to teaching defensive stance and footwork for under-12 players. Covers help defence, on-ball defence, and communication on court.",
+    "audience": "coaching",
+    "category": "Defence",
+    "ageGroup": "U12",
+    "type": "pdf",
+    "url": "#",
+    "dateAdded": "2026-03-15"
+  },
+  {
+    "id": "coaching-002",
+    "title": "Full Court Press Defence — U14",
+    "description": "Step-by-step breakdown of the full-court press, including trap positions, rotations, and how to coach players to execute under pressure.",
+    "audience": "coaching",
+    "category": "Defence",
+    "ageGroup": "U14",
+    "type": "pdf",
+    "url": "#",
+    "dateAdded": "2026-03-18"
+  },
+  {
+    "id": "coaching-003",
+    "title": "Zone Defence Fundamentals — U16+",
+    "description": "Introduction to 2-3 and 1-3-1 zone defences. Includes diagrams, rotation rules, and drills to develop zone awareness in older players.",
+    "audience": "coaching",
+    "category": "Defence",
+    "ageGroup": "U16+",
+    "type": "document",
+    "url": "#",
+    "dateAdded": "2026-03-20"
+  },
+  {
+    "id": "coaching-004",
+    "title": "Dribble Drive Offence Overview — U14",
+    "description": "Introduction to the dribble-drive motion offence for U14 and above. Covers spacing, reads, and progressive drills to build the system.",
+    "audience": "coaching",
+    "category": "Offence",
+    "ageGroup": "U14",
+    "type": "pdf",
+    "url": "#",
+    "dateAdded": "2026-03-22"
+  },
+  {
+    "id": "coaching-005",
+    "title": "Transition Offence Principles — U16+",
+    "description": "How to coach fast-break and secondary transition offence. Includes lane-filling, outlet pass timing, and decision-making drills.",
+    "audience": "coaching",
+    "category": "Offence",
+    "ageGroup": "U16+",
+    "type": "link",
+    "url": "#",
+    "dateAdded": "2026-03-25"
+  },
+  {
+    "id": "coaching-006",
+    "title": "Ball-Handling Drills — U8 Beginners",
+    "description": "A series of ball-handling drills for players just starting out. Easy to run at training with minimal equipment. Covers stationary, moving, and partner drills.",
+    "audience": "coaching",
+    "category": "Drills",
+    "ageGroup": "U8",
+    "type": "link",
+    "url": "#",
+    "dateAdded": "2026-03-28"
+  },
+  {
+    "id": "coaching-007",
+    "title": "Shooting Progression Drills — U14",
+    "description": "Progressive shooting drills from form shooting to off-the-dribble. Designed to build muscle memory and game-realistic shooting habits.",
+    "audience": "coaching",
+    "category": "Drills",
+    "ageGroup": "U14",
+    "type": "video",
+    "url": "#",
+    "dateAdded": "2026-04-01"
+  },
+  {
+    "id": "coaching-008",
+    "title": "Footwork Fundamentals — All Ages",
+    "description": "Core footwork drills covering pivoting, jump stops, and jab steps. Suitable for all age groups and skill levels as a warm-up or focused session.",
+    "audience": "coaching",
+    "category": "Fundamentals",
+    "ageGroup": "All Ages",
+    "type": "pdf",
+    "url": "#",
+    "dateAdded": "2026-04-02"
+  },
+  {
+    "id": "coaching-009",
+    "title": "Press Break Game Plan — U16+",
+    "description": "Structured game plan for breaking full-court and half-court pressure. Includes entry options, safety outlets, and decision-making guidelines.",
+    "audience": "coaching",
+    "category": "Game Plans",
+    "ageGroup": "U16+",
+    "type": "document",
+    "url": "#",
+    "dateAdded": "2026-04-03"
+  },
+  {
+    "id": "coaching-010",
+    "title": "Court Time Calculator",
+    "description": "Generate an even court time rotation for 7–9 players across 2 × 20 minute halves. Keeps exactly 5 players on court at all times.",
+    "audience": "coaching",
+    "category": "Tools",
+    "ageGroup": "All Ages",
+    "type": "link",
+    "url": "/court-time-calculator",
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "id": "coaching-011",
+    "title": "Set Play Playbook — End of Quarter",
+    "description": "A collection of set plays for end-of-quarter and end-of-game situations. Includes diagrams and coaching notes for U14 and above.",
+    "audience": "coaching",
+    "category": "Game Plans",
+    "ageGroup": "U14",
+    "type": "pdf",
+    "url": "#",
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "id": "coaching-012",
+    "title": "Player Development Framework — U16+",
+    "description": "Basketball Victoria's recommended player development pathway for teenage athletes. Covers physical, technical, tactical, and mental development pillars.",
+    "audience": "coaching",
+    "category": "Fundamentals",
+    "ageGroup": "U16+",
+    "type": "document",
+    "url": "#",
+    "dateAdded": "2026-04-07"
+  },
+  {
+    "id": "coaching-013",
+    "title": "Introduction to Basketball Movement — U8",
+    "description": "Fun, game-based activities to introduce movement patterns and court awareness to the youngest players. Keeps sessions energetic and skill-focused.",
+    "audience": "coaching",
+    "category": "Fundamentals",
+    "ageGroup": "U8",
+    "type": "pdf",
+    "url": "#",
+    "dateAdded": "2026-04-08"
+  },
+  {
+    "id": "coaching-014",
+    "title": "Passing Drills for U10",
+    "description": "Age-appropriate passing drills designed to develop chest pass, bounce pass, and overhead pass technique in U10 players.",
+    "audience": "coaching",
+    "category": "Drills",
+    "ageGroup": "U10",
+    "type": "link",
+    "url": "#",
+    "dateAdded": "2026-04-09"
+  },
+  {
+    "id": "coaching-015",
+    "title": "Half-Court Offence Introduction — U10",
+    "description": "Simple half-court offensive concepts for U10 teams. Covers spacing, passing priorities, and how to create open looks without complex systems.",
+    "audience": "coaching",
+    "category": "Offence",
+    "ageGroup": "U10",
+    "type": "document",
+    "url": "#",
+    "dateAdded": "2026-04-10"
+  }
+]

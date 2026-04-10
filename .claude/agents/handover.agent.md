@@ -91,7 +91,14 @@ git commit -m "chore: handover {ISSUE-KEY} - {issue-title}"
 # 4. Stay on the feature branch (do NOT merge to main yet)
 ```
 
-### Step 7: Confirm Success
+### Step 7: Update Linear Issue Status
+
+After committing successfully:
+- Update the Linear issue status from "Handover" → "Planning"
+- Add a comment: "Handover complete. Spec extracted and feature branch created. Ready for design/planning."
+- Link to the feature branch name in the comment
+
+### Step 8: Confirm Success
 
 ```
 ✅ Handover successful!
@@ -103,6 +110,8 @@ git commit -m "chore: handover {ISSUE-KEY} - {issue-title}"
    Status:
    - specs/{feature-slug}/ staged and committed
    - Ready for development
+
+🔗 Linear: Issue {ISSUE-KEY} status updated to "Planning"
 
 📝 Next steps:
    1. Begin work on this branch
@@ -131,7 +140,7 @@ git commit -m "chore: handover {ISSUE-KEY} - {issue-title}"
 
 ## Tools You Have
 
-- Linear MCP (`Linear:list_issues`, `Linear:get_issue`, download attachments)
+- Linear MCP (`Linear:list_issues`, `Linear:get_issue`, `Linear:save_issue` for status updates, download attachments)
 - Bash — git commands
 - File system — create directories and copy files
 
