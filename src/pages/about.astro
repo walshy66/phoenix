@@ -1,32 +1,65 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const policies = [
+// ClubPolicy interface definition
+interface ClubPolicy {
+  name: string;
+  type: 'pdf' | 'external_link';
+  filePath?: string;
+  url?: string;
+}
+
+// Club Policies data - includes PDFs and external links
+const clubPolicies: ClubPolicy[] = [
   {
-    title: 'Code of Conduct',
-    content: 'All players, coaches, officials and spectators are expected to uphold the highest standards of sportsmanship and respect. Any behaviour that is deemed unsportsmanlike or abusive will not be tolerated. We are committed to providing a safe and welcoming environment for all.',
+    name: 'Child Protection Policy',
+    type: 'external_link',
+    url: 'https://bendigobasketball.com.au/child-protection-policy/',
   },
   {
-    title: 'Registration & Eligibility',
-    content: 'Players must be registered before participating in any official competition. Registration must be completed through the club and approved by Basketball Victoria. Age eligibility is determined by the player\'s age as of January 1 of the competition year.',
+    name: 'Code of Conduct',
+    type: 'pdf',
+    filePath: 'resources/club-policies/code-of-conduct.pdf',
   },
   {
-    title: 'Uniform Policy',
-    content: 'All players are required to wear the official Bendigo Phoenix uniform during competition. Uniforms must be clean and in good condition. Playing without the correct uniform may result in non-participation at the discretion of the referee.',
+    name: 'Gender, Disrespect & Violence',
+    type: 'external_link',
+    url: 'https://sportsfocus.com.au/issue-gender-disrespect-violence/',
   },
   {
-    title: 'Player Welfare',
-    content: 'The wellbeing of our players is our highest priority. We are committed to providing a safe environment free from bullying, harassment and discrimination. Any concerns should be reported to the Club President or Team Manager immediately.',
+    name: 'Grievance Procedure',
+    type: 'pdf',
+    filePath: 'resources/club-policies/grievance-procedure.pdf',
   },
   {
-    title: 'Photography & Social Media',
-    content: 'Photos and videos of minors must only be taken with parental consent. Images of players should not be posted on social media without permission. All club-related social media activity should be respectful and positive.',
+    name: 'Photography & Social Media',
+    type: 'pdf',
+    filePath: 'resources/club-policies/photography-social-media.pdf',
   },
   {
-    title: 'Grievance Procedure',
-    content: 'Any grievances should first be addressed informally with the relevant party. If unresolved, a formal complaint may be lodged with the Club Committee in writing. All complaints will be handled fairly, promptly and confidentially.',
+    name: 'Player Welfare',
+    type: 'pdf',
+    filePath: 'resources/club-policies/player-welfare.pdf',
+  },
+  {
+    name: 'Privacy Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/privacy-policy.pdf',
+  },
+  {
+    name: 'Registration & Eligibility',
+    type: 'pdf',
+    filePath: 'resources/club-policies/registration-and-eligibility.pdf',
+  },
+  {
+    name: 'Uniform Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/uniform-policy.pdf',
   },
 ];
+
+// Sort alphabetically by name
+const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <BaseLayout title="About" description="Learn about Bendigo Phoenix Basketball Club, our mission, policies and the Slam Dunk Bridging Fund.">
@@ -126,60 +159,176 @@ const policies = [
     </div>
   </section>
 
-  <!-- Policies -->
+  <!-- Club Policies -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Club Policies</h2>
       <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-      <div class="space-y-3" id="accordion">
-        {policies.map((policy, i) => (
-          <div class="rounded-xl border border-gray-100 overflow-hidden">
-            <button
-              class="accordion-toggle w-full text-left px-5 py-4 flex items-center justify-between bg-white hover:bg-brand-offwhite transition-colors duration-150"
-              data-index={i}
-              aria-expanded="false"
-            >
-              <span class="font-bold text-brand-black text-sm">{policy.title}</span>
-              <svg
-                class="w-5 h-5 text-brand-purple flex-shrink-0 transition-transform duration-200"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="accordion-content px-5">
-              <p class="text-gray-600 text-sm leading-relaxed py-4 border-t border-gray-100">{policy.content}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="policies-grid">
+        {policies.map((policy, i) => {
+          const policyId = `policy-${i}`;
+          const embedId = `embed-${i}`;
+
+          return (
+            <div class="rounded-xl border border-gray-100 overflow-hidden bg-white hover:shadow-md transition-shadow">
+              {policy.type === 'pdf' ? (
+                // PDF Policy Item
+                <>
+                  <button
+                    class="policy-expand-btn w-full text-left px-5 py-4 flex items-center justify-between hover:bg-brand-offwhite transition-colors duration-150 group"
+                    id={policyId}
+                    aria-expanded="false"
+                    aria-controls={embedId}
+                    data-type="pdf"
+                    data-filepath={policy.filePath}
+                    data-name={policy.name}
+                  >
+                    <span class="font-bold text-brand-black text-sm flex-1">{policy.name}</span>
+                    <svg
+                      class="w-5 h-5 text-brand-purple flex-shrink-0 transition-transform duration-200"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div class="policy-embed-container hidden px-5 py-4 border-t border-gray-100" id={embedId}>
+                    <div class="mb-4 flex gap-2">
+                      <a
+                        class="policy-download-btn inline-flex items-center gap-2 bg-brand-purple text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-purple-800 transition-colors"
+                        href={`/${policy.filePath}`}
+                        download={policy.name}
+                        aria-label={`Download ${policy.name}`}
+                      >
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19v-7m0 0V5m0 7H5m7 0h7" />
+                        </svg>
+                        Download
+                      </a>
+                    </div>
+                    <div class="policy-embed-wrapper bg-gray-50 rounded-lg overflow-hidden">
+                      <embed
+                        class="policy-embed w-full"
+                        src={`/${policy.filePath}`}
+                        type="application/pdf"
+                        title={`${policy.name} PDF`}
+                        style="min-height: 400px;"
+                      />
+                      <div class="policy-error-msg hidden p-4 text-center text-red-600 text-sm bg-red-50">
+                        <p>Document temporarily unavailable. <a href={`/${policy.filePath}`} class="underline hover:no-underline">Try downloading instead.</a></p>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                // External Link Policy Item
+                <a
+                  class="policy-external-link w-full text-left px-5 py-4 flex items-center justify-between hover:bg-brand-offwhite transition-colors duration-150 group"
+                  href={policy.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-type="external"
+                  title={policy.name}
+                >
+                  <span class="font-bold text-brand-black text-sm flex-1">{policy.name}</span>
+                  <svg
+                    class="w-5 h-5 text-brand-gold flex-shrink-0 group-hover:translate-x-0.5 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-4-6l6-6m0 0l-6 6m6-6v10" />
+                  </svg>
+                  <span class="sr-only">(opens in new tab)</span>
+                </a>
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  const toggles = document.querySelectorAll('.accordion-toggle');
+  // Handle PDF policy expand/collapse accordion
+  document.querySelectorAll('.policy-expand-btn').forEach((button) => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const button_el = button as HTMLButtonElement;
+      const embedId = button_el.getAttribute('aria-controls');
+      const embedContainer = embedId ? document.getElementById(embedId) : null;
+      const isExpanded = button_el.getAttribute('aria-expanded') === 'true';
 
-  toggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const content = toggle.nextElementSibling as HTMLElement;
-      const icon = toggle.querySelector('svg');
-      const isOpen = content?.classList.contains('open');
+      // Close all other PDF embeds
+      document.querySelectorAll('.policy-embed-container').forEach((container) => {
+        if (container.id !== embedId) {
+          container.classList.add('hidden');
+        }
+      });
 
-      // Close all
-      document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-      document.querySelectorAll('.accordion-toggle svg').forEach(i => (i as HTMLElement).style.transform = '');
-      document.querySelectorAll('.accordion-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+      // Close all other buttons
+      document.querySelectorAll('.policy-expand-btn').forEach((btn) => {
+        if (btn !== button_el) {
+          btn.setAttribute('aria-expanded', 'false');
+          const icon = btn.querySelector('svg') as HTMLElement;
+          if (icon) icon.style.transform = '';
+        }
+      });
 
-      // Open clicked if it was closed
-      if (!isOpen && content) {
-        content.classList.add('open');
-        if (icon) icon.style.transform = 'rotate(180deg)';
-        toggle.setAttribute('aria-expanded', 'true');
+      // Toggle current button
+      if (embedContainer) {
+        if (isExpanded) {
+          embedContainer.classList.add('hidden');
+          button_el.setAttribute('aria-expanded', 'false');
+          const icon = button_el.querySelector('svg') as HTMLElement;
+          if (icon) icon.style.transform = '';
+        } else {
+          embedContainer.classList.remove('hidden');
+          button_el.setAttribute('aria-expanded', 'true');
+          const icon = button_el.querySelector('svg') as HTMLElement;
+          if (icon) icon.style.transform = 'rotate(180deg)';
+        }
       }
     });
+
+    // Keyboard support for Enter/Space
+    button.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        (button as HTMLButtonElement).click();
+      }
+    });
+  });
+
+  // Handle PDF embed error fallback
+  document.querySelectorAll('.policy-embed').forEach((embed) => {
+    const embedEl = embed as HTMLEmbedElement;
+    embedEl.addEventListener('error', () => {
+      const container = embed.closest('.policy-embed-wrapper') as HTMLElement;
+      const errorMsg = container?.querySelector('.policy-error-msg') as HTMLElement;
+      if (errorMsg) {
+        errorMsg.classList.remove('hidden');
+      }
+      // Hide the embed on error
+      (embed as HTMLElement).style.display = 'none';
+    });
+
+    // Check if embed is empty/broken (some browsers don't fire error event)
+    setTimeout(() => {
+      const embedHeight = (embedEl as any).scrollHeight || 0;
+      if (embedHeight === 0) {
+        const container = embed.closest('.policy-embed-wrapper') as HTMLElement;
+        const errorMsg = container?.querySelector('.policy-error-msg') as HTMLElement;
+        if (errorMsg) {
+          errorMsg.classList.remove('hidden');
+        }
+        (embed as HTMLElement).style.display = 'none';
+      }
+    }, 2000);
   });
 </script>
