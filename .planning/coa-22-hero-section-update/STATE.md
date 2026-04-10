@@ -49,19 +49,31 @@
     - CSS: aria-disabled="true" → opacity 0.5 (buttons remain clickable for queue)
     - CSS: breakpoint-specific responsive widths (mobile/tablet/desktop/ultra-wide)
 
-## Current Window: 4 (Logo Decal, Image Optimization)
+## Current Window: 5 (Accessibility, Reduced Motion, Final Validation)
 
-### Pending Tasks (from tasks.md Window 3 scope)
-- [ ] T014: Write contract tests for logo decal visibility and positioning
-- [ ] T015/T016: Image loading tests (eager, lazy, format) — HeroCircularCarousel.image-loading.test.ts
-- [ ] T017: Logo asset verification + decal CSS (already partially done)
-- [ ] T018: Confirm responsive sizing is complete (done in Window 3 above)
+### Window 4 Completed Tasks
+- [x] T014: Logo decal contract tests (20 tests) + opacity updated 0.08 → 0.15
+- [x] T015/T016: Image loading tests (36 tests) + decoding="auto" fix for slide 0
+- [x] T017: Dot navigation direct-jump tests (27 tests) — implementation verified correct
 
 ### Remaining Windows (4 & 5 from original plan)
 - Window 4: Logo decal tests, image loading tests, auto-advance, dot navigation
 - Window 5: Final integration, accessibility audit, performance validation
 
 ## Checkpoint Results
+
+### Window 4 — PASS
+- T014: 20 logo decal contract tests — all PASS; opacity updated to 0.15
+- T015/T016: 36 image loading tests — all PASS; decoding="auto" fix for slide 0
+- T017: 27 dot navigation tests — all PASS; implementation verified correct
+- Total: 83 new tests (231 carousel tests total across 10 files, all green)
+- Files Created:
+  - src/components/__tests__/HeroCircularCarousel.logo.test.ts (NEW)
+  - src/components/__tests__/HeroCircularCarousel.image-loading.test.ts (NEW)
+  - src/components/__tests__/HeroCircularCarousel.dots.test.ts (NEW)
+- Files Modified:
+  - src/components/HeroCircularCarousel.astro: opacity 0.08→0.15; decoding="auto" for slide 0
+- Commits: 654df4c, 5c34a2b, 66e11ee
 
 ### Window 3 — PASS
 - T009: 24 keyboard navigation tests — all PASS
