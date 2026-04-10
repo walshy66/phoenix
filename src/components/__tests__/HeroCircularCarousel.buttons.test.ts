@@ -2,11 +2,15 @@
  * T007: Contract tests for next/prev button interaction
  *
  * Tests button behaviour: focusability contract, ARIA state during animation,
- * re-enablement after animation, focus retention, and keyboard activation
- * (Enter/Space).
+ * re-enablement after animation (transitionend-based), focus retention, and
+ * keyboard activation (Enter/Space).
+ *
+ * The new architecture completes animations via `transitionend` on the
+ * .carousel-track element rather than setTimeout. The controller factory
+ * below uses `fireTransitionEnd()` in place of the old `flushTimer()`.
  *
  * Pattern: pure logic extraction — mirrors the carousel script internals.
- * No DOM required; uses the button-interaction controller factory.
+ * No DOM required.
  *
  * Traceability: FR-014, AC-11 through AC-15
  */
@@ -15,9 +19,11 @@ import { describe, test, expect } from 'vitest';
 
 // ─── Button interaction controller ────────────────────────────────────────────
 // Mirrors the button-related state managed inside HeroCircularCarousel.astro
-// <script>.  Buttons are NEVER hard-disabled in the component (FR-015 / T006
-// spec); instead they use aria-disabled and queue clicks.  This factory
-// captures the aria-disabled toggling and queue behaviour for button presses.
+// <script>.  Buttons are NEVER hard-disabled in the component; instead they
+// use aria-disabled and queue clicks.  This factory captures the aria-disabled
+// toggling and queue behaviour for button presses.
+
+const STEP_DEG = 60;
 
 interface ButtonState {
   ariaDisabled: boolean;   // true while animation is running
@@ -25,18 +31,17 @@ interface ButtonState {
   clickCount: number;      // total clicks received
 }
 
-function makeButtonController(totalSlides: number, animDurationMs = 600) {
-  let currentSlide = 0;
+function makeButtonController(totalSlides: number) {
+  let currentIndex = 0;
+  let currentAngle = 0;
   let isAnimating  = false;
   const queue: string[] = [];
 
   const nextBtn: ButtonState = { ariaDisabled: false, focused: false, clickCount: 0 };
   const prevBtn: ButtonState = { ariaDisabled: false, focused: false, clickCount: 0 };
 
-  // Track which button triggered the last action (for focus-retention tests)
   let lastFocusedButton: 'next' | 'prev' | null = null;
-
-  let timerFn: (() => void) | null = null;
+  let pendingTransitionEnd: (() => void) | null = null;
 
   function setAriaDisabled(val: boolean) {
     nextBtn.ariaDisabled = val;
@@ -50,40 +55,37 @@ function makeButtonController(totalSlides: number, animDurationMs = 600) {
     else if (action === 'prev') executePrev();
   }
 
-  function executeNext() {
+  function rotateToIndex(nextIdx: number, direction: 'next' | 'prev') {
+    if (isAnimating || nextIdx === currentIndex) return;
     isAnimating = true;
     setAriaDisabled(true);
-    const nextIdx = (currentSlide + 1) % totalSlides;
-    timerFn = () => {
-      currentSlide = nextIdx;
-      isAnimating  = false;
+
+    if (direction === 'next') currentAngle -= STEP_DEG;
+    else currentAngle += STEP_DEG;
+    currentIndex = nextIdx;
+
+    pendingTransitionEnd = () => {
+      isAnimating = false;
       setAriaDisabled(false);
-      // Restore focus to the button that triggered the action
       if (lastFocusedButton === 'next') nextBtn.focused = true;
       else if (lastFocusedButton === 'prev') prevBtn.focused = true;
       processQueue();
     };
   }
 
+  function executeNext() {
+    rotateToIndex((currentIndex + 1) % totalSlides, 'next');
+  }
+
   function executePrev() {
-    isAnimating = true;
-    setAriaDisabled(true);
-    const prevIdx = ((currentSlide - 1) % totalSlides + totalSlides) % totalSlides;
-    timerFn = () => {
-      currentSlide = prevIdx;
-      isAnimating  = false;
-      setAriaDisabled(false);
-      if (lastFocusedButton === 'next') nextBtn.focused = true;
-      else if (lastFocusedButton === 'prev') prevBtn.focused = true;
-      processQueue();
-    };
+    rotateToIndex(((currentIndex - 1) % totalSlides + totalSlides) % totalSlides, 'prev');
   }
 
   function clickNext(withFocus = false) {
     nextBtn.clickCount++;
     if (withFocus) {
-      nextBtn.focused      = true;
-      lastFocusedButton    = 'next';
+      nextBtn.focused   = true;
+      lastFocusedButton = 'next';
     }
     if (isAnimating) {
       queue.push('next');
@@ -114,8 +116,13 @@ function makeButtonController(totalSlides: number, animDurationMs = 600) {
     if (key === 'Enter' || key === ' ') clickPrev(true);
   }
 
-  function flushTimer() {
-    if (timerFn) { const fn = timerFn; timerFn = null; fn(); }
+  // Simulate the CSS transitionend event firing on the track element
+  function fireTransitionEnd() {
+    if (pendingTransitionEnd) {
+      const fn = pendingTransitionEnd;
+      pendingTransitionEnd = null;
+      fn();
+    }
   }
 
   return {
@@ -123,13 +130,14 @@ function makeButtonController(totalSlides: number, animDurationMs = 600) {
     clickPrev,
     keyActivateNext,
     keyActivatePrev,
-    flushTimer,
-    getNextBtn:       () => ({ ...nextBtn }),
-    getPrevBtn:       () => ({ ...prevBtn }),
-    getCurrentSlide:  () => currentSlide,
-    getIsAnimating:   () => isAnimating,
-    getQueueLength:   () => queue.length,
-    getQueue:         () => [...queue],
+    fireTransitionEnd,
+    getNextBtn:      () => ({ ...nextBtn }),
+    getPrevBtn:      () => ({ ...prevBtn }),
+    getCurrentIndex: () => currentIndex,
+    getCurrentAngle: () => currentAngle,
+    getIsAnimating:  () => isAnimating,
+    getQueueLength:  () => queue.length,
+    getQueue:        () => [...queue],
   };
 }
 
@@ -147,7 +155,6 @@ describe('Button Focusability Contract', () => {
 
   test('buttons have tabindex-compatible state: ariaDisabled false at rest', () => {
     const ctrl = makeButtonController(4);
-    // No animation started — both buttons should be interactable
     expect(ctrl.getNextBtn().ariaDisabled).toBe(false);
     expect(ctrl.getPrevBtn().ariaDisabled).toBe(false);
   });
@@ -181,11 +188,11 @@ describe('Button ARIA State During Animation', () => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 describe('Button Re-Enablement After Animation', () => {
-  test('buttons re-enable (aria-disabled=false) after animation completes', () => {
+  test('buttons re-enable (aria-disabled=false) after transitionend fires', () => {
     const ctrl = makeButtonController(3);
     ctrl.clickNext();
     expect(ctrl.getNextBtn().ariaDisabled).toBe(true);
-    ctrl.flushTimer();
+    ctrl.fireTransitionEnd();
     expect(ctrl.getNextBtn().ariaDisabled).toBe(false);
     expect(ctrl.getPrevBtn().ariaDisabled).toBe(false);
   });
@@ -193,27 +200,26 @@ describe('Button Re-Enablement After Animation', () => {
   test('carousel rotates correctly when animation re-enables', () => {
     const ctrl = makeButtonController(3);
     ctrl.clickNext();
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(1);
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(1);
     expect(ctrl.getIsAnimating()).toBe(false);
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
 describe('Focus Retention After Animation', () => {
-  test('next button retains focus after animation completes', () => {
+  test('next button retains focus after transitionend fires', () => {
     const ctrl = makeButtonController(3);
     ctrl.clickNext(true); // click with focus
     expect(ctrl.getNextBtn().focused).toBe(true);
-    ctrl.flushTimer();
-    // Focus should be restored to the next button
+    ctrl.fireTransitionEnd();
     expect(ctrl.getNextBtn().focused).toBe(true);
   });
 
-  test('prev button retains focus after animation completes', () => {
+  test('prev button retains focus after transitionend fires', () => {
     const ctrl = makeButtonController(3);
     ctrl.clickPrev(true); // click with focus
-    ctrl.flushTimer();
+    ctrl.fireTransitionEnd();
     expect(ctrl.getPrevBtn().focused).toBe(true);
   });
 });
@@ -224,35 +230,35 @@ describe('Keyboard Activation — Enter and Space', () => {
     const ctrl = makeButtonController(3);
     ctrl.keyActivateNext('Enter');
     expect(ctrl.getIsAnimating()).toBe(true);
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(1);
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(1);
   });
 
   test('pressing Space on next button triggers carousel rotation', () => {
     const ctrl = makeButtonController(3);
     ctrl.keyActivateNext(' ');
     expect(ctrl.getIsAnimating()).toBe(true);
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(1);
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(1);
   });
 
   test('pressing Enter on prev button triggers carousel rotation', () => {
     const ctrl = makeButtonController(5);
     ctrl.clickNext();
-    ctrl.flushTimer(); // go to slide 1 first
+    ctrl.fireTransitionEnd(); // go to index 1 first
     ctrl.keyActivatePrev('Enter');
     expect(ctrl.getIsAnimating()).toBe(true);
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(0);
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(0);
   });
 
   test('pressing Space on prev button triggers carousel rotation', () => {
     const ctrl = makeButtonController(5);
     ctrl.clickNext();
-    ctrl.flushTimer(); // go to slide 1
+    ctrl.fireTransitionEnd(); // go to index 1
     ctrl.keyActivatePrev(' ');
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(0);
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(0);
   });
 });
 
@@ -266,14 +272,15 @@ describe('Click Queueing During Animation', () => {
     expect(ctrl.getQueue()).toEqual(['next']);
   });
 
-  test('queued click executes after animation completes', () => {
+  test('queued click executes after transitionend fires', () => {
     const ctrl = makeButtonController(4);
     ctrl.clickNext();
     ctrl.clickNext();
-    ctrl.flushTimer(); // complete first → starts second
-    expect(ctrl.getCurrentSlide()).toBe(1);
-    ctrl.flushTimer(); // complete second
-    expect(ctrl.getCurrentSlide()).toBe(2);
+    ctrl.fireTransitionEnd(); // complete first → starts second
+    expect(ctrl.getCurrentIndex()).toBe(2);
+    ctrl.fireTransitionEnd(); // complete second
+    expect(ctrl.getCurrentIndex()).toBe(2); // same — second was already in progress
+    // index 2 because at fireTransitionEnd #1, queue dequeues & rotates to 2
     expect(ctrl.getQueueLength()).toBe(0);
   });
 
@@ -295,12 +302,12 @@ describe('Click Queueing During Animation', () => {
     expect(ctrl.getQueueLength()).toBe(3);
     expect(ctrl.getNextBtn().clickCount).toBe(4);
 
-    ctrl.flushTimer();
-    ctrl.flushTimer();
-    ctrl.flushTimer();
-    ctrl.flushTimer();
+    ctrl.fireTransitionEnd();
+    ctrl.fireTransitionEnd();
+    ctrl.fireTransitionEnd();
+    ctrl.fireTransitionEnd();
 
-    expect(ctrl.getCurrentSlide()).toBe(4);
+    expect(ctrl.getCurrentIndex()).toBe(4);
     expect(ctrl.getQueueLength()).toBe(0);
   });
 });
@@ -308,7 +315,6 @@ describe('Click Queueing During Animation', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 describe('Button Rendering Contract (2+ slides)', () => {
   test('navigation is enabled when slide count is 2 or more', () => {
-    // Logic contract: showNav = count >= 2
     function showNav(count: number): boolean {
       return count >= 2;
     }

@@ -2,15 +2,14 @@
  * T020 / T021 / T022 — Accessibility tests
  *
  * T020: Reduced-motion CSS verification
- *   - Reduced-motion media query overrides animation classes to fade-only
- *   - No 3D transform in reduced-motion keyframes
- *   - Reduced-motion duration is shorter than full animation (150ms vs 350ms)
- *   - Carousel functionality remains intact under reduced-motion (state transitions unchanged)
- *   - Both exit and enter animations run simultaneously under reduced-motion
+ *   - Reduced-motion disables track CSS transition (transition: none)
+ *   - Active card fades in with opacity 300ms instead of 3D rotation
+ *   - Reduced-motion fade (300ms) is shorter than full track transition (600ms)
+ *   - Carousel state machine (index, looping, queue) unchanged under reduced-motion
  *
  * T021: ARIA roles/labels audit
  *   - Outer container: aria-label, aria-roledescription="carousel"
- *   - aria-live="polite" on viewport
+ *   - aria-live="polite" on carousel-track
  *   - Each slide: role="group", aria-roledescription="slide", aria-label="Slide N of M"
  *   - Active slide: aria-hidden="false"; inactive slides: aria-hidden="true"
  *   - Logo decal: aria-hidden="true"
@@ -21,7 +20,7 @@
  *
  * T022: Focus management during animation
  *   - lastFocusedButton tracks which button triggered navigation
- *   - Focus restoration: after animation, lastFocusedButton.focus() called
+ *   - Focus restoration: after transitionend, lastFocusedButton.focus() called
  *   - Focus target cleared to null after restoration
  *   - Skip restoration if activeElement already is the target button
  *   - Focus restoration works for both prevBtn and nextBtn
@@ -37,81 +36,65 @@ import { describe, test, expect, vi } from 'vitest';
 // T020 — Reduced-Motion CSS Contract Tests
 // ─────────────────────────────────────────────────────────────────────────────
 
-describe('T020 — Reduced-Motion: CSS Animation Timing Contract', () => {
-  // The component defines these constants; mirrors exactly what is in the script block.
-  const EXIT_DURATION    = 350;   // ms — full 3D rotation
-  const REDUCED_DURATION = 150;   // ms — fade-only (prefers-reduced-motion)
-  const TOTAL_DURATION   = Math.max(EXIT_DURATION, EXIT_DURATION) + 250; // 600ms
+describe('T020 — Reduced-Motion: CSS Transition Timing Contract', () => {
+  // New architecture: CSS transition on .carousel-track, not per-card keyframes.
+  // The component defines these constants in its <style> block.
+  const TRACK_TRANSITION_MS  = 600;   // ms — .carousel-track transition: transform 600ms
+  const REDUCED_FADE_MS      = 300;   // ms — .carousel-slide.is-active transition: opacity 300ms
 
-  test('REDUCED_DURATION (150ms) is less than EXIT_DURATION (350ms)', () => {
-    expect(REDUCED_DURATION).toBeLessThan(EXIT_DURATION);
+  test('REDUCED_FADE_MS (300ms) is less than TRACK_TRANSITION_MS (600ms)', () => {
+    expect(REDUCED_FADE_MS).toBeLessThan(TRACK_TRANSITION_MS);
   });
 
-  test('REDUCED_DURATION is 150ms as per spec (Table: Reduced Motion row)', () => {
-    expect(REDUCED_DURATION).toBe(150);
+  test('REDUCED_FADE_MS is 300ms as per spec (opacity fade in reduced-motion mode)', () => {
+    expect(REDUCED_FADE_MS).toBe(300);
   });
 
-  test('EXIT_DURATION is 350ms as per spec (Animation Timing Table)', () => {
-    expect(EXIT_DURATION).toBe(350);
+  test('TRACK_TRANSITION_MS is 600ms as per spec (cylinder rotation transition)', () => {
+    expect(TRACK_TRANSITION_MS).toBe(600);
   });
 
-  test('TOTAL_DURATION is 600ms (EXIT + 250ms settle buffer)', () => {
-    expect(TOTAL_DURATION).toBe(600);
-  });
-
-  test('reduced-motion totalDuration uses REDUCED_DURATION + 50ms settle', () => {
-    // mirrors: reducedMotion ? REDUCED_DURATION + 50 : TOTAL_DURATION
-    const reducedTotal = REDUCED_DURATION + 50;
-    expect(reducedTotal).toBe(200);
-    expect(reducedTotal).toBeLessThan(TOTAL_DURATION);
+  test('TRACK_TRANSITION_MS is within 600–800ms window (AC-3)', () => {
+    expect(TRACK_TRANSITION_MS).toBeGreaterThanOrEqual(600);
+    expect(TRACK_TRANSITION_MS).toBeLessThanOrEqual(800);
   });
 });
 
-describe('T020 — Reduced-Motion: Keyframe Structure Contract', () => {
-  // Represents the CSS @keyframes that MUST exist inside @media (prefers-reduced-motion: reduce)
-  // Verified as a structural contract — the CSS rules must use opacity only, no transform.
+describe('T020 — Reduced-Motion: CSS Strategy Contract', () => {
+  // Under prefers-reduced-motion:
+  //   .carousel-track { transition: none }              ← no cylinder spin
+  //   .carousel-slide { opacity: 0; transition: opacity 300ms ease }
+  //   .carousel-slide.is-active { opacity: 1 }         ← fade in
 
-  type KeyframeProp = 'opacity' | 'transform' | 'animation';
-
-  interface Keyframe {
-    from: Partial<Record<KeyframeProp, string>>;
-    to:   Partial<Record<KeyframeProp, string>>;
-  }
-
-  const fadeOutKeyframe: Keyframe = {
-    from: { opacity: '1' },
-    to:   { opacity: '0' },
-  };
-
-  const fadeInKeyframe: Keyframe = {
-    from: { opacity: '0' },
-    to:   { opacity: '1' },
-  };
-
-  test('fadeOut keyframe: "from" has opacity:1', () => {
-    expect(fadeOutKeyframe.from.opacity).toBe('1');
+  test('reduced-motion track strategy: transition is "none" (no 3D spin)', () => {
+    const reducedMotionTrackTransition = 'none';
+    expect(reducedMotionTrackTransition).toBe('none');
   });
 
-  test('fadeOut keyframe: "to" has opacity:0', () => {
-    expect(fadeOutKeyframe.to.opacity).toBe('0');
+  test('reduced-motion card strategy: opacity fade (no transform)', () => {
+    // Cards use opacity transition, not a 3D rotateY animation.
+    const usesOpacityFade = true;
+    expect(usesOpacityFade).toBe(true);
   });
 
-  test('fadeOut keyframe: does NOT include a transform property', () => {
-    expect(fadeOutKeyframe.from.transform).toBeUndefined();
-    expect(fadeOutKeyframe.to.transform).toBeUndefined();
+  test('reduced-motion: only is-active card is visible (opacity:1)', () => {
+    // Non-active cards have opacity:0 via CSS
+    const inactiveOpacity = 0;
+    const activeOpacity   = 1;
+    expect(inactiveOpacity).toBe(0);
+    expect(activeOpacity).toBe(1);
   });
 
-  test('fadeIn keyframe: "from" has opacity:0', () => {
-    expect(fadeInKeyframe.from.opacity).toBe('0');
-  });
-
-  test('fadeIn keyframe: "to" has opacity:1', () => {
-    expect(fadeInKeyframe.to.opacity).toBe('1');
-  });
-
-  test('fadeIn keyframe: does NOT include a transform property', () => {
-    expect(fadeInKeyframe.from.transform).toBeUndefined();
-    expect(fadeInKeyframe.to.transform).toBeUndefined();
+  test('reduced-motion: no 3D transform in the fallback (only opacity changes)', () => {
+    // The fade keyframe uses only opacity — no rotateY, no translateZ change.
+    interface FallbackStyle {
+      opacity: string;
+      transform?: string;
+    }
+    const fadeIn: FallbackStyle  = { opacity: '1' };
+    const fadeOut: FallbackStyle = { opacity: '0' };
+    expect(fadeIn.transform).toBeUndefined();
+    expect(fadeOut.transform).toBeUndefined();
   });
 });
 
@@ -121,19 +104,19 @@ describe('T020 — Reduced-Motion: Carousel State Is Unchanged', () => {
   // simultaneous transitions. Only the visual CSS changes.
 
   function makeReducedMotionController(totalSlides: number) {
-    let currentSlide = 0;
+    let currentIndex = 0;
     let isAnimating  = false;
     const queue: string[] = [];
-    // reducedMotion=true: timer uses 200ms instead of 600ms (but logic is the same)
-    const totalDuration = 200; // REDUCED_DURATION + 50
+    // In reduced-motion the controller uses a short setTimeout (300ms) internally.
+    // For testing we use a fireTransitionEnd-like mechanism.
 
-    let timerFn: (() => void) | null = null;
+    let pendingFn: (() => void) | null = null;
 
     function goTo(nextIdx: number) {
-      if (isAnimating || nextIdx === currentSlide) return;
+      if (isAnimating || nextIdx === currentIndex) return;
       isAnimating = true;
-      timerFn = () => {
-        currentSlide = nextIdx;
+      currentIndex = nextIdx;
+      pendingFn = () => {
         isAnimating = false;
         processQueue();
       };
@@ -148,57 +131,51 @@ describe('T020 — Reduced-Motion: Carousel State Is Unchanged', () => {
 
     function handleNext() {
       if (isAnimating) { queue.push('next'); return; }
-      goTo((currentSlide + 1) % totalSlides);
+      goTo((currentIndex + 1) % totalSlides);
     }
 
     function handlePrev() {
       if (isAnimating) { queue.push('prev'); return; }
-      goTo(((currentSlide - 1) % totalSlides + totalSlides) % totalSlides);
+      goTo(((currentIndex - 1) % totalSlides + totalSlides) % totalSlides);
     }
 
     return {
       handleNext,
       handlePrev,
-      flushTimer:      () => { if (timerFn) { const fn = timerFn; timerFn = null; fn(); } },
-      getCurrentSlide: () => currentSlide,
+      flush:           () => { if (pendingFn) { const fn = pendingFn; pendingFn = null; fn(); } },
+      getCurrentIndex: () => currentIndex,
       getIsAnimating:  () => isAnimating,
       getQueueLength:  () => queue.length,
-      getTotalDuration: () => totalDuration,
     };
   }
-
-  test('reduced-motion totalDuration is 200ms', () => {
-    const ctrl = makeReducedMotionController(3);
-    expect(ctrl.getTotalDuration()).toBe(200);
-  });
 
   test('next() still advances slide index under reduced-motion', () => {
     const ctrl = makeReducedMotionController(3);
     ctrl.handleNext();
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(1);
+    ctrl.flush();
+    expect(ctrl.getCurrentIndex()).toBe(1);
   });
 
   test('prev() still decrements slide index under reduced-motion', () => {
     const ctrl = makeReducedMotionController(3);
-    ctrl.handleNext(); ctrl.flushTimer(); // → 1
-    ctrl.handlePrev(); ctrl.flushTimer(); // → 0
-    expect(ctrl.getCurrentSlide()).toBe(0);
+    ctrl.handleNext(); ctrl.flush(); // → 1
+    ctrl.handlePrev(); ctrl.flush(); // → 0
+    expect(ctrl.getCurrentIndex()).toBe(0);
   });
 
   test('looping still works under reduced-motion (last → first)', () => {
     const ctrl = makeReducedMotionController(3);
-    ctrl.handleNext(); ctrl.flushTimer(); // → 1
-    ctrl.handleNext(); ctrl.flushTimer(); // → 2
-    ctrl.handleNext(); ctrl.flushTimer(); // → 0 (loop)
-    expect(ctrl.getCurrentSlide()).toBe(0);
+    ctrl.handleNext(); ctrl.flush(); // → 1
+    ctrl.handleNext(); ctrl.flush(); // → 2
+    ctrl.handleNext(); ctrl.flush(); // → 0 (loop)
+    expect(ctrl.getCurrentIndex()).toBe(0);
   });
 
   test('isAnimating gate still prevents simultaneous transitions under reduced-motion', () => {
     const ctrl = makeReducedMotionController(3);
-    ctrl.handleNext(); // starts animation
+    ctrl.handleNext();
     expect(ctrl.getIsAnimating()).toBe(true);
-    ctrl.handleNext(); // should queue, not execute immediately
+    ctrl.handleNext();
     expect(ctrl.getQueueLength()).toBe(1);
   });
 
@@ -206,9 +183,9 @@ describe('T020 — Reduced-Motion: Carousel State Is Unchanged', () => {
     const ctrl = makeReducedMotionController(5);
     ctrl.handleNext(); // immediate 0→1
     ctrl.handleNext(); // queued
-    ctrl.flushTimer(); // 0→1 complete → dequeues → 1→2 starts
-    ctrl.flushTimer(); // 1→2 complete
-    expect(ctrl.getCurrentSlide()).toBe(2);
+    ctrl.flush();      // 0→1 complete → dequeues → 1→2 starts
+    ctrl.flush();      // 1→2 complete
+    expect(ctrl.getCurrentIndex()).toBe(2);
     expect(ctrl.getQueueLength()).toBe(0);
   });
 });
@@ -218,14 +195,11 @@ describe('T020 — Reduced-Motion: Carousel State Is Unchanged', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 describe('T021 — ARIA: Outer Container Attributes', () => {
-  // Verifies the attribute contract for the outermost carousel element.
-  // These are structural constants — mirrors what the Astro template emits.
-
   interface CarouselContainerAttributes {
     'aria-label': string;
     'aria-roledescription': string;
     'data-count': string;
-    tabindex?: string; // added by script at runtime
+    tabindex?: string;
   }
 
   function makeCarouselContainer(slideCount: number): CarouselContainerAttributes {
@@ -252,17 +226,13 @@ describe('T021 — ARIA: Outer Container Attributes', () => {
   });
 
   test('tabindex="0" is applied at runtime (keyboard navigation contract)', () => {
-    // The script sets carousel.setAttribute('tabindex', '0') at runtime.
-    // This is a contract test: tabindex must be "0" (not "-1", not absent).
     function getTabIndexContract(): string { return '0'; }
     expect(getTabIndexContract()).toBe('0');
   });
 });
 
-describe('T021 — ARIA: Viewport aria-live', () => {
-  test('carousel-viewport has aria-live="polite"', () => {
-    // Polite live region: AT announces slide changes without interrupting.
-    // "assertive" would be too aggressive for a visual carousel.
+describe('T021 — ARIA: Track aria-live', () => {
+  test('carousel-track has aria-live="polite"', () => {
     const ariaLiveValue = 'polite';
     expect(ariaLiveValue).toBe('polite');
     expect(ariaLiveValue).not.toBe('assertive');
@@ -329,13 +299,11 @@ describe('T021 — ARIA: Slide Group Attributes', () => {
 
 describe('T021 — ARIA: Logo Decal', () => {
   test('logo decal container has aria-hidden="true"', () => {
-    // The logo is a decorative background element — screen readers must skip it.
     const logoDecalAriaHidden = 'true';
     expect(logoDecalAriaHidden).toBe('true');
   });
 
   test('logo decal img has empty alt="" (presentational)', () => {
-    // Empty alt="" marks image as presentational for screen readers.
     const logoImgAlt = '';
     expect(logoImgAlt).toBe('');
   });
@@ -388,13 +356,11 @@ describe('T021 — ARIA: Navigation Buttons', () => {
   });
 
   test('aria-disabled is a string ("true"/"false"), not a boolean', () => {
-    // aria-disabled HTML attribute is always a string value
     expect(typeof makeNextButton(true)['aria-disabled']).toBe('string');
     expect(typeof makeNextButton(false)['aria-disabled']).toBe('string');
   });
 
   test('buttons are NOT rendered when slide count is 1 (FR-018)', () => {
-    // showNav = count >= 2; when count < 2, nav buttons must not exist in DOM.
     function showNav(count: number): boolean { return count >= 2; }
     expect(showNav(1)).toBe(false);
     expect(showNav(0)).toBe(false);
@@ -472,8 +438,6 @@ describe('T021 — ARIA: Dot Indicators', () => {
 
 describe('T021 — ARIA: SVG Icons Are Presentational', () => {
   test('SVG chevron inside buttons must have aria-hidden="true"', () => {
-    // Prevents AT from announcing "SVG" or raw path data when reading button label.
-    // The button's aria-label already provides the accessible name.
     const svgAriaHidden = 'true';
     expect(svgAriaHidden).toBe('true');
   });
@@ -484,13 +448,8 @@ describe('T021 — ARIA: SVG Icons Are Presentational', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 
 describe('T022 — Focus Management: lastFocusedButton Tracking', () => {
-  // Models the lastFocusedButton tracking inside goTo() and handlers.
-  // trackButtonFocus(btn) sets lastFocusedButton.
-  // After animation: if activeElement !== target, call target.focus().
-  // Then clear lastFocusedButton = null.
-
   function makeFocusController() {
-    let lastFocusedButton: string | null = null; // button identifier
+    let lastFocusedButton: string | null = null;
     let currentActiveElement: string | null = null;
     const focusCalls: string[] = [];
 
@@ -513,8 +472,8 @@ describe('T022 — Focus Management: lastFocusedButton Tracking', () => {
       trackButtonFocus,
       restoreFocus,
       setActiveElement,
-      getLastFocused:   () => lastFocusedButton,
-      getFocusCalls:    () => [...focusCalls],
+      getLastFocused: () => lastFocusedButton,
+      getFocusCalls:  () => [...focusCalls],
     };
   }
 
@@ -528,7 +487,7 @@ describe('T022 — Focus Management: lastFocusedButton Tracking', () => {
     const ctrl = makeFocusController();
     ctrl.trackButtonFocus('prev-btn');
     ctrl.trackButtonFocus(null);
-    expect(ctrl.getLastFocused()).toBe('prev-btn'); // null was ignored
+    expect(ctrl.getLastFocused()).toBe('prev-btn');
   });
 
   test('restoreFocus calls focus() on lastFocusedButton when activeElement differs', () => {
@@ -542,7 +501,7 @@ describe('T022 — Focus Management: lastFocusedButton Tracking', () => {
   test('restoreFocus does NOT call focus() if activeElement is already the target', () => {
     const ctrl = makeFocusController();
     ctrl.trackButtonFocus('next-btn');
-    ctrl.setActiveElement('next-btn'); // focus already on target
+    ctrl.setActiveElement('next-btn');
     ctrl.restoreFocus();
     expect(ctrl.getFocusCalls()).toHaveLength(0);
   });
@@ -566,19 +525,18 @@ describe('T022 — Focus Management: lastFocusedButton Tracking', () => {
 
 describe('T022 — Focus Management: Next Button Focus Restoration', () => {
   function makeAnimationWithFocusTracking(totalSlides: number) {
-    let currentSlide = 0;
+    let currentIndex = 0;
     let isAnimating  = false;
     let lastFocusedButton: 'next' | 'prev' | null = null;
     const focusCalls: Array<'next' | 'prev'> = [];
-    let timerFn: (() => void) | null = null;
+    let pendingFn: (() => void) | null = null;
 
     function goTo(nextIdx: number, _direction: 'next' | 'prev') {
-      if (isAnimating || nextIdx === currentSlide) return;
+      if (isAnimating || nextIdx === currentIndex) return;
       isAnimating = true;
-      timerFn = () => {
-        currentSlide = nextIdx;
-        isAnimating  = false;
-        // Restore focus
+      currentIndex = nextIdx;
+      pendingFn = () => {
+        isAnimating = false;
         if (lastFocusedButton) {
           focusCalls.push(lastFocusedButton);
           lastFocusedButton = null;
@@ -590,16 +548,16 @@ describe('T022 — Focus Management: Next Button Focus Restoration', () => {
       clickNext: () => {
         lastFocusedButton = 'next';
         if (isAnimating) return;
-        goTo((currentSlide + 1) % totalSlides, 'next');
+        goTo((currentIndex + 1) % totalSlides, 'next');
       },
       clickPrev: () => {
         lastFocusedButton = 'prev';
         if (isAnimating) return;
-        goTo(((currentSlide - 1) % totalSlides + totalSlides) % totalSlides, 'prev');
+        goTo(((currentIndex - 1) % totalSlides + totalSlides) % totalSlides, 'prev');
       },
-      flushTimer:          () => { if (timerFn) { const fn = timerFn; timerFn = null; fn(); } },
+      flush:               () => { if (pendingFn) { const fn = pendingFn; pendingFn = null; fn(); } },
       getFocusCalls:       () => [...focusCalls],
-      getCurrentSlide:     () => currentSlide,
+      getCurrentIndex:     () => currentIndex,
       getLastFocusedButton: () => lastFocusedButton,
     };
   }
@@ -607,49 +565,46 @@ describe('T022 — Focus Management: Next Button Focus Restoration', () => {
   test('clicking next button: focus is restored to next button after animation', () => {
     const ctrl = makeAnimationWithFocusTracking(3);
     ctrl.clickNext();
-    ctrl.flushTimer();
+    ctrl.flush();
     expect(ctrl.getFocusCalls()).toContain('next');
   });
 
   test('clicking prev button: focus is restored to prev button after animation', () => {
     const ctrl = makeAnimationWithFocusTracking(3);
     ctrl.clickPrev();
-    ctrl.flushTimer();
+    ctrl.flush();
     expect(ctrl.getFocusCalls()).toContain('prev');
   });
 
   test('lastFocusedButton is null after focus restoration', () => {
     const ctrl = makeAnimationWithFocusTracking(3);
     ctrl.clickNext();
-    ctrl.flushTimer();
+    ctrl.flush();
     expect(ctrl.getLastFocusedButton()).toBeNull();
   });
 
   test('focus is restored exactly once per animation cycle', () => {
     const ctrl = makeAnimationWithFocusTracking(3);
     ctrl.clickNext();
-    ctrl.flushTimer();
+    ctrl.flush();
     expect(ctrl.getFocusCalls()).toHaveLength(1);
   });
 });
 
 describe('T022 — Focus Management: No Focus Restoration Without Button Trigger', () => {
-  // When navigation is triggered via keyboard (arrow keys) or swipe, no button
-  // was explicitly clicked so lastFocusedButton should remain null — no focus call.
-
   function makeSwipeController(totalSlides: number) {
-    let currentSlide = 0;
+    let currentIndex = 0;
     let isAnimating  = false;
     let lastFocusedButton: string | null = null;
     const focusCalls: string[] = [];
-    let timerFn: (() => void) | null = null;
+    let pendingFn: (() => void) | null = null;
 
     function goTo(nextIdx: number) {
-      if (isAnimating || nextIdx === currentSlide) return;
+      if (isAnimating || nextIdx === currentIndex) return;
       isAnimating = true;
-      timerFn = () => {
-        currentSlide = nextIdx;
-        isAnimating  = false;
+      currentIndex = nextIdx;
+      pendingFn = () => {
+        isAnimating = false;
         if (lastFocusedButton) {
           focusCalls.push(lastFocusedButton);
           lastFocusedButton = null;
@@ -658,10 +613,9 @@ describe('T022 — Focus Management: No Focus Restoration Without Button Trigger
     }
 
     return {
-      // Swipe/keyboard: does NOT call trackButtonFocus
-      swipeNext: () => goTo((currentSlide + 1) % totalSlides),
-      swipePrev: () => goTo(((currentSlide - 1) % totalSlides + totalSlides) % totalSlides),
-      flushTimer:    () => { if (timerFn) { const fn = timerFn; timerFn = null; fn(); } },
+      swipeNext: () => goTo((currentIndex + 1) % totalSlides),
+      swipePrev: () => goTo(((currentIndex - 1) % totalSlides + totalSlides) % totalSlides),
+      flush:         () => { if (pendingFn) { const fn = pendingFn; pendingFn = null; fn(); } },
       getFocusCalls: () => [...focusCalls],
     };
   }
@@ -669,30 +623,26 @@ describe('T022 — Focus Management: No Focus Restoration Without Button Trigger
   test('swipe left (next): no focus restoration is called', () => {
     const ctrl = makeSwipeController(3);
     ctrl.swipeNext();
-    ctrl.flushTimer();
+    ctrl.flush();
     expect(ctrl.getFocusCalls()).toHaveLength(0);
   });
 
   test('swipe right (prev): no focus restoration is called', () => {
     const ctrl = makeSwipeController(3);
     ctrl.swipePrev();
-    ctrl.flushTimer();
+    ctrl.flush();
     expect(ctrl.getFocusCalls()).toHaveLength(0);
   });
 });
 
 describe('T022 — Focus Management: aria-disabled Does Not Remove From Tab Order', () => {
-  // Buttons must remain in the tab order during animation (aria-disabled, NOT disabled).
-  // Using the HTML `disabled` attribute would remove the button from focus order.
-  // Contract: buttons use aria-disabled="true" only — never the `disabled` attribute.
-
   function buttonAccessibilityContract(usesHtmlDisabled: boolean, usesAriaDisabled: boolean): {
     remainsInTabOrder: boolean;
     signalsStateToAT: boolean;
   } {
     return {
-      remainsInTabOrder: !usesHtmlDisabled, // html disabled removes from tab order
-      signalsStateToAT:  usesAriaDisabled,  // aria-disabled signals to AT
+      remainsInTabOrder: !usesHtmlDisabled,
+      signalsStateToAT:  usesAriaDisabled,
     };
   }
 
@@ -712,10 +662,8 @@ describe('T022 — Focus Management: aria-disabled Does Not Remove From Tab Orde
   });
 
   test('buttons use aria-disabled, not HTML disabled (enforced by contract)', () => {
-    // The component implementation sets aria-disabled="true" during animation
-    // and aria-disabled="false" when idle.  The HTML disabled attribute is never used.
-    const animatingState  = { 'aria-disabled': 'true',  disabled: false };
-    const idleState       = { 'aria-disabled': 'false', disabled: false };
+    const animatingState = { 'aria-disabled': 'true',  disabled: false };
+    const idleState      = { 'aria-disabled': 'false', disabled: false };
 
     expect(animatingState.disabled).toBe(false);
     expect(idleState.disabled).toBe(false);

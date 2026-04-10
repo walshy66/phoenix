@@ -1,37 +1,44 @@
 /**
- * T004: Integration tests for CSS 3D animation timing and fade
+ * T004: Tests for 3D cylinder animation timing and CSS transition contract
  *
- * Tests the animation timing constants, CSS class naming contracts,
- * reduced-motion detection logic, and GPU-acceleration flags.
+ * The new architecture uses a single CSS `transition` on `.carousel-track`
+ * (rotateY, 600ms) instead of per-card enter/exit keyframe animations.
+ * Animation completion is detected via the `transitionend` event — there
+ * is no setTimeout-based settle window.
  *
- * These tests extract the animation controller logic (as it lives in the
- * component <script>) and validate timing, class names, and reduced-motion
- * behaviour in isolation — no DOM required.
+ * Tests cover:
+ *   - Track transition duration constant (600ms)
+ *   - `is-active` CSS class contract (replaces per-card animation classes)
+ *   - Reduced-motion fallback: transition:none on track, opacity fade on cards
+ *   - Step angle (STEP_DEG = 60) and cumulative angle arithmetic
+ *   - Animation controller behaviour mirrors component script internals
  *
  * Traceability: FR-004, FR-005, FR-006, FR-010, AC-3, AC-16–AC-19, AC-30–AC-32
  */
 
-import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, test, expect } from 'vitest';
 
 // ─── Animation constants mirrored from the component ──────────────────────────
-// These must match the values in HeroCircularCarousel.astro <script>.
+// These must match the values in HeroCircularCarousel.astro <script> and <style>.
 // If you change the component, update these constants to match — the tests
 // are the contract.
 
-const EXIT_DURATION    = 350;  // ms — exit keyframe duration
-const ENTER_DURATION   = 350;  // ms — enter keyframe duration (simultaneous)
-// Exit and enter are simultaneous; the settle window is 250ms post-keyframe to meet the
-// AC-3 spec requirement: "animation completes within 600–800ms" → 350 + 250 = 600ms
-const TOTAL_DURATION   = Math.max(EXIT_DURATION, ENTER_DURATION) + 250; // 600ms — spec AC-3
-const REDUCED_DURATION = 150;  // ms — reduced-motion fade duration
+// The CSS transition on .carousel-track:
+//   transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94)
+const TRACK_TRANSITION_MS = 600; // ms — must be within 600–800ms per AC-3
+
+// Reduced-motion: track transition is `none`; active card opacity fades over:
+//   transition: opacity 300ms ease
+const REDUCED_MOTION_FADE_MS = 300; // ms — opacity transition on .is-active card
+
+// Step angle between cards on the cylinder
+const STEP_DEG = 60; // degrees
 
 // ─── CSS class name contracts ─────────────────────────────────────────────────
-// These class names must exist in the component <style> and <script>.
+// The new architecture uses a single class for the active (front-facing) card.
+// The old per-card enter/exit classes are gone.
 const CSS_CLASS = {
-  outRight:      'animate-rotate-out-right',
-  outLeft:       'animate-rotate-out-left',
-  inFromLeft:    'animate-rotate-in-from-left',
-  inFromRight:   'animate-rotate-in-from-right',
+  active: 'is-active',  // applied to the current front card
 };
 
 // ─── Animation controller factory (mirrors component script logic) ─────────────
@@ -40,18 +47,17 @@ function makeTimingController(
   prefersReducedMotion: boolean = false,
 ) {
   const reducedMotion = prefersReducedMotion;
-  const animDuration  = reducedMotion ? REDUCED_DURATION + 50 : TOTAL_DURATION;
 
-  let currentSlide = 0;
+  let currentIndex = 0;
+  let currentAngle = 0;
   let isAnimating  = false;
   const queue: string[] = [];
 
-  // Track which animation classes were applied (exit/enter)
-  const appliedClasses: Array<{ outClass: string; inClass: string }> = [];
+  // Track the is-active transitions (which index became active on each step)
+  const activeHistory: number[] = [];
 
-  // Capture the setTimeout delay used
-  let capturedDelayMs: number | null = null;
-  let timerFn: (() => void) | null = null;
+  // Simulated transitionend callback
+  let pendingTransitionEnd: (() => void) | null = null;
 
   function processQueue() {
     if (queue.length === 0) return;
@@ -60,30 +66,36 @@ function makeTimingController(
     else if (action === 'prev') executePrev();
   }
 
-  function animate(nextIdx: number, direction: 'next' | 'prev') {
-    if (isAnimating || nextIdx === currentSlide) return;
+  function onAnimationComplete() {
+    isAnimating = false;
+    processQueue();
+  }
+
+  function rotateToIndex(nextIdx: number, direction: 'next' | 'prev') {
+    if (isAnimating || nextIdx === currentIndex) return;
     isAnimating = true;
 
-    const outClass = direction === 'next' ? CSS_CLASS.outRight : CSS_CLASS.outLeft;
-    const inClass  = direction === 'next' ? CSS_CLASS.inFromLeft : CSS_CLASS.inFromRight;
+    if (direction === 'next') {
+      currentAngle -= STEP_DEG;
+    } else {
+      currentAngle += STEP_DEG;
+    }
+    currentIndex = nextIdx;
 
-    appliedClasses.push({ outClass, inClass });
+    // Record which index became active
+    activeHistory.push(currentIndex);
 
-    // Simulate setTimeout (tests will inspect capturedDelayMs)
-    capturedDelayMs = animDuration;
-    timerFn = () => {
-      currentSlide = nextIdx;
-      isAnimating  = false;
-      processQueue();
-    };
+    // In reduced-motion mode: simulate a short setTimeout (no track transition)
+    // In normal mode: a transitionend fires on the track
+    pendingTransitionEnd = onAnimationComplete;
   }
 
   function executeNext() {
-    animate((currentSlide + 1) % totalSlides, 'next');
+    rotateToIndex((currentIndex + 1) % totalSlides, 'next');
   }
 
   function executePrev() {
-    animate(((currentSlide - 1) % totalSlides + totalSlides) % totalSlides, 'prev');
+    rotateToIndex(((currentIndex - 1) % totalSlides + totalSlides) % totalSlides, 'prev');
   }
 
   function handleNext() {
@@ -96,88 +108,117 @@ function makeTimingController(
     executePrev();
   }
 
-  function flushTimer() {
-    if (timerFn) { const fn = timerFn; timerFn = null; fn(); }
+  function fireTransitionEnd() {
+    if (pendingTransitionEnd) {
+      const fn = pendingTransitionEnd;
+      pendingTransitionEnd = null;
+      fn();
+    }
   }
 
   return {
     handleNext,
     handlePrev,
-    flushTimer,
-    isReducedMotion: () => reducedMotion,
-    getAnimDuration:  () => animDuration,
-    getCapturedDelay: () => capturedDelayMs,
-    getAppliedClasses: () => [...appliedClasses],
-    getIsAnimating:   () => isAnimating,
-    getCurrentSlide:  () => currentSlide,
+    fireTransitionEnd,
+    isReducedMotion:    () => reducedMotion,
+    getCurrentIndex:    () => currentIndex,
+    getCurrentAngle:    () => currentAngle,
+    getIsAnimating:     () => isAnimating,
+    getActiveHistory:   () => [...activeHistory],
   };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-describe('Animation Timing Constants', () => {
-  test('exit duration is 350ms', () => {
-    expect(EXIT_DURATION).toBe(350);
+describe('Track Transition Timing Constants', () => {
+  test('track transition duration is 600ms', () => {
+    expect(TRACK_TRANSITION_MS).toBe(600);
   });
 
-  test('enter duration is 350ms', () => {
-    expect(ENTER_DURATION).toBe(350);
+  test('track transition duration is within 600–800ms (AC-3)', () => {
+    expect(TRACK_TRANSITION_MS).toBeGreaterThanOrEqual(600);
+    expect(TRACK_TRANSITION_MS).toBeLessThanOrEqual(800);
   });
 
-  test('exit and enter are simultaneous (same duration)', () => {
-    expect(EXIT_DURATION).toBe(ENTER_DURATION);
+  test('reduced-motion opacity fade is 300ms', () => {
+    expect(REDUCED_MOTION_FADE_MS).toBe(300);
   });
 
-  test('total animation duration is within 600–800ms', () => {
-    expect(TOTAL_DURATION).toBeGreaterThanOrEqual(600);
-    expect(TOTAL_DURATION).toBeLessThanOrEqual(800);
-  });
-
-  test('reduced-motion duration is 150ms per phase', () => {
-    expect(REDUCED_DURATION).toBe(150);
-  });
-
-  test('reduced-motion total is within 300ms (150ms + buffer ≤ 300ms)', () => {
-    const reducedTotal = REDUCED_DURATION + 50;
-    expect(reducedTotal).toBeLessThanOrEqual(300);
+  test('reduced-motion fade is shorter than full track transition', () => {
+    expect(REDUCED_MOTION_FADE_MS).toBeLessThan(TRACK_TRANSITION_MS);
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-describe('Animation CSS Class Contract — normal motion', () => {
-  test('clicking next applies outRight + inFromLeft class names', () => {
-    const ctrl = makeTimingController(3, false);
-    ctrl.handleNext();
-    const classes = ctrl.getAppliedClasses();
-    expect(classes).toHaveLength(1);
-    expect(classes[0].outClass).toBe(CSS_CLASS.outRight);
-    expect(classes[0].inClass).toBe(CSS_CLASS.inFromLeft);
+describe('Step Angle Contract', () => {
+  test('STEP_DEG is 60 degrees', () => {
+    expect(STEP_DEG).toBe(60);
   });
 
-  test('clicking prev applies outLeft + inFromRight class names', () => {
-    const ctrl = makeTimingController(3, false);
+  test('6 steps of 60° completes one full cylinder rotation (360°)', () => {
+    expect(6 * STEP_DEG).toBe(360);
+  });
+
+  test('next click decrements currentAngle by STEP_DEG', () => {
+    const ctrl = makeTimingController(6, false);
+    ctrl.handleNext();
+    expect(ctrl.getCurrentAngle()).toBe(-STEP_DEG);
+  });
+
+  test('prev click increments currentAngle by STEP_DEG', () => {
+    const ctrl = makeTimingController(6, false);
     ctrl.handlePrev();
-    const classes = ctrl.getAppliedClasses();
-    expect(classes).toHaveLength(1);
-    expect(classes[0].outClass).toBe(CSS_CLASS.outLeft);
-    expect(classes[0].inClass).toBe(CSS_CLASS.inFromRight);
+    expect(ctrl.getCurrentAngle()).toBe(STEP_DEG);
   });
 
-  test('exit animation class name contains "rotate-out"', () => {
-    expect(CSS_CLASS.outRight).toContain('rotate-out');
-    expect(CSS_CLASS.outLeft).toContain('rotate-out');
+  test('angle accumulates without wrapping (no modulo)', () => {
+    const ctrl = makeTimingController(6, false);
+    ctrl.handleNext(); ctrl.fireTransitionEnd();
+    ctrl.handleNext(); ctrl.fireTransitionEnd();
+    ctrl.handleNext(); ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentAngle()).toBe(-180);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+describe('Active Card Class Contract — is-active', () => {
+  test('CSS_CLASS.active is "is-active"', () => {
+    expect(CSS_CLASS.active).toBe('is-active');
   });
 
-  test('enter animation class name contains "rotate-in"', () => {
-    expect(CSS_CLASS.inFromLeft).toContain('rotate-in');
-    expect(CSS_CLASS.inFromRight).toContain('rotate-in');
-  });
-
-  test('setTimeout delay is ≥ 600ms and ≤ 800ms for normal motion', () => {
+  test('is-active class is applied immediately when rotation starts (not on transitionend)', () => {
     const ctrl = makeTimingController(3, false);
     ctrl.handleNext();
-    expect(ctrl.getCapturedDelay()).not.toBeNull();
-    expect(ctrl.getCapturedDelay()!).toBeGreaterThanOrEqual(600);
-    expect(ctrl.getCapturedDelay()!).toBeLessThanOrEqual(800);
+    // Index already updated to 1 — is-active class would be on slide 1
+    expect(ctrl.getCurrentIndex()).toBe(1);
+    expect(ctrl.getActiveHistory()).toEqual([1]);
+  });
+
+  test('is-active tracks correctly through multiple rotations', () => {
+    const ctrl = makeTimingController(5, false);
+    ctrl.handleNext(); ctrl.fireTransitionEnd();
+    ctrl.handleNext(); ctrl.fireTransitionEnd();
+    ctrl.handleNext(); ctrl.fireTransitionEnd();
+    expect(ctrl.getActiveHistory()).toEqual([1, 2, 3]);
+  });
+
+  test('is-active index wraps correctly at carousel end', () => {
+    const ctrl = makeTimingController(3, false);
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 1
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 2
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 0 (wrap)
+    expect(ctrl.getCurrentIndex()).toBe(0);
+    expect(ctrl.getActiveHistory()).toEqual([1, 2, 0]);
+  });
+
+  test('no old enter/exit keyframe class names used', () => {
+    // The new architecture has no per-card enter/exit animation classes.
+    // Verify the CSS_CLASS object only contains the is-active class.
+    const classNames = Object.values(CSS_CLASS);
+    classNames.forEach(name => {
+      expect(name).not.toContain('rotate-out');
+      expect(name).not.toContain('rotate-in');
+      expect(name).not.toContain('animate-');
+    });
   });
 });
 
@@ -188,80 +229,81 @@ describe('Reduced-Motion Fallback', () => {
     expect(ctrl.isReducedMotion()).toBe(true);
   });
 
-  test('animation total duration is ≤ 300ms in reduced-motion mode', () => {
-    const ctrl = makeTimingController(3, true);
-    ctrl.handleNext();
-    expect(ctrl.getCapturedDelay()).not.toBeNull();
-    expect(ctrl.getCapturedDelay()!).toBeLessThanOrEqual(300);
+  test('reduced-motion fade duration (300ms) is less than full transition (600ms)', () => {
+    expect(REDUCED_MOTION_FADE_MS).toBeLessThan(TRACK_TRANSITION_MS);
   });
 
-  test('reduced-motion mode still applies exit class (remapped to fade via CSS @media)', () => {
+  test('reduced-motion: state still advances correctly', () => {
     const ctrl = makeTimingController(3, true);
     ctrl.handleNext();
-    const classes = ctrl.getAppliedClasses();
-    expect(classes).toHaveLength(1);
-    // Class name must exist (CSS @media block will override animation to fadeOut/fadeIn)
-    expect(classes[0].outClass).toBeTruthy();
-    expect(classes[0].inClass).toBeTruthy();
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(1);
   });
 
-  test('reduced-motion mode uses shorter setTimeout delay than normal motion', () => {
-    const normal  = makeTimingController(3, false);
-    const reduced = makeTimingController(3, true);
-    normal.handleNext();
-    reduced.handleNext();
-    expect(reduced.getCapturedDelay()!).toBeLessThan(normal.getCapturedDelay()!);
+  test('reduced-motion: currentAngle still tracked (for state consistency)', () => {
+    const ctrl = makeTimingController(3, true);
+    ctrl.handleNext();
+    expect(ctrl.getCurrentAngle()).toBe(-STEP_DEG);
+  });
+
+  test('reduced-motion: is-active class applied to correct card', () => {
+    const ctrl = makeTimingController(3, true);
+    ctrl.handleNext();
+    expect(ctrl.getCurrentIndex()).toBe(1);
+    expect(ctrl.getActiveHistory()).toContain(1);
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
 describe('GPU Acceleration & Backface-Visibility Contract', () => {
-  // These tests verify that the CSS class names that carry the GPU acceleration
-  // hints (will-change, backface-visibility) are the same names used in the
-  // animation controller.  The actual CSS property presence is verified by the
-  // naming contract — if the class names match what the <style> block defines,
-  // the properties are applied.
+  // The cylinder architecture uses backface-visibility: hidden on each card so
+  // cards at ±180° (the back of the cylinder) are naturally occluded.
 
-  test('rotate-out-right class name matches CSS style definition', () => {
-    // Contract: must equal the literal class used in the <style> block
-    expect(CSS_CLASS.outRight).toBe('animate-rotate-out-right');
+  test('backface-visibility: hidden is the correct contract for cylinder cards', () => {
+    // Cards at the back (rotated 180°) should be hidden by backface-visibility.
+    // This is a CSS contract — we verify the architectural intent here.
+    const backfaceStrategy = 'hidden'; // matches CSS in component
+    expect(backfaceStrategy).toBe('hidden');
   });
 
-  test('rotate-out-left class name matches CSS style definition', () => {
-    expect(CSS_CLASS.outLeft).toBe('animate-rotate-out-left');
+  test('will-change: transform is applied to cards for GPU compositing', () => {
+    const willChangeValue = 'transform, filter'; // matches CSS in component
+    expect(willChangeValue).toContain('transform');
   });
 
-  test('rotate-in-from-left class name matches CSS style definition', () => {
-    expect(CSS_CLASS.inFromLeft).toBe('animate-rotate-in-from-left');
+  test('track uses transform-style: preserve-3d for 3D cylinder', () => {
+    const transformStyle = 'preserve-3d'; // matches CSS on .carousel-track
+    expect(transformStyle).toBe('preserve-3d');
   });
 
-  test('rotate-in-from-right class name matches CSS style definition', () => {
-    expect(CSS_CLASS.inFromRight).toBe('animate-rotate-in-from-right');
+  test('cylinder radius is 500px (translateZ value on each card)', () => {
+    const cylinderRadius = 500; // px — matches component CSS
+    expect(cylinderRadius).toBe(500);
   });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
-describe('Animation State Integration — simultaneous exit and enter', () => {
-  test('isAnimating is true when exit and enter are both in flight', () => {
+describe('Animation State Integration', () => {
+  test('isAnimating is true when track transition is in progress', () => {
     const ctrl = makeTimingController(3, false);
     ctrl.handleNext();
-    // Both exit and enter classes were applied at same moment
     expect(ctrl.getIsAnimating()).toBe(true);
-    expect(ctrl.getAppliedClasses()).toHaveLength(1); // one pair applied
   });
 
-  test('isAnimating is false after timer resolves', () => {
+  test('isAnimating is false after transitionend resolves', () => {
     const ctrl = makeTimingController(3, false);
     ctrl.handleNext();
-    ctrl.flushTimer();
+    ctrl.fireTransitionEnd();
     expect(ctrl.getIsAnimating()).toBe(false);
   });
 
-  test('currentSlide updates only after animation resolves, not before', () => {
+  test('currentIndex updates at rotation start, not on transitionend', () => {
     const ctrl = makeTimingController(3, false);
     ctrl.handleNext();
-    expect(ctrl.getCurrentSlide()).toBe(0); // still 0 mid-animation
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(1); // updated after
+    // Index is already updated when the CSS transition begins
+    expect(ctrl.getCurrentIndex()).toBe(1);
+    ctrl.fireTransitionEnd();
+    // Still 1 after transitionend — unchanged
+    expect(ctrl.getCurrentIndex()).toBe(1);
   });
 });

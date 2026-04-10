@@ -1,28 +1,32 @@
 ---
 /**
- * HeroCircularCarousel — portrait-format circular card carousel.
+ * HeroCircularCarousel — landscape-format 3D cylinder card carousel.
  *
- * Replaces the old HeroCarousel (landscape X-axis flip).
- * New interaction: Y-axis rotation with opacity fade.
- *   - Next: current card rotates out to the right (rotateY 0→90deg), next card rotates in from the left (rotateY -90→0deg)
- *   - Prev: current card rotates out to the left (rotateY 0→-90deg), prev card rotates in from the right (rotateY 90→0deg)
+ * Architecture: a `.carousel-track` wrapper with `transform-style: preserve-3d`
+ * rotates the whole cylinder. Each card is placed on the cylinder surface at
+ * its own `--angle` offset. JS updates only the track's `rotateY` on each step.
+ *
+ *   Step angle: 60° — front=0°, right=−60°, left=+60°, far-right=−120°,
+ *               far-left=+120°, back=±180°
+ *   Next: trackAngle −= 60° (right card comes to front)
+ *   Prev: trackAngle += 60° (left card comes to front)
  *
  * Features:
- *   - Portrait-format slides (3:4 aspect ratio, prominent size)
- *   - CSS 3D Y-axis rotation with opacity fade (simultaneous exit/enter)
- *   - Click queue: clicks during animation are queued, not dropped
- *   - Buttons always enabled (never disabled during animation)
- *   - Touch swipe support (45px minimum threshold)
- *   - Keyboard navigation (arrow keys)
- *   - prefers-reduced-motion fallback (fade-only, 150ms)
- *   - Bendigo Phoenix logo as background decal
+ *   - Landscape 16:9 slides (640×360px at desktop)
+ *   - 3D cylinder with `preserve-3d` — 3 visible cards at once (front + 2 side)
+ *   - CSS transition on .carousel-track for smooth cylinder spin
+ *   - `transitionend` event drives the click queue (no setTimeout)
+ *   - `.is-active` class + `filter: brightness` for active vs side card treatment
+ *   - Logo decal: sibling of track (does not rotate), visible in side gaps
+ *   - Touch swipe (45px threshold), keyboard (arrow keys)
+ *   - prefers-reduced-motion: transition replaced with opacity fade
  *   - Auto-advance (optional, disabled by default)
  *
  * Slide shape: { image, alt, bgColor? }
  */
 
 interface Slide {
-  image: string;       // Image URL (required; portrait infographic)
+  image: string;       // Image URL (required; landscape infographic)
   alt: string;         // Alt text for accessibility (required)
   bgColor?: string;    // Fallback background color (optional, default: #1a1030)
 }
@@ -41,6 +45,11 @@ const {
 
 const count = slides.length;
 const showNav = count >= 2;
+
+// Each card sits on the cylinder surface. Its fixed angle offset from the
+// "front" position is (index * STEP_DEG). The track's cumulative rotateY
+// then brings the desired card to the front.
+const STEP_DEG = 60;
 ---
 
 <div
@@ -51,30 +60,31 @@ const showNav = count >= 2;
   aria-label="Bendigo Phoenix highlights"
   aria-roledescription="carousel"
 >
-  <!-- Background logo decal (static, behind slides) -->
-  <div class="logo-decal" aria-hidden="true">
-    <img
-      src="/images/phoenix-united-logo.png"
-      alt=""
-      class="logo-decal-img"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
-
-  <!-- Carousel viewport with perspective for 3D transforms -->
+  <!-- Carousel container — perspective for 3D transforms -->
   <div class="carousel-container">
-    <div class="carousel-viewport" aria-live="polite">
 
+    <!-- Background logo decal — sibling of track so it does NOT rotate -->
+    <div class="logo-decal" aria-hidden="true">
+      <img
+        src="/images/phoenix-united-logo.png"
+        alt=""
+        class="logo-decal-img"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <!-- 3D cylinder track — rotateY drives the whole cylinder spin -->
+    <div class="carousel-track" aria-live="polite">
       {slides.map((slide, i) => (
         <div
           class={`carousel-slide${i === 0 ? ' is-active' : ''}`}
           data-slide={i}
+          style={`--angle: ${i * STEP_DEG}deg; background-color: ${slide.bgColor ?? '#1a1030'};`}
           role="group"
           aria-roledescription="slide"
           aria-label={`Slide ${i + 1} of ${count}`}
           aria-hidden={i !== 0 ? 'true' : 'false'}
-          style={`background-color: ${slide.bgColor ?? '#1a1030'};`}
         >
           <img
             src={slide.image}
@@ -85,7 +95,6 @@ const showNav = count >= 2;
           />
         </div>
       ))}
-
     </div>
 
     <!-- Navigation buttons (only rendered if 2+ slides) -->
@@ -150,7 +159,39 @@ const showNav = count >= 2;
     gap: 20px;
   }
 
-  /* ── Background logo decal ───────────────────────────────── */
+  /* ── Carousel container — perspective context ────────────── */
+  /*
+   * Responsive width strategy (mirrors containerWidth() in responsive tests):
+   *   Mobile  (<768px):  min(90vw, 100vw - 32px) — 16px padding each side
+   *   Tablet  (768–1023px): min(80vw, 560px)
+   *   Desktop (1024px+): 640px fixed
+   * Cards are landscape 16:9, so container width = card width.
+   * Overflow is visible so side cards peek out of the viewport area.
+   */
+  .carousel-container {
+    position: relative;
+    width: clamp(280px, min(90vw, calc(100vw - 32px)), 560px);
+    /* Enough height for the card aspect-ratio (9/16 of width) plus a little */
+    aspect-ratio: 16 / 9;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    overflow: visible;
+    z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-container {
+      width: min(80vw, 560px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-container {
+      width: 640px;
+    }
+  }
+
+  /* ── Background logo decal — behind track, does not rotate ── */
   .logo-decal {
     position: absolute;
     inset: 0;
@@ -159,7 +200,6 @@ const showNav = count >= 2;
     justify-content: center;
     pointer-events: none;
     z-index: 0;
-    overflow: hidden;
   }
 
   .logo-decal-img {
@@ -170,64 +210,42 @@ const showNav = count >= 2;
     user-select: none;
   }
 
-  /* ── Carousel container — perspective for 3D transforms ──── */
+  /* ── 3D cylinder track ───────────────────────────────────── */
   /*
-   * Responsive width strategy (mirrors containerWidth() in responsive tests):
-   *   Mobile  (<768px):  min(90vw, 100vw - 32px)  — 16px padding each side
-   *   Tablet  (768–1023px): min(80vw, 400px)
-   *   Desktop (1024px+): 450px fixed
-   * Minimum: 280px (clamp lower bound)
+   * The track itself is a flat div; transform-style: preserve-3d lets the
+   * child cards exist in 3D space. Rotating the track rotates all cards.
+   * The translateZ(500px) radius is chosen so cards sit comfortably at 60°
+   * steps (circumference ≈ 2π × 500 ≈ 3142px; card width ≈ 640px — fine).
    */
-  .carousel-container {
-    position: relative;
-    width: clamp(280px, min(90vw, calc(100vw - 32px)), 420px);
+  .carousel-track {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 1;
   }
 
-  @media (min-width: 768px) {
-    .carousel-container {
-      width: min(80vw, 400px);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .carousel-container {
-      width: 450px;
-    }
-  }
-
-  /* ── Viewport — 3:4 portrait aspect ratio ────────────────── */
-  .carousel-viewport {
-    position: relative;
+  /* ── Individual cards — placed on the cylinder surface ───── */
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 3 / 4;
-    overflow: hidden;
+    height: 100%;
     border-radius: 16px;
-    perspective: 1200px;
-    perspective-origin: 50% 50%;
+    backface-visibility: hidden;
+    transform: rotateY(var(--angle)) translateZ(500px);
+    transition: filter 400ms ease;
+    filter: brightness(0.6);
+    will-change: transform, filter;
     box-shadow:
       0 24px 64px rgba(0, 0, 0, 0.5),
       0 0 0 1px rgba(139, 117, 54, 0.2);
   }
 
-  /* ── Slides — absolutely stacked ─────────────────────────── */
-  .carousel-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    z-index: 1;
-    pointer-events: none;
-    backface-visibility: hidden;
-    will-change: transform, opacity;
-    transform-origin: center center;
-    border-radius: 16px;
-  }
-
+  /* Active (front-facing) card — full brightness */
   .carousel-slide.is-active {
-    opacity: 1;
-    z-index: 2;
-    pointer-events: auto;
-    transform: rotateY(0deg);
+    filter: brightness(1);
   }
 
   /* ── Slide image ──────────────────────────────────────────── */
@@ -239,67 +257,26 @@ const showNav = count >= 2;
     border-radius: 16px;
   }
 
-  /* ── CSS 3D Rotation keyframes ───────────────────────────── */
-
-  /* Exit to the right (current slide going out when clicking "next") */
-  @keyframes rotateOutRight {
-    from { transform: rotateY(0deg);   opacity: 1; }
-    to   { transform: rotateY(90deg);  opacity: 0; }
-  }
-
-  /* Exit to the left (current slide going out when clicking "prev") */
-  @keyframes rotateOutLeft {
-    from { transform: rotateY(0deg);   opacity: 1; }
-    to   { transform: rotateY(-90deg); opacity: 0; }
-  }
-
-  /* Enter from the left (new slide coming in when clicking "next") */
-  @keyframes rotateInFromLeft {
-    from { transform: rotateY(-90deg); opacity: 0; }
-    to   { transform: rotateY(0deg);   opacity: 1; }
-  }
-
-  /* Enter from the right (new slide coming in when clicking "prev") */
-  @keyframes rotateInFromRight {
-    from { transform: rotateY(90deg);  opacity: 0; }
-    to   { transform: rotateY(0deg);   opacity: 1; }
-  }
-
-  /* Exit animation classes */
-  .animate-rotate-out-right {
-    animation: rotateOutRight 350ms cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
-  }
-  .animate-rotate-out-left {
-    animation: rotateOutLeft 350ms cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
-  }
-
-  /* Enter animation classes */
-  .animate-rotate-in-from-left {
-    animation: rotateInFromLeft 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  }
-  .animate-rotate-in-from-right {
-    animation: rotateInFromRight 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-  }
-
   /* ── Reduced-motion fallback ─────────────────────────────── */
+  /*
+   * When the user prefers reduced motion, suppress the 3D rotation.
+   * The track transition is replaced with an opacity fade on the active card.
+   * Cards still sit on the cylinder (3D positions preserved) but the cylinder
+   * itself no longer spins — only the active slide fades in/out.
+   */
   @media (prefers-reduced-motion: reduce) {
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to   { opacity: 0; }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    .carousel-track {
+      transition: none;
     }
 
-    .animate-rotate-out-right,
-    .animate-rotate-out-left {
-      animation: fadeOut 150ms ease-in-out forwards;
+    .carousel-slide {
+      /* Hide all non-active cards immediately */
+      opacity: 0;
+      transition: opacity 300ms ease;
     }
 
-    .animate-rotate-in-from-left,
-    .animate-rotate-in-from-right {
-      animation: fadeIn 150ms ease-in-out forwards;
+    .carousel-slide.is-active {
+      opacity: 1;
     }
   }
 
@@ -389,43 +366,37 @@ const showNav = count >= 2;
 </style>
 
 <script>
-  // Animation timing constants (matches CSS keyframe durations)
-  // Exit and enter run simultaneously; total window is 600ms per spec AC-3 (600–800ms)
-  const EXIT_DURATION    = 350;  // ms — matches rotateOut keyframe duration
-  const ENTER_DURATION   = 350;  // ms — simultaneous with exit (same duration)
-  const TOTAL_DURATION   = Math.max(EXIT_DURATION, ENTER_DURATION) + 250; // 600ms — within spec 600–800ms window
-  const REDUCED_DURATION = 150;  // ms — per-phase for prefers-reduced-motion fade
+  // Step angle between cards on the cylinder (degrees)
+  const STEP_DEG = 60;
 
   document.querySelectorAll<HTMLElement>('.hero-circular-carousel').forEach(carousel => {
     const count    = parseInt(carousel.dataset.count    ?? '1', 10);
     const interval = parseInt(carousel.dataset.interval ?? '8000', 10);
     const autoAdv  = carousel.dataset.autoAdvance === 'true';
 
+    const track    = carousel.querySelector<HTMLElement>('.carousel-track');
     const slides   = Array.from(carousel.querySelectorAll<HTMLElement>('.carousel-slide'));
     const dots     = Array.from(carousel.querySelectorAll<HTMLElement>('.carousel-dot'));
     const prevBtn  = carousel.querySelector<HTMLButtonElement>('.carousel-prev');
     const nextBtn  = carousel.querySelector<HTMLButtonElement>('.carousel-next');
 
-    // State
-    let currentSlide  = 0;
-    let isAnimating   = false;
-    const queue: string[] = [];
-    let autoTimer: ReturnType<typeof setInterval> | null = null;
+    if (!track) return;
 
     // Detect reduced motion preference
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const totalDuration = reducedMotion ? REDUCED_DURATION + 50 : TOTAL_DURATION;
 
-    // ── Slide routing ──────────────────────────────────────────────
-    function nextIndex(): number {
-      return (currentSlide + 1) % count;
-    }
+    // ── State ──────────────────────────────────────────────────────────────────
+    // currentAngle: cumulative track rotation (never reset/modulo) so CSS
+    // transition always interpolates in the correct direction.
+    let currentAngle = 0;
+    // currentIndex: logical slide index (0..count-1)
+    let currentIndex = 0;
+    let isAnimating  = false;
+    const queue: string[] = [];
+    let autoTimer: ReturnType<typeof setInterval> | null = null;
+    let lastFocusedButton: HTMLButtonElement | null = null;
 
-    function prevIndex(): number {
-      return ((currentSlide - 1) % count + count) % count;
-    }
-
-    // ── DOM updates ────────────────────────────────────────────────
+    // ── DOM helpers ────────────────────────────────────────────────────────────
     function updateDots(index: number) {
       dots.forEach((d, i) => {
         d.classList.toggle('is-active', i === index);
@@ -433,81 +404,63 @@ const showNav = count >= 2;
       });
     }
 
-    // Set aria-disabled on both nav buttons (used to signal animation state
-    // to assistive technology without removing buttons from the tab order)
+    function updateSlideActiveClass(index: number) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('is-active', i === index);
+        s.setAttribute('aria-hidden', String(i !== index));
+      });
+    }
+
     function setButtonsAriaDisabled(disabled: boolean) {
       if (prevBtn) prevBtn.setAttribute('aria-disabled', String(disabled));
       if (nextBtn) nextBtn.setAttribute('aria-disabled', String(disabled));
     }
 
-    // ── Animation execution ────────────────────────────────────────
-    // Track last-focused button for focus restoration after animation
-    let lastFocusedButton: HTMLButtonElement | null = null;
+    // ── Animation completion ───────────────────────────────────────────────────
+    // In reduced-motion mode we use a manual 300ms delay (the CSS transition
+    // on the active slide opacity) rather than tracking a track transitionend.
+    function onAnimationComplete() {
+      isAnimating = false;
+      setButtonsAriaDisabled(false);
 
-    function goTo(nextIdx: number, direction: 'next' | 'prev') {
-      if (isAnimating || nextIdx === currentSlide) return;
+      if (lastFocusedButton && document.activeElement !== lastFocusedButton) {
+        lastFocusedButton.focus({ preventScroll: true });
+      }
+      lastFocusedButton = null;
+
+      processQueue();
+    }
+
+    // ── Move cylinder ──────────────────────────────────────────────────────────
+    function rotateToIndex(nextIdx: number, direction: 'next' | 'prev') {
+      if (isAnimating || nextIdx === currentIndex) return;
       isAnimating = true;
       setButtonsAriaDisabled(true);
 
-      const outSlide = slides[currentSlide];
-      const inSlide  = slides[nextIdx];
+      if (direction === 'next') {
+        currentAngle -= STEP_DEG;
+      } else {
+        currentAngle += STEP_DEG;
+      }
+      currentIndex = nextIdx;
 
-      // Determine animation class names based on direction and reduced-motion
-      let outClass: string;
-      let inClass: string;
+      // Update active visuals at start of transition
+      updateSlideActiveClass(currentIndex);
+      updateDots(currentIndex);
 
       if (reducedMotion) {
-        outClass = direction === 'next' ? 'animate-rotate-out-right' : 'animate-rotate-out-left';
-        inClass  = direction === 'next' ? 'animate-rotate-in-from-left' : 'animate-rotate-in-from-right';
-        // In reduced-motion mode these map to fadeOut/fadeIn via CSS @media override
+        // No track rotation: just the active slide fades in (CSS handles opacity).
+        // After 300ms (opacity transition duration) settle the state.
+        setTimeout(onAnimationComplete, 300);
       } else {
-        outClass = direction === 'next' ? 'animate-rotate-out-right' : 'animate-rotate-out-left';
-        inClass  = direction === 'next' ? 'animate-rotate-in-from-left' : 'animate-rotate-in-from-right';
+        // Apply rotation; transitionend fires when CSS transition on track finishes.
+        track.style.transform = `rotateY(${currentAngle}deg)`;
+        // transitionend listener (one-shot)
+        track.addEventListener('transitionend', onAnimationComplete, { once: true });
       }
-
-      // Stage incoming slide (visible in DOM, animation handles opacity)
-      inSlide.style.zIndex = '3';
-      inSlide.style.opacity = '0';
-      inSlide.classList.remove('is-active');
-
-      // Apply exit + enter animations simultaneously
-      outSlide.classList.add(outClass);
-      inSlide.classList.add(inClass);
-
-      // Update dots at animation start
-      updateDots(nextIdx);
-
-      // Settle state after animation completes
-      setTimeout(() => {
-        // Clean up exiting slide
-        outSlide.classList.remove('is-active', outClass);
-        outSlide.style.zIndex = '';
-        outSlide.style.opacity = '';
-        outSlide.setAttribute('aria-hidden', 'true');
-
-        // Settle incoming slide as active
-        inSlide.classList.remove(inClass);
-        inSlide.classList.add('is-active');
-        inSlide.style.zIndex = '';
-        inSlide.style.opacity = '';
-        inSlide.setAttribute('aria-hidden', 'false');
-
-        currentSlide = nextIdx;
-        isAnimating = false;
-        setButtonsAriaDisabled(false);
-
-        // Restore focus to the button that triggered the action
-        if (lastFocusedButton && document.activeElement !== lastFocusedButton) {
-          lastFocusedButton.focus({ preventScroll: true });
-        }
-        lastFocusedButton = null;
-
-        // Process queue
-        processQueue();
-      }, totalDuration);
     }
 
-    // ── Queue processing ───────────────────────────────────────────
+    // ── Queue processing ───────────────────────────────────────────────────────
     function processQueue() {
       if (queue.length === 0) return;
       const action = queue.shift()!;
@@ -515,22 +468,23 @@ const showNav = count >= 2;
       else if (action === 'prev') executePrev();
     }
 
+    function nextIndex(): number {
+      return (currentIndex + 1) % count;
+    }
+
+    function prevIndex(): number {
+      return ((currentIndex - 1) % count + count) % count;
+    }
+
     function executeNext() {
-      goTo(nextIndex(), 'next');
+      rotateToIndex(nextIndex(), 'next');
     }
 
     function executePrev() {
-      goTo(prevIndex(), 'prev');
+      rotateToIndex(prevIndex(), 'prev');
     }
 
-    // ── Focus tracking helpers ─────────────────────────────────────
-    // Called by button click/keypress handlers to record which button
-    // should receive focus back once the animation completes.
-    function trackButtonFocus(btn: HTMLButtonElement | null) {
-      if (btn) lastFocusedButton = btn;
-    }
-
-    // ── Public handlers (queue-aware) ──────────────────────────────
+    // ── Public handlers (queue-aware) ──────────────────────────────────────────
     function handleNext() {
       if (isAnimating) {
         queue.push('next');
@@ -549,7 +503,11 @@ const showNav = count >= 2;
       resetAutoTimer();
     }
 
-    // ── Auto-advance timer ─────────────────────────────────────────
+    function trackButtonFocus(btn: HTMLButtonElement | null) {
+      if (btn) lastFocusedButton = btn;
+    }
+
+    // ── Auto-advance timer ─────────────────────────────────────────────────────
     function startAutoTimer() {
       if (!autoAdv) return;
       autoTimer = setInterval(() => {
@@ -563,7 +521,7 @@ const showNav = count >= 2;
       startAutoTimer();
     }
 
-    // ── Event listeners ────────────────────────────────────────────
+    // ── Event listeners ────────────────────────────────────────────────────────
     if (nextBtn) nextBtn.addEventListener('click', () => {
       trackButtonFocus(nextBtn);
       handleNext();
@@ -576,8 +534,8 @@ const showNav = count >= 2;
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
         if (isAnimating) return;
-        const dir = i > currentSlide ? 'next' : 'prev';
-        goTo(i, dir);
+        const dir = i > currentIndex ? 'next' : 'prev';
+        rotateToIndex(i, dir);
         resetAutoTimer();
       });
     });
@@ -609,7 +567,7 @@ const showNav = count >= 2;
     });
     carousel.addEventListener('mouseleave', startAutoTimer);
 
-    // ── Start ──────────────────────────────────────────────────────
+    // ── Start ──────────────────────────────────────────────────────────────────
     startAutoTimer();
   });
 </script>

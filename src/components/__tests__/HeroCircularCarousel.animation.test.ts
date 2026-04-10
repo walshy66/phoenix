@@ -2,37 +2,36 @@
  * T002: Unit tests for animation state and click queue
  *
  * Tests the isAnimating flag and click queue mechanism.
+ * The new architecture uses `transitionend` (not setTimeout) to signal
+ * completion.  The `currentAngle` accumulates without modulo so the CSS
+ * transition always interpolates in the correct direction.
+ *
  * Pure logic tested without DOM — mirrors carousel script internals.
  *
  * Traceability: FR-015, AC-16 through AC-19
  */
 
-import { describe, test, expect, vi, beforeEach } from 'vitest';
+import { describe, test, expect } from 'vitest';
 
-// Simulates the carousel animation controller logic
-// as it would exist in HeroCircularCarousel.astro <script>
-function makeAnimationController(totalSlides: number, animationDurationMs = 700) {
-  let currentSlide = 0;
-  let isAnimating = false;
+const STEP_DEG = 60; // degrees per step — matches component constant
+
+// ─── 3D Cylinder animation controller ────────────────────────────────────────
+// Mirrors the transitionend-based state machine inside HeroCircularCarousel.astro.
+// Instead of setTimeout, callers invoke `fireTransitionEnd()` to simulate the
+// CSS transition completing on the track element.
+
+function makeAnimationController(totalSlides: number) {
+  let currentIndex = 0;
+  let currentAngle = 0;
+  let isAnimating  = false;
   const queue: string[] = [];
-  let _timerCallback: (() => void) | null = null;
 
-  // Simulate setting a timer (injectable for testing)
-  let _setTimeoutFn: (fn: () => void, ms: number) => void = (fn, _ms) => {
-    _timerCallback = fn;
-  };
+  // Simulated transitionend callback (set when animation starts)
+  let pendingTransitionEnd: (() => void) | null = null;
 
-  function setTimeoutImpl(fn: typeof _setTimeoutFn) {
-    _setTimeoutFn = fn;
-  }
-
-  // Flush the pending timer (used in tests to simulate animation completing)
-  function flushTimer() {
-    if (_timerCallback) {
-      const fn = _timerCallback;
-      _timerCallback = null;
-      fn();
-    }
+  function onAnimationComplete() {
+    isAnimating = false;
+    processQueue();
   }
 
   function processQueue() {
@@ -42,24 +41,35 @@ function makeAnimationController(totalSlides: number, animationDurationMs = 700)
     else if (action === 'prev') executePrev();
   }
 
-  function executeNext() {
+  function rotateToIndex(nextIdx: number, direction: 'next' | 'prev') {
+    if (isAnimating || nextIdx === currentIndex) return;
     isAnimating = true;
-    const nextSlide = (currentSlide + 1) % totalSlides;
-    _setTimeoutFn(() => {
-      currentSlide = nextSlide;
-      isAnimating = false;
-      processQueue();
-    }, animationDurationMs);
+
+    if (direction === 'next') {
+      currentAngle -= STEP_DEG;
+    } else {
+      currentAngle += STEP_DEG;
+    }
+    currentIndex = nextIdx;
+
+    // Register a one-shot transitionend callback
+    pendingTransitionEnd = onAnimationComplete;
+  }
+
+  function nextIdx(): number {
+    return (currentIndex + 1) % totalSlides;
+  }
+
+  function prevIdx(): number {
+    return ((currentIndex - 1) % totalSlides + totalSlides) % totalSlides;
+  }
+
+  function executeNext() {
+    rotateToIndex(nextIdx(), 'next');
   }
 
   function executePrev() {
-    isAnimating = true;
-    const prevSlide = ((currentSlide - 1) % totalSlides + totalSlides) % totalSlides;
-    _setTimeoutFn(() => {
-      currentSlide = prevSlide;
-      isAnimating = false;
-      processQueue();
-    }, animationDurationMs);
+    rotateToIndex(prevIdx(), 'prev');
   }
 
   function handleNext() {
@@ -78,18 +88,28 @@ function makeAnimationController(totalSlides: number, animationDurationMs = 700)
     executePrev();
   }
 
+  // Simulate the CSS transitionend event firing
+  function fireTransitionEnd() {
+    if (pendingTransitionEnd) {
+      const fn = pendingTransitionEnd;
+      pendingTransitionEnd = null;
+      fn();
+    }
+  }
+
   return {
     handleNext,
     handlePrev,
-    flushTimer,
-    setTimeoutImpl,
-    getIsAnimating: () => isAnimating,
-    getCurrentSlide: () => currentSlide,
-    getQueue: () => [...queue],
-    getQueueLength: () => queue.length,
+    fireTransitionEnd,
+    getIsAnimating:  () => isAnimating,
+    getCurrentIndex: () => currentIndex,
+    getCurrentAngle: () => currentAngle,
+    getQueue:        () => [...queue],
+    getQueueLength:  () => queue.length,
   };
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
 describe('Animation State — isAnimating flag', () => {
   test('isAnimating is false initially', () => {
     const ctrl = makeAnimationController(3);
@@ -108,23 +128,72 @@ describe('Animation State — isAnimating flag', () => {
     expect(ctrl.getIsAnimating()).toBe(true);
   });
 
-  test('isAnimating returns to false after animation completes', () => {
+  test('isAnimating returns to false after transitionend fires', () => {
     const ctrl = makeAnimationController(3);
     ctrl.handleNext();
     expect(ctrl.getIsAnimating()).toBe(true);
-    ctrl.flushTimer();
+    ctrl.fireTransitionEnd();
     expect(ctrl.getIsAnimating()).toBe(false);
   });
 
-  test('slide advances after animation completes', () => {
+  test('slide index advances after transitionend fires', () => {
     const ctrl = makeAnimationController(3);
-    expect(ctrl.getCurrentSlide()).toBe(0);
+    expect(ctrl.getCurrentIndex()).toBe(0);
     ctrl.handleNext();
-    ctrl.flushTimer();
-    expect(ctrl.getCurrentSlide()).toBe(1);
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(1);
   });
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+describe('Animation State — currentAngle tracking', () => {
+  test('currentAngle starts at 0', () => {
+    const ctrl = makeAnimationController(3);
+    expect(ctrl.getCurrentAngle()).toBe(0);
+  });
+
+  test('clicking next decrements currentAngle by STEP_DEG (60°)', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handleNext();
+    expect(ctrl.getCurrentAngle()).toBe(-STEP_DEG);
+  });
+
+  test('clicking prev increments currentAngle by STEP_DEG (60°)', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handlePrev();
+    expect(ctrl.getCurrentAngle()).toBe(STEP_DEG);
+  });
+
+  test('currentAngle accumulates without modulo (3 next clicks = −180°)', () => {
+    const ctrl = makeAnimationController(6);
+    ctrl.handleNext();
+    ctrl.fireTransitionEnd();
+    ctrl.handleNext();
+    ctrl.fireTransitionEnd();
+    ctrl.handleNext();
+    ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentAngle()).toBe(-3 * STEP_DEG);
+  });
+
+  test('currentAngle updates immediately when rotation starts (not on transitionend)', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handleNext();
+    // Angle already updated — CSS transition uses this value right away
+    expect(ctrl.getCurrentAngle()).toBe(-STEP_DEG);
+    ctrl.fireTransitionEnd();
+    // Angle unchanged after transitionend — it was set on start
+    expect(ctrl.getCurrentAngle()).toBe(-STEP_DEG);
+  });
+
+  test('currentIndex updates immediately when rotation starts', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handleNext();
+    // Index already advanced when rotateToIndex was called
+    expect(ctrl.getCurrentIndex()).toBe(1);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 describe('Animation Queue — click queueing behavior', () => {
   test('queue is empty initially', () => {
     const ctrl = makeAnimationController(3);
@@ -147,28 +216,27 @@ describe('Animation Queue — click queueing behavior', () => {
     expect(ctrl.getQueue()).toEqual(['prev']);
   });
 
-  test('queue processes sequentially after animation completes', () => {
+  test('queue processes sequentially after transitionend fires', () => {
     const ctrl = makeAnimationController(5);
-    ctrl.handleNext(); // slide 0→1
+    ctrl.handleNext(); // index 0→1
     ctrl.handleNext(); // queued: 'next'
     ctrl.handleNext(); // queued: 'next'
 
     expect(ctrl.getQueueLength()).toBe(2);
 
     // Complete first animation → dequeues and starts second
-    ctrl.flushTimer(); // slide 1→2, starts next queued action
+    ctrl.fireTransitionEnd(); // index 1→2, starts next queued action
     expect(ctrl.getQueueLength()).toBe(1);
-    expect(ctrl.getCurrentSlide()).toBe(1); // first animation completed
+    expect(ctrl.getCurrentIndex()).toBe(2); // second animation already started
 
-    ctrl.flushTimer(); // slide 2→3, starts next queued action
-    expect(ctrl.getQueueLength()).toBe(0); // queue drained
-    expect(ctrl.getCurrentSlide()).toBe(2);
+    ctrl.fireTransitionEnd(); // index 2→3, starts next queued action
+    expect(ctrl.getQueueLength()).toBe(0);
+    expect(ctrl.getCurrentIndex()).toBe(3);
   });
 
   test('rapid 5 clicks execute in order without dropping any', () => {
     const ctrl = makeAnimationController(10);
 
-    // 5 rapid next clicks
     ctrl.handleNext(); // starts immediately
     ctrl.handleNext(); // queued [next]
     ctrl.handleNext(); // queued [next, next]
@@ -177,15 +245,14 @@ describe('Animation Queue — click queueing behavior', () => {
 
     expect(ctrl.getQueueLength()).toBe(4);
 
-    // Process all 5 animations in order
-    ctrl.flushTimer(); // completes 1st, starts 2nd
-    ctrl.flushTimer(); // completes 2nd, starts 3rd
-    ctrl.flushTimer(); // completes 3rd, starts 4th
-    ctrl.flushTimer(); // completes 4th, starts 5th
-    ctrl.flushTimer(); // completes 5th
+    ctrl.fireTransitionEnd(); // completes 1st, starts 2nd
+    ctrl.fireTransitionEnd(); // completes 2nd, starts 3rd
+    ctrl.fireTransitionEnd(); // completes 3rd, starts 4th
+    ctrl.fireTransitionEnd(); // completes 4th, starts 5th
+    ctrl.fireTransitionEnd(); // completes 5th
 
-    // Should have advanced 5 slides total
-    expect(ctrl.getCurrentSlide()).toBe(5);
+    expect(ctrl.getCurrentIndex()).toBe(5);
+    expect(ctrl.getCurrentAngle()).toBe(-5 * STEP_DEG);
     expect(ctrl.getQueueLength()).toBe(0);
     expect(ctrl.getIsAnimating()).toBe(false);
   });
@@ -196,11 +263,11 @@ describe('Animation Queue — click queueing behavior', () => {
     ctrl.handleNext(); // queued: next
     ctrl.handlePrev(); // queued: prev
 
-    ctrl.flushTimer(); // 0→1, dequeues next, starts 1→2
-    ctrl.flushTimer(); // 1→2, dequeues prev, starts 2→1
-    ctrl.flushTimer(); // 2→1 (note: third animation starts from slide 2 in the queue order, prev brings back to 1)
+    ctrl.fireTransitionEnd(); // 0→1 complete, dequeues next, starts 1→2
+    ctrl.fireTransitionEnd(); // 1→2 complete, dequeues prev, starts 2→1
+    ctrl.fireTransitionEnd(); // 2→1 complete
 
-    expect(ctrl.getCurrentSlide()).toBe(1);
+    expect(ctrl.getCurrentIndex()).toBe(1);
     expect(ctrl.getQueueLength()).toBe(0);
   });
 
@@ -209,14 +276,15 @@ describe('Animation Queue — click queueing behavior', () => {
     ctrl.handleNext();
     ctrl.handleNext();
 
-    ctrl.flushTimer();
-    ctrl.flushTimer();
+    ctrl.fireTransitionEnd();
+    ctrl.fireTransitionEnd();
 
     expect(ctrl.getQueueLength()).toBe(0);
     expect(ctrl.getIsAnimating()).toBe(false);
   });
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
 describe('Animation State — no action while not animating', () => {
   test('handleNext when not animating does NOT add to queue', () => {
     const ctrl = makeAnimationController(3);
@@ -230,5 +298,37 @@ describe('Animation State — no action while not animating', () => {
     ctrl.handlePrev();
     expect(ctrl.getQueueLength()).toBe(0);
     expect(ctrl.getIsAnimating()).toBe(true);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+describe('Slide Index Looping with 3D angle', () => {
+  test('next() loops slide index back to 0 from last slide', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 1
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 2
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 0 (loop)
+    expect(ctrl.getCurrentIndex()).toBe(0);
+  });
+
+  test('currentAngle continues decreasing even when index wraps', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 1, angle −60
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 2, angle −120
+    ctrl.handleNext(); ctrl.fireTransitionEnd(); // → 0, angle −180
+    // Angle is cumulative — no modulo
+    expect(ctrl.getCurrentAngle()).toBe(-3 * STEP_DEG);
+  });
+
+  test('prev() loops slide index to last slide from 0', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handlePrev(); ctrl.fireTransitionEnd();
+    expect(ctrl.getCurrentIndex()).toBe(2);
+  });
+
+  test('currentAngle increases on prev even when index wraps', () => {
+    const ctrl = makeAnimationController(3);
+    ctrl.handlePrev(); ctrl.fireTransitionEnd(); // → 2, angle +60
+    expect(ctrl.getCurrentAngle()).toBe(STEP_DEG);
   });
 });
