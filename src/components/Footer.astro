@@ -7,13 +7,15 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <!-- Brand -->
       <div>
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center flex-shrink-0">
-            <span class="text-white font-bold text-lg leading-none">P</span>
-          </div>
-          <div>
-            <p class="text-white font-bold text-sm tracking-widest uppercase">BENDIGO</p>
-            <p class="font-bold text-sm tracking-widest uppercase" style="color: #8B7536;">PHOENIX</p>
+        <div class="mb-4">
+          <img
+            src="/images/logos/phoenix-logo.png"
+            alt="Phoenix United Basketball"
+            class="h-16 w-auto"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+          />
+          <div class="hidden w-16 h-16 rounded-full bg-brand-gold flex items-center justify-center flex-shrink-0 text-white font-bold text-lg leading-none">
+            PU
           </div>
         </div>
         <p class="text-purple-200 text-sm leading-relaxed">
@@ -92,7 +94,7 @@ const currentYear = new Date().getFullYear();
           rel="noopener noreferrer"
           class="hover:text-brand-gold transition-colors"
         >
-          Compete in the Bendigo Basketball Association
+          compete in the Bendigo Basketball Association
         </a>
       </p>
     </div>
