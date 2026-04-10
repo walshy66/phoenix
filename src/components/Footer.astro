@@ -17,7 +17,7 @@ const currentYear = new Date().getFullYear();
           </div>
         </div>
         <p class="text-purple-200 text-sm leading-relaxed">
-          Where Community Meets Competition. Proudly serving basketball in Central Victoria.
+          Where Community Meets Competition. Proudly serving basketball in Bendigo.
         </p>
       </div>
 
@@ -68,14 +68,14 @@ const currentYear = new Date().getFullYear();
         </div>
       </div>
 
-      <!-- Quick Links -->
+      <!-- Newsletter -->
       <div>
-        <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
-        <div class="space-y-1">
-          <a href="/seasons" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Seasons</a>
-          <a href="/get-involved" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Get Involved</a>
-          <a href="/coaching-resources" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Coaching Resources</a>
-          <a href="/contact" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Contact</a>
+        <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Newsletter</h3>
+        <div id="eo-form-11c550ac-11dc-11f1-a2e0-ef681a07d4a5"></div>
+        <div id="eo-fallback-newsletter" class="hidden">
+          <p class="text-sm text-purple-200">
+            Form unavailable. <a href="mailto:hello@bendigophoenix.org.au" class="underline hover:no-underline text-brand-gold">Email us to subscribe</a>
+          </p>
         </div>
       </div>
     </div>
@@ -83,11 +83,39 @@ const currentYear = new Date().getFullYear();
     <!-- Bottom bar -->
     <div class="border-t border-purple-700 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="text-purple-300 text-xs">
-        &copy; {currentYear} Bendigo Phoenix Basketball Club. All rights reserved.
+        &copy; Phoenix United Basketball Development Club Inc. 2003 - {currentYear} All rights reserved.
       </p>
       <p class="text-purple-400 text-xs">
-        Compete in the Bendigo Basketball Association
+        <a
+          href="https://bendigobasketball.com.au/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-brand-gold transition-colors"
+        >
+          Compete in the Bendigo Basketball Association
+        </a>
       </p>
     </div>
   </div>
+
+  <!-- Email Octopus Script -->
+  <script async src="https://eomail5.com/form/11c550ac-11dc-11f1-a2e0-ef681a07d4a5.js" data-form="11c550ac-11dc-11f1-a2e0-ef681a07d4a5"></script>
+
+  <!-- Fallback Detection: Show fallback if Email Octopus fails to load -->
+  <script is:inline>
+    (function() {
+      const TIMEOUT_MS = 3000;
+      const formContainer = document.getElementById('eo-form-11c550ac-11dc-11f1-a2e0-ef681a07d4a5');
+      const fallbackDiv = document.getElementById('eo-fallback-newsletter');
+
+      if (!formContainer || !fallbackDiv) return;
+
+      setTimeout(() => {
+        if (formContainer.children.length === 0 && !window.EmailOctopusAPI) {
+          fallbackDiv.classList.remove('hidden');
+          console.warn('Email Octopus form failed to load. Showing fallback.');
+        }
+      }, TIMEOUT_MS);
+    })();
+  </script>
 </footer>
