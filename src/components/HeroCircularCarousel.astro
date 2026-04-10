@@ -1,0 +1,422 @@
+---
+/**
+ * HeroCircularCarousel — slot-based 3D coverflow.
+ *
+ * Why NOT preserve-3d / rotating track:
+ *   Any CSS property on an ancestor that creates a stacking context
+ *   (overflow, filter, will-change, etc.) silently flattens preserve-3d.
+ *   This is a well-known browser bug / spec grey area that's impossible
+ *   to reliably work around in a real page with real layout code.
+ *
+ * What we do instead:
+ *   Each card has perspective() INSIDE its own transform property.
+ *   No preserve-3d needed → no flattening risk → works everywhere.
+ *   JS updates data-slot (-2 / -1 / 0 / 1 / 2) on each card.
+ *   CSS defines exactly what each slot looks like (position, rotation, depth).
+ *   CSS transitions animate between slot changes automatically.
+ *
+ * Slot positions:
+ *   0  = front card   — centred, full size, full brightness
+ *   ±1 = side cards   — offset left/right, rotated inward, slightly smaller
+ *   ±2 = back cards   — centred, tiny scale, invisible
+ *              (animates through centre behind front card → wrap-around feel)
+ */
+
+interface Slide {
+  image: string;
+  alt: string;
+  bgColor?: string;
+}
+
+interface Props {
+  slides: Slide[];
+  autoAdvanceMs?: number;
+  autoAdvanceEnabled?: boolean;
+}
+
+const {
+  slides,
+  autoAdvanceMs = 8000,
+  autoAdvanceEnabled = false,
+} = Astro.props;
+
+const count = slides.length;
+const showNav = count >= 2;
+
+/**
+ * Compute the initial slot for card i so both ±1 positions are occupied
+ * on first paint (e.g. 5 cards → slots 0, 1, 2, −2, −1).
+ */
+function initialSlot(i: number, n: number): number {
+  const half = Math.floor(n / 2);
+  let pos = i;
+  if (pos > half) pos -= n;
+  return pos;
+}
+---
+
+<div
+  class="hero-circular-carousel"
+  data-count={count}
+  data-interval={autoAdvanceMs}
+  data-auto-advance={autoAdvanceEnabled ? 'true' : 'false'}
+  aria-label="Bendigo Phoenix highlights"
+  aria-roledescription="carousel"
+>
+  <div class="carousel-stage" aria-live="polite">
+
+    {slides.map((slide, i) => {
+      const slot = initialSlot(i, count);
+      return (
+        <div
+          class={`carousel-slide${i === 0 ? ' is-active' : ''}`}
+          data-index={i}
+          data-slot={slot}
+          style={`background-color: ${slide.bgColor ?? '#2a1a5e'}`}
+          role="group"
+          aria-roledescription="slide"
+          aria-label={`Slide ${i + 1} of ${count}`}
+          aria-hidden={i !== 0 ? 'true' : 'false'}
+        >
+          <img
+            src={slide.image}
+            alt={slide.alt}
+            class="slide-img"
+            loading={i === 0 ? 'eager' : 'lazy'}
+            decoding={i === 0 ? 'auto' : 'async'}
+          />
+        </div>
+      );
+    })}
+
+    {showNav && (
+      <button class="carousel-arrow carousel-prev" aria-label="Previous slide" aria-disabled="false" type="button">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+    )}
+    {showNav && (
+      <button class="carousel-arrow carousel-next" aria-label="Next slide" aria-disabled="false" type="button">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    )}
+  </div>
+
+  {showNav && (
+    <div class="carousel-dots" role="tablist" aria-label="Slide indicators">
+      {slides.map((_, i) => (
+        <button
+          class={`carousel-dot${i === 0 ? ' is-active' : ''}`}
+          data-dot={i}
+          role="tab"
+          aria-label={`Go to slide ${i + 1}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          type="button"
+        />
+      ))}
+    </div>
+  )}
+</div>
+
+<style>
+  /* ── Card dimensions — 85vw wide, 16:9 height ───────────────── */
+  .hero-circular-carousel {
+    --card-w: min(85vw, 1400px);
+    --card-h: calc(var(--card-w) * 9 / 16);
+
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* ── Stage ───────────────────────────────────────────────── */
+  /* NO overflow:hidden, NO perspective property here.
+     perspective() lives inside each card's transform instead. */
+  .carousel-stage {
+    position: relative;
+    width: 100%;
+    height: var(--card-h);
+  }
+
+  /* ── Cards — base styles ─────────────────────────────────── */
+  .carousel-slide {
+    position: absolute;
+    width: var(--card-w);
+    height: var(--card-h);
+    left: calc(50% - var(--card-w) / 2);
+    top: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65);
+    will-change: transform, opacity;
+    /* Exit and enter each take 400ms — JS sequences them with a gap between */
+    transition:
+      transform 400ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity   400ms ease;
+  }
+
+  /* ── Slot 0: active card — fully visible, centred ────────── */
+  .carousel-slide[data-slot="0"] {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    z-index: 3;
+  }
+
+  /* ── Slot +1: just exited to the right — fading out ─────── */
+  .carousel-slide[data-slot="1"] {
+    transform: translateX(40px) scale(0.96);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── Slot −1: just exited to the left — fading out ──────── */
+  .carousel-slide[data-slot="-1"] {
+    transform: translateX(-40px) scale(0.96);
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ── Slots ±2 and beyond — invisible, in place ───────────── */
+  .carousel-slide[data-slot="2"],
+  .carousel-slide[data-slot="-2"] {
+    transform: translateX(0) scale(1);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Safety net */
+  .carousel-slide:not([data-slot="0"]):not([data-slot="1"]):not([data-slot="-1"]):not([data-slot="2"]):not([data-slot="-2"]) {
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Slide image ─────────────────────────────────────────── */
+  .slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Reduced-motion fallback ─────────────────────────────── */
+  /* Already a simple fade — just remove the slight translate */
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-slide[data-slot="1"],
+    .carousel-slide[data-slot="-1"] {
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  /* ── Navigation arrows ───────────────────────────────────── */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(139, 117, 54, 0.6);
+    background: rgba(20, 10, 40, 0.75);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    outline-offset: 3px;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, opacity 0.15s;
+  }
+
+  .carousel-arrow:hover {
+    background: #8B7536;
+    border-color: #8B7536;
+    transform: translateY(-50%) scale(1.08);
+  }
+  .carousel-arrow:focus-visible { outline: 2px solid #8B7536; }
+  .carousel-arrow:active { opacity: 0.75; transform: translateY(-50%) scale(0.96); }
+  .carousel-arrow[aria-disabled="true"] { opacity: 0.4; }
+
+  /* Just outside the card edges */
+  .carousel-prev { left: calc(50% - var(--card-w) / 2 - 14px); }
+  .carousel-next { right: calc(50% - var(--card-w) / 2 - 14px); }
+
+  @media (max-width: 539px) {
+    .carousel-prev { left: 8px; }
+    .carousel-next { right: 8px; }
+  }
+
+  /* ── Dot indicators ──────────────────────────────────────── */
+  .carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .carousel-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s, width 0.25s;
+    outline-offset: 3px;
+  }
+  .carousel-dot:focus-visible { outline: 2px solid #8B7536; }
+  .carousel-dot.is-active {
+    background: #8B7536;
+    transform: scale(1.3);
+    width: 24px;
+    border-radius: 5px;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.hero-circular-carousel').forEach(carousel => {
+    const count    = parseInt(carousel.dataset.count    ?? '1', 10);
+    const interval = parseInt(carousel.dataset.interval ?? '8000', 10);
+    const autoAdv  = carousel.dataset.autoAdvance === 'true';
+
+    const slides  = Array.from(carousel.querySelectorAll<HTMLElement>('.carousel-slide'));
+    const dots    = Array.from(carousel.querySelectorAll<HTMLElement>('.carousel-dot'));
+    const prevBtn = carousel.querySelector<HTMLButtonElement>('.carousel-prev');
+    const nextBtn = carousel.querySelector<HTMLButtonElement>('.carousel-next');
+
+    if (slides.length === 0) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let currentIndex = 0;
+    let isAnimating  = false;
+    const queue: ('next' | 'prev')[] = [];
+    let autoTimer: ReturnType<typeof setInterval> | null = null;
+    let lastFocusedButton: HTMLButtonElement | null = null;
+
+    // ── Slot computation ───────────────────────────────────────────────────────
+    function computeSlot(cardIndex: number, current: number): number {
+      const half = Math.floor(count / 2);
+      let slot = ((cardIndex - current) % count + count) % count;
+      if (slot > half) slot -= count;
+      return slot;
+    }
+
+    // ── DOM updates ────────────────────────────────────────────────────────────
+    function updateSlots(newIndex: number) {
+      slides.forEach((s, i) => {
+        s.dataset.slot = String(computeSlot(i, newIndex));
+        s.classList.toggle('is-active', i === newIndex);
+        s.setAttribute('aria-hidden', String(i !== newIndex));
+      });
+    }
+
+    function updateDots(index: number) {
+      dots.forEach((d, i) => {
+        d.classList.toggle('is-active', i === index);
+        d.setAttribute('aria-selected', String(i === index));
+      });
+    }
+
+    function setButtonsAriaDisabled(v: boolean) {
+      prevBtn?.setAttribute('aria-disabled', String(v));
+      nextBtn?.setAttribute('aria-disabled', String(v));
+    }
+
+    // ── Navigate — two-phase: exit → hold → enter ─────────────────────────────
+    function goTo(nextIdx: number) {
+      if (isAnimating || nextIdx === currentIndex) return;
+      isAnimating = true;
+      setButtonsAriaDisabled(true);
+
+      currentIndex = nextIdx;
+
+      // Phase 1 — slide out everything EXCEPT the incoming card.
+      // The incoming card stays at its current hidden slot so the background
+      // is fully exposed once the exit animation finishes (~400ms).
+      slides.forEach((s, i) => {
+        if (i === nextIdx) return;
+        s.dataset.slot = String(computeSlot(i, nextIdx));
+        s.classList.remove('is-active');
+        s.setAttribute('aria-hidden', 'true');
+      });
+
+      // Phase 2 — after exit + hold, fade the new card in from its waiting slot.
+      // 550ms = 400ms exit + 150ms background hold.
+      setTimeout(() => {
+        const incoming = slides[nextIdx];
+        incoming.dataset.slot = '0';
+        incoming.classList.add('is-active');
+        incoming.setAttribute('aria-hidden', 'false');
+        updateDots(nextIdx);
+        // Wait for enter animation (400ms + buffer)
+        setTimeout(onDone, 430);
+      }, 550);
+    }
+
+    function onDone() {
+      isAnimating = false;
+      setButtonsAriaDisabled(false);
+      if (lastFocusedButton) { lastFocusedButton.focus({ preventScroll: true }); lastFocusedButton = null; }
+      if (queue.length) { const a = queue.shift()!; a === 'next' ? goTo(nxt()) : goTo(prv()); }
+    }
+
+    function nxt() { return (currentIndex + 1) % count; }
+    function prv() { return ((currentIndex - 1) % count + count) % count; }
+
+    function handleNext() { if (isAnimating) { queue.push('next'); return; } goTo(nxt()); resetAuto(); }
+    function handlePrev() { if (isAnimating) { queue.push('prev'); return; } goTo(prv()); resetAuto(); }
+
+    // ── Auto-advance ───────────────────────────────────────────────────────────
+    function startAuto() {
+      if (!autoAdv) return;
+      autoTimer = setInterval(() => { if (!isAnimating) goTo(nxt()); }, interval);
+    }
+    function resetAuto() {
+      if (!autoAdv) return;
+      if (autoTimer) clearInterval(autoTimer);
+      startAuto();
+    }
+
+    // ── Events ─────────────────────────────────────────────────────────────────
+    nextBtn?.addEventListener('click', () => { lastFocusedButton = nextBtn; handleNext(); });
+    prevBtn?.addEventListener('click', () => { lastFocusedButton = prevBtn; handlePrev(); });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => { if (!isAnimating) { goTo(i); resetAuto(); } });
+    });
+
+    carousel.setAttribute('tabindex', '0');
+    carousel.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') handleNext();
+      if (e.key === 'ArrowLeft')  handlePrev();
+    });
+
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (e: TouchEvent) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    carousel.addEventListener('touchend',   (e: TouchEvent) => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) >= 45) { dx < 0 ? handleNext() : handlePrev(); }
+    }, { passive: true });
+
+    carousel.addEventListener('mouseenter', () => { if (autoTimer) clearInterval(autoTimer); });
+    carousel.addEventListener('mouseleave', startAuto);
+
+    // ── Init ───────────────────────────────────────────────────────────────────
+    updateSlots(0);
+    startAuto();
+  });
+</script>

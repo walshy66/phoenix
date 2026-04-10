@@ -43,6 +43,9 @@ body {
   background-color: var(--color-offwhite);
   color: var(--color-black);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Prevent horizontal scroll from carousel side cards extending past viewport.
+     body has transform-style:flat by default so this does NOT flatten 3D. */
+  overflow-x: hidden;
 }
 
 /* Hero animations */

@@ -2,49 +2,25 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorStrip from '../components/SponsorStrip.astro';
 import ScoreCard from '../components/ScoreCard.astro';
-import HeroCarousel from '../components/HeroCarousel.astro';
+import HeroCircularCarousel from '../components/HeroCircularCarousel.astro';
 
 /**
  * HERO CAROUSEL SLIDES
  * --------------------
- * Add, remove or reorder slides here. Each slide can have:
- *   image    — path to image in /images/ or /public/ (optional)
+ * Add, remove or reorder slides here. Each slide must have:
+ *   image    — path to landscape infographic image in /images/hero/
  *   alt      — screen-reader description of the image
- *   title    — short bold label shown at the bottom of the card
- *   caption  — smaller descriptive text under the title
- *   bgColor  — letterbox background colour (default #111111)
- *              Use a colour that suits the image — e.g. dark for photos,
- *              white (#fff) for infographics with white backgrounds.
+ *   bgColor  — background colour shown while image loads (optional, default: #2a1a5e)
  *
- * Images of ANY aspect ratio are supported — they are never cropped.
- * Portrait infographics and landscape photos both display cleanly.
+ * Images display in 16:9 landscape format (640×360px recommended).
+ * Use landscape-orientation infographics for best visual impact.
  */
 const heroSlides = [
-  {
-    title: 'Season Registration Open',
-    caption: 'Sign up now for 2025 — all ages welcome',
-    bgColor: '#3a2a6e',
-  },
-  {
-    title: 'Game Day — Saturday 10am',
-    caption: 'Bendigo Stadium, Inglis Street',
-    bgColor: '#111111',
-  },
-  {
-    title: 'Junior Development Clinic',
-    caption: 'Ages 8–14 · Free for registered players',
-    bgColor: '#1a3a1a',
-  },
-  {
-    title: 'Slam Dunk Bridging Fund',
-    caption: 'No player left behind — ask us how',
-    bgColor: '#5a3a00',
-  },
-  {
-    title: 'Follow Us on Instagram',
-    caption: '@bendigophoenix',
-    bgColor: '#2a1a3a',
-  },
+  { image: '/images/hero/test.jpg', alt: 'Test slide 1', bgColor: '#3a2a6e' },
+  { image: '/images/hero/test.jpg', alt: 'Test slide 2', bgColor: '#1a3060' },
+  { image: '/images/hero/test.jpg', alt: 'Test slide 3', bgColor: '#2a1a5e' },
+  { image: '/images/hero/test.jpg', alt: 'Test slide 4', bgColor: '#0d1a3a' },
+  { image: '/images/hero/test.jpg', alt: 'Test slide 5', bgColor: '#1e1040' },
 ];
 
 const quickLinks = [
@@ -104,21 +80,25 @@ const recentScores = [
 
 <BaseLayout title="Home">
   <!-- ═══════════════════════════════════════════════════════
-       HERO — full-width landscape carousel
+       HERO — 3D cylinder carousel
        ═══════════════════════════════════════════════════════ -->
   <section
     class="hero-section"
     style="background: linear-gradient(160deg, #573F93 0%, #3a2a6e 50%, #111111 100%);"
   >
-    <div class="hero-carousel-wrap">
-      <HeroCarousel slides={heroSlides} autoAdvanceMs={10000} />
+    <!-- Logo as angled background fill — looks like it's lying flat behind cards -->
+    <div class="hero-bg-logo" aria-hidden="true">
+      <img
+        src="/images/phoenix-united-logo.png"
+        alt=""
+        class="hero-bg-logo-img"
+        loading="eager"
+        decoding="auto"
+      />
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <svg class="w-5 h-5 text-white opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
+    <div class="hero-carousel-wrap">
+      <HeroCircularCarousel slides={heroSlides} autoAdvanceEnabled autoAdvanceMs={5000} />
     </div>
   </section>
 
@@ -194,36 +174,55 @@ const recentScores = [
 
 <style>
   /* ─── Hero section ───────────────────────────────────── */
+  /*
+   * No overflow:hidden — any ancestor of a preserve-3d element with
+   * non-visible overflow flattens the 3D. Side cards clip at the
+   * viewport edge naturally; the body prevents horizontal scroll.
+   */
   .hero-section {
+    position: relative;
     padding-top: 72px;   /* clear fixed nav */
-    padding-bottom: 40px;
+    padding-bottom: 48px;
   }
 
-  /* ─── Carousel wrapper — max-width + padding ─────────── */
+  /* ─── Logo background — angled, fills space behind cards ─ */
+  /*
+   * The logo is positioned at the centre of the hero and tilted with
+   * rotateX so it appears to lie flat on a surface behind the cards.
+   * perspective() in the transform controls depth of the tilt.
+   * scaleY compensates for the vertical foreshortening so the logo
+   * still fills the hero height. opacity + filter keep it subtle.
+   */
+  .hero-bg-logo {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-bg-logo-img {
+    /* Anchor to top-left so transform-origin keeps it in that corner */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 32%;
+    max-width: 360px;
+    height: auto;
+    opacity: 0.16;
+    filter: brightness(2.8) grayscale(10%);
+    transform: perspective(500px) rotateZ(-30deg) rotateX(55deg) scale(1.2);
+    transform-origin: top left;
+  }
+
+  /* ─── Carousel wrapper — full width, no side padding ─── */
+  /*
+   * The carousel stage is already full-width; we don't want extra
+   * padding here squeezing the side cards in.
+   */
   .hero-carousel-wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
-
-  @media (min-width: 640px) {
-    .hero-carousel-wrap { padding: 0 28px; }
-  }
-
-  @media (min-width: 1024px) {
-    .hero-carousel-wrap { padding: 0 48px; }
-  }
-
-  /* ─── Scroll hint ────────────────────────────────────── */
-  .hero-scroll-hint {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    animation: bounce 1.8s ease-in-out infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(6px); }
+    position: relative;
+    z-index: 1;
+    width: 100%;
   }
 </style>
