@@ -33,6 +33,15 @@ The agent will:
 
 ---
 
+## Tools Available
+
+- **Linear MCP** - `Linear:save_issue` to update issue status and comments
+- **Bash** - git commands and test execution
+- **File System** - create and modify source files, tests, and documentation
+- **Code Generation** - write TypeScript, Astro, and configuration files with constitutional compliance
+
+---
+
 ## Workflow Overview
 
 ```
@@ -77,7 +86,9 @@ Completion (Phase 4)
 2. **Verify Prerequisites**
    - Confirm spec.md exists and is readable
    - Verify constitution.md is accessible
-   - Confirm Linear issue exists and has "Building" status
+   - Confirm Linear issue exists and is accessible
+   - Update Linear issue status to "Building" (if not already)
+   - Add comment: "Implementation started. Beginning execution windows."
 
 3. **Initialize State Management**
    - Create/read `.planning/{FEATURE_SLUG}/STATE.md`
@@ -380,6 +391,29 @@ The implement agent will create/update ALL of these:
 - Evidence recorded in task-ledger.md
 - Every window checkpoint documented in STATE.md
 - Full audit trail in implementation-log.md
+
+---
+
+## Linear Issue Status Lifecycle
+
+The implement agent manages the Linear issue status throughout implementation:
+
+```
+Start of Implementation (Phase 0)
+  - Status: "Planning" → "Building"
+  - Comment: "Implementation started. Beginning execution windows."
+
+During Windows (Phases 1-3)
+  - Status: remains "Building"
+  - No status changes between windows
+
+End of Implementation (Phase 4)
+  - Status: "Building" → "Review"
+  - Comment: "Implementation complete. Ready for review. See IMPLEMENTATION_SUMMARY.md for details."
+
+Next Steps
+  - Status: "Review" → "Done" (via manual code review/merge)
+```
 
 ---
 
