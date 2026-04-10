@@ -1,6 +1,6 @@
 export type ResourceType = 'pdf' | 'link' | 'video' | 'document';
 
-export type ResourceAudience = 'coaching' | 'players';
+export type ResourceAudience = 'coaching' | 'players' | 'managers';
 
 export type CoachingCategory = 'Defence' | 'Offence' | 'Drills' | 'Fundamentals' | 'Game Plans' | 'Tools';
 
