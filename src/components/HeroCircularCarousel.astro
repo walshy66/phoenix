@@ -171,10 +171,29 @@ const showNav = count >= 2;
   }
 
   /* ── Carousel container — perspective for 3D transforms ──── */
+  /*
+   * Responsive width strategy (mirrors containerWidth() in responsive tests):
+   *   Mobile  (<768px):  min(90vw, 100vw - 32px)  — 16px padding each side
+   *   Tablet  (768–1023px): min(80vw, 400px)
+   *   Desktop (1024px+): 450px fixed
+   * Minimum: 280px (clamp lower bound)
+   */
   .carousel-container {
     position: relative;
-    width: clamp(280px, 90vw, 420px);
+    width: clamp(280px, min(90vw, calc(100vw - 32px)), 420px);
     z-index: 1;
+  }
+
+  @media (min-width: 768px) {
+    .carousel-container {
+      width: min(80vw, 400px);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .carousel-container {
+      width: 450px;
+    }
   }
 
   /* ── Viewport — 3:4 portrait aspect ratio ────────────────── */
