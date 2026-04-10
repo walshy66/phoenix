@@ -7,17 +7,19 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
       <!-- Brand -->
       <div>
-        <div class="flex items-center gap-3 mb-4">
-          <div class="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center flex-shrink-0">
-            <span class="text-white font-bold text-lg leading-none">P</span>
-          </div>
-          <div>
-            <p class="text-white font-bold text-sm tracking-widest uppercase">BENDIGO</p>
-            <p class="font-bold text-sm tracking-widest uppercase" style="color: #8B7536;">PHOENIX</p>
+        <div class="mb-4">
+          <img
+            src="/images/logos/phoenix-logo.png"
+            alt="Phoenix United Basketball"
+            class="h-20 w-auto"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="hidden w-20 h-20 rounded-full bg-brand-gold flex items-center justify-center flex-shrink-0 text-white font-bold text-2xl leading-none">
+            PU
           </div>
         </div>
         <p class="text-purple-200 text-sm leading-relaxed">
-          Where Community Meets Competition. Proudly serving basketball in Central Victoria.
+          Where Community Meets Competition. Proudly serving basketball in Bendigo.
         </p>
       </div>
 
@@ -68,25 +70,27 @@ const currentYear = new Date().getFullYear();
         </div>
       </div>
 
-      <!-- Quick Links -->
+      <!-- Newsletter -->
       <div>
-        <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Quick Links</h3>
-        <div class="space-y-1">
-          <a href="/seasons" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Seasons</a>
-          <a href="/get-involved" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Get Involved</a>
-          <a href="/coaching-resources" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Coaching Resources</a>
-          <a href="/contact" class="block text-sm text-purple-200 hover:text-brand-gold transition-colors">Contact</a>
-        </div>
+        <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Newsletter</h3>
+        <script async src="https://eomail5.com/form/11c550ac-11dc-11f1-a2e0-ef681a07d4a5.js" data-form="11c550ac-11dc-11f1-a2e0-ef681a07d4a5"></script>
       </div>
     </div>
 
     <!-- Bottom bar -->
     <div class="border-t border-purple-700 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="text-purple-300 text-xs">
-        &copy; {currentYear} Bendigo Phoenix Basketball Club. All rights reserved.
+        &copy; Phoenix United Basketball Development Club Inc. 2003 - {currentYear} All rights reserved.
       </p>
       <p class="text-purple-400 text-xs">
-        Compete in the Bendigo Basketball Association
+        <a
+          href="https://bendigobasketball.com.au/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-brand-gold transition-colors"
+        >
+          compete in the Bendigo Basketball Association
+        </a>
       </p>
     </div>
   </div>
