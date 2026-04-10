@@ -361,10 +361,11 @@ const showNav = count >= 2;
 
 <script>
   // Animation timing constants (matches CSS keyframe durations)
-  const EXIT_DURATION    = 350;  // ms — matches rotateOut animation
-  const ENTER_DURATION   = 350;  // ms — simultaneous with exit
-  const TOTAL_DURATION   = Math.max(EXIT_DURATION, ENTER_DURATION) + 50; // buffer
-  const REDUCED_DURATION = 150;  // ms — for prefers-reduced-motion fade
+  // Exit and enter run simultaneously; total window is 600ms per spec AC-3 (600–800ms)
+  const EXIT_DURATION    = 350;  // ms — matches rotateOut keyframe duration
+  const ENTER_DURATION   = 350;  // ms — simultaneous with exit (same duration)
+  const TOTAL_DURATION   = Math.max(EXIT_DURATION, ENTER_DURATION) + 250; // 600ms — within spec 600–800ms window
+  const REDUCED_DURATION = 150;  // ms — per-phase for prefers-reduced-motion fade
 
   document.querySelectorAll<HTMLElement>('.hero-circular-carousel').forEach(carousel => {
     const count    = parseInt(carousel.dataset.count    ?? '1', 10);
