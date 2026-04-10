@@ -93,6 +93,7 @@ const showNav = count >= 2;
       <button
         class="carousel-arrow carousel-prev"
         aria-label="Previous slide"
+        aria-disabled="false"
         type="button"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
@@ -108,6 +109,7 @@ const showNav = count >= 2;
       <button
         class="carousel-arrow carousel-next"
         aria-label="Next slide"
+        aria-disabled="false"
         type="button"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
@@ -319,6 +321,14 @@ const showNav = count >= 2;
     transform: translateY(-50%) scale(0.96);
   }
 
+  /* During animation: aria-disabled="true" signals to assistive tech
+     that the button is temporarily unavailable, without removing it
+     from the tab order.  Buttons remain fully clickable — clicks are
+     queued by the script, so pointer-events must stay enabled. */
+  .carousel-arrow[aria-disabled="true"] {
+    opacity: 0.5;
+  }
+
   .carousel-prev { left: -22px; }
   .carousel-next { right: -22px; }
 
@@ -404,10 +414,21 @@ const showNav = count >= 2;
       });
     }
 
+    // Set aria-disabled on both nav buttons (used to signal animation state
+    // to assistive technology without removing buttons from the tab order)
+    function setButtonsAriaDisabled(disabled: boolean) {
+      if (prevBtn) prevBtn.setAttribute('aria-disabled', String(disabled));
+      if (nextBtn) nextBtn.setAttribute('aria-disabled', String(disabled));
+    }
+
     // ── Animation execution ────────────────────────────────────────
+    // Track last-focused button for focus restoration after animation
+    let lastFocusedButton: HTMLButtonElement | null = null;
+
     function goTo(nextIdx: number, direction: 'next' | 'prev') {
       if (isAnimating || nextIdx === currentSlide) return;
       isAnimating = true;
+      setButtonsAriaDisabled(true);
 
       const outSlide = slides[currentSlide];
       const inSlide  = slides[nextIdx];
@@ -454,6 +475,13 @@ const showNav = count >= 2;
 
         currentSlide = nextIdx;
         isAnimating = false;
+        setButtonsAriaDisabled(false);
+
+        // Restore focus to the button that triggered the action
+        if (lastFocusedButton && document.activeElement !== lastFocusedButton) {
+          lastFocusedButton.focus({ preventScroll: true });
+        }
+        lastFocusedButton = null;
 
         // Process queue
         processQueue();
@@ -474,6 +502,13 @@ const showNav = count >= 2;
 
     function executePrev() {
       goTo(prevIndex(), 'prev');
+    }
+
+    // ── Focus tracking helpers ─────────────────────────────────────
+    // Called by button click/keypress handlers to record which button
+    // should receive focus back once the animation completes.
+    function trackButtonFocus(btn: HTMLButtonElement | null) {
+      if (btn) lastFocusedButton = btn;
     }
 
     // ── Public handlers (queue-aware) ──────────────────────────────
@@ -510,8 +545,14 @@ const showNav = count >= 2;
     }
 
     // ── Event listeners ────────────────────────────────────────────
-    if (nextBtn) nextBtn.addEventListener('click', handleNext);
-    if (prevBtn) prevBtn.addEventListener('click', handlePrev);
+    if (nextBtn) nextBtn.addEventListener('click', () => {
+      trackButtonFocus(nextBtn);
+      handleNext();
+    });
+    if (prevBtn) prevBtn.addEventListener('click', () => {
+      trackButtonFocus(prevBtn);
+      handlePrev();
+    });
 
     dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
