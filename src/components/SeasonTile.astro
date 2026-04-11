@@ -1,0 +1,136 @@
+---
+/**
+ * T007: SeasonTile Component
+ *
+ * Renders a clickable season card with role-based styling and keyboard accessibility.
+ *
+ * Features:
+ * - Role-based emoji icon (🏆 Current, 📅 Next, 📚 Previous, 📦 Archive)
+ * - Season name and status badge (Registration Open, Coming Soon, Past Season)
+ * - Keyboard accessible: Tab to focus, Enter/Space to open detail view
+ * - Responsive layout: full-width mobile, grid on tablet/desktop
+ * - Touch-friendly: 44x44px minimum touch target
+ * - Visible focus indicator for keyboard users
+ *
+ * Accessibility (WCAG 2.1 AA):
+ * - role="button", tabindex="0" for keyboard navigation
+ * - aria-label with descriptive text
+ * - Focus indicator (ring-2 ring-offset-2)
+ * - Sufficient color contrast
+ *
+ * Traceability: AC-1.1 (visible), AC-1.2 (clickable), AC-1.4 (keyboard),
+ *              NFR-001 (keyboard), NFR-003 (aria-label), NFR-005 (touch target)
+ */
+
+import type { Season } from '../lib/seasons/types';
+import { getSeasonRoleEmoji, getSeasonRoleLabel } from '../lib/seasons/utils';
+
+interface Props {
+  season: Season;
+  onClick?: () => void;
+}
+
+const { season, onClick } = Astro.props;
+
+const emoji = getSeasonRoleEmoji(season.role);
+const roleLabel = getSeasonRoleLabel(season);
+
+// Status badge text based on season status
+const statusBadgeText = {
+  active: 'Registration Open',
+  coming_soon: 'Coming Soon',
+  completed: 'Past Season',
+}[season.status] || 'Unknown';
+
+// Check if this is a Coming Soon state
+const isComingSoon = season.status === 'coming_soon';
+
+// Check if this should be muted (Previous or Archive)
+const isMuted = season.role === 'previous' || season.role === 'archive';
+
+// Generate aria-label for accessibility
+const ariaLabel = `${roleLabel} Season: ${season.name}, click to view details`;
+
+// Build class string for responsive and state-based styling
+const tileClasses = [
+  // Base styling
+  'group relative flex flex-col items-center justify-center',
+  'rounded-lg border border-gray-200 bg-white p-6',
+  'min-h-[120px] min-w-[120px] cursor-pointer',
+  'transition-all duration-200',
+
+  // Focus indicator (keyboard accessibility)
+  'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
+
+  // Hover state
+  'hover:shadow-md hover:border-blue-300',
+
+  // Coming Soon state: reduced opacity, disabled cursor
+  isComingSoon ? 'opacity-60 cursor-not-allowed hover:shadow-sm hover:border-gray-200' : '',
+
+  // Previous/Archive state: muted colors
+  isMuted ? 'bg-gray-50 text-gray-600' : 'hover:bg-blue-50',
+
+  // Responsive layout (mobile-first)
+  'w-full',
+  'md:w-1/2', // 2 columns on tablet
+  'lg:w-1/4', // 4 columns on desktop
+]
+  .filter(Boolean)
+  .join(' ');
+
+const badgeClasses = [
+  'text-xs font-bold px-3 py-1 rounded-full',
+  'inline-block mb-2',
+  isComingSoon ? 'bg-yellow-100 text-yellow-800 border border-yellow-300' : 'bg-blue-100 text-blue-800 border border-blue-300',
+  isMuted ? 'bg-gray-200 text-gray-700 border border-gray-300' : '',
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+<button
+  type="button"
+  class={tileClasses}
+  role="button"
+  tabindex="0"
+  aria-label={ariaLabel}
+  onclick={onClick ? () => onClick() : undefined}
+  onkeydown={(e: KeyboardEvent) => {
+    if ((e.key === 'Enter' || e.key === ' ') && onClick) {
+      e.preventDefault();
+      onClick();
+    }
+  }}
+>
+  <!-- Emoji Icon -->
+  <div class="text-4xl mb-3" aria-hidden="true">
+    {emoji}
+  </div>
+
+  <!-- Season Name -->
+  <h3 class="font-bold text-center text-base text-gray-900 mb-2">
+    {season.name}
+  </h3>
+
+  <!-- Role Label -->
+  <div class="text-xs text-gray-500 mb-3 uppercase tracking-wide">
+    {roleLabel} Season
+  </div>
+
+  <!-- Status Badge -->
+  <div class={badgeClasses}>
+    {statusBadgeText}
+  </div>
+</button>
+
+<style>
+  button:focus {
+    outline: none;
+  }
+
+  button:focus-visible {
+    outline: 2px solid rgba(59, 130, 246, 0.5);
+    outline-offset: 2px;
+  }
+</style>
