@@ -29,98 +29,125 @@ import RegistrationCostsCard from './RegistrationCostsCard.astro';
 import KeyDatesSection from './KeyDatesSection.astro';
 
 interface Props {
-  season: Season;
-  isOpen: boolean;
+  isOpen?: boolean;
+  season?: Season;
   onClose?: () => void;
   registrationCosts?: RegistrationCost[];
   keyDates?: KeyDate[];
 }
 
-const { season, isOpen, onClose, registrationCosts = [], keyDates = [] } = Astro.props;
+const { isOpen = false, season, onClose, registrationCosts = [], keyDates = [] } = Astro.props;
 
-const modalAriaLabel = `${season.name} season details`;
+// Use placeholder season if none provided
+const displaySeason = season || ({
+  id: 'placeholder',
+  name: 'Loading...',
+  role: 'current' as const,
+  status: 'active' as const,
+  startDate: '',
+  endDate: '',
+});
+
+const modalAriaLabel = `${displaySeason.name} season details`;
 ---
 
-{
-  isOpen && (
-    <>
-      <!-- Backdrop -->
-      <div
-        class="fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity duration-300"
-        onclick={onClose ? () => onClose() : undefined}
-        role="presentation"
+<!-- Backdrop -->
+<div
+  class="fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity duration-300 hidden"
+  data-modal-backdrop
+  role="presentation"
+  aria-hidden="true"
+/>
+
+<!-- Modal Dialog -->
+<!-- Always rendered, but hidden/shown via CSS and data attributes -->
+<div
+  id="season-detail-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 duration-300 hidden"
+  data-open="false"
+  role="dialog"
+  aria-modal="true"
+  aria-label={modalAriaLabel}
+>
+  <div class="relative w-full max-w-2xl rounded-lg bg-white shadow-lg">
+    <!-- Close Button -->
+    <button
+      type="button"
+      data-close-button
+      class="absolute top-4 right-4 inline-flex items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      aria-label="Close season details"
+    >
+      <span class="sr-only">Close</span>
+      <svg
+        class="h-6 w-6"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
         aria-hidden="true"
-      />
-
-      <!-- Modal Dialog -->
-      <div
-        class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto p-4 duration-300"
-        role="dialog"
-        aria-modal="true"
-        aria-label={modalAriaLabel}
       >
-        <div class="relative w-full max-w-2xl rounded-lg bg-white shadow-lg">
-          <!-- Close Button -->
-          <button
-            type="button"
-            class="absolute top-4 right-4 inline-flex items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            aria-label="Close season details"
-            onclick={onClose ? () => onClose() : undefined}
-          >
-            <span class="sr-only">Close</span>
-            <svg
-              class="h-6 w-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
 
-          <!-- Modal Content -->
-          <div class="p-6 md:p-8">
-            <!-- Modal Heading -->
-            <h2 class="mb-6 text-2xl font-bold text-gray-900">
-              {season.name} Details
-            </h2>
+    <!-- Modal Content -->
+    <div class="p-6 md:p-8">
+      <!-- Modal Heading -->
+      <h2 class="mb-6 text-2xl font-bold text-gray-900" data-modal-title>
+        {displaySeason.name} Details
+      </h2>
 
-            <!-- Registration Costs Card (rendered first) -->
-            <div class="mb-6">
-              <RegistrationCostsCard season={season} registrationCosts={registrationCosts} />
-            </div>
-
-            <!-- Key Dates Section (rendered below) -->
-            <div class="mb-6">
-              <KeyDatesSection keyDates={keyDates} season={season} />
-            </div>
-          </div>
-        </div>
+      <!-- Registration Costs Card (rendered first) -->
+      <div class="mb-6" data-modal-costs>
+        {season && <RegistrationCostsCard season={season} registrationCosts={registrationCosts} />}
       </div>
 
-      <!-- Keyboard handler for Escape key -->
-      <script define:vars={{ onClose: !!onClose }}>
-        if (onClose) {
-          const handleKeyDown = (e) => {
-            if (e.key === 'Escape') {
-              // Note: In Astro components with client:load, we'd have access to onClose
-              // For now, we rely on the parent component handling Escape key
-              // This is a placeholder for demonstration
-            }
-          };
-          document.addEventListener('keydown', handleKeyDown);
-        }
-      </script>
-    </>
-  )
-}
+      <!-- Key Dates Section (rendered below) -->
+      <div class="mb-6" data-modal-dates>
+        {season && <KeyDatesSection keyDates={keyDates} season={season} />}
+      </div>
+    </div>
+  </div>
+</div>
 
 <style>
-  /* Smooth fade transition for modal */
-  div[role='dialog'] {
+  /* Modal visibility states */
+  #season-detail-modal {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #season-detail-modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #season-detail-modal[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #season-detail-modal[data-open="true"] > div {
     animation: fadeIn 300ms ease-in-out;
+  }
+
+  /* Backdrop visibility */
+  [data-modal-backdrop] {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  [data-modal-backdrop].hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #season-detail-modal[data-open="true"] ~ [data-modal-backdrop],
+  [data-modal-backdrop][data-open="true"] {
+    opacity: 1;
+    visibility: visible;
   }
 
   @keyframes fadeIn {

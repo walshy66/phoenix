@@ -1,5 +1,13 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro'
+import SeasonTile from '../components/SeasonTile.astro'
+import SeasonDetailModal from '../components/SeasonDetailModal.astro'
+import KeyDatesSection from '../components/KeyDatesSection.astro'
+import { PLACEHOLDER_SEASONS, PLACEHOLDER_KEY_DATES, PLACEHOLDER_REGISTRATION_COSTS } from '../lib/seasons/constants'
+
+const seasons = PLACEHOLDER_SEASONS
+const keyDates = PLACEHOLDER_KEY_DATES
+const registrationCosts = PLACEHOLDER_REGISTRATION_COSTS
 ---
 
 <BaseLayout title="Seasons" description="Bendigo Phoenix Basketball season draw, costs, registration and grading information.">
@@ -19,139 +27,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <!-- Current Season -->
+  <!-- Main Seasons Section -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">2025 Season</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Season Card 1 -->
-        <div class="rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
-          <div class="h-40 relative flex items-center justify-center" style="background: linear-gradient(135deg, #573F93, #3a2a6e);">
-            <span class="text-6xl">🏀</span>
-            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-gold"></div>
-          </div>
-          <div class="p-5">
-            <span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">Registration Open</span>
-            <h3 class="font-bold text-brand-black text-lg mb-2">Senior Competition</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">
-              Open-age men's and women's competitions running through the Bendigo Basketball Association season.
-            </p>
-          </div>
-        </div>
-
-        <!-- Season Card 2 -->
-        <div class="rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
-          <div class="h-40 relative flex items-center justify-center" style="background: linear-gradient(135deg, #8B7536, #6b5a2a);">
-            <span class="text-6xl">⭐</span>
-            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-purple"></div>
-          </div>
-          <div class="p-5">
-            <span class="inline-block bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full mb-3">Registration Open</span>
-            <h3 class="font-bold text-brand-black text-lg mb-2">Junior Competitions</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">
-              Junior programs from U8 through to U18, catering to all skill levels across Central Victoria.
-            </p>
-          </div>
-        </div>
-
-        <!-- Season Card 3 -->
-        <div class="rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
-          <div class="h-40 relative flex items-center justify-center" style="background: linear-gradient(135deg, #111111, #333333);">
-            <span class="text-6xl">🏆</span>
-            <div class="absolute top-0 left-0 right-0 h-1 bg-brand-gold"></div>
-          </div>
-          <div class="p-5">
-            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs font-bold px-3 py-1 rounded-full mb-3">Coming Soon</span>
-            <h3 class="font-bold text-brand-black text-lg mb-2">Representative Teams</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">
-              Tryouts and information for representative squads will be announced — stay tuned!
-            </p>
-          </div>
-        </div>
+      <!-- Current Season Key Dates -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Current Season — Key Dates</h2>
+        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+        <KeyDatesSection keyDates={keyDates['winter-2026']} />
       </div>
-    </div>
-  </section>
 
-  <!-- Key Dates -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Key Dates</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+      <!-- Season Tiles Grid -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">All Seasons</h2>
+        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+      </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: 'Registration Opens', date: 'TBC', icon: '📋' },
-          { label: 'Grading Sessions', date: 'TBC', icon: '📊' },
-          { label: 'Season Starts', date: 'TBC', icon: '🏀' },
-          { label: 'Finals', date: 'TBC', icon: '🏆' },
-        ].map(item => (
-          <div class="bg-white rounded-xl p-5 border border-gray-100 flex items-center gap-4">
-            <span class="text-3xl">{item.icon}</span>
-            <div>
-              <p class="text-brand-purple font-bold text-sm">{item.label}</p>
-              <p class="text-gray-500 text-sm mt-0.5">{item.date}</p>
-            </div>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="seasons-grid">
+        {seasons.map(season => (
+          <SeasonTile
+            season={season}
+            data-season-id={season.id}
+            class="season-tile"
+          />
         ))}
       </div>
-
-      <p class="text-gray-500 text-sm mt-4 italic">
-        * Dates to be confirmed. Check back here or follow us on social media for updates.
-      </p>
     </div>
   </section>
 
-  <!-- Costs Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Registration Costs</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+  <!-- Detail Modal (conditionally rendered based on selectedSeasonId) -->
+  <SeasonDetailModal
+    id="season-detail-modal"
+    isOpen={false}
+  />
 
-      <div class="table-responsive">
-        <table class="w-full min-w-[500px] border-collapse">
-          <thead>
-            <tr class="bg-brand-purple text-white">
-              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide rounded-tl-lg">Age Group</th>
-              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide">Category</th>
-              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide">Registration Fee</th>
-              <th class="px-6 py-3 text-left text-sm font-bold uppercase tracking-wide rounded-tr-lg">Notes</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              { age: 'U8 / U10', category: 'Junior', fee: 'TBC', notes: 'Intro program' },
-              { age: 'U12 / U14', category: 'Junior', fee: 'TBC', notes: '' },
-              { age: 'U16 / U18', category: 'Junior', fee: 'TBC', notes: '' },
-              { age: 'Senior', category: 'Open Age', fee: 'TBC', notes: 'Men & Women' },
-            ].map((row, i) => (
-              <tr class={`border-b border-gray-100 ${i % 2 === 0 ? 'bg-white' : 'bg-brand-offwhite'}`}>
-                <td class="px-6 py-4 text-sm font-medium text-brand-black">{row.age}</td>
-                <td class="px-6 py-4 text-sm text-gray-600">{row.category}</td>
-                <td class="px-6 py-4 text-sm font-bold text-brand-purple">{row.fee}</td>
-                <td class="px-6 py-4 text-sm text-gray-500">{row.notes}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Slam Dunk callout -->
-      <div class="mt-8 p-5 rounded-xl border-2 border-brand-gold bg-yellow-50 flex gap-4 items-start">
-        <span class="text-3xl">🤝</span>
-        <div>
-          <h3 class="font-bold text-brand-black text-base mb-1">Need Financial Assistance?</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            Our <a href="/about#slam-dunk" class="text-brand-purple font-semibold hover:text-brand-gold underline">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
-            Contact us confidentially at <a href="mailto:hello@bendigophoenix.org.au" class="text-brand-purple font-semibold hover:text-brand-gold">hello@bendigophoenix.org.au</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Grading Section -->
+  <!-- Grading Section (preserve existing content) -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Grading Information</h2>
@@ -190,4 +100,238 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
   </section>
+
+  <!-- Slam Dunk callout (from existing page, preserve content) -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="p-5 rounded-xl border-2 border-brand-gold bg-yellow-50 flex gap-4 items-start">
+        <span class="text-3xl">🤝</span>
+        <div>
+          <h3 class="font-bold text-brand-black text-base mb-1">Need Financial Assistance?</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Our <a href="/about#slam-dunk" class="text-brand-purple font-semibold hover:text-brand-gold underline">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
+            Contact us confidentially at <a href="mailto:hello@bendigophoenix.org.au" class="text-brand-purple font-semibold hover:text-brand-gold">hello@bendigophoenix.org.au</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<script>
+  import { PLACEHOLDER_SEASONS, PLACEHOLDER_KEY_DATES, PLACEHOLDER_REGISTRATION_COSTS } from '../lib/seasons/constants'
+
+  /**
+   * Window 3: Client-side modal state management and keyboard event handling
+   *
+   * Features:
+   * - Track selectedSeasonId (null = no modal)
+   * - Handle tile clicks to open modal
+   * - Handle Escape key to close modal
+   * - Manage focus: store initial focus, return on close
+   * - Support Enter/Space to open modal on keyboard
+   */
+
+  // ============================================================================
+  // STATE
+  // ============================================================================
+
+  /** Currently selected season ID, null if modal is closed */
+  let selectedSeasonId: string | null = null
+
+  /** Reference to the element that opened the modal (for focus return) */
+  let initialFocusElement: HTMLElement | null = null
+
+  // ============================================================================
+  // ELEMENTS
+  // ============================================================================
+
+  const modal = document.getElementById('season-detail-modal') as HTMLElement | null
+  const backdrop = document.querySelector('[data-modal-backdrop]') as HTMLElement | null
+  const seasonsGrid = document.getElementById('seasons-grid')
+  const seasonTiles = Array.from(document.querySelectorAll('.season-tile')) as HTMLElement[]
+
+  // ============================================================================
+  // HANDLERS
+  // ============================================================================
+
+  /**
+   * Handle season tile click
+   * Opens modal and manages focus
+   */
+  function handleTileClick(event: Event) {
+    const target = event.currentTarget as HTMLElement
+    const seasonId = target.getAttribute('data-season-id')
+
+    if (!seasonId) return
+
+    // Store the element that triggered the modal so we can return focus later
+    initialFocusElement = target
+
+    // Update selected season (triggers reactivity if using framework, or we'll update manually)
+    selectedSeasonId = seasonId
+
+    // Show modal and backdrop
+    if (modal) {
+      modal.classList.remove('hidden')
+      modal.setAttribute('data-open', 'true')
+      modal.setAttribute('data-season-id', seasonId)
+
+      if (backdrop) {
+        backdrop.classList.remove('hidden')
+        backdrop.setAttribute('data-open', 'true')
+      }
+
+      // Move focus to close button
+      const closeButton = modal.querySelector('[data-close-button]') as HTMLElement
+      if (closeButton) {
+        // Use setTimeout to ensure DOM has updated
+        setTimeout(() => {
+          closeButton.focus()
+        }, 0)
+      }
+    }
+  }
+
+  /**
+   * Handle modal close
+   * Closes modal and restores focus to originating tile
+   */
+  function handleModalClose() {
+    selectedSeasonId = null
+
+    // Hide modal and backdrop
+    if (modal) {
+      modal.classList.add('hidden')
+      modal.setAttribute('data-open', 'false')
+      modal.removeAttribute('data-season-id')
+
+      if (backdrop) {
+        backdrop.classList.add('hidden')
+        backdrop.setAttribute('data-open', 'false')
+      }
+    }
+
+    // Return focus to the tile that opened the modal
+    if (initialFocusElement) {
+      // Use setTimeout to ensure DOM has updated before restoring focus
+      setTimeout(() => {
+        if (initialFocusElement && document.contains(initialFocusElement)) {
+          initialFocusElement.focus()
+        }
+      }, 0)
+    }
+
+    initialFocusElement = null
+  }
+
+  /**
+   * Handle keyboard events
+   * - Escape key: close modal
+   * - Enter/Space on tile: open modal
+   */
+  function handleKeydown(event: KeyboardEvent) {
+    // Escape closes modal if open
+    if (event.key === 'Escape' && selectedSeasonId) {
+      event.preventDefault()
+      handleModalClose()
+      return
+    }
+
+    // Enter/Space on tile opens modal
+    if ((event.key === 'Enter' || event.key === ' ') && event.target instanceof HTMLElement) {
+      const tile = (event.target as HTMLElement).closest('.season-tile')
+      if (tile) {
+        event.preventDefault()
+        handleTileClick(new CustomEvent('click', { bubbles: true, composed: true, detail: { currentTarget: tile } }))
+        // Manually call handler since event is synthetic
+        initialFocusElement = tile as HTMLElement
+        const seasonId = (tile as HTMLElement).getAttribute('data-season-id')
+        if (seasonId) {
+          selectedSeasonId = seasonId
+          if (modal) {
+            modal.classList.remove('hidden')
+            modal.setAttribute('data-open', 'true')
+            modal.setAttribute('data-season-id', seasonId)
+            const closeButton = modal.querySelector('[data-close-button]')
+            if (closeButton instanceof HTMLElement) {
+              setTimeout(() => closeButton.focus(), 0)
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // ============================================================================
+  // INITIALIZATION
+  // ============================================================================
+
+  // Attach click handlers to season tiles
+  seasonTiles.forEach(tile => {
+    // Make tile keyboard focusable
+    if (!tile.hasAttribute('tabindex')) {
+      tile.setAttribute('tabindex', '0')
+    }
+
+    // Click handler
+    tile.addEventListener('click', handleTileClick)
+
+    // Keyboard handler
+    tile.addEventListener('keydown', handleKeydown)
+  })
+
+  // Global keyboard listener for Escape key
+  document.addEventListener('keydown', handleKeydown)
+
+  // Modal close button handler
+  if (modal) {
+    const closeButton = modal.querySelector('[data-close-button]')
+    if (closeButton) {
+      closeButton.addEventListener('click', handleModalClose)
+      closeButton.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          handleModalClose()
+        }
+      })
+    }
+  }
+
+  // Backdrop click handler
+  if (backdrop) {
+    backdrop.addEventListener('click', handleModalClose)
+  }
+
+  // ============================================================================
+  // CLEANUP (optional, for single-page navigation)
+  // ============================================================================
+
+  // If using Astro with view transitions, clean up on page exit
+  if (typeof window !== 'undefined') {
+    window.addEventListener('astro:before-swap', () => {
+      document.removeEventListener('keydown', handleKeydown)
+      seasonTiles.forEach(tile => {
+        tile.removeEventListener('click', handleTileClick)
+        tile.removeEventListener('keydown', handleKeydown)
+      })
+    })
+  }
+</script>
+
+<style>
+  /* Modal animation */
+  #season-detail-modal {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  #season-detail-modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  #season-detail-modal[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
