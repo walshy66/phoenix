@@ -8,6 +8,13 @@ import { PLACEHOLDER_SEASONS, PLACEHOLDER_KEY_DATES, PLACEHOLDER_REGISTRATION_CO
 const seasons = PLACEHOLDER_SEASONS
 const keyDates = PLACEHOLDER_KEY_DATES
 const registrationCosts = PLACEHOLDER_REGISTRATION_COSTS
+
+/**
+ * Grading Status
+ * Set to true when grading sessions are scheduled/active
+ * Set to false when grading is complete or not yet scheduled
+ */
+const isGradingActive = false
 ---
 
 <BaseLayout title="Seasons" description="Bendigo Phoenix Basketball season draw, costs, registration and grading information.">
@@ -61,7 +68,8 @@ const registrationCosts = PLACEHOLDER_REGISTRATION_COSTS
     isOpen={false}
   />
 
-  <!-- Grading Section (preserve existing content) -->
+  <!-- Grading Section (preserve existing content, hidden when grading is not active) -->
+  {isGradingActive && (
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Grading Information</h2>
@@ -100,6 +108,7 @@ const registrationCosts = PLACEHOLDER_REGISTRATION_COSTS
       </div>
     </div>
   </section>
+  )}
 
   <!-- Slam Dunk callout (from existing page, preserve content) -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
