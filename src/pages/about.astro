@@ -148,8 +148,8 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
   <!-- About Section -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div>
+      <div>
+        <div class="mb-12">
           <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">A Community for Every Player</h2>
           <div class="h-1 w-12 bg-brand-gold mb-6"></div>
           <p class="text-gray-600 leading-relaxed mb-4">
@@ -167,7 +167,7 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
             We understand that cost can be a barrier to sports participation, which is why Phoenix Basketball Club keeps its fees among the lowest in Bendigo. We believe that every child—regardless of background—should have the opportunity to be part of a team, learn valuable life skills, and experience the joy of the game.
           </p>
         </div>
-        <div class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             { icon: '🤝', title: 'Community First', desc: 'We put our community at the heart of everything we do.' },
             { icon: '⭐', title: 'Development Focused', desc: 'Helping every player reach their potential, whatever their skill level.' },
