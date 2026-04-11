@@ -39,18 +39,11 @@ const isGradingActive = false
     <div class="max-w-7xl mx-auto">
       <!-- Current Season Key Dates -->
       <div class="mb-12">
-        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Current Season — Key Dates</h2>
-        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
         <KeyDatesSection keyDates={keyDates['winter-2026']} />
       </div>
 
       <!-- Season Tiles Grid -->
-      <div class="mb-8">
-        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">All Seasons</h2>
-        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8" id="seasons-grid">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 justify-center" id="seasons-grid">
         {seasons.map(season => (
           <SeasonTile
             season={season}

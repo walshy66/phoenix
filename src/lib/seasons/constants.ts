@@ -56,7 +56,16 @@ export const PLACEHOLDER_SEASONS: Season[] = [
  * Format: Record<seasonId, KeyDate[]>
  */
 export const PLACEHOLDER_KEY_DATES: Record<string, KeyDate[]> = {
-  'winter-2026': [],
+  'winter-2026': [
+    {
+      label: '1st Club Training Session',
+      date: '2026-04-19',
+    },
+    {
+      label: 'Season Starts',
+      date: '2026-04-20',
+    },
+  ],
   'spring-2026': [],
   'summer-2025-26': [],
 };
