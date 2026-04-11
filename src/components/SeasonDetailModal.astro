@@ -69,12 +69,12 @@ const modalAriaLabel = `${displaySeason.name} season details`;
   aria-modal="true"
   aria-label={modalAriaLabel}
 >
-  <div class="relative w-full max-w-2xl rounded-lg bg-white shadow-lg">
+  <div class="relative w-full max-w-lg md:max-w-2xl rounded-lg bg-white shadow-lg">
     <!-- Close Button -->
     <button
       type="button"
       data-close-button
-      class="absolute top-4 right-4 inline-flex items-center justify-center rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      class="absolute top-3 right-3 md:top-4 md:right-4 inline-flex items-center justify-center rounded-lg p-2 min-h-11 min-w-11 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200"
       aria-label="Close season details"
     >
       <span class="sr-only">Close</span>
@@ -91,9 +91,9 @@ const modalAriaLabel = `${displaySeason.name} season details`;
     </button>
 
     <!-- Modal Content -->
-    <div class="p-6 md:p-8">
+    <div class="p-4 md:p-8">
       <!-- Modal Heading -->
-      <h2 class="mb-6 text-2xl font-bold text-gray-900" data-modal-title>
+      <h2 class="mb-6 text-xl md:text-2xl font-bold text-gray-900" data-modal-title>
         {displaySeason.name} Details
       </h2>
 
