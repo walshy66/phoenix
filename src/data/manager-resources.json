@@ -16,5 +16,23 @@
     "type": "document",
     "url": "/resources/team-manager/PHOENIX_Team_Manager_QuickGuide.pdf",
     "dateAdded": "2026-01-01"
+  },
+  {
+    "id": "manager-003",
+    "title": "Coach Cheat Sheet & Kit Care Guide",
+    "description": "Essential cheat sheet and guide for coaches covering key information and equipment care.",
+    "audience": "managers",
+    "type": "document",
+    "url": "/resources/team-manager/PHOENIX_CoachCheatSheetCoackKitCare.pdf",
+    "dateAdded": "2026-04-11"
+  },
+  {
+    "id": "manager-004",
+    "title": "PlayHQ - How to Score a Game",
+    "description": "Step-by-step tutorial video for entering game scores in PlayHQ during a match.",
+    "audience": "managers",
+    "type": "video",
+    "url": "https://youtu.be/OdTboL_uYqk?si=DHaDOyoUJOXQLC4G&t=2",
+    "dateAdded": "2026-04-11"
   }
 ]
