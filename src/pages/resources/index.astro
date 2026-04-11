@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import coachingResources from '../../data/coaching-resources.json';
 import playerResources from '../../data/player-resources.json';
 import managerResources from '../../data/manager-resources.json';
+import guides from '../../data/guides.json';
 import { getAvailableAgeGroups, getAvailableCategories } from '../../lib/resources/filters';
 
 const ageGroups = getAvailableAgeGroups();
@@ -68,15 +69,25 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
         >
           Player Resources
         </button>
-        <!-- Manager tab: hidden from public, visible to managers with direct URL or reveal -->
+        <!-- Manager tab: now visible (FR-008) -->
         <button
           id="tab-managers"
           role="tab"
           aria-selected="false"
           aria-controls="panel-managers"
-          class="tab-btn hidden px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
+          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
         >
           Manager Resources
+        </button>
+        <!-- Guides tab: new (FR-015) -->
+        <button
+          id="tab-guides"
+          role="tab"
+          aria-selected="false"
+          aria-controls="panel-guides"
+          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
+        >
+          Guides
         </button>
       </div>
     </div>
@@ -238,10 +249,12 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
                 <div class="mt-4">
                   <a
                     href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
                     aria-label={`Access ${resource.title}`}
                   >
-                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    {resource.type === 'video' ? 'Watch' : 'Open'}
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -292,11 +305,13 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
                 <div class="mt-4">
                   <a
                     href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 text-sm font-bold hover:opacity-80 transition-opacity"
                     style="color: #8B7536;"
                     aria-label={`Access ${resource.title}`}
                   >
-                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    {resource.type === 'video' ? 'Watch' : 'Open'}
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -319,25 +334,15 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
         </div>
       </div>
 
-      <!-- Manager Panel (hidden) -->
+      <!-- Manager Panel -->
       <div id="panel-managers" role="tabpanel" aria-labelledby="tab-managers" class="hidden">
         <div id="managers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {allManagers.map((resource) => (
             <article
               class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200"
-              data-age={resource.ageGroup}
-              data-category={resource.category}
             >
               <div class="h-1 w-full" style="background: #573F93;"></div>
               <div class="p-5 flex flex-col flex-1">
-                <div class="flex items-start justify-between gap-2 mb-3">
-                  <span class="inline-block text-xs font-bold uppercase tracking-wider text-brand-purple bg-purple-50 px-2 py-1 rounded">
-                    {resource.category}
-                  </span>
-                  <span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap">
-                    {resource.ageGroup}
-                  </span>
-                </div>
                 <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
                   {resource.title}
                 </h3>
@@ -347,10 +352,12 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
                 <div class="mt-4">
                   <a
                     href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
                     aria-label={`Access ${resource.title}`}
                   >
-                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    {resource.type === 'video' ? 'Watch' : 'Open'}
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -369,6 +376,45 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
             Clear filters
           </button>
         </div>
+      </div>
+
+      <!-- Guides Panel -->
+      <div id="panel-guides" role="tabpanel" aria-labelledby="tab-guides" class="hidden">
+        {guides.length === 0 ? (
+          <div class="text-center py-16">
+            <p class="text-gray-500 text-base">No guides available yet — check back soon.</p>
+          </div>
+        ) : (
+          <div id="guides-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {guides.map((guide) => (
+              <article class="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200">
+                <div class="h-1 w-full" style="background: #573F93;"></div>
+                <div class="p-5 flex flex-col flex-1">
+                  <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
+                    {guide.title}
+                  </h3>
+                  <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
+                    {guide.description}
+                  </p>
+                  <div class="mt-4">
+                    <a
+                      href={guide.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
+                      aria-label={`Open ${guide.title}`}
+                    >
+                      Open
+                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
 
       <!-- Submit a Resource -->
@@ -396,23 +442,25 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
 
 <script>
   // ── Tab state ──────────────────────────────────────────────────────────────
-  type Tab = 'coaching' | 'players' | 'managers';
+  type Tab = 'coaching' | 'players' | 'managers' | 'guides';
   let activeTab: Tab = 'coaching';
 
   const tabCoaching  = document.getElementById('tab-coaching')  as HTMLButtonElement;
   const tabPlayers   = document.getElementById('tab-players')   as HTMLButtonElement;
   const tabManagers  = document.getElementById('tab-managers')  as HTMLButtonElement;
+  const tabGuides    = document.getElementById('tab-guides')    as HTMLButtonElement;
   const panelCoaching  = document.getElementById('panel-coaching')!;
   const panelPlayers   = document.getElementById('panel-players')!;
   const panelManagers  = document.getElementById('panel-managers')!;
+  const panelGuides    = document.getElementById('panel-guides')!;
   const filtersCoaching  = document.getElementById('filters-coaching')!;
   const filtersPlayers   = document.getElementById('filters-players')!;
   const filtersManagers  = document.getElementById('filters-managers')!;
 
-  const allTabs    = [tabCoaching, tabPlayers, tabManagers];
-  const allPanels  = [panelCoaching, panelPlayers, panelManagers];
+  const allTabs    = [tabCoaching, tabPlayers, tabManagers, tabGuides];
+  const allPanels  = [panelCoaching, panelPlayers, panelManagers, panelGuides];
   const allFilters = [filtersCoaching, filtersPlayers, filtersManagers];
-  const tabIds: Tab[] = ['coaching', 'players', 'managers'];
+  const tabIds: Tab[] = ['coaching', 'players', 'managers', 'guides'];
 
   function switchTab(tab: Tab) {
     activeTab = tab;
@@ -424,14 +472,29 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
       btn.classList.toggle('border-transparent', !active);
       btn.classList.toggle('text-gray-500', !active);
       allPanels[i].classList.toggle('hidden', !active);
-      allFilters[i].classList.toggle('hidden', !active);
     });
+
+    // Handle filter bar visibility
+    // Manager tab and Guides tab have no filters (FR-010, FR-011)
+    if (tab === 'managers' || tab === 'guides') {
+      allFilters.forEach(f => f.classList.add('hidden'));
+      filtersManagers.classList.add('hidden'); // Permanently hide managers filters
+    } else {
+      // For coaching/players tabs, show their filter bar, hide others
+      allFilters.forEach((f, i) => {
+        const filterTabId = ['coaching', 'players', 'managers'][i];
+        f.classList.toggle('hidden', filterTabId !== tab);
+      });
+      filtersManagers.classList.add('hidden'); // Always hide managers filters
+    }
+
     clearFilters(tab);
   }
 
   tabCoaching.addEventListener('click', () => switchTab('coaching'));
   tabPlayers.addEventListener('click',  () => switchTab('players'));
   tabManagers.addEventListener('click', () => switchTab('managers'));
+  tabGuides.addEventListener('click',   () => switchTab('guides'));
 
   // Keyboard nav for tab bar (Left/Right arrows with wrap, skip hidden tabs)
   allTabs.forEach((btn, idx, arr) => {

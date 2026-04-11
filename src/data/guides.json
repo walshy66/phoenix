@@ -1,0 +1,44 @@
+[
+  {
+    "id": "guide-001",
+    "title": "Smart Goals",
+    "description": "Guide to setting effective SMART goals for personal and team development.",
+    "url": "/resources/guides/GUIDE_SmartGoals_20250218.pdf",
+    "dateAdded": "2026-04-11"
+  },
+  {
+    "id": "guide-002",
+    "title": "Social Media Coordinator",
+    "description": "Role guide and responsibilities for managing club social media channels.",
+    "url": "/resources/guides/GUIDE_Social Media Coordinator_20250901.pdf",
+    "dateAdded": "2026-04-11"
+  },
+  {
+    "id": "guide-003",
+    "title": "Sponsorship Coordinator",
+    "description": "Guide for coordinating and managing club sponsorships and partnerships.",
+    "url": "/resources/guides/GUIDE_Sponsorship Coordinator_20250901.pdf",
+    "dateAdded": "2026-04-11"
+  },
+  {
+    "id": "guide-004",
+    "title": "Team Manager",
+    "description": "Comprehensive guide for team managers covering all key responsibilities and processes.",
+    "url": "/resources/guides/GUIDE_TeamManager_V1.1.pdf",
+    "dateAdded": "2026-04-11"
+  },
+  {
+    "id": "guide-005",
+    "title": "Uniform Coordinator",
+    "description": "Guide for coordinating team uniforms and merchandise distribution.",
+    "url": "/resources/guides/GUIDE_Uniform Coordinator_20250901.pdf",
+    "dateAdded": "2026-04-11"
+  },
+  {
+    "id": "guide-006",
+    "title": "Vice President",
+    "description": "Role guide outlining responsibilities and requirements for the Vice President position.",
+    "url": "/resources/guides/GUIDE_Vice President_20250901.pdf",
+    "dateAdded": "2026-04-11"
+  }
+]

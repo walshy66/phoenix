@@ -1,32 +1,135 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const policies = [
+// ClubPolicy interface definition
+interface ClubPolicy {
+  name: string;
+  type: 'pdf' | 'external_link';
+  filePath?: string;
+  url?: string;
+}
+
+// Club Policies data - includes PDFs and external links
+const clubPolicies: ClubPolicy[] = [
   {
-    title: 'Code of Conduct',
-    content: 'All players, coaches, officials and spectators are expected to uphold the highest standards of sportsmanship and respect. Any behaviour that is deemed unsportsmanlike or abusive will not be tolerated. We are committed to providing a safe and welcoming environment for all.',
+    name: 'BBA Policies & Guidelines',
+    type: 'pdf',
+    filePath: 'resources/club-policies/BBA-Policies-Guidelines-April-2024.pdf',
   },
   {
-    title: 'Registration & Eligibility',
-    content: 'Players must be registered before participating in any official competition. Registration must be completed through the club and approved by Basketball Victoria. Age eligibility is determined by the player\'s age as of January 1 of the competition year.',
+    name: 'Bridging Fund Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Bridging_Fund.pdf',
   },
   {
-    title: 'Uniform Policy',
-    content: 'All players are required to wear the official Bendigo Phoenix uniform during competition. Uniforms must be clean and in good condition. Playing without the correct uniform may result in non-participation at the discretion of the referee.',
+    name: 'Child Protection Policy',
+    type: 'external_link',
+    url: 'https://bendigobasketball.com.au/child-protection-policy/',
   },
   {
-    title: 'Player Welfare',
-    content: 'The wellbeing of our players is our highest priority. We are committed to providing a safe environment free from bullying, harassment and discrimination. Any concerns should be reported to the Club President or Team Manager immediately.',
+    name: 'Child Safety Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_ChildSafety_20251023.pdf',
   },
   {
-    title: 'Photography & Social Media',
-    content: 'Photos and videos of minors must only be taken with parental consent. Images of players should not be posted on social media without permission. All club-related social media activity should be respectful and positive.',
+    name: 'Child Supervision Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_ChildSupevision_20251023.pdf',
   },
   {
-    title: 'Grievance Procedure',
-    content: 'Any grievances should first be addressed informally with the relevant party. If unresolved, a formal complaint may be lodged with the Club Committee in writing. All complaints will be handled fairly, promptly and confidentially.',
+    name: 'Code of Conduct - Administrators',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Administrators_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Coaches',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Coaches_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Parents',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Parents_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Players',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Players_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Spectators',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Spectator_20250104.pdf',
+  },
+  {
+    name: 'Complaints and Grievances Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_ComplaintsGrievances_20251023.pdf',
+  },
+  {
+    name: 'Conflict of Interest and Confidentiality Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_ConflictOfInterestConfidentiality_20251023.pdf',
+  },
+  {
+    name: 'Fees Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Fees.pdf',
+  },
+  {
+    name: 'Issue: Gendered Violence & Disrespect',
+    type: 'external_link',
+    url: 'https://sportsfocus.com.au/issue-gender-disrespect-violence/',
+  },
+  {
+    name: 'Model Rules for Phoenix',
+    type: 'pdf',
+    filePath: 'resources/club-policies/Model_rules_for_Phoenix_2023.pdf',
+  },
+  {
+    name: 'Photography and Filming Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Photography_and_Filming_20251023.pdf',
+  },
+  {
+    name: 'Privacy Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Privacy_20251023.pdf',
+  },
+  {
+    name: 'Privacy Policy (BV)',
+    type: 'pdf',
+    filePath: 'resources/club-policies/BV_Privacy_Policy_2024.pdf',
+  },
+  {
+    name: 'Refunds Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Refunds.pdf',
+  },
+  {
+    name: 'Registration and Grading Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Registration_and_Grading.pdf',
+  },
+  {
+    name: 'Social Media Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Social_Media_20251023.pdf',
+  },
+  {
+    name: 'Uniforms Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Uniforms.pdf',
+  },
+  {
+    name: 'Volunteer Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Volunteer_20251023.pdf',
   },
 ];
+
+// Sort alphabetically by name
+const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
 ---
 
 <BaseLayout title="About" description="Learn about Bendigo Phoenix Basketball Club, our mission, policies and the Slam Dunk Bridging Fund.">
@@ -45,32 +148,33 @@ const policies = [
   <!-- About Section -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Our Mission</h2>
+      <div>
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">A Community for Every Player</h2>
           <div class="h-1 w-12 bg-brand-gold mb-6"></div>
           <p class="text-gray-600 leading-relaxed mb-4">
-            Bendigo Phoenix Basketball Club has been a cornerstone of basketball in Central Victoria.
-            Our club is committed to developing players of all ages while fostering a strong community spirit.
+            Founded in 2003, Phoenix Basketball Club has been bringing together players of all ages and skill levels with a shared love for the game. Whether you're new to basketball or you've been shooting hoops for years, Phoenix is a place where everyone can grow, connect, and thrive.
           </p>
           <p class="text-gray-600 leading-relaxed mb-4">
-            We compete in the Bendigo Basketball Association competitions and are passionate about growing the
-            sport in our region. From our youngest junior players to our senior competitors, we strive to
-            provide pathways for every level of player.
+            <strong class="text-brand-black">A Club Built on Camaraderie and Personal Growth</strong><br />
+            At Phoenix, basketball isn't just about the game—it's about the journey. The club's mission is to foster a supportive environment that promotes athletic skill development, camaraderie, discipline, and personal growth. From the first dribble to the final buzzer, we believe in teamwork and mutual respect taking center stage. It's not just about winning games—it's about building lifelong relationships and cultivating the skills that help players excel both on and off the court.
+          </p>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            <strong class="text-brand-black">Something for Everyone</strong><br />
+            At Phoenix, we pride ourselves on offering something for everyone, regardless of experience or skill level. New players will find a welcoming environment where they can learn the basics, while seasoned athletes will be challenged to elevate their game. Whether you're aiming for a spot on the competitive team or simply want to enjoy basketball in a fun, recreational setting, Phoenix ensures there's a place for you.
           </p>
           <p class="text-gray-600 leading-relaxed">
-            At Bendigo Phoenix, we believe basketball is more than just a game — it's a vehicle for building
-            character, friendships and community connections that last a lifetime.
+            We understand that cost can be a barrier to sports participation, which is why Phoenix Basketball Club keeps its fees among the lowest in Bendigo. We believe that every child—regardless of background—should have the opportunity to be part of a team, learn valuable life skills, and experience the joy of the game.
           </p>
         </div>
-        <div class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             { icon: '🤝', title: 'Community First', desc: 'We put our community at the heart of everything we do.' },
             { icon: '⭐', title: 'Development Focused', desc: 'Helping every player reach their potential, whatever their skill level.' },
             { icon: '🏆', title: 'Competitive Spirit', desc: 'Striving for excellence on and off the court.' },
             { icon: '❤️', title: 'Inclusive Culture', desc: 'Basketball for everyone — no one gets left behind.' },
           ].map(val => (
-            <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-offwhite border border-gray-100">
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-offwhite border border-gray-300">
               <span class="text-3xl flex-shrink-0">{val.icon}</span>
               <div>
                 <h3 class="font-bold text-brand-black text-sm">{val.title}</h3>
@@ -126,33 +230,42 @@ const policies = [
     </div>
   </section>
 
-  <!-- Policies -->
+  <!-- Club Policies -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Club Policies</h2>
       <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-      <div class="space-y-3" id="accordion">
-        {policies.map((policy, i) => (
-          <div class="rounded-xl border border-gray-100 overflow-hidden">
-            <button
-              class="accordion-toggle w-full text-left px-5 py-4 flex items-center justify-between bg-white hover:bg-brand-offwhite transition-colors duration-150"
-              data-index={i}
-              aria-expanded="false"
-            >
-              <span class="font-bold text-brand-black text-sm">{policy.title}</span>
-              <svg
-                class="w-5 h-5 text-brand-purple flex-shrink-0 transition-transform duration-200"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="policies-grid">
+        {policies.map((policy) => (
+          <div class="rounded-xl border border-gray-300 overflow-hidden bg-white hover:shadow-md transition-shadow flex flex-col items-center justify-center py-6 px-4 text-center min-h-[120px]">
+            <h3 class="font-bold text-brand-black text-sm mb-4">{policy.name}</h3>
+            {policy.type === 'pdf' ? (
+              <a
+                href={`/${policy.filePath}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 bg-brand-purple text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-purple-800 transition-colors"
+                aria-label={`Open ${policy.name}`}
               >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div class="accordion-content px-5">
-              <p class="text-gray-600 text-sm leading-relaxed py-4 border-t border-gray-100">{policy.content}</p>
-            </div>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-4-6l6-6m0 0l-6 6m6-6v10" />
+                </svg>
+                Open
+              </a>
+            ) : (
+              <a
+                href={policy.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-brand-purple hover:text-purple-800 transition-colors"
+                aria-label={`Open ${policy.name}`}
+              >
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-4-6l6-6m0 0l-6 6m6-6v10" />
+                </svg>
+              </a>
+            )}
           </div>
         ))}
       </div>
@@ -160,26 +273,3 @@ const policies = [
   </section>
 </BaseLayout>
 
-<script>
-  const toggles = document.querySelectorAll('.accordion-toggle');
-
-  toggles.forEach(toggle => {
-    toggle.addEventListener('click', () => {
-      const content = toggle.nextElementSibling as HTMLElement;
-      const icon = toggle.querySelector('svg');
-      const isOpen = content?.classList.contains('open');
-
-      // Close all
-      document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-      document.querySelectorAll('.accordion-toggle svg').forEach(i => (i as HTMLElement).style.transform = '');
-      document.querySelectorAll('.accordion-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
-
-      // Open clicked if it was closed
-      if (!isOpen && content) {
-        content.classList.add('open');
-        if (icon) icon.style.transform = 'rotate(180deg)';
-        toggle.setAttribute('aria-expanded', 'true');
-      }
-    });
-  });
-</script>
