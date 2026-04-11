@@ -12,49 +12,94 @@ interface ClubPolicy {
 // Club Policies data - includes PDFs and external links
 const clubPolicies: ClubPolicy[] = [
   {
-    name: 'Child Protection Policy',
-    type: 'external_link',
-    url: 'https://bendigobasketball.com.au/child-protection-policy/',
-  },
-  {
-    name: 'Code of Conduct',
+    name: 'Bridging Fund Policy',
     type: 'pdf',
-    filePath: 'resources/club-policies/code-of-conduct.pdf',
+    filePath: 'resources/club-policies/POLICY_Bridging_Fund.pdf',
   },
   {
-    name: 'Gender, Disrespect & Violence',
-    type: 'external_link',
-    url: 'https://sportsfocus.com.au/issue-gender-disrespect-violence/',
-  },
-  {
-    name: 'Grievance Procedure',
+    name: 'Child Safety Policy',
     type: 'pdf',
-    filePath: 'resources/club-policies/grievance-procedure.pdf',
+    filePath: 'resources/club-policies/POLICY_ChildSafety_20251023.pdf',
   },
   {
-    name: 'Photography & Social Media',
+    name: 'Child Supervision Policy',
     type: 'pdf',
-    filePath: 'resources/club-policies/photography-social-media.pdf',
+    filePath: 'resources/club-policies/POLICY_ChildSupevision_20251023.pdf',
   },
   {
-    name: 'Player Welfare',
+    name: 'Code of Conduct - Administrators',
     type: 'pdf',
-    filePath: 'resources/club-policies/player-welfare.pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Administrators_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Coaches',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Coaches_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Parents',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Parents_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Players',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Players_20250104.pdf',
+  },
+  {
+    name: 'Code of Conduct - Spectators',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_CodeOfConduct_Spectator_20250104.pdf',
+  },
+  {
+    name: 'Complaints and Grievances Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_ComplaintsGrievances_20251023.pdf',
+  },
+  {
+    name: 'Conflict of Interest and Confidentiality Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_ConflictOfInterestConfidentiality_20251023.pdf',
+  },
+  {
+    name: 'Fees Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Fees.pdf',
+  },
+  {
+    name: 'Photography and Filming Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Photography_and_Filming_20251023.pdf',
   },
   {
     name: 'Privacy Policy',
     type: 'pdf',
-    filePath: 'resources/club-policies/privacy-policy.pdf',
+    filePath: 'resources/club-policies/POLICY_Privacy_20251023.pdf',
   },
   {
-    name: 'Registration & Eligibility',
+    name: 'Refunds Policy',
     type: 'pdf',
-    filePath: 'resources/club-policies/registration-and-eligibility.pdf',
+    filePath: 'resources/club-policies/POLICY_Refunds.pdf',
   },
   {
-    name: 'Uniform Policy',
+    name: 'Registration and Grading Policy',
     type: 'pdf',
-    filePath: 'resources/club-policies/uniform-policy.pdf',
+    filePath: 'resources/club-policies/POLICY_Registration_and_Grading.pdf',
+  },
+  {
+    name: 'Social Media Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Social_Media_20251023.pdf',
+  },
+  {
+    name: 'Uniforms Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Uniforms.pdf',
+  },
+  {
+    name: 'Volunteer Policy',
+    type: 'pdf',
+    filePath: 'resources/club-policies/POLICY_Volunteer_20251023.pdf',
   },
 ];
 
@@ -200,13 +245,14 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
                       <a
                         class="policy-download-btn inline-flex items-center gap-2 bg-brand-purple text-white px-4 py-2 rounded-lg font-bold text-xs hover:bg-purple-800 transition-colors"
                         href={`/${policy.filePath}`}
-                        download={policy.name}
-                        aria-label={`Download ${policy.name}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open ${policy.name}`}
                       >
                         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19v-7m0 0V5m0 7H5m7 0h7" />
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-4-6l6-6m0 0l-6 6m6-6v10" />
                         </svg>
-                        Download
+                        Open
                       </a>
                     </div>
                     <div class="policy-embed-wrapper bg-gray-50 rounded-lg overflow-hidden">

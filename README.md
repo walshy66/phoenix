@@ -38,6 +38,30 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## Hero Section Images
+
+Hero carousel slides are stored in `public/images/hero/`.
+
+| Property | Requirement |
+| :-------- | :---------- |
+| Format | JPEG or WebP |
+| Aspect ratio | **16:9 landscape** |
+| Recommended size | **1400×788px** (minimum), 1920×1080px for high-DPI screens |
+| Orientation | Landscape only — portrait images will be cropped |
+| Content | Infographic or action shot; keep key content centred (edges may be cropped on narrower viewports) |
+
+Slides are configured in `src/pages/index.astro` in the `heroSlides` array:
+
+```js
+const heroSlides = [
+  { image: '/images/hero/your-image.jpg', alt: 'Description of slide', bgColor: '#2a1a5e' },
+];
+```
+
+- `image` — path relative to `public/`
+- `alt` — screen-reader description (required)
+- `bgColor` — background colour shown while the image loads (optional, default `#2a1a5e`)
+
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

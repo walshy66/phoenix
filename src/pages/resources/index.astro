@@ -249,10 +249,12 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
                 <div class="mt-4">
                   <a
                     href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
                     aria-label={`Access ${resource.title}`}
                   >
-                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    {resource.type === 'video' ? 'Watch' : 'Open'}
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -303,11 +305,13 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
                 <div class="mt-4">
                   <a
                     href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 text-sm font-bold hover:opacity-80 transition-opacity"
                     style="color: #8B7536;"
                     aria-label={`Access ${resource.title}`}
                   >
-                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    {resource.type === 'video' ? 'Watch' : 'Open'}
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
@@ -358,10 +362,12 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
                 <div class="mt-4">
                   <a
                     href={resource.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
                     aria-label={`Access ${resource.title}`}
                   >
-                    {resource.type === 'video' ? 'Watch' : resource.type === 'link' ? 'Open' : 'Download'}
+                    {resource.type === 'video' ? 'Watch' : 'Open'}
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
