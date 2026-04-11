@@ -23,7 +23,7 @@
  */
 
 import type { Season } from '../lib/seasons/types';
-import { getSeasonRoleEmoji, getSeasonRoleLabel } from '../lib/seasons/utils';
+import { getSeasonRoleEmoji, getSeasonRoleLabel, getSeasonAriaLabel } from '../lib/seasons/utils';
 
 interface Props {
   season: Season;
@@ -49,7 +49,7 @@ const isComingSoon = season.status === 'coming_soon';
 const isMuted = season.role === 'previous' || season.role === 'archive';
 
 // Generate aria-label for accessibility
-const ariaLabel = `${roleLabel} Season: ${season.name}, click to view details`;
+const ariaLabel = getSeasonAriaLabel(season);
 
 // Build class string for responsive and state-based styling
 const tileClasses = [

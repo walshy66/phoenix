@@ -142,3 +142,25 @@ export function getSeasonRoleEmoji(role: SeasonRole): string {
 
   return emojiMap[role] || '🏆';
 }
+
+/**
+ * Generate descriptive aria-label for season tile
+ *
+ * Accessibility (WCAG 2.1 AA): Provides screen reader users with
+ * descriptive context about the season and expected action.
+ *
+ * Example: "Current Season: Winter 2026, click to view details"
+ * Example: "Next Season: Spring 2026, click to view details"
+ * Example: "Archive Season: Winter 2025, click to view details"
+ *
+ * @param season Season object with role, name properties
+ * @returns Descriptive aria-label string
+ */
+export function getSeasonAriaLabel(season: Season): string {
+  if (!season || !season.name || !season.role) {
+    return 'Season details, click to view details';
+  }
+
+  const roleLabel = getSeasonRoleLabel(season);
+  return `${roleLabel} Season: ${season.name}, click to view details`;
+}
