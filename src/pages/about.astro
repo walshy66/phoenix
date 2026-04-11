@@ -173,7 +173,7 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
             { icon: '🏆', title: 'Competitive Spirit', desc: 'Striving for excellence on and off the court.' },
             { icon: '❤️', title: 'Inclusive Culture', desc: 'Basketball for everyone — no one gets left behind.' },
           ].map(val => (
-            <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-offwhite border border-gray-100">
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-brand-offwhite border border-gray-300">
               <span class="text-3xl flex-shrink-0">{val.icon}</span>
               <div>
                 <h3 class="font-bold text-brand-black text-sm">{val.title}</h3>
@@ -237,7 +237,7 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="policies-grid">
         {policies.map((policy) => (
-          <div class="rounded-xl border border-gray-100 overflow-hidden bg-white hover:shadow-md transition-shadow flex flex-col items-center justify-center py-6 px-4 text-center min-h-[120px]">
+          <div class="rounded-xl border border-gray-300 overflow-hidden bg-white hover:shadow-md transition-shadow flex flex-col items-center justify-center py-6 px-4 text-center min-h-[120px]">
             <h3 class="font-bold text-brand-black text-sm mb-4">{policy.name}</h3>
             {policy.type === 'pdf' ? (
               <a
