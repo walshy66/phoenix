@@ -340,19 +340,9 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
           {allManagers.map((resource) => (
             <article
               class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200"
-              data-age={resource.ageGroup}
-              data-category={resource.category}
             >
               <div class="h-1 w-full" style="background: #573F93;"></div>
               <div class="p-5 flex flex-col flex-1">
-                <div class="flex items-start justify-between gap-2 mb-3">
-                  <span class="inline-block text-xs font-bold uppercase tracking-wider text-brand-purple bg-purple-50 px-2 py-1 rounded">
-                    {resource.category}
-                  </span>
-                  <span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap">
-                    {resource.ageGroup}
-                  </span>
-                </div>
                 <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
                   {resource.title}
                 </h3>
@@ -395,63 +385,34 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
             <p class="text-gray-500 text-base">No guides available yet — check back soon.</p>
           </div>
         ) : (
-          <div class="space-y-8">
-            {/* Group guides by category */}
-            {Array.from(new Set(guides.map(g => g.category))).map((category) => {
-              const categoryGuides = guides.filter(g => g.category === category).sort((a, b) => a.title.localeCompare(b.title));
-              return (
-                <div>
-                  <h3 class="text-xl font-bold text-brand-purple uppercase tracking-wide mb-4">{category}</h3>
-                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {categoryGuides.map((guide) => {
-                      // Extract video ID from various YouTube URL formats
-                      let videoId = '';
-                      if (guide.youtubeUrl.includes('youtu.be/')) {
-                        videoId = guide.youtubeUrl.split('youtu.be/')[1]?.split('?')[0]?.split('&')[0] || '';
-                      } else if (guide.youtubeUrl.includes('youtube.com/watch')) {
-                        videoId = guide.youtubeUrl.split('v=')[1]?.split('&')[0] || '';
-                      }
-                      const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
-
-                      return (
-                        <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
-                          <div class="h-1 w-full" style="background: #573F93;"></div>
-                          <div class="p-5 flex flex-col">
-                            <div class="mb-4">
-                              <span class="inline-block text-xs font-bold uppercase tracking-wider text-brand-purple bg-purple-50 px-2 py-1 rounded">
-                                {guide.category}
-                              </span>
-                            </div>
-                            <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-4 leading-snug">
-                              {guide.title}
-                            </h3>
-                            {guide.description && (
-                              <p class="text-gray-600 text-sm leading-relaxed mb-4">
-                                {guide.description}
-                              </p>
-                            )}
-                            {embedUrl && (
-                              <div class="aspect-video bg-gray-900 rounded-lg overflow-hidden">
-                                <iframe
-                                  width="100%"
-                                  height="100%"
-                                  src={embedUrl}
-                                  title={guide.title}
-                                  frameborder="0"
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowfullscreen
-                                  class="w-full h-full"
-                                ></iframe>
-                              </div>
-                            )}
-                          </div>
-                        </article>
-                      );
-                    })}
+          <div id="guides-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {guides.map((guide) => (
+              <article class="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200">
+                <div class="h-1 w-full" style="background: #573F93;"></div>
+                <div class="p-5 flex flex-col flex-1">
+                  <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
+                    {guide.title}
+                  </h3>
+                  <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
+                    {guide.description}
+                  </p>
+                  <div class="mt-4">
+                    <a
+                      href={guide.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
+                      aria-label={`Open ${guide.title}`}
+                    >
+                      Open
+                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </a>
                   </div>
                 </div>
-              );
-            })}
+              </article>
+            ))}
           </div>
         )}
       </div>

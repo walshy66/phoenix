@@ -1,90 +1,20 @@
 [
   {
     "id": "manager-001",
-    "title": "Club Constitution & By-Laws",
-    "description": "Official Bendigo Phoenix constitution and by-laws document. Required reading for all committee members.",
+    "title": "Team Manager Guide",
+    "description": "Comprehensive guide for team managers covering all key responsibilities and processes.",
     "audience": "managers",
-    "category": "Policies",
-    "ageGroup": "All Ages",
     "type": "document",
-    "url": "/resources/team-manager/club-constitution-bylaws.pdf",
+    "url": "/resources/team-manager/GUIDE_TeamManager_V1.1.pdf",
     "dateAdded": "2026-01-01"
   },
   {
     "id": "manager-002",
-    "title": "Registration & Fees Policy",
-    "description": "Current season registration process, fee schedules, and payment plan options for all age groups.",
+    "title": "Team Manager Quick Guide",
+    "description": "Quick reference guide for team managers with essential information and contacts.",
     "audience": "managers",
-    "category": "Administration",
-    "ageGroup": "All Ages",
     "type": "document",
-    "url": "/resources/team-manager/registration-fees-policy.pdf",
-    "dateAdded": "2026-01-01"
-  },
-  {
-    "id": "manager-003",
-    "title": "Annual Budget Template",
-    "description": "Spreadsheet template for planning seasonal budgets including uniforms, venue hire, equipment, and travel.",
-    "audience": "managers",
-    "category": "Finance",
-    "ageGroup": "All Ages",
-    "type": "document",
-    "url": "/resources/team-manager/annual-budget-template.pdf",
-    "dateAdded": "2026-01-01"
-  },
-  {
-    "id": "manager-004",
-    "title": "Working With Children Check Guide",
-    "description": "Step-by-step guide for volunteers and coaches to obtain and submit their WWCC as required by Basketball Victoria.",
-    "audience": "managers",
-    "category": "Compliance",
-    "ageGroup": "All Ages",
-    "type": "document",
-    "url": "/resources/team-manager/working-with-children-check-guide.pdf",
-    "dateAdded": "2026-01-01"
-  },
-  {
-    "id": "manager-005",
-    "title": "Parent Communication Template",
-    "description": "Email and newsletter templates for communicating season information, game schedules, and club updates to families.",
-    "audience": "managers",
-    "category": "Communication",
-    "ageGroup": "All Ages",
-    "type": "document",
-    "url": "/resources/team-manager/parent-communication-template.pdf",
-    "dateAdded": "2026-01-01"
-  },
-  {
-    "id": "manager-006",
-    "title": "End-of-Season Presentation Guide",
-    "description": "Planning checklist and run sheet template for organising end-of-season award nights and presentations.",
-    "audience": "managers",
-    "category": "Events",
-    "ageGroup": "All Ages",
-    "type": "document",
-    "url": "/resources/team-manager/end-of-season-presentation-guide.pdf",
-    "dateAdded": "2026-01-01"
-  },
-  {
-    "id": "manager-007",
-    "title": "Incident Report Form",
-    "description": "Standard form for recording on-court incidents, injuries, or conduct issues during games and training sessions.",
-    "audience": "managers",
-    "category": "Compliance",
-    "ageGroup": "All Ages",
-    "type": "document",
-    "url": "/resources/team-manager/incident-report-form.pdf",
-    "dateAdded": "2026-01-01"
-  },
-  {
-    "id": "manager-008",
-    "title": "Sponsorship Proposal Template",
-    "description": "Customisable sponsorship proposal document to approach local businesses for club funding and in-kind support.",
-    "audience": "managers",
-    "category": "Finance",
-    "ageGroup": "All Ages",
-    "type": "document",
-    "url": "/resources/team-manager/sponsorship-proposal-template.pdf",
+    "url": "/resources/team-manager/PHOENIX_Team_Manager_QuickGuide.pdf",
     "dateAdded": "2026-01-01"
   }
 ]
