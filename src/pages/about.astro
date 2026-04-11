@@ -235,9 +235,9 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
       <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Club Policies</h2>
       <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="policies-grid">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="policies-grid">
         {policies.map((policy) => (
-          <div class="rounded-xl border border-gray-100 overflow-hidden bg-white hover:shadow-md transition-shadow flex flex-col items-center justify-center py-8 px-4 text-center min-h-[150px]">
+          <div class="rounded-xl border border-gray-100 overflow-hidden bg-white hover:shadow-md transition-shadow flex flex-col items-center justify-center py-6 px-4 text-center min-h-[120px]">
             <h3 class="font-bold text-brand-black text-sm mb-4">{policy.name}</h3>
             {policy.type === 'pdf' ? (
               <a
