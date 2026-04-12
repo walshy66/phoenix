@@ -72,12 +72,21 @@ let teamsData = {
 };
 
 try {
-  const dataPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
-  if (existsSync(dataPath)) {
-    const raw = readFileSync(dataPath, 'utf-8');
+  // Try to load from PlayHQ scraper output first
+  const playhqPath = join(process.cwd(), 'scripts', 'teams-data.json');
+  if (existsSync(playhqPath)) {
+    const raw = readFileSync(playhqPath, 'utf-8');
     teamsData = JSON.parse(raw);
+  } else {
+    // Fall back to placeholder data
+    const dataPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
+    if (existsSync(dataPath)) {
+      const raw = readFileSync(dataPath, 'utf-8');
+      teamsData = JSON.parse(raw);
+    }
   }
 } catch (e) {
+  console.warn('Failed to load teams data:', e);
   // Use placeholder data
 }
 
@@ -95,13 +104,13 @@ const parseGradeName = (gradeName) => {
   }
 
   const [, gameNight, ageGroupStr, gender, divisionNum] = match;
-  
+
   // Convert U10 -> u10s
   const ageGroup = ageGroupStr.toLowerCase() + 's';
-  
+
   // Convert division number to DIV format
   const division = `DIV ${divisionNum}`;
-  
+
   return {
     ageGroup,
     gender,
@@ -112,8 +121,7 @@ const parseGradeName = (gradeName) => {
 
 // Order of age groups for display
 const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
-
-///
+---
 
 <BaseLayout title="Teams" description="Find your perfect team at Bendigo Phoenix Basketball Club.">
   <!-- Page Hero -->
@@ -132,8 +140,8 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
   <section class="bg-white border-b border-gray-100 sticky top-16 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex gap-2 py-3" id="filter-bar">
-        <button 
-          data-filter-type="all" 
+        <button
+          data-filter-type="all"
           data-filter-value="all"
           class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-brand-purple text-white border-brand-purple active"
           aria-pressed="true"
@@ -141,15 +149,15 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
           All
         </button>
         <button 
-          data-filter-type="gender" 
+          data-filter-type="gender"
           data-filter-value="boys"
           class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
           aria-pressed="false"
         >
           Boys
         </button>
-        <button 
-          data-filter-type="gender" 
+        <button
+          data-filter-type="gender"
           data-filter-value="girls"
           class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
           aria-pressed="false"
@@ -158,7 +166,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         </button>
         <!-- Age Group Dropdown -->
         <div class="relative">
-          <button 
+          <button
             id="ageGroupBtn"
             class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
             aria-haspopup="listbox"
@@ -169,7 +177,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
           </button>
           <div id="ageGroupDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
             <div class="py-1">
-              <button 
+              <button
                 type="button"
                 data-filter-type="ageGroup"
                 data-filter-value="u10s"
@@ -177,7 +185,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 u10s
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="ageGroup"
                 data-filter-value="u12s"
@@ -185,7 +193,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 u12s
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="ageGroup"
                 data-filter-value="u14s"
@@ -193,7 +201,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 u14s
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="ageGroup"
                 data-filter-value="u16s"
@@ -201,7 +209,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 u16s
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="ageGroup"
                 data-filter-value="u18s"
@@ -214,7 +222,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         </div>
         <!-- Game Day Dropdown -->
         <div class="relative">
-          <button 
+          <button
             id="gameDayBtn"
             class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
             aria-haspopup="listbox"
@@ -225,7 +233,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
           </button>
           <div id="gameDayDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
             <div class="py-1">
-              <button 
+              <button
                 type="button"
                 data-filter-type="gameDay"
                 data-filter-value="monday"
@@ -233,7 +241,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 Monday
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="gameDay"
                 data-filter-value="tuesday"
@@ -241,7 +249,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 Tuesday
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="gameDay"
                 data-filter-value="wednesday"
@@ -249,7 +257,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 Wednesday
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="gameDay"
                 data-filter-value="thursday"
@@ -257,7 +265,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 Thursday
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="gameDay"
                 data-filter-value="friday"
@@ -265,7 +273,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 Friday
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="gameDay"
                 data-filter-value="saturday"
@@ -273,7 +281,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 Saturday
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="gameDay"
                 data-filter-value="sunday"
@@ -286,7 +294,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         </div>
         <!-- Grade Dropdown -->
         <div class="relative">
-          <button 
+          <button
             id="gradeBtn"
             class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
             aria-haspopup="listbox"
@@ -297,7 +305,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
           </button>
           <div id="gradeDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
             <div class="py-1">
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="1"
@@ -305,7 +313,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 1
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="2"
@@ -313,7 +321,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 2
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="3"
@@ -321,7 +329,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 3
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="4"
@@ -329,7 +337,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 4
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="5"
@@ -337,7 +345,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 5
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="6"
@@ -345,7 +353,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 6
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="7"
@@ -353,7 +361,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 7
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="8"
@@ -361,7 +369,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 8
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="9"
@@ -369,7 +377,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 9
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="10"
@@ -377,7 +385,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 10
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="11"
@@ -385,7 +393,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               >
                 11
               </button>
-              <button 
+              <button
                 type="button"
                 data-filter-type="grade"
                 data-filter-value="12"
@@ -403,14 +411,11 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
   <!-- Teams Grid -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
     <div class="max-w-7xl mx-auto" id="teams-container">
-      {#/*
-        Teams will be grouped by ageGroup and rendered here
-        Placeholder for now - will be populated with JavaScript
-      */}
+      {/* Teams will be grouped by ageGroup and rendered here - populated by JavaScript */}
       <div class="space-y-8" id="age-group-sections">
         {/* Age group sections will be injected here by JavaScript */}
       </div>
-      
+
       {/* Placeholder message when no teams match filter */}
       <div class="mt-12 text-center bg-white rounded-xl p-8 border border-dashed border-brand-purple hidden" id="no-teams-message">
         <p class="text-brand-purple font-bold text-lg mb-2">No teams match this filter</p>
@@ -426,21 +431,21 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
   .dropdown-menu {
     display: block;
   }
-  
+
   .dropdown-menu.hidden {
     display: none;
   }
-  
+
   .dropdown-item {
     cursor: pointer;
   }
-  
+
   .dropdown-item:hover {
     background-color: rgba(139, 117, 54, 0.1);
   }
 </style>
 
-<script>
+<script define:vars={{ teamsData, ageGroupOrder }}>
   // Get DOM elements
   const filterBar = document.getElementById('filter-bar');
   const filterButtons = filterBar.querySelectorAll('.filter-btn');
@@ -450,13 +455,13 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
   const ageGroupBtn = document.getElementById('ageGroupBtn');
   const gameDayBtn = document.getElementById('gameDayBtn');
   const gradeBtn = document.getElementById('gradeBtn');
-  
-  // Teams data (would normally come from props or fetch, but we have it from above)
-  const teams = JSON.parse('${JSON.stringify(teamsData.teams)}');
-  
+
+  // Teams data from parsed JSON
+  const teams = teamsData.teams || [];
+
   // Current filter state
   let currentFilter = { type: 'all', value: 'all' };
-  
+
   // Initialize page
   function init() {
     // Load filter state from sessionStorage
@@ -468,23 +473,23 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         console.warn('Failed to parse saved filter state', e);
       }
     }
-    
+
     // Apply saved filter
     applyFilter(currentFilter);
-    
+
     // Update button states
     updateFilterButtonStates();
   }
-  
+
   // Update filter button active states and aria-pressed
   function updateFilterButtonStates() {
     filterButtons.forEach(btn => {
       const type = btn.getAttribute('data-filter-type');
       const value = btn.getAttribute('data-filter-value');
-      
+
       const isActive = (currentFilter.type === type && currentFilter.value === value) ||
                       (type === 'all' && currentFilter.type === 'all' && currentFilter.value === 'all');
-      
+
       if (isActive) {
         btn.classList.add('bg-brand-purple', 'text-white', 'border-brand-purple', 'active');
         btn.classList.remove('bg-white', 'text-brand-purple', 'border-brand-purple', 'hover:bg-brand-offwhite');
@@ -496,17 +501,17 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       }
     });
   }
-  
+
   // Apply filter and re-render teams
   function applyFilter(filter) {
     currentFilter = filter;
-    
+
     // Save to sessionStorage
     sessionStorage.setItem('teams-filter', JSON.stringify(filter));
-    
+
     // Filter teams
     let filteredTeams = [...teams];
-    
+
     if (filter.type !== 'all' && filter.value !== 'all') {
       switch (filter.type) {
         case 'gender':
@@ -545,14 +550,14 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         return { ...team, ...parsed };
       });
     }
-    
+
     // Render teams
     renderTeams(filteredTeams);
-    
+
     // Update button states
     updateFilterButtonStates();
   }
-  
+
   // Parse grade name function (same as in Astro)
   function parseGradeName(gradeName) {
     // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10s', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
@@ -567,13 +572,13 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     }
 
     const [, gameNight, ageGroupStr, gender, divisionNum] = match;
-    
+
     // Convert U10 -> u10s
     const ageGroup = ageGroupStr.toLowerCase() + 's';
-    
+
     // Convert division number to DIV format
     const division = `DIV ${divisionNum}`;
-    
+
     return {
       ageGroup,
       gender,
@@ -581,19 +586,19 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       division,
     };
   }
-  
+
   // Render teams grouped by age group
   function renderTeams(filteredTeams) {
     // Clear existing content
     ageGroupSections.innerHTML = '';
-    
+
     if (filteredTeams.length === 0) {
       noTeamsMessage.classList.remove('hidden');
       return;
     } else {
       noTeamsMessage.classList.add('hidden');
     }
-    
+
     // Group teams by age group
     const teamsByAgeGroup = {};
     filteredTeams.forEach(team => {
@@ -602,42 +607,42 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       }
       teamsByAgeGroup[team.ageGroup].push(team);
     });
-    
+
     // Create sections for each age group in order
     ageGroupOrder.forEach(ageGroup => {
       const teamsInGroup = teamsByAgeGroup[ageGroup] || [];
-      
+
       // Skip if no teams in this age group (don't create orphan headers)
       if (teamsInGroup.length === 0) {
         return;
       }
-      
+
       // Sort teams alphabetically by name
       teamsInGroup.sort((a, b) => a.name.localeCompare(b.name));
-      
+
       // Create age group section
       const section = document.createElement('div');
       section.className = 'age-group-section';
-      
+
       const header = document.createElement('h2');
       header.className = 'text-2xl font-bold text-brand-purple mb-4';
       header.textContent = ageGroup.toUpperCase();
-      
+
       const grid = document.createElement('div');
       grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6';
-      
+
       // Create team tiles
       teamsInGroup.forEach(team => {
         const tile = document.createElement('a');
         tile.href = `/teams/${team.slug}`;
         tile.className = 'team-tile block bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-150';
-        
+
         // Determine pill colors based on values
         const getPillClass = (value, type) => {
           if (value === 'TBC') {
             return 'bg-gray-200 text-gray-500 text-xs font-medium px-3 py-1 rounded-full';
           }
-          
+
           switch (type) {
             case 'division':
               return 'bg-brand-purple text-white text-xs font-medium px-3 py-1 rounded-full';
@@ -654,7 +659,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               return 'bg-gray-200 text-gray-500 text-xs font-medium px-3 py-1 rounded-full';
           }
         };
-        
+
         tile.innerHTML = `
           <div class="p-6">
             <h3 class="font-bold text-brand-black text-lg mb-2">${team.name}</h3>
@@ -665,34 +670,34 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
             </div>
           </div>
         `;
-        
+
         grid.appendChild(tile);
       });
-      
+
       section.appendChild(header);
       section.appendChild(grid);
       ageGroupSections.appendChild(section);
     });
   }
-  
+
   // Get dropdown elements
   const ageGroupDropdown = document.getElementById('ageGroupDropdown');
   const gameDayDropdown = document.getElementById('gameDayDropdown');
   const gradeDropdown = document.getElementById('gradeDropdown');
-  
+
   // Event listeners for filter buttons
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const type = btn.getAttribute('data-filter-type');
       const value = btn.getAttribute('data-filter-value');
-      
+
       // Apply the filter directly (for All, Boys, Girls buttons)
       if (value !== '') {
         applyFilter({ type, value });
       }
     });
   });
-  
+
   // Event listeners for dropdown items
   const dropdownItems = document.querySelectorAll('.dropdown-item');
   dropdownItems.forEach(item => {
@@ -700,11 +705,11 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       const type = item.getAttribute('data-filter-type');
       const value = item.getAttribute('data-filter-value');
       applyFilter({ type, value });
-      
+
       // Close the dropdown
       const dropdown = item.closest('.dropdown-menu');
       dropdown.classList.add('hidden');
-      
+
       // Update button text and aria-expanded
       const buttonId = dropdown.id.replace('Dropdown', 'Btn');
       const button = document.getElementById(buttonId);
@@ -716,11 +721,11 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       } else if (type === 'grade') {
         button.innerHTML += ' <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
       }
-      
+
       button.setAttribute('aria-expanded', 'false');
     });
   });
-  
+
   // Toggle dropdowns
   document.getElementById('ageGroupBtn').addEventListener('click', () => {
     const isOpen = ageGroupDropdown.classList.toggle('hidden');
@@ -731,7 +736,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     document.getElementById('gameDayBtn').setAttribute('aria-expanded', 'false');
     document.getElementById('gradeBtn').setAttribute('aria-expanded', 'false');
   });
-  
+
   document.getElementById('gameDayBtn').addEventListener('click', () => {
     const isOpen = gameDayDropdown.classList.toggle('hidden');
     document.getElementById('gameDayBtn').setAttribute('aria-expanded', String(!isOpen));
@@ -741,7 +746,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     document.getElementById('ageGroupBtn').setAttribute('aria-expanded', 'false');
     document.getElementById('gradeBtn').setAttribute('aria-expanded', 'false');
   });
-  
+
   document.getElementById('gradeBtn').addEventListener('click', () => {
     const isOpen = gradeDropdown.classList.toggle('hidden');
     document.getElementById('gradeBtn').setAttribute('aria-expanded', String(!isOpen));
@@ -751,7 +756,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     document.getElementById('ageGroupBtn').setAttribute('aria-expanded', 'false');
     document.getElementById('gameDayBtn').setAttribute('aria-expanded', 'false');
   });
-  
+
   // Close dropdowns when clicking outside
   document.addEventListener('click', (event) => {
     if (!event.target.closest('.relative')) {
@@ -763,12 +768,16 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       document.getElementById('gradeBtn').setAttribute('aria-expanded', 'false');
     }
   });
-  
+
   // Clear filter button
   clearFilterBtn.addEventListener('click', () => {
     applyFilter({ type: 'all', value: 'all' });
   });
-  
+
   // Initialize on page load
-  init();
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 </script>

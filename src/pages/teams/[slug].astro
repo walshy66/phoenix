@@ -1,13 +1,40 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import GameDetailModal from '../../components/GameDetailModal.astro';
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
+
+// Generate static paths for all teams
+export async function getStaticPaths() {
+  let teams = [];
+  try {
+    // Try PlayHQ data first
+    const playhqPath = join(process.cwd(), 'scripts', 'teams-data.json');
+    if (existsSync(playhqPath)) {
+      const teamsRaw = readFileSync(playhqPath, 'utf-8');
+      const teamsDataObj = JSON.parse(teamsRaw);
+      teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+    } else {
+      // Fall back to placeholder data
+      const teamsPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
+      if (existsSync(teamsPath)) {
+        const teamsRaw = readFileSync(teamsPath, 'utf-8');
+        const teamsDataObj = JSON.parse(teamsRaw);
+        teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load teams data for static paths:', e);
+  }
+  
+  return teams.map(team => ({
+    params: { slug: team.slug }
+  }));
+}
 
 // Get the slug from params
 const { slug } = Astro.params;
 
-// Try to load team data from JSON file, fall back to placeholder
+// Load team data
 let teamData = {
   id: 'team-placeholder',
   name: 'PHOENIX Unknown Team',
@@ -16,22 +43,53 @@ let teamData = {
 };
 
 try {
-  const teamsPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
-  if (existsSync(teamsPath)) {
-    const teamsRaw = readFileSync(teamsPath, 'utf-8');
-    const teams = JSON.parse(teamsRaw);
-    const team = teams.find(t => t.slug === slug);
-    if (team) {
-      teamData = team;
+  // Try PlayHQ data first
+  const playhqPath = join(process.cwd(), 'scripts', 'teams-data.json');
+  let teams = [];
+  
+  if (existsSync(playhqPath)) {
+    const teamsRaw = readFileSync(playhqPath, 'utf-8');
+    const teamsDataObj = JSON.parse(teamsRaw);
+    teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+  } else {
+    // Fall back to placeholder data
+    const teamsPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
+    if (existsSync(teamsPath)) {
+      const teamsRaw = readFileSync(teamsPath, 'utf-8');
+      const teamsDataObj = JSON.parse(teamsRaw);
+      teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+    }
+  }
+
+  const team = teams.find(t => t.slug === slug);
+  if (team) {
+    teamData = team;
+  }
+} catch (e) {
+  console.error('Failed to load teams data:', e);
+}
+
+// Load team details (schedule and ladder)
+let teamDetails = {
+  fixture: [],
+  ladder: [],
+};
+
+try {
+  const detailsPath = join(process.cwd(), 'scripts', 'teams-details.json');
+  if (existsSync(detailsPath)) {
+    const detailsRaw = readFileSync(detailsPath, 'utf-8');
+    const detailsData = JSON.parse(detailsRaw);
+    if (detailsData.teamDetails && detailsData.teamDetails[slug]) {
+      teamDetails = detailsData.teamDetails[slug];
     }
   }
 } catch (e) {
-  // Use placeholder data
+  console.error('Failed to load team details:', e);
 }
 
-// Helper functions to derive team metadata from gradeName
+// Helper function to parse grade name
 const parseGradeName = (gradeName) => {
-  // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10s', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
   const match = gradeName.match(/^(\w+)\s+(U\d+)\s+(\w+)\s+(\d+)$/);
   if (!match) {
     return {
@@ -41,398 +99,368 @@ const parseGradeName = (gradeName) => {
       division: 'TBC',
     };
   }
-
   const [, gameNight, ageGroupStr, gender, divisionNum] = match;
-  
-  // Convert U10 -> u10s
-  const ageGroup = ageGroupStr.toLowerCase() + 's';
-  
-  // Convert division number to DIV format
-  const division = `DIV ${divisionNum}`;
-  
   return {
-    ageGroup,
+    ageGroup: ageGroupStr.toLowerCase() + 's',
     gender,
     gameNight,
-    division,
+    division: `DIV ${divisionNum}`,
   };
 };
 
-// Parse the team's gradeName
 const parsed = parseGradeName(teamData.gradeName);
 
-// Try to load fixture data for this team
-let fixtureData = {
-  lastUpdated: '2026-04-12T00:00:00.000Z',
-  games: [
-    {
-      id: 'game-001',
-      opponent: 'Opponent Team A',
-      date: '2026-04-15',
-      time: '7:00 PM',
-      venue: 'Stadium Court 1',
-      homeOrAway: 'home',
-      status: 'upcoming',
-      homeScore: null,
-      awayScore: null,
-    },
-    {
-      id: 'game-002',
-      opponent: 'Opponent Team B',
-      date: '2026-04-22',
-      time: '6:30 PM',
-      venue: 'Stadium Court 2',
-      homeOrAway: 'away',
-      status: 'completed',
-      homeScore: 78,
-      awayScore: 65,
-    },
-  ],
-};
-
-try {
-  // In a real implementation, this would be a team-specific fixture file
-  // For now, we'll use a placeholder that follows the scores.astro pattern
-  const fixturePath = join(process.cwd(), 'scripts', 'fixture-data.json');
-  if (existsSync(fixturePath)) {
-    const fixtureRaw = readFileSync(fixturePath, 'utf-8');
-    fixtureData = JSON.parse(fixtureRaw);
+// Format date helper
+const formatDate = (dateStr) => {
+  if (!dateStr) return 'TBC';
+  try {
+    return new Date(dateStr).toLocaleDateString('en-AU', { 
+      weekday: 'short', 
+      month: 'short', 
+      day: 'numeric'
+    });
+  } catch {
+    return dateStr;
   }
-} catch (e) {
-  // Use placeholder fixture data
-}
-
-// Try to load ladder data for this team
-let ladderData = {
-  lastUpdated: '2026-04-12T00:00:00.000Z',
-  ladder: [
-    { position: 1, team: 'PHOENIX Unknown Team', played: 1, won: 1, lost: 0, drawn: 0, points: 2 },
-    { position: 2, team: 'Opponent Team A', played: 1, won: 0, lost: 1, drawn: 0, points: 0 },
-  ],
 };
 
-try {
-  // In a real implementation, this would be a team-specific ladder file
-  // For now, we'll use a placeholder that follows the scores.astro pattern
-  const ladderPath = join(process.cwd(), 'scripts', 'ladder-data.json');
-  if (existsSync(ladderPath)) {
-    const ladderRaw = readFileSync(ladderPath, 'utf-8');
-    ladderData = JSON.parse(ladderRaw);
-  }
-} catch (e) {
-  // Use placeholder ladder data
-}
-
-// Try to load staff data
-let staffData = {
-  coach: { name: 'John Coach', role: 'coach' },
-  manager: { name: 'Jane Manager', role: 'manager' },
+const formatTime = (timeStr) => {
+  if (!timeStr) return 'TBC';
+  return timeStr.substring(0, 5);
 };
+---
 
-try {
-  const staffPath = join(process.cwd(), 'src', 'data', 'teams', 'staff.json');
-  if (existsSync(staffPath)) {
-    const staffRaw = readFileSync(staffPath, 'utf-8');
-    staffData = JSON.parse(staffRaw);
-  }
-} catch (e) {
-  // Use placeholder staff data
-}
-
-// Try to load training data
-let trainingData = {
-  venue: 'Bendigo Basketball Stadium',
-  day: 'Wednesday',
-  time: '5:00 PM - 7:00 PM',
-};
-
-try {
-  const trainingPath = join(process.cwd(), 'src', 'data', 'teams', 'training.json');
-  if (existsSync(trainingPath)) {
-    const trainingRaw = readFileSync(trainingPath, 'utf-8');
-    trainingData = JSON.parse(trainingRaw);
-  }
-} catch (e) {
-  // Use placeholder training data
-}
-
-// Format date function
-const formatDate = (dateString) => {
-  return new Date(dateString).toLocaleDateString('en-AU', {
-    weekday: 'short',
-    day: 'numeric',
-    month: 'short',
-    year: 'numeric',
-  });
-};
-
-// Format time function (just returns the time string, or TBC if null/empty)
-const formatTime = (timeString) => {
-  if (!timeString || timeString.trim() === '') {
-    return 'TBC';
-  }
-  return timeString;
-};
-
-///
-
-<BaseLayout title={`${teamData.name} | Teams`} description="Information about ${teamData.name} team at Bendigo Phoenix Basketball Club.">
+<BaseLayout title={`${teamData.name} | Teams`} description={`Information about ${teamData.name} team at Bendigo Phoenix Basketball Club.`}>
   <!-- Page Hero -->
   <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 pointer-events-none">
       <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix Juniors</p>
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">{parsed.ageGroup.toUpperCase()}</p>
       <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">{teamData.name}</h1>
-      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
-    </div>
-  </section>
-
-  <!-- Team Info Header -->
-  <section class="bg-white border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        <!-- Team Basic Info -->
-        <div>
-          <h2 class="text-2xl font-bold text-brand-purple mb-2">Team Information</h2>
-          <p class="text-gray-600 mb-4">
-            <span class="font-medium">Age Group:</span> {parsed.ageGroup.toUpperCase()} &nbsp;|&nbsp;
-            <span class="font-medium">Division:</span> {parsed.division} &nbsp;|&nbsp;
-            <span class="font-medium">Game Night:</span> {parsed.gameNight} &nbsp;|&nbsp;
-            <span class="font-medium">Gender:</span> {parsed.gender}
-          </p>
-        </div>
-        
-        <!-- Team Record (from ladder) -->
-        <div class="text-center">
-          <h2 class="text-2xl font-bold text-brand-purple mb-2">Current Standing</h2>
-          {#/*
-            Find this team in the ladder data
-          */}
-          {#const teamLadder = ladderData.ladder.find(row => 
-            row.team.toLowerCase().includes(teamData.name.toLowerCase()) ||
-            teamData.name.toLowerCase().includes(row.team.toLowerCase())
-          )#}
-          {#if teamLadder#}
-            <div class="space-y-2">
-              <div class="text-sm font-medium text-gray-500">Position: <span class="font-bold">{teamLadder.position}</span></div>
-              <div class="text-sm font-medium text-gray-500">Record: <span class="font-bold">{teamLadder.won}-{teamLadder.lost}-{teamLadder.drawn}</span></div>
-              <div class="text-sm font-medium text-gray-500">Points: <span class="font-bold">{teamLadder.points}</span></div>
-            </div>
-          {:else}
-            <p class="text-gray-500">Ladder data not available</p>
-          {/if}
-        </div>
-        
-        <!-- Quick Links -->
-        <div class="space-y-3">
-          <a href="#" class="block px-4 py-2 bg-brand-purple text-white rounded-md hover:bg-brand-purple/90 text-center font-medium">
-            View Full Fixture
-          </a>
-          <a href="#" class="block px-4 py-2 bg-brand-gold text-white rounded-md hover:bg-brand-gold/90 text-center font-medium">
-            View Full Ladder
-          </a>
-          {#if staffData.coach || staffData.manager#}
-            <a href="#" class="block px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 text-center font-medium">
-              Contact Staff
-            </a>
-          {/if}
-        </div>
+      <div class="flex justify-center gap-4 mt-6 flex-wrap">
+        <span class="bg-brand-gold text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.division}</span>
+        <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.gameNight}</span>
+        <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.gender}</span>
       </div>
     </div>
   </section>
 
-  <!-- Fixture Section -->
+  <!-- Main Content -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
     <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Fixture</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
-      {#if fixtureData.games && fixtureData.games.length > 0#}
-        <div class="space-y-4">
-          {#each fixtureData.games as game#}
-            <div class="border rounded-xl overflow-hidden shadow-sm border-gray-100 cursor-pointer hover:shadow-md transition-shadow duration-150"
-                 on:click={() => dispatch('openGameDetail', game)}
-                 role="button"
-                 tabindex="0"
-                 aria-label={`View details for game vs ${game.opponent}`}>
-              <div class="px-4 py-3 flex items-center justify-between border-b border-gray-100">
-                <div class="flex-1">
-                  <p class="font-bold text-gray-800">{game.opponent}</p>
-                  <p class="text-sm text-gray-500">
-                    {formatDate(game.date)} • {formatTime(game.time)} • {game.venue}
-                  </p>
-                </div>
-                <div class="flex items-center gap-3">
-                  {#if game.status === 'completed'#}
-                    <div class="text-right">
-                      <p class="text-2xl font-bold text-gray-800">
-                        {game.homeScore !== null && game.awayScore !== null ? 
-                          `${game.homeScore} – ${game.awayScore}` : 'TBC'
-                        }
-                      </p>
-                      <p class="text-sm text-gray-500">{game.homeOrAway === 'home' ? 'Home' : 'Away'}</p>
-                    </div>
-                  {:else}
-                    <div class="px-3 py-1 rounded-full text-xs font-bold bg-brand-gold text-white">
-                      Upcoming
-                    </div>
-                    <p class="text-sm text-gray-500">{game.homeOrAway === 'home' ? 'Home' : 'Away'}</p>
-                  {/if}
-                </div>
+      <!-- 2-Column Layout: Schedule (Left) & Ladder (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Schedule Column (2/3 width on desktop) -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="bg-brand-purple text-white px-6 py-4">
+              <h2 class="text-2xl font-bold">SCHEDULE</h2>
+            </div>
+            
+            {teamDetails.fixture && teamDetails.fixture.length > 0 ? (
+              <div class="divide-y">
+                {teamDetails.fixture.map((game) => {
+                  const isHome = game.homeTeam === teamData.name;
+                  const opponent = isHome ? game.awayTeam : game.homeTeam;
+                  const hasScore = game.homeScore !== null && game.awayScore !== null;
+                  const isLive = game.status === 'IN_PROGRESS' || game.status === 'LIVE';
+                  const isCompleted = game.status === 'COMPLETED' || hasScore;
+                  
+                  return (
+                    <button 
+                      key={game.id}
+                      class={`w-full text-left px-6 py-4 transition-colors duration-150 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-brand-offwhite'}`}
+                      data-game-id={game.id}
+                      data-home-team={game.homeTeam}
+                      data-away-team={game.awayTeam}
+                      data-date={game.date}
+                      data-time={game.time}
+                      data-venue={game.venue}
+                      data-court={game.court || 'TBC'}
+                      data-home-score={game.homeScore}
+                      data-away-score={game.awayScore}
+                      data-status={game.status || 'UPCOMING'}
+                    >
+                      <div class="flex items-center justify-between gap-4">
+                        <div class="flex-1">
+                          <div class="flex items-center gap-2 mb-1">
+                            <p class="text-xs text-gray-500 font-medium uppercase">
+                              {formatDate(game.date)} at {formatTime(game.time)}
+                            </p>
+                            {isLive && (
+                              <span class="inline-block px-2 py-1 bg-red-500 text-white text-xs font-bold rounded animate-pulse">
+                                LIVE
+                              </span>
+                            )}
+                          </div>
+                          <p class="text-sm text-gray-600 mb-1">
+                            {game.venue}
+                          </p>
+                          {game.court && (
+                            <p class="text-xs text-gray-500">
+                              {game.court}
+                            </p>
+                          )}
+                          <div class="flex items-center justify-between">
+                            <div class="text-right pr-3">
+                              <p class={`font-bold text-sm ${isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                                {game.homeTeam}
+                              </p>
+                            </div>
+                            <div class="text-center px-2">
+                              {hasScore ? (
+                                <p class="font-black text-lg text-brand-purple">
+                                  {game.homeScore} – {game.awayScore}
+                                </p>
+                              ) : (
+                                <p class="text-gray-400 text-sm">vs</p>
+                              )}
+                            </div>
+                            <div class="text-left pl-3">
+                              <p class={`font-bold text-sm ${!isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                                {game.awayTeam}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="text-brand-gold group-hover:translate-x-1 transition-transform duration-150">
+                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
+            ) : (
+              <div class="px-6 py-12 text-center">
+                <p class="text-gray-500">No games scheduled yet</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- Ladder Column (1/3 width on desktop) -->
+        <div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden sticky top-20">
+            <div class="bg-brand-purple text-white px-6 py-4">
+              <h2 class="text-2xl font-bold">LADDER</h2>
             </div>
-          {/#each}
+            
+            {teamDetails.ladder && teamDetails.ladder.length > 0 ? (
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead class="bg-gray-50 border-b">
+                    <tr>
+                      <th class="px-3 py-2 text-left text-xs font-bold text-gray-600">#</th>
+                      <th class="px-3 py-2 text-left text-xs font-bold text-gray-600">Team</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">W</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">L</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">D</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">Pts</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y">
+                    {teamDetails.ladder.map((row) => {
+                      const isOurTeam = row.team === teamData.name;
+                      return (
+                        <tr key={row.rank} class={isOurTeam ? 'bg-brand-gold bg-opacity-10 border-l-4 border-brand-gold' : ''}>
+                          <td class="px-3 py-3 font-bold text-gray-900">{row.rank}</td>
+                          <td class="px-3 py-3">
+                            <span class={isOurTeam ? 'font-bold text-brand-purple' : 'text-gray-900'}>
+                              {row.team}
+                            </span>
+                          </td>
+                          <td class="px-3 py-3 text-center text-gray-700">{row.won}</td>
+                          <td class="px-3 py-3 text-center text-gray-700">{row.lost}</td>
+                          <td class="px-3 py-3 text-center text-gray-700">{row.drawn}</td>
+                          <td class="px-3 py-3 text-center font-bold text-gray-900">{row.points}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div class="px-6 py-12 text-center">
+                <p class="text-gray-500">Ladder not yet available</p>
+              </div>
+            )}
+          </div>
         </div>
-      {:else}
-        <div class="text-center py-12 bg-white rounded-xl border border-dashed border-brand-purple">
-          <span class="text-5xl mb-4 block">📅</span>
-          <p class="text-gray-500">No games scheduled</p>
-        </div>
-      {/if}
+      </div>
+
+      <!-- Back to Teams -->
+      <div class="mt-12 text-center">
+        <a href="/teams" class="inline-block px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-150 font-medium">
+          ← Back to Teams
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Ladder Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Competition Ladder</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+  <!-- Game Details Modal -->
+  <div id="game-details-modal" class="hidden fixed inset-0 bg-black bg-opacity-15 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-visible">
+      <div class="bg-brand-purple text-white px-8 py-5">
+        <h3 class="text-2xl font-bold">GAME DETAILS</h3>
+      </div>
+      <div class="px-8 py-8 space-y-8">
+        <!-- Teams vs Teams -->
+        <div class="text-center border-b border-gray-200 pb-8">
+          <div class="flex items-center justify-between gap-6">
+            <div class="flex-1">
+              <p class="font-bold text-brand-purple text-2xl" id="modal-home-team">—</p>
+            </div>
+            <div class="text-center">
+              <p class="text-5xl font-black text-brand-purple" id="modal-score">vs</p>
+            </div>
+            <div class="flex-1">
+              <p class="font-bold text-brand-purple text-2xl" id="modal-away-team">—</p>
+            </div>
+          </div>
+        </div>
 
-      {#if ladderData.ladder && ladderData.ladder.length > 0#}
-        <div class="table-responsive">
-          <table class="w-full min-w-[500px] border-collapse rounded-xl overflow-hidden">
-            <thead>
-              <tr class="bg-brand-purple text-white">
-                <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide w-10">#</th>
-                <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide">Team</th>
-                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">P</th>
-                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">W</th>
-                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">L</th>
-                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">D</th>
-                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-16">Pts</th>
-              </tr>
-            </thead>
-            <tbody>
-              {#each ladderData.ladder as row, i#}
-                <tr class={`border-b border-gray-100 ${row.team.includes('PHOENIX') ? 'bg-purple-50 border-l-4 border-l-brand-gold' : i % 2 === 0 ? 'bg-white' : 'bg-brand-offwhite'}`}>
-                  <td class="px-4 py-3 text-sm text-gray-500 font-medium">{row.position}</td>
-                  <td class={`px-4 py-3 text-sm font-bold ${row.team.includes('PHOENIX') ? 'text-brand-purple' : 'text-brand-black'}`}>
-                    {#if row.team.includes('PHOENIX')#}
-                      <span class="mr-1">🏀</span>
-                    {/if}
-                    {row.team}
-                  </td>
-                  <td class="px-4 py-3 text-sm text-center text-gray-600">{row.played}</td>
-                  <td class="px-4 py-3 text-sm text-center font-bold text-green-600">{row.won}</td>
-                  <td class="px-4 py-3 text-sm text-center font-bold text-red-500">{row.lost}</td>
-                  <td class="px-4 py-3 text-sm text-center text-gray-500">{row.drawn}</td>
-                  <td class={`px-4 py-3 text-sm text-center font-black ${row.team.includes('PHOENIX') ? 'text-brand-purple' : 'text-brand-black'}`}>{row.points}</td>
-                </tr>
-              {/#each}
-            </tbody>
-          </table>
+        <!-- Time -->
+        <div class="flex items-center gap-4 bg-gradient-to-br from-brand-offwhite to-gray-50 rounded-lg px-6 py-4 border border-gray-200">
+          <svg class="w-7 h-7 text-brand-purple flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00-.293.707l-2.828 2.829a1 1 0 101.415 1.415L9 10.586V6z" clip-rule="evenodd" />
+          </svg>
+          <div>
+            <p class="text-xs text-gray-600 font-semibold uppercase tracking-wide">Date & Time</p>
+            <p class="font-bold text-gray-900 text-lg" id="modal-datetime">—</p>
+          </div>
         </div>
-      {:else}
-        <div class="text-center py-12 bg-brand-offwhite rounded-xl border border-dashed border-brand-purple">
-          <span class="text-5xl mb-4 block">📊</span>
-          <p class="text-gray-500">Ladder not yet available</p>
+
+        <!-- Venue & Court -->
+        <div class="flex items-center gap-4 bg-gradient-to-br from-brand-gold from-opacity-10 to-brand-offwhite rounded-lg px-6 py-4 border border-brand-gold border-opacity-30">
+          <svg class="w-7 h-7 text-brand-purple flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+          </svg>
+          <div>
+            <p class="text-xs text-gray-600 font-semibold uppercase tracking-wide">Venue & Court</p>
+            <p class="font-bold text-gray-900 text-lg" id="modal-venue">—</p>
+          </div>
         </div>
-      {/if}
+      </div>
+
+      <!-- Close Button -->
+      <div class="bg-gray-50 px-8 py-5 border-t border-gray-100 flex justify-end gap-3">
+        <button 
+          onclick="closeGameDetails()"
+          class="px-6 py-2.5 bg-brand-purple text-white rounded-lg hover:bg-brand-purple/90 transition-colors duration-150 font-semibold"
+        >
+          Close
+        </button>
+      </div>
     </div>
-  </section>
-
-  <!-- Staff Section -->
-  {#if staffData.coach || staffData.manager#}
-    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Coaching Staff</h2>
-        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
-        <div class="space-y-4">
-          {#if staffData.coach#}
-            <div class="bg-white rounded-xl border border-gray-100 p-6">
-              <h3 class="font-bold text-brand-black mb-2">Coach</h3>
-              <p class="text-gray-600 text-lg">{staffData.coach.name}</p>
-            </div>
-          {/if}
-          
-          {#if staffData.manager#}
-            <div class="bg-white rounded-xl border border-gray-100 p-6">
-              <h3 class="font-bold text-brand-black mb-2">Manager</h3>
-              <p class="text-gray-600 text-lg">{staffData.manager.name}</p>
-            </div>
-          {/if}
-        </div>
-      </div>
-    </section>
-  {/if}
-
-  <!-- Training Section -->
-  {#if trainingData.venue || trainingData.day || trainingData.time#}
-    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Training Schedule</h2>
-        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
-        <div class="bg-white rounded-xl border border-gray-100 p-6 text-center">
-          <h3 class="font-bold text-brand-black mb-4">Training Information</h3>
-          <p class="text-gray-600 text-lg">
-            {#if trainingData.venue#}{trainingData.venue}{/if}
-            {#if trainingData.venue && (trainingData.day || trainingData.time)#} • {/if}
-            {#if trainingData.day#}{trainingData.day}{/if}
-            {#if trainingData.day && trainingData.time#} @ {/if}
-            {#if trainingData.time#}{trainingData.time}{/if}
-          </p>
-          {#if !(trainingData.venue || trainingData.day || trainingData.time)#}
-            <p class="text-gray-500">No training scheduled</p>
-          {/if}
-        </div>
-      </div>
-    </section>
-  {/if}
+  </div>
 </BaseLayout>
 
-<GameDetailModal bind:this={gameDetailModal} isOpen={modalIsOpen} game={selectedGame} onClose={handleClose} />
+<script is:inline>
+  function handleGameClick(event) {
+    const button = event.currentTarget;
+    const gameId = button.dataset.gameId;
+    const homeTeam = button.dataset.homeTeam;
+    const awayTeam = button.dataset.awayTeam;
+    const date = button.dataset.date;
+    const time = button.dataset.time;
+    const venue = button.dataset.venue;
+    const court = button.dataset.court;
+    const homeScore = button.dataset.homeScore ? parseInt(button.dataset.homeScore) : null;
+    const awayScore = button.dataset.awayScore ? parseInt(button.dataset.awayScore) : null;
+    const status = button.dataset.status;
 
-<script>
-  import { onMount } from 'svelte';
-  
-  let gameDetailModal;
-  let modalIsOpen = false;
-  let selectedGame = null;
-  
-  function handleOpenGame(event) {
-    selectedGame = event.detail;
-    modalIsOpen = true;
+    showGameDetails(gameId, homeTeam, awayTeam, date, time, venue, homeScore, awayScore, court, status);
   }
-  
-  function handleClose() {
-    modalIsOpen = false;
-    selectedGame = null;
-  }
-  
-  // Listen for custom event from fixture games
-  onMount(() => {
-    const handleCustomEvent = (e) => {
-      if (e.detail && e.detail.type === 'openGameDetail') {
-        handleOpenGame(e);
+
+  function showGameDetails(gameId, homeTeam, awayTeam, date, time, venue, homeScore, awayScore, court, status) {
+    const modal = document.getElementById('game-details-modal');
+    const homeTeamEl = document.getElementById('modal-home-team');
+    const awayTeamEl = document.getElementById('modal-away-team');
+    const scoreEl = document.getElementById('modal-score');
+    const datetimeEl = document.getElementById('modal-datetime');
+    const venueEl = document.getElementById('modal-venue');
+
+    console.log('Showing game details:', { gameId, homeTeam, awayTeam, date, time, venue, court, status });
+
+    homeTeamEl.textContent = homeTeam || '—';
+    awayTeamEl.textContent = awayTeam || '—';
+    
+    // Handle score display and live status
+    const isLive = status === 'IN_PROGRESS' || status === 'LIVE';
+    if (homeScore !== null && awayScore !== null) {
+      if (isLive) {
+        scoreEl.innerHTML = `<span class="text-red-500 animate-pulse">● LIVE</span><br><span class="text-3xl font-black text-brand-purple">${homeScore} – ${awayScore}</span>`;
+      } else {
+        scoreEl.textContent = `${homeScore} – ${awayScore}`;
       }
-    };
-    
-    window.addEventListener('openGameDetail', handleCustomEvent);
-    
-    return () => {
-      window.removeEventListener('openGameDetail', handleCustomEvent);
-    };
-  });
-  
-  // Handle browser back button to preserve filter state
-  window.addEventListener('pageshow', function(event) {
-    if (event.persisted) {
-      // Page was restored from cache/back-forward, filter state should be preserved in sessionStorage
-      // The teams listing page will read this on load
+    } else if (isLive) {
+      scoreEl.innerHTML = '<span class="text-red-500 animate-pulse">● LIVE</span><br><span class="text-gray-400">Game in progress</span>';
+    } else {
+      scoreEl.textContent = 'vs';
     }
+
+    if (date && time) {
+      const dateObj = new Date(date);
+      const dateStr = dateObj.toLocaleDateString('en-AU', { 
+        weekday: 'short', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+      const timeStr = time.substring(0, 5);
+      datetimeEl.textContent = `${dateStr} at ${timeStr}`;
+    } else {
+      datetimeEl.textContent = '—';
+    }
+    
+    // Display venue and court
+    const courtStr = court && court !== 'TBC' ? ` • ${court}` : '';
+    venueEl.textContent = (venue || '—') + courtStr;
+
+    modal.classList.remove('hidden');
+  }
+
+  function closeGameDetails() {
+    const modal = document.getElementById('game-details-modal');
+    modal.classList.add('hidden');
+  }
+
+  // Close modal on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeGameDetails();
   });
+
+  // Close modal on outside click
+  const modal = document.getElementById('game-details-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeGameDetails();
+    });
+  }
+
+  // Attach click handlers to all game buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const gameButtons = document.querySelectorAll('[data-game-id]');
+    gameButtons.forEach(button => {
+      button.addEventListener('click', handleGameClick);
+    });
+  });
+
+  // Also handle if DOM is already loaded
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    const gameButtons = document.querySelectorAll('[data-game-id]');
+    gameButtons.forEach(button => {
+      button.addEventListener('click', handleGameClick);
+    });
+  }
 </script>
+
+<style>
+  h2 {
+    color: white !important;
+  }
+</style>
