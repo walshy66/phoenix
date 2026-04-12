@@ -1,0 +1,105 @@
+---
+/**
+ * T009: RegistrationCostsCard Component
+ *
+ * Renders registration costs in a table or list format.
+ * Displays all cost categories with AUD currency formatting.
+ * Shows empty state message when no costs are available.
+ *
+ * Features:
+ * - Table format with Category and Cost columns
+ * - Horizontal scroll on mobile (< 640px)
+ * - AUD currency formatting via getCurrencyFormatted()
+ * - Optional description text below each cost
+ * - Empty state: "Registration pricing to be confirmed"
+ * - Semantic HTML with table headers
+ *
+ * Accessibility (WCAG 2.1 AA):
+ * - Semantic <table> with <thead>, <th> headers
+ * - Sufficient color contrast
+ * - Readable font size on all breakpoints
+ * - Proper heading hierarchy
+ *
+ * Traceability: FR-005 (registration costs visible), FR-007 (accurate pricing),
+ *              NFR-011 (empty state placeholder)
+ */
+
+import type { Season, RegistrationCost } from '../lib/seasons/types';
+import { getCurrencyFormatted } from '../lib/seasons/utils';
+
+interface Props {
+  season: Season;
+  registrationCosts?: RegistrationCost[];
+}
+
+const { season, registrationCosts = [] } = Astro.props;
+
+const hasData = registrationCosts && registrationCosts.length > 0;
+---
+
+<div class="rounded-lg border border-gray-200 bg-white p-4 md:p-6">
+  <!-- Card Title -->
+  <h3 class="mb-4 text-base md:text-lg font-semibold text-gray-900">
+    Registration Costs
+  </h3>
+
+  {
+    hasData ? (
+      <!-- Table with costs -->
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <!-- Table Headers -->
+          <thead>
+            <tr class="border-b border-gray-200">
+              <th class="py-2 md:py-3 px-2 md:px-4 text-left text-xs md:text-sm font-semibold text-gray-700">Category</th>
+              <th class="py-2 md:py-3 px-2 md:px-4 text-right text-xs md:text-sm font-semibold text-gray-700">Cost</th>
+            </tr>
+          </thead>
+
+          <!-- Table Body -->
+          <tbody>
+            {registrationCosts.map((cost, index) => (
+              <tr
+                key={cost.id}
+                class={`border-b border-gray-100 ${index === registrationCosts.length - 1 ? '' : ''}`}
+              >
+                <td class="py-3 md:py-4 px-2 md:px-4">
+                  <div class="text-xs md:text-sm font-medium text-gray-900">{cost.category}</div>
+                  {cost.description && (
+                    <div class="text-xs text-gray-500 mt-1">{cost.description}</div>
+                  )}
+                </td>
+                <td class="py-3 md:py-4 px-2 md:px-4 text-right">
+                  <div class="text-xs md:text-sm font-semibold text-gray-900">
+                    {getCurrencyFormatted(cost.cost)}
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <!-- Empty State -->
+      <div class="rounded-lg bg-gray-50 p-4">
+        <p class="text-sm text-gray-600">
+          Registration pricing to be confirmed
+        </p>
+      </div>
+    )
+  }
+</div>
+
+<style>
+  table {
+    border-collapse: collapse;
+  }
+
+  th {
+    background-color: #f9fafb;
+  }
+
+  tr:hover {
+    background-color: #f9fafb;
+  }
+</style>

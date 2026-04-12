@@ -35,193 +35,175 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
 
-    <!-- SECTION: Roster Entry -->
+    <!-- SECTION: Roster Entry (combined roster + starter/finisher selection) -->
     <section id="section-roster-entry">
-      <h2 class="text-xl font-bold text-brand-black mb-1">Enter Player Roster</h2>
-      <p class="text-gray-500 text-sm mb-6">Add 7–9 player names. The order you enter them is their roster order.</p>
+      <h2 class="text-xl font-bold text-brand-black mb-1">Enter Roster &amp; Select Starters</h2>
+      <p class="text-gray-500 text-sm mb-5">Add 7–9 players, select exactly 5 starters, and optionally pin 3 finishers for the end of the game.</p>
 
-      <div id="form-error-summary" class="hidden bg-red-50 border border-red-300 rounded-lg p-4 mb-6" role="alert">
+      <!-- Error summary -->
+      <div id="form-error-summary" class="hidden bg-red-50 border border-red-300 rounded-lg p-4 mb-5" role="alert">
         <p class="text-red-700 text-sm font-medium" id="form-error-message"></p>
       </div>
 
-      <form id="roster-form" novalidate>
-        <div id="player-inputs" class="space-y-3 mb-6">
-          <!-- Player 1 -->
-          <div class="player-row" id="row-player-1">
-            <label for="input-player-1" class="block text-sm font-medium text-gray-700 mb-1">Player 1</label>
-            <input
-              type="text"
-              id="input-player-1"
-              name="player-1"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-1"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-1" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 2 -->
-          <div class="player-row" id="row-player-2">
-            <label for="input-player-2" class="block text-sm font-medium text-gray-700 mb-1">Player 2</label>
-            <input
-              type="text"
-              id="input-player-2"
-              name="player-2"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-2"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-2" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 3 -->
-          <div class="player-row" id="row-player-3">
-            <label for="input-player-3" class="block text-sm font-medium text-gray-700 mb-1">Player 3</label>
-            <input
-              type="text"
-              id="input-player-3"
-              name="player-3"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-3"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-3" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 4 -->
-          <div class="player-row" id="row-player-4">
-            <label for="input-player-4" class="block text-sm font-medium text-gray-700 mb-1">Player 4</label>
-            <input
-              type="text"
-              id="input-player-4"
-              name="player-4"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-4"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-4" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 5 -->
-          <div class="player-row" id="row-player-5">
-            <label for="input-player-5" class="block text-sm font-medium text-gray-700 mb-1">Player 5</label>
-            <input
-              type="text"
-              id="input-player-5"
-              name="player-5"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-5"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-5" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 6 -->
-          <div class="player-row" id="row-player-6">
-            <label for="input-player-6" class="block text-sm font-medium text-gray-700 mb-1">Player 6</label>
-            <input
-              type="text"
-              id="input-player-6"
-              name="player-6"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-6"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-6" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 7 -->
-          <div class="player-row" id="row-player-7">
-            <label for="input-player-7" class="block text-sm font-medium text-gray-700 mb-1">Player 7</label>
-            <input
-              type="text"
-              id="input-player-7"
-              name="player-7"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-7"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-7" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 8 (hidden by default) -->
-          <div class="player-row hidden" id="row-player-8">
-            <label for="input-player-8" class="block text-sm font-medium text-gray-700 mb-1">Player 8</label>
-            <input
-              type="text"
-              id="input-player-8"
-              name="player-8"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-8"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-8" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-          <!-- Player 9 (hidden by default) -->
-          <div class="player-row hidden" id="row-player-9">
-            <label for="input-player-9" class="block text-sm font-medium text-gray-700 mb-1">Player 9</label>
-            <input
-              type="text"
-              id="input-player-9"
-              name="player-9"
-              class="player-input w-full h-11 px-3 rounded-lg border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple"
-              autocomplete="off"
-              aria-describedby="error-player-9"
-              placeholder="Enter player name"
-            />
-            <span id="error-player-9" role="alert" class="hidden text-red-600 text-sm mt-1 block"></span>
-          </div>
-        </div>
+      <!-- Roster table -->
+      <div class="overflow-x-auto mb-4">
+        <table class="w-full border-collapse" aria-label="Player roster with starter and finisher selection">
+          <thead>
+            <tr class="border-b-2 border-gray-200">
+              <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wide py-2 pr-3 w-8">#</th>
+              <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wide py-2 pr-3">Player Name</th>
+              <th class="text-center text-xs font-semibold text-brand-purple uppercase tracking-wide py-2 px-2 w-16">Starter</th>
+              <th class="text-center text-xs font-semibold text-gray-500 uppercase tracking-wide py-2 pl-2 w-16">Finisher</th>
+            </tr>
+          </thead>
+          <tbody id="player-tbody">
+            <!-- Row 1 -->
+            <tr class="player-row border-b border-gray-100" id="row-player-1">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">1</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-1" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="1" aria-label="Starter: Player 1" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="1" aria-label="Finisher: Player 1" />
+              </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="player-row border-b border-gray-100" id="row-player-2">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">2</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-2" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="2" aria-label="Starter: Player 2" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="2" aria-label="Finisher: Player 2" />
+              </td>
+            </tr>
+            <!-- Row 3 -->
+            <tr class="player-row border-b border-gray-100" id="row-player-3">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">3</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-3" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="3" aria-label="Starter: Player 3" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="3" aria-label="Finisher: Player 3" />
+              </td>
+            </tr>
+            <!-- Row 4 -->
+            <tr class="player-row border-b border-gray-100" id="row-player-4">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">4</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-4" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="4" aria-label="Starter: Player 4" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="4" aria-label="Finisher: Player 4" />
+              </td>
+            </tr>
+            <!-- Row 5 -->
+            <tr class="player-row border-b border-gray-100" id="row-player-5">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">5</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-5" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="5" aria-label="Starter: Player 5" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="5" aria-label="Finisher: Player 5" />
+              </td>
+            </tr>
+            <!-- Row 6 -->
+            <tr class="player-row border-b border-gray-100" id="row-player-6">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">6</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-6" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="6" aria-label="Starter: Player 6" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="6" aria-label="Finisher: Player 6" />
+              </td>
+            </tr>
+            <!-- Row 7 -->
+            <tr class="player-row border-b border-gray-100" id="row-player-7">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">7</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-7" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="7" aria-label="Starter: Player 7" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="7" aria-label="Finisher: Player 7" />
+              </td>
+            </tr>
+            <!-- Row 8 (hidden by default) -->
+            <tr class="player-row hidden border-b border-gray-100" id="row-player-8">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">8</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-8" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="8" aria-label="Starter: Player 8" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="8" aria-label="Finisher: Player 8" />
+              </td>
+            </tr>
+            <!-- Row 9 (hidden by default) -->
+            <tr class="player-row hidden border-b border-gray-100" id="row-player-9">
+              <td class="py-2 pr-3 text-sm text-gray-400 align-middle">9</td>
+              <td class="py-2 pr-3 align-middle">
+                <input type="text" id="input-player-9" class="player-input w-full h-9 px-3 rounded border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple focus:border-brand-purple" autocomplete="off" placeholder="Enter player name" />
+              </td>
+              <td class="py-2 px-2 text-center align-middle">
+                <input type="checkbox" class="starter-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="9" aria-label="Starter: Player 9" />
+              </td>
+              <td class="py-2 pl-2 text-center align-middle">
+                <input type="checkbox" class="finisher-checkbox w-4 h-4 rounded accent-brand-purple cursor-pointer" data-player-num="9" aria-label="Finisher: Player 9" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <!-- Add / Remove Player buttons -->
-        <div class="flex gap-3 mb-8">
-          <button
-            type="button"
-            id="btn-add-player"
-            class="h-11 px-4 rounded-lg border border-brand-purple text-brand-purple text-sm font-medium hover:bg-brand-offwhite transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
-          >
-            + Add Player
-          </button>
-          <button
-            type="button"
-            id="btn-remove-player"
-            class="h-11 px-4 rounded-lg border border-gray-300 text-gray-600 text-sm font-medium hover:bg-gray-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
-            disabled
-          >
-            - Remove Player
-          </button>
-        </div>
+      <!-- Selection status counters -->
+      <div class="flex gap-4 mb-5 text-sm" aria-live="polite" aria-atomic="true">
+        <span id="starter-counter" class="font-semibold text-gray-500">0/5 Starters</span>
+        <span id="finisher-counter" class="text-gray-400">0/3 Finishers (optional)</span>
+      </div>
 
-        <!-- Submit -->
-        <button
-          type="submit"
-          class="w-full h-11 bg-brand-purple text-white font-bold rounded-lg hover:bg-purple-800 transition-colors text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2"
-        >
-          Next: Select Starting Five
-        </button>
-      </form>
-    </section>
-
-    <!-- SECTION: Starter Selection (hidden by default) -->
-    <section id="section-starter-selection" class="hidden">
-      <div class="flex items-center justify-between mb-1">
-        <h2 class="text-xl font-bold text-brand-black">Select Starting Five</h2>
+      <!-- Add / Remove Player buttons -->
+      <div class="flex gap-3 mb-6">
         <button
           type="button"
-          id="btn-back-to-roster"
-          class="text-sm text-brand-purple font-medium hover:text-purple-800 underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple rounded"
+          id="btn-add-player"
+          class="h-9 px-4 rounded border border-brand-purple text-brand-purple text-sm font-medium hover:bg-brand-offwhite transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
         >
-          Back to Roster
+          + Add Player
+        </button>
+        <button
+          type="button"
+          id="btn-remove-player"
+          class="h-9 px-4 rounded border border-gray-300 text-gray-600 text-sm font-medium hover:bg-gray-50 transition-colors disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
+          disabled
+        >
+          − Remove Player
         </button>
       </div>
-      <p class="text-gray-500 text-sm mb-2">Select exactly 5 players to start the first half.</p>
-      <p id="starter-count" class="text-brand-purple font-bold text-sm mb-6">0 of 5 selected</p>
 
-      <div id="starter-list" class="space-y-2 mb-8" role="group" aria-label="Starting five selection">
-        <!-- Populated by JavaScript -->
-      </div>
-
+      <!-- Generate button -->
       <button
         type="button"
         id="btn-generate"
@@ -249,6 +231,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <!-- Populated by JavaScript -->
         </div>
       </details>
+
+      <!-- Starting lineups -->
+      <div id="starting-lineups" class="mt-4 mb-4 border border-gray-200 rounded-lg p-4">
+        <h3 class="text-sm font-bold text-brand-black mb-3">Starting Lineups</h3>
+        <div id="starting-lineups-content" class="space-y-3">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Substitution events list -->
+      <div id="substitution-events" class="mt-4 mb-6 border border-gray-200 rounded-lg p-4">
+        <h3 class="text-sm font-bold text-brand-black mb-3">Substitution Events</h3>
+        <div id="substitution-events-content" class="space-y-4">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
 
       <!-- Actions -->
       <div class="flex flex-col sm:flex-row gap-3">
@@ -282,42 +280,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   // ---------------------------------------------------------------------------
   // App state
   // ---------------------------------------------------------------------------
-  type AppState = 'roster-entry' | 'starter-selection' | 'plan-display';
+  type AppState = 'roster-entry' | 'plan-display';
 
   let appState: AppState = 'roster-entry';
-  let players: Player[] = [];
-  let selectedIds = new Set<string>();
   let currentPlan: RotationPlan | null = null;
   let currentSchedules: PlayerSchedule[] = [];
+
+  // Sets tracking checked player numbers (1-based)
+  const starterNums = new Set<number>();
+  const finisherNums = new Set<number>();
 
   // ---------------------------------------------------------------------------
   // DOM refs
   // ---------------------------------------------------------------------------
   const sectionRosterEntry = document.getElementById('section-roster-entry')!;
-  const sectionStarterSelection = document.getElementById('section-starter-selection')!;
   const sectionPlanDisplay = document.getElementById('section-plan-display')!;
-
-  const rosterForm = document.getElementById('roster-form') as HTMLFormElement;
+  const btnGenerate = document.getElementById('btn-generate') as HTMLButtonElement;
   const btnAddPlayer = document.getElementById('btn-add-player') as HTMLButtonElement;
   const btnRemovePlayer = document.getElementById('btn-remove-player') as HTMLButtonElement;
-  const btnBackToRoster = document.getElementById('btn-back-to-roster') as HTMLButtonElement;
-  const btnGenerate = document.getElementById('btn-generate') as HTMLButtonElement;
-  const starterList = document.getElementById('starter-list')!;
-  const starterCount = document.getElementById('starter-count')!;
   const formErrorSummary = document.getElementById('form-error-summary')!;
   const formErrorMessage = document.getElementById('form-error-message')!;
+  const starterCounter = document.getElementById('starter-counter')!;
+  const finisherCounter = document.getElementById('finisher-counter')!;
 
   // ---------------------------------------------------------------------------
   // Render dispatch
   // ---------------------------------------------------------------------------
   function render(): void {
     sectionRosterEntry.classList.toggle('hidden', appState !== 'roster-entry');
-    sectionStarterSelection.classList.toggle('hidden', appState !== 'starter-selection');
     sectionPlanDisplay.classList.toggle('hidden', appState !== 'plan-display');
   }
 
   // ---------------------------------------------------------------------------
-  // Roster helpers
+  // Row helpers
   // ---------------------------------------------------------------------------
   function getPlayerRows(): HTMLElement[] {
     return Array.from(document.querySelectorAll<HTMLElement>('.player-row'));
@@ -333,23 +328,97 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     btnRemovePlayer.disabled = count <= 7;
   }
 
-  function clearValidationErrors(): void {
-    const inputs = document.querySelectorAll<HTMLInputElement>('.player-input');
-    inputs.forEach(input => {
-      input.removeAttribute('aria-invalid');
-      input.classList.remove('border-red-500');
-      input.classList.add('border-gray-300');
-    });
-    for (let i = 1; i <= 9; i++) {
-      const errorSpan = document.getElementById(`error-player-${i}`);
-      if (errorSpan) {
-        errorSpan.classList.add('hidden');
-        errorSpan.textContent = '';
-      }
+  // ---------------------------------------------------------------------------
+  // Status counters and Generate button enable/disable
+  // ---------------------------------------------------------------------------
+  function updateStatus(): void {
+    const sc = starterNums.size;
+    const fc = finisherNums.size;
+
+    // Starter counter
+    if (sc === 5) {
+      starterCounter.textContent = '5/5 Starters ✓';
+      starterCounter.className = 'font-semibold text-green-600';
+    } else {
+      starterCounter.textContent = `${sc}/5 Starters`;
+      starterCounter.className = 'font-semibold text-gray-500';
     }
-    formErrorSummary.classList.add('hidden');
-    formErrorMessage.textContent = '';
+
+    // Finisher counter
+    if (fc === 3) {
+      finisherCounter.textContent = '3/3 Finishers ✓';
+      finisherCounter.className = 'text-green-600';
+    } else if (fc === 0) {
+      finisherCounter.textContent = '0/3 Finishers (optional)';
+      finisherCounter.className = 'text-gray-400';
+    } else {
+      finisherCounter.textContent = `${fc}/3 Finishers`;
+      finisherCounter.className = 'text-amber-600';
+    }
+
+    // Generate: need 5 starters, and finishers must be 0 or 3
+    const finishersOk = fc === 0 || fc === 3;
+    btnGenerate.disabled = !(sc === 5 && finishersOk);
   }
+
+  // ---------------------------------------------------------------------------
+  // Checkbox limit enforcement
+  // ---------------------------------------------------------------------------
+  function enforceCheckboxLimits(): void {
+    const starterCheckboxes = document.querySelectorAll<HTMLInputElement>('.starter-checkbox');
+    const finisherCheckboxes = document.querySelectorAll<HTMLInputElement>('.finisher-checkbox');
+
+    starterCheckboxes.forEach(cb => {
+      const num = parseInt(cb.dataset.playerNum!, 10);
+      const row = document.getElementById(`row-player-${num}`);
+      if (row?.classList.contains('hidden')) return;
+      if (!starterNums.has(num)) {
+        cb.disabled = starterNums.size >= 5;
+      }
+    });
+
+    finisherCheckboxes.forEach(cb => {
+      const num = parseInt(cb.dataset.playerNum!, 10);
+      const row = document.getElementById(`row-player-${num}`);
+      if (row?.classList.contains('hidden')) return;
+      if (!finisherNums.has(num)) {
+        cb.disabled = finisherNums.size >= 3;
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Checkbox change handlers
+  // ---------------------------------------------------------------------------
+  function handleStarterChange(cb: HTMLInputElement): void {
+    const num = parseInt(cb.dataset.playerNum!, 10);
+    if (cb.checked) {
+      starterNums.add(num);
+    } else {
+      starterNums.delete(num);
+    }
+    enforceCheckboxLimits();
+    updateStatus();
+  }
+
+  function handleFinisherChange(cb: HTMLInputElement): void {
+    const num = parseInt(cb.dataset.playerNum!, 10);
+    if (cb.checked) {
+      finisherNums.add(num);
+    } else {
+      finisherNums.delete(num);
+    }
+    enforceCheckboxLimits();
+    updateStatus();
+  }
+
+  // Wire up checkbox listeners
+  document.querySelectorAll<HTMLInputElement>('.starter-checkbox').forEach(cb => {
+    cb.addEventListener('change', () => handleStarterChange(cb));
+  });
+  document.querySelectorAll<HTMLInputElement>('.finisher-checkbox').forEach(cb => {
+    cb.addEventListener('change', () => handleFinisherChange(cb));
+  });
 
   // ---------------------------------------------------------------------------
   // Add / Remove player
@@ -360,6 +429,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     if (firstHidden) {
       firstHidden.classList.remove('hidden');
       updateAddRemoveButtons();
+      enforceCheckboxLimits();
     }
   });
 
@@ -367,103 +437,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const visible = getVisibleRows();
     if (visible.length <= 7) return;
     const last = visible[visible.length - 1];
-    // Clear the input value
+    const num = parseInt(last.id.replace('row-player-', ''), 10);
+
+    // Uncheck and clear checkboxes for this row
+    const starterCb = last.querySelector<HTMLInputElement>('.starter-checkbox');
+    const finisherCb = last.querySelector<HTMLInputElement>('.finisher-checkbox');
+    if (starterCb) { starterCb.checked = false; starterCb.disabled = false; }
+    if (finisherCb) { finisherCb.checked = false; finisherCb.disabled = false; }
+    starterNums.delete(num);
+    finisherNums.delete(num);
+
+    // Clear input
     const input = last.querySelector<HTMLInputElement>('.player-input');
-    if (input) {
-      input.value = '';
-      input.removeAttribute('aria-invalid');
-    }
-    // Clear error span
-    const errorSpan = last.querySelector<HTMLElement>('[role="alert"]');
-    if (errorSpan) {
-      errorSpan.classList.add('hidden');
-      errorSpan.textContent = '';
-    }
+    if (input) input.value = '';
+
     last.classList.add('hidden');
     updateAddRemoveButtons();
+    enforceCheckboxLimits();
+    updateStatus();
   });
 
   // ---------------------------------------------------------------------------
-  // Roster form submission
+  // Validation helpers
   // ---------------------------------------------------------------------------
-  rosterForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    clearValidationErrors();
-
-    const visible = getVisibleRows();
-    let hasError = false;
-
-    // Count check
-    if (visible.length < 7 || visible.length > 9) {
-      formErrorSummary.classList.remove('hidden');
-      formErrorMessage.textContent = `You must have between 7 and 9 players. Currently: ${visible.length}.`;
-      return;
-    }
-
-    // Blank name check
-    const collectedPlayers: Player[] = [];
-    visible.forEach((row, idx) => {
-      const rowNum = parseInt(row.id.replace('row-player-', ''), 10);
-      const input = row.querySelector<HTMLInputElement>('.player-input')!;
-      const errorSpan = document.getElementById(`error-player-${rowNum}`)!;
-      const trimmed = input.value.trim();
-
-      if (!trimmed) {
-        input.setAttribute('aria-invalid', 'true');
-        input.classList.remove('border-gray-300');
-        input.classList.add('border-red-500');
-        errorSpan.textContent = 'Player name is required.';
-        errorSpan.classList.remove('hidden');
-        hasError = true;
-      } else {
-        collectedPlayers.push({ id: `p${idx}`, name: trimmed });
-      }
-    });
-
-    if (hasError) {
-      formErrorSummary.classList.remove('hidden');
-      formErrorMessage.textContent = 'Please enter a name for each player highlighted below.';
-      return;
-    }
-
-    // All valid — transition to starter selection
-    players = collectedPlayers;
-    selectedIds = new Set();
-    populateStarterList();
-    appState = 'starter-selection';
-    render();
-  });
-
-  // ---------------------------------------------------------------------------
-  // Starter selection
-  // ---------------------------------------------------------------------------
-  function populateStarterList(): void {
-    starterList.innerHTML = '';
-    selectedIds.clear();
-    updateStarterCount();
-    btnGenerate.disabled = true;
-
-    players.forEach(player => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.dataset.playerId = player.id;
-      btn.setAttribute('aria-pressed', 'false');
-      btn.className = [
-        'starter-toggle',
-        'w-full h-11 px-4 rounded-lg border-2 border-gray-200',
-        'flex items-center gap-3 text-left text-sm font-medium',
-        'transition-colors hover:border-brand-purple hover:bg-brand-offwhite',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple',
-      ].join(' ');
-      btn.innerHTML = `
-        <span class="starter-indicator w-5 h-5 rounded border-2 border-gray-300 flex-shrink-0 flex items-center justify-center" aria-hidden="true"></span>
-        <span>${escapeHtml(player.name)}</span>
-      `;
-      btn.addEventListener('click', () => toggleStarter(player.id));
-      starterList.appendChild(btn);
-    });
-  }
-
   function escapeHtml(str: string): string {
     return str
       .replace(/&/g, '&amp;')
@@ -472,78 +468,129 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       .replace(/"/g, '&quot;');
   }
 
-  function toggleStarter(playerId: string): void {
-    const btn = starterList.querySelector<HTMLButtonElement>(`[data-player-id="${playerId}"]`)!;
-    const isSelected = selectedIds.has(playerId);
+  function showFormError(msg: string): void {
+    formErrorSummary.classList.remove('hidden');
+    formErrorMessage.textContent = msg;
+  }
 
-    if (isSelected) {
-      // Deselect
-      selectedIds.delete(playerId);
-      btn.setAttribute('aria-pressed', 'false');
-      btn.classList.remove('border-brand-purple', 'bg-brand-offwhite');
-      btn.classList.add('border-gray-200');
-      const indicator = btn.querySelector<HTMLElement>('.starter-indicator')!;
-      indicator.classList.remove('bg-brand-purple', 'border-brand-purple');
-      indicator.classList.add('border-gray-300');
-      indicator.innerHTML = '';
-    } else {
-      // Only allow if fewer than 5 selected
-      if (selectedIds.size >= 5) return;
-      selectedIds.add(playerId);
-      btn.setAttribute('aria-pressed', 'true');
-      btn.classList.add('border-brand-purple', 'bg-brand-offwhite');
-      btn.classList.remove('border-gray-200');
-      const indicator = btn.querySelector<HTMLElement>('.starter-indicator')!;
-      indicator.classList.add('bg-brand-purple', 'border-brand-purple');
-      indicator.classList.remove('border-gray-300');
-      indicator.innerHTML = '<svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
+  function clearFormError(): void {
+    formErrorSummary.classList.add('hidden');
+    formErrorMessage.textContent = '';
+  }
+
+  // ---------------------------------------------------------------------------
+  // Generate Plan
+  // ---------------------------------------------------------------------------
+  btnGenerate.addEventListener('click', () => {
+    clearFormError();
+
+    const visible = getVisibleRows();
+
+    // Collect players from visible rows
+    const playerList: { num: number; name: string }[] = [];
+    let hasBlank = false;
+    for (const row of visible) {
+      const num = parseInt(row.id.replace('row-player-', ''), 10);
+      const input = row.querySelector<HTMLInputElement>('.player-input')!;
+      const trimmed = input.value.trim();
+      if (!trimmed) {
+        input.setAttribute('aria-invalid', 'true');
+        input.classList.remove('border-gray-300');
+        input.classList.add('border-red-500');
+        hasBlank = true;
+      } else {
+        input.removeAttribute('aria-invalid');
+        input.classList.remove('border-red-500');
+        input.classList.add('border-gray-300');
+        playerList.push({ num, name: trimmed });
+      }
     }
 
-    updateStarterCount();
-    enforceSelectionLimit();
-  }
+    if (hasBlank) {
+      showFormError('Please enter a name for each player.');
+      return;
+    }
 
-  function updateStarterCount(): void {
-    const count = selectedIds.size;
-    starterCount.textContent = `${count} of 5 selected`;
-    btnGenerate.disabled = count !== 5;
-  }
+    if (playerList.length < 7 || playerList.length > 9) {
+      showFormError(`You must have 7–9 players. Currently: ${playerList.length}.`);
+      return;
+    }
 
-  function enforceSelectionLimit(): void {
-    const buttons = starterList.querySelectorAll<HTMLButtonElement>('.starter-toggle');
-    const atLimit = selectedIds.size >= 5;
-    buttons.forEach(btn => {
-      const id = btn.dataset.playerId!;
-      if (!selectedIds.has(id)) {
-        btn.disabled = atLimit;
-        if (atLimit) {
-          btn.classList.add('opacity-50', 'cursor-not-allowed');
-        } else {
-          btn.classList.remove('opacity-50', 'cursor-not-allowed');
-        }
-      }
-    });
-  }
+    if (starterNums.size !== 5) {
+      showFormError('Please select exactly 5 starters.');
+      return;
+    }
+
+    const fc = finisherNums.size;
+    if (fc !== 0 && fc !== 3) {
+      showFormError('Finishers must be 0 or exactly 3. Currently: ' + fc + '.');
+      return;
+    }
+
+    // Build Player objects indexed by roster order
+    const players: Player[] = playerList.map((p, idx) => ({ id: `p${idx}`, name: p.name }));
+
+    // Map player nums → Player objects
+    const numToPlayer = new Map(playerList.map((p, idx) => [p.num, players[idx]]));
+
+    // Build startingFive: players whose num is in starterNums, in roster order
+    const startingFive: Player[] = players.filter((_, idx) => starterNums.has(playerList[idx].num));
+    if (startingFive.length !== 5) {
+      showFormError('Could not resolve 5 starters. Please re-select.');
+      return;
+    }
+
+    // Build finishers array (empty or 3 players, in roster order)
+    const finishers: Player[] = fc === 3
+      ? players.filter((_, idx) => finisherNums.has(playerList[idx].num))
+      : [];
+
+    const generateError = document.getElementById('generate-error')!;
+    generateError.classList.add('hidden');
+
+    try {
+      currentPlan = generateRotationPlan(players, startingFive, finishers.length > 0 ? finishers : undefined);
+      currentSchedules = derivePlayerSchedules(currentPlan);
+    } catch (err) {
+      console.error('Plan generation failed:', err);
+      generateError.classList.remove('hidden');
+      return;
+    }
+
+    appState = 'plan-display';
+    render();
+    renderGantt(currentSchedules);
+    if (currentPlan) renderSubstitutionEvents(currentPlan);
+
+    // Enable Export PDF button
+    const btnExport = document.getElementById('btn-export-pdf') as HTMLButtonElement;
+    btnExport.disabled = false;
+    btnExport.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
+    btnExport.classList.add('bg-brand-purple', 'text-white', 'hover:bg-purple-800');
+    btnExport.onclick = () => { if (currentPlan) exportPdf(currentPlan); };
+  });
 
   // ---------------------------------------------------------------------------
   // Gantt chart rendering
   // ---------------------------------------------------------------------------
-
   function truncateName(name: string, maxLen = 30): string {
     return name.length > maxLen ? name.slice(0, maxLen - 1) + '…' : name;
   }
 
   function renderGantt(schedules: PlayerSchedule[]): void {
     const container = document.getElementById('gantt-container')!;
-
-    // Time axis minutes
     const axisTicks = [0, 5, 10, 15, 20, 25, 30, 35, 40];
+    const finisherIds = currentPlan?.finishers ? new Set(currentPlan.finishers.map(p => p.id)) : new Set<string>();
 
-    // Build the chart HTML
+    function getCountdownLabel(minute: number): string {
+      const minuteInHalf = minute % 20;
+      return `${20 - minuteInHalf}`;
+    }
+
     let html = `<div class="overflow-x-auto">`;
     html += `<div style="min-width:600px; position:relative; padding-left:120px;">`;
 
-    // ---- Time axis ----
+    // Time axis
     html += `<div style="position:relative; height:24px; margin-bottom:4px;">`;
     for (const tick of axisTicks) {
       const pct = (tick / 40) * 100;
@@ -552,49 +599,46 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         : tick === 40
           ? 'transform:translateX(-100%); left:100%;'
           : 'transform:translateX(-50%);';
-      html += `<span style="position:absolute; left:${pct}%; ${alignStyle} font-size:11px; color:#6b7280; white-space:nowrap;">${tick}'</span>`;
+      html += `<span style="position:absolute; left:${pct}%; ${alignStyle} font-size:11px; color:#6b7280; white-space:nowrap;">${getCountdownLabel(tick)}'</span>`;
     }
     html += `</div>`;
 
-    // ---- Player rows ----
+    // Player rows
     for (const schedule of schedules) {
       const label = truncateName(schedule.player.name);
+      const isFinisher = finisherIds.has(schedule.player.id);
+      const labelSuffix = isFinisher ? ' <span style="font-size:10px; color:#6b7280;">(F)</span>' : '';
       html += `<div style="display:flex; align-items:center; margin-bottom:6px; position:relative;">`;
-      // Player name label (sits to the left via negative margin on the parent padding)
-      html += `<div style="position:absolute; left:-120px; width:116px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; font-weight:500; color:#111;" title="${escapeHtml(schedule.player.name)}">${escapeHtml(label)}</div>`;
-      // Timeline bar area
+      html += `<div style="position:absolute; left:-120px; width:116px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:13px; font-weight:500; color:#111;" title="${escapeHtml(schedule.player.name)}">${escapeHtml(label)}${labelSuffix}</div>`;
       html += `<div style="position:relative; flex:1; height:32px;">`;
 
       for (const stint of schedule.stints) {
         const widthPct = (stint.durationMinutes / 40) * 100;
         const leftPct = (stint.startMinute / 40) * 100;
-        const minWidthPx = 8;
         const bgStyle = stint.type === 'on-court'
           ? 'background:var(--color-brand-purple, #5b2d8e);'
           : 'background:var(--color-brand-offwhite, #f5f3ee); border:1px solid #d1d5db;';
         const title = `${schedule.player.name}: ${stint.type} min ${stint.startMinute}–${stint.endMinute}`;
-        html += `<div style="position:absolute; top:0; bottom:0; left:${leftPct}%; width:${widthPct}%; min-width:${minWidthPx}px; ${bgStyle} border-radius:3px;" title="${escapeHtml(title)}"></div>`;
+        html += `<div style="position:absolute; top:0; bottom:0; left:${leftPct}%; width:${widthPct}%; min-width:8px; ${bgStyle} border-radius:3px;" title="${escapeHtml(title)}"></div>`;
       }
 
-      html += `</div>`; // timeline
-      html += `</div>`; // row
+      html += `</div></div>`;
     }
 
-    // ---- Half-time marker ----
-    html += `<div style="position:absolute; left:calc(120px + 50%); top:24px; bottom:0; width:2px; background:var(--color-brand-gold, #c8a84b); pointer-events:none; z-index:1;" aria-hidden="true"></div>`;
+    // Half-time marker — sits at chart 50% = left-padding + (chart-width / 2)
+    // = 120px + (100% - 120px) / 2 = 50% + 60px
+    html += `<div style="position:absolute; left:calc(50% + 60px); top:24px; bottom:0; width:2px; background:var(--color-brand-gold, #c8a84b); pointer-events:none; z-index:1;" aria-hidden="true"></div>`;
 
-    // ---- Half labels ----
+    // Half labels
     html += `<div style="position:relative; height:20px; margin-top:4px;">`;
     html += `<span style="position:absolute; left:25%; transform:translateX(-50%); font-size:11px; color:#6b7280;">Half 1</span>`;
     html += `<span style="position:absolute; left:75%; transform:translateX(-50%); font-size:11px; color:#6b7280;">Half 2</span>`;
     html += `</div>`;
 
-    html += `</div>`; // min-width wrapper
-    html += `</div>`; // overflow-x-auto
-
+    html += `</div></div>`;
     container.innerHTML = html;
 
-    // ---- Accessible summary ----
+    // Accessible summary
     const summaryContent = document.getElementById('gantt-summary-content')!;
     let summaryHtml = `<ul class="space-y-1">`;
     for (const schedule of schedules) {
@@ -608,21 +652,60 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   // ---------------------------------------------------------------------------
+  // Substitution events rendering
+  // ---------------------------------------------------------------------------
+  function renderSubstitutionEvents(plan: RotationPlan): void {
+    // Starting lineups
+    const lineupsContainer = document.getElementById('starting-lineups-content')!;
+    let lineupsHtml = '';
+    for (const half of plan.halves) {
+      const halfTitle = half.halfNumber === 1 ? 'First Half' : 'Second Half';
+      const names = half.startingFive.map(p => escapeHtml(p.name)).join(', ');
+      lineupsHtml += `<div><span class="text-xs font-bold text-gray-500 uppercase">${halfTitle}</span><p class="text-sm text-gray-800 mt-0.5">${names}</p></div>`;
+    }
+    lineupsContainer.innerHTML = lineupsHtml;
+
+    const container = document.getElementById('substitution-events-content')!;
+    let html = '';
+
+    for (const half of plan.halves) {
+      const halfTitle = half.halfNumber === 1 ? 'First Half' : 'Second Half';
+      html += `<div>`;
+      html += `<h4 class="text-xs font-bold text-gray-600 uppercase mb-2">${halfTitle}</h4>`;
+
+      if (half.substitutions.length === 0) {
+        html += `<p class="text-sm text-gray-500">No substitutions</p>`;
+      } else {
+        html += `<ul class="space-y-1">`;
+        for (const sub of half.substitutions) {
+          const countdownMin = 20 - sub.gameClockMinute;
+          const timeStr = `${String(countdownMin).padStart(2, '0')}:00`;
+          const playersIn = sub.playersComingOn.map(p => escapeHtml(p.name)).join(', ');
+          const playersOut = sub.playersSittingDown.map(p => escapeHtml(p.name)).join(', ');
+          html += `<li class="text-sm text-gray-700"><span class="font-mono font-medium">${timeStr}</span> — <span class="text-green-700">${playersIn}</span> IN, <span class="text-red-700">${playersOut}</span> OUT</li>`;
+        }
+        html += `</ul>`;
+      }
+      html += `</div>`;
+    }
+
+    container.innerHTML = html;
+  }
+
+  // ---------------------------------------------------------------------------
   // PDF Export
   // ---------------------------------------------------------------------------
   async function exportPdf(plan: RotationPlan): Promise<void> {
     const pdfError = document.getElementById('pdf-error')!;
     try {
       const { jsPDF } = await import('jspdf');
-
       const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const marginLeft = 20;
       const marginRight = 20;
       const pageWidth = doc.internal.pageSize.getWidth();
-      const workingWidth = pageWidth - marginLeft - marginRight; // 170mm
-      let y = 20; // current y cursor
+      const workingWidth = pageWidth - marginLeft - marginRight;
+      let y = 20;
 
-      // Helper: write a line and advance y
       function writeLine(text: string, opts: { bold?: boolean; size?: number; indent?: number } = {}): void {
         const fontSize = opts.size ?? 11;
         const indent = opts.indent ?? 0;
@@ -633,57 +716,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         y += (fontSize * 0.3528 + 1) * (Array.isArray(lines) ? lines.length : 1);
       }
 
-      function addVerticalSpace(mm: number): void {
-        y += mm;
-      }
+      function addVerticalSpace(mm: number): void { y += mm; }
 
-      // Header
       writeLine('Bendigo Phoenix — Court Time Calculator', { bold: true, size: 14 });
       addVerticalSpace(3);
-
       const dateStr = new Date().toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' });
-      const playerCount = plan.roster.length;
-      writeLine(`${dateStr} — ${playerCount} players`, { size: 10 });
+      writeLine(`${dateStr} — ${plan.roster.length} players`, { size: 10 });
       addVerticalSpace(6);
 
-      // Separator line
       doc.setLineWidth(0.3);
       doc.line(marginLeft, y, pageWidth - marginRight, y);
       addVerticalSpace(5);
 
-      // Helper: render one half section
       function renderHalf(halfIndex: 0 | 1): void {
         const half = plan.halves[halfIndex];
         const halfLabel = halfIndex === 0 ? 'First Half' : 'Second Half';
-
         writeLine(halfLabel, { bold: true, size: 13 });
         addVerticalSpace(2);
-
-        // Starting lineup
         const starterNames = half.startingFive.map(p => p.name).join(', ');
-        const starterPrefix = halfIndex === 1
-          ? 'Starting (algorithm selected): '
-          : 'Starting: ';
+        const starterPrefix = halfIndex === 1 ? 'Starting (algorithm selected): ' : 'Starting: ';
         writeLine(starterPrefix + starterNames, { size: 10, indent: 2 });
         addVerticalSpace(4);
 
-        // Substitution events
         if (half.substitutions.length === 0) {
           writeLine('No substitutions this half.', { size: 10, indent: 2 });
         } else {
           const sorted = [...half.substitutions].sort((a, b) => a.gameClockMinute - b.gameClockMinute);
           for (const event of sorted) {
-            // Countdown format: remaining = 20 - elapsed
             const remaining = 20 - event.gameClockMinute;
             const display = String(remaining).padStart(2, '0') + ':00';
-
             const inNames = event.playersComingOn.map(p => p.name).join(', ');
             const outNames = event.playersSittingDown.map(p => p.name).join(', ');
-            const line = `${display} — ${inNames} IN, ${outNames} OUT`;
-            writeLine(line, { size: 10, indent: 2 });
+            writeLine(`${display} — ${inNames} IN, ${outNames} OUT`, { size: 10, indent: 2 });
             addVerticalSpace(1);
-
-            // Thin separator between events
             doc.setLineWidth(0.1);
             doc.setDrawColor(200, 200, 200);
             doc.line(marginLeft + 2, y, pageWidth - marginRight, y);
@@ -691,36 +756,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             addVerticalSpace(2);
           }
         }
-
         addVerticalSpace(4);
       }
 
       renderHalf(0);
-
-      // Half-time divider
       doc.setLineWidth(0.5);
       doc.line(marginLeft, y, pageWidth - marginRight, y);
       addVerticalSpace(5);
-
       renderHalf(1);
 
-      // Footer
       const footerText = 'Generated by Bendigo Phoenix Coach Toolkit — session data not saved';
       doc.setFontSize(8);
       doc.setFont('helvetica', 'normal');
       doc.setTextColor(150, 150, 150);
-      const footerY = doc.internal.pageSize.getHeight() - 10;
-      doc.text(footerText, pageWidth / 2, footerY, { align: 'center' });
+      doc.text(footerText, pageWidth / 2, doc.internal.pageSize.getHeight() - 10, { align: 'center' });
       doc.setTextColor(0, 0, 0);
 
-      // iOS-safe download
       const isIos = /iP(ad|hone|od)/i.test(navigator.userAgent);
       if (isIos) {
         window.open(doc.output('bloburl') as unknown as string, '_blank');
       } else {
         doc.save('court-time-calculator.pdf');
       }
-
       pdfError.classList.add('hidden');
     } catch (err) {
       console.error('PDF export error:', err);
@@ -729,67 +786,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   // ---------------------------------------------------------------------------
-  // Generate Plan — wired in Window 3
-  // ---------------------------------------------------------------------------
-  btnGenerate.addEventListener('click', () => {
-    if (selectedIds.size !== 5) return;
-
-    // Build starting five from selected IDs, preserving roster order
-    const startingFive: Player[] = players.filter(p => selectedIds.has(p.id));
-
-    const generateError = document.getElementById('generate-error')!;
-    generateError.classList.add('hidden');
-
-    try {
-      currentPlan = generateRotationPlan(players, startingFive);
-      currentSchedules = derivePlayerSchedules(currentPlan);
-    } catch (err) {
-      console.error('Plan generation failed:', err);
-      generateError.classList.remove('hidden');
-      return;
-    }
-
-    appState = 'plan-display';
-    render();
-    renderGantt(currentSchedules);
-
-    // Enable Export PDF button (Task 9)
-    const btnExport = document.getElementById('btn-export-pdf') as HTMLButtonElement;
-    btnExport.disabled = false;
-    btnExport.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
-    btnExport.classList.add('bg-brand-purple', 'text-white', 'hover:bg-purple-800');
-
-    // Wire export click (attach once; guard against double-attach via currentPlan check)
-    btnExport.onclick = () => {
-      if (currentPlan) exportPdf(currentPlan);
-    };
-  });
-
-  // ---------------------------------------------------------------------------
-  // Back to roster
-  // ---------------------------------------------------------------------------
-  btnBackToRoster.addEventListener('click', () => {
-    appState = 'roster-entry';
-    render();
-    // Player name inputs remain populated (FR-017a)
-  });
-
-  // ---------------------------------------------------------------------------
   // Start Over
   // ---------------------------------------------------------------------------
-  const btnStartOver = document.getElementById('btn-start-over') as HTMLButtonElement;
-
-  btnStartOver.addEventListener('click', () => {
-    // Clear plan state
+  document.getElementById('btn-start-over')!.addEventListener('click', () => {
     currentPlan = null;
     currentSchedules = [];
 
-    // Clear Gantt and summary
     document.getElementById('gantt-container')!.innerHTML = '';
     const summaryContent = document.getElementById('gantt-summary-content');
     if (summaryContent) summaryContent.innerHTML = '';
+    const subEventsContent = document.getElementById('substitution-events-content');
+    if (subEventsContent) subEventsContent.innerHTML = '';
 
-    // Clear all player name inputs
+    // Clear all inputs + checkboxes
     for (let i = 1; i <= 9; i++) {
       const input = document.getElementById(`input-player-${i}`) as HTMLInputElement | null;
       if (input) {
@@ -798,45 +807,32 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         input.classList.remove('border-red-500');
         input.classList.add('border-gray-300');
       }
-      const errorSpan = document.getElementById(`error-player-${i}`);
-      if (errorSpan) {
-        errorSpan.classList.add('hidden');
-        errorSpan.textContent = '';
-      }
+      const stCb = document.querySelector<HTMLInputElement>(`.starter-checkbox[data-player-num="${i}"]`);
+      if (stCb) { stCb.checked = false; stCb.disabled = false; }
+      const finCb = document.querySelector<HTMLInputElement>(`.finisher-checkbox[data-player-num="${i}"]`);
+      if (finCb) { finCb.checked = false; finCb.disabled = false; }
     }
-    // Hide rows 8 & 9 (restore default 7-player view)
+    starterNums.clear();
+    finisherNums.clear();
+
+    // Hide rows 8 & 9
     for (let i = 8; i <= 9; i++) {
-      const row = document.getElementById(`row-player-${i}`);
-      if (row) row.classList.add('hidden');
+      document.getElementById(`row-player-${i}`)?.classList.add('hidden');
     }
 
-    // Reset summary error
-    formErrorSummary.classList.add('hidden');
-    formErrorMessage.textContent = '';
+    clearFormError();
+    document.getElementById('generate-error')?.classList.add('hidden');
 
-    // Reset starter selection
-    players = [];
-    selectedIds = new Set();
-    starterList.innerHTML = '';
-    starterCount.textContent = '0 of 5 selected';
-    btnGenerate.disabled = true;
-
-    // Hide plan generation error if visible
-    const generateError = document.getElementById('generate-error');
-    if (generateError) generateError.classList.add('hidden');
-
-    // Re-disable Export PDF button (AC-8, FR-028)
+    // Re-disable Export PDF
     const btnExport = document.getElementById('btn-export-pdf') as HTMLButtonElement;
     btnExport.disabled = true;
     btnExport.onclick = null;
     btnExport.classList.add('opacity-50', 'cursor-not-allowed', 'bg-gray-200', 'text-gray-500');
     btnExport.classList.remove('bg-brand-purple', 'text-white', 'hover:bg-purple-800');
-
-    // Hide PDF error if visible
-    const pdfError = document.getElementById('pdf-error');
-    if (pdfError) pdfError.classList.add('hidden');
+    document.getElementById('pdf-error')?.classList.add('hidden');
 
     updateAddRemoveButtons();
+    updateStatus();
     appState = 'roster-entry';
     render();
   });
@@ -845,5 +841,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   // Initial state
   // ---------------------------------------------------------------------------
   updateAddRemoveButtons();
+  updateStatus();
   render();
 </script>

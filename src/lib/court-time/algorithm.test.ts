@@ -342,3 +342,113 @@ describe('generateRotationPlan — 5-on-court invariant', () => {
     }
   });
 });
+
+describe('generateRotationPlan — max 10-minute consecutive stint', () => {
+  test('no player has more than 10 consecutive on-court minutes in either half', () => {
+    for (const n of [7, 8, 9]) {
+      const players = makePlayers(n);
+      const starters = makeStarters(players);
+      const plan = generateRotationPlan(players, starters);
+      const schedules = derivePlayerSchedules(plan);
+
+      for (const ps of schedules) {
+        for (const stint of ps.stints) {
+          if (stint.type === 'on-court') {
+            // A single on-court stint may span the half boundary (minutes 0–40).
+            // Check consecutive within each 20-minute half.
+            const half1Duration = Math.min(stint.endMinute, 20) - Math.max(stint.startMinute, 0);
+            const half2Duration = Math.min(stint.endMinute, 40) - Math.max(stint.startMinute, 20);
+            if (half1Duration > 0) {
+              expect(half1Duration).toBeLessThanOrEqual(10);
+            }
+            if (half2Duration > 0) {
+              expect(half2Duration).toBeLessThanOrEqual(10);
+            }
+          }
+        }
+      }
+    }
+  });
+});
+
+describe('generateRotationPlan — finisher pinning', () => {
+  test('validation: throws when finishers is not 0 or 3', () => {
+    const players = makePlayers(8);
+    const starters = makeStarters(players);
+    expect(() => generateRotationPlan(players, starters, [players[5]])).toThrow('finishers must be empty or exactly 3');
+    expect(() => generateRotationPlan(players, starters, [players[5], players[6]])).toThrow('finishers must be empty or exactly 3');
+  });
+
+  test('a starter can also be a finisher (no overlap restriction)', () => {
+    const players = makePlayers(8);
+    const starters = makeStarters(players);
+    // starters[0] is also a finisher — this should not throw
+    expect(() =>
+      generateRotationPlan(players, starters, [starters[0], players[5], players[6]]),
+    ).not.toThrow();
+  });
+
+  test('pinned finishers are on court at game minute 39 (last minute)', () => {
+    // 7-player roster only has 2 bench players — cannot pick 3 non-starter finishers.
+    // Test with 8 and 9 player rosters (3 and 4 bench players respectively).
+    for (const n of [8, 9]) {
+      const players = makePlayers(n);
+      const starters = makeStarters(players);
+      const finishers = players.slice(n - 3);
+      const plan = generateRotationPlan(players, starters, finishers);
+      const schedules = derivePlayerSchedules(plan);
+      const finisherIds = new Set(finishers.map((p) => p.id));
+
+      for (const ps of schedules) {
+        if (!finisherIds.has(ps.player.id)) continue;
+        const onAtEnd = ps.stints.some(
+          (s) => s.type === 'on-court' && s.startMinute <= 39 && s.endMinute > 39,
+        );
+        expect(onAtEnd).toBe(true);
+      }
+    }
+  });
+
+  test('no substitutions involving finishers in the final 4 minutes of half 2 (minutes 16–19)', () => {
+    const players = makePlayers(8);
+    const starters = makeStarters(players);
+    const finishers = [players[5], players[6], players[7]];
+    const plan = generateRotationPlan(players, starters, finishers);
+    const finisherIds = new Set(finishers.map((p) => p.id));
+    const half2 = plan.halves[1];
+
+    for (const sub of half2.substitutions) {
+      if (sub.gameClockMinute >= 16) {
+        for (const p of sub.playersComingOn) {
+          expect(finisherIds.has(p.id)).toBe(false);
+        }
+        for (const p of sub.playersSittingDown) {
+          expect(finisherIds.has(p.id)).toBe(false);
+        }
+      }
+    }
+  });
+
+  test('plan with 0 finishers generates same output as without finishers parameter', () => {
+    const players = makePlayers(8);
+    const starters = makeStarters(players);
+    const planA = generateRotationPlan(players, starters);
+    const planB = generateRotationPlan(players, starters, []);
+    expect(JSON.stringify(planA)).toBe(JSON.stringify(planB));
+  });
+});
+
+describe('generateRotationPlan — minimum substitution minute', () => {
+  test('no substitution occurs before game clock minute 5 in either half (7/8/9 players)', () => {
+    for (const n of [7, 8, 9]) {
+      const players = makePlayers(n);
+      const starters = makeStarters(players);
+      const plan = generateRotationPlan(players, starters);
+      for (const half of plan.halves) {
+        for (const sub of half.substitutions) {
+          expect(sub.gameClockMinute).toBeGreaterThanOrEqual(5);
+        }
+      }
+    }
+  });
+});

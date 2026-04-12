@@ -3,7 +3,7 @@
  *
  * Pure TypeScript module. No DOM, no Astro, no third-party dependencies.
  *
- * Entry point: generateRotationPlan(players, startingFive) → RotationPlan
+ * Entry point: generateRotationPlan(players, startingFive, finishers?) → RotationPlan
  */
 
 import type {
@@ -93,20 +93,23 @@ export function computeCourtTargets(n: number, seed: string): number[] {
  * 1. Initialise all slots with the starting five.
  * 2. For each bench player (sorted by descending half-target), find a contiguous
  *    window of `target` minutes placed as late as possible.
- *    For each slot in the window, displace the player with the highest surplus
- *    (current minutes - their target). This correctly handles cases where no
- *    single starter can provide the full target.
+ *    For each slot in the window, displace the player with the highest surplus.
  * 3. After all bench players are placed, fix any players still over their target
- *    by swapping out over-target players for under-target players in remaining slots.
- * 4. Extract substitution events from slot diffs.
+ *    via a correction pass.
+ * 4. Enforce max 10-minute consecutive on-court stint per player.
+ * 5. If finishers provided, lock them on court for the final 4 minutes.
+ * 6. Extract substitution events from slot diffs.
  */
 export function scheduleHalf(
   players: Player[],
   startingFive: Player[],
   halfTargets: number[],
   halfNumber: 1 | 2,
+  finishers?: Player[],
 ): HalfPlan {
   const HALF_MINUTES = 20;
+  const MAX_STINT = 10;
+  const MIN_SUB_MINUTE = 5; // earliest minute a substitution may occur (5 min elapsed)
   const n = players.length;
 
   // slot[m] = array of 5 player IDs on court during minute m (0..19)
@@ -164,7 +167,6 @@ export function scheduleHalf(
   const sortedBench = benchPlayers.slice().sort((a, b) => {
     const ia = playerIdx.get(a.id)!;
     const ib = playerIdx.get(b.id)!;
-    // Descending target; break ties by ascending roster index
     const td = halfTargets[ib] - halfTargets[ia];
     if (td !== 0) return td;
     return ia - ib;
@@ -177,67 +179,231 @@ export function scheduleHalf(
     if (target === 0) continue;
 
     // Place the bench player's window as late as possible: [windowStart, HALF_MINUTES)
-    const windowStart = HALF_MINUTES - target;
+    // windowStart is clamped to MIN_SUB_MINUTE so no sub occurs before 5 min elapsed.
+    const windowStart = Math.max(HALF_MINUTES - target, MIN_SUB_MINUTE);
     const windowEnd = HALF_MINUTES;
 
-    // For each slot in the window, replace the on-court player with the
-    // highest surplus with this bench player.
     for (let m = windowStart; m < windowEnd; m++) {
       const outId = findHighestSurplusInSlot(m);
       slots[m] = slots[m].map((id) => (id === outId ? benchPlayer.id : id));
     }
   }
 
-  // After bench placement, fix any remaining imbalances.
-  // Some starters may still be over target if there weren't enough bench players
-  // to absorb all their surplus. Apply a correction pass:
-  // For each minute from 19 down to 0, if any on-court player is over target
-  // and any off-court player is under target, swap them.
-  //
-  // This ensures all targets are met exactly, at the cost of potentially
-  // introducing additional stints. We iterate until stable.
+  // Correction pass: swap over-target on-court players with under-target off-court players.
   let changed = true;
   let safetyCounter = 0;
-  while (changed && safetyCounter < 1000) {
+  while (changed && safetyCounter < 100) {
     changed = false;
     safetyCounter++;
 
-    // Process minutes from latest to earliest (keep starters on early)
-    for (let m = HALF_MINUTES - 1; m >= 0; m--) {
-      // Find the most over-target player currently on court
-      let worstOnId = '';
-      let worstSurplus = 0; // only care about strictly positive surplus
-      for (const id of slots[m]) {
-        const s = getSurplus(id);
-        if (s > worstSurplus) {
-          worstSurplus = s;
-          worstOnId = id;
+    for (let m = HALF_MINUTES - 1; m >= MIN_SUB_MINUTE; m--) {
+      const currentOnCourt = new Set(slots[m]);
+
+      let overTargetId = '';
+      for (const id of currentOnCourt) {
+        const idx = playerIdx.get(id)!;
+        const currentMins = countMinutes(id);
+        if (currentMins >= halfTargets[idx] && currentMins > 0) {
+          overTargetId = id;
+          break;
         }
       }
-      if (!worstOnId) continue;
+      if (!overTargetId) continue;
 
-      // Find the most under-target player currently OFF court at this minute
-      let bestOffId = '';
-      let bestDeficit = 0; // only care about strictly negative surplus (deficit > 0)
+      let needsTimeId = '';
       for (const p of players) {
-        if (slots[m].includes(p.id)) continue; // already on court
-        const s = getSurplus(p.id);
-        if (-s > bestDeficit) {
-          bestDeficit = -s;
-          bestOffId = p.id;
+        if (currentOnCourt.has(p.id)) continue;
+        const idx = playerIdx.get(p.id)!;
+        if (countMinutes(p.id) < halfTargets[idx]) {
+          needsTimeId = p.id;
+          break;
         }
       }
-      if (!bestOffId) continue;
+      if (!needsTimeId) continue;
 
-      // Swap: bring off-court player on, take over-target player off
-      slots[m] = slots[m].map((id) => (id === worstOnId ? bestOffId : id));
+      slots[m] = slots[m].map((id) => (id === overTargetId ? needsTimeId : id));
       changed = true;
     }
   }
 
-  // Build substitution events from the slot diffs.
-  // A sub event at minute m is triggered when the set of players changes
-  // between slot m-1 and slot m.
+  // ---------------------------------------------------------------------------
+  // Max consecutive stint enforcement (10 minutes maximum)
+  // ---------------------------------------------------------------------------
+  // Uses a neutral two-minute swap to preserve minute totals:
+  //   At breakAt: player A → player B (A off, B on)
+  //   At minute Y: player B → player A (B off, A on)
+  // Net effect: A and B each gain and lose exactly one minute → totals unchanged.
+  {
+    const finisherIds = finishers ? new Set(finishers.map((f) => f.id)) : new Set<string>();
+    const LOCK_START = HALF_MINUTES - 4; // minute 16 — finisher-locked zone
+
+    /**
+     * Would adding `id` to slot[m] create a consecutive run > MAX_STINT?
+     * Used by the post-correction pass to prevent it from re-creating long runs.
+     */
+    function wouldExceedMaxStint(id: string, m: number): boolean {
+      let runLen = 1; // minute m itself
+      for (let mm = m - 1; mm >= 0 && slots[mm].includes(id); mm--) runLen++;
+      for (let mm = m + 1; mm < HALF_MINUTES && slots[mm].includes(id); mm++) runLen++;
+      return runLen > MAX_STINT;
+    }
+
+    let stintChanged = true;
+    let stintSafety = 0;
+    while (stintChanged && stintSafety < 200) {
+      stintChanged = false;
+      stintSafety++;
+
+      for (const player of players) {
+        const id = player.id;
+        let runStart = -1;
+
+        for (let m = 0; m <= HALF_MINUTES; m++) {
+          const onCourt = m < HALF_MINUTES && slots[m].includes(id);
+          if (onCourt) {
+            if (runStart === -1) runStart = m;
+          } else {
+            if (runStart !== -1) {
+              const runEnd = m;
+              const runLen = runEnd - runStart;
+              if (runLen > MAX_STINT) {
+                const breakAt = runStart + MAX_STINT;
+
+                // Skip enforcement if breakAt is in the finisher locked zone for a finisher
+                if (finisherIds.has(id) && breakAt >= LOCK_START) {
+                  runStart = -1;
+                  continue;
+                }
+
+                const onCourtAtBreak = new Set(slots[breakAt]);
+                let neutralFound = false;
+
+                // Forward neutral swap: find off-court player p who is on court at some Y >= runEnd
+                // where id is NOT already on court (avoids inserting id twice into a slot).
+                outer: for (const p of players) {
+                  if (onCourtAtBreak.has(p.id)) continue;
+                  for (let y = runEnd; y < HALF_MINUTES; y++) {
+                    if (slots[y].includes(p.id) && !slots[y].includes(id)) {
+                      // Neutral swap: id out at breakAt, in at y; p in at breakAt, out at y
+                      slots[breakAt] = slots[breakAt].map((sid) => (sid === id ? p.id : sid));
+                      slots[y] = slots[y].map((sid) => (sid === p.id ? id : sid));
+                      neutralFound = true;
+                      stintChanged = true;
+                      break outer;
+                    }
+                  }
+                }
+
+                // Backward neutral swap: find off-court player p on court at some Y in [MIN_SUB_MINUTE..runStart).
+                // Y<MIN_SUB_MINUTE is excluded: Y=0 corrupts startingFive invariant, and
+                // minutes 1–4 are the no-sub zone (no sub before 5 min elapsed).
+                if (!neutralFound) {
+                  outer2: for (const p of players) {
+                    if (onCourtAtBreak.has(p.id)) continue;
+                    for (let y = MIN_SUB_MINUTE; y < runStart; y++) {
+                      if (!slots[y].includes(id) && slots[y].includes(p.id)) {
+                        slots[breakAt] = slots[breakAt].map((sid) => (sid === id ? p.id : sid));
+                        slots[y] = slots[y].map((sid) => (sid === p.id ? id : sid));
+                        neutralFound = true;
+                        stintChanged = true;
+                        break outer2;
+                      }
+                    }
+                  }
+                }
+
+                // Fallback: simple single-minute swap (rare; post-correction will rebalance)
+                if (!neutralFound) {
+                  for (const p of players) {
+                    if (!onCourtAtBreak.has(p.id)) {
+                      slots[breakAt] = slots[breakAt].map((sid) => (sid === id ? p.id : sid));
+                      stintChanged = true;
+                      break;
+                    }
+                  }
+                }
+              }
+              runStart = -1;
+            }
+          }
+        }
+      }
+
+      // Post-correction pass (runs inside the outer while loop so any new violations
+      // created here are caught by the next stint-enforcement iteration).
+      // Skips swaps that would re-create a run > MAX_STINT to break the oscillation
+      // where the fallback removes a player and this pass immediately puts them back.
+      {
+        let postCorrChanged = true;
+        while (postCorrChanged) {
+          postCorrChanged = false;
+          for (let m = HALF_MINUTES - 1; m >= MIN_SUB_MINUTE; m--) {
+            const currentOnCourt = new Set(slots[m]);
+            let overTargetId = '';
+            for (const cid of currentOnCourt) {
+              const idx = playerIdx.get(cid)!;
+              if (countMinutes(cid) > halfTargets[idx]) {
+                overTargetId = cid;
+                break;
+              }
+            }
+            if (!overTargetId) continue;
+            let needsTimeId = '';
+            for (const p of players) {
+              if (currentOnCourt.has(p.id)) continue;
+              const idx = playerIdx.get(p.id)!;
+              if (
+                countMinutes(p.id) < halfTargets[idx] &&
+                !wouldExceedMaxStint(p.id, m)
+              ) {
+                needsTimeId = p.id;
+                break;
+              }
+            }
+            if (!needsTimeId) continue;
+            slots[m] = slots[m].map((sid) => (sid === overTargetId ? needsTimeId : sid));
+            postCorrChanged = true;
+            stintChanged = true; // trigger outer loop to recheck stints
+          }
+        }
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Finisher lock — pin 3 players to the final 4 minutes
+  // ---------------------------------------------------------------------------
+  // Ensures finisher players are on court for all of minutes 16–19.
+  // Removes the highest-surplus non-finisher to make room when needed.
+  if (finishers && finishers.length > 0) {
+    const LOCK_START = HALF_MINUTES - 4; // minute 16
+    const finisherIds = new Set(finishers.map((f) => f.id));
+
+    for (let m = LOCK_START; m < HALF_MINUTES; m++) {
+      for (const finisher of finishers) {
+        if (!slots[m].includes(finisher.id)) {
+          // Remove highest-surplus non-finisher to make room
+          let outId = '';
+          let highestSurplus = -Infinity;
+          for (const id of slots[m]) {
+            if (finisherIds.has(id)) continue;
+            const surplus = getSurplus(id);
+            if (surplus > highestSurplus) {
+              highestSurplus = surplus;
+              outId = id;
+            }
+          }
+          if (outId) {
+            slots[m] = slots[m].map((id) => (id === outId ? finisher.id : id));
+          }
+        }
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Build substitution events from slot diffs
+  // ---------------------------------------------------------------------------
   const subEvents = new Map<number, { comingOn: Player[]; sittingDown: Player[] }>();
 
   for (let m = 1; m < HALF_MINUTES; m++) {
@@ -410,6 +576,7 @@ export function derivePlayerSchedules(plan: RotationPlan): PlayerSchedule[] {
 export function generateRotationPlan(
   players: Player[],
   startingFive: Player[],
+  finishers?: Player[],
 ): RotationPlan {
   if (players.length < 7 || players.length > 9) {
     throw new Error(`generateRotationPlan: roster must have 7–9 players, got ${players.length}`);
@@ -417,30 +584,40 @@ export function generateRotationPlan(
   if (startingFive.length !== 5) {
     throw new Error(`generateRotationPlan: startingFive must have exactly 5 players`);
   }
+  if (finishers !== undefined && finishers.length !== 0 && finishers.length !== 3) {
+    throw new Error(
+      `generateRotationPlan: finishers must be empty or exactly 3 players, got ${finishers.length}`,
+    );
+  }
+
+  if (finishers && finishers.length > 0) {
+    const rosterIds = new Set(players.map((p) => p.id));
+    for (const f of finishers) {
+      if (!rosterIds.has(f.id)) {
+        throw new Error(`generateRotationPlan: finisher "${f.name}" is not in the roster`);
+      }
+    }
+  }
 
   const seed = players.map((p) => p.name).join(',');
   const targets = computeCourtTargets(players.length, seed);
 
-  // Schedule half 1 using rounded half-targets (approximate split).
-  // Half1 targets are computed as round(target/2), corrected to sum to 100.
   const half1Targets = computeHalf1Targets(targets);
   const half1 = scheduleHalf(players, startingFive, half1Targets, 1);
 
-  // Select half 2 starters based on ACTUAL half 1 court minutes (not planned targets).
-  // This ensures half 2 targets are correctly calibrated.
   const half2Starters = selectSecondHalfStarters(players, half1, targets);
 
-  // Half 2 targets are computed as: totalTarget - actualHalf1Minutes.
-  // This guarantees the two halves together sum to each player's exact total target.
   const half1CourtMinutes = computeHalfCourtMinutes(players, half1);
   const half2Targets = targets.map((t, i) => t - half1CourtMinutes[i]);
 
-  const half2 = scheduleHalf(players, half2Starters, half2Targets, 2);
+  // Pass finishers only to half 2 (they lock the end of the game)
+  const half2 = scheduleHalf(players, half2Starters, half2Targets, 2, finishers);
 
   const plan: RotationPlan = {
     roster: players,
     halves: [half1, half2],
     totalPlayerMinutes: 200,
+    finishers: finishers && finishers.length > 0 ? finishers : undefined,
   };
 
   validatePlan(plan);
@@ -519,9 +696,25 @@ function validatePlan(plan: RotationPlan): void {
       throw new Error(`validatePlan: duplicate substitution minutes in half ${half.halfNumber}`);
     }
     for (const sub of half.substitutions) {
-      if (sub.gameClockMinute < 1 || sub.gameClockMinute > 19) {
+      if (sub.gameClockMinute < 5 || sub.gameClockMinute > 19) {
         throw new Error(
           `validatePlan: substitution at invalid minute ${sub.gameClockMinute} in half ${half.halfNumber}`,
+        );
+      }
+    }
+  }
+
+  // Validate finisher constraint: all finishers must be on court at game minute 39
+  if (plan.finishers && plan.finishers.length > 0) {
+    const finisherIds = new Set(plan.finishers.map((f) => f.id));
+    for (const ps of schedules) {
+      if (!finisherIds.has(ps.player.id)) continue;
+      const onAtEnd = ps.stints.some(
+        (s) => s.type === 'on-court' && s.startMinute <= 39 && s.endMinute > 39,
+      );
+      if (!onAtEnd) {
+        throw new Error(
+          `validatePlan: finisher "${ps.player.name}" is not on court at game minute 39`,
         );
       }
     }
