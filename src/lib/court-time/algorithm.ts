@@ -177,6 +177,7 @@ export function scheduleHalf(
     if (target === 0) continue;
 
     // Place the bench player's window as late as possible: [windowStart, HALF_MINUTES)
+    // This keeps starters on court longer in contiguous chunks, creating better playing patterns.
     const windowStart = HALF_MINUTES - target;
     const windowEnd = HALF_MINUTES;
 
@@ -188,49 +189,45 @@ export function scheduleHalf(
     }
   }
 
-  // After bench placement, fix any remaining imbalances.
-  // Some starters may still be over target if there weren't enough bench players
-  // to absorb all their surplus. Apply a correction pass:
-  // For each minute from 19 down to 0, if any on-court player is over target
-  // and any off-court player is under target, swap them.
-  //
-  // This ensures all targets are met exactly, at the cost of potentially
-  // introducing additional stints. We iterate until stable.
+  // After bench placement, apply a minimal correction pass.
+  // Instead of correcting every minute (which fragments players), only swap
+  // if a player has reached their exact target AND an off-court player needs time.
+  // This preserves longer playing stretches while still ensuring fairness.
   let changed = true;
   let safetyCounter = 0;
-  while (changed && safetyCounter < 1000) {
+  while (changed && safetyCounter < 100) {
     changed = false;
     safetyCounter++;
 
-    // Process minutes from latest to earliest (keep starters on early)
     for (let m = HALF_MINUTES - 1; m >= 0; m--) {
-      // Find the most over-target player currently on court
-      let worstOnId = '';
-      let worstSurplus = 0; // only care about strictly positive surplus
-      for (const id of slots[m]) {
-        const s = getSurplus(id);
-        if (s > worstSurplus) {
-          worstSurplus = s;
-          worstOnId = id;
+      const currentOnCourt = new Set(slots[m]);
+
+      // Only consider swapping if someone on court has reached THEIR EXACT TARGET
+      let overTargetId = '';
+      for (const id of currentOnCourt) {
+        const idx = playerIdx.get(id)!;
+        const currentMins = countMinutes(id);
+        if (currentMins >= halfTargets[idx] && currentMins > 0) {
+          overTargetId = id;
+          break;
         }
       }
-      if (!worstOnId) continue;
+      if (!overTargetId) continue;
 
-      // Find the most under-target player currently OFF court at this minute
-      let bestOffId = '';
-      let bestDeficit = 0; // only care about strictly negative surplus (deficit > 0)
+      // Find an off-court player who is still under their target
+      let needsTimeId = '';
       for (const p of players) {
-        if (slots[m].includes(p.id)) continue; // already on court
-        const s = getSurplus(p.id);
-        if (-s > bestDeficit) {
-          bestDeficit = -s;
-          bestOffId = p.id;
+        if (currentOnCourt.has(p.id)) continue;
+        const idx = playerIdx.get(p.id)!;
+        if (countMinutes(p.id) < halfTargets[idx]) {
+          needsTimeId = p.id;
+          break;
         }
       }
-      if (!bestOffId) continue;
+      if (!needsTimeId) continue;
 
-      // Swap: bring off-court player on, take over-target player off
-      slots[m] = slots[m].map((id) => (id === worstOnId ? bestOffId : id));
+      // Perform swap
+      slots[m] = slots[m].map((id) => (id === overTargetId ? needsTimeId : id));
       changed = true;
     }
   }

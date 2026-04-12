@@ -250,6 +250,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
       </details>
 
+      <!-- Substitution events list -->
+      <div id="substitution-events" class="mt-4 mb-6 border border-gray-200 rounded-lg p-4">
+        <h3 class="text-sm font-bold text-brand-black mb-3">Substitution Events</h3>
+        <div id="substitution-events-content" class="space-y-4">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
       <!-- Actions -->
       <div class="flex flex-col sm:flex-row gap-3">
         <button
@@ -536,23 +544,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   function renderGantt(schedules: PlayerSchedule[]): void {
     const container = document.getElementById('gantt-container')!;
 
-    // Time axis minutes
+    // Time axis minutes (in absolute 0-40 format for positioning)
     const axisTicks = [0, 5, 10, 15, 20, 25, 30, 35, 40];
+
+    // Helper: convert absolute minute to countdown display time per half
+    function getCountdownLabel(minute: number): string {
+      const minuteInHalf = minute % 20;
+      const countdownTime = 20 - minuteInHalf;
+      return `${countdownTime}`;
+    }
 
     // Build the chart HTML
     let html = `<div class="overflow-x-auto">`;
     html += `<div style="min-width:600px; position:relative; padding-left:120px;">`;
 
-    // ---- Time axis ----
+    // ---- Time axis (with countdown labels) ----
     html += `<div style="position:relative; height:24px; margin-bottom:4px;">`;
     for (const tick of axisTicks) {
       const pct = (tick / 40) * 100;
+      const countdownLabel = getCountdownLabel(tick);
       const alignStyle = tick === 0
         ? 'transform:none; left:0;'
         : tick === 40
           ? 'transform:translateX(-100%); left:100%;'
           : 'transform:translateX(-50%);';
-      html += `<span style="position:absolute; left:${pct}%; ${alignStyle} font-size:11px; color:#6b7280; white-space:nowrap;">${tick}'</span>`;
+      html += `<span style="position:absolute; left:${pct}%; ${alignStyle} font-size:11px; color:#6b7280; white-space:nowrap;">${countdownLabel}'</span>`;
     }
     html += `</div>`;
 
@@ -605,6 +621,39 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     }
     summaryHtml += `</ul>`;
     summaryContent.innerHTML = summaryHtml;
+  }
+
+  // ---------------------------------------------------------------------------
+  // Render Substitution Events
+  // ---------------------------------------------------------------------------
+  function renderSubstitutionEvents(plan: RotationPlan): void {
+    const container = document.getElementById('substitution-events-content')!;
+    let html = '';
+
+    for (const half of plan.halves) {
+      const halfTitle = half.halfNumber === 1 ? 'First Half' : 'Second Half';
+      html += `<div>`;
+      html += `<h4 class="text-xs font-bold text-gray-600 uppercase mb-2">${halfTitle}</h4>`;
+
+      if (half.substitutions.length === 0) {
+        html += `<p class="text-sm text-gray-500">No substitutions</p>`;
+      } else {
+        html += `<ul class="space-y-1">`;
+        for (const sub of half.substitutions) {
+          // Convert game clock minute to countdown time (20 - gameClockMinute)
+          const countdownMin = 20 - sub.gameClockMinute;
+          const timeStr = `${String(countdownMin).padStart(2, '0')}:00`;
+
+          const playersIn = sub.playersComingOn.map(p => escapeHtml(p.name)).join(', ');
+          const playersOut = sub.playersSittingDown.map(p => escapeHtml(p.name)).join(', ');
+          html += `<li class="text-sm text-gray-700"><span class="font-mono font-medium">${timeStr}</span> — <span class="text-green-700">${playersIn}</span> IN, <span class="text-red-700">${playersOut}</span> OUT</li>`;
+        }
+        html += `</ul>`;
+      }
+      html += `</div>`;
+    }
+
+    container.innerHTML = html;
   }
 
   // ---------------------------------------------------------------------------
@@ -752,6 +801,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     appState = 'plan-display';
     render();
     renderGantt(currentSchedules);
+    if (currentPlan) renderSubstitutionEvents(currentPlan);
 
     // Enable Export PDF button (Task 9)
     const btnExport = document.getElementById('btn-export-pdf') as HTMLButtonElement;
@@ -784,10 +834,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     currentPlan = null;
     currentSchedules = [];
 
-    // Clear Gantt and summary
+    // Clear Gantt, summary, and substitution events
     document.getElementById('gantt-container')!.innerHTML = '';
     const summaryContent = document.getElementById('gantt-summary-content');
     if (summaryContent) summaryContent.innerHTML = '';
+    const subEventsContent = document.getElementById('substitution-events-content');
+    if (subEventsContent) subEventsContent.innerHTML = '';
 
     // Clear all player name inputs
     for (let i = 1; i <= 9; i++) {

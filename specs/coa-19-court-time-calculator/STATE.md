@@ -2,11 +2,11 @@
 
 ## Metadata
 - Feature ID: COA-19
-- Status: COMPLETE
-- Current Window: 5
-- Total Windows: 5
+- Status: COMPLETE + ENHANCED
+- Current Window: 6
+- Total Windows: 6 (original 5 + 1 user feedback pass)
 - Start Time: 2026-04-07
-- Completion Time: 2026-04-07
+- Completion Time: 2026-04-12
 
 ---
 
@@ -281,3 +281,78 @@ All 21 ACs verified:
 - [x] Zero network requests during roster entry, plan generation, or PDF export (client-side only, no fetch/XHR) (NFR-015)
 - [x] Coaching Resources card: type:'link', category:'Tools', url:'/court-time-calculator', 'Tools' in categories array (FR-031, AC-13)
 - [x] Plan generation failure now reveals #generate-error paragraph (no silent failure)
+
+---
+
+### Window 6: Algorithm Refinement + UI Enhancements (User Feedback Pass) COMPLETE
+
+**Date**: 2026-04-12  
+**User Feedback**: Pattern was fragmented (2-3 min chunks); wanted longer contiguous stretches on court + timeline countdown display + visible substitution list
+
+- Tasks: Task 1, Task 2, Task 3, Task 4 — all DONE
+- Checkpoint: PASS
+
+#### Task 1: Algorithm Refinement — Minimize Correction Pass Aggressiveness
+
+**Change**: Modified `scheduleHalf()` in `src/lib/court-time/algorithm.ts`
+
+- **Original behavior**: Correction pass swapped players at every minute if anyone was over their target by ANY amount
+- **New behavior**: Correction pass only swaps if a player has reached their EXACT target, preserving longer contiguous stretches
+- **Result**: Same 17 tests passing; algorithm still hits exact targets but creates fewer, longer on-court stretches
+- **Code changes**:
+  - Removed aggressive surplus-based swapping
+  - Added guard: only swap if player has reached `>= halfTargets[idx]`
+  - Preserves playing integrity while improving user experience
+
+#### Task 2: Countdown Timeline Display
+
+**Change**: Modified `renderGantt()` in `src/pages/court-time-calculator.astro`
+
+- **Added**: `getCountdownLabel(minute)` helper function
+  - Converts absolute minute M to countdown display per half
+  - Minute 0 → label "20", Minute 5 → "15", Minute 20 → "20", etc.
+- **Timeline now shows**: 20, 15, 10, 5, 0 | 20, 15, 10, 5, 0 (countdown within each half)
+- **No position changes**: Stint bar positioning unchanged; only label display updated
+- **Positioning formula remains**: `leftPct = (minute / 40) * 100` (same as before)
+
+#### Task 3: Substitution Events List Display
+
+**Changes**: `src/pages/court-time-calculator.astro`
+
+- **Added HTML section**: `#substitution-events-content` div below court time summary
+- **Added function**: `renderSubstitutionEvents(plan: RotationPlan)`
+  - Groups substitutions by half (First Half, Second Half)
+  - Displays time in countdown format: "18:00" = 20 - 2 minutes
+  - Shows players IN (green) and OUT (red) clearly
+  - Format: "18:00 — Asha IN, Lorenzo OUT"
+- **Integration**:
+  - Called after `renderGantt()` when plan generated
+  - Cleared when "Start Over" clicked (line 840-842)
+  - Responsive layout on mobile
+
+#### Task 4: Verification Results
+
+**Test Status**:
+- ✅ All 17 court-time algorithm tests passing
+- ✅ No regressions in existing 900+ tests
+- ✅ Build: 13 pages, zero errors, zero warnings
+
+**Feature Verification**:
+- ✅ Algorithm produces longer playing stretches (fewer fragmented chunks)
+- ✅ Gantt timeline displays countdown (20→0 per half)
+- ✅ Substitution list visible on page before PDF export
+- ✅ Mobile responsive (tested layout logic, 375px compatible)
+- ✅ Start Over clears all state including new sub list
+- ✅ PDF export unchanged (still works correctly)
+
+---
+
+## Feature Status Summary
+
+**Overall**: COMPLETE + ENHANCED (Windows 1–5 original feature, Window 6 user feedback improvements)
+
+- Total test coverage: 17/17 passing
+- Build status: Clean (zero errors, zero warnings)
+- All 21 original acceptance criteria still passing
+- User feedback addressed: longer playing stretches, countdown timeline, substitution preview
+- No breaking changes to existing functionality
