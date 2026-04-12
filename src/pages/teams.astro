@@ -1,0 +1,774 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
+
+// Try to load teams data from JSON file, fall back to placeholder
+let teamsData = {
+  lastUpdated: '2026-04-12T00:00:00.000Z',
+  note: "Placeholder data for Teams page development",
+  teams: [
+    {
+      id: 'team-001',
+      name: 'PHOENIX Mini Mets',
+      gradeName: 'Monday U10 Boys 1',
+      slug: 'phoenix-mini-mets',
+    },
+    {
+      id: 'team-002',
+      name: 'PHOENIX Junior Jets',
+      gradeName: 'Wednesday U10 Girls 2',
+      slug: 'phoenix-junior-jets',
+    },
+    {
+      id: 'team-003',
+      name: 'PHOENIX Rising Stars',
+      gradeName: 'Tuesday U12 Boys 1',
+      slug: 'phoenix-rising-stars',
+    },
+    {
+      id: 'team-004',
+      name: 'PHOENIX Future Flames',
+      gradeName: 'Thursday U12 Girls 1',
+      slug: 'phoenix-future-flames',
+    },
+    {
+      id: 'team-005',
+      name: 'PHOENIX Young Guns',
+      gradeName: 'Monday U14 Boys 2',
+      slug: 'phoenix-young-guns',
+    },
+    {
+      id: 'team-006',
+      name: 'PHOENIX Emerald Emus',
+      gradeName: 'Friday U14 Girls 3',
+      slug: 'phoenix-emerald-emus',
+    },
+    {
+      id: 'team-007',
+      name: 'PHOENIX Teen Titans',
+      gradeName: 'Wednesday U16 Boys 1',
+      slug: 'phoenix-teen-titans',
+    },
+    {
+      id: 'team-008',
+      name: 'PHOENIX Sapphire Seahawks',
+      gradeName: 'Thursday U16 Girls 2',
+      slug: 'phoenix-sapphire-seahawks',
+    },
+    {
+      id: 'team-009',
+      name: 'PHOENIX Senior Squad',
+      gradeName: 'Tuesday U18 Boys 1',
+      slug: 'phoenix-senior-squad',
+    },
+    {
+      id: 'team-010',
+      name: 'PHOENIX Ruby Rockets',
+      gradeName: 'Friday U18 Girls 1',
+      slug: 'phoenix-ruby-rockets',
+    },
+  ],
+};
+
+try {
+  const dataPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
+  if (existsSync(dataPath)) {
+    const raw = readFileSync(dataPath, 'utf-8');
+    teamsData = JSON.parse(raw);
+  }
+} catch (e) {
+  // Use placeholder data
+}
+
+// Helper functions to derive team metadata from gradeName
+const parseGradeName = (gradeName) => {
+  // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10s', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
+  const match = gradeName.match(/^(\w+)\s+(U\d+)\s+(\w+)\s+(\d+)$/);
+  if (!match) {
+    return {
+      ageGroup: 'unknown',
+      gender: 'TBC',
+      gameNight: 'TBC',
+      division: 'TBC',
+    };
+  }
+
+  const [, gameNight, ageGroupStr, gender, divisionNum] = match;
+  
+  // Convert U10 -> u10s
+  const ageGroup = ageGroupStr.toLowerCase() + 's';
+  
+  // Convert division number to DIV format
+  const division = `DIV ${divisionNum}`;
+  
+  return {
+    ageGroup,
+    gender,
+    gameNight,
+    division,
+  };
+};
+
+// Order of age groups for display
+const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
+
+///
+
+<BaseLayout title="Teams" description="Find your perfect team at Bendigo Phoenix Basketball Club.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix Juniors</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">TEAMS</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <section class="bg-white border-b border-gray-100 sticky top-16 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex gap-2 py-3" id="filter-bar">
+        <button 
+          data-filter-type="all" 
+          data-filter-value="all"
+          class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-brand-purple text-white border-brand-purple active"
+          aria-pressed="true"
+        >
+          All
+        </button>
+        <button 
+          data-filter-type="gender" 
+          data-filter-value="boys"
+          class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+          aria-pressed="false"
+        >
+          Boys
+        </button>
+        <button 
+          data-filter-type="gender" 
+          data-filter-value="girls"
+          class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+          aria-pressed="false"
+        >
+          Girls
+        </button>
+        <!-- Age Group Dropdown -->
+        <div class="relative">
+          <button 
+            id="ageGroupBtn"
+            class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            Age group
+            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="ageGroupDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
+            <div class="py-1">
+              <button 
+                type="button"
+                data-filter-type="ageGroup"
+                data-filter-value="u10s"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                u10s
+              </button>
+              <button 
+                type="button"
+                data-filter-type="ageGroup"
+                data-filter-value="u12s"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                u12s
+              </button>
+              <button 
+                type="button"
+                data-filter-type="ageGroup"
+                data-filter-value="u14s"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                u14s
+              </button>
+              <button 
+                type="button"
+                data-filter-type="ageGroup"
+                data-filter-value="u16s"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                u16s
+              </button>
+              <button 
+                type="button"
+                data-filter-type="ageGroup"
+                data-filter-value="u18s"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                u18s
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Game Day Dropdown -->
+        <div class="relative">
+          <button 
+            id="gameDayBtn"
+            class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            Game Day
+            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="gameDayDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
+            <div class="py-1">
+              <button 
+                type="button"
+                data-filter-type="gameDay"
+                data-filter-value="monday"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                Monday
+              </button>
+              <button 
+                type="button"
+                data-filter-type="gameDay"
+                data-filter-value="tuesday"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                Tuesday
+              </button>
+              <button 
+                type="button"
+                data-filter-type="gameDay"
+                data-filter-value="wednesday"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                Wednesday
+              </button>
+              <button 
+                type="button"
+                data-filter-type="gameDay"
+                data-filter-value="thursday"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                Thursday
+              </button>
+              <button 
+                type="button"
+                data-filter-type="gameDay"
+                data-filter-value="friday"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                Friday
+              </button>
+              <button 
+                type="button"
+                data-filter-type="gameDay"
+                data-filter-value="saturday"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                Saturday
+              </button>
+              <button 
+                type="button"
+                data-filter-type="gameDay"
+                data-filter-value="sunday"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                Sunday
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Grade Dropdown -->
+        <div class="relative">
+          <button 
+            id="gradeBtn"
+            class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+          >
+            Grade
+            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="gradeDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
+            <div class="py-1">
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="1"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                1
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="2"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                2
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="3"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                3
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="4"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                4
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="5"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                5
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="6"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                6
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="7"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                7
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="8"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                8
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="9"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                9
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="10"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                10
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="11"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                11
+              </button>
+              <button 
+                type="button"
+                data-filter-type="grade"
+                data-filter-value="12"
+                class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
+              >
+                12
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Teams Grid -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto" id="teams-container">
+      {#/*
+        Teams will be grouped by ageGroup and rendered here
+        Placeholder for now - will be populated with JavaScript
+      */}
+      <div class="space-y-8" id="age-group-sections">
+        {/* Age group sections will be injected here by JavaScript */}
+      </div>
+      
+      {/* Placeholder message when no teams match filter */}
+      <div class="mt-12 text-center bg-white rounded-xl p-8 border border-dashed border-brand-purple hidden" id="no-teams-message">
+        <p class="text-brand-purple font-bold text-lg mb-2">No teams match this filter</p>
+        <button class="text-sm font-medium text-brand-purple hover:text-brand-purple/80" id="clear-filter-btn">
+          Clear filter
+        </button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown-menu.hidden {
+    display: none;
+  }
+  
+  .dropdown-item {
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover {
+    background-color: rgba(139, 117, 54, 0.1);
+  }
+</style>
+
+<script>
+  // Get DOM elements
+  const filterBar = document.getElementById('filter-bar');
+  const filterButtons = filterBar.querySelectorAll('.filter-btn');
+  const ageGroupSections = document.getElementById('age-group-sections');
+  const noTeamsMessage = document.getElementById('no-teams-message');
+  const clearFilterBtn = document.getElementById('clear-filter-btn');
+  const ageGroupBtn = document.getElementById('ageGroupBtn');
+  const gameDayBtn = document.getElementById('gameDayBtn');
+  const gradeBtn = document.getElementById('gradeBtn');
+  
+  // Teams data (would normally come from props or fetch, but we have it from above)
+  const teams = JSON.parse('${JSON.stringify(teamsData.teams)}');
+  
+  // Current filter state
+  let currentFilter = { type: 'all', value: 'all' };
+  
+  // Initialize page
+  function init() {
+    // Load filter state from sessionStorage
+    const savedFilter = sessionStorage.getItem('teams-filter');
+    if (savedFilter) {
+      try {
+        currentFilter = JSON.parse(savedFilter);
+      } catch (e) {
+        console.warn('Failed to parse saved filter state', e);
+      }
+    }
+    
+    // Apply saved filter
+    applyFilter(currentFilter);
+    
+    // Update button states
+    updateFilterButtonStates();
+  }
+  
+  // Update filter button active states and aria-pressed
+  function updateFilterButtonStates() {
+    filterButtons.forEach(btn => {
+      const type = btn.getAttribute('data-filter-type');
+      const value = btn.getAttribute('data-filter-value');
+      
+      const isActive = (currentFilter.type === type && currentFilter.value === value) ||
+                      (type === 'all' && currentFilter.type === 'all' && currentFilter.value === 'all');
+      
+      if (isActive) {
+        btn.classList.add('bg-brand-purple', 'text-white', 'border-brand-purple', 'active');
+        btn.classList.remove('bg-white', 'text-brand-purple', 'border-brand-purple', 'hover:bg-brand-offwhite');
+        btn.setAttribute('aria-pressed', 'true');
+      } else {
+        btn.classList.remove('bg-brand-purple', 'text-white', 'border-brand-purple', 'active');
+        btn.classList.add('bg-white', 'text-brand-purple', 'border-brand-purple', 'hover:bg-brand-offwhite');
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    });
+  }
+  
+  // Apply filter and re-render teams
+  function applyFilter(filter) {
+    currentFilter = filter;
+    
+    // Save to sessionStorage
+    sessionStorage.setItem('teams-filter', JSON.stringify(filter));
+    
+    // Filter teams
+    let filteredTeams = [...teams];
+    
+    if (filter.type !== 'all' && filter.value !== 'all') {
+      switch (filter.type) {
+        case 'gender':
+          filteredTeams = filteredTeams.map(team => {
+            const parsed = parseGradeName(team.gradeName);
+            return { ...team, ...parsed };
+          }).filter(team => team.gender.toLowerCase() === filter.value);
+          break;
+        case 'ageGroup':
+          filteredTeams = filteredTeams.map(team => {
+            const parsed = parseGradeName(team.gradeName);
+            return { ...team, ...parsed };
+          }).filter(team => team.ageGroup === filter.value);
+          break;
+        case 'gameDay':
+          filteredTeams = filteredTeams.map(team => {
+            const parsed = parseGradeName(team.gradeName);
+            return { ...team, ...parsed };
+          }).filter(team => team.gameNight.toLowerCase() === filter.value.toLowerCase());
+          break;
+        case 'grade':
+          filteredTeams = filteredTeams.map(team => {
+            const parsed = parseGradeName(team.gradeName);
+            return { ...team, ...parsed };
+          }).filter(team => {
+            // Extract division number from team.division (e.g., "DIV 2" -> 2)
+            const divisionNum = parseInt(team.division.replace('DIV ', ''));
+            return divisionNum === parseInt(filter.value);
+          });
+          break;
+      }
+    } else {
+      // Add parsed data to all teams for display
+      filteredTeams = filteredTeams.map(team => {
+        const parsed = parseGradeName(team.gradeName);
+        return { ...team, ...parsed };
+      });
+    }
+    
+    // Render teams
+    renderTeams(filteredTeams);
+    
+    // Update button states
+    updateFilterButtonStates();
+  }
+  
+  // Parse grade name function (same as in Astro)
+  function parseGradeName(gradeName) {
+    // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10s', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
+    const match = gradeName.match(/^(\w+)\s+(U\d+)\s+(\w+)\s+(\d+)$/);
+    if (!match) {
+      return {
+        ageGroup: 'unknown',
+        gender: 'TBC',
+        gameNight: 'TBC',
+        division: 'TBC',
+      };
+    }
+
+    const [, gameNight, ageGroupStr, gender, divisionNum] = match;
+    
+    // Convert U10 -> u10s
+    const ageGroup = ageGroupStr.toLowerCase() + 's';
+    
+    // Convert division number to DIV format
+    const division = `DIV ${divisionNum}`;
+    
+    return {
+      ageGroup,
+      gender,
+      gameNight,
+      division,
+    };
+  }
+  
+  // Render teams grouped by age group
+  function renderTeams(filteredTeams) {
+    // Clear existing content
+    ageGroupSections.innerHTML = '';
+    
+    if (filteredTeams.length === 0) {
+      noTeamsMessage.classList.remove('hidden');
+      return;
+    } else {
+      noTeamsMessage.classList.add('hidden');
+    }
+    
+    // Group teams by age group
+    const teamsByAgeGroup = {};
+    filteredTeams.forEach(team => {
+      if (!teamsByAgeGroup[team.ageGroup]) {
+        teamsByAgeGroup[team.ageGroup] = [];
+      }
+      teamsByAgeGroup[team.ageGroup].push(team);
+    });
+    
+    // Create sections for each age group in order
+    ageGroupOrder.forEach(ageGroup => {
+      const teamsInGroup = teamsByAgeGroup[ageGroup] || [];
+      
+      // Skip if no teams in this age group (don't create orphan headers)
+      if (teamsInGroup.length === 0) {
+        return;
+      }
+      
+      // Sort teams alphabetically by name
+      teamsInGroup.sort((a, b) => a.name.localeCompare(b.name));
+      
+      // Create age group section
+      const section = document.createElement('div');
+      section.className = 'age-group-section';
+      
+      const header = document.createElement('h2');
+      header.className = 'text-2xl font-bold text-brand-purple mb-4';
+      header.textContent = ageGroup.toUpperCase();
+      
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6';
+      
+      // Create team tiles
+      teamsInGroup.forEach(team => {
+        const tile = document.createElement('a');
+        tile.href = `/teams/${team.slug}`;
+        tile.className = 'team-tile block bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-150';
+        
+        // Determine pill colors based on values
+        const getPillClass = (value, type) => {
+          if (value === 'TBC') {
+            return 'bg-gray-200 text-gray-500 text-xs font-medium px-3 py-1 rounded-full';
+          }
+          
+          switch (type) {
+            case 'division':
+              return 'bg-brand-purple text-white text-xs font-medium px-3 py-1 rounded-full';
+            case 'gameNight':
+              return 'bg-brand-gold text-white text-xs font-medium px-3 py-1 rounded-full';
+            case 'gender':
+              if (value.toLowerCase() === 'boys') {
+                return 'bg-gray-700 text-white text-xs font-medium px-3 py-1 rounded-full';
+              } else if (value.toLowerCase() === 'girls') {
+                return 'bg-purple-200 text-brand-purple text-xs font-medium px-3 py-1 rounded-full';
+              }
+              return 'bg-gray-200 text-gray-500 text-xs font-medium px-3 py-1 rounded-full';
+            default:
+              return 'bg-gray-200 text-gray-500 text-xs font-medium px-3 py-1 rounded-full';
+          }
+        };
+        
+        tile.innerHTML = `
+          <div class="p-6">
+            <h3 class="font-bold text-brand-black text-lg mb-2">${team.name}</h3>
+            <div class="flex flex-wrap gap-3 mb-4">
+              <span class="${getPillClass(team.division, 'division')}">${team.division}</span>
+              <span class="${getPillClass(team.gameNight, 'gameNight')}">${team.gameNight}</span>
+              <span class="${getPillClass(team.gender, 'gender')}">${team.gender}</span>
+            </div>
+          </div>
+        `;
+        
+        grid.appendChild(tile);
+      });
+      
+      section.appendChild(header);
+      section.appendChild(grid);
+      ageGroupSections.appendChild(section);
+    });
+  }
+  
+  // Get dropdown elements
+  const ageGroupDropdown = document.getElementById('ageGroupDropdown');
+  const gameDayDropdown = document.getElementById('gameDayDropdown');
+  const gradeDropdown = document.getElementById('gradeDropdown');
+  
+  // Event listeners for filter buttons
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.getAttribute('data-filter-type');
+      const value = btn.getAttribute('data-filter-value');
+      
+      // Apply the filter directly (for All, Boys, Girls buttons)
+      if (value !== '') {
+        applyFilter({ type, value });
+      }
+    });
+  });
+  
+  // Event listeners for dropdown items
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
+  dropdownItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const type = item.getAttribute('data-filter-type');
+      const value = item.getAttribute('data-filter-value');
+      applyFilter({ type, value });
+      
+      // Close the dropdown
+      const dropdown = item.closest('.dropdown-menu');
+      dropdown.classList.add('hidden');
+      
+      // Update button text and aria-expanded
+      const buttonId = dropdown.id.replace('Dropdown', 'Btn');
+      const button = document.getElementById(buttonId);
+      button.textContent = value.charAt(0).toUpperCase() + value.slice(1);
+      if (type === 'ageGroup') {
+        button.innerHTML += ' <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
+      } else if (type === 'gameDay') {
+        button.innerHTML += ' <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
+      } else if (type === 'grade') {
+        button.innerHTML += ' <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
+      }
+      
+      button.setAttribute('aria-expanded', 'false');
+    });
+  });
+  
+  // Toggle dropdowns
+  document.getElementById('ageGroupBtn').addEventListener('click', () => {
+    const isOpen = ageGroupDropdown.classList.toggle('hidden');
+    document.getElementById('ageGroupBtn').setAttribute('aria-expanded', String(!isOpen));
+    // Close other dropdowns
+    gameDayDropdown.classList.add('hidden');
+    gradeDropdown.classList.add('hidden');
+    document.getElementById('gameDayBtn').setAttribute('aria-expanded', 'false');
+    document.getElementById('gradeBtn').setAttribute('aria-expanded', 'false');
+  });
+  
+  document.getElementById('gameDayBtn').addEventListener('click', () => {
+    const isOpen = gameDayDropdown.classList.toggle('hidden');
+    document.getElementById('gameDayBtn').setAttribute('aria-expanded', String(!isOpen));
+    // Close other dropdowns
+    ageGroupDropdown.classList.add('hidden');
+    gradeDropdown.classList.add('hidden');
+    document.getElementById('ageGroupBtn').setAttribute('aria-expanded', 'false');
+    document.getElementById('gradeBtn').setAttribute('aria-expanded', 'false');
+  });
+  
+  document.getElementById('gradeBtn').addEventListener('click', () => {
+    const isOpen = gradeDropdown.classList.toggle('hidden');
+    document.getElementById('gradeBtn').setAttribute('aria-expanded', String(!isOpen));
+    // Close other dropdowns
+    ageGroupDropdown.classList.add('hidden');
+    gameDayDropdown.classList.add('hidden');
+    document.getElementById('ageGroupBtn').setAttribute('aria-expanded', 'false');
+    document.getElementById('gameDayBtn').setAttribute('aria-expanded', 'false');
+  });
+  
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.relative')) {
+      ageGroupDropdown.classList.add('hidden');
+      gameDayDropdown.classList.add('hidden');
+      gradeDropdown.classList.add('hidden');
+      document.getElementById('ageGroupBtn').setAttribute('aria-expanded', 'false');
+      document.getElementById('gameDayBtn').setAttribute('aria-expanded', 'false');
+      document.getElementById('gradeBtn').setAttribute('aria-expanded', 'false');
+    }
+  });
+  
+  // Clear filter button
+  clearFilterBtn.addEventListener('click', () => {
+    applyFilter({ type: 'all', value: 'all' });
+  });
+  
+  // Initialize on page load
+  init();
+</script>

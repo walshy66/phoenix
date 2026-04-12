@@ -1,0 +1,10 @@
+{
+  "coach": {
+    "name": "Michael Coach",
+    "role": "coach"
+  },
+  "manager": {
+    "name": "Sarah Manager",
+    "role": "manager"
+  }
+}

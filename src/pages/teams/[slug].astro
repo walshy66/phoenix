@@ -1,0 +1,438 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GameDetailModal from '../../components/GameDetailModal.astro';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
+
+// Get the slug from params
+const { slug } = Astro.params;
+
+// Try to load team data from JSON file, fall back to placeholder
+let teamData = {
+  id: 'team-placeholder',
+  name: 'PHOENIX Unknown Team',
+  gradeName: 'Monday U10 Boys 1',
+  slug: 'unknown-team',
+};
+
+try {
+  const teamsPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
+  if (existsSync(teamsPath)) {
+    const teamsRaw = readFileSync(teamsPath, 'utf-8');
+    const teams = JSON.parse(teamsRaw);
+    const team = teams.find(t => t.slug === slug);
+    if (team) {
+      teamData = team;
+    }
+  }
+} catch (e) {
+  // Use placeholder data
+}
+
+// Helper functions to derive team metadata from gradeName
+const parseGradeName = (gradeName) => {
+  // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10s', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
+  const match = gradeName.match(/^(\w+)\s+(U\d+)\s+(\w+)\s+(\d+)$/);
+  if (!match) {
+    return {
+      ageGroup: 'unknown',
+      gender: 'TBC',
+      gameNight: 'TBC',
+      division: 'TBC',
+    };
+  }
+
+  const [, gameNight, ageGroupStr, gender, divisionNum] = match;
+  
+  // Convert U10 -> u10s
+  const ageGroup = ageGroupStr.toLowerCase() + 's';
+  
+  // Convert division number to DIV format
+  const division = `DIV ${divisionNum}`;
+  
+  return {
+    ageGroup,
+    gender,
+    gameNight,
+    division,
+  };
+};
+
+// Parse the team's gradeName
+const parsed = parseGradeName(teamData.gradeName);
+
+// Try to load fixture data for this team
+let fixtureData = {
+  lastUpdated: '2026-04-12T00:00:00.000Z',
+  games: [
+    {
+      id: 'game-001',
+      opponent: 'Opponent Team A',
+      date: '2026-04-15',
+      time: '7:00 PM',
+      venue: 'Stadium Court 1',
+      homeOrAway: 'home',
+      status: 'upcoming',
+      homeScore: null,
+      awayScore: null,
+    },
+    {
+      id: 'game-002',
+      opponent: 'Opponent Team B',
+      date: '2026-04-22',
+      time: '6:30 PM',
+      venue: 'Stadium Court 2',
+      homeOrAway: 'away',
+      status: 'completed',
+      homeScore: 78,
+      awayScore: 65,
+    },
+  ],
+};
+
+try {
+  // In a real implementation, this would be a team-specific fixture file
+  // For now, we'll use a placeholder that follows the scores.astro pattern
+  const fixturePath = join(process.cwd(), 'scripts', 'fixture-data.json');
+  if (existsSync(fixturePath)) {
+    const fixtureRaw = readFileSync(fixturePath, 'utf-8');
+    fixtureData = JSON.parse(fixtureRaw);
+  }
+} catch (e) {
+  // Use placeholder fixture data
+}
+
+// Try to load ladder data for this team
+let ladderData = {
+  lastUpdated: '2026-04-12T00:00:00.000Z',
+  ladder: [
+    { position: 1, team: 'PHOENIX Unknown Team', played: 1, won: 1, lost: 0, drawn: 0, points: 2 },
+    { position: 2, team: 'Opponent Team A', played: 1, won: 0, lost: 1, drawn: 0, points: 0 },
+  ],
+};
+
+try {
+  // In a real implementation, this would be a team-specific ladder file
+  // For now, we'll use a placeholder that follows the scores.astro pattern
+  const ladderPath = join(process.cwd(), 'scripts', 'ladder-data.json');
+  if (existsSync(ladderPath)) {
+    const ladderRaw = readFileSync(ladderPath, 'utf-8');
+    ladderData = JSON.parse(ladderRaw);
+  }
+} catch (e) {
+  // Use placeholder ladder data
+}
+
+// Try to load staff data
+let staffData = {
+  coach: { name: 'John Coach', role: 'coach' },
+  manager: { name: 'Jane Manager', role: 'manager' },
+};
+
+try {
+  const staffPath = join(process.cwd(), 'src', 'data', 'teams', 'staff.json');
+  if (existsSync(staffPath)) {
+    const staffRaw = readFileSync(staffPath, 'utf-8');
+    staffData = JSON.parse(staffRaw);
+  }
+} catch (e) {
+  // Use placeholder staff data
+}
+
+// Try to load training data
+let trainingData = {
+  venue: 'Bendigo Basketball Stadium',
+  day: 'Wednesday',
+  time: '5:00 PM - 7:00 PM',
+};
+
+try {
+  const trainingPath = join(process.cwd(), 'src', 'data', 'teams', 'training.json');
+  if (existsSync(trainingPath)) {
+    const trainingRaw = readFileSync(trainingPath, 'utf-8');
+    trainingData = JSON.parse(trainingRaw);
+  }
+} catch (e) {
+  // Use placeholder training data
+}
+
+// Format date function
+const formatDate = (dateString) => {
+  return new Date(dateString).toLocaleDateString('en-AU', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+};
+
+// Format time function (just returns the time string, or TBC if null/empty)
+const formatTime = (timeString) => {
+  if (!timeString || timeString.trim() === '') {
+    return 'TBC';
+  }
+  return timeString;
+};
+
+///
+
+<BaseLayout title={`${teamData.name} | Teams`} description="Information about ${teamData.name} team at Bendigo Phoenix Basketball Club.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix Juniors</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">{teamData.name}</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+    </div>
+  </section>
+
+  <!-- Team Info Header -->
+  <section class="bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        <!-- Team Basic Info -->
+        <div>
+          <h2 class="text-2xl font-bold text-brand-purple mb-2">Team Information</h2>
+          <p class="text-gray-600 mb-4">
+            <span class="font-medium">Age Group:</span> {parsed.ageGroup.toUpperCase()} &nbsp;|&nbsp;
+            <span class="font-medium">Division:</span> {parsed.division} &nbsp;|&nbsp;
+            <span class="font-medium">Game Night:</span> {parsed.gameNight} &nbsp;|&nbsp;
+            <span class="font-medium">Gender:</span> {parsed.gender}
+          </p>
+        </div>
+        
+        <!-- Team Record (from ladder) -->
+        <div class="text-center">
+          <h2 class="text-2xl font-bold text-brand-purple mb-2">Current Standing</h2>
+          {#/*
+            Find this team in the ladder data
+          */}
+          {#const teamLadder = ladderData.ladder.find(row => 
+            row.team.toLowerCase().includes(teamData.name.toLowerCase()) ||
+            teamData.name.toLowerCase().includes(row.team.toLowerCase())
+          )#}
+          {#if teamLadder#}
+            <div class="space-y-2">
+              <div class="text-sm font-medium text-gray-500">Position: <span class="font-bold">{teamLadder.position}</span></div>
+              <div class="text-sm font-medium text-gray-500">Record: <span class="font-bold">{teamLadder.won}-{teamLadder.lost}-{teamLadder.drawn}</span></div>
+              <div class="text-sm font-medium text-gray-500">Points: <span class="font-bold">{teamLadder.points}</span></div>
+            </div>
+          {:else}
+            <p class="text-gray-500">Ladder data not available</p>
+          {/if}
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="space-y-3">
+          <a href="#" class="block px-4 py-2 bg-brand-purple text-white rounded-md hover:bg-brand-purple/90 text-center font-medium">
+            View Full Fixture
+          </a>
+          <a href="#" class="block px-4 py-2 bg-brand-gold text-white rounded-md hover:bg-brand-gold/90 text-center font-medium">
+            View Full Ladder
+          </a>
+          {#if staffData.coach || staffData.manager#}
+            <a href="#" class="block px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 text-center font-medium">
+              Contact Staff
+            </a>
+          {/if}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fixture Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Fixture</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      {#if fixtureData.games && fixtureData.games.length > 0#}
+        <div class="space-y-4">
+          {#each fixtureData.games as game#}
+            <div class="border rounded-xl overflow-hidden shadow-sm border-gray-100 cursor-pointer hover:shadow-md transition-shadow duration-150"
+                 on:click={() => dispatch('openGameDetail', game)}
+                 role="button"
+                 tabindex="0"
+                 aria-label={`View details for game vs ${game.opponent}`}>
+              <div class="px-4 py-3 flex items-center justify-between border-b border-gray-100">
+                <div class="flex-1">
+                  <p class="font-bold text-gray-800">{game.opponent}</p>
+                  <p class="text-sm text-gray-500">
+                    {formatDate(game.date)} • {formatTime(game.time)} • {game.venue}
+                  </p>
+                </div>
+                <div class="flex items-center gap-3">
+                  {#if game.status === 'completed'#}
+                    <div class="text-right">
+                      <p class="text-2xl font-bold text-gray-800">
+                        {game.homeScore !== null && game.awayScore !== null ? 
+                          `${game.homeScore} – ${game.awayScore}` : 'TBC'
+                        }
+                      </p>
+                      <p class="text-sm text-gray-500">{game.homeOrAway === 'home' ? 'Home' : 'Away'}</p>
+                    </div>
+                  {:else}
+                    <div class="px-3 py-1 rounded-full text-xs font-bold bg-brand-gold text-white">
+                      Upcoming
+                    </div>
+                    <p class="text-sm text-gray-500">{game.homeOrAway === 'home' ? 'Home' : 'Away'}</p>
+                  {/if}
+                </div>
+              </div>
+            </div>
+          {/#each}
+        </div>
+      {:else}
+        <div class="text-center py-12 bg-white rounded-xl border border-dashed border-brand-purple">
+          <span class="text-5xl mb-4 block">📅</span>
+          <p class="text-gray-500">No games scheduled</p>
+        </div>
+      {/if}
+    </div>
+  </section>
+
+  <!-- Ladder Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Competition Ladder</h2>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      {#if ladderData.ladder && ladderData.ladder.length > 0#}
+        <div class="table-responsive">
+          <table class="w-full min-w-[500px] border-collapse rounded-xl overflow-hidden">
+            <thead>
+              <tr class="bg-brand-purple text-white">
+                <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide w-10">#</th>
+                <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wide">Team</th>
+                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">P</th>
+                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">W</th>
+                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">L</th>
+                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-14">D</th>
+                <th class="px-4 py-3 text-center text-xs font-bold uppercase tracking-wide w-16">Pts</th>
+              </tr>
+            </thead>
+            <tbody>
+              {#each ladderData.ladder as row, i#}
+                <tr class={`border-b border-gray-100 ${row.team.includes('PHOENIX') ? 'bg-purple-50 border-l-4 border-l-brand-gold' : i % 2 === 0 ? 'bg-white' : 'bg-brand-offwhite'}`}>
+                  <td class="px-4 py-3 text-sm text-gray-500 font-medium">{row.position}</td>
+                  <td class={`px-4 py-3 text-sm font-bold ${row.team.includes('PHOENIX') ? 'text-brand-purple' : 'text-brand-black'}`}>
+                    {#if row.team.includes('PHOENIX')#}
+                      <span class="mr-1">🏀</span>
+                    {/if}
+                    {row.team}
+                  </td>
+                  <td class="px-4 py-3 text-sm text-center text-gray-600">{row.played}</td>
+                  <td class="px-4 py-3 text-sm text-center font-bold text-green-600">{row.won}</td>
+                  <td class="px-4 py-3 text-sm text-center font-bold text-red-500">{row.lost}</td>
+                  <td class="px-4 py-3 text-sm text-center text-gray-500">{row.drawn}</td>
+                  <td class={`px-4 py-3 text-sm text-center font-black ${row.team.includes('PHOENIX') ? 'text-brand-purple' : 'text-brand-black'}`}>{row.points}</td>
+                </tr>
+              {/#each}
+            </tbody>
+          </table>
+        </div>
+      {:else}
+        <div class="text-center py-12 bg-brand-offwhite rounded-xl border border-dashed border-brand-purple">
+          <span class="text-5xl mb-4 block">📊</span>
+          <p class="text-gray-500">Ladder not yet available</p>
+        </div>
+      {/if}
+    </div>
+  </section>
+
+  <!-- Staff Section -->
+  {#if staffData.coach || staffData.manager#}
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Coaching Staff</h2>
+        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+        <div class="space-y-4">
+          {#if staffData.coach#}
+            <div class="bg-white rounded-xl border border-gray-100 p-6">
+              <h3 class="font-bold text-brand-black mb-2">Coach</h3>
+              <p class="text-gray-600 text-lg">{staffData.coach.name}</p>
+            </div>
+          {/if}
+          
+          {#if staffData.manager#}
+            <div class="bg-white rounded-xl border border-gray-100 p-6">
+              <h3 class="font-bold text-brand-black mb-2">Manager</h3>
+              <p class="text-gray-600 text-lg">{staffData.manager.name}</p>
+            </div>
+          {/if}
+        </div>
+      </div>
+    </section>
+  {/if}
+
+  <!-- Training Section -->
+  {#if trainingData.venue || trainingData.day || trainingData.time#}
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-6">Training Schedule</h2>
+        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+        <div class="bg-white rounded-xl border border-gray-100 p-6 text-center">
+          <h3 class="font-bold text-brand-black mb-4">Training Information</h3>
+          <p class="text-gray-600 text-lg">
+            {#if trainingData.venue#}{trainingData.venue}{/if}
+            {#if trainingData.venue && (trainingData.day || trainingData.time)#} • {/if}
+            {#if trainingData.day#}{trainingData.day}{/if}
+            {#if trainingData.day && trainingData.time#} @ {/if}
+            {#if trainingData.time#}{trainingData.time}{/if}
+          </p>
+          {#if !(trainingData.venue || trainingData.day || trainingData.time)#}
+            <p class="text-gray-500">No training scheduled</p>
+          {/if}
+        </div>
+      </div>
+    </section>
+  {/if}
+</BaseLayout>
+
+<GameDetailModal bind:this={gameDetailModal} isOpen={modalIsOpen} game={selectedGame} onClose={handleClose} />
+
+<script>
+  import { onMount } from 'svelte';
+  
+  let gameDetailModal;
+  let modalIsOpen = false;
+  let selectedGame = null;
+  
+  function handleOpenGame(event) {
+    selectedGame = event.detail;
+    modalIsOpen = true;
+  }
+  
+  function handleClose() {
+    modalIsOpen = false;
+    selectedGame = null;
+  }
+  
+  // Listen for custom event from fixture games
+  onMount(() => {
+    const handleCustomEvent = (e) => {
+      if (e.detail && e.detail.type === 'openGameDetail') {
+        handleOpenGame(e);
+      }
+    };
+    
+    window.addEventListener('openGameDetail', handleCustomEvent);
+    
+    return () => {
+      window.removeEventListener('openGameDetail', handleCustomEvent);
+    };
+  });
+  
+  // Handle browser back button to preserve filter state
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      // Page was restored from cache/back-forward, filter state should be preserved in sessionStorage
+      // The teams listing page will read this on load
+    }
+  });
+</script>
