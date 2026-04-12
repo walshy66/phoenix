@@ -1,0 +1,466 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
+
+// Generate static paths for all teams
+export async function getStaticPaths() {
+  let teams = [];
+  try {
+    // Try PlayHQ data first
+    const playhqPath = join(process.cwd(), 'scripts', 'teams-data.json');
+    if (existsSync(playhqPath)) {
+      const teamsRaw = readFileSync(playhqPath, 'utf-8');
+      const teamsDataObj = JSON.parse(teamsRaw);
+      teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+    } else {
+      // Fall back to placeholder data
+      const teamsPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
+      if (existsSync(teamsPath)) {
+        const teamsRaw = readFileSync(teamsPath, 'utf-8');
+        const teamsDataObj = JSON.parse(teamsRaw);
+        teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+      }
+    }
+  } catch (e) {
+    console.error('Failed to load teams data for static paths:', e);
+  }
+  
+  return teams.map(team => ({
+    params: { slug: team.slug }
+  }));
+}
+
+// Get the slug from params
+const { slug } = Astro.params;
+
+// Load team data
+let teamData = {
+  id: 'team-placeholder',
+  name: 'PHOENIX Unknown Team',
+  gradeName: 'Monday U10 Boys 1',
+  slug: 'unknown-team',
+};
+
+try {
+  // Try PlayHQ data first
+  const playhqPath = join(process.cwd(), 'scripts', 'teams-data.json');
+  let teams = [];
+  
+  if (existsSync(playhqPath)) {
+    const teamsRaw = readFileSync(playhqPath, 'utf-8');
+    const teamsDataObj = JSON.parse(teamsRaw);
+    teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+  } else {
+    // Fall back to placeholder data
+    const teamsPath = join(process.cwd(), 'src', 'data', 'teams', 'teams.json');
+    if (existsSync(teamsPath)) {
+      const teamsRaw = readFileSync(teamsPath, 'utf-8');
+      const teamsDataObj = JSON.parse(teamsRaw);
+      teams = Array.isArray(teamsDataObj) ? teamsDataObj : (teamsDataObj.teams || []);
+    }
+  }
+
+  const team = teams.find(t => t.slug === slug);
+  if (team) {
+    teamData = team;
+  }
+} catch (e) {
+  console.error('Failed to load teams data:', e);
+}
+
+// Load team details (schedule and ladder)
+let teamDetails = {
+  fixture: [],
+  ladder: [],
+};
+
+try {
+  const detailsPath = join(process.cwd(), 'scripts', 'teams-details.json');
+  if (existsSync(detailsPath)) {
+    const detailsRaw = readFileSync(detailsPath, 'utf-8');
+    const detailsData = JSON.parse(detailsRaw);
+    if (detailsData.teamDetails && detailsData.teamDetails[slug]) {
+      teamDetails = detailsData.teamDetails[slug];
+    }
+  }
+} catch (e) {
+  console.error('Failed to load team details:', e);
+}
+
+// Helper function to parse grade name
+const parseGradeName = (gradeName) => {
+  const match = gradeName.match(/^(\w+)\s+(U\d+)\s+(\w+)\s+(\d+)$/);
+  if (!match) {
+    return {
+      ageGroup: 'unknown',
+      gender: 'TBC',
+      gameNight: 'TBC',
+      division: 'TBC',
+    };
+  }
+  const [, gameNight, ageGroupStr, gender, divisionNum] = match;
+  return {
+    ageGroup: ageGroupStr.toLowerCase() + 's',
+    gender,
+    gameNight,
+    division: `DIV ${divisionNum}`,
+  };
+};
+
+const parsed = parseGradeName(teamData.gradeName);
+
+// Format date helper
+const formatDate = (dateStr) => {
+  if (!dateStr) return 'TBC';
+  try {
+    return new Date(dateStr).toLocaleDateString('en-AU', { 
+      weekday: 'short', 
+      month: 'short', 
+      day: 'numeric'
+    });
+  } catch {
+    return dateStr;
+  }
+};
+
+const formatTime = (timeStr) => {
+  if (!timeStr) return 'TBC';
+  return timeStr.substring(0, 5);
+};
+---
+
+<BaseLayout title={`${teamData.name} | Teams`} description={`Information about ${teamData.name} team at Bendigo Phoenix Basketball Club.`}>
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">{parsed.ageGroup.toUpperCase()}</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">{teamData.name}</h1>
+      <div class="flex justify-center gap-4 mt-6 flex-wrap">
+        <span class="bg-brand-gold text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.division}</span>
+        <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.gameNight}</span>
+        <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.gender}</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <!-- 2-Column Layout: Schedule (Left) & Ladder (Right) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Schedule Column (2/3 width on desktop) -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="bg-brand-purple text-white px-6 py-4">
+              <h2 class="text-2xl font-bold">SCHEDULE</h2>
+            </div>
+            
+            {teamDetails.fixture && teamDetails.fixture.length > 0 ? (
+              <div class="divide-y">
+                {teamDetails.fixture.map((game) => {
+                  const isHome = game.homeTeam === teamData.name;
+                  const opponent = isHome ? game.awayTeam : game.homeTeam;
+                  const hasScore = game.homeScore !== null && game.awayScore !== null;
+                  const isLive = game.status === 'IN_PROGRESS' || game.status === 'LIVE';
+                  const isCompleted = game.status === 'COMPLETED' || hasScore;
+                  
+                  return (
+                    <button 
+                      key={game.id}
+                      class={`w-full text-left px-6 py-4 transition-colors duration-150 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-brand-offwhite'}`}
+                      data-game-id={game.id}
+                      data-home-team={game.homeTeam}
+                      data-away-team={game.awayTeam}
+                      data-date={game.date}
+                      data-time={game.time}
+                      data-venue={game.venue}
+                      data-court={game.court || 'TBC'}
+                      data-home-score={game.homeScore}
+                      data-away-score={game.awayScore}
+                      data-status={game.status || 'UPCOMING'}
+                    >
+                      <div class="flex items-center justify-between gap-4">
+                        <div class="flex-1">
+                          <div class="flex items-center gap-2 mb-1">
+                            <p class="text-xs text-gray-500 font-medium uppercase">
+                              {formatDate(game.date)} at {formatTime(game.time)}
+                            </p>
+                            {isLive && (
+                              <span class="inline-block px-2 py-1 bg-red-500 text-white text-xs font-bold rounded animate-pulse">
+                                LIVE
+                              </span>
+                            )}
+                          </div>
+                          <p class="text-sm text-gray-600 mb-1">
+                            {game.venue}
+                          </p>
+                          {game.court && (
+                            <p class="text-xs text-gray-500">
+                              {game.court}
+                            </p>
+                          )}
+                          <div class="flex items-center justify-between">
+                            <div class="text-right pr-3">
+                              <p class={`font-bold text-sm ${isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                                {game.homeTeam}
+                              </p>
+                            </div>
+                            <div class="text-center px-2">
+                              {hasScore ? (
+                                <p class="font-black text-lg text-brand-purple">
+                                  {game.homeScore} – {game.awayScore}
+                                </p>
+                              ) : (
+                                <p class="text-gray-400 text-sm">vs</p>
+                              )}
+                            </div>
+                            <div class="text-left pl-3">
+                              <p class={`font-bold text-sm ${!isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                                {game.awayTeam}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="text-brand-gold group-hover:translate-x-1 transition-transform duration-150">
+                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : (
+              <div class="px-6 py-12 text-center">
+                <p class="text-gray-500">No games scheduled yet</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- Ladder Column (1/3 width on desktop) -->
+        <div>
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden sticky top-20">
+            <div class="bg-brand-purple text-white px-6 py-4">
+              <h2 class="text-2xl font-bold">LADDER</h2>
+            </div>
+            
+            {teamDetails.ladder && teamDetails.ladder.length > 0 ? (
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead class="bg-gray-50 border-b">
+                    <tr>
+                      <th class="px-3 py-2 text-left text-xs font-bold text-gray-600">#</th>
+                      <th class="px-3 py-2 text-left text-xs font-bold text-gray-600">Team</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">W</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">L</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">D</th>
+                      <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">Pts</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y">
+                    {teamDetails.ladder.map((row) => {
+                      const isOurTeam = row.team === teamData.name;
+                      return (
+                        <tr key={row.rank} class={isOurTeam ? 'bg-brand-gold bg-opacity-10 border-l-4 border-brand-gold' : ''}>
+                          <td class="px-3 py-3 font-bold text-gray-900">{row.rank}</td>
+                          <td class="px-3 py-3">
+                            <span class={isOurTeam ? 'font-bold text-brand-purple' : 'text-gray-900'}>
+                              {row.team}
+                            </span>
+                          </td>
+                          <td class="px-3 py-3 text-center text-gray-700">{row.won}</td>
+                          <td class="px-3 py-3 text-center text-gray-700">{row.lost}</td>
+                          <td class="px-3 py-3 text-center text-gray-700">{row.drawn}</td>
+                          <td class="px-3 py-3 text-center font-bold text-gray-900">{row.points}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div class="px-6 py-12 text-center">
+                <p class="text-gray-500">Ladder not yet available</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Teams -->
+      <div class="mt-12 text-center">
+        <a href="/teams" class="inline-block px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-150 font-medium">
+          ← Back to Teams
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Game Details Modal -->
+  <div id="game-details-modal" class="hidden fixed inset-0 bg-black bg-opacity-15 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-visible">
+      <div class="bg-brand-purple text-white px-8 py-5">
+        <h3 class="text-2xl font-bold">GAME DETAILS</h3>
+      </div>
+      <div class="px-8 py-8 space-y-8">
+        <!-- Teams vs Teams -->
+        <div class="text-center border-b border-gray-200 pb-8">
+          <div class="flex items-center justify-between gap-6">
+            <div class="flex-1">
+              <p class="font-bold text-brand-purple text-2xl" id="modal-home-team">—</p>
+            </div>
+            <div class="text-center">
+              <p class="text-5xl font-black text-brand-purple" id="modal-score">vs</p>
+            </div>
+            <div class="flex-1">
+              <p class="font-bold text-brand-purple text-2xl" id="modal-away-team">—</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Time -->
+        <div class="flex items-center gap-4 bg-gradient-to-br from-brand-offwhite to-gray-50 rounded-lg px-6 py-4 border border-gray-200">
+          <svg class="w-7 h-7 text-brand-purple flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00-.293.707l-2.828 2.829a1 1 0 101.415 1.415L9 10.586V6z" clip-rule="evenodd" />
+          </svg>
+          <div>
+            <p class="text-xs text-gray-600 font-semibold uppercase tracking-wide">Date & Time</p>
+            <p class="font-bold text-gray-900 text-lg" id="modal-datetime">—</p>
+          </div>
+        </div>
+
+        <!-- Venue & Court -->
+        <div class="flex items-center gap-4 bg-gradient-to-br from-brand-gold from-opacity-10 to-brand-offwhite rounded-lg px-6 py-4 border border-brand-gold border-opacity-30">
+          <svg class="w-7 h-7 text-brand-purple flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+          </svg>
+          <div>
+            <p class="text-xs text-gray-600 font-semibold uppercase tracking-wide">Venue & Court</p>
+            <p class="font-bold text-gray-900 text-lg" id="modal-venue">—</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Close Button -->
+      <div class="bg-gray-50 px-8 py-5 border-t border-gray-100 flex justify-end gap-3">
+        <button 
+          onclick="closeGameDetails()"
+          class="px-6 py-2.5 bg-brand-purple text-white rounded-lg hover:bg-brand-purple/90 transition-colors duration-150 font-semibold"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  function handleGameClick(event) {
+    const button = event.currentTarget;
+    const gameId = button.dataset.gameId;
+    const homeTeam = button.dataset.homeTeam;
+    const awayTeam = button.dataset.awayTeam;
+    const date = button.dataset.date;
+    const time = button.dataset.time;
+    const venue = button.dataset.venue;
+    const court = button.dataset.court;
+    const homeScore = button.dataset.homeScore ? parseInt(button.dataset.homeScore) : null;
+    const awayScore = button.dataset.awayScore ? parseInt(button.dataset.awayScore) : null;
+    const status = button.dataset.status;
+
+    showGameDetails(gameId, homeTeam, awayTeam, date, time, venue, homeScore, awayScore, court, status);
+  }
+
+  function showGameDetails(gameId, homeTeam, awayTeam, date, time, venue, homeScore, awayScore, court, status) {
+    const modal = document.getElementById('game-details-modal');
+    const homeTeamEl = document.getElementById('modal-home-team');
+    const awayTeamEl = document.getElementById('modal-away-team');
+    const scoreEl = document.getElementById('modal-score');
+    const datetimeEl = document.getElementById('modal-datetime');
+    const venueEl = document.getElementById('modal-venue');
+
+    console.log('Showing game details:', { gameId, homeTeam, awayTeam, date, time, venue, court, status });
+
+    homeTeamEl.textContent = homeTeam || '—';
+    awayTeamEl.textContent = awayTeam || '—';
+    
+    // Handle score display and live status
+    const isLive = status === 'IN_PROGRESS' || status === 'LIVE';
+    if (homeScore !== null && awayScore !== null) {
+      if (isLive) {
+        scoreEl.innerHTML = `<span class="text-red-500 animate-pulse">● LIVE</span><br><span class="text-3xl font-black text-brand-purple">${homeScore} – ${awayScore}</span>`;
+      } else {
+        scoreEl.textContent = `${homeScore} – ${awayScore}`;
+      }
+    } else if (isLive) {
+      scoreEl.innerHTML = '<span class="text-red-500 animate-pulse">● LIVE</span><br><span class="text-gray-400">Game in progress</span>';
+    } else {
+      scoreEl.textContent = 'vs';
+    }
+
+    if (date && time) {
+      const dateObj = new Date(date);
+      const dateStr = dateObj.toLocaleDateString('en-AU', { 
+        weekday: 'short', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+      const timeStr = time.substring(0, 5);
+      datetimeEl.textContent = `${dateStr} at ${timeStr}`;
+    } else {
+      datetimeEl.textContent = '—';
+    }
+    
+    // Display venue and court
+    const courtStr = court && court !== 'TBC' ? ` • ${court}` : '';
+    venueEl.textContent = (venue || '—') + courtStr;
+
+    modal.classList.remove('hidden');
+  }
+
+  function closeGameDetails() {
+    const modal = document.getElementById('game-details-modal');
+    modal.classList.add('hidden');
+  }
+
+  // Close modal on escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeGameDetails();
+  });
+
+  // Close modal on outside click
+  const modal = document.getElementById('game-details-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeGameDetails();
+    });
+  }
+
+  // Attach click handlers to all game buttons
+  document.addEventListener('DOMContentLoaded', () => {
+    const gameButtons = document.querySelectorAll('[data-game-id]');
+    gameButtons.forEach(button => {
+      button.addEventListener('click', handleGameClick);
+    });
+  });
+
+  // Also handle if DOM is already loaded
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    const gameButtons = document.querySelectorAll('[data-game-id]');
+    gameButtons.forEach(button => {
+      button.addEventListener('click', handleGameClick);
+    });
+  }
+</script>
+
+<style>
+  h2 {
+    color: white !important;
+  }
+</style>

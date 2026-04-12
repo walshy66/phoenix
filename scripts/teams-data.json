@@ -1,0 +1,152 @@
+{
+  "lastUpdated": "2026-04-12T22:10:29.910Z",
+  "teams": [
+    {
+      "id": "0ff87fac-299e-486a-aeba-5e761f0d590e",
+      "name": "PHOENIX Firebirds",
+      "gradeName": "Monday U10 Girls 3",
+      "slug": "phoenix-firebirds",
+      "coaches": []
+    },
+    {
+      "id": "f8e76873-8239-46ba-97b5-871c79223999",
+      "name": "PHOENIX Go Getters",
+      "gradeName": "Monday U10 Girls 3",
+      "slug": "phoenix-go-getters",
+      "coaches": []
+    },
+    {
+      "id": "7bb61342-7663-474c-9d1e-ced024082b70",
+      "name": "PHOENIX Thunder",
+      "gradeName": "Friday U10 Boys 4",
+      "slug": "phoenix-thunder",
+      "coaches": []
+    },
+    {
+      "id": "6ca1ac6c-531b-419d-8cdd-70c112b64f38",
+      "name": "PHOENIX Flames",
+      "gradeName": "Friday U12 Boys 8",
+      "slug": "phoenix-flames",
+      "coaches": []
+    },
+    {
+      "id": "e61983df-5bf4-4b8b-92bb-fa836f9b0ba7",
+      "name": "PHOENIX Phantoms",
+      "gradeName": "Friday U12 Boys 7",
+      "slug": "phoenix-phantoms",
+      "coaches": []
+    },
+    {
+      "id": "fa4c5f39-fc2f-40aa-9bbb-3333cbbc7539",
+      "name": "PHOENIX Son's",
+      "gradeName": "Friday U12 Boys 3",
+      "slug": "phoenix-sons",
+      "coaches": []
+    },
+    {
+      "id": "d2d342f4-febd-48af-adce-dac242038563",
+      "name": "PHOENIX Stars",
+      "gradeName": "Tuesday U12 Girls 4",
+      "slug": "phoenix-stars",
+      "coaches": []
+    },
+    {
+      "id": "1c22735a-b613-4c41-bf9e-be463b2c9b17",
+      "name": "PHOENIX Diamonds",
+      "gradeName": "Monday U14 Girls 4",
+      "slug": "phoenix-diamonds",
+      "coaches": []
+    },
+    {
+      "id": "bc0fd807-4ec2-4a8b-9a72-df10818aaaa5",
+      "name": "PHOENIX Flyers",
+      "gradeName": "Wednesday U14 Boys 8",
+      "slug": "phoenix-flyers",
+      "coaches": []
+    },
+    {
+      "id": "703af6b0-cce6-4e49-83c2-ab8a976ed27b",
+      "name": "PHOENIX Gold Nuggets",
+      "gradeName": "Wednesday U14 Boys 5",
+      "slug": "phoenix-gold-nuggets",
+      "coaches": []
+    },
+    {
+      "id": "342d43e9-60d1-4d2b-a029-a96f03f9432a",
+      "name": "PHOENIX Legends",
+      "gradeName": "Wednesday U14 Boys 7",
+      "slug": "phoenix-legends",
+      "coaches": []
+    },
+    {
+      "id": "0deab018-e6f7-432c-9306-4b9a1407f916",
+      "name": "PHOENIX Sweats",
+      "gradeName": "Wednesday U14 Boys 5",
+      "slug": "phoenix-sweats",
+      "coaches": []
+    },
+    {
+      "id": "ec5cc0bc-a4d8-4e41-abcb-2015eca90dbf",
+      "name": "PHOENIX Two Blues",
+      "gradeName": "Wednesday U14 Boys 2",
+      "slug": "phoenix-two-blues",
+      "coaches": []
+    },
+    {
+      "id": "bd179e5a-15a9-4f0d-b26f-9b832ae624f0",
+      "name": "PHOENIX Go Buckets",
+      "gradeName": "Friday U16 Boys 4",
+      "slug": "phoenix-go-buckets",
+      "coaches": []
+    },
+    {
+      "id": "264d1a3d-9065-4110-b5a5-e6d29efdb10b",
+      "name": "PHOENIX Gooney Tunes",
+      "gradeName": "Friday U16 Boys 7",
+      "slug": "phoenix-gooney-tunes",
+      "coaches": []
+    },
+    {
+      "id": "34b3d8d9-d8e8-40ff-aa24-2ee017cf990a",
+      "name": "PHOENIX Raiders",
+      "gradeName": "Wednesday U16 Boys 2",
+      "slug": "phoenix-raiders",
+      "coaches": []
+    },
+    {
+      "id": "cebb840a-46be-4e46-8035-5c3ab90da6de",
+      "name": "PHOENIX Splash",
+      "gradeName": "Friday U16 Boys 7",
+      "slug": "phoenix-splash",
+      "coaches": []
+    },
+    {
+      "id": "b9547239-f041-403a-865a-c96e59f39574",
+      "name": "PHOENIX Tulips",
+      "gradeName": "Tuesday U16 Girls 4",
+      "slug": "phoenix-tulips",
+      "coaches": []
+    },
+    {
+      "id": "edd8b444-47d9-4398-9924-d33be5cb8d48",
+      "name": "PHOENIX Green Machines",
+      "gradeName": "Friday U18 Boys 3",
+      "slug": "phoenix-green-machines",
+      "coaches": []
+    },
+    {
+      "id": "1590fe16-0928-42ee-a4db-d082e9da7867",
+      "name": "PHOENIX Roughnuts",
+      "gradeName": "Friday U18 Boys 2",
+      "slug": "phoenix-roughnuts",
+      "coaches": []
+    },
+    {
+      "id": "b1f5d87e-0229-4c91-934d-73f2e3b26f19",
+      "name": "PHOENIX TBA U18 Boys (Callum)",
+      "gradeName": "Friday U18 Boys 5",
+      "slug": "phoenix-tba-u18-boys-callum",
+      "coaches": []
+    }
+  ]
+}

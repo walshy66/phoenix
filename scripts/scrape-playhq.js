@@ -34,8 +34,9 @@
  *   GET /v1/grades/{gradeId}/ladder
  *     → ladder table for that grade
  *
- *   GET /v1/grades/{gradeId}/fixture
+ *   GET /v1/grades/{gradeId}/games
  *     → all scheduled & completed games for that grade
+ *     NOTE: the endpoint is /games, NOT /fixture (fixture returns 404)
  *
  * It filters for games where Bendigo Phoenix is a participant,
  * and writes the result to scores-data.json.
@@ -45,7 +46,7 @@
  *   Tenant (Basketball Victoria):  bv
  *   Org UUID:                       90c7fb8e-b434-42ea-9af5-625235ca11e7
  *   Summer 2025/26 season (short):  0bf74768
- *   Winter 2025 season UUID:        b3efb4fc-f645-4b5a-a777-50cc99464849
+ *   Winter 2026 season UUID:        b3efb4fc-f645-4b5a-a777-50cc99464849
  *
  * TO ADD THE SUMMER SEASON FULL UUID:
  *   1. Log into https://bv.playhq.com
@@ -137,28 +138,29 @@ async function getLadder(gradeId) {
 }
 
 async function getFixture(gradeId) {
-  return fetchAllPages(`/v1/grades/${gradeId}/fixture`);
+  return fetchAllPages(`/v1/grades/${gradeId}/games`);
 }
 
 // ─── Transform helpers ────────────────────────────────────────────────────────
 
 function isPhoenixGame(game) {
   const needle = CLUB_NAME.toLowerCase();
-  const home   = (game.homeTeam?.name ?? '').toLowerCase();
-  const away   = (game.awayTeam?.name ?? '').toLowerCase();
-  return home.includes(needle) || away.includes(needle);
+  return (game.competitors ?? []).some(c => c.name.toLowerCase().includes(needle));
 }
 
 function normaliseGame(game, gradeName) {
+  const home = (game.competitors ?? []).find(c => c.isHomeTeam);
+  const away = (game.competitors ?? []).find(c => !c.isHomeTeam);
   return {
     id:          game.id,
-    date:        game.date ?? game.scheduledTime ?? null,
+    date:        game.schedule?.date ?? null,
+    time:        game.schedule?.time ?? null,
     competition: gradeName,
     venue:       game.venue?.name ?? null,
-    homeTeam:    game.homeTeam?.name  ?? 'TBD',
-    awayTeam:    game.awayTeam?.name  ?? 'TBD',
-    homeScore:   game.homeTeam?.score ?? null,
-    awayScore:   game.awayTeam?.score ?? null,
+    homeTeam:    home?.name ?? 'TBD',
+    awayTeam:    away?.name ?? 'TBD',
+    homeScore:   home?.scoreTotal ?? null,
+    awayScore:   away?.scoreTotal ?? null,
     status:      game.status ?? 'scheduled',
   };
 }

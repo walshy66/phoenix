@@ -1,0 +1,677 @@
+{
+  "lastUpdated": "2026-04-12T22:33:10.245Z",
+  "teamDetails": {
+    "phoenix-firebirds": {
+      "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
+      "teamName": "PHOENIX Firebirds",
+      "gradeName": "Monday U10 Girls 3",
+      "fixture": [
+        {
+          "id": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
+          "date": "2026-04-20",
+          "time": "16:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Go Getters",
+          "awayTeam": "PHOENIX Firebirds",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-go-getters": {
+      "teamId": "f8e76873-8239-46ba-97b5-871c79223999",
+      "teamName": "PHOENIX Go Getters",
+      "gradeName": "Monday U10 Girls 3",
+      "fixture": [
+        {
+          "id": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
+          "date": "2026-04-20",
+          "time": "16:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Go Getters",
+          "awayTeam": "PHOENIX Firebirds",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-thunder": {
+      "teamId": "7bb61342-7663-474c-9d1e-ced024082b70",
+      "teamName": "PHOENIX Thunder",
+      "gradeName": "Friday U10 Boys 4",
+      "fixture": [
+        {
+          "id": "865a40e2-3451-48a2-920d-13ae8db5bf02",
+          "date": "2026-04-24",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "St Francis U10 Boys Bullets",
+          "awayTeam": "PHOENIX Thunder",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-flames": {
+      "teamId": "6ca1ac6c-531b-419d-8cdd-70c112b64f38",
+      "teamName": "PHOENIX Flames",
+      "gradeName": "Friday U12 Boys 8",
+      "fixture": [
+        {
+          "id": "74c088b1-d239-4c25-bfb6-8b2c11ce6296",
+          "date": "2026-04-24",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Flames",
+          "awayTeam": "Strath Suns",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-phantoms": {
+      "teamId": "e61983df-5bf4-4b8b-92bb-fa836f9b0ba7",
+      "teamName": "PHOENIX Phantoms",
+      "gradeName": "Friday U12 Boys 7",
+      "fixture": [
+        {
+          "id": "acaeacb5-4f1c-49e6-94af-3c018fbc0c84",
+          "date": "2026-04-24",
+          "time": "18:00:00",
+          "venue": "Girton Grammar",
+          "court": "Court 1",
+          "address": "22 Vine Street",
+          "homeTeam": "PHOENIX Phantoms",
+          "awayTeam": "Beavers Cubs",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-sons": {
+      "teamId": "fa4c5f39-fc2f-40aa-9bbb-3333cbbc7539",
+      "teamName": "PHOENIX Son's",
+      "gradeName": "Friday U12 Boys 3",
+      "fixture": [
+        {
+          "id": "2a375817-125e-4e26-83e8-750c4944dd40",
+          "date": "2026-04-24",
+          "time": "18:45:00",
+          "venue": "Girton Grammar",
+          "court": "Court 1",
+          "address": "22 Vine Street",
+          "homeTeam": "PHOENIX Son's",
+          "awayTeam": "Beavers Dragons",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-stars": {
+      "teamId": "d2d342f4-febd-48af-adce-dac242038563",
+      "teamName": "PHOENIX Stars",
+      "gradeName": "Tuesday U12 Girls 4",
+      "fixture": [
+        {
+          "id": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
+          "date": "2026-04-21",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "Strath Shooting Stars",
+          "awayTeam": "PHOENIX Stars",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-diamonds": {
+      "teamId": "1c22735a-b613-4c41-bf9e-be463b2c9b17",
+      "teamName": "PHOENIX Diamonds",
+      "gradeName": "Monday U14 Girls 4",
+      "fixture": [
+        {
+          "id": "abbf0db6-51f0-4991-bb92-3fad639ae34d",
+          "date": "2026-04-20",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 8",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Diamonds",
+          "awayTeam": "Aztec U14 Girls Yellow",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-flyers": {
+      "teamId": "bc0fd807-4ec2-4a8b-9a72-df10818aaaa5",
+      "teamName": "PHOENIX Flyers",
+      "gradeName": "Wednesday U14 Boys 8",
+      "fixture": [
+        {
+          "id": "24ad7a1a-53b3-40c7-b7a9-54756fbea989",
+          "date": "2026-04-22",
+          "time": "16:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "Aztec U14 Boys Teal",
+          "awayTeam": "PHOENIX Flyers",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-gold-nuggets": {
+      "teamId": "703af6b0-cce6-4e49-83c2-ab8a976ed27b",
+      "teamName": "PHOENIX Gold Nuggets",
+      "gradeName": "Wednesday U14 Boys 5",
+      "fixture": [
+        {
+          "id": "58fd088c-8bdd-4250-9729-074736f39d52",
+          "date": "2026-04-22",
+          "time": "19:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 3",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Gold Nuggets",
+          "awayTeam": "Strath Vipers",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-sweats": {
+      "teamId": "0deab018-e6f7-432c-9306-4b9a1407f916",
+      "teamName": "PHOENIX Sweats",
+      "gradeName": "Wednesday U14 Boys 5",
+      "fixture": [
+        {
+          "id": "f4ba5e01-daac-4796-bf7d-7f37342335e2",
+          "date": "2026-04-22",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 1",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Wizards",
+          "awayTeam": "PHOENIX Sweats",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-legends": {
+      "teamId": "342d43e9-60d1-4d2b-a029-a96f03f9432a",
+      "teamName": "PHOENIX Legends",
+      "gradeName": "Wednesday U14 Boys 7",
+      "fixture": [
+        {
+          "id": "4ef27b66-c2e4-4e53-aa50-d313738aeb1b",
+          "date": "2026-04-22",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Legends",
+          "awayTeam": "U14’s FLYING FLAMINGOS ",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-two-blues": {
+      "teamId": "ec5cc0bc-a4d8-4e41-abcb-2015eca90dbf",
+      "teamName": "PHOENIX Two Blues",
+      "gradeName": "Wednesday U14 Boys 2",
+      "fixture": [
+        {
+          "id": "049cb0e4-bc55-4e80-9e2f-a8d6b60b9e78",
+          "date": "2026-04-22",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Ballers",
+          "awayTeam": "PHOENIX Two Blues",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-go-buckets": {
+      "teamId": "bd179e5a-15a9-4f0d-b26f-9b832ae624f0",
+      "teamName": "PHOENIX Go Buckets",
+      "gradeName": "Friday U16 Boys 4",
+      "fixture": [
+        {
+          "id": "a7ac172f-efbd-47d2-9287-8d7e9260de6b",
+          "date": "2026-04-24",
+          "time": "19:30:00",
+          "venue": "Girton Grammar",
+          "court": "Court 2",
+          "address": "22 Vine Street",
+          "homeTeam": "PHOENIX Go Buckets",
+          "awayTeam": "Generals U16 Boys Gullys",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-gooney-tunes": {
+      "teamId": "264d1a3d-9065-4110-b5a5-e6d29efdb10b",
+      "teamName": "PHOENIX Gooney Tunes",
+      "gradeName": "Friday U16 Boys 7",
+      "fixture": [
+        {
+          "id": "17ec680f-6718-4a01-8f49-dbdef7bdf438",
+          "date": "2026-04-24",
+          "time": "20:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Gooney Tunes",
+          "awayTeam": "Aztec U16 Boys White",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-splash": {
+      "teamId": "cebb840a-46be-4e46-8035-5c3ab90da6de",
+      "teamName": "PHOENIX Splash",
+      "gradeName": "Friday U16 Boys 7",
+      "fixture": [
+        {
+          "id": "cdc7bc72-a499-4fe0-943f-5393f2619654",
+          "date": "2026-04-24",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Splash",
+          "awayTeam": "Aztec U16 Boys Bronze",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-raiders": {
+      "teamId": "34b3d8d9-d8e8-40ff-aa24-2ee017cf990a",
+      "teamName": "PHOENIX Raiders",
+      "gradeName": "Wednesday U16 Boys 2",
+      "fixture": [
+        {
+          "id": "596de913-0371-4d7b-86a3-8a48ad112530",
+          "date": "2026-04-22",
+          "time": "19:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 1",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Raiders",
+          "awayTeam": "Aztec U16 Boys Yellow",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-tulips": {
+      "teamId": "b9547239-f041-403a-865a-c96e59f39574",
+      "teamName": "PHOENIX Tulips",
+      "gradeName": "Tuesday U16 Girls 4",
+      "fixture": [
+        {
+          "id": "74b44602-3110-4547-b256-4cad7c87b3c6",
+          "date": "2026-04-21",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 8",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Tulips",
+          "awayTeam": "Aztec U16 Girls Aqua",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-green-machines": {
+      "teamId": "edd8b444-47d9-4398-9924-d33be5cb8d48",
+      "teamName": "PHOENIX Green Machines",
+      "gradeName": "Friday U18 Boys 3",
+      "fixture": [
+        {
+          "id": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
+          "date": "2026-04-24",
+          "time": "21:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "Aztec U18 Boys Bronze",
+          "awayTeam": "PHOENIX Green Machines",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-roughnuts": {
+      "teamId": "1590fe16-0928-42ee-a4db-d082e9da7867",
+      "teamName": "PHOENIX Roughnuts",
+      "gradeName": "Friday U18 Boys 2",
+      "fixture": [
+        {
+          "id": "e3e40b4e-aaef-4e53-b8d5-74bc40ff12ab",
+          "date": "2026-04-24",
+          "time": "21:00:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 3",
+          "address": "91 Inglis Street",
+          "homeTeam": "Bunjils U18 Boys ALPHA",
+          "awayTeam": "PHOENIX Roughnuts",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-tba-u18-boys-callum": {
+      "teamId": "b1f5d87e-0229-4c91-934d-73f2e3b26f19",
+      "teamName": "PHOENIX TBA U18 Boys (Callum)",
+      "gradeName": "Friday U18 Boys 5",
+      "fixture": [
+        {
+          "id": "2c846df1-9ece-4a12-9d1f-1380728dff67",
+          "date": "2026-04-24",
+          "time": "21:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 5",
+          "address": "91 Inglis Street",
+          "homeTeam": "Generals U18 Boys Rockets",
+          "awayTeam": "PHOENIX TBA U18 Boys (Callum)",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 1"
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "—",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    }
+  }
+}
