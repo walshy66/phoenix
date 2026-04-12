@@ -21,6 +21,7 @@ export interface RotationPlan {
   roster: Player[];
   halves: [HalfPlan, HalfPlan]; // always exactly 2 entries
   totalPlayerMinutes: number;    // must equal 200
+  finishers?: Player[];          // 0 or 3 players pinned to the end of the game
 }
 
 /** The schedule for one half (20 minutes). */
