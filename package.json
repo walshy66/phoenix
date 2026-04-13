@@ -13,6 +13,7 @@
     "test": "vitest run",
     "scores:refresh": "node scripts/scrape-playhq.js",
     "scores:check": "node scripts/check-scores-data.js",
+    "scores:refresh:weekly": "npm run scores:refresh && npm run scores:check",
     "home-scores:refresh": "node scripts/scrape-home-games.js",
     "home-scores:check": "node scripts/check-home-games-data.js"
   },
