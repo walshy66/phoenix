@@ -10,7 +10,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run"
+    "test": "vitest run",
+    "scores:refresh": "node scripts/scrape-weekly-games.js",
+    "scores:check": "node scripts/check-weekly-games-data.js",
+    "scores:refresh:weekly": "npm run scores:refresh && npm run scores:check"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",

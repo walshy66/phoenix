@@ -1,0 +1,27 @@
+---
+interface Props {
+  fixture: {
+    fixtureId: string;
+    homeTeam: string;
+    awayTeam: string;
+    grade?: string | null;
+    venue?: string | null;
+    court?: string | null;
+    kickoffDisplay?: string;
+  };
+}
+
+const { fixture } = Astro.props;
+---
+
+<a
+  href={`/scores/${fixture.fixtureId}`}
+  class="block rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-brand-purple hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple"
+  aria-label={`Open game details for ${fixture.homeTeam} vs ${fixture.awayTeam}`}
+>
+  <p class="text-xs font-semibold uppercase tracking-wide text-brand-purple">{fixture.grade ?? 'Game'}</p>
+  <h3 class="mt-1 text-sm font-bold text-brand-black">{fixture.homeTeam} vs {fixture.awayTeam}</h3>
+  <p class="mt-2 text-sm text-gray-700">{fixture.kickoffDisplay ?? 'TBA'}</p>
+  {fixture.venue && <p class="mt-1 text-xs text-gray-500">{fixture.venue}</p>}
+  {fixture.court && <p class="mt-1 text-xs text-gray-500">{fixture.court}</p>}
+</a>

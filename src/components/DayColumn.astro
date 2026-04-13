@@ -1,0 +1,35 @@
+---
+import WeeklyGameTile from './WeeklyGameTile.astro';
+
+interface Props {
+  dayLabel: string;
+  dayId: string;
+  fixtures: Array<{
+    fixtureId: string;
+    homeTeam: string;
+    awayTeam: string;
+    grade?: string | null;
+    venue?: string | null;
+    court?: string | null;
+    kickoffDisplay?: string;
+  }>;
+}
+
+const { dayLabel, dayId, fixtures } = Astro.props;
+---
+
+<section class="rounded-xl border border-gray-200 bg-white p-4" aria-labelledby={`day-heading-${dayId}`}>
+  <h2 id={`day-heading-${dayId}`} class="text-lg font-bold text-brand-purple">{dayLabel}</h2>
+
+  {fixtures.length > 0 ? (
+    <ul class="mt-4 space-y-3" role="list">
+      {fixtures.map((fixture) => (
+        <li>
+          <WeeklyGameTile fixture={fixture} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="mt-4 text-sm text-gray-500">No games scheduled</p>
+  )}
+</section>
