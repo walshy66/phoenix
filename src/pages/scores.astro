@@ -1,64 +1,152 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import DayColumn from '../components/DayColumn.astro';
-import { loadWeeklyArtifact } from '../lib/scores/artifact';
-import { getDayColumns, getScoresPageState, getStaleBannerText } from '../lib/scores/rendering';
+import ScoreCard from '../components/ScoreCard.astro';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
 
-const artifact = loadWeeklyArtifact();
+// Try to load scores data from JSON file, fall back to placeholder
+let scoresData = {
+  lastUpdated: '2025-01-01T00:00:00.000Z',
+  note: "Run 'node scripts/scrape-playhq.js' to update scores",
+  scores: [
+    {
+      id: '1',
+      date: '2025-01-01',
+      competition: 'Bendigo Basketball Association',
+      homeTeam: 'Bendigo Phoenix',
+      awayTeam: 'Opponent',
+      homeScore: 85,
+      awayScore: 72,
+      status: 'completed',
+    },
+  ],
+  ladder: [
+    { rank: 1, team: 'Bendigo Phoenix', played: 1, won: 1, lost: 0, drawn: 0, points: 2 },
+    { rank: 2, team: 'Opponent', played: 1, won: 0, lost: 1, drawn: 0, points: 0 },
+  ],
+};
 
-const pageState = getScoresPageState(artifact);
-const dayColumns = getDayColumns(artifact);
-const staleBanner = getStaleBannerText(artifact);
+try {
+  const dataPath = join(process.cwd(), 'scripts', 'scores-data.json');
+  if (existsSync(dataPath)) {
+    const raw = readFileSync(dataPath, 'utf-8');
+    scoresData = JSON.parse(raw);
+  }
+} catch (e) {
+  // Use placeholder data
+}
 
-const generatedAtText = artifact.generatedAt
-  ? new Date(artifact.generatedAt).toLocaleString('en-AU', { dateStyle: 'medium', timeStyle: 'short' })
-  : null;
+const lastUpdated = scoresData.lastUpdated
+  ? new Date(scoresData.lastUpdated).toLocaleString('en-AU', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+    })
+  : 'Unknown';
+
+const dayColumns = [
+  { key: 'mon', label: 'Monday', jsDay: 1 },
+  { key: 'tue', label: 'Tuesday', jsDay: 2 },
+  { key: 'wed', label: 'Wednesday', jsDay: 3 },
+  { key: 'fri', label: 'Friday', jsDay: 5 },
+] as const;
+
+const toJsDay = (value: string | null | undefined): number | null => {
+  if (!value) return null;
+  const dt = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(dt.valueOf())) return null;
+  return dt.getDay();
+};
+
+const timeSortValue = (time: string | null | undefined): number => {
+  if (!time || !/^\d{2}:\d{2}(:\d{2})?$/.test(time)) return 999999;
+  const [hh, mm] = time.slice(0, 5).split(':').map(Number);
+  return hh * 60 + mm;
+};
+
+const scoresByDay = dayColumns.map((day) => {
+  const games = (scoresData.scores ?? [])
+    .filter((score: any) => toJsDay(score?.date) === day.jsDay)
+    .sort((a: any, b: any) => {
+      const dateCmp = String(a.date ?? '').localeCompare(String(b.date ?? ''));
+      if (dateCmp !== 0) return dateCmp;
+      return timeSortValue(a.time) - timeSortValue(b.time);
+    });
+
+  return { ...day, games };
+});
 ---
 
-<BaseLayout title="This Week's Games" description="Upcoming Bendigo Phoenix fixtures for this week.">
-  <section class="bg-brand-purple px-4 py-14 text-center text-white">
-    <h1 class="text-4xl font-black tracking-tight">This Week's Games</h1>
-    <p class="mt-3 text-sm text-brand-offwhite">
-      Monday to Friday fixtures for the current weekly window.
-    </p>
-  </section>
-
-  <section class="bg-brand-black px-4 py-3 text-xs text-gray-200">
-    <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2">
-      <p>
-        Window:
-        <span class="font-semibold text-white">{artifact.window.startDate || '—'} to {artifact.window.endDate || '—'}</span>
-        ({artifact.window.timezone})
-      </p>
-      {generatedAtText && <p>Updated: <span class="font-semibold text-white">{generatedAtText}</span></p>}
+<BaseLayout title="Scores" description="Bendigo Phoenix Basketball latest scores and results.">
+  <!-- Page Hero -->
+  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
+    </div>
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Live Updates</p>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">SCORES</h1>
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
     </div>
   </section>
 
-  {staleBanner && (
-    <section class="bg-yellow-100 px-4 py-3 text-sm text-yellow-900" role="status" aria-live="polite">
-      <div class="mx-auto max-w-7xl">{staleBanner}</div>
-    </section>
-  )}
+  <!-- Last Updated -->
+  <section class="bg-brand-black py-3 px-4">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p class="text-gray-400 text-xs flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-brand-gold inline-block animate-pulse"></span>
+        Last updated: <span class="text-white font-medium">{lastUpdated}</span>
+      </p>
 
-  <section class="bg-brand-offwhite px-4 py-10 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      {pageState === 'error' ? (
-        <div class="rounded-xl border border-red-200 bg-red-50 p-6" role="alert">
-          <h2 class="text-lg font-bold text-red-900">Unable to load this week's games</h2>
-          <p class="mt-2 text-sm text-red-800">{artifact.error?.message ?? 'Please try again later.'}</p>
-        </div>
-      ) : pageState === 'empty' ? (
-        <div class="rounded-xl border border-dashed border-brand-purple bg-white p-8 text-center">
-          <h2 class="text-xl font-bold text-brand-purple">No games scheduled</h2>
-          <p class="mt-2 text-sm text-gray-600">There are no fixtures in the current Mon–Fri window.</p>
+    </div>
+  </section>
+
+  <!-- Scores Section -->
+  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide">Games by Day</h2>
+      </div>
+      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      {scoresData.scores && scoresData.scores.length > 0 ? (
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+          {scoresByDay.map((day) => (
+            <section class="bg-white rounded-xl border border-gray-100 p-4">
+              <h3 class="text-lg font-bold text-brand-black mb-4">{day.label}</h3>
+
+              {day.games.length > 0 ? (
+                <div class="space-y-4">
+                  {day.games.map((score: any) => (
+                    <ScoreCard
+                      homeTeam={score.homeTeam}
+                      awayTeam={score.awayTeam}
+                      homeScore={score.homeScore}
+                      awayScore={score.awayScore}
+                      date={score.date}
+                      time={score.time}
+                      venue={score.venue}
+                      court={score.court}
+                      competition={score.competition}
+                      status={score.status}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div class="text-sm text-gray-500 border border-dashed border-gray-200 rounded-lg p-3">
+                  No games scheduled.
+                </div>
+              )}
+            </section>
+          ))}
         </div>
       ) : (
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4" role="region" aria-label="Weekly game schedule">
-          {dayColumns.map((column) => (
-            <DayColumn dayId={column.key} dayLabel={column.label} fixtures={column.fixtures} />
-          ))}
+        <div class="text-center py-12 bg-white rounded-xl border border-dashed border-brand-purple">
+          <span class="text-5xl mb-4 block">🏀</span>
+          <p class="text-gray-500">No results available yet. Check back after the season begins.</p>
         </div>
       )}
     </div>
   </section>
+
+
 </BaseLayout>

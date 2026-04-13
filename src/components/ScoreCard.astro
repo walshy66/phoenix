@@ -7,16 +7,22 @@ interface Props {
   date: string;
   competition: string;
   status?: string;
+  time?: string | null;
+  venue?: string | null;
+  court?: string | null;
 }
 
-const { homeTeam, awayTeam, homeScore, awayScore, date, competition, status = 'completed' } = Astro.props;
+const { homeTeam, awayTeam, homeScore, awayScore, date, competition, status = 'completed', time = null, venue = null, court = null } = Astro.props;
 
 const isPhoenixHome = homeTeam.toLowerCase().includes('phoenix');
 const phoenixScore = isPhoenixHome ? homeScore : awayScore;
 const opponentScore = isPhoenixHome ? awayScore : homeScore;
 
+const statusNormalized = status.toLowerCase();
+const isCompleted = statusNormalized === 'completed' && phoenixScore !== null && opponentScore !== null;
+
 let result: 'win' | 'loss' | 'draw' | 'pending' = 'pending';
-if (status === 'completed' && phoenixScore !== null && opponentScore !== null) {
+if (isCompleted) {
   if (phoenixScore > opponentScore) result = 'win';
   else if (phoenixScore < opponentScore) result = 'loss';
   else result = 'draw';
@@ -36,21 +42,43 @@ const resultLabels = {
   pending: 'TBD',
 };
 
-const formattedDate = new Date(date).toLocaleDateString('en-AU', {
-  weekday: 'short',
-  day: 'numeric',
-  month: 'short',
-  year: 'numeric',
-});
+const formattedDate = Number.isNaN(new Date(date).valueOf())
+  ? 'Date TBA'
+  : new Date(date).toLocaleDateString('en-AU', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+
+const formattedTime = time && /^\d{2}:\d{2}(:\d{2})?$/.test(time)
+  ? time.slice(0, 5)
+  : 'TBA';
+
+const venueLabel = venue ?? 'Venue TBA';
+const courtPillLabel = (() => {
+  if (!court) return 'TBA';
+  const trimmed = court.trim();
+  if (/^crt\s*/i.test(trimmed)) return trimmed;
+  const courtMatch = trimmed.match(/^court\s*(\d+)$/i);
+  if (courtMatch) return `Crt ${courtMatch[1]}`;
+  return trimmed;
+})();
 ---
 
 <div class={`card-hover bg-white rounded-xl overflow-hidden shadow-sm border ${result === 'win' ? 'border-brand-gold win-indicator' : 'border-gray-100'} flex flex-col`}>
   <!-- Header -->
   <div class="bg-brand-black px-4 py-2 flex items-center justify-between">
     <span class="text-gray-400 text-xs font-medium uppercase tracking-wide">{competition}</span>
-    <span class={`text-xs font-bold px-2 py-0.5 rounded-full ${resultStyles[result]}`}>
-      {resultLabels[result]}
-    </span>
+    {isCompleted ? (
+      <span class={`text-xs font-bold px-2 py-0.5 rounded-full ${resultStyles[result]}`}>
+        {resultLabels[result]}
+      </span>
+    ) : (
+      <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-purple text-white max-w-[56%] truncate" title={courtPillLabel}>
+        {courtPillLabel}
+      </span>
+    )}
   </div>
 
   <!-- Scores -->
@@ -84,6 +112,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-AU', {
 
   <!-- Date footer -->
   <div class="px-4 pb-3 text-center">
-    <span class="text-gray-400 text-xs">{formattedDate}</span>
+    <span class="text-gray-400 text-xs">{formattedDate} • {formattedTime}</span>
+    <p class="text-gray-500 text-xs mt-1 truncate" title={venueLabel}>{venueLabel}</p>
   </div>
 </div>

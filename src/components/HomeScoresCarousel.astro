@@ -1,0 +1,204 @@
+---
+import ScoreCard from './ScoreCard.astro';
+
+interface HomeGameItem {
+  gameId: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number | null;
+  awayScore: number | null;
+  status: string;
+  kickoffDate: string | null;
+  kickoffTime?: string | null;
+  kickoffDisplay: string;
+  competition: string | null;
+  venue?: string | null;
+  court?: string | null;
+}
+
+interface HomeGamesArtifact {
+  status: 'success' | 'stale' | 'error';
+  staleBanner?: string | null;
+  error?: { code?: string; message?: string } | null;
+  games: HomeGameItem[];
+}
+
+interface Props {
+  artifact: HomeGamesArtifact;
+  autoAdvanceMs?: number;
+  resumeDelayMs?: number;
+}
+
+const { artifact, autoAdvanceMs = 7000, resumeDelayMs = 10000 } = Astro.props;
+const games = artifact?.games ?? [];
+const hasMany = games.length > 1;
+---
+
+<section class="py-8 bg-brand-black" aria-label="Latest Results">
+  <div class="max-w-7xl mx-auto px-4 mb-4 flex items-center justify-between gap-3">
+    <h2 class="text-white text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-brand-gold inline-block animate-pulse"></span>
+      Latest Results
+    </h2>
+    <a href="/scores" class="text-brand-gold text-xs font-bold hover:underline focus-visible:outline-2 focus-visible:outline-brand-gold">
+      View All Scores &amp; Ladder →
+    </a>
+  </div>
+
+  {artifact.status === 'error' ? (
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="rounded-xl border border-red-400/40 bg-red-900/20 text-red-100 p-4 text-sm" role="status">
+        {artifact.error?.message ?? 'Scores are temporarily unavailable. Please try again later.'}
+      </div>
+    </div>
+  ) : games.length === 0 ? (
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="rounded-xl border border-gray-600 bg-gray-900 text-gray-200 p-4 text-sm" role="status">
+        No games found in the latest 7-day window.
+      </div>
+    </div>
+  ) : (
+    <div
+      class="home-scores-carousel max-w-7xl mx-auto px-4"
+      data-count={games.length}
+      data-auto-advance-ms={autoAdvanceMs}
+      data-resume-delay-ms={resumeDelayMs}
+      aria-roledescription="carousel"
+      aria-label="Latest games"
+    >
+      {artifact.status === 'stale' && (
+        <p class="mb-3 text-xs text-amber-200" role="status">
+          {artifact.staleBanner ?? 'Showing last known results. Live refresh is temporarily unavailable.'}
+        </p>
+      )}
+
+      <div class="relative overflow-hidden">
+        <div class="home-scores-track flex transition-transform duration-500 ease-out" aria-live="polite">
+          {games.map((game, idx) => (
+            <div class="home-slide min-w-full flex justify-center" data-index={idx}>
+              <a
+                href={`/scores/${game.gameId}`}
+                class="block w-full max-w-sm focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl"
+                aria-label={`Open details for ${game.homeTeam} vs ${game.awayTeam}`}
+              >
+                <ScoreCard
+                  homeTeam={game.homeTeam}
+                  awayTeam={game.awayTeam}
+                  homeScore={game.homeScore}
+                  awayScore={game.awayScore}
+                  date={game.kickoffDate ?? new Date().toISOString().slice(0, 10)}
+                  time={game.kickoffTime}
+                  venue={game.venue}
+                  court={game.court}
+                  competition={game.competition ?? 'Latest Results'}
+                  status={game.status}
+                />
+              </a>
+            </div>
+          ))}
+        </div>
+
+        {hasMany && (
+          <>
+            <button type="button" class="hs-nav hs-prev" aria-label="Previous game">←</button>
+            <button type="button" class="hs-nav hs-next" aria-label="Next game">→</button>
+          </>
+        )}
+      </div>
+    </div>
+  )}
+</section>
+
+<style>
+  .hs-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(17, 17, 17, 0.8);
+    color: #fff;
+    cursor: pointer;
+  }
+  .hs-nav:hover { background: rgba(87, 63, 147, 0.9); }
+  .hs-nav:focus-visible { outline: 2px solid #8B7536; outline-offset: 2px; }
+  .hs-prev { left: 6px; }
+  .hs-next { right: 6px; }
+</style>
+
+<script>
+  import { getNextIndex, getPrevIndex } from '../lib/home-scores/carousel';
+
+  document.querySelectorAll('.home-scores-carousel').forEach((carousel) => {
+    const track = carousel.querySelector('.home-scores-track');
+    const prevBtn = carousel.querySelector('.hs-prev');
+    const nextBtn = carousel.querySelector('.hs-next');
+
+    const count = Number(carousel.getAttribute('data-count') ?? '0');
+    if (!track || count <= 1) return;
+
+    const autoAdvanceMs = Number(carousel.getAttribute('data-auto-advance-ms') ?? '7000');
+    const resumeDelayMs = Number(carousel.getAttribute('data-resume-delay-ms') ?? '10000');
+
+    let index = 0;
+    let autoTimer = null;
+    let resumeTimer = null;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const render = () => {
+      track.style.transform = `translateX(-${index * 100}%)`;
+    };
+
+    const stopAuto = () => {
+      if (autoTimer) {
+        clearInterval(autoTimer);
+        autoTimer = null;
+      }
+    };
+
+    const startAuto = () => {
+      if (reducedMotion) return;
+      stopAuto();
+      autoTimer = setInterval(() => {
+        index = getNextIndex(index, count);
+        render();
+      }, autoAdvanceMs);
+    };
+
+    const pauseThenResume = () => {
+      stopAuto();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(() => startAuto(), resumeDelayMs);
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      index = getPrevIndex(index, count);
+      render();
+      pauseThenResume();
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      index = getNextIndex(index, count);
+      render();
+      pauseThenResume();
+    });
+
+    carousel.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        index = getNextIndex(index, count);
+        render();
+        pauseThenResume();
+      }
+      if (e.key === 'ArrowLeft') {
+        index = getPrevIndex(index, count);
+        render();
+        pauseThenResume();
+      }
+    });
+
+    render();
+    startAuto();
+  });
+</script>

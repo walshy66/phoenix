@@ -1,81 +1,77 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { buildGameDetailViewModel } from '../../lib/scores/fixtures';
-import { findFixtureById, loadWeeklyArtifact } from '../../lib/scores/artifact';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { toPublicGameDetail } from '../../lib/home-scores/details';
 
 export function getStaticPaths() {
-  const artifact = loadWeeklyArtifact();
-  const fixtures = [artifact.days.monday, artifact.days.tuesday, artifact.days.wednesday, artifact.days.friday].flat();
+  const dataPath = join(process.cwd(), 'scripts', 'scores-data.json');
+  let payload: any = { scores: [] };
 
-  return fixtures.map((fixture) => ({
-    params: { gameId: fixture.fixtureId },
-  }));
+  if (existsSync(dataPath)) {
+    try {
+      payload = JSON.parse(readFileSync(dataPath, 'utf-8'));
+    } catch {
+      payload = { scores: [] };
+    }
+  }
+
+  const scores = Array.isArray(payload.scores) ? payload.scores : [];
+
+  return scores
+    .filter((g) => g?.id)
+    .map((g) => ({
+      params: { gameId: String(g.id) },
+      props: { game: toPublicGameDetail(g) },
+    }));
 }
 
-const artifact = loadWeeklyArtifact();
-const fixture = findFixtureById(artifact, Astro.params.gameId || '');
-const detail = fixture ? buildGameDetailViewModel(fixture) : null;
+const { game } = Astro.props;
 ---
 
-<BaseLayout title="Game Details" description="Fixture detail view">
-  <section class="bg-brand-purple px-4 py-12 text-white">
-    <div class="mx-auto max-w-4xl">
-      <a href="/scores" class="text-sm underline underline-offset-2">← Back to This Week's Games</a>
-      <h1 class="mt-3 text-3xl font-black">Game Details</h1>
-    </div>
+<BaseLayout title={game ? `${game.homeTeam} vs ${game.awayTeam}` : 'Game Not Found'}>
+  <section class="bg-brand-purple py-12 px-4 text-center">
+    <h1 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">Game Details</h1>
   </section>
 
-  <section class="bg-brand-offwhite px-4 py-10">
-    <div class="mx-auto max-w-4xl">
-      {detail ? (
-        <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-          <h2 class="text-2xl font-bold text-brand-purple">{detail.homeTeam} vs {detail.awayTeam}</h2>
-          {detail.grade && <p class="mt-2 text-sm font-semibold uppercase tracking-wide text-gray-700">{detail.grade}</p>}
+  {game ? (
+    <section class="py-10 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+      <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+        <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">{game.competition ?? 'Competition'}</p>
+        <h2 class="text-2xl font-bold text-brand-purple mb-2">{game.homeTeam} vs {game.awayTeam}</h2>
+        <p class="text-gray-600 text-sm mb-4">{game.date ?? 'TBA'} {game.time ? `• ${game.time.slice(0, 5)}` : '• TBA'}</p>
 
-          <dl class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div>
-              <dt class="text-xs uppercase tracking-wide text-gray-500">Time</dt>
-              <dd class="mt-1 text-sm text-brand-black">{detail.kickoffDisplay ?? 'TBA'}</dd>
-            </div>
-            <div>
-              <dt class="text-xs uppercase tracking-wide text-gray-500">Venue</dt>
-              <dd class="mt-1 text-sm text-brand-black">{detail.venue ?? 'Venue TBA'}</dd>
-            </div>
-            <div>
-              <dt class="text-xs uppercase tracking-wide text-gray-500">Court</dt>
-              <dd class="mt-1 text-sm text-brand-black">{(detail as any).court ?? 'Court TBA'}</dd>
-            </div>
-          </dl>
-
-          {detail.squads?.length > 0 && (
-            <section class="mt-8" aria-label="Visible squad details">
-              <h3 class="text-lg font-bold text-brand-purple">Squads</h3>
-              <div class="mt-3 space-y-4">
-                {detail.squads.map((squad: any) => (
-                  <div class="rounded-lg border border-gray-100 bg-gray-50 p-4">
-                    <h4 class="text-sm font-semibold text-brand-black">{squad.teamName}</h4>
-                    {squad.players?.length > 0 ? (
-                      <ul class="mt-2 list-disc pl-5 text-sm text-gray-700">
-                        {squad.players.map((player: any) => (
-                          <li>{player.name}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p class="mt-2 text-sm text-gray-500">No visible player details.</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-        </article>
-      ) : (
-        <div class="rounded-xl border border-gray-200 bg-white p-6">
-          <h2 class="text-lg font-bold text-brand-purple">Game not found</h2>
-          <p class="mt-2 text-sm text-gray-600">This game may no longer be in the current weekly fixture window.</p>
-          <a href="/scores" class="mt-4 inline-block text-sm font-semibold text-brand-purple underline">Return to Scores</a>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div class="rounded-lg bg-brand-offwhite p-4 text-center">
+            <p class="text-xs text-gray-500 uppercase">Home</p>
+            <p class="font-bold text-brand-black">{game.homeTeam}</p>
+            <p class="text-2xl font-black text-brand-purple">{game.homeScore ?? '-'}</p>
+          </div>
+          <div class="rounded-lg bg-brand-offwhite p-4 text-center">
+            <p class="text-xs text-gray-500 uppercase">Away</p>
+            <p class="font-bold text-brand-black">{game.awayTeam}</p>
+            <p class="text-2xl font-black text-brand-purple">{game.awayScore ?? '-'}</p>
+          </div>
         </div>
-      )}
-    </div>
-  </section>
+
+        <p class="text-sm text-gray-600"><strong>Status:</strong> {game.status}</p>
+        <p class="text-sm text-gray-600"><strong>Venue:</strong> {game.venue ?? 'TBA'}</p>
+        <p class="text-sm text-gray-600"><strong>Court:</strong> {game.court ?? 'TBA'}</p>
+
+        <div class="mt-6">
+          <a href="/" class="text-brand-purple font-bold hover:underline focus-visible:outline-2 focus-visible:outline-brand-gold">
+            ← Back to Home
+          </a>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="py-12 px-4">
+      <div class="max-w-3xl mx-auto rounded-xl border border-gray-200 bg-white p-6 text-center">
+        <h2 class="text-xl font-bold text-brand-black mb-2">Game not found</h2>
+        <p class="text-gray-600 text-sm mb-4">This game may be unavailable or no longer in the published dataset.</p>
+        <a href="/scores" class="text-brand-purple font-bold hover:underline">View all scores</a>
+      </div>
+    </section>
+  )}
 </BaseLayout>

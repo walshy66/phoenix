@@ -1,20 +1,1919 @@
 {
-  "lastUpdated": "2025-01-01T00:00:00.000Z",
-  "note": "Run 'node scripts/scrape-playhq.js' to update scores",
+  "lastUpdated": "2026-04-13T03:54:14.080Z",
   "scores": [
     {
-      "id": "1",
-      "date": "2025-01-01",
-      "competition": "Bendigo Basketball Association",
-      "homeTeam": "Bendigo Phoenix",
-      "awayTeam": "Opponent",
-      "homeScore": 85,
-      "awayScore": 72,
-      "status": "completed"
+      "id": "e3e40b4e-aaef-4e53-b8d5-74bc40ff12ab",
+      "date": "2026-04-24",
+      "time": "20:15:00",
+      "competition": "Friday U18 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 3",
+      "homeTeam": "Bunjils U18 Boys ALPHA",
+      "awayTeam": "PHOENIX Roughnuts",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "2c846df1-9ece-4a12-9d1f-1380728dff67",
+      "date": "2026-04-24",
+      "time": "21:45:00",
+      "competition": "Friday U18 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "homeTeam": "Generals U18 Boys Rockets",
+      "awayTeam": "PHOENIX TBA U18 Boys (Callum)",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
+      "date": "2026-04-24",
+      "time": "21:45:00",
+      "competition": "Friday U18 Boys 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "Aztec U18 Boys Bronze",
+      "awayTeam": "PHOENIX Green Machines",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "865a40e2-3451-48a2-920d-13ae8db5bf02",
+      "date": "2026-04-24",
+      "time": "17:15:00",
+      "competition": "Friday U10 Boys 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "St Francis U10 Boys Bullets",
+      "awayTeam": "PHOENIX Thunder",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "2a375817-125e-4e26-83e8-750c4944dd40",
+      "date": "2026-04-24",
+      "time": "18:45:00",
+      "competition": "Friday U12 Boys 3",
+      "venue": "Girton Grammar",
+      "court": "Court 1",
+      "homeTeam": "PHOENIX Son's",
+      "awayTeam": "Beavers Dragons",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "acaeacb5-4f1c-49e6-94af-3c018fbc0c84",
+      "date": "2026-04-24",
+      "time": "18:00:00",
+      "competition": "Friday U12 Boys 7",
+      "venue": "Girton Grammar",
+      "court": "Court 1",
+      "homeTeam": "PHOENIX Phantoms",
+      "awayTeam": "Beavers Cubs",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "74c088b1-d239-4c25-bfb6-8b2c11ce6296",
+      "date": "2026-04-24",
+      "time": "18:00:00",
+      "competition": "Friday U12 Boys 8",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "PHOENIX Flames",
+      "awayTeam": "Strath Suns",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "a7ac172f-efbd-47d2-9287-8d7e9260de6b",
+      "date": "2026-04-24",
+      "time": "19:30:00",
+      "competition": "Friday U16 Boys 4",
+      "venue": "Girton Grammar",
+      "court": "Court 2",
+      "homeTeam": "PHOENIX Go Buckets",
+      "awayTeam": "Generals U16 Boys Gullys",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "17ec680f-6718-4a01-8f49-dbdef7bdf438",
+      "date": "2026-04-24",
+      "time": "20:15:00",
+      "competition": "Friday U16 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "PHOENIX Gooney Tunes",
+      "awayTeam": "Aztec U16 Boys White",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "cdc7bc72-a499-4fe0-943f-5393f2619654",
+      "date": "2026-04-24",
+      "time": "18:45:00",
+      "competition": "Friday U16 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "PHOENIX Splash",
+      "awayTeam": "Aztec U16 Boys Bronze",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "596de913-0371-4d7b-86a3-8a48ad112530",
+      "date": "2026-04-22",
+      "time": "19:30:00",
+      "competition": "Wednesday U16 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 1",
+      "homeTeam": "PHOENIX Raiders",
+      "awayTeam": "Aztec U16 Boys Yellow",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "24ad7a1a-53b3-40c7-b7a9-54756fbea989",
+      "date": "2026-04-22",
+      "time": "16:30:00",
+      "competition": "Wednesday U14 Boys 8",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "Aztec U14 Boys Teal",
+      "awayTeam": "PHOENIX Flyers",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "4ef27b66-c2e4-4e53-aa50-d313738aeb1b",
+      "date": "2026-04-22",
+      "time": "18:45:00",
+      "competition": "Wednesday U14 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "PHOENIX Legends",
+      "awayTeam": "U14’s FLYING FLAMINGOS ",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "58fd088c-8bdd-4250-9729-074736f39d52",
+      "date": "2026-04-22",
+      "time": "19:30:00",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 3",
+      "homeTeam": "PHOENIX Gold Nuggets",
+      "awayTeam": "Strath Vipers",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "f4ba5e01-daac-4796-bf7d-7f37342335e2",
+      "date": "2026-04-22",
+      "time": "17:15:00",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 1",
+      "homeTeam": "Beavers Wizards",
+      "awayTeam": "PHOENIX Sweats",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "049cb0e4-bc55-4e80-9e2f-a8d6b60b9e78",
+      "date": "2026-04-22",
+      "time": "18:45:00",
+      "competition": "Wednesday U14 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "Beavers Ballers",
+      "awayTeam": "PHOENIX Two Blues",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "74b44602-3110-4547-b256-4cad7c87b3c6",
+      "date": "2026-04-21",
+      "time": "18:45:00",
+      "competition": "Tuesday U16 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8",
+      "homeTeam": "PHOENIX Tulips",
+      "awayTeam": "Aztec U16 Girls Aqua",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
+      "date": "2026-04-21",
+      "time": "17:15:00",
+      "competition": "Tuesday U12 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "Strath Shooting Stars",
+      "awayTeam": "PHOENIX Stars",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "abbf0db6-51f0-4991-bb92-3fad639ae34d",
+      "date": "2026-04-20",
+      "time": "18:45:00",
+      "competition": "Monday U14 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8",
+      "homeTeam": "PHOENIX Diamonds",
+      "awayTeam": "Aztec U14 Girls Yellow",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
+    },
+    {
+      "id": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
+      "date": "2026-04-20",
+      "time": "16:30:00",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "PHOENIX Go Getters",
+      "awayTeam": "PHOENIX Firebirds",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING"
     }
   ],
+  "ladders": {
+    "Friday U18 Boys 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U8 Boys 2 Yellow": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U8 Boys 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday Women": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U18 Boys 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U16 Boys 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U16 Boys 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U14 Boys 8": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U14 Boys 7": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U14 Boys 6": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U14 Boys 5": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U14 Boys 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U14 Boys 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Wednesday U14 Boys 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "U18 Boys Waiting List": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "U16 Waiting List": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "U14 Waiting List": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "U12 Waiting List": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "U10 Waiting List": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U18 Girls": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U18 Girls 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U18 Girls 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U16 Girls 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U16 Girls 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U16 Girls 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U12 Girls 5": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U12 Girls 4": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U12 Girls 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U12 Girls 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U12 Girls 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday U12 Boys 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday Men Division 4": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday Men Division 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Tuesday Men Division 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Sunday Men Division 4": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Sunday Men Division 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Women": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U8 Girls": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U14 Girls 5": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U14 Girls 4": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U14 Girls 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U14 Girls 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U14 Girls 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U10 Girls 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U10 Girls 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday U10 Girls 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men H Grade Reserve": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men H Grade": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men G Grade": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men F Grade": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men E Grade": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men D Grade": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men B/C Grade": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Monday Men A Grade": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U8 Boys 2 Blue": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U18 Boys 6": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U18 Boys 5": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U18 Boys 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U10 Boys 1": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U10 Boys 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U10 Boys 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U10 Boys 4": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U10 Boys 5": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U12 Boys 2": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U12 Boys 3": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U12 Boys 4": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U12 Boys 5": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U12 Boys 6": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U12 Boys 7": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U12 Boys 8": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U16 Boys 4": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U16 Boys 5": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U16 Boys 6": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U16 Boys 7": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ],
+    "Friday U16 Boys 8": [
+      {
+        "rank": 1,
+        "team": "—",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0,
+        "isPhoenix": false
+      }
+    ]
+  },
   "ladder": [
-    { "rank": 1, "team": "Bendigo Phoenix", "played": 1, "won": 1, "lost": 0, "drawn": 0, "points": 2 },
-    { "rank": 2, "team": "Opponent", "played": 1, "won": 0, "lost": 1, "drawn": 0, "points": 0 }
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    },
+    {
+      "rank": 1,
+      "team": "—",
+      "played": 0,
+      "won": 0,
+      "lost": 0,
+      "drawn": 0,
+      "points": 0,
+      "isPhoenix": false
+    }
   ]
 }

@@ -59,42 +59,38 @@ The season page is at `/src/pages/seasons.astro` — Claude can update the data 
 
 ---
 
-## 5. How to Run the Weekly Scores Refresh
+## 5. How to Refresh Scores Data (Scores Page + Home Carousel)
 
-The Scores page now uses a weekly artifact file: `/scripts/weekly-games-data.json`.
+The website now uses two score artifacts:
+- `/scripts/scores-data.json` → full Scores page
+- `/scripts/home-games-data.json` → Home page 7-day carousel
 
-### Required environment variables
-- `PLAYHQ_API_KEY` (required)
-- `PLAYHQ_TENANT` (optional, default: `bv`)
-- `PLAYHQ_SEASON_IDS` (comma-separated season UUIDs)
-- `PLAYHQ_CLUB_NAME` (optional, default contains `Phoenix`)
-
-### Run refresh locally
+### Step A — Refresh source scores from PlayHQ
 ```bash
 npm run scores:refresh
+```
+
+### Step B — Validate scores artifact shape
+```bash
 npm run scores:check
 ```
 
-Or run both in one command:
+### Step C — Build home carousel artifact from latest scores
 ```bash
-npm run scores:refresh:weekly
+npm run home-scores:refresh
 ```
 
-### What happens
-- On success: writes `status: "success"` artifact for upcoming Mon–Fri window
-- On fetch failure with prior success: writes `status: "stale"` and page shows a stale-data banner
-- On fetch failure without prior success: writes `status: "error"` and page shows a user-facing error
+### Step D — Validate home carousel artifact shape
+```bash
+npm run home-scores:check
+```
 
-Then rebuild the site:
+If validation fails, commands show a clear error (invalid JSON/shape/status).
+
+Finally rebuild the site:
 ```bash
 npm run build
 ```
-
-### Automated Sunday refresh
-A GitHub Actions workflow is included at:
-- `.github/workflows/weekly-scores-refresh.yml`
-
-It runs weekly and can also be started manually from GitHub Actions (`workflow_dispatch`).
 
 ---
 
