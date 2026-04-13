@@ -1,129 +1,187 @@
-# Feature Specification: Scores Page – This Week's Games
+# Spec: coa-52-scores-page
 
-**Feature Branch**: `cameronwalsh/coa-52-scores-page`
-**Created**: 2026-04-13
-**Status**: Specifying
-**Input**: User description: "Need to use the API to pull in the information for each game day. 4 columns Mon|Tuesday|Wednesday|Friday. Games ordered by time, earliest first. Click through to game details. Refresh every Sunday with upcoming week's games. Title: 'This Week's Games'."
+**Status**: READY_FOR_DEV
+**Source**: https://linear.app/coachcw/issue/COA-52/scores-page
+**Priority**: P1
+**Primary Route**: `/scores`
 
 ---
 
-## User Scenarios & Testing *(mandatory)*
+## Summary
 
-### User Story 1 – View This Week's Games at a Glance (Priority: P1)
+Build a new Scores page experience titled **"This Week's Games"** that shows upcoming fixtures for the next Mon–Fri window in four day columns (Monday, Tuesday, Wednesday, Friday), ordered by earliest kickoff first. Users can open a game’s full details from each tile. Data refreshes weekly on Sunday so the page always reflects the upcoming week.
 
-A visitor lands on the Scores page and immediately sees all games for the upcoming week organised by day (Mon–Fri), with the earliest games appearing first within each day column. This is the primary use case: quick orientation to when their team plays.
+---
 
-**Why this priority**: Essential for site visitors to know when games are happening; core value of the page.
+## User Scenarios & Testing
 
-**Independent Test**: Can be fully tested by loading the page and verifying the 4-column grid displays correctly with games in chronological order. Delivers immediate visibility of the week's schedule.
+### User Story 1 — View This Week's Games Grid (Priority: P1)
+
+As a visitor, I can open Scores and immediately understand this week’s game schedule in a predictable day-by-day layout.
+
+**Why this priority**: This is the core page value and must work before any secondary enhancements.
+
+**Independent Test**: Load `/scores` with fixture data and verify the 4-column day grid, title, ordering, and day empty states.
 
 **Acceptance Scenarios**:
 
-1. **Given** it is Sunday–Friday and the page loads, **When** the page renders, **Then** a grid with 4 columns (Monday, Tuesday, Wednesday, Friday) is visible with correct day labels.
-2. **Given** multiple games occur on the same day, **When** displayed in that day's column, **Then** games are ordered by kickoff time (earliest first).
-3. **Given** no games are scheduled for a particular day, **When** that day's column renders, **Then** an empty state message (e.g., "No games scheduled") is shown.
-4. **Given** the page is visited on Sunday, **When** it loads, **Then** it displays the upcoming week's games (Mon–Fri of the following week).
+1. **Given** I open the Scores page, **When** the page loads, **Then** I see the page title "This Week's Games".
+2. **Given** fixtures are available for the target week, **When** the grid renders, **Then** I see exactly 4 columns labeled Monday, Tuesday, Wednesday, and Friday.
+3. **Given** a day has multiple games, **When** games are shown in that day’s column, **Then** games are sorted by kickoff time ascending.
+4. **Given** a day has no fixtures, **When** that column renders, **Then** I see "No games scheduled" for that day.
+5. **Given** some fixtures have missing/invalid kickoff time, **When** displayed, **Then** those fixtures show "TBA" and are listed after timed fixtures for the same day.
 
 ---
 
-### User Story 2 – Click Through to Game Details (Priority: P1)
+### User Story 2 — Open Game Details (Priority: P1)
 
-A visitor clicks on a game tile and is taken to detailed information about that match (venue, teams, squad details, etc.), mirroring the experience available in PlayHQ.
+As a visitor, I can open full details for a selected game from the weekly grid.
 
-**Why this priority**: Without drill-down to details, the page is surface-level; users need full context (lineups, venue, time confirmation).
+**Why this priority**: The schedule overview must connect to full game context to be useful.
 
-**Independent Test**: Can be fully tested by clicking a game tile and verifying the detail view or modal/link loads with expected PlayHQ data (team names, kickoff time, venue, squad info). Independently testable from the grid layout.
+**Independent Test**: Click any game tile and verify full details open and return path preserves schedule context.
 
 **Acceptance Scenarios**:
 
-1. **Given** a game is displayed on the Scores page, **When** clicked, **Then** either a modal opens or the user navigates to a detail page showing full game information (teams, time, venue, squad details if available).
-2. **Given** the user is viewing game details, **When** they close the modal or navigate back, **Then** they return to the Scores page with the week's games still visible.
-3. **Given** a game's squad information is marked as hidden in PlayHQ, **When** the user views details, **Then** hidden player information is not exposed (per PlayHQ privacy rules).
+1. **Given** a game tile is visible, **When** I activate it (click/tap/keyboard), **Then** I am taken to a game detail surface containing teams, time, venue, and any non-hidden squad details.
+2. **Given** I am on game details, **When** I go back/close, **Then** I return to the weekly grid without losing context.
+3. **Given** squad/player data is marked hidden by source data, **When** details are rendered, **Then** hidden information is not displayed.
 
 ---
 
-### User Story 3 – Automatic Weekly Refresh (Priority: P2)
+### User Story 3 — Weekly Automatic Refresh (Priority: P2)
 
-Every Sunday, the page content automatically fetches and displays the next week's games without requiring manual intervention. This ensures the page is always current.
+As a site owner, I need weekly fixture data to refresh on Sunday without manual editing.
 
-**Why this priority**: Automation reduces administrative burden and keeps the page fresh; important for ongoing usability but can be delivered as a scheduled task separate from the UI.
+**Why this priority**: Operationally important for freshness but secondary to the P1 user-facing schedule UI.
 
-**Independent Test**: Can be tested by checking that the data fetch is triggered on Sunday (or on-demand refresh is available) and that the grid updates with the correct week's games. Does not block the core grid/click-through features.
+**Independent Test**: Simulate Sunday refresh and verify next week’s fixtures are available and rendered on `/scores`.
 
 **Acceptance Scenarios**:
 
-1. **Given** the page is accessed on a Sunday, **When** the page loads or shortly thereafter, **Then** a fresh API call is made to retrieve the next week's fixtures.
-2. **Given** new game data is fetched, **When** the grid updates, **Then** all games for the upcoming week (Mon–Fri) are reflected accurately.
-3. **Given** the refresh occurs, **When** the page updates, **Then** there is no visible flicker or loss of user context (smooth update or brief loading indicator).
+1. **Given** it is Sunday in `Australia/Melbourne` timezone, **When** refresh processing runs, **Then** the upcoming Mon–Fri fixture window is fetched from the source.
+2. **Given** refreshed data is available, **When** users open `/scores`, **Then** they see the new upcoming week’s fixtures.
+3. **Given** refresh fails, **When** `/scores` is requested, **Then** users receive a clear error state and the failure is logged.
 
 ---
 
-### User Story 4 – Responsive Grid Layout (Priority: P2)
+### User Story 4 — Responsive and Accessible Layout (Priority: P2)
 
-The 4-column grid adapts gracefully on smaller screens (tablet, mobile), ensuring the Scores page remains readable and usable across devices.
+As a visitor on any device, I can read and use the weekly grid and game interactions.
 
-**Why this priority**: Accessibility/responsiveness is important for secondary interactions; core functionality (viewing this week's games) works on all devices, but layout may shift to stacked columns or scrollable grid on mobile.
+**Why this priority**: Required for broad usability and constitutional accessibility standards.
 
-**Independent Test**: Can be fully tested by viewing the page on mobile, tablet, and desktop and confirming the grid is readable and game information is accessible without horizontal scrolling (or with natural scrolling for a dense grid).
+**Independent Test**: Verify behavior and readability at mobile (320px), tablet (768px), desktop (1024px+) with keyboard-only navigation.
 
 **Acceptance Scenarios**:
 
-1. **Given** the page is viewed on a mobile device, **When** it renders, **Then** the grid either stacks to 1–2 columns or remains a 4-column scrollable grid (design decision) while maintaining readability.
-2. **Given** a game tile is displayed on a small screen, **When** the user taps it, **Then** the detail view opens and is appropriately sized for the screen.
+1. **Given** I view the page on mobile, **When** layout adapts, **Then** game content remains readable and interactive without broken overlap.
+2. **Given** I navigate using keyboard only, **When** I tab through interactive elements, **Then** each game tile is focusable with visible focus state and can be activated.
+3. **Given** I use assistive technology, **When** content is announced, **Then** day groupings and game actions are conveyed with semantic structure.
 
 ---
 
-### Edge Cases
+## Edge Cases
 
-* What happens if the PlayHQ API is unreachable? → Display an error message ("Unable to load games at this time. Please try again later.") and optionally show cached data from the last successful fetch.
-* What if a game's kickoff time is invalid or missing? → Display the time as "TBA" and order such games after those with confirmed times.
-* What if today is Saturday or Sunday? → The page always displays Mon–Fri of the next week (not the current partial week).
-* What if there are more than 10 games on a single day? → The day column scrolls vertically, or games are shown in a paginated view within that column.
+- PlayHQ/source API unavailable or times out.
+- Invalid credentials or missing configuration for data fetch.
+- Partial payload (missing venue, missing team names, missing kickoff).
+- No fixtures for one or more required day columns.
+- No fixtures at all for the target Mon–Fri window.
+- Duplicate fixture IDs in source payload.
+- Saturday/Sunday browsing should still target upcoming Mon–Fri window.
+- Timezone boundary issues around Sunday 00:00 rollover.
+- Very high game volume for a single day.
 
 ---
 
-## Requirements *(mandatory)*
+## Requirements
 
 ### Functional Requirements
 
-* **FR-001**: System MUST fetch the current week's fixtures from the PlayHQ API using the organisation ID and season ID.
-* **FR-002**: System MUST display fixtures in a 4-column grid layout with headers for Monday, Tuesday, Wednesday, and Friday.
-* **FR-003**: Games within each day column MUST be ordered by kickoff time in ascending order (earliest first).
-* **FR-004**: System MUST display an empty state message for any day with no scheduled games.
-* **FR-005**: Each game tile MUST show game title/summary (e.g., "U10 Boys vs Opponent" or "Grade division").
-* **FR-006**: Each game tile MUST be clickable and link to or open full game details from PlayHQ (including teams, time, venue, squad).
-* **FR-007**: System MUST NOT expose player or staff information marked as hidden in PlayHQ.
-* **FR-008**: Page title MUST read "This Week's Games".
-* **FR-009**: System MUST refresh game data every Sunday (automatic or on-demand) to pull the next week's fixtures.
-* **FR-010**: System MUST handle API errors gracefully (e.g., network failure, invalid credentials) and display user-friendly error messages.
+- **FR-001**: System MUST derive and display fixtures for the upcoming Mon–Fri window.
+- **FR-002**: System MUST render exactly four day columns: Monday, Tuesday, Wednesday, Friday; fixtures scheduled on other days (Thursday, Saturday, Sunday) MUST NOT be rendered in the weekly grid.
+- **FR-003**: System MUST sort games within each day by kickoff time ascending.
+- **FR-004**: System MUST display "No games scheduled" for any day with zero fixtures.
+- **FR-005**: Each game tile MUST display an at-a-glance summary (teams/grade/time minimum).
+- **FR-006**: Each game tile MUST provide an interactive path to full game details via a deep-linkable detail URL.
+- **FR-007**: Game detail view MUST include teams, kickoff time, and venue when available.
+- **FR-008**: System MUST suppress hidden squad/player/staff fields from source data.
+- **FR-009**: Page heading MUST be "This Week's Games".
+- **FR-010**: System MUST trigger a weekly refresh every Sunday in `Australia/Melbourne` timezone for the next Mon–Fri window.
+- **FR-011**: On data fetch failure, system MUST show the most recent successful weekly dataset (if available) with a visible stale-data banner; if no prior successful dataset exists, system MUST provide a user-visible error state.
+- **FR-012**: System MUST log refresh and fetch failures with, at minimum, `timestamp`, `operation`, `status/errorCode`, `message`, `windowStart`, and `windowEnd`.
+- **FR-013**: Source fixture data MUST be treated as authoritative; client view MUST NOT infer or fabricate unavailable server values.
+
+### Non-Functional Requirements
+
+- **NFR-001 (Performance)**: Initial page render for the grid MUST complete within 2 seconds on a standard connection under normal payload size.
+- **NFR-002 (Accessibility)**: Interactive controls MUST be keyboard accessible with visible focus indicators.
+- **NFR-003 (Accessibility)**: Color contrast and semantics MUST satisfy WCAG 2.1 AA for text and controls.
+- **NFR-004 (Responsive)**: Layout MUST be usable at 320px, 768px, and 1024px+ breakpoints.
+- **NFR-005 (Error Semantics)**: User-facing errors MUST be clear, actionable, and distinguish temporary fetch failure from empty schedule.
+- **NFR-006 (Observability)**: Refresh/fetch outcomes MUST be logged with `timestamp`, `operation`, `status/errorCode`, `message`, `windowStart`, and `windowEnd`.
+- **NFR-007 (Consistency)**: Scores page MUST render within existing site shell/navigation patterns.
+- **NFR-008 (Data Hygiene)**: Sensitive credentials MUST NOT be exposed in rendered page content or client-visible payloads.
 
 ### Key Entities
 
-* **Game/Fixture**: Represents a single scheduled match. Attributes: `gameId` (PlayHQ ID), `homeTeam`, `awayTeam`, `kickoffTime`, `venue`, `grade`, `division`, `day`, `squads` (with hidden flag).
-* **Week**: Represents the Monday–Friday window for which games are displayed. Attributes: `startDate` (Monday), `endDate` (Friday).
-* **API Response**: Data structure from PlayHQ containing fixture list for a given season/grade; includes game IDs, team details, times, venues.
+- **Fixture**: Single scheduled game record (`fixtureId`, `homeTeam`, `awayTeam`, `kickoffAt`, `venue`, `grade`, `dayOfWeek`, `visibilityFlags`).
+- **Week Window**: Target display window with `startDate` (Monday) and `endDate` (Friday).
+- **Daily Bucket**: Grouped list of fixtures per supported day column.
+- **Game Detail View Model**: Expanded detail payload for a selected fixture including only permitted fields.
+- **Refresh Run**: One scheduled/triggered retrieval attempt for upcoming week with status metadata (`startedAt`, `completedAt`, `status`, `errorCode?`).
 
 ---
 
-## Success Criteria *(mandatory)*
+## Success Criteria
 
-### Measurable Outcomes
-
-* **SC-001**: Scores page loads and displays the 4-column grid within 2 seconds on a standard connection.
-* **SC-002**: 100% of non-hidden game fixtures are displayed correctly on the Scores page for the current week.
-* **SC-003**: Users can click through from any game tile to its full details without errors.
-* **SC-004**: Responsive design: page is readable and functional on mobile (320px), tablet (768px), and desktop (1024px+).
-* **SC-005**: Page title displays as "This Week's Games" and matches the site's design and branding.
-* **SC-006**: API errors are caught and communicated to users within 5 seconds with a clear message.
-* **SC-007**: Data refresh on Sunday completes without manual intervention and updates the page within 5 minutes of Sunday 00:00 AEST.
+- **SC-001**: Page title displays exactly "This Week's Games".
+- **SC-002**: 100% of valid fixtures for the target Mon–Fri window appear in the correct day column.
+- **SC-003**: Within each day column, fixture order is always earliest-to-latest by kickoff.
+- **SC-004**: Users can open game details from any listed fixture without navigation or rendering errors.
+- **SC-005**: Hidden squad/player fields are never displayed in UI output.
+- **SC-006**: Page is usable at 320px, 768px, and 1024px+ with keyboard interaction.
+- **SC-007**: Sunday refresh completes automatically and updates the upcoming week dataset without manual content edits.
+- **SC-008**: On source/API failure, a user-facing error appears and a structured log entry is produced.
 
 ---
 
-## Technical Notes
+## Acceptance Criteria (System-Level)
 
-* **API Integration**: Use PlayHQ public API (x-api-key: `4a1e6a01-32f3-477d-9c08-4d9ec6b50148`, organisation ID: `90c7fb8e-b434-42ea-9af5-625235ca11e7`). Endpoints: Seasons → Teams → Grades → Fixtures.
-* **Data Caching**: Consider caching fixture data to reduce API calls and improve performance; refresh cache on Sundays.
-* **Week Definition**: Always filter fixtures for Mon–Fri of the current or next week (not Thu–Sat, not Sun).
-* **Accessibility**: Ensure game tiles are keyboard-navigable; use semantic HTML and ARIA labels where appropriate.
-* **Brand Alignment**: Use Bendigo Phoenix brand colours (Primary Purple `#573F93`, Vegas Gold `#8B7536`, Black `#111111`, Off-White `#F4F5F7`).
-* **Handover**: Document the PlayHQ API credentials, data fetch schedule, and error handling in the README for the next maintainer."
+1. **AC-001**: Given the target week has fixtures, when `/scores` loads, then the title and four required day columns are present.
+2. **AC-002**: Given multiple fixtures in one day, when rendered, then ordering is ascending by kickoff time.
+3. **AC-003**: Given a day has zero fixtures, when rendered, then that day shows "No games scheduled".
+4. **AC-004**: Given a fixture has unknown kickoff, when rendered, then time is shown as "TBA" and placed after timed entries for that day.
+5. **AC-005**: Given a user activates a fixture tile, when detail view opens, then teams/time/venue are shown where available and the detail view is addressable via a shareable URL.
+6. **AC-006**: Given hidden squad data flags, when detail view renders, then hidden fields are omitted.
+7. **AC-007**: Given a user exits game details (or uses browser back), when returning to the schedule, then prior weekly context remains visible.
+8. **AC-008**: Given a source fetch failure, when `/scores` renders, then the most recent successful weekly data is shown with a visible stale-data banner; if no prior successful data exists, a clear error message is shown instead of silent failure.
+9. **AC-009**: Given a source fetch failure, when failure occurs, then logs include `timestamp`, `operation`, `status/errorCode`, `message`, `windowStart`, and `windowEnd`.
+10. **AC-010**: Given Sunday refresh schedule time in `Australia/Melbourne` arrives, when refresh runs, then upcoming Mon–Fri data is refreshed.
+11. **AC-011**: Given mobile viewport (320px), when page renders, then content remains legible and actionable.
+12. **AC-012**: Given keyboard-only navigation, when tabbing through game items, then focus is visible and activation works.
+13. **AC-013**: Given assistive technology use, when reading the page, then day groupings and item actions are semantically understandable.
+14. **AC-014**: Given no fixtures exist for the target week, when page renders, then a full-page empty state explains no games are scheduled.
+15. **AC-015**: Given fixtures exist on Thursday, Saturday, or Sunday, when the weekly grid renders, then those fixtures are excluded and no day column is created for those days.
+
+---
+
+## Constitutional Compliance
+
+- ✅ **Principle I — User Outcomes First**: Stories define clear user value and measurable outcomes.
+- ✅ **Principle II — Test-First Discipline**: Acceptance criteria are explicit and independently testable.
+- ✅ **Principle III — Backend Authority & Invariants**: Source data treated as authoritative; no client fabrication.
+- ✅ **Principle IV — Error Semantics & Observability**: Error messaging and structured logging are required.
+- ✅ **Principle V — AppShell Integrity**: Page remains within existing site shell/navigation patterns.
+- ✅ **Principle VI — Accessibility First**: Keyboard, semantics, and contrast requirements explicitly included.
+- ✅ **Principle VII — Immutable Data Flow**: Refresh/fetch state modeled explicitly; no opaque client mutation behavior.
+- ✅ **Principle IX — Cross-Feature Consistency**: Aligns with existing `/scores` route and shared site interaction patterns.
+- ✅ **Detail Surface Behavior**: Detail access is deep-linkable and URL-addressable, with predictable back-navigation to the weekly schedule.
+
+---
+
+## Notes
+
+- Do not store raw third-party API keys in committed spec text, runtime UI output, or client-exposed payloads.
+- This spec focuses on behavior and quality constraints (WHAT), not implementation mechanics (HOW).

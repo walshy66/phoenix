@@ -59,24 +59,42 @@ The season page is at `/src/pages/seasons.astro` — Claude can update the data 
 
 ---
 
-## 5. How to Run the Scores Scraper
+## 5. How to Run the Weekly Scores Refresh
 
-The scores scraper fetches results from PlayHQ.
+The Scores page now uses a weekly artifact file: `/scripts/weekly-games-data.json`.
 
-**Before first use:** You need to add PlayHQ competition IDs.
-1. Go to [playhq.com](https://playhq.com) and find the Bendigo Basketball Association competitions
-2. Copy the competition IDs from the URL
-3. Open `/scripts/scrape-playhq.js` and add them to the `COMPETITION_IDS` array
+### Required environment variables
+- `PLAYHQ_API_KEY` (required)
+- `PLAYHQ_TENANT` (optional, default: `bv`)
+- `PLAYHQ_SEASON_IDS` (comma-separated season UUIDs)
+- `PLAYHQ_CLUB_NAME` (optional, default contains `Phoenix`)
 
-**To run the scraper:**
+### Run refresh locally
 ```bash
-node scripts/scrape-playhq.js
+npm run scores:refresh
+npm run scores:check
 ```
 
-This updates `/scripts/scores-data.json`. Then rebuild the site to publish the new scores:
+Or run both in one command:
+```bash
+npm run scores:refresh:weekly
+```
+
+### What happens
+- On success: writes `status: "success"` artifact for upcoming Mon–Fri window
+- On fetch failure with prior success: writes `status: "stale"` and page shows a stale-data banner
+- On fetch failure without prior success: writes `status: "error"` and page shows a user-facing error
+
+Then rebuild the site:
 ```bash
 npm run build
 ```
+
+### Automated Sunday refresh
+A GitHub Actions workflow is included at:
+- `.github/workflows/weekly-scores-refresh.yml`
+
+It runs weekly and can also be started manually from GitHub Actions (`workflow_dispatch`).
 
 ---
 
