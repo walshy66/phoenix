@@ -61,15 +61,34 @@
  * on a schedule (e.g. every 5 minutes on game days) and rebuild the site.
  */
 
-const fs   = require('fs');
-const path = require('path');
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 
-const PLAYHQ_API_KEY = process.env.PLAYHQ_API_KEY || 'PASTE_YOUR_API_KEY_HERE';
-const TENANT         = 'bv';                                    // Basketball Victoria
-const ORG_ID         = '90c7fb8e-b434-42ea-9af5-625235ca11e7'; // Bendigo Basketball Association
-const CLUB_NAME      = 'Bendigo Phoenix';
+function readLocalEnvVar(key) {
+  const envPath = path.join(process.cwd(), '.env.local');
+  if (!fs.existsSync(envPath)) return undefined;
+
+  const raw = fs.readFileSync(envPath, 'utf-8');
+  const lines = raw.split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const idx = trimmed.indexOf('=');
+    if (idx === -1) continue;
+    const k = trimmed.slice(0, idx).trim();
+    const v = trimmed.slice(idx + 1).trim().replace(/^['"]|['"]$/g, '');
+    if (k === key) return v;
+  }
+  return undefined;
+}
+
+const PLAYHQ_API_KEY = process.env.PLAYHQ_API_KEY || readLocalEnvVar('PLAYHQ_API_KEY') || 'PASTE_YOUR_API_KEY_HERE';
+const TENANT         = process.env.PLAYHQ_TENANT || readLocalEnvVar('PLAYHQ_TENANT') || 'bv';
+const ORG_ID         = process.env.PLAYHQ_ORG_ID || readLocalEnvVar('PLAYHQ_ORG_ID') || '90c7fb8e-b434-42ea-9af5-625235ca11e7';
+const CLUB_NAME      = process.env.PLAYHQ_CLUB_MATCH || readLocalEnvVar('PLAYHQ_CLUB_MATCH') || 'Phoenix';
 
 // Season UUIDs to fetch. Add/remove as seasons change.
 // Get the full UUID from the admin URL: https://bv.playhq.com/org/.../seasons/{UUID}/grades
@@ -78,7 +97,9 @@ const SEASON_IDS = [
   // 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', // Summer 2025/26 — add full UUID here
 ];
 
-const API_BASE    = 'https://api.playhq.com';
+const API_BASE    = process.env.PLAYHQ_API_BASE || readLocalEnvVar('PLAYHQ_API_BASE') || 'https://api.playhq.com';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const OUTPUT_FILE = path.join(__dirname, 'scores-data.json');
 
 // ─── API helper ───────────────────────────────────────────────────────────────
@@ -87,8 +108,7 @@ async function apiFetch(endpoint) {
   if (PLAYHQ_API_KEY === 'PASTE_YOUR_API_KEY_HERE') {
     throw new Error(
       'No API key configured.\n' +
-      'Set your key with:  export PLAYHQ_API_KEY=your-key-here\n' +
-      'Or paste it into PLAYHQ_API_KEY at the top of this script.\n' +
+      'Set PLAYHQ_API_KEY in your shell or in .env.local at repo root.\n' +
       'See the BEFORE YOU RUN section above for how to get a key.'
     );
   }
@@ -157,6 +177,7 @@ function normaliseGame(game, gradeName) {
     time:        game.schedule?.time ?? null,
     competition: gradeName,
     venue:       game.venue?.name ?? null,
+    court:       game.venue?.surfaceName ?? game.venue?.surfaceAbbreviation ?? null,
     homeTeam:    home?.name ?? 'TBD',
     awayTeam:    away?.name ?? 'TBD',
     homeScore:   home?.scoreTotal ?? null,
@@ -183,6 +204,10 @@ function normaliseLadderRow(row, rank) {
 async function main() {
   console.log('🏀 Bendigo Phoenix — PlayHQ scraper');
   console.log('─────────────────────────────────────');
+
+  if (PLAYHQ_API_KEY === 'PASTE_YOUR_API_KEY_HERE') {
+    throw new Error('No API key configured. Set PLAYHQ_API_KEY before running scores:refresh.');
+  }
 
   const allScores  = [];
   const allLadders = {};

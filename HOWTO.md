@@ -59,21 +59,35 @@ The season page is at `/src/pages/seasons.astro` — Claude can update the data 
 
 ---
 
-## 5. How to Run the Scores Scraper
+## 5. How to Refresh Scores Data (Scores Page + Home Carousel)
 
-The scores scraper fetches results from PlayHQ.
+The website now uses two score artifacts:
+- `/scripts/scores-data.json` → full Scores page
+- `/scripts/home-games-data.json` → Home page 7-day carousel
 
-**Before first use:** You need to add PlayHQ competition IDs.
-1. Go to [playhq.com](https://playhq.com) and find the Bendigo Basketball Association competitions
-2. Copy the competition IDs from the URL
-3. Open `/scripts/scrape-playhq.js` and add them to the `COMPETITION_IDS` array
-
-**To run the scraper:**
+### Step A — Refresh source scores from PlayHQ
 ```bash
-node scripts/scrape-playhq.js
+npm run scores:refresh
 ```
 
-This updates `/scripts/scores-data.json`. Then rebuild the site to publish the new scores:
+### Step B — Validate scores artifact shape
+```bash
+npm run scores:check
+```
+
+### Step C — Build home carousel artifact from latest scores
+```bash
+npm run home-scores:refresh
+```
+
+### Step D — Validate home carousel artifact shape
+```bash
+npm run home-scores:check
+```
+
+If validation fails, commands show a clear error (invalid JSON/shape/status).
+
+Finally rebuild the site:
 ```bash
 npm run build
 ```

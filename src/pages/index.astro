@@ -1,8 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorStrip from '../components/SponsorStrip.astro';
-import ScoreCard from '../components/ScoreCard.astro';
 import HeroCircularCarousel from '../components/HeroCircularCarousel.astro';
+import HomeScoresCarousel from '../components/HomeScoresCarousel.astro';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { validateHomeGamesArtifact } from '../lib/home-scores/contracts';
 
 /**
  * HERO CAROUSEL SLIDES
@@ -50,32 +53,35 @@ const quickLinks = [
   },
 ];
 
-const recentScores = [
-  {
-    homeTeam: 'Bendigo Phoenix',
-    awayTeam: 'Rivals FC',
-    homeScore: 85,
-    awayScore: 72,
-    date: '2025-03-15',
-    competition: 'BBA Senior',
+const fallbackArtifact = {
+  generatedAt: new Date().toISOString(),
+  status: 'error',
+  window: {
+    kind: 'rolling-7-days',
+    startDate: '',
+    endDate: '',
+    timezone: 'Australia/Melbourne',
   },
-  {
-    homeTeam: 'North Stars',
-    awayTeam: 'Bendigo Phoenix',
-    homeScore: 60,
-    awayScore: 78,
-    date: '2025-03-08',
-    competition: 'BBA Senior',
+  staleBanner: null,
+  error: {
+    code: 'ARTIFACT_MISSING',
+    message: 'Scores are temporarily unavailable. Please try again later.',
   },
-  {
-    homeTeam: 'Bendigo Phoenix',
-    awayTeam: 'Eastern Eagles',
-    homeScore: 91,
-    awayScore: 84,
-    date: '2025-03-01',
-    competition: 'BBA U18',
-  },
-];
+  games: [],
+};
+
+let homeGamesArtifact: any = fallbackArtifact;
+
+try {
+  const artifactPath = join(process.cwd(), 'scripts', 'home-games-data.json');
+  if (existsSync(artifactPath)) {
+    const parsed = JSON.parse(readFileSync(artifactPath, 'utf-8'));
+    const valid = validateHomeGamesArtifact(parsed);
+    homeGamesArtifact = valid.ok ? parsed : fallbackArtifact;
+  }
+} catch {
+  homeGamesArtifact = fallbackArtifact;
+}
 ---
 
 <BaseLayout title="Home">
@@ -103,39 +109,7 @@ const recentScores = [
   </section>
 
 
-  <!-- Latest Results Ticker -->
-  <section class="py-8 bg-brand-black overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 mb-4">
-      <h2 class="text-white text-sm font-bold uppercase tracking-widest flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-brand-gold inline-block animate-pulse"></span>
-        Latest Results
-      </h2>
-    </div>
-    <div class="relative overflow-hidden">
-      <div class="flex gap-6 px-4 overflow-x-auto pb-2">
-        {recentScores.map(score => (
-          <div class="flex-shrink-0 w-72">
-            <ScoreCard
-              homeTeam={score.homeTeam}
-              awayTeam={score.awayTeam}
-              homeScore={score.homeScore}
-              awayScore={score.awayScore}
-              date={score.date}
-              competition={score.competition}
-            />
-          </div>
-        ))}
-        <div class="flex-shrink-0 w-72 flex items-center justify-center">
-          <a
-            href="/scores"
-            class="block text-center px-6 py-4 rounded-xl border-2 border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white transition-colors font-bold text-sm"
-          >
-            View All Scores &amp; Ladder &rarr;
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <HomeScoresCarousel artifact={homeGamesArtifact} />
 
   <!-- Quick Link Cards -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
