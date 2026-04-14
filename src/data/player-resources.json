@@ -6,9 +6,10 @@
     "audience": "players",
     "category": "Nutrition",
     "ageGroup": "All Ages",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-03-10"
+    "type": "link",
+    "url": "https://jr.nba.com/category/basketball-skills-and-drills/",
+    "dateAdded": "2026-03-10",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-002",
@@ -17,9 +18,10 @@
     "audience": "players",
     "category": "Nutrition",
     "ageGroup": "U14",
-    "type": "document",
-    "url": "#",
-    "dateAdded": "2026-03-12"
+    "type": "link",
+    "url": "https://jr.nba.com/category/ball-handling/",
+    "dateAdded": "2026-03-12",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-003",
@@ -29,8 +31,9 @@
     "category": "Nutrition",
     "ageGroup": "U16+",
     "type": "link",
-    "url": "#",
-    "dateAdded": "2026-03-14"
+    "url": "https://jr.nba.com/category/shooting/",
+    "dateAdded": "2026-03-14",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-004",
@@ -40,8 +43,9 @@
     "category": "Mental Skills",
     "ageGroup": "U14",
     "type": "link",
-    "url": "#",
-    "dateAdded": "2026-03-16"
+    "url": "https://jr.nba.com/category/passing/",
+    "dateAdded": "2026-03-16",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-005",
@@ -50,9 +54,10 @@
     "audience": "players",
     "category": "Mental Skills",
     "ageGroup": "U12",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-03-18"
+    "type": "link",
+    "url": "https://jr.nba.com/category/rebounding/",
+    "dateAdded": "2026-03-18",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-006",
@@ -61,9 +66,10 @@
     "audience": "players",
     "category": "Mental Skills",
     "ageGroup": "U16+",
-    "type": "document",
-    "url": "#",
-    "dateAdded": "2026-03-20"
+    "type": "link",
+    "url": "https://jr.nba.com/category/conditioning/",
+    "dateAdded": "2026-03-20",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-007",
@@ -72,9 +78,10 @@
     "audience": "players",
     "category": "Rules",
     "ageGroup": "All Ages",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-03-22"
+    "type": "link",
+    "url": "https://jr.nba.com/category/defense/",
+    "dateAdded": "2026-03-22",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-008",
@@ -84,8 +91,9 @@
     "category": "Rules",
     "ageGroup": "U14",
     "type": "video",
-    "url": "#",
-    "dateAdded": "2026-03-24"
+    "url": "https://www.youtube.com/watch?v=ubPUDB5Z9zY",
+    "dateAdded": "2026-03-24",
+    "sourceDomain": "Basketball Australia"
   },
   {
     "id": "player-009",
@@ -94,9 +102,10 @@
     "audience": "players",
     "category": "Drills",
     "ageGroup": "U12",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-03-26"
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=F3Xm0UhzjOQ",
+    "dateAdded": "2026-03-26",
+    "sourceDomain": "Basketball Australia"
   },
   {
     "id": "player-010",
@@ -106,8 +115,9 @@
     "category": "Drills",
     "ageGroup": "U14",
     "type": "video",
-    "url": "#",
-    "dateAdded": "2026-03-28"
+    "url": "https://www.youtube.com/watch?v=ktMOLwYs1ug",
+    "dateAdded": "2026-03-28",
+    "sourceDomain": "Basketball Australia"
   },
   {
     "id": "player-011",
@@ -116,9 +126,10 @@
     "audience": "players",
     "category": "Development",
     "ageGroup": "U16+",
-    "type": "link",
-    "url": "#",
-    "dateAdded": "2026-04-01"
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=gRJm_xV_Pg0",
+    "dateAdded": "2026-04-01",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-012",
@@ -127,9 +138,10 @@
     "audience": "players",
     "category": "Development",
     "ageGroup": "U14",
-    "type": "document",
-    "url": "#",
-    "dateAdded": "2026-04-03"
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=fcfavEIYaU0",
+    "dateAdded": "2026-04-03",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-013",
@@ -138,9 +150,10 @@
     "audience": "players",
     "category": "Development",
     "ageGroup": "U8",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-04-05"
+    "type": "video",
+    "url": "https://youtu.be/hSCQ6zzc3uI?si=n2ECRfLQYLdhzf9c",
+    "dateAdded": "2026-04-05",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-014",
@@ -150,8 +163,9 @@
     "category": "Drills",
     "ageGroup": "U10",
     "type": "link",
-    "url": "#",
-    "dateAdded": "2026-04-07"
+    "url": "https://jr.nba.com/jr-nba-skills-challenge/",
+    "dateAdded": "2026-04-07",
+    "sourceDomain": "NBA"
   },
   {
     "id": "player-015",
@@ -160,8 +174,9 @@
     "audience": "players",
     "category": "Rules",
     "ageGroup": "U8",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-04-09"
+    "type": "link",
+    "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+    "dateAdded": "2026-04-09",
+    "sourceDomain": "NBA"
   }
 ]

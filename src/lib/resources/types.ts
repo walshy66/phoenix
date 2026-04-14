@@ -19,8 +19,22 @@ export interface Resource {
   ageGroup: string;
   type: ResourceType;
   url: string;
+  sourceDomain?: string;
   imageUrl?: string;
   dateAdded: string;
+}
+
+export interface CandidateResource {
+  title: string;
+  sourceUrl: string;
+  sourceDomain: string;
+  inferredType: 'video' | 'pdf' | 'link';
+  inferredCategory: string;
+  inferredAgeGroup: AgeGroup | 'All Ages';
+  inferredAudience: 'coaching' | 'players';
+  reachable: boolean;
+  status: 'pending' | 'approved' | 'rejected';
+  description?: string;
 }
 
 export interface FilterEvent {
