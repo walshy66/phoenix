@@ -1,0 +1,282 @@
+---
+---
+
+<div
+  id="resource-modal"
+  class="fixed inset-0 z-[70] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="resource-modal-title"
+  data-open="false"
+>
+  <div id="resource-modal-backdrop" class="absolute inset-0 bg-black/60" aria-hidden="true"></div>
+
+  <div class="relative z-10 flex h-full w-full items-center justify-center md:p-4">
+    <div class="flex h-full w-full flex-col overflow-hidden bg-brand-offwhite md:h-[90vh] md:w-[95vw] md:rounded-xl md:shadow-xl">
+      <header class="flex items-start justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3 md:px-6">
+        <div class="min-w-0 flex-1">
+          <h2
+            id="resource-modal-title"
+            class="truncate text-lg font-black uppercase tracking-tight text-brand-black md:text-xl"
+            title=""
+          ></h2>
+          <p id="resource-modal-source" class="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500"></p>
+        </div>
+        <button
+          id="resource-modal-close"
+          type="button"
+          class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+          aria-label="Close resource"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+
+      <div class="flex min-h-0 flex-1 flex-col gap-3 overflow-hidden p-3 md:p-4">
+        <div id="resource-modal-video-wrap" class="hidden min-h-0 flex flex-1 items-center justify-center">
+          <div class="mx-auto aspect-video w-full max-h-full overflow-hidden rounded bg-black" style="max-width: min(100%, calc((100dvh - 12rem) * 16 / 9));">
+            <iframe
+              id="resource-modal-iframe"
+              class="h-full w-full"
+              src=""
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowfullscreen
+              title=""
+            ></iframe>
+          </div>
+        </div>
+
+        <div id="resource-modal-pdf-wrap" class="hidden min-h-0 flex-1">
+          <object
+            id="resource-modal-pdf"
+            class="h-full min-h-[50vh] w-full rounded border border-gray-200 bg-white"
+            data=""
+            type="application/pdf"
+            title=""
+          >
+            <embed id="resource-modal-pdf-embed" src="" type="application/pdf" class="h-full w-full" />
+          </object>
+        </div>
+
+        <div id="resource-modal-fallback" class="hidden rounded border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <p id="resource-modal-fallback-message" class="mb-3 font-medium"></p>
+          <a
+            id="resource-modal-fallback-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center rounded bg-brand-gold px-3 py-2 text-sm font-bold text-white hover:opacity-90"
+          >
+            Open direct link
+          </a>
+        </div>
+
+        <div class="mt-auto flex items-center justify-end">
+          <a
+            id="resource-modal-download"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            download
+            class="hidden inline-flex items-center rounded bg-brand-gold px-3 py-2 text-sm font-bold text-white hover:opacity-90"
+          >
+            Download
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('resource-modal');
+  const backdrop = document.getElementById('resource-modal-backdrop');
+  const closeBtn = document.getElementById('resource-modal-close');
+  const titleEl = document.getElementById('resource-modal-title');
+  const sourceEl = document.getElementById('resource-modal-source');
+
+  const videoWrap = document.getElementById('resource-modal-video-wrap');
+  const iframeEl = document.getElementById('resource-modal-iframe');
+  const pdfWrap = document.getElementById('resource-modal-pdf-wrap');
+  const pdfObj = document.getElementById('resource-modal-pdf');
+  const pdfEmbed = document.getElementById('resource-modal-pdf-embed');
+
+  const fallbackBox = document.getElementById('resource-modal-fallback');
+  const fallbackMsg = document.getElementById('resource-modal-fallback-message');
+  const fallbackLink = document.getElementById('resource-modal-fallback-link');
+  const downloadLink = document.getElementById('resource-modal-download');
+
+  let triggerEl = null;
+  let activeType = 'link';
+  let activeUrl = '';
+  let videoTimeout = null;
+
+  const FOCUSABLE = 'button, [href], [tabindex]:not([tabindex="-1"])';
+
+  function getEmbedUrl(rawUrl) {
+    const ytWatch = rawUrl.match(/youtube\.com\/watch\?v=([^&]+)/i);
+    if (ytWatch) return `https://www.youtube.com/embed/${ytWatch[1]}`;
+
+    const ytShort = rawUrl.match(/youtu\.be\/([^?&]+)/i);
+    if (ytShort) return `https://www.youtube.com/embed/${ytShort[1]}`;
+
+    const vimeo = rawUrl.match(/vimeo\.com\/(\d+)/i);
+    if (vimeo) return `https://player.vimeo.com/video/${vimeo[1]}`;
+
+    return null;
+  }
+
+  function setFallback(message, url, label = 'Open direct link') {
+    fallbackMsg.textContent = message;
+    fallbackLink.textContent = label;
+    fallbackLink.setAttribute('href', url);
+    fallbackBox.classList.remove('hidden');
+  }
+
+  function hideFallback() {
+    fallbackBox.classList.add('hidden');
+    fallbackMsg.textContent = '';
+  }
+
+  function resetContent() {
+    hideFallback();
+    videoWrap.classList.add('hidden');
+    pdfWrap.classList.add('hidden');
+    downloadLink.classList.add('hidden');
+    iframeEl.setAttribute('src', '');
+    pdfObj.setAttribute('data', '');
+    pdfEmbed.setAttribute('src', '');
+    if (videoTimeout) {
+      clearTimeout(videoTimeout);
+      videoTimeout = null;
+    }
+  }
+
+  function trapFocus(event) {
+    if (event.key !== 'Tab' || modal.classList.contains('hidden')) return;
+
+    const nodes = Array.from(modal.querySelectorAll(FOCUSABLE)).filter((el) => {
+      return !el.hasAttribute('disabled') && !el.classList.contains('hidden');
+    });
+
+    if (!nodes.length) return;
+
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.setAttribute('data-open', 'false');
+    document.body.classList.remove('overflow-hidden');
+    resetContent();
+
+    if (triggerEl && typeof triggerEl.focus === 'function') {
+      triggerEl.focus();
+    }
+  }
+
+  function openModal() {
+    const rawTitle = modal.dataset.modalTitle || 'Resource';
+    const rawUrl = modal.dataset.modalUrl || '';
+    const rawType = modal.dataset.modalType || 'link';
+    const rawSource = modal.dataset.modalSource || '';
+
+    if (!rawUrl || rawUrl === '#' || rawType === 'link') return;
+
+    const embedUrl = rawType === 'video' ? getEmbedUrl(rawUrl) : null;
+    if (rawType === 'video' && !embedUrl) return;
+
+    activeType = rawType;
+    activeUrl = rawUrl;
+
+    titleEl.textContent = rawTitle;
+    titleEl.setAttribute('title', rawTitle);
+    titleEl.setAttribute('aria-label', rawTitle);
+
+    sourceEl.textContent = rawSource || '';
+    sourceEl.classList.toggle('hidden', !rawSource);
+
+    resetContent();
+
+    if (rawType === 'video') {
+      videoWrap.classList.remove('hidden');
+      iframeEl.setAttribute('src', embedUrl);
+      iframeEl.setAttribute('title', rawSource ? `${rawTitle} — ${rawSource}` : rawTitle);
+      videoTimeout = setTimeout(() => {
+        setFallback(
+          'Video unavailable — it may have been removed. Try opening the direct link.',
+          rawUrl,
+          'Open direct link'
+        );
+        videoWrap.classList.add('hidden');
+      }, 3000);
+    }
+
+    if (rawType === 'pdf' || rawType === 'document') {
+      pdfWrap.classList.remove('hidden');
+      pdfObj.setAttribute('data', rawUrl);
+      pdfObj.setAttribute('title', rawTitle);
+      pdfEmbed.setAttribute('src', rawUrl);
+      downloadLink.classList.remove('hidden');
+      downloadLink.setAttribute('href', rawUrl);
+    }
+
+    modal.classList.remove('hidden');
+    modal.setAttribute('data-open', 'true');
+    document.body.classList.add('overflow-hidden');
+
+    requestAnimationFrame(() => closeBtn.focus());
+  }
+
+  iframeEl.addEventListener('load', () => {
+    if (videoTimeout) {
+      clearTimeout(videoTimeout);
+      videoTimeout = null;
+    }
+  });
+
+  pdfObj.addEventListener('error', () => {
+    if (activeType !== 'pdf' && activeType !== 'document') return;
+
+    setFallback(
+      'This document could not be loaded. Use the download link below to open it directly.',
+      activeUrl,
+      'Download document'
+    );
+  });
+
+  modal.openModal = openModal;
+  modal.closeModal = closeModal;
+
+  closeBtn.addEventListener('click', closeModal);
+  backdrop.addEventListener('click', closeModal);
+
+  document.addEventListener('keydown', (event) => {
+    if (modal.classList.contains('hidden')) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    trapFocus(event);
+  });
+
+  modal.addEventListener('resource:open', (event) => {
+    triggerEl = event.detail?.trigger || null;
+    modal.dataset.modalTitle = event.detail?.title || '';
+    modal.dataset.modalUrl = event.detail?.url || '';
+    modal.dataset.modalType = event.detail?.type || 'link';
+    modal.dataset.modalSource = event.detail?.source || '';
+    openModal();
+  });
+</script>

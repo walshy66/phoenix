@@ -6,9 +6,10 @@
     "audience": "coaching",
     "category": "Defence",
     "ageGroup": "U12",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-03-15"
+    "type": "link",
+    "url": "https://jr.nba.com/category/defense/",
+    "dateAdded": "2026-03-15",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-002",
@@ -17,9 +18,10 @@
     "audience": "coaching",
     "category": "Defence",
     "ageGroup": "U14",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-03-18"
+    "type": "link",
+    "url": "https://jr.nba.com/category/rebounding/",
+    "dateAdded": "2026-03-18",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-003",
@@ -28,9 +30,10 @@
     "audience": "coaching",
     "category": "Defence",
     "ageGroup": "U16+",
-    "type": "document",
-    "url": "#",
-    "dateAdded": "2026-03-20"
+    "type": "link",
+    "url": "https://jr.nba.com/category/offense/",
+    "dateAdded": "2026-03-20",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-004",
@@ -39,9 +42,10 @@
     "audience": "coaching",
     "category": "Offence",
     "ageGroup": "U14",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-03-22"
+    "type": "link",
+    "url": "https://jr.nba.com/category/shooting/",
+    "dateAdded": "2026-03-22",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-005",
@@ -51,8 +55,9 @@
     "category": "Offence",
     "ageGroup": "U16+",
     "type": "link",
-    "url": "#",
-    "dateAdded": "2026-03-25"
+    "url": "https://jr.nba.com/category/passing/",
+    "dateAdded": "2026-03-25",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-006",
@@ -62,8 +67,9 @@
     "category": "Drills",
     "ageGroup": "U8",
     "type": "link",
-    "url": "#",
-    "dateAdded": "2026-03-28"
+    "url": "https://jr.nba.com/category/basketball-skills-and-drills/",
+    "dateAdded": "2026-03-28",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-007",
@@ -72,9 +78,10 @@
     "audience": "coaching",
     "category": "Drills",
     "ageGroup": "U14",
-    "type": "video",
-    "url": "#",
-    "dateAdded": "2026-04-01"
+    "type": "link",
+    "url": "https://jr.nba.com/category/ball-handling/",
+    "dateAdded": "2026-04-01",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-008",
@@ -83,9 +90,10 @@
     "audience": "coaching",
     "category": "Fundamentals",
     "ageGroup": "All Ages",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-04-02"
+    "type": "link",
+    "url": "https://jr.nba.com/category/conditioning/",
+    "dateAdded": "2026-04-02",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-009",
@@ -94,9 +102,10 @@
     "audience": "coaching",
     "category": "Game Plans",
     "ageGroup": "U16+",
-    "type": "document",
-    "url": "#",
-    "dateAdded": "2026-04-03"
+    "type": "link",
+    "url": "https://jr.nba.com/jr-nba-skills-challenge/",
+    "dateAdded": "2026-04-03",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-010",
@@ -116,9 +125,10 @@
     "audience": "coaching",
     "category": "Game Plans",
     "ageGroup": "U14",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-04-06"
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=fcfavEIYaU0",
+    "dateAdded": "2026-04-06",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-012",
@@ -127,9 +137,10 @@
     "audience": "coaching",
     "category": "Fundamentals",
     "ageGroup": "U16+",
-    "type": "document",
-    "url": "#",
-    "dateAdded": "2026-04-07"
+    "type": "video",
+    "url": "https://youtu.be/hSCQ6zzc3uI?si=n2ECRfLQYLdhzf9c",
+    "dateAdded": "2026-04-07",
+    "sourceDomain": "NBA"
   },
   {
     "id": "coaching-013",
@@ -138,9 +149,10 @@
     "audience": "coaching",
     "category": "Fundamentals",
     "ageGroup": "U8",
-    "type": "pdf",
-    "url": "#",
-    "dateAdded": "2026-04-08"
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=ktMOLwYs1ug&list=PLmPIogZWH3R5wEYSg_1zfhEijQM59l-ck",
+    "dateAdded": "2026-04-08",
+    "sourceDomain": "Basketball Australia"
   },
   {
     "id": "coaching-014",
@@ -149,9 +161,10 @@
     "audience": "coaching",
     "category": "Drills",
     "ageGroup": "U10",
-    "type": "link",
-    "url": "#",
-    "dateAdded": "2026-04-09"
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=ubPUDB5Z9zY&list=PLmPIogZWH3R7thXN8nyH82iuQz2cxhf5B",
+    "dateAdded": "2026-04-09",
+    "sourceDomain": "Basketball Australia"
   },
   {
     "id": "coaching-015",
@@ -160,8 +173,105 @@
     "audience": "coaching",
     "category": "Offence",
     "ageGroup": "U10",
-    "type": "document",
-    "url": "#",
-    "dateAdded": "2026-04-10"
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=F3Xm0UhzjOQ&list=PLmPIogZWH3R5wEYSg_1zfhEijQM59l-ck",
+    "dateAdded": "2026-04-10",
+    "sourceDomain": "Basketball Australia"
+  },
+  {
+    "id": "coaching-basketball-australia-001",
+    "title": "Watch now",
+    "description": "Watch now",
+    "audience": "coaching",
+    "category": "Offence",
+    "ageGroup": "All Ages",
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=ktMOLwYs1ug",
+    "sourceDomain": "Basketball Australia",
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "id": "coaching-basketball-australia-002",
+    "title": "Visit YouTube for More",
+    "description": "Visit YouTube for More",
+    "audience": "coaching",
+    "category": "Defence",
+    "ageGroup": "All Ages",
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=ubPUDB5Z9zY",
+    "sourceDomain": "Basketball Australia",
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "id": "coaching-basketball-australia-003",
+    "title": "Man-to-Man Defence Teaching Cues",
+    "description": "Man-to-Man Defence Teaching Cues",
+    "audience": "coaching",
+    "category": "Defence",
+    "ageGroup": "All Ages",
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=F3Xm0UhzjOQ",
+    "sourceDomain": "Basketball Australia",
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "id": "coaching-nba-001",
+    "title": "Ball-Handling Drills",
+    "description": "Ball-Handling Drills",
+    "audience": "coaching",
+    "category": "Drills",
+    "ageGroup": "All Ages",
+    "type": "link",
+    "url": "https://jr.nba.com/category/ball-handling",
+    "sourceDomain": "NBA",
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "id": "coaching-nba-002",
+    "title": "Positive Coaching Alliance",
+    "description": "Positive Coaching Alliance",
+    "audience": "coaching",
+    "category": "Defence",
+    "ageGroup": "All Ages",
+    "type": "link",
+    "url": "https://jr.nba.com/category/for-coaches/coaching-tips/",
+    "sourceDomain": "NBA",
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "id": "coaching-nba-003",
+    "title": "Jr. NBA/Jr. WNBA Curriculum: Learn The Fundamentals",
+    "description": "Jr. NBA/Jr. WNBA Curriculum: Learn The Fundamentals",
+    "audience": "coaching",
+    "category": "Fundamentals",
+    "ageGroup": "All Ages",
+    "type": "link",
+    "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
+    "sourceDomain": "NBA",
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "id": "coaching-wnba-001",
+    "title": "Zone Defence Basics for Junior Coaches",
+    "description": "Zone Defence Basics for Junior Coaches",
+    "audience": "coaching",
+    "category": "Defence",
+    "ageGroup": "All Ages",
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=y2XBV0N8Cz4",
+    "sourceDomain": "WNBA",
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "id": "coaching-nba-004",
+    "title": "Simple 5-Out Flow Offence (Jr NBA)",
+    "description": "Simple 5-Out Flow Offence (Jr NBA)",
+    "audience": "coaching",
+    "category": "Offence",
+    "ageGroup": "All Ages",
+    "type": "video",
+    "url": "https://www.youtube.com/watch?v=gRJm_xV_Pg0",
+    "sourceDomain": "NBA",
+    "dateAdded": "2026-04-13"
   }
 ]

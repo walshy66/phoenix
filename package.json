@@ -15,7 +15,9 @@
     "scores:check": "node scripts/check-scores-data.js",
     "scores:refresh:weekly": "npm run scores:refresh && npm run scores:check",
     "home-scores:refresh": "node scripts/scrape-home-games.js",
-    "home-scores:check": "node scripts/check-home-games-data.js"
+    "home-scores:check": "node scripts/check-home-games-data.js",
+    "resources:merge": "node scripts/merge-resources.js",
+    "resources:scrape": "node scripts/scrape-resources.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
