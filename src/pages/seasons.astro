@@ -1,339 +1,138 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import SeasonTile from '../components/SeasonTile.astro'
-import SeasonDetailModal from '../components/SeasonDetailModal.astro'
-import KeyDatesSection from '../components/KeyDatesSection.astro'
-import { PLACEHOLDER_SEASONS, PLACEHOLDER_KEY_DATES, PLACEHOLDER_REGISTRATION_COSTS } from '../lib/seasons/constants'
+import { SEASON_CARDS } from '../lib/seasons/constants'
+import { VENUES } from '../data/venues'
 
-const seasons = PLACEHOLDER_SEASONS
-const keyDates = PLACEHOLDER_KEY_DATES
-const registrationCosts = PLACEHOLDER_REGISTRATION_COSTS
-
-/**
- * Grading Status
- * Set to true when grading sessions are scheduled/active
- * Set to false when grading is complete or not yet scheduled
- */
 const isGradingActive = false
 ---
 
 <BaseLayout title="Seasons" description="Bendigo Phoenix Basketball season draw, costs, registration and grading information.">
-  <!-- Page Hero -->
-  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none">
-      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
-      <div class="absolute -bottom-16 -left-16 w-48 h-48 rounded-full" style="background: #8B7536;"></div>
+  <section class="relative overflow-hidden bg-brand-purple px-4 py-16 text-center">
+    <div class="pointer-events-none absolute inset-0 opacity-10">
+      <div class="absolute -right-16 -top-16 h-64 w-64 rounded-full" style="background: #8B7536;"></div>
+      <div class="absolute -bottom-16 -left-16 h-48 w-48 rounded-full" style="background: #8B7536;"></div>
     </div>
-    <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix</p>
-      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">SEASONS</h1>
-      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
-      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+    <div class="relative z-10 mx-auto max-w-3xl">
+      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-brand-gold">Bendigo Phoenix</p>
+      <h1 class="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">SEASONS</h1>
+      <div class="mx-auto mt-4 h-1 w-16 bg-brand-gold"></div>
+      <p class="mx-auto mt-4 max-w-xl text-base text-purple-200">
         Find out everything you need to know about the current season — draw, registration, costs and grading.
       </p>
     </div>
   </section>
 
-  <!-- Main Seasons Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <!-- Current Season Key Dates -->
-      <div class="mb-12">
-        <KeyDatesSection keyDates={keyDates['winter-2026']} />
-      </div>
+  {VENUES.length > 0 && (
+    <section aria-labelledby="training-info-heading" class="bg-brand-offwhite px-4 py-12 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <h2 id="training-info-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">
+          Club Training Information
+        </h2>
+        <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {VENUES.map((venue) => (
+            <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 class="mb-1 text-lg font-semibold text-brand-purple">{venue.name}</h3>
+              <p class="mb-1 font-mono text-sm text-gray-500">{venue.shortCode}</p>
+              <p class="mb-4 text-sm text-gray-700">{venue.address}</p>
 
-      <!-- Season Tiles Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8 justify-center" id="seasons-grid">
-        {seasons.map(season => (
-          <SeasonTile
-            season={season}
-            data-season-id={season.id}
-            class="season-tile"
-          />
-        ))}
-      </div>
-    </div>
-  </section>
+              <div class="mb-4 border-t border-gray-100 pt-4">
+                <p class="mb-2 text-xs font-bold uppercase tracking-wide text-gray-500">Who trains when</p>
+                {venue.trainingSchedule.map((session) => (
+                  <div class="mb-3 rounded-md bg-brand-offwhite/40 p-3">
+                    <p class="mb-2 text-sm font-semibold text-brand-purple">{session.day}</p>
+                    <ul class="space-y-2">
+                      {session.timeSlots.map((slot) => (
+                        <li class="grid grid-cols-[88px_1fr] gap-3 text-sm">
+                          <p class="font-semibold text-gray-900">{slot.time}</p>
+                          <p class="text-gray-700">{slot.ageGroups.join(', ')}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
 
-  <!-- Detail Modal (conditionally rendered based on selectedSeasonId) -->
-  <SeasonDetailModal
-    id="season-detail-modal"
-    isOpen={false}
-  />
-
-  <!-- Grading Section (preserve existing content, hidden when grading is not active) -->
-  {isGradingActive && (
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Grading Information</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <p class="text-gray-600 leading-relaxed mb-4">
-            Grading sessions are used to place players in the most appropriate competition grade to ensure
-            the best possible experience for all participants.
-          </p>
-          <p class="text-gray-600 leading-relaxed mb-4">
-            All new players are required to attend a grading session. Returning players may be placed in grades
-            based on their previous season's performance.
-          </p>
-          <p class="text-gray-600 leading-relaxed">
-            Grading dates will be announced closer to the season start. Watch our social media and check back here for updates.
-          </p>
-        </div>
-        <div class="bg-white rounded-xl p-6 border border-gray-100">
-          <h3 class="font-bold text-brand-purple text-base mb-4">What to Bring to Grading</h3>
-          <ul class="space-y-3">
-            {[
-              'Basketball shoes and appropriate sports clothing',
-              'Water bottle',
-              'Completed registration form',
-              'Any previous season stats or team info if available',
-            ].map(item => (
-              <li class="flex items-start gap-2 text-sm text-gray-600">
-                <span class="text-brand-gold font-bold mt-0.5">✓</span>
-                {item}
-              </li>
-            ))}
-          </ul>
+              {venue.mapUrl && (
+                <a
+                  href={venue.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex min-h-[44px] items-center py-3 text-sm text-brand-purple underline"
+                >
+                  View on Map
+                </a>
+              )}
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
   )}
 
-  <!-- Slam Dunk callout (from existing page, preserve content) -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="p-5 rounded-xl border-2 border-brand-gold bg-yellow-50 flex gap-4 items-start">
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2" id="seasons-grid">
+        {SEASON_CARDS.map((season) => <SeasonTile season={season} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex items-start gap-4 rounded-xl border-2 border-brand-gold bg-yellow-50 p-5">
         <span class="text-3xl">🤝</span>
         <div>
-          <h3 class="font-bold text-brand-black text-base mb-1">Need Financial Assistance?</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">
-            Our <a href="/about#slam-dunk" class="text-brand-purple font-semibold hover:text-brand-gold underline">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
-            Contact us confidentially at <a href="mailto:hello@bendigophoenix.org.au" class="text-brand-purple font-semibold hover:text-brand-gold">hello@bendigophoenix.org.au</a>.
+          <h3 class="mb-1 text-base font-bold text-brand-black">Need Financial Assistance?</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Our <a href="/about#slam-dunk" class="font-semibold text-brand-purple underline hover:text-brand-gold">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
+            Contact us confidentially at <a href="mailto:hello@bendigophoenix.org.au" class="font-semibold text-brand-purple hover:text-brand-gold">hello@bendigophoenix.org.au</a>.
           </p>
         </div>
       </div>
     </div>
   </section>
+
+  {isGradingActive && (
+    <section class="bg-brand-offwhite px-4 py-16 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <h2 class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">Grading Information</h2>
+        <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
+
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div>
+            <p class="mb-4 leading-relaxed text-gray-600">
+              Grading sessions are used to place players in the most appropriate competition grade to ensure
+              the best possible experience for all participants.
+            </p>
+            <p class="mb-4 leading-relaxed text-gray-600">
+              All new players are required to attend a grading session. Returning players may be placed in grades
+              based on their previous season's performance.
+            </p>
+            <p class="leading-relaxed text-gray-600">
+              Grading dates will be announced closer to the season start. Watch our social media and check back here for updates.
+            </p>
+          </div>
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="mb-4 text-base font-bold text-brand-purple">What to Bring to Grading</h3>
+            <ul class="space-y-3">
+              {[
+                'Basketball shoes and appropriate sports clothing',
+                'Water bottle',
+                'Completed registration form',
+                'Any previous season stats or team info if available',
+              ].map((item) => (
+                <li class="flex items-start gap-2 text-sm text-gray-600">
+                  <span class="mt-0.5 font-bold text-brand-gold">✓</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
 </BaseLayout>
-
-<script>
-  import { PLACEHOLDER_SEASONS, PLACEHOLDER_KEY_DATES, PLACEHOLDER_REGISTRATION_COSTS } from '../lib/seasons/constants'
-
-  /**
-   * Window 3: Client-side modal state management and keyboard event handling
-   *
-   * Features:
-   * - Track selectedSeasonId (null = no modal)
-   * - Handle tile clicks to open modal
-   * - Handle Escape key to close modal
-   * - Manage focus: store initial focus, return on close
-   * - Support Enter/Space to open modal on keyboard
-   */
-
-  // ============================================================================
-  // STATE
-  // ============================================================================
-
-  /** Currently selected season ID, null if modal is closed */
-  let selectedSeasonId: string | null = null
-
-  /** Reference to the element that opened the modal (for focus return) */
-  let initialFocusElement: HTMLElement | null = null
-
-  // ============================================================================
-  // ELEMENTS
-  // ============================================================================
-
-  const modal = document.getElementById('season-detail-modal') as HTMLElement | null
-  const backdrop = document.querySelector('[data-modal-backdrop]') as HTMLElement | null
-  const seasonsGrid = document.getElementById('seasons-grid')
-  const seasonTiles = Array.from(document.querySelectorAll('.season-tile')) as HTMLElement[]
-
-  // ============================================================================
-  // HANDLERS
-  // ============================================================================
-
-  /**
-   * Handle season tile click
-   * Opens modal and manages focus
-   */
-  function handleTileClick(event: Event) {
-    const target = event.currentTarget as HTMLElement
-    const seasonId = target.getAttribute('data-season-id')
-
-    if (!seasonId) return
-
-    // Store the element that triggered the modal so we can return focus later
-    initialFocusElement = target
-
-    // Update selected season (triggers reactivity if using framework, or we'll update manually)
-    selectedSeasonId = seasonId
-
-    // Show modal and backdrop
-    if (modal) {
-      modal.classList.remove('hidden')
-      modal.setAttribute('data-open', 'true')
-      modal.setAttribute('data-season-id', seasonId)
-
-      if (backdrop) {
-        backdrop.classList.remove('hidden')
-        backdrop.setAttribute('data-open', 'true')
-      }
-
-      // Move focus to close button
-      const closeButton = modal.querySelector('[data-close-button]') as HTMLElement
-      if (closeButton) {
-        // Use setTimeout to ensure DOM has updated
-        setTimeout(() => {
-          closeButton.focus()
-        }, 0)
-      }
-    }
-  }
-
-  /**
-   * Handle modal close
-   * Closes modal and restores focus to originating tile
-   */
-  function handleModalClose() {
-    selectedSeasonId = null
-
-    // Hide modal and backdrop
-    if (modal) {
-      modal.classList.add('hidden')
-      modal.setAttribute('data-open', 'false')
-      modal.removeAttribute('data-season-id')
-
-      if (backdrop) {
-        backdrop.classList.add('hidden')
-        backdrop.setAttribute('data-open', 'false')
-      }
-    }
-
-    // Return focus to the tile that opened the modal
-    if (initialFocusElement) {
-      // Use setTimeout to ensure DOM has updated before restoring focus
-      setTimeout(() => {
-        if (initialFocusElement && document.contains(initialFocusElement)) {
-          initialFocusElement.focus()
-        }
-      }, 0)
-    }
-
-    initialFocusElement = null
-  }
-
-  /**
-   * Handle keyboard events
-   * - Escape key: close modal
-   * - Enter/Space on tile: open modal
-   */
-  function handleKeydown(event: KeyboardEvent) {
-    // Escape closes modal if open
-    if (event.key === 'Escape' && selectedSeasonId) {
-      event.preventDefault()
-      handleModalClose()
-      return
-    }
-
-    // Enter/Space on tile opens modal
-    if ((event.key === 'Enter' || event.key === ' ') && event.target instanceof HTMLElement) {
-      const tile = (event.target as HTMLElement).closest('.season-tile')
-      if (tile) {
-        event.preventDefault()
-        handleTileClick(new CustomEvent('click', { bubbles: true, composed: true, detail: { currentTarget: tile } }))
-        // Manually call handler since event is synthetic
-        initialFocusElement = tile as HTMLElement
-        const seasonId = (tile as HTMLElement).getAttribute('data-season-id')
-        if (seasonId) {
-          selectedSeasonId = seasonId
-          if (modal) {
-            modal.classList.remove('hidden')
-            modal.setAttribute('data-open', 'true')
-            modal.setAttribute('data-season-id', seasonId)
-            const closeButton = modal.querySelector('[data-close-button]')
-            if (closeButton instanceof HTMLElement) {
-              setTimeout(() => closeButton.focus(), 0)
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // ============================================================================
-  // INITIALIZATION
-  // ============================================================================
-
-  // Attach click handlers to season tiles
-  seasonTiles.forEach(tile => {
-    // Make tile keyboard focusable
-    if (!tile.hasAttribute('tabindex')) {
-      tile.setAttribute('tabindex', '0')
-    }
-
-    // Click handler
-    tile.addEventListener('click', handleTileClick)
-
-    // Keyboard handler
-    tile.addEventListener('keydown', handleKeydown)
-  })
-
-  // Global keyboard listener for Escape key
-  document.addEventListener('keydown', handleKeydown)
-
-  // Modal close button handler
-  if (modal) {
-    const closeButton = modal.querySelector('[data-close-button]')
-    if (closeButton) {
-      closeButton.addEventListener('click', handleModalClose)
-      closeButton.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault()
-          handleModalClose()
-        }
-      })
-    }
-  }
-
-  // Backdrop click handler
-  if (backdrop) {
-    backdrop.addEventListener('click', handleModalClose)
-  }
-
-  // ============================================================================
-  // CLEANUP (optional, for single-page navigation)
-  // ============================================================================
-
-  // If using Astro with view transitions, clean up on page exit
-  if (typeof window !== 'undefined') {
-    window.addEventListener('astro:before-swap', () => {
-      document.removeEventListener('keydown', handleKeydown)
-      seasonTiles.forEach(tile => {
-        tile.removeEventListener('click', handleTileClick)
-        tile.removeEventListener('keydown', handleKeydown)
-      })
-    })
-  }
-</script>
-
-<style>
-  /* Modal animation */
-  #season-detail-modal {
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  }
-
-  #season-detail-modal.hidden {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  #season-detail-modal[data-open="true"] {
-    opacity: 1;
-    visibility: visible;
-  }
-</style>

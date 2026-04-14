@@ -385,7 +385,7 @@ describe('KeyDatesSection Component', () => {
     });
   });
 
-  describe('Integration with SeasonDetailModal', () => {
+  describe('Integration with Season Overlay', () => {
     test('accepts season prop for context', () => {
       const harness = new KeyDatesSectionTestHarness({
         keyDates: mockKeyDates,

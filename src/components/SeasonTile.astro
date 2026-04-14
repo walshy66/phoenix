@@ -1,132 +1,71 @@
 ---
-/**
- * T007: SeasonTile Component
- *
- * Renders a clickable season card with role-based styling and keyboard accessibility.
- *
- * Features:
- * - Role-based emoji icon (🏆 Current, 📅 Next, 📚 Previous, 📦 Archive)
- * - Season name and status badge (Registration Open, Coming Soon, Past Season)
- * - Keyboard accessible: Tab to focus, Enter/Space to open detail view
- * - Responsive layout: full-width mobile, grid on tablet/desktop
- * - Touch-friendly: 44x44px minimum touch target
- * - Visible focus indicator for keyboard users
- *
- * Accessibility (WCAG 2.1 AA):
- * - role="button", tabindex="0" for keyboard navigation
- * - aria-label with descriptive text
- * - Focus indicator (ring-2 ring-offset-2)
- * - Sufficient color contrast
- *
- * Traceability: AC-1.1 (visible), AC-1.2 (clickable), AC-1.4 (keyboard),
- *              NFR-001 (keyboard), NFR-003 (aria-label), NFR-005 (touch target)
- */
-
-import type { Season } from '../lib/seasons/types';
-import { getSeasonRoleEmoji, getSeasonRoleLabel, getSeasonAriaLabel } from '../lib/seasons/utils';
+import type { SeasonCardConfig } from '../lib/seasons/types'
+import { getSeasonAriaLabel } from '../lib/seasons/utils'
 
 interface Props {
-  season: Season;
-  onClick?: () => void;
+  season: SeasonCardConfig
 }
 
-const { season, onClick } = Astro.props;
+const { season } = Astro.props
 
-const emoji = getSeasonRoleEmoji(season.role);
-const roleLabel = getSeasonRoleLabel(season);
+const baseClasses =
+  'group relative flex min-h-[120px] flex-col items-center justify-center rounded-lg border bg-white p-4 transition-all duration-200 md:min-h-40 md:p-6'
 
-// Status badge text based on season status
-const statusBadgeText = {
-  active: 'Registration Open',
-  coming_soon: 'Coming Soon',
-  completed: 'Past Season',
-}[season.status] || 'Unknown';
+const clickableClasses =
+  'cursor-pointer hover:border-brand-purple hover:shadow-md focus-visible:ring-2 focus-visible:ring-brand-purple focus-visible:ring-offset-2'
 
-// Check if this is a Coming Soon state
-const isComingSoon = season.status === 'coming_soon';
+const disabledClasses = 'cursor-not-allowed opacity-80'
 
-// Check if this should be muted (Previous or Archive)
-const isMuted = season.role === 'previous' || season.role === 'archive';
+const getTileToneClasses = (card: SeasonCardConfig) => {
+  if (card.id === 'winter-2026') return 'border-2 border-brand-purple/60 bg-purple-100'
+  if (card.id === 'summer-2025-26') return 'border-2 border-emerald-400/70 bg-emerald-100'
+  if (card.id === 'summer-2026-27') return 'border-2 border-rose-400/70 bg-rose-100'
+  return 'border-2 border-amber-400/70 bg-amber-100'
+}
 
-// Generate aria-label for accessibility
-const ariaLabel = getSeasonAriaLabel(season);
+const getBadgeClasses = (card: SeasonCardConfig) => {
+  if (card.status === 'active') {
+    return 'bg-yellow-100 text-brand-purple border border-brand-gold'
+  }
 
-// Build class string for responsive and state-based styling
-const tileClasses = [
-  // Base styling
-  'group relative flex flex-col items-center justify-center',
-  'rounded-lg border border-gray-300 bg-white',
-  'p-4 md:p-6',  // Responsive padding: 16px mobile, 24px tablet+
-  'min-h-[120px] min-h-32 md:min-h-40 cursor-pointer',  // Responsive minimum height
-  'transition-all duration-200',
+  if (card.status === 'completed') {
+    return 'bg-gray-100 text-gray-600 border border-gray-300'
+  }
 
-  // Focus indicator (keyboard accessibility)
-  'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500',
+  if (card.status === 'coming_soon' && card.role === 'next') {
+    return 'bg-purple-50 text-purple-400 border border-purple-200'
+  }
 
-  // Hover state
-  'hover:shadow-md hover:border-blue-300',
+  return 'bg-gray-100 text-gray-400 border border-gray-200'
+}
 
-  // Coming Soon state: reduced opacity, disabled cursor
-  isComingSoon ? 'opacity-60 cursor-not-allowed hover:shadow-sm hover:border-gray-200' : '',
-
-  // Previous/Archive state: muted colors
-  isMuted ? 'bg-gray-50 text-gray-600' : 'hover:bg-blue-50',
-]
-  .filter(Boolean)
-  .join(' ');
-
-const badgeClasses = [
-  'text-xs font-bold px-3 py-1 rounded-full',
-  'inline-block mb-2',
-  isComingSoon ? 'bg-yellow-100 text-yellow-800 border border-yellow-300' : 'bg-blue-100 text-blue-800 border border-blue-300',
-  isMuted ? 'bg-gray-200 text-gray-700 border border-gray-300' : '',
-]
-  .filter(Boolean)
-  .join(' ');
+const ariaLabel = getSeasonAriaLabel(season)
+const toneClasses = getTileToneClasses(season)
+const badgeClasses = `inline-block rounded-full px-3 py-1 text-xs font-bold ${getBadgeClasses(season)}`
 ---
 
-<button
-  type="button"
-  class={tileClasses}
-  role="button"
-  tabindex="0"
-  aria-label={ariaLabel}
-  onclick={onClick ? () => onClick() : undefined}
-  onkeydown={(e: KeyboardEvent) => {
-    if ((e.key === 'Enter' || e.key === ' ') && onClick) {
-      e.preventDefault();
-      onClick();
-    }
-  }}
->
-  <!-- Emoji Icon -->
-  <div class="text-4xl mb-3" aria-hidden="true">
-    {emoji}
+{season.clickable && season.navigationTarget && !season.navigationExternal ? (
+  <a href={season.navigationTarget} aria-label={ariaLabel} class={`${baseClasses} ${toneClasses} ${clickableClasses}`}>
+    <div class="mb-3 text-4xl leading-none" aria-hidden="true">{season.icon}</div>
+    <h3 class="mb-2 text-center text-base font-bold text-gray-900">{season.name}</h3>
+    <div class={badgeClasses}>{season.statusBadgeLabel}</div>
+  </a>
+) : season.clickable && season.navigationTarget && season.navigationExternal ? (
+  <a
+    href={season.navigationTarget}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={ariaLabel}
+    class={`${baseClasses} ${toneClasses} ${clickableClasses}`}
+  >
+    <div class="mb-3 text-4xl leading-none" aria-hidden="true">{season.icon}</div>
+    <h3 class="mb-2 text-center text-base font-bold text-gray-900">{season.name}</h3>
+    <div class={badgeClasses}>{season.statusBadgeLabel}</div>
+  </a>
+) : (
+  <div aria-disabled="true" tabindex="-1" aria-label={ariaLabel} class={`${baseClasses} ${toneClasses} ${disabledClasses}`}>
+    <div class="mb-3 text-4xl leading-none" aria-hidden="true">{season.icon}</div>
+    <h3 class="mb-2 text-center text-base font-bold text-gray-900">{season.name}</h3>
+    <div class={badgeClasses}>{season.statusBadgeLabel}</div>
   </div>
-
-  <!-- Season Name -->
-  <h3 class="font-bold text-center text-base text-gray-900 mb-2">
-    {season.name}
-  </h3>
-
-  <!-- Role Label -->
-  <div class="text-xs text-gray-500 mb-3 uppercase tracking-wide">
-    {roleLabel} Season
-  </div>
-
-  <!-- Status Badge -->
-  <div class={badgeClasses}>
-    {statusBadgeText}
-  </div>
-</button>
-
-<style>
-  button:focus {
-    outline: none;
-  }
-
-  button:focus-visible {
-    outline: 2px solid rgba(59, 130, 246, 0.5);
-    outline-offset: 2px;
-  }
-</style>
+)}

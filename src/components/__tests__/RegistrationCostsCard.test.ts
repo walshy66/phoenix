@@ -334,7 +334,7 @@ describe('RegistrationCostsCard Component', () => {
     });
   });
 
-  describe('Integration with SeasonDetailModal', () => {
+  describe('Integration with Season Overlay', () => {
     test('accepts season prop for context (not displayed, used for data fetching)', () => {
       const harness = new RegistrationCostsCardTestHarness({
         season: mockSeasonCurrent,
