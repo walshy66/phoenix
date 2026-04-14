@@ -1,166 +1,83 @@
-/**
- * COA-24: Seasons Page — Utility Functions
- *
- * Provides helper functions for formatting, filtering, and role determination.
- *
- * Traceability: FR-001 (display logic), Principle III (Backend Authority)
- */
+import type { Season, SeasonCardConfig, SeasonRole } from './types'
 
-import type { Season, SeasonRole } from './types';
-
-/**
- * Format ISO 8601 date to readable string
- *
- * Example: '2026-06-01' → 'June 1, 2026'
- *
- * @param iso ISO 8601 date string (YYYY-MM-DD format)
- * @returns Readable date string or 'Date TBA' if invalid
- */
 export function formatDate(iso: string): string {
-  if (!iso || typeof iso !== 'string') {
-    return 'Date TBA';
-  }
+  if (!iso || typeof iso !== 'string') return 'Date TBA'
 
   try {
-    // Parse ISO date (YYYY-MM-DD or full ISO 8601)
-    const date = new Date(iso);
+    const date = new Date(iso)
+    if (isNaN(date.getTime())) return 'Date TBA'
 
-    // Verify the date is valid
-    if (isNaN(date.getTime())) {
-      return 'Date TBA';
-    }
-
-    // Format using Intl.DateTimeFormat for locale-aware formatting
-    const formatter = new Intl.DateTimeFormat('en-AU', {
+    return new Intl.DateTimeFormat('en-AU', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
-    });
-
-    return formatter.format(date);
+    }).format(date)
   } catch {
-    return 'Date TBA';
+    return 'Date TBA'
   }
 }
 
-/**
- * Determine if archive should be shown based on season count
- *
- * Per spec FR-001: Archive only shows when 2+ distinct calendar years exist
- * IMPORTANT: This is a reference helper only. Backend MUST determine archive visibility.
- *
- * @param seasons Array of Season objects
- * @returns true if 2+ distinct calendar years present, false otherwise
- */
 export function shouldShowArchive(seasons: Season[]): boolean {
-  if (!seasons || seasons.length === 0) {
-    return false;
-  }
+  if (!seasons || seasons.length === 0) return false
 
-  // Extract unique years from all season dates
-  const years = new Set<number>();
-
+  const years = new Set<number>()
   seasons.forEach((season) => {
     try {
-      const startYear = new Date(season.startDate).getFullYear();
-      const endYear = new Date(season.endDate).getFullYear();
-
-      years.add(startYear);
-      years.add(endYear);
+      years.add(new Date(season.startDate).getFullYear())
+      years.add(new Date(season.endDate).getFullYear())
     } catch {
-      // Skip seasons with invalid dates
+      // noop
     }
-  });
+  })
 
-  // Archive shows only if 2+ distinct years
-  return years.size >= 2;
+  return years.size >= 2
 }
 
-/**
- * Get human-readable season role label
- *
- * Converts backend role enum to display-friendly text.
- *
- * @param season Season object
- * @returns Human-readable role label ('Current', 'Next', 'Previous', 'Archive')
- */
 export function getSeasonRoleLabel(season: Season): string {
   const roleMap: Record<string, string> = {
     current: 'Current',
     next: 'Next',
     previous: 'Previous',
     archive: 'Archive',
-  };
-
-  return roleMap[season.role] || 'Season';
-}
-
-/**
- * Format currency amount to AUD string
- *
- * Example: 150.00 → '$150.00'
- * Locale: en-AU (Australian Dollars)
- *
- * @param amount Numeric cost in AUD
- * @returns Formatted currency string (e.g., '$150.00')
- */
-export function getCurrencyFormatted(amount: number): string {
-  if (typeof amount !== 'number' || isNaN(amount)) {
-    return 'Price TBA';
   }
 
+  return roleMap[season.role] || 'Season'
+}
+
+export function getCurrencyFormatted(amount: number): string {
+  if (typeof amount !== 'number' || isNaN(amount)) return 'Price TBA'
+
   try {
-    const formatter = new Intl.NumberFormat('en-AU', {
+    return new Intl.NumberFormat('en-AU', {
       style: 'currency',
       currency: 'AUD',
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    });
-
-    return formatter.format(amount);
+    }).format(amount)
   } catch {
-    return 'Price TBA';
+    return 'Price TBA'
   }
 }
 
-/**
- * Get emoji icon for season role
- *
- * Used in SeasonTile for visual identification.
- * Current → 🏆, Next → 📅, Previous → 📚, Archive → 📦
- *
- * @param role Season role
- * @returns Emoji character
- */
 export function getSeasonRoleEmoji(role: SeasonRole): string {
   const emojiMap: Record<SeasonRole, string> = {
     current: '🏆',
     next: '📅',
     previous: '📚',
     archive: '📦',
-  };
-
-  return emojiMap[role] || '🏆';
-}
-
-/**
- * Generate descriptive aria-label for season tile
- *
- * Accessibility (WCAG 2.1 AA): Provides screen reader users with
- * descriptive context about the season and expected action.
- *
- * Example: "Current Season: Winter 2026, click to view details"
- * Example: "Next Season: Spring 2026, click to view details"
- * Example: "Archive Season: Winter 2025, click to view details"
- *
- * @param season Season object with role, name properties
- * @returns Descriptive aria-label string
- */
-export function getSeasonAriaLabel(season: Season): string {
-  if (!season || !season.name || !season.role) {
-    return 'Season details, click to view details';
   }
 
-  const roleLabel = getSeasonRoleLabel(season);
-  return `${roleLabel} Season: ${season.name}, click to view details`;
+  return emojiMap[role] || '🏆'
+}
+
+export function getSeasonAriaLabel(season: SeasonCardConfig): string {
+  if (season.clickable && season.navigationExternal) {
+    return `${season.name}, ${season.statusBadgeLabel}, view on PlayHQ (opens in new tab)`
+  }
+
+  if (season.clickable) {
+    return `${season.name}, ${season.statusBadgeLabel}, view Teams page`
+  }
+
+  return `${season.name}, ${season.statusBadgeLabel}, not yet available`
 }
