@@ -78,7 +78,7 @@ const scoresByDay = dayColumns.map((day) => {
 
 <BaseLayout title="Scores" description="Bendigo Phoenix Basketball latest scores and results.">
   <!-- Page Hero -->
-  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 pointer-events-none">
       <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
     </div>
@@ -86,6 +86,9 @@ const scoresByDay = dayColumns.map((day) => {
       <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Live Updates</p>
       <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">SCORES</h1>
       <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        Follow weekly results, fixtures, and game-day outcomes across all divisions.
+      </p>
     </div>
   </section>
 
@@ -109,9 +112,9 @@ const scoresByDay = dayColumns.map((day) => {
       <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
       {scoresData.scores && scoresData.scores.length > 0 ? (
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {scoresByDay.map((day) => (
-            <section class="bg-white rounded-xl border border-gray-100 p-4">
+            <section class="bg-gray-100 rounded-xl border border-gray-200 p-4">
               <h3 class="text-lg font-bold text-brand-black mb-4">{day.label}</h3>
 
               {day.games.length > 0 ? (
