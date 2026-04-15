@@ -125,7 +125,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
 
 <BaseLayout title="Teams" description="Find your perfect team at Bendigo Phoenix Basketball Club.">
   <!-- Page Hero -->
-  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 pointer-events-none">
       <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
     </div>
@@ -133,6 +133,9 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix Juniors</p>
       <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">TEAMS</h1>
       <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
+      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+        Explore Phoenix teams by age group, division, and game night.
+      </p>
     </div>
   </section>
 
@@ -168,12 +171,12 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         <div class="relative">
           <button
             id="ageGroupBtn"
-            class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+            class="filter-btn flex-shrink-0 inline-flex items-center justify-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
             aria-haspopup="listbox"
             aria-expanded="false"
           >
             Age group
-            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div id="ageGroupDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
             <div class="py-1">
@@ -224,12 +227,12 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         <div class="relative">
           <button
             id="gameDayBtn"
-            class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+            class="filter-btn flex-shrink-0 inline-flex items-center justify-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
             aria-haspopup="listbox"
             aria-expanded="false"
           >
             Game Day
-            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div id="gameDayDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
             <div class="py-1">
@@ -296,12 +299,12 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         <div class="relative">
           <button
             id="gradeBtn"
-            class="filter-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
+            class="filter-btn flex-shrink-0 inline-flex items-center justify-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-colors duration-150 border bg-white text-brand-purple border-brand-purple hover:bg-brand-offwhite"
             aria-haspopup="listbox"
             aria-expanded="false"
           >
             Grade
-            <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
+            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>
           </button>
           <div id="gradeDropdown" class="dropdown-menu hidden absolute left-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-20">
             <div class="py-1">
@@ -448,7 +451,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
 <script define:vars={{ teamsData, ageGroupOrder }}>
   // Get DOM elements
   const filterBar = document.getElementById('filter-bar');
-  const filterButtons = filterBar.querySelectorAll('.filter-btn');
+  const filterButtons = filterBar.querySelectorAll('.filter-btn[data-filter-type][data-filter-value]');
   const ageGroupSections = document.getElementById('age-group-sections');
   const noTeamsMessage = document.getElementById('no-teams-message');
   const clearFilterBtn = document.getElementById('clear-filter-btn');
@@ -456,106 +459,164 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
   const gameDayBtn = document.getElementById('gameDayBtn');
   const gradeBtn = document.getElementById('gradeBtn');
 
+  const chevronSvg = '<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
+
+  function setDropdownButtonLabel(button, label) {
+    button.innerHTML = `${label} ${chevronSvg}`;
+  }
+
+  function resetDropdownButtonLabels() {
+    setDropdownButtonLabel(ageGroupBtn, 'Age group');
+    setDropdownButtonLabel(gameDayBtn, 'Game Day');
+    setDropdownButtonLabel(gradeBtn, 'Grade');
+    ageGroupBtn.setAttribute('aria-expanded', 'false');
+    gameDayBtn.setAttribute('aria-expanded', 'false');
+    gradeBtn.setAttribute('aria-expanded', 'false');
+    ageGroupDropdown.classList.add('hidden');
+    gameDayDropdown.classList.add('hidden');
+    gradeDropdown.classList.add('hidden');
+  }
+
   // Teams data from parsed JSON
   const teams = teamsData.teams || [];
 
-  // Current filter state
-  let currentFilter = { type: 'all', value: 'all' };
+  // Additive filter state
+  let currentFilters = {
+    gender: null,
+    ageGroup: null,
+    gameDay: null,
+    grade: null,
+  };
 
-  // Initialize page
-  function init() {
-    // Load filter state from sessionStorage
-    const savedFilter = sessionStorage.getItem('teams-filter');
-    if (savedFilter) {
-      try {
-        currentFilter = JSON.parse(savedFilter);
-      } catch (e) {
-        console.warn('Failed to parse saved filter state', e);
-      }
-    }
-
-    // Apply saved filter
-    applyFilter(currentFilter);
-
-    // Update button states
-    updateFilterButtonStates();
+  function hasAnyActiveFilter() {
+    return Boolean(currentFilters.gender || currentFilters.ageGroup || currentFilters.gameDay || currentFilters.grade);
   }
 
-  // Update filter button active states and aria-pressed
+  function setChipActiveState(button, isActive) {
+    if (isActive) {
+      button.classList.add('bg-brand-purple', 'text-white', 'active');
+      button.classList.remove('bg-white', 'text-brand-purple', 'hover:bg-brand-offwhite');
+      if (button.hasAttribute('aria-pressed')) button.setAttribute('aria-pressed', 'true');
+    } else {
+      button.classList.remove('bg-brand-purple', 'text-white', 'active');
+      button.classList.add('bg-white', 'text-brand-purple', 'hover:bg-brand-offwhite');
+      if (button.hasAttribute('aria-pressed')) button.setAttribute('aria-pressed', 'false');
+    }
+  }
+
+  // Update chip/dropdown active states
   function updateFilterButtonStates() {
     filterButtons.forEach(btn => {
       const type = btn.getAttribute('data-filter-type');
       const value = btn.getAttribute('data-filter-value');
 
-      const isActive = (currentFilter.type === type && currentFilter.value === value) ||
-                      (type === 'all' && currentFilter.type === 'all' && currentFilter.value === 'all');
-
-      if (isActive) {
-        btn.classList.add('bg-brand-purple', 'text-white', 'border-brand-purple', 'active');
-        btn.classList.remove('bg-white', 'text-brand-purple', 'border-brand-purple', 'hover:bg-brand-offwhite');
-        btn.setAttribute('aria-pressed', 'true');
-      } else {
-        btn.classList.remove('bg-brand-purple', 'text-white', 'border-brand-purple', 'active');
-        btn.classList.add('bg-white', 'text-brand-purple', 'border-brand-purple', 'hover:bg-brand-offwhite');
-        btn.setAttribute('aria-pressed', 'false');
+      let isActive = false;
+      if (type === 'all') {
+        isActive = !hasAnyActiveFilter();
+      } else if (type === 'gender') {
+        isActive = currentFilters.gender === value;
       }
+
+      setChipActiveState(btn, isActive);
     });
+
+    setChipActiveState(ageGroupBtn, Boolean(currentFilters.ageGroup));
+    setChipActiveState(gameDayBtn, Boolean(currentFilters.gameDay));
+    setChipActiveState(gradeBtn, Boolean(currentFilters.grade));
   }
 
-  // Apply filter and re-render teams
-  function applyFilter(filter) {
-    currentFilter = filter;
+  function applyCurrentFilters() {
+    let filteredTeams = teams.map(team => {
+      const parsed = parseGradeName(team.gradeName);
+      return { ...team, ...parsed };
+    });
 
-    // Save to sessionStorage
-    sessionStorage.setItem('teams-filter', JSON.stringify(filter));
-
-    // Filter teams
-    let filteredTeams = [...teams];
-
-    if (filter.type !== 'all' && filter.value !== 'all') {
-      switch (filter.type) {
-        case 'gender':
-          filteredTeams = filteredTeams.map(team => {
-            const parsed = parseGradeName(team.gradeName);
-            return { ...team, ...parsed };
-          }).filter(team => team.gender.toLowerCase() === filter.value);
-          break;
-        case 'ageGroup':
-          filteredTeams = filteredTeams.map(team => {
-            const parsed = parseGradeName(team.gradeName);
-            return { ...team, ...parsed };
-          }).filter(team => team.ageGroup === filter.value);
-          break;
-        case 'gameDay':
-          filteredTeams = filteredTeams.map(team => {
-            const parsed = parseGradeName(team.gradeName);
-            return { ...team, ...parsed };
-          }).filter(team => team.gameNight.toLowerCase() === filter.value.toLowerCase());
-          break;
-        case 'grade':
-          filteredTeams = filteredTeams.map(team => {
-            const parsed = parseGradeName(team.gradeName);
-            return { ...team, ...parsed };
-          }).filter(team => {
-            // Extract division number from team.division (e.g., "DIV 2" -> 2)
-            const divisionNum = parseInt(team.division.replace('DIV ', ''));
-            return divisionNum === parseInt(filter.value);
-          });
-          break;
-      }
-    } else {
-      // Add parsed data to all teams for display
-      filteredTeams = filteredTeams.map(team => {
-        const parsed = parseGradeName(team.gradeName);
-        return { ...team, ...parsed };
+    if (currentFilters.gender) {
+      filteredTeams = filteredTeams.filter(team => team.gender.toLowerCase() === currentFilters.gender);
+    }
+    if (currentFilters.ageGroup) {
+      filteredTeams = filteredTeams.filter(team => team.ageGroup === currentFilters.ageGroup);
+    }
+    if (currentFilters.gameDay) {
+      filteredTeams = filteredTeams.filter(team => team.gameNight.toLowerCase() === currentFilters.gameDay);
+    }
+    if (currentFilters.grade) {
+      filteredTeams = filteredTeams.filter(team => {
+        const divisionNum = parseInt(team.division.replace('DIV ', ''));
+        return divisionNum === parseInt(currentFilters.grade);
       });
     }
 
-    // Render teams
     renderTeams(filteredTeams);
-
-    // Update button states
     updateFilterButtonStates();
+    sessionStorage.setItem('teams-filter', JSON.stringify(currentFilters));
+  }
+
+  function resetAllFilters() {
+    currentFilters = {
+      gender: null,
+      ageGroup: null,
+      gameDay: null,
+      grade: null,
+    };
+    resetDropdownButtonLabels();
+    applyCurrentFilters();
+  }
+
+  function setFilter(type, value) {
+    if (type === 'all') {
+      resetAllFilters();
+      return;
+    }
+
+    if (type === 'gender') currentFilters.gender = value;
+    if (type === 'ageGroup') currentFilters.ageGroup = value;
+    if (type === 'gameDay') currentFilters.gameDay = value.toLowerCase();
+    if (type === 'grade') currentFilters.grade = value;
+
+    applyCurrentFilters();
+  }
+
+  // Initialize page
+  function init() {
+    const savedFilter = sessionStorage.getItem('teams-filter');
+    if (savedFilter) {
+      try {
+        const parsed = JSON.parse(savedFilter);
+
+        // backward compatibility: prior single-filter state
+        if (parsed && parsed.type && parsed.value) {
+          currentFilters = { gender: null, ageGroup: null, gameDay: null, grade: null };
+          if (parsed.type !== 'all') {
+            if (parsed.type === 'gender') currentFilters.gender = parsed.value;
+            if (parsed.type === 'ageGroup') currentFilters.ageGroup = parsed.value;
+            if (parsed.type === 'gameDay') currentFilters.gameDay = String(parsed.value).toLowerCase();
+            if (parsed.type === 'grade') currentFilters.grade = parsed.value;
+          }
+        } else {
+          currentFilters = {
+            gender: parsed?.gender ?? null,
+            ageGroup: parsed?.ageGroup ?? null,
+            gameDay: parsed?.gameDay ?? null,
+            grade: parsed?.grade ?? null,
+          };
+        }
+      } catch (e) {
+        console.warn('Failed to parse saved filter state', e);
+      }
+    }
+
+    if (currentFilters.ageGroup) {
+      setDropdownButtonLabel(ageGroupBtn, currentFilters.ageGroup.charAt(0).toUpperCase() + currentFilters.ageGroup.slice(1));
+    }
+    if (currentFilters.gameDay) {
+      setDropdownButtonLabel(gameDayBtn, currentFilters.gameDay.charAt(0).toUpperCase() + currentFilters.gameDay.slice(1));
+    }
+    if (currentFilters.grade) {
+      setDropdownButtonLabel(gradeBtn, String(currentFilters.grade));
+    }
+
+    applyCurrentFilters();
   }
 
   // Parse grade name function (same as in Astro)
@@ -635,7 +696,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       teamsInGroup.forEach(team => {
         const tile = document.createElement('a');
         tile.href = `/teams/${team.slug}`;
-        tile.className = 'team-tile block bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-150';
+        tile.className = 'team-tile card-hover block bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 flex flex-col';
 
         // Determine pill colors based on values
         const getPillClass = (value, type) => {
@@ -661,10 +722,13 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
         };
 
         tile.innerHTML = `
-          <div class="p-6">
-            <h3 class="font-bold text-brand-black text-lg mb-2">${team.name}</h3>
-            <div class="flex flex-wrap gap-3 mb-4">
-              <span class="${getPillClass(team.division, 'division')}">${team.division}</span>
+          <div class="bg-brand-black px-4 py-2 flex items-center justify-between">
+            <span class="text-gray-400 text-xs font-medium uppercase tracking-wide">Team Profile</span>
+            <span class="${getPillClass(team.division, 'division')}">${team.division}</span>
+          </div>
+          <div class="p-4 flex-1">
+            <h3 class="font-bold text-brand-black text-lg mb-3">${team.name}</h3>
+            <div class="flex flex-wrap gap-2">
               <span class="${getPillClass(team.gameNight, 'gameNight')}">${team.gameNight}</span>
               <span class="${getPillClass(team.gender, 'gender')}">${team.gender}</span>
             </div>
@@ -691,10 +755,9 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       const type = btn.getAttribute('data-filter-type');
       const value = btn.getAttribute('data-filter-value');
 
-      // Apply the filter directly (for All, Boys, Girls buttons)
-      if (value !== '') {
-        applyFilter({ type, value });
-      }
+      // Apply direct-chip filters (All, Boys, Girls)
+      if (!type || !value) return;
+      setFilter(type, value);
     });
   });
 
@@ -704,7 +767,9 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     item.addEventListener('click', () => {
       const type = item.getAttribute('data-filter-type');
       const value = item.getAttribute('data-filter-value');
-      applyFilter({ type, value });
+      if (!type || !value) return;
+
+      setFilter(type, value);
 
       // Close the dropdown
       const dropdown = item.closest('.dropdown-menu');
@@ -713,15 +778,8 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
       // Update button text and aria-expanded
       const buttonId = dropdown.id.replace('Dropdown', 'Btn');
       const button = document.getElementById(buttonId);
-      button.textContent = value.charAt(0).toUpperCase() + value.slice(1);
-      if (type === 'ageGroup') {
-        button.innerHTML += ' <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
-      } else if (type === 'gameDay') {
-        button.innerHTML += ' <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
-      } else if (type === 'grade') {
-        button.innerHTML += ' <svg class="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/></svg>';
-      }
-
+      const label = value.charAt(0).toUpperCase() + value.slice(1);
+      setDropdownButtonLabel(button, label);
       button.setAttribute('aria-expanded', 'false');
     });
   });
@@ -771,7 +829,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
 
   // Clear filter button
   clearFilterBtn.addEventListener('click', () => {
-    applyFilter({ type: 'all', value: 'all' });
+    resetAllFilters();
   });
 
   // Initialize on page load
