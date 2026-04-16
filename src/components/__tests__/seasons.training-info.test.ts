@@ -1,45 +1,49 @@
 import { describe, test, expect } from 'vitest'
 import { VENUES } from '../../data/venues'
+import { SEASON_INFO_CARDS } from '../../data/season-info'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 
-describe('training information section', () => {
+describe('season information section', () => {
   const pageSource = readFileSync(resolve(process.cwd(), 'src/pages/seasons.astro'), 'utf-8')
+  const modalSource = readFileSync(resolve(process.cwd(), 'src/components/SeasonInfoModal.astro'), 'utf-8')
 
-  test('has two configured venues', () => {
+  test('has four configured season information cards in expected order', () => {
+    expect(SEASON_INFO_CARDS).toHaveLength(4)
+    expect(SEASON_INFO_CARDS.map((card) => card.id)).toEqual([
+      'training',
+      'uniforms',
+      'clearances',
+      'registration',
+    ])
+  })
+
+  test('training data source still uses configured venues', () => {
     expect(VENUES).toHaveLength(2)
     expect(VENUES.map((v) => v.shortCode)).toEqual(['BSE', 'VCC'])
   })
 
-  test('venues include schedule data', () => {
-    expect(VENUES[0].trainingSchedule[0].day).toBe('Sunday')
-    expect(VENUES[1].trainingSchedule[0].day).toBe('Wednesday')
-  })
-
-  test('section heading uses Club Training Information wording', () => {
-    expect(pageSource).toContain('Club Training Information')
-  })
-
-  test('map links open in new tab with safe rel', () => {
-    expect(pageSource).toContain('target="_blank"')
-    expect(pageSource).toContain('rel="noopener noreferrer"')
-  })
-
-  test('training section appears before season grid in source order', () => {
-    const trainingIdx = pageSource.indexOf('training-info-heading')
+  test('renders Season Information heading before seasons grid', () => {
+    const seasonInfoIdx = pageSource.indexOf('season-info-heading')
     const seasonsIdx = pageSource.indexOf('id="seasons-grid"')
 
-    expect(trainingIdx).toBeGreaterThan(-1)
+    expect(seasonInfoIdx).toBeGreaterThan(-1)
     expect(seasonsIdx).toBeGreaterThan(-1)
-    expect(trainingIdx).toBeLessThan(seasonsIdx)
+    expect(seasonInfoIdx).toBeLessThan(seasonsIdx)
   })
 
-  test('section is guarded by VENUES length check', () => {
-    expect(pageSource).toContain('{VENUES.length > 0 && (')
+  test('modal markup includes dialog semantics and safe external links', () => {
+    expect(modalSource).toContain('role="dialog"')
+    expect(modalSource).toContain('aria-modal="true"')
+    expect(modalSource).toContain('target="_blank"')
+    expect(modalSource).toContain('rel="noopener noreferrer"')
+    expect(modalSource).toContain('data-close-btn')
+    expect(modalSource).toContain('data-modal-backdrop')
   })
 
-  test('schedule rows use a clear 2-column layout with no dash separator', () => {
-    expect(pageSource).toContain('grid grid-cols-[88px_1fr] gap-3 text-sm')
-    expect(pageSource).not.toContain('{slot.time} — {slot.ageGroups.join(\', \')}')
+  test('image cards include lazy loading and explicit dimensions', () => {
+    expect(modalSource).toContain('loading="lazy"')
+    expect(modalSource).toContain('width="1400"')
+    expect(modalSource).toContain('height="780"')
   })
 })
