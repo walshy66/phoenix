@@ -1,4 +1,4 @@
-name: Refresh PlayHQ Data and Deploy
+name: Refresh PlayHQ Data and Publish
 
 on:
   schedule:
@@ -51,8 +51,11 @@ jobs:
       - name: Validate home games data
         run: npm run home-scores:check
 
-      - name: Build site
-        run: npm run build
+      - name: Copy refreshed artifacts into public live-data
+        run: |
+          mkdir -p public/live-data
+          cp scripts/scores-data.json public/live-data/scores.json
+          cp scripts/home-games-data.json public/live-data/home-games.json
 
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
@@ -76,6 +79,6 @@ jobs:
             set ftp:ssl-protect-data true;
             set ftp:ssl-auth TLS;
             open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" ftp://$FTP_HOST;
-            mirror --reverse --delete --verbose dist/ \"$FTP_REMOTE_DIR\";
+            mirror --reverse --delete --verbose public/live-data/ \"$FTP_REMOTE_DIR/live-data\";
             bye
           "

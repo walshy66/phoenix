@@ -1,5 +1,5 @@
 ---
-import ScoreCard from './ScoreCard.astro';
+import { renderHomeGamesStateHtml } from '../lib/playhq/renderers';
 
 interface HomeGameItem {
   gameId: string;
@@ -20,6 +20,7 @@ interface HomeGamesArtifact {
   status: 'success' | 'stale' | 'error';
   staleBanner?: string | null;
   error?: { code?: string; message?: string } | null;
+  generatedAt?: string;
   games: HomeGameItem[];
 }
 
@@ -27,11 +28,17 @@ interface Props {
   artifact: HomeGamesArtifact;
   autoAdvanceMs?: number;
   resumeDelayMs?: number;
+  liveRefreshMs?: number;
+  liveDataUrl?: string;
 }
 
-const { artifact, autoAdvanceMs = 7000, resumeDelayMs = 10000 } = Astro.props;
-const games = artifact?.games ?? [];
-const hasMany = games.length > 1;
+const {
+  artifact,
+  autoAdvanceMs = 7000,
+  resumeDelayMs = 10000,
+  liveRefreshMs = 300000,
+  liveDataUrl = '/live-data/home-games.json',
+} = Astro.props;
 ---
 
 <section class="py-8 bg-brand-black" aria-label="Latest Results">
@@ -45,68 +52,16 @@ const hasMany = games.length > 1;
     </a>
   </div>
 
-  {artifact.status === 'error' ? (
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="rounded-xl border border-red-400/40 bg-red-900/20 text-red-100 p-4 text-sm" role="status">
-        {artifact.error?.message ?? 'Scores are temporarily unavailable. Please try again later.'}
-      </div>
-    </div>
-  ) : games.length === 0 ? (
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="rounded-xl border border-gray-600 bg-gray-900 text-gray-200 p-4 text-sm" role="status">
-        No games found in the latest 7-day window.
-      </div>
-    </div>
-  ) : (
-    <div
-      class="home-scores-carousel max-w-7xl mx-auto px-4"
-      data-count={games.length}
-      data-auto-advance-ms={autoAdvanceMs}
-      data-resume-delay-ms={resumeDelayMs}
-      aria-roledescription="carousel"
-      aria-label="Latest games"
-    >
-      {artifact.status === 'stale' && (
-        <p class="mb-3 text-xs text-amber-200" role="status">
-          {artifact.staleBanner ?? 'Showing last known results. Live refresh is temporarily unavailable.'}
-        </p>
-      )}
-
-      <div class="relative overflow-hidden">
-        <div class="home-scores-track flex transition-transform duration-500 ease-out" aria-live="polite">
-          {games.map((game, idx) => (
-            <div class="home-slide min-w-full flex justify-center" data-index={idx}>
-              <a
-                href={`/scores/${game.gameId}`}
-                class="block w-full max-w-sm focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl"
-                aria-label={`Open details for ${game.homeTeam} vs ${game.awayTeam}`}
-              >
-                <ScoreCard
-                  homeTeam={game.homeTeam}
-                  awayTeam={game.awayTeam}
-                  homeScore={game.homeScore}
-                  awayScore={game.awayScore}
-                  date={game.kickoffDate ?? new Date().toISOString().slice(0, 10)}
-                  time={game.kickoffTime}
-                  venue={game.venue}
-                  court={game.court}
-                  competition={game.competition ?? 'Latest Results'}
-                  status={game.status}
-                />
-              </a>
-            </div>
-          ))}
-        </div>
-
-        {hasMany && (
-          <>
-            <button type="button" class="hs-nav hs-prev" aria-label="Previous game">←</button>
-            <button type="button" class="hs-nav hs-next" aria-label="Next game">→</button>
-          </>
-        )}
-      </div>
-    </div>
-  )}
+  <div
+    class="home-scores-root"
+    data-home-scores-root
+    data-live-data-url={liveDataUrl}
+    data-auto-advance-ms={autoAdvanceMs}
+    data-resume-delay-ms={resumeDelayMs}
+    data-live-refresh-ms={liveRefreshMs}
+    data-stale-threshold-minutes="15"
+    set:html={renderHomeGamesStateHtml(artifact)}
+  ></div>
 </section>
 
 <style>
@@ -130,75 +85,129 @@ const hasMany = games.length > 1;
 
 <script>
   import { getNextIndex, getPrevIndex } from '../lib/home-scores/carousel';
+  import { validateLiveHomeGamesPayload } from '../lib/playhq/contracts';
+  import { isLiveDataStale } from '../lib/playhq/live-data';
+  import { renderHomeGamesStateHtml } from '../lib/playhq/renderers';
 
-  document.querySelectorAll('.home-scores-carousel').forEach((carousel) => {
-    const track = carousel.querySelector('.home-scores-track');
-    const prevBtn = carousel.querySelector('.hs-prev');
-    const nextBtn = carousel.querySelector('.hs-next');
+  const carouselState = new WeakMap();
 
-    const count = Number(carousel.getAttribute('data-count') ?? '0');
-    if (!track || count <= 1) return;
+  function bootstrapCarousel(root) {
+    const existing = carouselState.get(root);
+    if (existing) {
+      if (existing.autoTimer) clearInterval(existing.autoTimer);
+      if (existing.resumeTimer) clearTimeout(existing.resumeTimer);
+    }
 
-    const autoAdvanceMs = Number(carousel.getAttribute('data-auto-advance-ms') ?? '7000');
-    const resumeDelayMs = Number(carousel.getAttribute('data-resume-delay-ms') ?? '10000');
+    const track = root.querySelector('.home-scores-track');
+    const prevBtn = root.querySelector('.hs-prev');
+    const nextBtn = root.querySelector('.hs-next');
+    const carousel = root.querySelector('.home-scores-carousel');
 
-    let index = 0;
-    let autoTimer = null;
-    let resumeTimer = null;
+    const count = Number(carousel?.getAttribute('data-count') ?? '0');
+    if (!track || count <= 1) {
+      carouselState.set(root, { autoTimer: null, resumeTimer: null });
+      return;
+    }
+
+    const autoAdvanceMs = Number(root.getAttribute('data-auto-advance-ms') ?? '7000');
+    const resumeDelayMs = Number(root.getAttribute('data-resume-delay-ms') ?? '10000');
+
+    const state = {
+      index: 0,
+      autoTimer: null,
+      resumeTimer: null,
+    };
+
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const render = () => {
-      track.style.transform = `translateX(-${index * 100}%)`;
+      track.style.transform = `translateX(-${state.index * 100}%)`;
     };
 
     const stopAuto = () => {
-      if (autoTimer) {
-        clearInterval(autoTimer);
-        autoTimer = null;
+      if (state.autoTimer) {
+        clearInterval(state.autoTimer);
+        state.autoTimer = null;
       }
     };
 
     const startAuto = () => {
       if (reducedMotion) return;
       stopAuto();
-      autoTimer = setInterval(() => {
-        index = getNextIndex(index, count);
+      state.autoTimer = setInterval(() => {
+        state.index = getNextIndex(state.index, count);
         render();
       }, autoAdvanceMs);
     };
 
     const pauseThenResume = () => {
       stopAuto();
-      if (resumeTimer) clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(() => startAuto(), resumeDelayMs);
+      if (state.resumeTimer) clearTimeout(state.resumeTimer);
+      state.resumeTimer = setTimeout(() => startAuto(), resumeDelayMs);
     };
 
     prevBtn?.addEventListener('click', () => {
-      index = getPrevIndex(index, count);
+      state.index = getPrevIndex(state.index, count);
       render();
       pauseThenResume();
     });
 
     nextBtn?.addEventListener('click', () => {
-      index = getNextIndex(index, count);
+      state.index = getNextIndex(state.index, count);
       render();
       pauseThenResume();
     });
 
-    carousel.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') {
-        index = getNextIndex(index, count);
-        render();
-        pauseThenResume();
-      }
-      if (e.key === 'ArrowLeft') {
-        index = getPrevIndex(index, count);
-        render();
-        pauseThenResume();
-      }
-    });
+    if (!root.dataset.homeCarouselKeydownAttached) {
+      root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+          state.index = getNextIndex(state.index, count);
+          render();
+          pauseThenResume();
+        }
+        if (e.key === 'ArrowLeft') {
+          state.index = getPrevIndex(state.index, count);
+          render();
+          pauseThenResume();
+        }
+      });
+      root.dataset.homeCarouselKeydownAttached = 'true';
+    }
 
     render();
     startAuto();
+    carouselState.set(root, state);
+  }
+
+  async function refreshHomeScores(root) {
+    const url = root.getAttribute('data-live-data-url');
+    if (!url) return;
+
+    try {
+      const response = await fetch(url, { cache: 'no-store' });
+      if (!response.ok) return;
+
+      const payload = await response.json();
+      const validation = validateLiveHomeGamesPayload(payload);
+      if (!validation.ok) return;
+
+      const staleThresholdMinutes = Number(root.getAttribute('data-stale-threshold-minutes') ?? '15');
+      if (payload.generatedAt && isLiveDataStale(payload.generatedAt, staleThresholdMinutes)) {
+        payload.status = payload.status === 'error' ? 'error' : 'stale';
+      }
+
+      root.innerHTML = renderHomeGamesStateHtml(payload);
+      bootstrapCarousel(root);
+    } catch {
+      // Keep the last rendered state if refresh fails.
+    }
+  }
+
+  document.querySelectorAll('[data-home-scores-root]').forEach((root) => {
+    bootstrapCarousel(root);
+
+    const refreshMs = Number(root.getAttribute('data-live-refresh-ms') ?? '300000');
+    refreshHomeScores(root);
+    setInterval(() => refreshHomeScores(root), refreshMs);
   });
 </script>

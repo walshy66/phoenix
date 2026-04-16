@@ -3,9 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorStrip from '../components/SponsorStrip.astro';
 import HeroCircularCarousel from '../components/HeroCircularCarousel.astro';
 import HomeScoresCarousel from '../components/HomeScoresCarousel.astro';
-import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { validateHomeGamesArtifact } from '../lib/home-scores/contracts';
+import { loadLiveJsonSnapshot } from '../lib/playhq/server-live-data';
+import { validateLiveHomeGamesPayload } from '../lib/playhq/contracts';
 
 /**
  * HERO CAROUSEL SLIDES
@@ -51,11 +51,40 @@ const quickLinks = [
   },
 ];
 
-const fallbackArtifact = {
+interface HomeGameItem {
+  gameId: string;
+  homeTeam: string;
+  awayTeam: string;
+  homeScore: number | null;
+  awayScore: number | null;
+  status: 'completed' | 'upcoming' | 'cancelled' | 'unknown';
+  kickoffDate: string | null;
+  kickoffTime: string | null;
+  kickoffDisplay: string;
+  competition: string | null;
+  venue: string | null;
+  court: string | null;
+}
+
+interface HomeGamesArtifact {
+  generatedAt: string;
+  status: 'success' | 'stale' | 'error';
+  window: {
+    kind: 'rolling-7-plus-7-days';
+    startDate: string;
+    endDate: string;
+    timezone: 'Australia/Melbourne';
+  };
+  staleBanner: string | null;
+  error: { code: string; message: string } | null;
+  games: HomeGameItem[];
+}
+
+const fallbackArtifact: HomeGamesArtifact = {
   generatedAt: new Date().toISOString(),
   status: 'error',
   window: {
-    kind: 'rolling-7-days',
+    kind: 'rolling-7-plus-7-days',
     startDate: '',
     endDate: '',
     timezone: 'Australia/Melbourne',
@@ -68,18 +97,17 @@ const fallbackArtifact = {
   games: [],
 };
 
-let homeGamesArtifact: any = fallbackArtifact;
+function loadInitialHomeArtifact(): HomeGamesArtifact {
+  const publicPath = join(process.cwd(), 'public', 'live-data', 'home-games.json');
+  const scriptPath = join(process.cwd(), 'scripts', 'home-games-data.json');
 
-try {
-  const artifactPath = join(process.cwd(), 'scripts', 'home-games-data.json');
-  if (existsSync(artifactPath)) {
-    const parsed = JSON.parse(readFileSync(artifactPath, 'utf-8'));
-    const valid = validateHomeGamesArtifact(parsed);
-    homeGamesArtifact = valid.ok ? parsed : fallbackArtifact;
-  }
-} catch {
-  homeGamesArtifact = fallbackArtifact;
+  const publicArtifact = loadLiveJsonSnapshot(publicPath, fallbackArtifact, validateLiveHomeGamesPayload);
+  if (publicArtifact !== fallbackArtifact) return publicArtifact;
+
+  return loadLiveJsonSnapshot(scriptPath, fallbackArtifact, validateLiveHomeGamesPayload);
 }
+
+const homeGamesArtifact = loadInitialHomeArtifact();
 ---
 
 <BaseLayout title="Home">
@@ -107,7 +135,7 @@ try {
   </section>
 
 
-  <HomeScoresCarousel artifact={homeGamesArtifact} />
+  <HomeScoresCarousel artifact={homeGamesArtifact} liveRefreshMs={300000} />
 
   <!-- Quick Link Cards -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">

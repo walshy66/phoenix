@@ -13,6 +13,7 @@ The implementation will separate the PlayHQ data refresh path from the normal si
 - **Full site deploy** remains available for code/layout/content changes.
 - **Data-only refresh** publishes PlayHQ JSON assets on a short schedule.
 - The homepage, `/scores`, and game detail surfaces read from the live data assets instead of relying on build-time only JSON.
+- Each PlayHQ-driven page should render a safe initial snapshot or fallback state, then fetch and re-poll the live JSON in the browser so updates appear without a full site rebuild.
 
 The simplest durable architecture is a static public JSON endpoint served from the existing cPanel host, with client-side fetch/poll updates for the PlayHQ sections.
 
@@ -112,6 +113,7 @@ src/
 - Refactor the homepage scores carousel to consume the live home data asset.
 - Refactor `/scores` to consume the live score/fixture asset.
 - Refactor `/scores/[gameId]` to resolve details from the live data source.
+- Keep the initial render safe even when live JSON is unavailable; client polling should replace stale fallback data when fresh JSON loads.
 - Preserve existing layout, branding, and accessibility patterns.
 
 **Exit criteria**:
@@ -141,9 +143,9 @@ src/
 **Goal**: verify the refresh latency and document the operational model.
 
 - Confirm the homepage and `/scores` update on the next client refresh cycle.
-- Validate stale/error behaviour by simulating refresh failures.
-- Document the separation between code deploy and data refresh.
-- Update handover notes so maintainers know which job does what.
+- Validate stale/error behaviour by simulating refresh failures and cache freshness issues.
+- Document the separation between code deploy and data refresh, including which workflow publishes live JSON and which workflow performs full deploys.
+- Update handover notes so maintainers know which job does what and how live JSON caching/polling is expected to behave.
 
 **Exit criteria**:
 - Data changes are visible quickly enough for game-day usage

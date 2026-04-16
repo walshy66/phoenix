@@ -89,7 +89,20 @@
 
 ---
 
-### Task 3.2: Add refresh safety and stale fallback handling
+### Task 3.2: Add cache freshness handling for live JSON
+
+**Description**: Ensure the live JSON assets are served with cache semantics that let the next client poll see fresh content (for example, `Cache-Control: no-store` or an equivalent cache-busting/versioning strategy), and verify the browser can observe the updated payload on the next refresh cycle.
+
+**Acceptance**:
+- Live JSON responses are not hidden behind stale browser or intermediary caches
+- The next client poll can observe fresh data after a publish
+- Caching behaviour is documented for maintainers
+
+**Dependency**: Task 1.1
+
+---
+
+### Task 3.3: Add refresh safety and stale fallback handling
 
 **Description**: Ensure the data-only refresh path preserves the last successful dataset when refresh fails and emits structured logs for maintainers.
 
@@ -98,7 +111,7 @@
 - Stale/error states are visible and safe
 - Logs include operation and status information
 
-**Dependency**: Tasks 1.1 and 3.1
+**Dependency**: Tasks 1.1, 3.1, and 3.2
 
 ---
 
@@ -112,8 +125,9 @@
 - Workflow completes significantly faster than the current 20+ minute full rebuild path
 - Updated live data is visible after refresh
 - No unrelated pages need rebuilding for data changes
+- Browser polling and cache freshness behaviour are verified in a real browser session
 
-**Dependency**: Tasks 2.1–3.2
+**Dependency**: Tasks 2.1–3.3
 
 ---
 
@@ -125,5 +139,8 @@
 - Existing site shell and styles remain intact
 - Live data behavior is documented for future maintainers
 - No console errors or broken layout regressions are introduced
+- The handover notes clearly explain the full-deploy workflow versus the data-only refresh workflow
+
+**Dependency**: Tasks 2.1–3.3
 
 **Dependency**: Tasks 2.1–3.2

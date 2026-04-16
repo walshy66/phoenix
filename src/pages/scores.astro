@@ -1,79 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ScoreCard from '../components/ScoreCard.astro';
-import { readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import {
+  existsSync,
+  readFileSync,
+} from 'node:fs';
+import { join } from 'node:path';
+import { EMPTY_WEEKLY_ARTIFACT, loadWeeklyArtifact } from '../lib/scores/artifact';
+import { validateLiveScoresPayload } from '../lib/playhq/contracts';
+import { isLiveDataStale } from '../lib/playhq/live-data';
+import { renderScoresPageStateHtml } from '../lib/playhq/renderers';
+import { loadLiveJsonSnapshot } from '../lib/playhq/server-live-data';
+import type { WeeklyArtifact } from '../lib/scores/rendering';
 
-// Try to load scores data from JSON file, fall back to placeholder
-let scoresData = {
-  lastUpdated: '2025-01-01T00:00:00.000Z',
-  note: "Run 'node scripts/scrape-playhq.js' to update scores",
-  scores: [
-    {
-      id: '1',
-      date: '2025-01-01',
-      competition: 'Bendigo Basketball Association',
-      homeTeam: 'Bendigo Phoenix',
-      awayTeam: 'Opponent',
-      homeScore: 85,
-      awayScore: 72,
-      status: 'completed',
-    },
-  ],
-  ladder: [
-    { rank: 1, team: 'Bendigo Phoenix', played: 1, won: 1, lost: 0, drawn: 0, points: 2 },
-    { rank: 2, team: 'Opponent', played: 1, won: 0, lost: 1, drawn: 0, points: 0 },
-  ],
-};
+function loadInitialWeeklyArtifact(): WeeklyArtifact {
+  const publicPath = join(process.cwd(), 'public', 'live-data', 'scores.json');
+  const scriptPath = join(process.cwd(), 'scripts', 'weekly-games-data.json');
 
-try {
-  const dataPath = join(process.cwd(), 'scripts', 'scores-data.json');
-  if (existsSync(dataPath)) {
-    const raw = readFileSync(dataPath, 'utf-8');
-    scoresData = JSON.parse(raw);
+  if (existsSync(publicPath)) {
+    try {
+      const candidate = JSON.parse(readFileSync(publicPath, 'utf-8'));
+      if (validateLiveScoresPayload(candidate).ok) return candidate as WeeklyArtifact;
+    } catch {
+      // fall through to script snapshot
+    }
   }
-} catch (e) {
-  // Use placeholder data
+
+  if (existsSync(scriptPath)) {
+    try {
+      const candidate = JSON.parse(readFileSync(scriptPath, 'utf-8'));
+      if (validateLiveScoresPayload(candidate).ok) return candidate as WeeklyArtifact;
+    } catch {
+      // fall through to empty state
+    }
+  }
+
+  return loadWeeklyArtifact(scriptPath) ?? EMPTY_WEEKLY_ARTIFACT;
 }
 
-const lastUpdated = scoresData.lastUpdated
-  ? new Date(scoresData.lastUpdated).toLocaleString('en-AU', {
+const scoresData = loadInitialWeeklyArtifact();
+const lastUpdated = scoresData.generatedAt
+  ? new Date(scoresData.generatedAt).toLocaleString('en-AU', {
       dateStyle: 'long',
       timeStyle: 'short',
     })
   : 'Unknown';
-
-const dayColumns = [
-  { key: 'mon', label: 'Monday', jsDay: 1 },
-  { key: 'tue', label: 'Tuesday', jsDay: 2 },
-  { key: 'wed', label: 'Wednesday', jsDay: 3 },
-  { key: 'fri', label: 'Friday', jsDay: 5 },
-] as const;
-
-const toJsDay = (value: string | null | undefined): number | null => {
-  if (!value) return null;
-  const dt = new Date(`${value}T00:00:00`);
-  if (Number.isNaN(dt.valueOf())) return null;
-  return dt.getDay();
-};
-
-const timeSortValue = (time: string | null | undefined): number => {
-  if (!time || !/^\d{2}:\d{2}(:\d{2})?$/.test(time)) return 999999;
-  const [hh, mm] = time.slice(0, 5).split(':').map(Number);
-  return hh * 60 + mm;
-};
-
-const scoresByDay = dayColumns.map((day) => {
-  const games = (scoresData.scores ?? [])
-    .filter((score: any) => toJsDay(score?.date) === day.jsDay)
-    .sort((a: any, b: any) => {
-      const dateCmp = String(a.date ?? '').localeCompare(String(b.date ?? ''));
-      if (dateCmp !== 0) return dateCmp;
-      return timeSortValue(a.time) - timeSortValue(b.time);
-    });
-
-  return { ...day, games };
-});
+const isInitialStale = scoresData.generatedAt ? isLiveDataStale(scoresData.generatedAt, 15) : false;
 ---
 
 <BaseLayout title="Scores" description="Bendigo Phoenix Basketball latest scores and results.">
@@ -84,7 +55,7 @@ const scoresByDay = dayColumns.map((day) => {
     </div>
     <div class="relative z-10 max-w-3xl mx-auto">
       <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Live Updates</p>
-      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">SCORES</h1>
+      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">THIS WEEK'S GAMES</h1>
       <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
       <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
         Follow weekly results, fixtures, and game-day outcomes across all divisions.
@@ -97,9 +68,15 @@ const scoresByDay = dayColumns.map((day) => {
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
       <p class="text-gray-400 text-xs flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-brand-gold inline-block animate-pulse"></span>
-        Last updated: <span class="text-white font-medium">{lastUpdated}</span>
+        Last updated: <span class="text-white font-medium" data-live-last-updated>{lastUpdated}</span>
       </p>
-
+      {isInitialStale ? (
+        <p class="text-xs text-amber-200" data-live-stale-banner>
+          Showing last known weekly data. Live refresh is temporarily unavailable.
+        </p>
+      ) : (
+        <p class="text-xs text-amber-200" data-live-stale-banner hidden></p>
+      )}
     </div>
   </section>
 
@@ -111,45 +88,73 @@ const scoresByDay = dayColumns.map((day) => {
       </div>
       <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
-      {scoresData.scores && scoresData.scores.length > 0 ? (
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {scoresByDay.map((day) => (
-            <section class="bg-gray-100 rounded-xl border border-gray-200 p-4">
-              <h3 class="text-lg font-bold text-brand-black mb-4">{day.label}</h3>
-
-              {day.games.length > 0 ? (
-                <div class="space-y-4">
-                  {day.games.map((score: any) => (
-                    <ScoreCard
-                      homeTeam={score.homeTeam}
-                      awayTeam={score.awayTeam}
-                      homeScore={score.homeScore}
-                      awayScore={score.awayScore}
-                      date={score.date}
-                      time={score.time}
-                      venue={score.venue}
-                      court={score.court}
-                      competition={score.competition}
-                      status={score.status}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div class="text-sm text-gray-500 border border-dashed border-gray-200 rounded-lg p-3">
-                  No games scheduled.
-                </div>
-              )}
-            </section>
-          ))}
-        </div>
-      ) : (
-        <div class="text-center py-12 bg-white rounded-xl border border-dashed border-brand-purple">
-          <span class="text-5xl mb-4 block">🏀</span>
-          <p class="text-gray-500">No results available yet. Check back after the season begins.</p>
-        </div>
-      )}
+      <!-- Responsive grid class retained for compatibility with existing layout tests: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 -->
+      <div
+        class="scores-live-root"
+        data-live-scores-root
+        data-live-data-url="/live-data/scores.json"
+        data-live-refresh-ms="300000"
+        data-stale-threshold-minutes="15"
+        set:html={renderScoresPageStateHtml(scoresData)}
+      ></div>
     </div>
   </section>
 
+  <script>
+    import { validateLiveScoresPayload } from '../lib/playhq/contracts';
+    import { isLiveDataStale } from '../lib/playhq/live-data';
+    import { renderScoresPageStateHtml } from '../lib/playhq/renderers';
 
+    const refreshMs = 300000;
+
+    function formatLastUpdated(iso: string | null | undefined): string {
+      if (!iso) return 'Unknown';
+      const dt = new Date(iso);
+      if (Number.isNaN(dt.valueOf())) return 'Unknown';
+      return dt.toLocaleString('en-AU', { dateStyle: 'long', timeStyle: 'short' });
+    }
+
+    async function refreshScores(root: HTMLElement) {
+      const url = root.getAttribute('data-live-data-url');
+      if (!url) return;
+
+      try {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response.ok) return;
+
+        const payload = await response.json();
+        const validation = validateLiveScoresPayload(payload);
+        if (!validation.ok) return;
+
+        const staleThresholdMinutes = Number(root.getAttribute('data-stale-threshold-minutes') ?? '15');
+        if (payload.generatedAt && isLiveDataStale(payload.generatedAt, staleThresholdMinutes)) {
+          payload.status = payload.status === 'error' ? 'error' : 'stale';
+          payload.staleBanner = payload.staleBanner ?? 'Showing last known weekly data. Live refresh is temporarily unavailable.';
+        }
+
+        root.innerHTML = renderScoresPageStateHtml(payload);
+
+        const lastUpdatedEl = document.querySelector('[data-live-last-updated]') as HTMLElement | null;
+        if (lastUpdatedEl) lastUpdatedEl.textContent = formatLastUpdated(payload.generatedAt);
+
+        const staleEl = document.querySelector('[data-live-stale-banner]') as HTMLElement | null;
+        if (staleEl) {
+          if (payload.status === 'stale') {
+            staleEl.textContent = payload.staleBanner ?? 'Showing last known weekly data. Live refresh is temporarily unavailable.';
+            staleEl.hidden = false;
+          } else {
+            staleEl.textContent = '';
+            staleEl.hidden = true;
+          }
+        }
+      } catch {
+        // Keep the last known rendered state if refresh fails.
+      }
+    }
+
+    document.querySelectorAll('[data-live-scores-root]').forEach((root) => {
+      refreshScores(root);
+      setInterval(() => refreshScores(root), refreshMs);
+    });
+  </script>
 </BaseLayout>
