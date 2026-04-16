@@ -1,9 +1,14 @@
-name: Deploy Phoenix Site
+name: Refresh PlayHQ Data and Deploy
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    # Melbourne local time (AEST):
+    # - Monday 1:00am local = Sunday 3:00pm UTC
+    # - Monday/Tuesday/Wednesday/Friday 3:30pm local = 5:30am UTC
+    # - Monday/Tuesday/Wednesday/Friday 4:30pm–11:30pm local = 6:30am–1:30pm UTC
+    - cron: '0 15 * * 0'
+    - cron: '30 5 * * 1,2,3,5'
+    - cron: '30 6-13 * * 1,2,3,5'
   workflow_dispatch:
 
 permissions:
@@ -14,7 +19,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  refresh-build-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +34,22 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Refresh PlayHQ scores data
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: bv
+          PLAYHQ_CLUB_MATCH: Phoenix
+        run: npm run scores:refresh
+
+      - name: Validate PlayHQ scores data
+        run: npm run scores:check
+
+      - name: Refresh home games data
+        run: npm run home-scores:refresh
+
+      - name: Validate home games data
+        run: npm run home-scores:check
 
       - name: Build site
         run: npm run build
