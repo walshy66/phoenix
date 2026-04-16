@@ -54,7 +54,7 @@ jobs:
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ftp:ssl-auth TLS;
-            open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" ftps://$FTP_HOST;
+            open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" ftp://$FTP_HOST;
             mirror --reverse --delete --verbose dist/ \"$FTP_REMOTE_DIR\";
             bye
           "
