@@ -98,14 +98,18 @@ npm run build
 
 **Prerequisites (one-time setup):**
 - Install `lftp` on your machine (Mac: `brew install lftp`)
-- Get your VentraIP SFTP credentials from your hosting account
+- Get your VentraIP FTPS credentials from your hosting account
 - Set the environment variables (or edit deploy.sh directly):
 
 ```bash
 export SFTP_HOST="your-host.ventraip.com.au"
 export SFTP_USER="yourusername"
 export SFTP_PASS="yourpassword"
+export SFTP_DIR="."
 ```
+
+> Important: `SFTP_DIR` / `FTP_REMOTE_DIR` should point to the actual website document root. For this hosting account, that is the root of `public_html` — **not** `public_html/public_html`.
+
 
 **To deploy:**
 ```bash
