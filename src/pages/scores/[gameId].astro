@@ -1,32 +1,34 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { toPublicGameDetail } from '../../lib/home-scores/details';
+import { buildGameDetailViewModel } from '../../lib/scores/fixtures';
+import { findFixtureById, loadWeeklyArtifact } from '../../lib/scores/artifact';
+import { validateLiveScoresPayload } from '../../lib/playhq/contracts';
+import { loadLiveJsonSnapshot } from '../../lib/playhq/server-live-data';
+import { renderGameDetailStateHtml } from '../../lib/playhq/renderers';
 
 export function getStaticPaths() {
-  const dataPath = join(process.cwd(), 'scripts', 'scores-data.json');
-  let payload: any = { scores: [] };
+  const publicPath = join(process.cwd(), 'public', 'live-data', 'scores.json');
+  const scriptPath = join(process.cwd(), 'scripts', 'weekly-games-data.json');
+  const artifact = loadLiveJsonSnapshot(publicPath, loadWeeklyArtifact(scriptPath), validateLiveScoresPayload);
+  const fixtures = [artifact.days.monday, artifact.days.tuesday, artifact.days.wednesday, artifact.days.friday].flat();
 
-  if (existsSync(dataPath)) {
-    try {
-      payload = JSON.parse(readFileSync(dataPath, 'utf-8'));
-    } catch {
-      payload = { scores: [] };
-    }
-  }
-
-  const scores = Array.isArray(payload.scores) ? payload.scores : [];
-
-  return scores
-    .filter((g) => g?.id)
-    .map((g) => ({
-      params: { gameId: String(g.id) },
-      props: { game: toPublicGameDetail(g) },
+  return fixtures
+    .filter((fixture) => fixture?.fixtureId)
+    .map((fixture) => ({
+      params: { gameId: String(fixture.fixtureId) },
+      props: { game: buildGameDetailViewModel(fixture) },
     }));
 }
 
-const { game } = Astro.props;
+const gameId = Astro.params.gameId ?? '';
+const game = (() => {
+  const publicPath = join(process.cwd(), 'public', 'live-data', 'scores.json');
+  const scriptPath = join(process.cwd(), 'scripts', 'weekly-games-data.json');
+  const artifact = loadLiveJsonSnapshot(publicPath, loadWeeklyArtifact(scriptPath), validateLiveScoresPayload);
+  const fixture = findFixtureById(artifact, gameId);
+  return fixture ? buildGameDetailViewModel(fixture) : null;
+})();
 ---
 
 <BaseLayout title={game ? `${game.homeTeam} vs ${game.awayTeam}` : 'Game Not Found'}>
@@ -34,44 +36,46 @@ const { game } = Astro.props;
     <h1 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">Game Details</h1>
   </section>
 
-  {game ? (
-    <section class="py-10 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-      <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <p class="text-xs text-gray-500 uppercase tracking-wide mb-2">{game.competition ?? 'Competition'}</p>
-        <h2 class="text-2xl font-bold text-brand-purple mb-2">{game.homeTeam} vs {game.awayTeam}</h2>
-        <p class="text-gray-600 text-sm mb-4">{game.date ?? 'TBA'} {game.time ? `• ${game.time.slice(0, 5)}` : '• TBA'}</p>
+  <div
+    data-live-game-detail-root
+    data-game-id={gameId}
+    data-live-data-url="/live-data/scores.json"
+    data-live-refresh-ms="300000"
+    data-stale-threshold-minutes="15"
+    set:html={renderGameDetailStateHtml(game)}
+  ></div>
 
-        <div class="grid grid-cols-2 gap-4 mb-4">
-          <div class="rounded-lg bg-brand-offwhite p-4 text-center">
-            <p class="text-xs text-gray-500 uppercase">Home</p>
-            <p class="font-bold text-brand-black">{game.homeTeam}</p>
-            <p class="text-2xl font-black text-brand-purple">{game.homeScore ?? '-'}</p>
-          </div>
-          <div class="rounded-lg bg-brand-offwhite p-4 text-center">
-            <p class="text-xs text-gray-500 uppercase">Away</p>
-            <p class="font-bold text-brand-black">{game.awayTeam}</p>
-            <p class="text-2xl font-black text-brand-purple">{game.awayScore ?? '-'}</p>
-          </div>
-        </div>
+  <script>
+    import { buildGameDetailViewModel } from '../../lib/scores/fixtures';
+    import { validateLiveScoresPayload } from '../../lib/playhq/contracts';
+    import { renderGameDetailStateHtml } from '../../lib/playhq/renderers';
 
-        <p class="text-sm text-gray-600"><strong>Status:</strong> {game.status}</p>
-        <p class="text-sm text-gray-600"><strong>Venue:</strong> {game.venue ?? 'TBA'}</p>
-        <p class="text-sm text-gray-600"><strong>Court:</strong> {game.court ?? 'TBA'}</p>
+    async function refreshGameDetail(root: HTMLElement) {
+      const url = root.getAttribute('data-live-data-url');
+      const gameId = root.getAttribute('data-game-id');
+      if (!url || !gameId) return;
 
-        <div class="mt-6">
-          <a href="/" class="text-brand-purple font-bold hover:underline focus-visible:outline-2 focus-visible:outline-brand-gold">
-            ← Back to Home
-          </a>
-        </div>
-      </div>
-    </section>
-  ) : (
-    <section class="py-12 px-4">
-      <div class="max-w-3xl mx-auto rounded-xl border border-gray-200 bg-white p-6 text-center">
-        <h2 class="text-xl font-bold text-brand-black mb-2">Game not found</h2>
-        <p class="text-gray-600 text-sm mb-4">This game may be unavailable or no longer in the published dataset.</p>
-        <a href="/scores" class="text-brand-purple font-bold hover:underline">View all scores</a>
-      </div>
-    </section>
-  )}
+      try {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response.ok) return;
+
+        const payload = await response.json();
+        const validation = validateLiveScoresPayload(payload);
+        if (!validation.ok) return;
+
+        const fixtures = Object.values(payload.days ?? {}).flat();
+        const fixture = fixtures.find((item) => item?.fixtureId === gameId);
+        const viewModel = fixture ? buildGameDetailViewModel(fixture) : null;
+        root.innerHTML = renderGameDetailStateHtml(viewModel);
+        document.title = viewModel ? `${viewModel.homeTeam} vs ${viewModel.awayTeam}` : 'Game Not Found';
+      } catch {
+        // Keep the last known rendered state if refresh fails.
+      }
+    }
+
+    document.querySelectorAll('[data-live-game-detail-root]').forEach((root) => {
+      refreshGameDetail(root);
+      setInterval(() => refreshGameDetail(root), Number(root.getAttribute('data-live-refresh-ms') ?? '300000'));
+    });
+  </script>
 </BaseLayout>
