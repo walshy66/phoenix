@@ -46,6 +46,30 @@ function normalizeTime(time) {
   return { kickoffTime: time.length === 5 ? `${time}:00` : time, kickoffDisplay: hhmm };
 }
 
+function getStatusRank(status) {
+  if (status === 'upcoming') return 0;
+  if (status === 'unknown') return 1;
+  if (status === 'completed') return 2;
+  if (status === 'cancelled') return 3;
+  return 4;
+}
+
+function compareGameOrder(a, b) {
+  const statusDiff = getStatusRank(a.status) - getStatusRank(b.status);
+  if (statusDiff !== 0) return statusDiff;
+
+  if (a.status === 'completed') {
+    if (a.kickoffDate !== b.kickoffDate) return b.kickoffDate.localeCompare(a.kickoffDate);
+  } else if (a.kickoffDate !== b.kickoffDate) {
+    return a.kickoffDate.localeCompare(b.kickoffDate);
+  }
+
+  if (a.kickoffTime && b.kickoffTime) return a.kickoffTime.localeCompare(b.kickoffTime);
+  if (a.kickoffTime && !b.kickoffTime) return -1;
+  if (!a.kickoffTime && b.kickoffTime) return 1;
+  return a.gameId.localeCompare(b.gameId);
+}
+
 function normalizeHomeGames(rawGames, window) {
   const mapped = (rawGames || [])
     .map((raw) => {
@@ -70,13 +94,7 @@ function normalizeHomeGames(rawGames, window) {
     .filter((g) => g.gameId)
     .filter((g) => g.kickoffDate)
     .filter((g) => g.kickoffDate >= window.startDate && g.kickoffDate <= window.endDate)
-    .sort((a, b) => {
-      if (a.kickoffDate !== b.kickoffDate) return b.kickoffDate.localeCompare(a.kickoffDate);
-      if (a.kickoffTime && b.kickoffTime) return a.kickoffTime.localeCompare(b.kickoffTime);
-      if (a.kickoffTime && !b.kickoffTime) return -1;
-      if (!a.kickoffTime && b.kickoffTime) return 1;
-      return a.gameId.localeCompare(b.gameId);
-    });
+    .sort(compareGameOrder);
 
   const seen = new Set();
   const deduped = [];

@@ -48,7 +48,7 @@ const {
       Latest Results
     </h2>
     <a href="/scores" class="text-brand-gold text-xs font-bold hover:underline focus-visible:outline-2 focus-visible:outline-brand-gold">
-      View All Scores &amp; Ladder →
+      View All Scores →
     </a>
   </div>
 
@@ -65,26 +65,10 @@ const {
 </section>
 
 <style>
-  .hs-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(17, 17, 17, 0.8);
-    color: #fff;
-    cursor: pointer;
-  }
-  .hs-nav:hover { background: rgba(87, 63, 147, 0.9); }
-  .hs-nav:focus-visible { outline: 2px solid #8B7536; outline-offset: 2px; }
-  .hs-prev { left: 6px; }
-  .hs-next { right: 6px; }
 </style>
 
 <script>
-  import { getNextIndex, getPrevIndex } from '../lib/home-scores/carousel';
+  import { getInitialCarouselIndex, getMaxCarouselIndex, getNextIndex, getPrevIndex, getSlidesPerView } from '../lib/home-scores/carousel';
   import { validateLiveHomeGamesPayload } from '../lib/playhq/contracts';
   import { isLiveDataStale } from '../lib/playhq/live-data';
   import { renderHomeGamesStateHtml } from '../lib/playhq/renderers';
@@ -96,6 +80,7 @@ const {
     if (existing) {
       if (existing.autoTimer) clearInterval(existing.autoTimer);
       if (existing.resumeTimer) clearTimeout(existing.resumeTimer);
+      if (existing.resizeHandler) window.removeEventListener('resize', existing.resizeHandler);
     }
 
     const track = root.querySelector('.home-scores-track');
@@ -104,8 +89,8 @@ const {
     const carousel = root.querySelector('.home-scores-carousel');
 
     const count = Number(carousel?.getAttribute('data-count') ?? '0');
-    if (!track || count <= 1) {
-      carouselState.set(root, { autoTimer: null, resumeTimer: null });
+    if (!track || count <= 0) {
+      carouselState.set(root, { autoTimer: null, resumeTimer: null, resizeHandler: null });
       return;
     }
 
@@ -116,12 +101,37 @@ const {
       index: 0,
       autoTimer: null,
       resumeTimer: null,
+      resizeHandler: null,
     };
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const slideDates = Array.from(root.querySelectorAll('.home-slide')).map((slide) => slide.getAttribute('data-kickoff-date'));
+
+    const getViewportState = () => {
+      const slidesPerView = getSlidesPerView(window.innerWidth);
+      const maxIndex = getMaxCarouselIndex(count, slidesPerView);
+      return { slidesPerView, maxIndex };
+    };
+
+    const updateNavButtons = () => {
+      const { maxIndex } = getViewportState();
+      const disabled = maxIndex === 0;
+      if (prevBtn) {
+        prevBtn.disabled = disabled;
+        prevBtn.setAttribute('aria-disabled', String(disabled));
+      }
+      if (nextBtn) {
+        nextBtn.disabled = disabled;
+        nextBtn.setAttribute('aria-disabled', String(disabled));
+      }
+    };
 
     const render = () => {
-      track.style.transform = `translateX(-${state.index * 100}%)`;
+      const { slidesPerView, maxIndex } = getViewportState();
+      state.index = Math.min(state.index, maxIndex);
+      const shiftPercent = slidesPerView > 0 ? 100 / slidesPerView : 100;
+      track.style.transform = `translateX(-${state.index * shiftPercent}%)`;
+      updateNavButtons();
     };
 
     const stopAuto = () => {
@@ -132,10 +142,11 @@ const {
     };
 
     const startAuto = () => {
-      if (reducedMotion) return;
+      const { maxIndex, slidesPerView } = getViewportState();
+      if (reducedMotion || maxIndex === 0) return;
       stopAuto();
       state.autoTimer = setInterval(() => {
-        state.index = getNextIndex(state.index, count);
+        state.index = getNextIndex(state.index, count, slidesPerView);
         render();
       }, autoAdvanceMs);
     };
@@ -147,32 +158,41 @@ const {
     };
 
     prevBtn?.addEventListener('click', () => {
-      state.index = getPrevIndex(state.index, count);
+      const { slidesPerView } = getViewportState();
+      state.index = getPrevIndex(state.index, count, slidesPerView);
       render();
       pauseThenResume();
     });
 
     nextBtn?.addEventListener('click', () => {
-      state.index = getNextIndex(state.index, count);
+      const { slidesPerView } = getViewportState();
+      state.index = getNextIndex(state.index, count, slidesPerView);
       render();
       pauseThenResume();
     });
 
     if (!root.dataset.homeCarouselKeydownAttached) {
       root.addEventListener('keydown', (e) => {
+        const { slidesPerView } = getViewportState();
         if (e.key === 'ArrowRight') {
-          state.index = getNextIndex(state.index, count);
+          state.index = getNextIndex(state.index, count, slidesPerView);
           render();
           pauseThenResume();
         }
         if (e.key === 'ArrowLeft') {
-          state.index = getPrevIndex(state.index, count);
+          state.index = getPrevIndex(state.index, count, slidesPerView);
           render();
           pauseThenResume();
         }
       });
       root.dataset.homeCarouselKeydownAttached = 'true';
     }
+
+    const { slidesPerView } = getViewportState();
+    state.index = getInitialCarouselIndex(slideDates, slidesPerView, new Date());
+
+    state.resizeHandler = () => render();
+    window.addEventListener('resize', state.resizeHandler);
 
     render();
     startAuto();
