@@ -2,15 +2,34 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-const PLAYHQ_API_KEY = process.env.PLAYHQ_API_KEY || '';
-const TENANT = process.env.PLAYHQ_TENANT || 'bv';
-const CLUB_NAME = process.env.PLAYHQ_CLUB_NAME || 'Phoenix';
-const SEASON_IDS = (process.env.PLAYHQ_SEASON_IDS || 'b3efb4fc-f645-4b5a-a777-50cc99464849')
+function readLocalEnvVar(key) {
+  const envPath = resolve(process.cwd(), '.env.local');
+  if (!existsSync(envPath)) return undefined;
+
+  const raw = readFileSync(envPath, 'utf-8');
+  const lines = raw.split(/\r?\n/);
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const idx = trimmed.indexOf('=');
+    if (idx === -1) continue;
+    const k = trimmed.slice(0, idx).trim();
+    const v = trimmed.slice(idx + 1).trim().replace(/^['"]|['"]$/g, '');
+    if (k === key) return v;
+  }
+
+  return undefined;
+}
+
+const PLAYHQ_API_KEY = process.env.PLAYHQ_API_KEY || readLocalEnvVar('PLAYHQ_API_KEY') || '';
+const TENANT = process.env.PLAYHQ_TENANT || readLocalEnvVar('PLAYHQ_TENANT') || 'bv';
+const CLUB_NAME = process.env.PLAYHQ_CLUB_NAME || readLocalEnvVar('PLAYHQ_CLUB_NAME') || 'Phoenix';
+const SEASON_IDS = (process.env.PLAYHQ_SEASON_IDS || readLocalEnvVar('PLAYHQ_SEASON_IDS') || 'b3efb4fc-f645-4b5a-a777-50cc99464849')
   .split(',')
   .map((value) => value.trim())
   .filter(Boolean);
 
-const API_BASE = 'https://api.playhq.com';
+const API_BASE = process.env.PLAYHQ_API_BASE || readLocalEnvVar('PLAYHQ_API_BASE') || 'https://api.playhq.com';
 const TIMEZONE = 'Australia/Melbourne';
 const OUTPUT_FILE = resolve(process.cwd(), 'scripts/weekly-games-data.json');
 
