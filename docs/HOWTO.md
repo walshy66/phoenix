@@ -124,7 +124,22 @@ The live site will be at: https://bendigophoenix.org.au
 
 ---
 
-## 7. Common Tasks — Example Claude Prompts
+## 7. Release workflow at a glance
+
+When you change pages or images, the flow is:
+
+1. Make the change on a branch.
+2. Commit it.
+3. Push the branch to GitHub.
+4. Merge to `main` when ready.
+5. Check the **Actions** tab for the deploy workflow.
+6. Check the live site at `https://bendigophoenix.org.au`.
+
+For a full step-by-step guide, see `docs/RELEASE_WORKFLOW.md`.
+
+---
+
+## 8. Common Tasks — Example Claude Prompts
 
 Copy and paste these into Claude Code as a starting point:
 
