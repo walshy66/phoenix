@@ -98,14 +98,18 @@ npm run build
 
 **Prerequisites (one-time setup):**
 - Install `lftp` on your machine (Mac: `brew install lftp`)
-- Get your VentraIP SFTP credentials from your hosting account
+- Get your VentraIP FTPS credentials from your hosting account
 - Set the environment variables (or edit deploy.sh directly):
 
 ```bash
 export SFTP_HOST="your-host.ventraip.com.au"
 export SFTP_USER="yourusername"
 export SFTP_PASS="yourpassword"
+export SFTP_DIR="."
 ```
+
+> Important: `SFTP_DIR` / `FTP_REMOTE_DIR` should point to the actual website document root. For this hosting account, that is the root of `public_html` — **not** `public_html/public_html`.
+
 
 **To deploy:**
 ```bash
@@ -120,7 +124,22 @@ The live site will be at: https://bendigophoenix.org.au
 
 ---
 
-## 7. Common Tasks — Example Claude Prompts
+## 7. Release workflow at a glance
+
+When you change pages or images, the flow is:
+
+1. Make the change on a branch.
+2. Commit it.
+3. Push the branch to GitHub.
+4. Merge to `main` when ready.
+5. Check the **Actions** tab for the deploy workflow.
+6. Check the live site at `https://bendigophoenix.org.au`.
+
+For a full step-by-step guide, see `docs/RELEASE_WORKFLOW.md`.
+
+---
+
+## 8. Common Tasks — Example Claude Prompts
 
 Copy and paste these into Claude Code as a starting point:
 
