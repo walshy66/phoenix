@@ -28,9 +28,15 @@ Use this when the site code is already live and only the scores/live game data n
 
 Flow:
 1. The scheduled workflow runs, or you trigger it manually.
-2. PlayHQ data is refreshed.
-3. Only `public/live-data/` is published.
-4. The site polls the live JSON and updates without a full rebuild.
+2. PlayHQ source scores are refreshed into `scripts/scores-data.json`.
+3. The weekly scores artifact is refreshed into `scripts/weekly-games-data.json`.
+4. The home carousel artifact is refreshed into `scripts/home-games-data.json`.
+5. Only `public/live-data/` is published.
+6. The site polls the live JSON and updates without a full rebuild.
+
+Production live data mapping:
+- `public/live-data/scores.json` → used by `/scores` and `/scores/[gameId]`
+- `public/live-data/home-games.json` → used by the homepage scores carousel
 
 ## Local development workflow
 
@@ -99,4 +105,4 @@ git push -u origin feature/my-change
 - **Old Joomla still appears**: check the FTP remote directory is the document root, not a nested `public_html` folder.
 - **Action is green but the site looks stale**: hard refresh and check the correct workflow ran.
 - **Image missing**: confirm the file exists under `public/images/...` and the path in the page is correct.
-- **Live scores not changing**: check the PlayHQ refresh workflow and the browser network panel for `/live-data/*.json`.
+- **Live scores not changing**: check the PlayHQ refresh workflow, confirm the required secrets are set (`PLAYHQ_API_KEY`, `PLAYHQ_TENANT`, `PLAYHQ_SEASON_IDS`, `PLAYHQ_CLUB_NAME`), and inspect `/live-data/*.json` in the browser network panel.
