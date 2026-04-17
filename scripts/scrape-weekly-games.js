@@ -252,6 +252,10 @@ async function buildSuccessArtifact(window) {
   return artifact;
 }
 
+function countFixtures(artifact) {
+  return DAY_KEYS.reduce((count, day) => count + (artifact.days?.[day]?.length || 0), 0);
+}
+
 function buildFailureArtifact(previous, window, code, message) {
   const stalePrevious =
     previous &&
@@ -294,15 +298,35 @@ async function main() {
   });
 
   try {
-    const artifact = await buildSuccessArtifact(window);
+    let selectedWindow = window;
+    let artifact = await buildSuccessArtifact(selectedWindow);
+
+    if (weekOffset === 0 && countFixtures(artifact) === 0) {
+      const nextWindow = shiftWindow(window, 1);
+      const nextArtifact = await buildSuccessArtifact(nextWindow);
+
+      if (countFixtures(nextArtifact) > 0) {
+        selectedWindow = nextWindow;
+        artifact = nextArtifact;
+
+        structuredLog('info', {
+          operation,
+          status: 'window_shifted',
+          message: 'Current week had no fixtures; published next weekly window instead',
+          windowStart: selectedWindow.startDate,
+          windowEnd: selectedWindow.endDate,
+        });
+      }
+    }
+
     writeFileSync(OUTPUT_FILE, JSON.stringify(artifact, null, 2));
 
     structuredLog('info', {
       operation,
       status: 'success',
       message: 'Refresh run completed',
-      windowStart: window.startDate,
-      windowEnd: window.endDate,
+      windowStart: selectedWindow.startDate,
+      windowEnd: selectedWindow.endDate,
     });
 
     console.log(`✅ Wrote weekly artifact: ${OUTPUT_FILE}`);
