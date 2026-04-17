@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Temporary legacy newsletter redirects (302) through 2026-05-31.
+# These rules must work on both www and non-www hosts because some old links
+# or browser history entries may land on either hostname.
+
+RewriteCond %{HTTP_HOST} ^www\.bendigophoenix\.org\.au$ [NC]
+RewriteRule ^$ https://bendigophoenix.org.au/ [R=302,L]
+
+RewriteRule ^seasons/training/?$ https://bendigophoenix.org.au/seasons/?modal=training [R=302,L,QSA]
+RewriteRule ^team/players/?$ https://bendigophoenix.org.au/resources/?modal=players [R=302,L,QSA]
+RewriteRule ^get-involved/volunteers/?$ https://bendigophoenix.org.au/get-involved/#volunteer-with-us [R=302,L,QSA]
+RewriteRule ^seasons/clearances/?$ https://bendigophoenix.org.au/seasons/?modal=clearances [R=302,L,QSA]
+RewriteRule ^seasons/uniforms/?$ https://bendigophoenix.org.au/seasons/?modal=uniforms [R=302,L,QSA]
+RewriteRule ^about/club-policies/?$ https://bendigophoenix.org.au/about/#club-policies [R=302,L,QSA]
