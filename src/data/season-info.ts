@@ -123,15 +123,6 @@ export const SEASON_INFO_CARDS: SeasonInfoCard[] = [
         linkUrl: null,
         linkLabel: null,
       },
-      {
-        id: 'registration-team-name',
-        title: 'Team Name',
-        description: null,
-        imageSrc: '/uploads/registration_team_name.png',
-        imageAlt: 'Instructions for entering team name during registration',
-        linkUrl: null,
-        linkLabel: null,
-      },
     ],
   },
 ]

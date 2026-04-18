@@ -21,6 +21,7 @@ import { validateLiveHomeGamesPayload } from '../lib/playhq/contracts';
 const heroSlides = [
   { image: '/images/hero/players_needed.png', alt: 'Players needed announcement graphic', bgColor: '#3a2a6e' },
   { image: '/images/hero/training.png', alt: 'Training information graphic', bgColor: '#1a3060' },
+  { image: '/images/hero/volunteers_heros.png', alt: 'Volunteers heroes announcement graphic', bgColor: '#4a356f' },
   { image: '/images/hero/player_journal.png', alt: 'Player journal feature graphic', bgColor: '#2a1a5e' },
 ];
 
@@ -215,14 +216,17 @@ const homeGamesArtifact = loadInitialHomeArtifact();
     transform-origin: top left;
   }
 
-  /* ─── Carousel wrapper — full width, no side padding ─── */
+  /* ─── Carousel wrapper — centred and capped to match home cards ─── */
   /*
-   * The carousel stage is already full-width; we don't want extra
-   * padding here squeezing the side cards in.
+   * The carousel is now constrained to a 1200px max width so it lines up
+   * more closely with the home-page score card area while keeping spacing.
    */
   .hero-carousel-wrap {
     position: relative;
     z-index: 1;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
   }
 </style>

@@ -1,10 +1,17 @@
 [
   {
-    "id": "guide-002",
-    "title": "Social Media Coordinator",
-    "description": "Role guide and responsibilities for managing club social media channels.",
-    "url": "/resources/guides/GUIDE_Social Media Coordinator_20250901.pdf",
-    "dateAdded": "2026-04-11"
+    "id": "guide-007",
+    "title": "Coach",
+    "description": "Guide for team coaches covering key responsibilities, expectations, and support information.",
+    "url": "/resources/guides/GUIDE_Team_Coach_V1.0.pdf",
+    "dateAdded": "2026-04-18"
+  },
+  {
+    "id": "guide-008",
+    "title": "Coach - Quick Guide & Coach Kit Care",
+    "description": "Quick guide for coaches with a cheat sheet and coach kit care information.",
+    "url": "/resources/guides/GUIDE_CoachCheatSheet&CoackKitCare.pdf",
+    "dateAdded": "2026-04-18"
   },
   {
     "id": "guide-001",
@@ -14,25 +21,18 @@
     "dateAdded": "2026-04-11"
   },
   {
+    "id": "guide-002",
+    "title": "Social Media Coordinator",
+    "description": "Role guide and responsibilities for managing club social media channels.",
+    "url": "/resources/guides/GUIDE_Social Media Coordinator_20250901.pdf",
+    "dateAdded": "2026-04-11"
+  },
+  {
     "id": "guide-003",
     "title": "Sponsorship Coordinator",
     "description": "Guide for coordinating and managing club sponsorships and partnerships.",
     "url": "/resources/guides/GUIDE_Sponsorship Coordinator_20250901.pdf",
     "dateAdded": "2026-04-11"
-  },
-  {
-    "id": "guide-007",
-    "title": "Team Coach",
-    "description": "Guide for team coaches covering key responsibilities, expectations, and support information.",
-    "url": "/resources/guides/GUIDE_Team_Coach_V1.0.pdf",
-    "dateAdded": "2026-04-18"
-  },
-  {
-    "id": "guide-008",
-    "title": "Team Coach - Quick Guide & Coach Kit Care",
-    "description": "Quick guide for coaches with a cheat sheet and coach kit care information.",
-    "url": "/resources/guides/GUIDE_CoachCheatSheet&CoackKitCare.pdf",
-    "dateAdded": "2026-04-18"
   },
   {
     "id": "guide-004",
@@ -46,6 +46,13 @@
     "title": "Team Manager - Quick Guide",
     "description": "Quick guide for team managers with a concise summary of key responsibilities and processes.",
     "url": "/resources/guides/GUIDE_Team_TeamManager_QuickGuide.pdf",
+    "dateAdded": "2026-04-18"
+  },
+  {
+    "id": "guide-010",
+    "title": "Team Name",
+    "description": "Guide for creating your team name.",
+    "url": "/resources/guides/registration_team_name.png",
     "dateAdded": "2026-04-18"
   },
   {
