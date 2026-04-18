@@ -32,3 +32,6 @@ pnpm-debug.log*
 
 # COA-27: resource scrape candidates (admin working artefacts, not source-controlled)
 specs/coa-27-resources/candidates/
+
+# local upload staging folder
+upload/
