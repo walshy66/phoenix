@@ -1,12 +1,5 @@
 [
   {
-    "id": "guide-008",
-    "title": "Team Coach - Quick Guide & Coach Kit Care",
-    "description": "Quick guide for coaches with a cheat sheet and coach kit care information.",
-    "url": "/resources/guides/GUIDE_CoachCheatSheet&CoackKitCare.pdf",
-    "dateAdded": "2026-04-18"
-  },
-  {
     "id": "guide-002",
     "title": "Social Media Coordinator",
     "description": "Role guide and responsibilities for managing club social media channels.",
@@ -35,6 +28,13 @@
     "dateAdded": "2026-04-18"
   },
   {
+    "id": "guide-008",
+    "title": "Team Coach - Quick Guide & Coach Kit Care",
+    "description": "Quick guide for coaches with a cheat sheet and coach kit care information.",
+    "url": "/resources/guides/GUIDE_CoachCheatSheet&CoackKitCare.pdf",
+    "dateAdded": "2026-04-18"
+  },
+  {
     "id": "guide-004",
     "title": "Team Manager",
     "description": "Comprehensive guide for team managers covering all key responsibilities and processes.",
@@ -43,7 +43,7 @@
   },
   {
     "id": "guide-009",
-    "title": "Team Manager Quick Guide",
+    "title": "Team Manager - Quick Guide",
     "description": "Quick guide for team managers with a concise summary of key responsibilities and processes.",
     "url": "/resources/guides/GUIDE_Team_TeamManager_QuickGuide.pdf",
     "dateAdded": "2026-04-18"
