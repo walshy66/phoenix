@@ -100,7 +100,7 @@ A resource in the data file has a title and type, but is missing description and
 
 **Keyword Search**
 - **FR-007**: System MUST provide a search input field in filtered sections (Coaching Resources, Player Resources)
-- **FR-008**: Search MUST be case-insensitive and match partial strings in resource title or description
+- **FR-008**: Search MUST be case-insensitive and match partial strings in resource title or description. Matching MUST be ASCII-based (no diacritical normalization); searching "defence" matches "defence" but not "défence".
 - **FR-009**: Keyword search MUST be combined with active filters using AND-logic: resources must match both the filters and contain the keyword
 - **FR-010**: Clearing the search box MUST immediately restore all filtered results (or all resources if no filters active)
 - **FR-011**: Search input MUST be debounced or triggered on blur to avoid excessive re-renders
@@ -108,21 +108,35 @@ A resource in the data file has a title and type, but is missing description and
 **Section-Specific Filter Rules**
 - **FR-012**: Coaching Resources section MUST have filter controls for: Age (U8, U10, U12, U14, U16+), Category (Defence, Drills, Offence, Plays, Tools), Skill (varies by resource; all present skills displayed as filter options)
 - **FR-013**: Player Resources section MUST have filter controls for: Age (U8, U10, U12, U14, U16+), Category (Solo, Group, Offence, Defence, Drill), Skill (varies by resource; all present skills displayed as filter options)
+
+  **NOTE**: Category values differ by section. Coaching Resources uses "Drills" (plural); Player Resources uses "Drill" (singular). "Tools" appears only in Coaching Resources. These are distinct taxonomies; do not mix across sections.
+
 - **FR-014**: Manager, Guides, and Forms sections MUST NOT display filter controls; resources in these sections MUST be sorted alphabetically by title (A–Z)
 
 **Metadata Handling**
 - **FR-015**: System MUST render resources that have only title and type; description and tags are optional
-- **FR-016**: If a resource lacks a tag value for an active filter, the resource MUST be excluded from results (treated as non-matching)
+- **FR-016**: If a resource lacks any tag required by an active filter, the resource MUST be excluded. Example: If "U12" filter is active and resource has no age tag, resource is hidden. If no age filter is active, resources with or without age tags are included.
 - **FR-017**: If a resource has a tag value that is not in the active filter set, but the active filter is empty, the resource MUST be included (e.g., a resource with Skill="Ball Handling" displays even if no Skill filter is selected)
 
 **No Results State**
 - **FR-018**: When filters or search produce zero matching resources, System MUST display a "No results found" message with a visible button or link to clear all filters and restore the full list
+- **FR-019**: If resource JSON files cannot be loaded or are malformed, System MUST log error to console and display an empty section (no crash, no infinite loading state)
+
+**No Results UX**
+- **FR-020**: When filters or search produce zero matching resources, the resource grid area MUST display a centered "No results found" message with:
+  - Clear text describing what filters are active (e.g., "No resources match Age=U12 and Category=Defence")
+  - A visible "Clear all filters and search" button or link that resets all filters and search box
+  - No grid cells or placeholder images displayed
+
+**Result Count Display**
+- **FR-021**: When search or filters are active, System MUST display the count of matching resources above the grid (e.g., "4 resources found").
+When no filters or search are active, this count is optional or hidden.
 
 ### Non-Functional Requirements
 
 - **NFR-001 (Keyboard accessibility — Search)**: The search input MUST be keyboard accessible with clear focus indicator; Tab must reach it; Enter and blur events trigger search
-- **NFR-002 (Keyboard accessibility — Filters)**: Filter buttons MUST be navigable via Tab, Shift+Tab, and Space/Enter to toggle state; selected state MUST be visually indicated
-- **NFR-003 (Responsive — Mobile)**: Filter bar MUST remain sticky and usable on 375px viewport; filters may wrap to multiple lines but MUST be accessible without horizontal scroll
+- **NFR-002 (Keyboard accessibility — Filters)**: Filter buttons MUST be navigable via Tab, Shift+Tab, and Space/Enter to toggle state. Selected filters MUST have BOTH: visual indicator (e.g., background color change, border highlight, or filled background) AND ARIA attribute aria-pressed="true". Unselected filters MUST have aria-pressed="false".
+- **NFR-003 (Responsive — Mobile)**: Both search input and filter bar MUST remain sticky and usable on 375px viewport. If combined into one sticky header, that header may not exceed 15% of viewport height. Filters may wrap to multiple lines but MUST be accessible without horizontal scroll.
 - **NFR-004 (Responsive — Aspect ratios)**: Image and GIF resources MUST maintain original aspect ratios in grid view without letterboxing or distortion
 - **NFR-005 (Accessibility — Results list)**: Search and filter results MUST be announced to screen readers; a live region MUST announce "N results found" when filters change
 - **NFR-006 (Performance)**: Filter and search operations MUST complete within 100ms to feel responsive; debouncing is acceptable
@@ -203,9 +217,12 @@ Function filterResources(resources, activeFilters, searchKeyword, section):
   
   // Sort
   if section in ['manager', 'guides', 'forms']:
-    results = results.sort(r => r.title ascending)
+    results = results.sort((a, b) => a.title.localeCompare(b.title))
   else:
-    results = results.sort(r => r.createdAt descending, then r.title ascending)
+    // Coaching and Player Resources: sort by creation date (newest first), then by title for tie-breaking
+    results = results.sort((a, b) => 
+      b.createdAt.localeCompare(a.createdAt) || a.title.localeCompare(b.title)
+    )
   
   return results
 ```
@@ -293,7 +310,8 @@ Resources are stored as human-readable JSON files in `src/data/`:
 
 1. **Filter state**: Filter selections should not persist across page reloads (unless localStorage is explicitly added in a future feature). Closing the page resets filters.
 2. **Search debouncing**: Implement a 300–500ms debounce on search input to avoid excessive re-renders while typing.
-3. **Skill discovery**: Skill filters are dynamic — the set of available skills is derived from all resources in a section. If no resources have a "Ball Handling" skill tag, that option should not appear in the filter UI.
+3. **Skill discovery**: Skill filters are dynamic — the set of available skills is derived from all resources in a section THAT MATCH ACTIVE AGE AND CATEGORY FILTERS. Example: If "U12" age filter is active, skill filter options show only skills from resources tagged U12. This prevents users from selecting skill filters that would result in zero matches. If no Age or Category filters are active, all skills in the section are shown.
 4. **Unfiltered sections**: Manager, Guides, and Forms sections receive a simplified UI without search or filter controls. Keyword search across these sections can be added in a future feature if needed.
+5. **Category values**: Category values differ by section (see FR-012 and FR-013 for specifics). Coaching Resources uses: Defence, Drills, Offence, Plays, Tools. Player Resources uses: Solo, Group, Offence, Defence, Drill (singular). Do not mix category taxonomies across sections.
 5. **Image aspect ratio**: Ensure image resources (PNG, JPEG, GIF) are constrained to maintain aspect ratio in the grid; CSS `aspect-ratio` or `object-fit: contain` handles this.
 6. **Modal integration**: The modal (from COA-27) receives filtered resources as input. No changes to modal logic are needed.

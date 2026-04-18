@@ -1,46 +1,49 @@
-export type ResourceType = 'pdf' | 'link' | 'video' | 'document';
+export type ResourceSection = 'coaching_resources' | 'player_resources' | 'manager' | 'guides' | 'forms';
 
-export type ResourceAudience = 'coaching' | 'players' | 'managers';
+export type ResourceType =
+  | 'youtube_link'
+  | 'image_png'
+  | 'image_jpeg'
+  | 'gif'
+  | 'pdf'
+  | 'external_link';
 
-export type CoachingCategory = 'Defence' | 'Offence' | 'Drills' | 'Fundamentals' | 'Game Plans' | 'Tools';
+export type ResourceAge = 'U8' | 'U10' | 'U12' | 'U14' | 'U16+';
 
-export type PlayerCategory = 'Nutrition' | 'Mental Skills' | 'Drills' | 'Rules' | 'Development';
+export type CoachingCategory = 'Defence' | 'Drills' | 'Offence' | 'Plays' | 'Tools';
+export type PlayerCategory = 'Solo' | 'Group' | 'Offence' | 'Defence' | 'Drill';
+export type ResourceCategory = CoachingCategory | PlayerCategory | string;
 
-export type AgeGroup = 'All Ages' | 'U8' | 'U10' | 'U12' | 'U14' | 'U16+';
-
-export type ResourcePage = 'coaching_resources' | 'player_resources';
+export interface ResourceTags {
+  age?: string[];
+  category?: string[];
+  skill?: string[];
+}
 
 export interface Resource {
   id: string;
   title: string;
-  description: string;
-  audience: ResourceAudience;
-  category: string;
-  ageGroup: string;
+  description?: string;
+  section: ResourceSection;
   type: ResourceType;
-  url: string;
+  url?: string;
+  fileRef?: string;
+  tags?: ResourceTags;
+  createdAt: string;
+  updatedAt: string;
   sourceDomain?: string;
-  imageUrl?: string;
-  dateAdded: string;
 }
 
-export interface CandidateResource {
-  title: string;
-  sourceUrl: string;
-  sourceDomain: string;
-  inferredType: 'video' | 'pdf' | 'link';
-  inferredCategory: string;
-  inferredAgeGroup: AgeGroup | 'All Ages';
-  inferredAudience: 'coaching' | 'players';
-  reachable: boolean;
-  status: 'pending' | 'approved' | 'rejected';
-  description?: string;
+export interface ActiveFilters {
+  age: string[];
+  category: string[];
+  skill: string[];
 }
 
 export interface FilterEvent {
   event_type: 'filter_applied' | 'filter_removed';
-  page: ResourcePage;
-  filter_category: 'category' | 'ageGroup';
+  page: ResourceSection;
+  filter_category: 'category' | 'age' | 'skill';
   filter_value: string;
   timestamp: string;
   session_id?: string;
@@ -48,7 +51,7 @@ export interface FilterEvent {
 
 export interface BrokenLinkEvent {
   event_type: 'broken_link_detected';
-  page: ResourcePage;
+  page: ResourceSection;
   resource_id: string;
   resource_url: string;
   http_status?: number;

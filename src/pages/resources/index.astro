@@ -1,731 +1,224 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FilterBar from '../../components/FilterBar.astro';
+import ResourceItem from '../../components/ResourceItem.astro';
+import ResourceModal from '../../components/ResourceModal.astro';
 import coachingResources from '../../data/coaching-resources.json';
 import playerResources from '../../data/player-resources.json';
 import managerResources from '../../data/manager-resources.json';
 import guides from '../../data/guides.json';
-import { getAvailableAgeGroups, getAvailableCategories } from '../../lib/resources/filters';
-import ResourceModal from '../../components/ResourceModal.astro';
+import forms from '../../data/forms.json';
+import type { ActiveFilters, Resource, ResourceSection } from '../../lib/resources/types';
+import {
+  filterResources,
+  getAvailableAgeGroups,
+  getAvailableCategories,
+  getFilterSummary,
+  getSectionLabel,
+} from '../../lib/resources/filters';
+import { extractAvailableSkills } from '../../lib/resources/skills';
 
-const ageGroups = getAvailableAgeGroups();
-const coachingCategories = getAvailableCategories('coaching');
-const playerCategories = getAvailableCategories('players');
-const managerCategories = getAvailableCategories('managers');
+const sectionResources: Record<ResourceSection, Resource[]> = {
+  coaching_resources: coachingResources,
+  player_resources: playerResources,
+  manager: managerResources,
+  guides,
+  forms,
+};
 
-const allCoaching = coachingResources;
-const allPlayers = playerResources;
-const allManagers = managerResources;
+const initialFilters: ActiveFilters = { age: [], category: [], skill: [] };
+
+const filteredInitial = {
+  coaching_resources: filterResources(sectionResources.coaching_resources, initialFilters, '', 'coaching_resources'),
+  player_resources: filterResources(sectionResources.player_resources, initialFilters, '', 'player_resources'),
+  manager: filterResources(sectionResources.manager, initialFilters, '', 'manager'),
+  guides: filterResources(sectionResources.guides, initialFilters, '', 'guides'),
+  forms: filterResources(sectionResources.forms, initialFilters, '', 'forms'),
+};
+
+const coachingAvailableSkills = extractAvailableSkills(sectionResources.coaching_resources, 'coaching_resources');
+const playerAvailableSkills = extractAvailableSkills(sectionResources.player_resources, 'player_resources');
+
+const tabs: Array<{ key: ResourceSection; tabId: string; panelId: string; label: string }> = [
+  { key: 'coaching_resources', tabId: 'tab-coaching', panelId: 'panel-coaching', label: 'Coaching Resources' },
+  { key: 'player_resources', tabId: 'tab-players', panelId: 'panel-players', label: 'Player Resources' },
+  { key: 'manager', tabId: 'tab-managers', panelId: 'panel-managers', label: 'Manager Resources' },
+  { key: 'guides', tabId: 'tab-guides', panelId: 'panel-guides', label: 'Guides' },
+  { key: 'forms', tabId: 'tab-forms', panelId: 'panel-forms', label: 'Forms' },
+];
 
 const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Submission&body=Resource%20Title%3A%0AResource%20URL%3A%0ADescription%3A%0ACategory%3A%0AAge%20Group%3A`;
 ---
 
 <BaseLayout title="Resources" description="Access coaching and player resources for Bendigo Phoenix Basketball Club — drills, guides, tools and development materials.">
-
-  <!-- Page Hero -->
-  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center relative overflow-hidden">
-    <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Club Hub</p>
-      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">PHOENIX RESOURCES</h1>
-      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
-      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
-        Coaching drills, player development guides, rules references, and club tools — all in one place.
+  <section class="relative overflow-hidden bg-brand-purple px-4 py-12 lg:py-8 text-center">
+    <div class="relative z-10 mx-auto max-w-3xl">
+      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-brand-gold">Club Hub</p>
+      <h1 class="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">Phoenix Resources</h1>
+      <div class="mx-auto mt-4 h-1 w-16 bg-brand-gold"></div>
+      <p class="mx-auto mt-4 max-w-xl text-base text-purple-200">
+        Coaching drills, player development guides, rules references, club policies, and forms — all in one place.
       </p>
     </div>
   </section>
 
-  <!-- Tab Bar -->
-  <div class="bg-white border-b border-gray-200" role="tablist" aria-label="Resource sections" id="tab-bar">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex gap-0">
-        <button
-          id="tab-coaching"
-          role="tab"
-          aria-selected="true"
-          aria-controls="panel-coaching"
-          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-brand-purple text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
-        >
+  <div class="border-b border-gray-200 bg-white" role="tablist" aria-label="Resource sections" id="tab-bar">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap gap-0">
+        <button id="tab-coaching" role="tab" aria-selected="true" aria-controls="panel-coaching" class="tab-btn border-b-2 border-brand-purple px-6 py-4 text-sm font-bold uppercase tracking-wider text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
           Coaching Resources
         </button>
-        <button
-          id="tab-players"
-          role="tab"
-          aria-selected="false"
-          aria-controls="panel-players"
-          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
-        >
+        <button id="tab-players" role="tab" aria-selected="false" aria-controls="panel-players" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
           Player Resources
         </button>
-        <!-- Manager tab: now visible (FR-008) -->
-        <button
-          id="tab-managers"
-          role="tab"
-          aria-selected="false"
-          aria-controls="panel-managers"
-          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
-        >
+        <button id="tab-managers" role="tab" aria-selected="false" aria-controls="panel-managers" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
           Manager Resources
         </button>
-        <!-- Guides tab: new (FR-015) -->
-        <button
-          id="tab-guides"
-          role="tab"
-          aria-selected="false"
-          aria-controls="panel-guides"
-          class="tab-btn px-6 py-4 text-sm font-bold uppercase tracking-wider border-b-2 border-transparent text-gray-500 hover:text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset"
-        >
+        <button id="tab-guides" role="tab" aria-selected="false" aria-controls="panel-guides" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
           Guides
+        </button>
+        <button id="tab-forms" role="tab" aria-selected="false" aria-controls="panel-forms" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
+          Forms
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Sticky Filter Bar -->
-  <div id="filter-bar" class="bg-white border-b border-gray-100 shadow-sm sticky z-40" style="top: 64px;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+  <div class="bg-brand-offwhite min-h-screen px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl space-y-10">
+      <section id="panel-coaching" role="tabpanel" aria-labelledby="tab-coaching">
+        <FilterBar
+          section="coaching_resources"
+          label={getSectionLabel('coaching_resources')}
+          availableAges={getAvailableAgeGroups('coaching_resources')}
+          availableCategories={getAvailableCategories('coaching_resources')}
+          availableSkills={coachingAvailableSkills}
+          activeFilters={initialFilters}
+          searchKeyword=""
+          resultCount={filteredInitial.coaching_resources.length}
+          showSearch={true}
+        />
 
-      <!-- Coaching filters -->
-      <div id="filters-coaching" class="space-y-2">
-        <!-- Age Group row -->
-        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by age group">
-          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Age</span>
-          {ageGroups.map((ag) => (
-            <button
-              class="filter-chip age-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
-              data-tag={ag}
-              aria-pressed="false"
-            >
-              {ag}
-            </button>
+        <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="coaching-grid">
+          {filteredInitial.coaching_resources.map((resource) => (
+            <ResourceItem resource={resource} accentColor="#573F93" />
           ))}
         </div>
-        <!-- Category row -->
-        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
-          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Category</span>
-          {coachingCategories.map((cat) => (
-            <button
-              class="filter-chip cat-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
-              data-tag={cat}
-              aria-pressed="false"
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        <!-- Active filter summary + clear -->
-        <div class="flex items-center gap-3 pt-1">
-          <span id="coaching-filter-summary" class="text-xs text-gray-400 hidden">Filters active</span>
+
+        <div id="coaching-no-results" class="hidden rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center shadow-sm">
+          <p class="text-lg font-bold text-brand-black" data-no-results-text>No resources found.</p>
+          <p class="mt-2 text-sm text-gray-600" data-no-results-summary></p>
           <button
-            id="coaching-clear-btn"
-            class="text-xs font-semibold text-brand-purple underline underline-offset-2 hover:text-purple-800 hidden"
-            aria-label="Clear all coaching filters"
+            type="button"
+            class="mt-6 inline-flex min-h-[44px] items-center rounded-full bg-brand-purple px-4 py-2 text-sm font-bold text-white transition hover:bg-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40"
+            data-clear-filters
           >
-            Clear filters
+            Clear all filters and search
           </button>
         </div>
-      </div>
+      </section>
 
-      <!-- Manager filters (hidden) -->
-      <div id="filters-managers" class="space-y-2 hidden">
-        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by age group">
-          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Age</span>
-          {ageGroups.map((ag) => (
-            <button
-              class="filter-chip age-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
-              data-tag={ag}
-              aria-pressed="false"
-            >
-              {ag}
-            </button>
+      <section id="panel-players" role="tabpanel" aria-labelledby="tab-players" class="hidden">
+        <FilterBar
+          section="player_resources"
+          label={getSectionLabel('player_resources')}
+          availableAges={getAvailableAgeGroups('player_resources')}
+          availableCategories={getAvailableCategories('player_resources')}
+          availableSkills={playerAvailableSkills}
+          activeFilters={initialFilters}
+          searchKeyword=""
+          resultCount={filteredInitial.player_resources.length}
+          showSearch={true}
+        />
+
+        <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="players-grid">
+          {filteredInitial.player_resources.map((resource) => (
+            <ResourceItem resource={resource} accentColor="#8B7536" />
           ))}
         </div>
-        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
-          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Category</span>
-          {managerCategories.map((cat) => (
-            <button
-              class="filter-chip cat-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
-              data-tag={cat}
-              aria-pressed="false"
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        <div class="flex items-center gap-3 pt-1">
-          <span id="managers-filter-summary" class="text-xs text-gray-400 hidden">Filters active</span>
+
+        <div id="players-no-results" class="hidden rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center shadow-sm">
+          <p class="text-lg font-bold text-brand-black" data-no-results-text>No resources found.</p>
+          <p class="mt-2 text-sm text-gray-600" data-no-results-summary></p>
           <button
-            id="managers-clear-btn"
-            class="text-xs font-semibold text-brand-purple underline underline-offset-2 hover:text-purple-800 hidden"
-            aria-label="Clear all manager filters"
+            type="button"
+            class="mt-6 inline-flex min-h-[44px] items-center rounded-full bg-brand-purple px-4 py-2 text-sm font-bold text-white transition hover:bg-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40"
+            data-clear-filters
           >
-            Clear filters
+            Clear all filters and search
           </button>
         </div>
-      </div>
+      </section>
 
-      <!-- Player filters -->
-      <div id="filters-players" class="space-y-2 hidden">
-        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by age group">
-          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Age</span>
-          {ageGroups.map((ag) => (
-            <button
-              class="filter-chip age-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
-              data-tag={ag}
-              aria-pressed="false"
-            >
-              {ag}
-            </button>
+      <section id="panel-managers" role="tabpanel" aria-labelledby="tab-managers" class="hidden">
+        <div class="mb-4 flex items-center justify-between gap-3">
+          <h2 class="text-2xl font-black uppercase tracking-tight text-brand-black">Manager Resources</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="managers-grid">
+          {filteredInitial.manager.map((resource) => (
+            <ResourceItem resource={resource} accentColor="#573F93" />
           ))}
         </div>
-        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
-          <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider w-20 flex-shrink-0">Category</span>
-          {playerCategories.map((cat) => (
-            <button
-              class="filter-chip cat-chip text-xs font-semibold px-3 py-1.5 rounded-full border border-gray-200 text-gray-600 hover:border-brand-purple hover:text-brand-purple transition-colors min-h-[44px] min-w-[44px]"
-              data-tag={cat}
-              aria-pressed="false"
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        <div class="flex items-center gap-3 pt-1">
-          <span id="players-filter-summary" class="text-xs text-gray-400 hidden">Filters active</span>
-          <button
-            id="players-clear-btn"
-            class="text-xs font-semibold text-brand-purple underline underline-offset-2 hover:text-purple-800 hidden"
-            aria-label="Clear all player filters"
-          >
-            Clear filters
-          </button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- Tab Panels -->
-  <div class="bg-brand-offwhite min-h-screen py-10 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-7xl mx-auto">
-
-      <!-- Coaching Panel -->
-      <div id="panel-coaching" role="tabpanel" aria-labelledby="tab-coaching">
-        <div id="coaching-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allCoaching.map((resource) => (
-            <article
-              class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200"
-              data-age={resource.ageGroup}
-              data-category={resource.category}
-              data-resource-url={resource.url}
-              data-resource-type={resource.type}
-              data-resource-title={resource.title}
-              data-resource-source={resource.sourceDomain ?? ''}
-            >
-              <div class="h-1 w-full" style="background: #573F93;"></div>
-              <div class="p-5 flex flex-col flex-1">
-                <div class="flex items-start justify-between gap-2 mb-3">
-                  <div>
-                    <span class="inline-block text-xs font-bold uppercase tracking-wider text-brand-purple bg-purple-50 px-2 py-1 rounded">
-                      {resource.category}
-                    </span>
-                    {resource.sourceDomain && (
-                      <span class="mt-1 block text-xs text-gray-500">{resource.sourceDomain}</span>
-                    )}
-                  </div>
-                  <span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap">
-                    {resource.ageGroup}
-                  </span>
-                </div>
-                <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
-                  {resource.title}
-                </h3>
-                <p class="text-gray-600 text-sm leading-relaxed flex-1">
-                  {resource.description}
-                </p>
-                <div class="mt-4">
-                  {resource.url === '#' ? (
-                    <span class="inline-flex cursor-not-allowed items-center gap-2 text-sm font-bold text-gray-400 opacity-70" aria-label={`${resource.title} coming soon`}>
-                      Coming soon
-                    </span>
-                  ) : resource.type === 'link' ? (
-                    <a
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
-                      aria-label={`Access ${resource.title}`}
-                    >
-                      Open
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
-                      data-open-resource
-                      aria-label={`Open ${resource.title} in modal`}
-                    >
-                      {resource.type === 'video' ? 'Watch' : 'Open'}
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <!-- No results -->
-        <div id="coaching-no-results" class="hidden text-center py-16">
-          <p class="text-gray-500 text-base mb-4">No coaching resources match the selected filters.</p>
-          <button
-            id="coaching-no-results-clear"
-            class="text-sm font-bold text-brand-purple underline underline-offset-2 hover:text-purple-800"
-          >
-            Clear filters
-          </button>
-        </div>
-      </div>
-
-      <!-- Player Panel -->
-      <div id="panel-players" role="tabpanel" aria-labelledby="tab-players" class="hidden">
-        <div id="players-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allPlayers.map((resource) => (
-            <article
-              class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-gold transition-all duration-200"
-              data-age={resource.ageGroup}
-              data-category={resource.category}
-              data-resource-url={resource.url}
-              data-resource-type={resource.type}
-              data-resource-title={resource.title}
-              data-resource-source={resource.sourceDomain ?? ''}
-            >
-              <div class="h-1 w-full" style="background: #8B7536;"></div>
-              <div class="p-5 flex flex-col flex-1">
-                <div class="flex items-start justify-between gap-2 mb-3">
-                  <div>
-                    <span class="inline-block text-xs font-bold uppercase tracking-wider px-2 py-1 rounded" style="color: #8B7536; background: #fdf8ec;">
-                      {resource.category}
-                    </span>
-                    {resource.sourceDomain && (
-                      <span class="mt-1 block text-xs text-gray-500">{resource.sourceDomain}</span>
-                    )}
-                  </div>
-                  <span class="inline-block text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded whitespace-nowrap">
-                    {resource.ageGroup}
-                  </span>
-                </div>
-                <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
-                  {resource.title}
-                </h3>
-                <p class="text-gray-600 text-sm leading-relaxed flex-1">
-                  {resource.description}
-                </p>
-                <div class="mt-4">
-                  {resource.url === '#' ? (
-                    <span class="inline-flex cursor-not-allowed items-center gap-2 text-sm font-bold text-gray-400 opacity-70" aria-label={`${resource.title} coming soon`}>
-                      Coming soon
-                    </span>
-                  ) : resource.type === 'link' ? (
-                    <a
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 text-sm font-bold hover:opacity-80 transition-opacity"
-                      style="color: #8B7536;"
-                      aria-label={`Access ${resource.title}`}
-                    >
-                      Open
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      class="inline-flex items-center gap-2 text-sm font-bold hover:opacity-80 transition-opacity"
-                      style="color: #8B7536;"
-                      data-open-resource
-                      aria-label={`Open ${resource.title} in modal`}
-                    >
-                      {resource.type === 'video' ? 'Watch' : 'Open'}
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <!-- No results -->
-        <div id="players-no-results" class="hidden text-center py-16">
-          <p class="text-gray-500 text-base mb-4">No player resources match the selected filters.</p>
-          <button
-            id="players-no-results-clear"
-            class="text-sm font-bold text-brand-purple underline underline-offset-2 hover:text-purple-800"
-          >
-            Clear filters
-          </button>
-        </div>
-      </div>
-
-      <!-- Manager Panel -->
-      <div id="panel-managers" role="tabpanel" aria-labelledby="tab-managers" class="hidden">
-        <div id="managers-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allManagers.map((resource) => (
-            <article
-              class="resource-card bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200"
-              data-resource-url={resource.url}
-              data-resource-type={resource.type}
-              data-resource-title={resource.title}
-              data-resource-source={resource.sourceDomain ?? ''}
-            >
-              <div class="h-1 w-full" style="background: #573F93;"></div>
-              <div class="p-5 flex flex-col flex-1">
-                <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
-                  {resource.title}
-                </h3>
-                {resource.sourceDomain && (
-                  <span class="mb-2 block text-xs text-gray-500">{resource.sourceDomain}</span>
-                )}
-                <p class="text-gray-600 text-sm leading-relaxed flex-1">
-                  {resource.description}
-                </p>
-                <div class="mt-4">
-                  {resource.url === '#' ? (
-                    <span class="inline-flex cursor-not-allowed items-center gap-2 text-sm font-bold text-gray-400 opacity-70" aria-label={`${resource.title} coming soon`}>
-                      Coming soon
-                    </span>
-                  ) : resource.type === 'link' ? (
-                    <a
-                      href={resource.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
-                      aria-label={`Access ${resource.title}`}
-                    >
-                      Open
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </a>
-                  ) : (
-                    <button
-                      type="button"
-                      class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
-                      data-open-resource
-                      aria-label={`Open ${resource.title} in modal`}
-                    >
-                      {resource.type === 'video' ? 'Watch' : 'Open'}
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        <div id="managers-no-results" class="hidden text-center py-16">
-          <p class="text-gray-500 text-base mb-4">No manager resources match the selected filters.</p>
-          <button
-            id="managers-no-results-clear"
-            class="text-sm font-bold text-brand-purple underline underline-offset-2 hover:text-purple-800"
-          >
-            Clear filters
-          </button>
-        </div>
-      </div>
-
-      <!-- Guides Panel -->
-      <div id="panel-guides" role="tabpanel" aria-labelledby="tab-guides" class="hidden">
-        {guides.length === 0 ? (
-          <div class="text-center py-16">
-            <p class="text-gray-500 text-base">No guides available yet — check back soon.</p>
-          </div>
-        ) : (
-          <div id="guides-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {guides.map((guide) => (
-              <article class="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden hover:shadow-md hover:border-brand-purple transition-all duration-200">
-                <div class="h-1 w-full" style="background: #573F93;"></div>
-                <div class="p-5 flex flex-col flex-1">
-                  <h3 class="text-brand-black font-black text-base uppercase tracking-tight mb-2 leading-snug">
-                    {guide.title}
-                  </h3>
-                  <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-4">
-                    {guide.description}
-                  </p>
-                  <div class="mt-4">
-                    <a
-                      href={guide.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="inline-flex items-center gap-2 text-sm font-bold text-brand-purple hover:text-purple-800 transition-colors"
-                      aria-label={`Open ${guide.title}`}
-                    >
-                      Open
-                      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </article>
-            ))}
+        {filteredInitial.manager.length === 0 && (
+          <div class="rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center shadow-sm">
+            <p class="text-lg font-bold text-brand-black">No manager resources available.</p>
           </div>
         )}
-      </div>
+      </section>
 
-      <!-- Submit a Resource -->
-      <div class="mt-16 border-t border-gray-200 pt-12 text-center">
-        <h2 class="text-brand-black font-black text-2xl uppercase tracking-tight mb-3">Submit a Resource</h2>
-        <p class="text-gray-600 text-sm max-w-md mx-auto mb-6">
-          Know of a great drill, guide, or tool that should be here? Share it with the club.
+      <section id="panel-guides" role="tabpanel" aria-labelledby="tab-guides" class="hidden">
+        <div class="mb-4 flex items-center justify-between gap-3">
+          <h2 class="text-2xl font-black uppercase tracking-tight text-brand-black">Guides</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="guides-grid">
+          {filteredInitial.guides.map((resource) => (
+            <ResourceItem resource={resource} accentColor="#573F93" />
+          ))}
+        </div>
+        {filteredInitial.guides.length === 0 && (
+          <div class="rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center shadow-sm">
+            <p class="text-lg font-bold text-brand-black">No guides available yet — check back soon.</p>
+          </div>
+        )}
+      </section>
+
+      <section id="panel-forms" role="tabpanel" aria-labelledby="tab-forms" class="hidden">
+        <div class="mb-4 flex items-center justify-between gap-3">
+          <h2 class="text-2xl font-black uppercase tracking-tight text-brand-black">Forms</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="forms-grid">
+          {filteredInitial.forms.map((resource) => (
+            <ResourceItem resource={resource} accentColor="#573F93" />
+          ))}
+        </div>
+        {filteredInitial.forms.length === 0 && (
+          <div class="rounded-2xl border border-dashed border-gray-300 bg-white px-6 py-16 text-center shadow-sm">
+            <p class="text-lg font-bold text-brand-black">No forms available yet — check back soon.</p>
+          </div>
+        )}
+      </section>
+
+      <div class="border-t border-gray-200 pt-12 text-center" data-submit-resource>
+        <h2 class="mb-3 text-2xl font-black uppercase tracking-tight text-brand-black">Submit a Resource</h2>
+        <p class="mx-auto mb-6 max-w-md text-sm text-gray-600">
+          Know of a great drill or play that should be here? Share it with the club.
         </p>
         <a
           href={submitHref}
-          class="inline-flex items-center gap-2 font-bold text-sm px-6 py-3 rounded-lg text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-purple min-h-[44px]"
+          class="inline-flex min-h-[44px] items-center gap-2 rounded-lg px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-purple"
           style="background: #573F93;"
         >
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
           </svg>
           Submit a Resource
         </a>
       </div>
-
     </div>
   </div>
 
   <ResourceModal />
 </BaseLayout>
 
-<script>
-  // ── Tab state ──────────────────────────────────────────────────────────────
-  type Tab = 'coaching' | 'players' | 'managers' | 'guides';
-  let activeTab: Tab = 'coaching';
-
-  const tabCoaching  = document.getElementById('tab-coaching')  as HTMLButtonElement;
-  const tabPlayers   = document.getElementById('tab-players')   as HTMLButtonElement;
-  const tabManagers  = document.getElementById('tab-managers')  as HTMLButtonElement;
-  const tabGuides    = document.getElementById('tab-guides')    as HTMLButtonElement;
-  const panelCoaching  = document.getElementById('panel-coaching')!;
-  const panelPlayers   = document.getElementById('panel-players')!;
-  const panelManagers  = document.getElementById('panel-managers')!;
-  const panelGuides    = document.getElementById('panel-guides')!;
-  const filtersCoaching  = document.getElementById('filters-coaching')!;
-  const filtersPlayers   = document.getElementById('filters-players')!;
-  const filtersManagers  = document.getElementById('filters-managers')!;
-
-  const allTabs    = [tabCoaching, tabPlayers, tabManagers, tabGuides];
-  const allPanels  = [panelCoaching, panelPlayers, panelManagers, panelGuides];
-  const allFilters = [filtersCoaching, filtersPlayers, filtersManagers];
-  const tabIds: Tab[] = ['coaching', 'players', 'managers', 'guides'];
-
-  function switchTab(tab: Tab) {
-    activeTab = tab;
-    allTabs.forEach((btn, i) => {
-      const active = tabIds[i] === tab;
-      btn.setAttribute('aria-selected', String(active));
-      btn.classList.toggle('border-brand-purple', active);
-      btn.classList.toggle('text-brand-purple', active);
-      btn.classList.toggle('border-transparent', !active);
-      btn.classList.toggle('text-gray-500', !active);
-      allPanels[i].classList.toggle('hidden', !active);
-    });
-
-    // Handle filter bar visibility
-    // Manager tab and Guides tab have no filters (FR-010, FR-011)
-    if (tab === 'managers' || tab === 'guides') {
-      allFilters.forEach(f => f.classList.add('hidden'));
-      filtersManagers.classList.add('hidden'); // Permanently hide managers filters
-    } else {
-      // For coaching/players tabs, show their filter bar, hide others
-      allFilters.forEach((f, i) => {
-        const filterTabId = ['coaching', 'players', 'managers'][i];
-        f.classList.toggle('hidden', filterTabId !== tab);
-      });
-      filtersManagers.classList.add('hidden'); // Always hide managers filters
-    }
-
-    clearFilters(tab);
-  }
-
-  tabCoaching.addEventListener('click', () => switchTab('coaching'));
-  tabPlayers.addEventListener('click',  () => switchTab('players'));
-  tabManagers.addEventListener('click', () => switchTab('managers'));
-  tabGuides.addEventListener('click',   () => switchTab('guides'));
-
-  // Keyboard nav for tab bar (Left/Right arrows with wrap, skip hidden tabs)
-  allTabs.forEach((btn, idx, arr) => {
-    btn.addEventListener('keydown', (e: KeyboardEvent) => {
-      const visibleTabs = arr.filter(b => !b.classList.contains('hidden'));
-      const visIdx = visibleTabs.indexOf(btn);
-      if (e.key === 'ArrowRight') {
-        const next = visibleTabs[(visIdx + 1) % visibleTabs.length];
-        next.focus();
-        switchTab(tabIds[arr.indexOf(next)]);
-      } else if (e.key === 'ArrowLeft') {
-        const prev = visibleTabs[(visIdx - 1 + visibleTabs.length) % visibleTabs.length];
-        prev.focus();
-        switchTab(tabIds[arr.indexOf(prev)]);
-      }
-    });
-  });
-
-  // ── Filter state ───────────────────────────────────────────────────────────
-  const selectedTags: Record<Tab, Set<string>> = {
-    coaching: new Set(),
-    players:  new Set(),
-    managers: new Set(),
-  };
-
-  function logFilterEvent(action: string, tag: string, tab: Tab) {
-    console.log('[Resources Filter]', { action, tag, tab, timestamp: new Date().toISOString() });
-  }
-
-  function applyFilters(tab: Tab) {
-    const tags = selectedTags[tab];
-    const gridId       = `${tab}-grid`;
-    const noResultsId  = `${tab}-no-results`;
-    const summaryId    = `${tab}-filter-summary`;
-    const clearBtnId   = `${tab}-clear-btn`;
-
-    const grid = document.getElementById(gridId)!;
-    const noResults = document.getElementById(noResultsId)!;
-    const summary   = document.getElementById(summaryId)!;
-    const clearBtn  = document.getElementById(clearBtnId)!;
-
-    const cards = grid.querySelectorAll<HTMLElement>('.resource-card');
-    let visibleCount = 0;
-
-    cards.forEach(card => {
-      const age = card.dataset.age ?? '';
-      const cat = card.dataset.category ?? '';
-      const visible = tags.size === 0 || tags.has(age) || tags.has(cat);
-      card.style.display = visible ? '' : 'none';
-      if (visible) visibleCount++;
-    });
-
-    noResults.classList.toggle('hidden', visibleCount > 0);
-    grid.classList.toggle('hidden', visibleCount === 0);
-
-    const hasFilters = tags.size > 0;
-    summary.classList.toggle('hidden', !hasFilters);
-    clearBtn.classList.toggle('hidden', !hasFilters);
-    if (hasFilters) {
-      summary.textContent = `${tags.size} filter${tags.size > 1 ? 's' : ''} active`;
-    }
-  }
-
-  function clearFilters(tab: Tab) {
-    selectedTags[tab].clear();
-    const containerId = `filters-${tab}`;
-    const container = document.getElementById(containerId)!;
-    container.querySelectorAll<HTMLButtonElement>('.filter-chip').forEach(btn => {
-      btn.setAttribute('aria-pressed', 'false');
-      btn.classList.remove('bg-brand-purple', 'text-white', 'border-brand-purple', 'bg-amber-700');
-      btn.classList.add('border-gray-200', 'text-gray-600');
-    });
-    applyFilters(tab);
-  }
-
-  function setupFilterChips(containerId: string, tab: Tab) {
-    const container = document.getElementById(containerId)!;
-    const chips = container.querySelectorAll<HTMLButtonElement>('.filter-chip');
-
-    chips.forEach(chip => {
-      chip.addEventListener('click', () => {
-        const tag = chip.dataset.tag!;
-        const isPressed = chip.getAttribute('aria-pressed') === 'true';
-
-        if (isPressed) {
-          selectedTags[tab].delete(tag);
-          chip.setAttribute('aria-pressed', 'false');
-          chip.classList.remove('bg-brand-purple', 'text-white', 'border-brand-purple');
-          chip.classList.add('border-gray-200', 'text-gray-600');
-          logFilterEvent('remove', tag, tab);
-        } else {
-          selectedTags[tab].add(tag);
-          chip.setAttribute('aria-pressed', 'true');
-          chip.classList.add('bg-brand-purple', 'text-white', 'border-brand-purple');
-          chip.classList.remove('border-gray-200', 'text-gray-600');
-          logFilterEvent('add', tag, tab);
-        }
-        applyFilters(tab);
-      });
-
-      // Keyboard: Enter/Space toggle (handled natively for button, but Space needs explicit for non-default)
-      chip.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          chip.click();
-        }
-      });
-
-      // Arrow key navigation within the chip group
-      chip.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-          const allChips = Array.from(chips);
-          const idx = allChips.indexOf(chip);
-          const next = e.key === 'ArrowRight'
-            ? allChips[(idx + 1) % allChips.length]
-            : allChips[(idx - 1 + allChips.length) % allChips.length];
-          (next as HTMLButtonElement).focus();
-        }
-      });
-    });
-  }
-
-  setupFilterChips('filters-coaching', 'coaching');
-  setupFilterChips('filters-players', 'players');
-  setupFilterChips('filters-managers', 'managers');
-
-  // Clear buttons
-  (['coaching', 'players', 'managers'] as Tab[]).forEach(tab => {
-    document.getElementById(`${tab}-clear-btn`)?.addEventListener('click', () => clearFilters(tab));
-    document.getElementById(`${tab}-no-results-clear`)?.addEventListener('click', () => clearFilters(tab));
-  });
-
-  // Resource modal wiring
-  const resourceModal = document.getElementById('resource-modal');
-  const resourceGrids = ['coaching-grid', 'players-grid', 'managers-grid'];
-
-  resourceGrids.forEach((gridId) => {
-    const grid = document.getElementById(gridId);
-    if (!grid) return;
-
-    grid.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      const trigger = target.closest('[data-open-resource]') as HTMLElement | null;
-      if (!trigger) return;
-
-      const card = trigger.closest('.resource-card') as HTMLElement | null;
-      if (!card) return;
-
-      const title = card.dataset.resourceTitle || '';
-      const url = card.dataset.resourceUrl || '';
-      const type = card.dataset.resourceType || 'link';
-      const source = card.dataset.resourceSource || '';
-
-      if (!url || url === '#' || type === 'link') return;
-
-      resourceModal?.dispatchEvent(new CustomEvent('resource:open', {
-        detail: {
-          title,
-          url,
-          type,
-          source,
-          trigger,
-        }
-      }));
-    });
-  });
-</script>
+<script id="resources-page-data" type="application/json" set:html={JSON.stringify({ sectionResources })}></script>
+<script is:inline src="/scripts/resources-page.js"></script>
