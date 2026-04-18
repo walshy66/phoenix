@@ -1,0 +1,91 @@
+---
+import type { Resource } from '../lib/resources/types';
+
+interface Props {
+  resource: Resource;
+  accentClass?: string;
+  accentColor?: string;
+}
+
+const { resource, accentClass = 'bg-brand-purple', accentColor = '#573F93' } = Astro.props as Props;
+
+const displayUrl = resource.url ?? resource.fileRef ?? '';
+const primaryCategory = resource.tags?.category?.[0] ?? '';
+const primaryAge = resource.tags?.age?.[0] ?? '';
+const buttonLabel =
+  resource.type === 'youtube_link' ? 'Watch' :
+  resource.type === 'pdf' ? 'Open' :
+  resource.type === 'image_png' || resource.type === 'image_jpeg' || resource.type === 'gif' ? 'Open' :
+  'Open';
+const isExternal = resource.type === 'external_link';
+const openLabel = buttonLabel;
+---
+
+<article
+  class="resource-item flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-200 hover:border-brand-purple hover:shadow-md"
+  data-resource-item
+  data-resource-id={resource.id}
+  data-resource-section={resource.section}
+  data-resource-type={resource.type}
+  data-resource-url={displayUrl}
+  data-resource-source={resource.sourceDomain ?? ''}
+  data-resource-title={resource.title}
+  data-resource-description={resource.description ?? ''}
+  data-resource-age={resource.tags?.age?.join('|') ?? ''}
+  data-resource-category={resource.tags?.category?.join('|') ?? ''}
+  data-resource-skill={resource.tags?.skill?.join('|') ?? ''}
+>
+  <div class="h-1 w-full" style={`background: ${accentColor};`}></div>
+
+  <div class="flex flex-1 flex-col p-4">
+    <div class="mb-2 flex flex-wrap items-start justify-between gap-2">
+      <div class="flex flex-wrap gap-2">
+        {primaryCategory && (
+          <span class="inline-flex items-center rounded-full bg-purple-50 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-brand-purple">
+            {primaryCategory}
+          </span>
+        )}
+        {primaryAge && (
+          <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-gray-600">
+            {primaryAge}
+          </span>
+        )}
+        <span class="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-gray-600">
+          {resource.type.replace('_', ' ')}
+        </span>
+      </div>
+      {resource.sourceDomain && (
+        <span class="text-xs font-semibold uppercase tracking-wide text-gray-500">{resource.sourceDomain}</span>
+      )}
+    </div>
+
+    <h3 class="mb-1.5 text-base font-black uppercase tracking-tight text-brand-black leading-snug">
+      {resource.title}
+    </h3>
+
+    {resource.description && (
+      <p class="flex-1 text-sm leading-relaxed text-gray-600">{resource.description}</p>
+    )}
+
+    <div class="mt-3 flex items-center justify-between gap-3">
+      <a
+        href={displayUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex min-h-[40px] items-center gap-2 rounded-full bg-brand-purple px-3.5 py-2 text-sm font-bold text-white transition hover:bg-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40"
+        aria-label={`Open ${resource.title}`}
+      >
+        {openLabel}
+        <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+
+      {resource.tags?.skill?.length ? (
+        <span class="text-[10px] font-semibold uppercase tracking-wide text-gray-400">
+          {resource.tags.skill.length} skill{resource.tags.skill.length === 1 ? '' : 's'}
+        </span>
+      ) : null}
+    </div>
+  </div>
+</article>

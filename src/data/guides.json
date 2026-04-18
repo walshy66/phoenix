@@ -1,72 +1,102 @@
 [
   {
-    "id": "guide-007",
+    "id": "guide-001",
     "title": "Coach",
     "description": "Guide for team coaches covering key responsibilities, expectations, and support information.",
+    "section": "guides",
+    "type": "pdf",
     "url": "/resources/guides/GUIDE_Team_Coach_V1.0.pdf",
-    "dateAdded": "2026-04-18"
-  },
-  {
-    "id": "guide-008",
-    "title": "Coach - Quick Guide & Coach Kit Care",
-    "description": "Quick guide for coaches with a cheat sheet and coach kit care information.",
-    "url": "/resources/guides/GUIDE_CoachCheatSheet&CoackKitCare.pdf",
-    "dateAdded": "2026-04-18"
-  },
-  {
-    "id": "guide-001",
-    "title": "Smart Goals",
-    "description": "Guide to setting effective SMART goals for personal and team development.",
-    "url": "/resources/guides/GUIDE_SmartGoals_20250218.pdf",
-    "dateAdded": "2026-04-11"
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
   },
   {
     "id": "guide-002",
-    "title": "Social Media Coordinator",
-    "description": "Role guide and responsibilities for managing club social media channels.",
-    "url": "/resources/guides/GUIDE_Social Media Coordinator_20250901.pdf",
-    "dateAdded": "2026-04-11"
+    "title": "Coach - Quick Guide & Coach Kit Care",
+    "description": "Quick guide for coaches with a cheat sheet and coach kit care information.",
+    "section": "guides",
+    "type": "pdf",
+    "url": "/resources/team-manager/PHOENIX_CoachCheatSheetCoackKitCare.pdf",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
   },
   {
     "id": "guide-003",
-    "title": "Sponsorship Coordinator",
-    "description": "Guide for coordinating and managing club sponsorships and partnerships.",
-    "url": "/resources/guides/GUIDE_Sponsorship Coordinator_20250901.pdf",
-    "dateAdded": "2026-04-11"
+    "title": "Smart Goals",
+    "description": "Guide to setting effective SMART goals for personal and team development.",
+    "section": "guides",
+    "type": "pdf",
+    "url": "/resources/guides/GUIDE_SmartGoals_20250218.pdf",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
   },
   {
     "id": "guide-004",
-    "title": "Team Manager",
-    "description": "Comprehensive guide for team managers covering all key responsibilities and processes.",
-    "url": "/resources/guides/GUIDE_TeamManager_V1.0.pdf",
-    "dateAdded": "2026-04-18"
-  },
-  {
-    "id": "guide-009",
-    "title": "Team Manager - Quick Guide",
-    "description": "Quick guide for team managers with a concise summary of key responsibilities and processes.",
-    "url": "/resources/guides/GUIDE_Team_TeamManager_QuickGuide.pdf",
-    "dateAdded": "2026-04-18"
-  },
-  {
-    "id": "guide-010",
-    "title": "Team Name",
-    "description": "Guide for creating your team name.",
-    "url": "/resources/guides/registration_team_name.png",
-    "dateAdded": "2026-04-18"
+    "title": "Social Media Coordinator",
+    "description": "Role guide and responsibilities for managing club social media channels.",
+    "section": "guides",
+    "type": "pdf",
+    "url": "/resources/guides/GUIDE_Social Media Coordinator_20250901.pdf",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
   },
   {
     "id": "guide-005",
-    "title": "Uniform Coordinator",
-    "description": "Guide for coordinating team uniforms and merchandise distribution.",
-    "url": "/resources/guides/GUIDE_Uniform Coordinator_20250901.pdf",
-    "dateAdded": "2026-04-11"
+    "title": "Sponsorship Coordinator",
+    "description": "Guide for coordinating and managing club sponsorships and partnerships.",
+    "section": "guides",
+    "type": "pdf",
+    "url": "/resources/guides/GUIDE_Sponsorship Coordinator_20250901.pdf",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
   },
   {
     "id": "guide-006",
+    "title": "Team Manager",
+    "description": "Comprehensive guide for team managers covering all key responsibilities and processes.",
+    "section": "guides",
+    "type": "pdf",
+    "url": "/resources/guides/GUIDE_TeamManager_V1.1.pdf",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
+  },
+  {
+    "id": "guide-007",
+    "title": "Team Manager - Quick Guide",
+    "description": "Quick reference guide for team managers with essential information and contacts.",
+    "section": "guides",
+    "type": "pdf",
+    "url": "/resources/team-manager/PHOENIX_Team_Manager_QuickGuide.pdf",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
+  },
+  {
+    "id": "guide-008",
+    "title": "Team Name",
+    "description": "Guide for creating your team name.",
+    "section": "guides",
+    "type": "image_png",
+    "fileRef": "/uploads/registration_team_name.png",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
+  },
+  {
+    "id": "guide-009",
+    "title": "Uniform Coordinator",
+    "description": "Guide for coordinating team uniforms and merchandise distribution.",
+    "section": "guides",
+    "type": "pdf",
+    "url": "/resources/guides/GUIDE_Uniform Coordinator_20250901.pdf",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
+  },
+  {
+    "id": "guide-010",
     "title": "Vice President",
     "description": "Role guide outlining responsibilities and requirements for the Vice President position.",
+    "section": "guides",
+    "type": "pdf",
     "url": "/resources/guides/GUIDE_Vice President_20250901.pdf",
-    "dateAdded": "2026-04-11"
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z"
   }
 ]

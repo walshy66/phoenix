@@ -2,181 +2,362 @@
   {
     "id": "player-001",
     "title": "Nutrition Guide for Young Athletes",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-03-10T00:00:00Z",
+    "updatedAt": "2026-03-10T00:00:00Z",
     "description": "A practical guide on eating well for young basketball players. Covers pre-game meals, hydration, recovery nutrition, and snack ideas for training days.",
-    "audience": "players",
-    "category": "Nutrition",
-    "ageGroup": "All Ages",
-    "type": "link",
     "url": "https://jr.nba.com/category/basketball-skills-and-drills/",
-    "dateAdded": "2026-03-10",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U8",
+        "U10",
+        "U12",
+        "U14",
+        "U16+"
+      ],
+      "category": [
+        "Solo"
+      ],
+      "skill": [
+        "Nutrition"
+      ]
+    }
   },
   {
     "id": "player-002",
     "title": "Pre-Game Meal Planner — U14",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-03-12T00:00:00Z",
+    "updatedAt": "2026-03-12T00:00:00Z",
     "description": "A one-week meal planner designed for teen athletes preparing for competition. Includes breakfast, lunch, dinner and snack options to fuel performance.",
-    "audience": "players",
-    "category": "Nutrition",
-    "ageGroup": "U14",
-    "type": "link",
     "url": "https://jr.nba.com/category/ball-handling/",
-    "dateAdded": "2026-03-12",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U14"
+      ],
+      "category": [
+        "Solo"
+      ],
+      "skill": [
+        "Nutrition"
+      ]
+    }
   },
   {
     "id": "player-003",
     "title": "Hydration for Basketball Players",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-03-14T00:00:00Z",
+    "updatedAt": "2026-03-14T00:00:00Z",
     "description": "Why hydration matters and how much to drink before, during, and after games and training. Includes tips for hot weather and long tournament days.",
-    "audience": "players",
-    "category": "Nutrition",
-    "ageGroup": "U16+",
-    "type": "link",
     "url": "https://jr.nba.com/category/shooting/",
-    "dateAdded": "2026-03-14",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U16+"
+      ],
+      "category": [
+        "Solo"
+      ],
+      "skill": [
+        "Nutrition"
+      ]
+    }
   },
   {
     "id": "player-004",
     "title": "Mental Skills: Staying Focused Under Pressure",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-03-16T00:00:00Z",
+    "updatedAt": "2026-03-16T00:00:00Z",
     "description": "Practical techniques for maintaining focus during games and training. Covers breathing exercises, positive self-talk, and visualisation for junior players.",
-    "audience": "players",
-    "category": "Mental Skills",
-    "ageGroup": "U14",
-    "type": "link",
     "url": "https://jr.nba.com/category/passing/",
-    "dateAdded": "2026-03-16",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U14"
+      ],
+      "category": [
+        "Solo"
+      ],
+      "skill": [
+        "Positioning",
+        "Communication",
+        "Mindset"
+      ]
+    }
   },
   {
     "id": "player-005",
     "title": "Dealing with Mistakes on Court",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-03-18T00:00:00Z",
+    "updatedAt": "2026-03-18T00:00:00Z",
     "description": "How to bounce back from errors during a game. A mindset guide for young athletes covering resilience, self-compassion, and short memory strategies.",
-    "audience": "players",
-    "category": "Mental Skills",
-    "ageGroup": "U12",
-    "type": "link",
     "url": "https://jr.nba.com/category/rebounding/",
-    "dateAdded": "2026-03-18",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U12"
+      ],
+      "category": [
+        "Solo"
+      ],
+      "skill": [
+        "Passing",
+        "Decision Making",
+        "Mindset"
+      ]
+    }
   },
   {
     "id": "player-006",
     "title": "Confidence Building for Teen Athletes",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-03-20T00:00:00Z",
+    "updatedAt": "2026-03-20T00:00:00Z",
     "description": "Strategies to build and maintain confidence across a basketball season. Includes goal-setting frameworks, routine design, and managing pressure.",
-    "audience": "players",
-    "category": "Mental Skills",
-    "ageGroup": "U16+",
-    "type": "link",
     "url": "https://jr.nba.com/category/conditioning/",
-    "dateAdded": "2026-03-20",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U16+"
+      ],
+      "category": [
+        "Solo"
+      ],
+      "skill": [
+        "Positioning",
+        "Communication",
+        "Mindset",
+        "Development"
+      ]
+    }
   },
   {
     "id": "player-007",
     "title": "Official Basketball Rules — Junior Summary",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-03-22T00:00:00Z",
+    "updatedAt": "2026-03-22T00:00:00Z",
     "description": "A simplified breakdown of the key rules of basketball for junior players and their parents. Great reference before your first game or for parents new to the sport.",
-    "audience": "players",
-    "category": "Rules",
-    "ageGroup": "All Ages",
-    "type": "link",
     "url": "https://jr.nba.com/category/defense/",
-    "dateAdded": "2026-03-22",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U8",
+        "U10",
+        "U12",
+        "U14",
+        "U16+"
+      ],
+      "category": [
+        "Group"
+      ],
+      "skill": [
+        "Rules"
+      ]
+    }
   },
   {
     "id": "player-008",
     "title": "Common Fouls Explained — U14",
+    "section": "player_resources",
+    "type": "youtube_link",
+    "createdAt": "2026-03-24T00:00:00Z",
+    "updatedAt": "2026-03-24T00:00:00Z",
     "description": "A visual guide to the most common fouls in junior basketball: personal, flagrant, and technical. Includes what referees look for and how to avoid them.",
-    "audience": "players",
-    "category": "Rules",
-    "ageGroup": "U14",
-    "type": "video",
     "url": "https://www.youtube.com/watch?v=ubPUDB5Z9zY",
-    "dateAdded": "2026-03-24",
-    "sourceDomain": "Basketball Australia"
+    "sourceDomain": "Basketball Australia",
+    "tags": {
+      "age": [
+        "U14"
+      ],
+      "category": [
+        "Group"
+      ],
+      "skill": [
+        "Mindset",
+        "Rules"
+      ]
+    }
   },
   {
     "id": "player-009",
     "title": "At-Home Ball-Handling Program — U12",
+    "section": "player_resources",
+    "type": "youtube_link",
+    "createdAt": "2026-03-26T00:00:00Z",
+    "updatedAt": "2026-03-26T00:00:00Z",
     "description": "A 4-week at-home dribbling program to improve ball control. No court required — just a ball and some space. Suitable for beginners and intermediates.",
-    "audience": "players",
-    "category": "Drills",
-    "ageGroup": "U12",
-    "type": "video",
     "url": "https://www.youtube.com/watch?v=F3Xm0UhzjOQ",
-    "dateAdded": "2026-03-26",
-    "sourceDomain": "Basketball Australia"
+    "sourceDomain": "Basketball Australia",
+    "tags": {
+      "age": [
+        "U12"
+      ],
+      "category": [
+        "Drill"
+      ],
+      "skill": [
+        "Fundamentals",
+        "Repetition"
+      ]
+    }
   },
   {
     "id": "player-010",
     "title": "Shooting Form Video Tutorial",
+    "section": "player_resources",
+    "type": "youtube_link",
+    "createdAt": "2026-03-28T00:00:00Z",
+    "updatedAt": "2026-03-28T00:00:00Z",
     "description": "Step-by-step video breakdown of proper shooting mechanics. Covers BEEF (Balance, Eyes, Elbow, Follow-through) with slow-motion examples and common mistakes.",
-    "audience": "players",
-    "category": "Drills",
-    "ageGroup": "U14",
-    "type": "video",
     "url": "https://www.youtube.com/watch?v=ktMOLwYs1ug",
-    "dateAdded": "2026-03-28",
-    "sourceDomain": "Basketball Australia"
+    "sourceDomain": "Basketball Australia",
+    "tags": {
+      "age": [
+        "U14"
+      ],
+      "category": [
+        "Drill"
+      ],
+      "skill": [
+        "Shooting",
+        "Form",
+        "Spacing",
+        "Fundamentals",
+        "Repetition"
+      ]
+    }
   },
   {
     "id": "player-011",
     "title": "Speed and Agility Conditioning — U16+",
+    "section": "player_resources",
+    "type": "youtube_link",
+    "createdAt": "2026-04-01T00:00:00Z",
+    "updatedAt": "2026-04-01T00:00:00Z",
     "description": "Off-court conditioning drills to improve speed, agility, and vertical jump. Designed for senior junior players looking to gain a physical edge.",
-    "audience": "players",
-    "category": "Development",
-    "ageGroup": "U16+",
-    "type": "video",
     "url": "https://www.youtube.com/watch?v=gRJm_xV_Pg0",
-    "dateAdded": "2026-04-01",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U16+"
+      ],
+      "category": [
+        "Group"
+      ],
+      "skill": [
+        "Fitness",
+        "Development",
+        "Leadership"
+      ]
+    }
   },
   {
     "id": "player-012",
     "title": "Setting Goals for Your Basketball Season",
+    "section": "player_resources",
+    "type": "youtube_link",
+    "createdAt": "2026-04-03T00:00:00Z",
+    "updatedAt": "2026-04-03T00:00:00Z",
     "description": "A structured goal-setting workbook for junior players. Includes short-term and long-term goal templates, self-reflection prompts, and review checkpoints.",
-    "audience": "players",
-    "category": "Development",
-    "ageGroup": "U14",
-    "type": "video",
     "url": "https://www.youtube.com/watch?v=fcfavEIYaU0",
-    "dateAdded": "2026-04-03",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U14"
+      ],
+      "category": [
+        "Group"
+      ],
+      "skill": [
+        "Development",
+        "Leadership"
+      ]
+    }
   },
   {
     "id": "player-013",
     "title": "Getting Started with Basketball — U8",
+    "section": "player_resources",
+    "type": "youtube_link",
+    "createdAt": "2026-04-05T00:00:00Z",
+    "updatedAt": "2026-04-05T00:00:00Z",
     "description": "A beginner-friendly introduction to basketball basics for the youngest players. Covers dribbling, passing, and shooting fundamentals in a fun, approachable format.",
-    "audience": "players",
-    "category": "Development",
-    "ageGroup": "U8",
-    "type": "video",
     "url": "https://youtu.be/hSCQ6zzc3uI?si=n2ECRfLQYLdhzf9c",
-    "dateAdded": "2026-04-05",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U8"
+      ],
+      "category": [
+        "Group"
+      ],
+      "skill": [
+        "Shooting",
+        "Form",
+        "Passing",
+        "Decision Making",
+        "Mindset",
+        "Development",
+        "Leadership"
+      ]
+    }
   },
   {
     "id": "player-014",
     "title": "Dribbling Skills for U10",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-04-07T00:00:00Z",
+    "updatedAt": "2026-04-07T00:00:00Z",
     "description": "Simple dribbling exercises designed for U10 players to practice at home or in the backyard. Builds coordination and ball control with progressive challenges.",
-    "audience": "players",
-    "category": "Drills",
-    "ageGroup": "U10",
-    "type": "link",
     "url": "https://jr.nba.com/jr-nba-skills-challenge/",
-    "dateAdded": "2026-04-07",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U10"
+      ],
+      "category": [
+        "Drill"
+      ],
+      "skill": [
+        "Fundamentals",
+        "Repetition"
+      ]
+    }
   },
   {
     "id": "player-015",
     "title": "Basketball Rules for Parents",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-04-09T00:00:00Z",
+    "updatedAt": "2026-04-09T00:00:00Z",
     "description": "A friendly guide explaining basketball rules for parents and families who are new to the sport. Helps spectators understand the game and support their young players.",
-    "audience": "players",
-    "category": "Rules",
-    "ageGroup": "U8",
-    "type": "link",
     "url": "https://jr.nba.com/jr-nba-instructional-curriculum/",
-    "dateAdded": "2026-04-09",
-    "sourceDomain": "NBA"
+    "sourceDomain": "NBA",
+    "tags": {
+      "age": [
+        "U8"
+      ],
+      "category": [
+        "Group"
+      ],
+      "skill": [
+        "Rules"
+      ]
+    }
   }
 ]

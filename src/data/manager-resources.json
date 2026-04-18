@@ -2,10 +2,31 @@
   {
     "id": "manager-004",
     "title": "PlayHQ - How to Score a Game",
+    "section": "manager",
+    "type": "youtube_link",
+    "createdAt": "2026-04-11T00:00:00Z",
+    "updatedAt": "2026-04-11T00:00:00Z",
     "description": "Step-by-step tutorial video for entering game scores in PlayHQ during a match.",
-    "audience": "managers",
-    "type": "video",
-    "url": "https://youtu.be/OdTboL_uYqk?si=DHaDOyoUJOXQLC4G&t=2",
-    "dateAdded": "2026-04-11"
+    "url": "https://youtu.be/OdTboL_uYqk?si=DHaDOyoUJOXQLC4G&t=2"
+  },
+  {
+    "id": "manager-001",
+    "title": "Team Manager Guide",
+    "section": "manager",
+    "type": "pdf",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z",
+    "description": "Comprehensive guide for team managers covering all key responsibilities and processes.",
+    "url": "/resources/team-manager/GUIDE_TeamManager_V1.1.pdf"
+  },
+  {
+    "id": "manager-002",
+    "title": "Team Manager Quick Guide",
+    "section": "manager",
+    "type": "pdf",
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-01T00:00:00Z",
+    "description": "Quick reference guide for team managers with essential information and contacts.",
+    "url": "/resources/team-manager/PHOENIX_Team_Manager_QuickGuide.pdf"
   }
 ]

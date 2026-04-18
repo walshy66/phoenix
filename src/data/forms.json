@@ -1,0 +1,56 @@
+[
+  {
+    "id": "forms-001",
+    "title": "Child Safety Policy",
+    "section": "forms",
+    "type": "pdf",
+    "url": "/resources/club-policies/POLICY_ChildSafety_20251023.pdf",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "updatedAt": "2026-04-18T00:00:00Z"
+  },
+  {
+    "id": "forms-002",
+    "title": "Office Bearer Responsibilities",
+    "section": "forms",
+    "type": "image_png",
+    "fileRef": "/resources/club-policies/POLICY_OfficeBearerResponsibilites_20250901.png",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "updatedAt": "2026-04-18T00:00:00Z"
+  },
+  {
+    "id": "forms-003",
+    "title": "Privacy Policy",
+    "section": "forms",
+    "type": "pdf",
+    "url": "/resources/club-policies/BV_Privacy_Policy_2024.pdf",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "updatedAt": "2026-04-18T00:00:00Z"
+  },
+  {
+    "id": "forms-004",
+    "title": "Refunds Policy",
+    "section": "forms",
+    "type": "pdf",
+    "url": "/resources/club-policies/POLICY_Refunds.pdf",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "updatedAt": "2026-04-18T00:00:00Z"
+  },
+  {
+    "id": "forms-005",
+    "title": "Registration and Grading Policy",
+    "section": "forms",
+    "type": "pdf",
+    "url": "/resources/club-policies/POLICY_Registration_and_Grading.pdf",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "updatedAt": "2026-04-18T00:00:00Z"
+  },
+  {
+    "id": "forms-006",
+    "title": "Volunteer Policy",
+    "section": "forms",
+    "type": "pdf",
+    "url": "/resources/club-policies/POLICY_Volunteer_20251023.pdf",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "updatedAt": "2026-04-18T00:00:00Z"
+  }
+]

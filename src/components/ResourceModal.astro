@@ -48,6 +48,12 @@
           </div>
         </div>
 
+        <div id="resource-modal-image-wrap" class="hidden min-h-0 flex-1">
+          <div class="flex h-full items-center justify-center overflow-hidden rounded border border-gray-200 bg-white p-3">
+            <img id="resource-modal-image" src="" alt="" class="max-h-full w-full object-contain" />
+          </div>
+        </div>
+
         <div id="resource-modal-pdf-wrap" class="hidden min-h-0 flex-1">
           <object
             id="resource-modal-pdf"
@@ -99,6 +105,8 @@
 
   const videoWrap = document.getElementById('resource-modal-video-wrap');
   const iframeEl = document.getElementById('resource-modal-iframe');
+  const imageWrap = document.getElementById('resource-modal-image-wrap');
+  const imageEl = document.getElementById('resource-modal-image');
   const pdfWrap = document.getElementById('resource-modal-pdf-wrap');
   const pdfObj = document.getElementById('resource-modal-pdf');
   const pdfEmbed = document.getElementById('resource-modal-pdf-embed');
@@ -109,7 +117,7 @@
   const downloadLink = document.getElementById('resource-modal-download');
 
   let triggerEl = null;
-  let activeType = 'link';
+  let activeType = 'external_link';
   let activeUrl = '';
   let videoTimeout = null;
 
@@ -143,9 +151,12 @@
   function resetContent() {
     hideFallback();
     videoWrap.classList.add('hidden');
+    imageWrap.classList.add('hidden');
     pdfWrap.classList.add('hidden');
     downloadLink.classList.add('hidden');
     iframeEl.setAttribute('src', '');
+    imageEl.setAttribute('src', '');
+    imageEl.setAttribute('alt', '');
     pdfObj.setAttribute('data', '');
     pdfEmbed.setAttribute('src', '');
     if (videoTimeout) {
@@ -188,16 +199,16 @@
   function openModal() {
     const rawTitle = modal.dataset.modalTitle || 'Resource';
     const rawUrl = modal.dataset.modalUrl || '';
-    const rawType = modal.dataset.modalType || 'link';
+    const rawType = modal.dataset.modalType || 'external_link';
     const rawSource = modal.dataset.modalSource || '';
 
-    if (!rawUrl || rawUrl === '#' || rawType === 'link') return;
+    if (!rawUrl || rawUrl === '#') return;
 
-    const embedUrl = rawType === 'video' ? getEmbedUrl(rawUrl) : null;
-    if (rawType === 'video' && !embedUrl) return;
+    const resolvedUrl = rawUrl;
+    const embedUrl = getEmbedUrl(resolvedUrl);
 
     activeType = rawType;
-    activeUrl = rawUrl;
+    activeUrl = resolvedUrl;
 
     titleEl.textContent = rawTitle;
     titleEl.setAttribute('title', rawTitle);
@@ -208,27 +219,31 @@
 
     resetContent();
 
-    if (rawType === 'video') {
-      videoWrap.classList.remove('hidden');
-      iframeEl.setAttribute('src', embedUrl);
-      iframeEl.setAttribute('title', rawSource ? `${rawTitle} — ${rawSource}` : rawTitle);
-      videoTimeout = setTimeout(() => {
-        setFallback(
-          'Video unavailable — it may have been removed. Try opening the direct link.',
-          rawUrl,
-          'Open direct link'
-        );
-        videoWrap.classList.add('hidden');
-      }, 3000);
-    }
-
-    if (rawType === 'pdf' || rawType === 'document') {
+    if (rawType === 'youtube_link' || rawType === 'video') {
+      if (!embedUrl) {
+        setFallback('Video unavailable. Open the direct link instead.', resolvedUrl, 'Open direct link');
+      } else {
+        videoWrap.classList.remove('hidden');
+        iframeEl.setAttribute('src', embedUrl);
+        iframeEl.setAttribute('title', rawSource ? `${rawTitle} — ${rawSource}` : rawTitle);
+        videoTimeout = setTimeout(() => {
+          setFallback('Video unavailable — it may have been removed. Try opening the direct link.', resolvedUrl, 'Open direct link');
+          videoWrap.classList.add('hidden');
+        }, 3000);
+      }
+    } else if (rawType === 'pdf' || rawType === 'document') {
       pdfWrap.classList.remove('hidden');
-      pdfObj.setAttribute('data', rawUrl);
+      pdfObj.setAttribute('data', resolvedUrl);
       pdfObj.setAttribute('title', rawTitle);
-      pdfEmbed.setAttribute('src', rawUrl);
+      pdfEmbed.setAttribute('src', resolvedUrl);
       downloadLink.classList.remove('hidden');
-      downloadLink.setAttribute('href', rawUrl);
+      downloadLink.setAttribute('href', resolvedUrl);
+    } else if (rawType === 'image_png' || rawType === 'image_jpeg' || rawType === 'gif' || rawType === 'image') {
+      imageWrap.classList.remove('hidden');
+      imageEl.setAttribute('src', resolvedUrl);
+      imageEl.setAttribute('alt', rawTitle);
+    } else {
+      setFallback('This resource opens best in a new tab.', resolvedUrl, 'Open resource');
     }
 
     modal.classList.remove('hidden');
@@ -248,11 +263,13 @@
   pdfObj.addEventListener('error', () => {
     if (activeType !== 'pdf' && activeType !== 'document') return;
 
-    setFallback(
-      'This document could not be loaded. Use the download link below to open it directly.',
-      activeUrl,
-      'Download document'
-    );
+    setFallback('This document could not be loaded. Use the download link below to open it directly.', activeUrl, 'Download document');
+  });
+
+  imageEl.addEventListener('error', () => {
+    if (activeType !== 'image_png' && activeType !== 'image_jpeg' && activeType !== 'gif' && activeType !== 'image') return;
+    setFallback('This image could not be loaded. Use the direct link below to open it instead.', activeUrl, 'Open direct link');
+    imageWrap.classList.add('hidden');
   });
 
   modal.openModal = openModal;
@@ -275,7 +292,7 @@
     triggerEl = event.detail?.trigger || null;
     modal.dataset.modalTitle = event.detail?.title || '';
     modal.dataset.modalUrl = event.detail?.url || '';
-    modal.dataset.modalType = event.detail?.type || 'link';
+    modal.dataset.modalType = event.detail?.type || 'external_link';
     modal.dataset.modalSource = event.detail?.source || '';
     openModal();
   });
