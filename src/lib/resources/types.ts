@@ -6,6 +6,7 @@ export type ResourceType =
   | 'image_jpeg'
   | 'gif'
   | 'pdf'
+  | 'document'
   | 'external_link';
 
 export type ResourceAge = 'U8' | 'U10' | 'U12' | 'U14' | 'U16+';
