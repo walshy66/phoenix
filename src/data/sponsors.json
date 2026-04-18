@@ -1,0 +1,13 @@
+{
+  "sponsors": [
+    {
+      "id": "mbauto",
+      "name": "MB Automation Victoria",
+      "logo": "/images/sponsors/sponsor_mbauto.png",
+      "link": "https://www.facebook.com/mb.automation.vic",
+      "joinedDate": "2024-01-15"
+    }
+  ],
+  "sponsorCountThreshold": 6,
+  "ctaLink": "mailto:hello@bendigophoenix.org.au?subject=Sponsorship%20Enquiry"
+}

@@ -1,11 +1,17 @@
 ---
-const sponsors = [
-  { name: 'Sponsor One' },
-  { name: 'Sponsor Two' },
-  { name: 'Sponsor Three' },
-  { name: 'Sponsor Four' },
-  { name: 'Sponsor Five' },
-  { name: 'Sponsor Six' },
+const sponsorCards = [
+  {
+    type: 'logo',
+    name: 'MB Automation Victoria',
+    logo: '/images/sponsors/sponsor_mbauto.png',
+    link: 'https://www.facebook.com/mb.automation.vic',
+    alt: 'MB Automation Victoria logo',
+  },
+  { type: 'cta' },
+  { type: 'cta' },
+  { type: 'cta' },
+  { type: 'cta' },
+  { type: 'cta' },
 ];
 ---
 
@@ -18,19 +24,36 @@ const sponsors = [
   </div>
 
   <div class="relative overflow-hidden">
-    <!-- Fade edges -->
     <div class="absolute left-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to right, #F4F5F7, transparent);"></div>
     <div class="absolute right-0 top-0 bottom-0 w-16 z-10 pointer-events-none" style="background: linear-gradient(to left, #F4F5F7, transparent);"></div>
 
     <div class="marquee-track flex gap-6 w-max">
-      <!-- Duplicate for seamless loop -->
-      {[...sponsors, ...sponsors].map((sponsor, i) => (
-        <div
-          key={i}
-          class="w-40 h-20 bg-gray-200 border-2 border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0 hover:border-brand-purple transition-colors duration-200"
-        >
-          <span class="text-gray-500 text-sm font-medium">{sponsor.name}</span>
-        </div>
+      {[...sponsorCards, ...sponsorCards].map((sponsor, i) => (
+        sponsor.type === 'logo' ? (
+          <a
+            href={sponsor.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visit ${sponsor.name} (opens in new tab)`}
+            class="w-52 h-28 bg-white border-2 border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0 hover:border-brand-purple transition-colors duration-200 p-2"
+          >
+            <img
+              src={sponsor.logo}
+              alt={sponsor.alt}
+              loading="eager"
+              decoding="async"
+              class="h-full w-full object-contain object-center"
+            />
+          </a>
+        ) : (
+          <a
+            href="mailto:hello@bendigophoenix.org.au?subject=Sponsorship%20Enquiry"
+            aria-label="Become a Sponsor"
+            class="w-52 h-28 bg-gray-200 border-2 border-gray-300 rounded-lg flex items-center justify-center flex-shrink-0 hover:border-brand-purple transition-colors duration-200"
+          >
+            <span class="text-gray-500 text-sm font-medium">Become a Sponsor</span>
+          </a>
+        )
       ))}
     </div>
   </div>

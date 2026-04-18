@@ -132,19 +132,27 @@ export function renderHomeGamesStateHtml(artifact: { status: 'success' | 'stale'
       <div class="relative overflow-hidden">
         <div class="home-scores-track flex transition-transform duration-500 ease-out" aria-live="polite">
           ${artifact.games.map((game, idx) => `
-            <div class="home-slide min-w-full flex justify-center" data-index="${idx}">
-              <a href="/scores/${escapeHtml(game.gameId)}" class="block w-full max-w-sm focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl" aria-label="Open details for ${escapeHtml(game.homeTeam)} vs ${escapeHtml(game.awayTeam)}">
+            <div class="home-slide w-full md:w-1/2 lg:w-1/3 shrink-0 px-2" data-index="${idx}" data-kickoff-date="${escapeHtml(game.kickoffDate ?? '')}">
+              <a href="/scores/${escapeHtml(game.gameId)}" class="block w-full focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl" aria-label="Open details for ${escapeHtml(game.homeTeam)} vs ${escapeHtml(game.awayTeam)}">
                 ${renderHomeGameCard(game)}
               </a>
             </div>
           `).join('')}
         </div>
-
-        ${artifact.games.length > 1 ? `
-          <button type="button" class="hs-nav hs-prev" aria-label="Previous game">←</button>
-          <button type="button" class="hs-nav hs-next" aria-label="Next game">→</button>
-        ` : ''}
       </div>
+
+      ${artifact.games.length > 1 ? `
+        <div class="flex items-center justify-center gap-3" data-home-scores-controls>
+          <button type="button" class="hs-nav hs-prev inline-flex min-w-[120px] items-center justify-center rounded-full border border-brand-gold bg-brand-gold px-4 py-2 text-sm font-bold tracking-wide text-white shadow-lg transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-50" aria-label="Previous games">
+            <span aria-hidden="true">←</span>
+            <span class="ml-2">Previous</span>
+          </button>
+          <button type="button" class="hs-nav hs-next inline-flex min-w-[120px] items-center justify-center rounded-full border border-brand-gold bg-brand-gold px-4 py-2 text-sm font-bold tracking-wide text-white shadow-lg transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-50" aria-label="Next games">
+            <span class="mr-2">Next</span>
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      ` : ''}
     </div>
   `;
 }

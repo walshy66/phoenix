@@ -61,36 +61,53 @@ The season page is at `/src/pages/seasons.astro` — Claude can update the data 
 
 ## 5. How to Refresh Scores Data (Scores Page + Home Carousel)
 
-The website now uses two score artifacts:
-- `/scripts/scores-data.json` → full Scores page
+The website now uses three PlayHQ score artifacts:
+- `/scripts/scores-data.json` → source PlayHQ scores feed used to derive other artifacts
+- `/scripts/weekly-games-data.json` → `/scores` and `/scores/[gameId]`
 - `/scripts/home-games-data.json` → Home page 7-day carousel
+
+When published to production, the live pages read:
+- `/live-data/scores.json` → weekly scores artifact
+- `/live-data/home-games.json` → home carousel artifact
 
 ### Step A — Refresh source scores from PlayHQ
 ```bash
 npm run scores:refresh
 ```
 
-### Step B — Validate scores artifact shape
+### Step B — Validate source scores artifact
 ```bash
 npm run scores:check
 ```
 
-### Step C — Build home carousel artifact from latest scores
+### Step C — Build weekly scores artifact
+```bash
+node scripts/scrape-weekly-games.js
+```
+
+### Step D — Validate weekly scores artifact
+```bash
+node scripts/check-weekly-games-data.js
+```
+
+### Step E — Build home carousel artifact from latest source scores
 ```bash
 npm run home-scores:refresh
 ```
 
-### Step D — Validate home carousel artifact shape
+### Step F — Validate home carousel artifact shape
 ```bash
 npm run home-scores:check
 ```
 
 If validation fails, commands show a clear error (invalid JSON/shape/status).
 
-Finally rebuild the site:
+If you changed site code or layout, rebuild the site:
 ```bash
 npm run build
 ```
+
+If you only changed PlayHQ data, use the GitHub Actions PlayHQ refresh workflow instead of a full rebuild.
 
 ---
 
