@@ -6,7 +6,7 @@ const ROOT = process.cwd();
 const DATA_DIR = path.join(ROOT, 'src', 'data');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const SECTION_VALUES = new Set(['coaching_resources', 'player_resources', 'manager', 'guides', 'forms']);
-const TYPE_VALUES = new Set(['youtube_link', 'image_png', 'image_jpeg', 'gif', 'pdf', 'external_link']);
+const TYPE_VALUES = new Set(['youtube_link', 'image_png', 'image_jpeg', 'gif', 'pdf', 'document', 'external_link']);
 const AGE_VALUES = new Set(['U8', 'U10', 'U12', 'U14', 'U16+']);
 
 function filePathForAsset(assetPath) {

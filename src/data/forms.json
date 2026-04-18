@@ -1,55 +1,41 @@
 [
   {
     "id": "forms-001",
-    "title": "Child Safety Policy",
+    "title": "Child Safety Concern Form",
     "section": "forms",
-    "type": "pdf",
-    "url": "/resources/club-policies/POLICY_ChildSafety_20251023.pdf",
+    "type": "document",
+    "url": "/resources/club-policies/FORM_Child_Safety_Concern_Form_20260418.docx",
+    "description": "Form for reporting child safety concerns.",
     "createdAt": "2026-04-18T00:00:00Z",
     "updatedAt": "2026-04-18T00:00:00Z"
   },
   {
     "id": "forms-002",
-    "title": "Office Bearer Responsibilities",
+    "title": "Coach Kit Sign Off Sheet",
     "section": "forms",
-    "type": "image_png",
-    "fileRef": "/resources/club-policies/POLICY_OfficeBearerResponsibilites_20250901.png",
+    "type": "pdf",
+    "url": "/resources/club-policies/FORM_CoachKit_SignOffSheet.pdf",
+    "description": "Checklist for coaches to confirm kit handover and sign-off.",
     "createdAt": "2026-04-18T00:00:00Z",
     "updatedAt": "2026-04-18T00:00:00Z"
   },
   {
     "id": "forms-003",
-    "title": "Privacy Policy",
+    "title": "Refund Form",
     "section": "forms",
-    "type": "pdf",
-    "url": "/resources/club-policies/BV_Privacy_Policy_2024.pdf",
+    "type": "document",
+    "url": "/resources/club-policies/FORM_Refund_03-2026.docx",
+    "description": "Form for requesting a registration refund.",
     "createdAt": "2026-04-18T00:00:00Z",
     "updatedAt": "2026-04-18T00:00:00Z"
   },
   {
     "id": "forms-004",
-    "title": "Refunds Policy",
+    "title": "Reimbursement Form",
     "section": "forms",
-    "type": "pdf",
-    "url": "/resources/club-policies/POLICY_Refunds.pdf",
-    "createdAt": "2026-04-18T00:00:00Z",
-    "updatedAt": "2026-04-18T00:00:00Z"
-  },
-  {
-    "id": "forms-005",
-    "title": "Registration and Grading Policy",
-    "section": "forms",
-    "type": "pdf",
-    "url": "/resources/club-policies/POLICY_Registration_and_Grading.pdf",
-    "createdAt": "2026-04-18T00:00:00Z",
-    "updatedAt": "2026-04-18T00:00:00Z"
-  },
-  {
-    "id": "forms-006",
-    "title": "Volunteer Policy",
-    "section": "forms",
-    "type": "pdf",
-    "url": "/resources/club-policies/POLICY_Volunteer_20251023.pdf",
+    "type": "document",
+    "url": "/resources/club-policies/FORM_Reimbursement_03-2026.docx",
+    "description": "Form for requesting reimbursement of approved expenses.",
     "createdAt": "2026-04-18T00:00:00Z",
     "updatedAt": "2026-04-18T00:00:00Z"
   }
