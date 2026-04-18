@@ -32,9 +32,30 @@ const sectionLabel = label;
 
 <div class="sticky top-[64px] z-30 border-b border-gray-100 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
   <div class="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
-    <div class="flex flex-col gap-3" data-filter-bar data-section={section} data-label={sectionLabel}>
+    <div class="flex flex-col gap-3" data-mobile-filter-shell data-section={section} data-label={sectionLabel}>
+      {hasFilters && (
+        <button
+          type="button"
+          class="inline-flex min-h-[44px] w-full items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-left shadow-sm transition hover:border-brand-purple md:hidden"
+          data-mobile-filter-toggle
+          aria-controls={`filter-panel-${section}`}
+          aria-expanded="false"
+        >
+          <span class="text-sm font-semibold text-brand-black" data-mobile-filter-toggle-label>Show filters</span>
+          <span class="text-xs font-medium text-gray-500" data-mobile-filter-status>
+            {activeCount > 0 ? `${activeCount} active` : `${resultCount} results`}
+          </span>
+        </button>
+      )}
+
       {hasFilters && showSearch && (
-        <div class="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+        <div
+          id={`filter-panel-${section}`}
+          class="hidden md:flex md:flex-col md:gap-3"
+          data-filter-bar
+          data-section={section}
+          data-label={sectionLabel}
+        >
           <label class="block" for={`search-${section}`}>
             <span class="mb-1 block text-xs font-semibold uppercase tracking-wider text-gray-500">Search resources</span>
             <input
@@ -60,81 +81,100 @@ const sectionLabel = label;
               Clear all filters and search
             </button>
           </div>
-        </div>
-      )}
 
-      {hasFilters && (
-        <div class="space-y-3" data-filter-controls>
-          <div class="flex flex-wrap items-start gap-3">
-            <span class="mt-3 min-w-16 text-xs font-semibold uppercase tracking-wider text-gray-500">Age</span>
-            <div class="flex flex-1 flex-wrap gap-2" data-filter-group="age">
-              {availableAges.map((age) => (
-                <button
-                  type="button"
-                  class={`min-h-[44px] rounded-full border px-3 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 ${activeFilters.age.includes(age)
-                    ? 'is-active border-brand-purple bg-brand-purple text-white'
-                    : 'border-gray-200 bg-white text-gray-700 hover:border-brand-purple hover:text-brand-purple'}`}
-                  data-filter-type="age"
-                  data-filter-value={age}
-                  aria-pressed={activeFilters.age.includes(age) ? 'true' : 'false'}
-                >
-                  {age}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-start gap-3">
-            <span class="mt-3 min-w-16 text-xs font-semibold uppercase tracking-wider text-gray-500">Category</span>
-            <div class="flex flex-1 flex-wrap gap-2" data-filter-group="category">
-              {availableCategories.map((category) => (
-                <button
-                  type="button"
-                  class={`min-h-[44px] rounded-full border px-3 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 ${activeFilters.category.includes(category)
-                    ? 'is-active border-brand-purple bg-brand-purple text-white'
-                    : 'border-gray-200 bg-white text-gray-700 hover:border-brand-purple hover:text-brand-purple'}`}
-                  data-filter-type="category"
-                  data-filter-value={category}
-                  aria-pressed={activeFilters.category.includes(category) ? 'true' : 'false'}
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div class="flex flex-wrap items-start gap-3">
-            <span class="mt-3 min-w-16 text-xs font-semibold uppercase tracking-wider text-gray-500">Skill</span>
-            <div class="flex flex-1 flex-wrap gap-2" data-filter-group="skill">
-              {availableSkills.length > 0 ? (
-                availableSkills.map((skill) => (
+          <div class="space-y-3" data-filter-controls>
+            <div class="flex flex-wrap items-start gap-3">
+              <span class="mt-3 min-w-16 text-xs font-semibold uppercase tracking-wider text-gray-500">Age</span>
+              <div class="flex flex-1 flex-wrap gap-2" data-filter-group="age">
+                {availableAges.map((age) => (
                   <button
                     type="button"
-                    class={`min-h-[44px] rounded-full border px-3 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 ${activeFilters.skill.includes(skill)
+                    class={`min-h-[44px] rounded-full border px-3 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 ${activeFilters.age.includes(age)
                       ? 'is-active border-brand-purple bg-brand-purple text-white'
                       : 'border-gray-200 bg-white text-gray-700 hover:border-brand-purple hover:text-brand-purple'}`}
-                    data-filter-type="skill"
-                    data-filter-value={skill}
-                    aria-pressed={activeFilters.skill.includes(skill) ? 'true' : 'false'}
+                    data-filter-type="age"
+                    data-filter-value={age}
+                    aria-pressed={activeFilters.age.includes(age) ? 'true' : 'false'}
                   >
-                    {skill}
+                    {age}
                   </button>
-                ))
-              ) : (
-                <p class="py-3 text-sm text-gray-500">No skills available yet.</p>
-              )}
+                ))}
+              </div>
             </div>
+
+            <div class="flex flex-wrap items-start gap-3">
+              <span class="mt-3 min-w-16 text-xs font-semibold uppercase tracking-wider text-gray-500">Category</span>
+              <div class="flex flex-1 flex-wrap gap-2" data-filter-group="category">
+                {availableCategories.map((category) => (
+                  <button
+                    type="button"
+                    class={`min-h-[44px] rounded-full border px-3 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 ${activeFilters.category.includes(category)
+                      ? 'is-active border-brand-purple bg-brand-purple text-white'
+                      : 'border-gray-200 bg-white text-gray-700 hover:border-brand-purple hover:text-brand-purple'}`}
+                    data-filter-type="category"
+                    data-filter-value={category}
+                    aria-pressed={activeFilters.category.includes(category) ? 'true' : 'false'}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div class="flex flex-wrap items-start gap-3">
+              <span class="mt-3 min-w-16 text-xs font-semibold uppercase tracking-wider text-gray-500">Skill</span>
+              <div class="flex flex-1 flex-wrap gap-2" data-filter-group="skill">
+                {availableSkills.length > 0 ? (
+                  availableSkills.map((skill) => (
+                    <button
+                      type="button"
+                      class={`min-h-[44px] rounded-full border px-3 py-2 text-xs font-bold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 ${activeFilters.skill.includes(skill)
+                        ? 'is-active border-brand-purple bg-brand-purple text-white'
+                        : 'border-gray-200 bg-white text-gray-700 hover:border-brand-purple hover:text-brand-purple'}`}
+                      data-filter-type="skill"
+                      data-filter-value={skill}
+                      aria-pressed={activeFilters.skill.includes(skill) ? 'true' : 'false'}
+                    >
+                      {skill}
+                    </button>
+                  ))
+                ) : (
+                  <p class="py-3 text-sm text-gray-500">No skills available yet.</p>
+                )}
+              </div>
+            </div>
+
+            <p class={`text-xs font-medium text-gray-500 ${activeCount > 0 ? '' : 'sr-only'}`} data-active-summary>
+              {activeCount > 0 ? `${activeCount} active filter${activeCount === 1 ? '' : 's'}` : 'No active filters'}
+            </p>
           </div>
 
-          <p class={`text-xs font-medium text-gray-500 ${activeCount > 0 ? '' : 'sr-only'}`} data-active-summary>
-            {activeCount > 0 ? `${activeCount} active filter${activeCount === 1 ? '' : 's'}` : 'No active filters'}
-          </p>
+          <div class="sr-only" aria-live="polite" aria-atomic="true" data-live-region>
+            {resultCount} resources found
+          </div>
         </div>
       )}
-
-      <div class="sr-only" aria-live="polite" aria-atomic="true" data-live-region>
-        {resultCount} resources found
-      </div>
     </div>
   </div>
 </div>
+
+<script is:inline>
+  document.querySelectorAll('[data-mobile-filter-shell]').forEach((shell) => {
+    const toggle = shell.querySelector('[data-mobile-filter-toggle]');
+    const panel = shell.querySelector('[data-filter-bar]');
+    const label = shell.querySelector('[data-mobile-filter-toggle-label]');
+
+    if (!(toggle instanceof HTMLButtonElement) || !panel || !label) return;
+
+    const setExpanded = (expanded) => {
+      toggle.setAttribute('aria-expanded', String(expanded));
+      label.textContent = expanded ? 'Hide filters' : 'Show filters';
+      panel.classList.toggle('hidden', !expanded);
+    };
+
+    setExpanded(false);
+    toggle.addEventListener('click', () => {
+      setExpanded(toggle.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+</script>

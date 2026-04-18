@@ -30,7 +30,6 @@ const invalidEventMissingFieldYaml = `
 ---
 id: "test-event-2"
 title: "Test Event Missing Date"
-date: "2026-05-15"
 image: "/images/events/test.jpg"
 status: "upcoming"
 ---`;
