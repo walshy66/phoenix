@@ -9,17 +9,17 @@
 
 ## Summary
 
-Remove the Player Journal from the hero images in the hero carousel.
+Remove the `player_journal` image from the hero carousel.
 
 ## Scope
 
-- Update the hero carousel content so Player Journal is no longer shown in hero images.
+- Update the hero carousel content so the `player_journal` image is no longer shown in the hero images.
 - Keep the rest of the hero carousel behavior unchanged.
 - Make sure the hero section still renders correctly on desktop and mobile.
 
 ## Acceptance Criteria
 
-1. Player Journal no longer appears in the hero carousel images.
+1. The `player_journal` image no longer appears in the hero carousel images.
 2. The hero carousel still loads and displays other images/content normally.
 3. No layout breakage is introduced on common viewport sizes.
 
