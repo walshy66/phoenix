@@ -39,6 +39,7 @@ export function renderHomeGameCard(game: HomeGameItem): string {
   const isPhoenixHome = game.homeTeam.toLowerCase().includes('phoenix');
   const phoenixScore = isPhoenixHome ? game.homeScore : game.awayScore;
   const opponentScore = isPhoenixHome ? game.awayScore : game.homeScore;
+  const isLive = game.status === 'live';
   const isCompleted = game.status === 'completed' && phoenixScore !== null && opponentScore !== null;
 
   const result: 'win' | 'loss' | 'draw' | 'pending' = !isCompleted
@@ -50,10 +51,11 @@ export function renderHomeGameCard(game: HomeGameItem): string {
         : 'draw';
 
   const resultStyles = {
-    win: 'bg-brand-gold text-white',
-    loss: 'bg-gray-600 text-white',
+    win: 'bg-green-500 text-white',
+    loss: 'bg-red-500 text-white',
     draw: 'bg-gray-400 text-white',
     pending: 'bg-gray-200 text-gray-600',
+    live: 'bg-red-600 text-white',
   } as const;
 
   const resultLabels = {
@@ -61,6 +63,7 @@ export function renderHomeGameCard(game: HomeGameItem): string {
     loss: 'L',
     draw: 'D',
     pending: 'TBD',
+    live: 'LIVE',
   } as const;
 
   const venueLabel = game.venue ?? 'Venue TBA';
@@ -77,7 +80,7 @@ export function renderHomeGameCard(game: HomeGameItem): string {
     <div class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 ${result === 'win' ? 'win-indicator' : ''} flex flex-col">
       <div class="bg-brand-black px-4 py-2 flex items-center justify-between">
         <span class="text-gray-400 text-xs font-medium uppercase tracking-wide">${escapeHtml(game.competition ?? 'Latest Results')}</span>
-        ${isCompleted ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full ${resultStyles[result]}">${resultLabels[result]}</span>` : `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-purple text-white max-w-[56%] truncate" title="${escapeHtml(courtPillLabel)}">${escapeHtml(courtPillLabel)}</span>`}
+        ${(isCompleted || isLive) ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full ${isLive ? resultStyles.live : resultStyles[result]}">${isLive ? 'LIVE' : resultLabels[result]}</span>` : `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-purple text-white max-w-[56%] truncate" title="${escapeHtml(courtPillLabel)}">${escapeHtml(courtPillLabel)}</span>`}
       </div>
 
       <div class="p-4 flex items-center justify-between gap-4">

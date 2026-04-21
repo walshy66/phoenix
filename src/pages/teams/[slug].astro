@@ -165,35 +165,44 @@ const formatTime = (timeStr) => {
                   const isHome = game.homeTeam === teamData.name;
                   const opponent = isHome ? game.awayTeam : game.homeTeam;
                   const hasScore = game.homeScore !== null && game.awayScore !== null;
-                  const isLive = game.status === 'IN_PROGRESS' || game.status === 'LIVE';
-                  const isCompleted = game.status === 'COMPLETED' || hasScore;
+                  const status = String(game.status || 'UPCOMING').toUpperCase();
+                  const isLive = status === 'IN_PROGRESS' || status === 'LIVE';
+                  const isCompleted = status === 'COMPLETED' || status === 'FINAL' || hasScore;
                   
+                  const resultLabel = isCompleted ? (
+                    game.homeTeam === teamData.name
+                      ? (game.homeScore > game.awayScore ? 'W' : game.homeScore < game.awayScore ? 'L' : 'D')
+                      : (game.awayScore > game.homeScore ? 'W' : game.awayScore < game.homeScore ? 'L' : 'D')
+                  ) : null;
+
                   return (
-                    <button 
+                    <a 
                       key={game.id}
-                      class={`w-full text-left px-6 py-4 transition-colors duration-150 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-brand-offwhite'}`}
-                      data-game-id={game.id}
-                      data-home-team={game.homeTeam}
-                      data-away-team={game.awayTeam}
-                      data-date={game.date}
-                      data-time={game.time}
-                      data-venue={game.venue}
-                      data-court={game.court || 'TBC'}
-                      data-home-score={game.homeScore}
-                      data-away-score={game.awayScore}
-                      data-status={game.status || 'UPCOMING'}
+                      href={`/scores/${game.id}`}
+                      class={`block w-full text-left px-6 py-4 transition-colors duration-150 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-brand-offwhite'}`}
+                      aria-label={`Open details for ${game.homeTeam} vs ${game.awayTeam}`}
                     >
                       <div class="flex items-center justify-between gap-4">
                         <div class="flex-1">
-                          <div class="flex items-center gap-2 mb-1">
-                            <p class="text-xs text-gray-500 font-medium uppercase">
-                              {formatDate(game.date)} at {formatTime(game.time)}
-                            </p>
-                            {isLive && (
-                              <span class="inline-block px-2 py-1 bg-red-500 text-white text-xs font-bold rounded animate-pulse">
+                          <div class="mb-1 flex items-center gap-2 flex-wrap">
+                            {resultLabel && (
+                              <span class={`inline-flex items-center rounded-full px-2 py-1 text-xs font-black uppercase tracking-widest ${resultLabel === 'W' ? 'bg-green-500 text-white' : resultLabel === 'L' ? 'bg-red-500 text-white' : 'bg-gray-400 text-white'}`}>
+                                {resultLabel}
+                              </span>
+                            )}
+                            {isLive && !isCompleted && (
+                              <span class="inline-flex items-center rounded-full bg-red-500 px-2 py-1 text-xs font-black uppercase tracking-widest text-white animate-pulse">
                                 LIVE
                               </span>
                             )}
+                            {isCompleted && !isLive && (
+                              <span class="inline-flex items-center rounded-full bg-brand-gold px-2 py-1 text-xs font-black uppercase tracking-widest text-brand-purple">
+                                FINAL
+                              </span>
+                            )}
+                            <p class="text-xs text-gray-500 font-medium uppercase">
+                              {formatDate(game.date)} at {formatTime(game.time)}
+                            </p>
                           </div>
                           <p class="text-sm text-gray-600 mb-1">
                             {game.venue}
@@ -231,7 +240,7 @@ const formatTime = (timeStr) => {
                           </svg>
                         </div>
                       </div>
-                    </button>
+                    </a>
                   );
                 })}
               </div>
@@ -347,6 +356,11 @@ const formatTime = (timeStr) => {
         </div>
       </div>
 
+        <div id="modal-stats" class="hidden rounded-xl border border-gray-200 bg-brand-offwhite p-4">
+          <h4 class="text-sm font-black uppercase tracking-wide text-brand-purple mb-3">Player Statistics</h4>
+          <div id="modal-stats-content"></div>
+        </div>
+
       <!-- Close Button -->
       <div class="bg-gray-50 px-8 py-5 border-t border-gray-100 flex justify-end gap-3">
         <button 
@@ -360,7 +374,7 @@ const formatTime = (timeStr) => {
   </div>
 </BaseLayout>
 
-<script is:inline>
+<script define:vars={{ teamDetails }}>
   function handleGameClick(event) {
     const button = event.currentTarget;
     const gameId = button.dataset.gameId;
@@ -384,6 +398,8 @@ const formatTime = (timeStr) => {
     const scoreEl = document.getElementById('modal-score');
     const datetimeEl = document.getElementById('modal-datetime');
     const venueEl = document.getElementById('modal-venue');
+    const statsEl = document.getElementById('modal-stats');
+    const statsContentEl = document.getElementById('modal-stats-content');
 
     console.log('Showing game details:', { gameId, homeTeam, awayTeam, date, time, venue, court, status });
 
@@ -420,6 +436,53 @@ const formatTime = (timeStr) => {
     // Display venue and court
     const courtStr = court && court !== 'TBC' ? ` • ${court}` : '';
     venueEl.textContent = (venue || '—') + courtStr;
+
+    const fullGame = (teamDetails.fixture || []).find((game) => game.id === gameId);
+    const playerStats = fullGame?.playerStats;
+    if (statsEl && statsContentEl && playerStats?.players?.length) {
+      const grouped = Object.entries(
+        playerStats.players.reduce((acc, player) => {
+          const key = player.team || 'Unknown Team';
+          if (!acc[key]) acc[key] = [];
+          acc[key].push(player);
+          return acc;
+        }, {}),
+      );
+
+      statsContentEl.innerHTML = `
+        <div class="grid gap-4 md:grid-cols-2">
+          ${grouped.map(([teamName, players]) => `
+            <div class="rounded-lg border border-gray-200 bg-white p-4">
+              <h5 class="text-sm font-black uppercase tracking-wide text-brand-purple mb-3">${teamName}</h5>
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-gray-200 text-left text-xs uppercase tracking-wide text-gray-500">
+                      <th class="py-2 pr-3">Player</th>
+                      <th class="py-2 text-center">PTS</th>
+                      <th class="py-2 text-center">PF</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${players.map((player) => `
+                      <tr class="border-b border-gray-100 last:border-b-0">
+                        <td class="py-2 pr-3 font-semibold text-brand-black">${player.name}</td>
+                        <td class="py-2 text-center font-bold text-brand-purple">${player.points}</td>
+                        <td class="py-2 text-center text-gray-700">${player.fouls}</td>
+                      </tr>
+                    `).join('')}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      statsEl.classList.remove('hidden');
+    } else if (statsEl) {
+      statsEl.classList.add('hidden');
+      if (statsContentEl) statsContentEl.innerHTML = '';
+    }
 
     modal.classList.remove('hidden');
   }

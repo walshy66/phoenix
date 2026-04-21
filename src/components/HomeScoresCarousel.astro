@@ -204,12 +204,38 @@ const {
     if (!url) return;
 
     try {
-      const response = await fetch(url, { cache: 'no-store' });
-      if (!response.ok) return;
+      const [homeResponse, liveResponse] = await Promise.all([
+        fetch(url, { cache: 'no-store' }),
+        fetch('/live-data/live-scores.json', { cache: 'no-store' }),
+      ]);
 
-      const payload = await response.json();
+      if (!homeResponse.ok) return;
+
+      const payload = await homeResponse.json();
       const validation = validateLiveHomeGamesPayload(payload);
       if (!validation.ok) return;
+
+      let liveScores = {};
+      if (liveResponse.ok) {
+        try {
+          liveScores = await liveResponse.json();
+        } catch {
+          liveScores = {};
+        }
+      }
+
+      if (liveScores && typeof liveScores === 'object') {
+        payload.games = payload.games.map((game) => {
+          const live = liveScores[game.gameId];
+          if (!live) return game;
+          return {
+            ...game,
+            homeScore: typeof live.homeScore === 'number' ? live.homeScore : game.homeScore,
+            awayScore: typeof live.awayScore === 'number' ? live.awayScore : game.awayScore,
+            status: 'live',
+          };
+        });
+      }
 
       const staleThresholdMinutes = Number(root.getAttribute('data-stale-threshold-minutes') ?? '15');
       if (payload.generatedAt && isLiveDataStale(payload.generatedAt, staleThresholdMinutes)) {

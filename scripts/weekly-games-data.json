@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-13T01:42:28.336Z",
+  "generatedAt": "2026-04-21T04:19:10.354Z",
   "window": {
     "timezone": "Australia/Melbourne",
     "startDate": "2026-04-20",
@@ -15,11 +15,11 @@
         "awayTeam": "PHOENIX Firebirds",
         "grade": "Monday U10 Girls 3",
         "venue": "Red Energy Arena (Bendigo Stadium)",
-        "court": "Court 4",
+        "court": "Court 7",
         "kickoffDate": "2026-04-20",
-        "kickoffTime": "16:30:00",
-        "kickoffAt": "2026-04-20T16:30:00",
-        "kickoffDisplay": "4:30 pm",
+        "kickoffTime": "17:15:00",
+        "kickoffAt": "2026-04-20T17:15:00",
+        "kickoffDisplay": "5:15 pm",
         "squads": []
       },
       {
@@ -159,19 +159,6 @@
         "squads": []
       },
       {
-        "fixtureId": "74c088b1-d239-4c25-bfb6-8b2c11ce6296",
-        "homeTeam": "PHOENIX Flames",
-        "awayTeam": "Strath Suns",
-        "grade": "Friday U12 Boys 8",
-        "venue": "Red Energy Arena (Bendigo Stadium)",
-        "court": "Court 7",
-        "kickoffDate": "2026-04-24",
-        "kickoffTime": "18:00:00",
-        "kickoffAt": "2026-04-24T18:00:00",
-        "kickoffDisplay": "6:00 pm",
-        "squads": []
-      },
-      {
         "fixtureId": "acaeacb5-4f1c-49e6-94af-3c018fbc0c84",
         "homeTeam": "PHOENIX Phantoms",
         "awayTeam": "Beavers Cubs",
@@ -211,12 +198,12 @@
         "squads": []
       },
       {
-        "fixtureId": "a7ac172f-efbd-47d2-9287-8d7e9260de6b",
-        "homeTeam": "PHOENIX Go Buckets",
-        "awayTeam": "Generals U16 Boys Gullys",
-        "grade": "Friday U16 Boys 4",
-        "venue": "Girton Grammar",
-        "court": "Court 2",
+        "fixtureId": "74c088b1-d239-4c25-bfb6-8b2c11ce6296",
+        "homeTeam": "PHOENIX Flames",
+        "awayTeam": "Strath Suns",
+        "grade": "Friday U12 Boys 8",
+        "venue": "Victory Christian College",
+        "court": "Court 1",
         "kickoffDate": "2026-04-24",
         "kickoffTime": "19:30:00",
         "kickoffAt": "2026-04-24T19:30:00",
@@ -250,9 +237,22 @@
         "squads": []
       },
       {
+        "fixtureId": "a7ac172f-efbd-47d2-9287-8d7e9260de6b",
+        "homeTeam": "PHOENIX Go Buckets",
+        "awayTeam": "Generals U16 Boys Gullys",
+        "grade": "Friday U16 Boys 4",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 2",
+        "kickoffDate": "2026-04-24",
+        "kickoffTime": "21:00:00",
+        "kickoffAt": "2026-04-24T21:00:00",
+        "kickoffDisplay": "9:00 pm",
+        "squads": []
+      },
+      {
         "fixtureId": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
         "homeTeam": "Aztec U18 Boys Bronze",
-        "awayTeam": "PHOENIX Green Machines",
+        "awayTeam": "PHOENIX Suns",
         "grade": "Friday U18 Boys 3",
         "venue": "Red Energy Arena (Bendigo Stadium)",
         "court": "Court 4",
@@ -265,7 +265,7 @@
       {
         "fixtureId": "2c846df1-9ece-4a12-9d1f-1380728dff67",
         "homeTeam": "Generals U18 Boys Rockets",
-        "awayTeam": "PHOENIX TBA U18 Boys (Callum)",
+        "awayTeam": "PHOENIX Wembys",
         "grade": "Friday U18 Boys 5",
         "venue": "Red Energy Arena (Bendigo Stadium)",
         "court": "Court 5",
@@ -414,17 +414,17 @@
       "awayTeam": "PHOENIX Firebirds",
       "grade": "Monday U10 Girls 3",
       "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 4",
+      "court": "Court 7",
       "kickoffDate": "2026-04-20",
-      "kickoffTime": "16:30:00",
-      "kickoffAt": "2026-04-20T16:30:00",
-      "kickoffDisplay": "4:30 pm",
+      "kickoffTime": "17:15:00",
+      "kickoffAt": "2026-04-20T17:15:00",
+      "kickoffDisplay": "5:15 pm",
       "squads": []
     },
     "2c846df1-9ece-4a12-9d1f-1380728dff67": {
       "fixtureId": "2c846df1-9ece-4a12-9d1f-1380728dff67",
       "homeTeam": "Generals U18 Boys Rockets",
-      "awayTeam": "PHOENIX TBA U18 Boys (Callum)",
+      "awayTeam": "PHOENIX Wembys",
       "grade": "Friday U18 Boys 5",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 5",
@@ -437,7 +437,7 @@
     "4a14bfab-bb61-4156-95d6-fe6db2d003df": {
       "fixtureId": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
       "homeTeam": "Aztec U18 Boys Bronze",
-      "awayTeam": "PHOENIX Green Machines",
+      "awayTeam": "PHOENIX Suns",
       "grade": "Friday U18 Boys 3",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4",
@@ -491,12 +491,12 @@
       "homeTeam": "PHOENIX Flames",
       "awayTeam": "Strath Suns",
       "grade": "Friday U12 Boys 8",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7",
+      "venue": "Victory Christian College",
+      "court": "Court 1",
       "kickoffDate": "2026-04-24",
-      "kickoffTime": "18:00:00",
-      "kickoffAt": "2026-04-24T18:00:00",
-      "kickoffDisplay": "6:00 pm",
+      "kickoffTime": "19:30:00",
+      "kickoffAt": "2026-04-24T19:30:00",
+      "kickoffDisplay": "7:30 pm",
       "squads": []
     },
     "a7ac172f-efbd-47d2-9287-8d7e9260de6b": {
@@ -504,12 +504,12 @@
       "homeTeam": "PHOENIX Go Buckets",
       "awayTeam": "Generals U16 Boys Gullys",
       "grade": "Friday U16 Boys 4",
-      "venue": "Girton Grammar",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 2",
       "kickoffDate": "2026-04-24",
-      "kickoffTime": "19:30:00",
-      "kickoffAt": "2026-04-24T19:30:00",
-      "kickoffDisplay": "7:30 pm",
+      "kickoffTime": "21:00:00",
+      "kickoffAt": "2026-04-24T21:00:00",
+      "kickoffDisplay": "9:00 pm",
       "squads": []
     },
     "17ec680f-6718-4a01-8f49-dbdef7bdf438": {

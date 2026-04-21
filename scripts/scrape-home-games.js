@@ -33,7 +33,8 @@ function rollingWindow(now = new Date()) {
 function normalizeStatus(status) {
   const s = String(status || '').toLowerCase();
   if (['complete', 'completed', 'final'].includes(s)) return 'completed';
-  if (['scheduled', 'upcoming', 'pending', 'live', 'in_progress', 'in-progress'].includes(s)) return 'upcoming';
+  if (['live', 'in_progress', 'in-progress'].includes(s)) return 'live';
+  if (['scheduled', 'upcoming', 'pending'].includes(s)) return 'upcoming';
   if (['cancelled', 'canceled', 'abandoned'].includes(s)) return 'cancelled';
   return 'unknown';
 }
@@ -47,11 +48,12 @@ function normalizeTime(time) {
 }
 
 function getStatusRank(status) {
-  if (status === 'upcoming') return 0;
-  if (status === 'unknown') return 1;
-  if (status === 'completed') return 2;
-  if (status === 'cancelled') return 3;
-  return 4;
+  if (status === 'live') return 0;
+  if (status === 'upcoming') return 1;
+  if (status === 'unknown') return 2;
+  if (status === 'completed') return 3;
+  if (status === 'cancelled') return 4;
+  return 5;
 }
 
 function compareGameOrder(a, b) {

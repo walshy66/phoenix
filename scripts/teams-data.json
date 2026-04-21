@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-12T22:10:29.910Z",
+  "lastUpdated": "2026-04-21T04:18:04.203Z",
   "teams": [
     {
       "id": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -123,15 +123,8 @@
     {
       "id": "b9547239-f041-403a-865a-c96e59f39574",
       "name": "PHOENIX Tulips",
-      "gradeName": "Tuesday U16 Girls 4",
+      "gradeName": "Tuesday U16 Girls 3",
       "slug": "phoenix-tulips",
-      "coaches": []
-    },
-    {
-      "id": "edd8b444-47d9-4398-9924-d33be5cb8d48",
-      "name": "PHOENIX Green Machines",
-      "gradeName": "Friday U18 Boys 3",
-      "slug": "phoenix-green-machines",
       "coaches": []
     },
     {
@@ -142,10 +135,17 @@
       "coaches": []
     },
     {
+      "id": "edd8b444-47d9-4398-9924-d33be5cb8d48",
+      "name": "PHOENIX Suns",
+      "gradeName": "Friday U18 Boys 3",
+      "slug": "phoenix-suns",
+      "coaches": []
+    },
+    {
       "id": "b1f5d87e-0229-4c91-934d-73f2e3b26f19",
-      "name": "PHOENIX TBA U18 Boys (Callum)",
+      "name": "PHOENIX Wembys",
       "gradeName": "Friday U18 Boys 5",
-      "slug": "phoenix-tba-u18-boys-callum",
+      "slug": "phoenix-wembys",
       "coaches": []
     }
   ]
