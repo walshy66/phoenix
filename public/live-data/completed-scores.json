@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-21T11:27:01.914Z",
+  "lastUpdated": "2026-04-21T12:07:09.401Z",
   "scores": [
     {
       "id": "e3e40b4e-aaef-4e53-b8d5-74bc40ff12ab",
@@ -2131,50 +2131,28 @@
     "Tuesday Men Division 4": [
       {
         "position": 1,
-        "teamName": "Backcourt violators",
-        "played": 0,
-        "wins": 0,
+        "teamName": "Double Cobras",
+        "played": 1,
+        "wins": 1,
         "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "pointsFor": 61,
+        "pointsAgainst": 42,
+        "percentage": 145.24,
+        "points": 3
       },
       {
         "position": 2,
-        "teamName": "Double Cobras",
-        "played": 0,
-        "wins": 0,
+        "teamName": "OnDiddy",
+        "played": 1,
+        "wins": 1,
         "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "pointsFor": 44,
+        "pointsAgainst": 41,
+        "percentage": 107.32,
+        "points": 3
       },
       {
         "position": 3,
-        "teamName": "OnDiddy",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 4,
-        "teamName": "Team Moss",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 5,
         "teamName": "The Jebron Lames",
         "played": 0,
         "wins": 0,
@@ -2182,12 +2160,56 @@
         "pointsFor": 0,
         "pointsAgainst": 0,
         "percentage": 0,
-        "points": 0
+        "points": 3
+      },
+      {
+        "position": 4,
+        "teamName": "Backcourt violators",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 41,
+        "pointsAgainst": 44,
+        "percentage": 93.18,
+        "points": 1
+      },
+      {
+        "position": 5,
+        "teamName": "Team Moss",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 42,
+        "pointsAgainst": 61,
+        "percentage": 68.85,
+        "points": 1
       }
     ],
     "Tuesday Men Division 3": [
       {
         "position": 1,
+        "teamName": "Junortoun Jaguars ",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 87,
+        "pointsAgainst": 29,
+        "percentage": 300,
+        "points": 3
+      },
+      {
+        "position": 2,
+        "teamName": "Blue Devils",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 48,
+        "pointsAgainst": 23,
+        "percentage": 208.7,
+        "points": 3
+      },
+      {
+        "position": 3,
         "teamName": "Bore It",
         "played": 1,
         "wins": 1,
@@ -2198,7 +2220,7 @@
         "points": 3
       },
       {
-        "position": 2,
+        "position": 4,
         "teamName": "Beavers Dunkers",
         "played": 1,
         "wins": 0,
@@ -2209,53 +2231,42 @@
         "points": 1
       },
       {
-        "position": 3,
-        "teamName": "Blue Devils",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 4,
-        "teamName": "GREEN FN",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 5,
-        "teamName": "Junortoun Jaguars ",
-        "played": 0,
+        "teamName": "Masters",
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 23,
+        "pointsAgainst": 48,
+        "percentage": 47.92,
+        "points": 1
       },
       {
         "position": 6,
-        "teamName": "Masters",
-        "played": 0,
+        "teamName": "GREEN FN",
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 29,
+        "pointsAgainst": 87,
+        "percentage": 33.33,
+        "points": 1
       }
     ],
     "Tuesday Men Division 2": [
       {
         "position": 1,
+        "teamName": "Strath Captain Hooks",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 43,
+        "pointsAgainst": 19,
+        "percentage": 226.32,
+        "points": 3
+      },
+      {
+        "position": 2,
         "teamName": "Frank",
         "played": 1,
         "wins": 1,
@@ -2266,7 +2277,7 @@
         "points": 3
       },
       {
-        "position": 2,
+        "position": 3,
         "teamName": "Nine-Nine",
         "played": 0,
         "wins": 0,
@@ -2277,7 +2288,7 @@
         "points": 3
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Hoops! I did it again.",
         "played": 1,
         "wins": 0,
@@ -2288,26 +2299,15 @@
         "points": 1
       },
       {
-        "position": 4,
-        "teamName": "Green Fn's",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 5,
-        "teamName": "Strath Captain Hooks",
-        "played": 0,
+        "teamName": "Green Fn's",
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 19,
+        "pointsAgainst": 43,
+        "percentage": 44.19,
+        "points": 1
       }
     ],
     "Sunday Men Division 4": [
@@ -7066,50 +7066,28 @@
     },
     {
       "position": 1,
-      "teamName": "Backcourt violators",
-      "played": 0,
-      "wins": 0,
+      "teamName": "Double Cobras",
+      "played": 1,
+      "wins": 1,
       "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "pointsFor": 61,
+      "pointsAgainst": 42,
+      "percentage": 145.24,
+      "points": 3
     },
     {
       "position": 2,
-      "teamName": "Double Cobras",
-      "played": 0,
-      "wins": 0,
+      "teamName": "OnDiddy",
+      "played": 1,
+      "wins": 1,
       "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "pointsFor": 44,
+      "pointsAgainst": 41,
+      "percentage": 107.32,
+      "points": 3
     },
     {
       "position": 3,
-      "teamName": "OnDiddy",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 4,
-      "teamName": "Team Moss",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 5,
       "teamName": "The Jebron Lames",
       "played": 0,
       "wins": 0,
@@ -7117,10 +7095,54 @@
       "pointsFor": 0,
       "pointsAgainst": 0,
       "percentage": 0,
-      "points": 0
+      "points": 3
+    },
+    {
+      "position": 4,
+      "teamName": "Backcourt violators",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 41,
+      "pointsAgainst": 44,
+      "percentage": 93.18,
+      "points": 1
+    },
+    {
+      "position": 5,
+      "teamName": "Team Moss",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 42,
+      "pointsAgainst": 61,
+      "percentage": 68.85,
+      "points": 1
     },
     {
       "position": 1,
+      "teamName": "Junortoun Jaguars ",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 87,
+      "pointsAgainst": 29,
+      "percentage": 300,
+      "points": 3
+    },
+    {
+      "position": 2,
+      "teamName": "Blue Devils",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 48,
+      "pointsAgainst": 23,
+      "percentage": 208.7,
+      "points": 3
+    },
+    {
+      "position": 3,
       "teamName": "Bore It",
       "played": 1,
       "wins": 1,
@@ -7131,7 +7153,7 @@
       "points": 3
     },
     {
-      "position": 2,
+      "position": 4,
       "teamName": "Beavers Dunkers",
       "played": 1,
       "wins": 0,
@@ -7142,51 +7164,40 @@
       "points": 1
     },
     {
-      "position": 3,
-      "teamName": "Blue Devils",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 4,
-      "teamName": "GREEN FN",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 5,
-      "teamName": "Junortoun Jaguars ",
-      "played": 0,
+      "teamName": "Masters",
+      "played": 1,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "losses": 1,
+      "pointsFor": 23,
+      "pointsAgainst": 48,
+      "percentage": 47.92,
+      "points": 1
     },
     {
       "position": 6,
-      "teamName": "Masters",
-      "played": 0,
+      "teamName": "GREEN FN",
+      "played": 1,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "losses": 1,
+      "pointsFor": 29,
+      "pointsAgainst": 87,
+      "percentage": 33.33,
+      "points": 1
     },
     {
       "position": 1,
+      "teamName": "Strath Captain Hooks",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 43,
+      "pointsAgainst": 19,
+      "percentage": 226.32,
+      "points": 3
+    },
+    {
+      "position": 2,
       "teamName": "Frank",
       "played": 1,
       "wins": 1,
@@ -7197,7 +7208,7 @@
       "points": 3
     },
     {
-      "position": 2,
+      "position": 3,
       "teamName": "Nine-Nine",
       "played": 0,
       "wins": 0,
@@ -7208,7 +7219,7 @@
       "points": 3
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Hoops! I did it again.",
       "played": 1,
       "wins": 0,
@@ -7219,26 +7230,15 @@
       "points": 1
     },
     {
-      "position": 4,
-      "teamName": "Green Fn's",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 5,
-      "teamName": "Strath Captain Hooks",
-      "played": 0,
+      "teamName": "Green Fn's",
+      "played": 1,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "losses": 1,
+      "pointsFor": 19,
+      "pointsAgainst": 43,
+      "percentage": 44.19,
+      "points": 1
     },
     {
       "position": 1,
