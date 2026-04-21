@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-21T12:07:44.968Z",
+  "generatedAt": "2026-04-21T14:03:16.151Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
-    "startDate": "2026-04-14",
-    "endDate": "2026-04-28",
+    "startDate": "2026-04-15",
+    "endDate": "2026-04-29",
     "timezone": "Australia/Melbourne"
   },
   "staleBanner": null,
