@@ -8,6 +8,7 @@
 - Kept live polling lightweight so it can run on the 2-minute cadence without doing the expensive full refresh steps.
 - Updated the deploy workflow to avoid overwriting `public/live-data/live-scores.json` during the normal site deploy.
 - Added a `workflow_run` dependency so the deploy workflow runs after `PlayHQ Sync` completes successfully, ensuring refreshed JSON data actually gets rebuilt into the site.
+- Hardened the deploy checkout so workflow runs always build from the latest branch ref, not the older sync SHA.
 - Preserved the existing output contract for the site:
   - `public/live-data/fixtures.json`
   - `public/live-data/completed-scores.json`
