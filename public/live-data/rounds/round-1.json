@@ -1,0 +1,3078 @@
+{
+  "roundNumber": 1,
+  "season": "Winter 2026",
+  "lastUpdated": "2026-04-21T04:19:19.965Z",
+  "status": "upcoming",
+  "games": [
+    {
+      "id": "e3e40b4e-aaef-4e53-b8d5-74bc40ff12ab",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "20:15:00",
+      "competition": "Friday U18 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 3",
+      "homeTeam": "Bunjils U18 Boys ALPHA",
+      "awayTeam": "PHOENIX Roughnuts",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U18 Boys Orange",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U18 Boys Yellow",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Bunjils U18 Boys ALPHA",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "PHOENIX Roughnuts",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "2c846df1-9ece-4a12-9d1f-1380728dff67",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "21:45:00",
+      "competition": "Friday U18 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "homeTeam": "Generals U18 Boys Rockets",
+      "awayTeam": "PHOENIX Wembys",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U18 Boys Steel",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U18 Boys White",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Bunjils U18 Boys Bravo",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Generals U18 Boys Boomers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Generals U18 Boys Lions",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "Generals U18 Boys Rockets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "PHOENIX TBA U18 Boys (Callum)",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "21:45:00",
+      "competition": "Friday U18 Boys 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "Aztec U18 Boys Bronze",
+      "awayTeam": "PHOENIX Suns",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U18 Boys Bronze",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U18 Boys Silver",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "PHOENIX Green Machines",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Strath Blazers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Strath Eagles",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "865a40e2-3451-48a2-920d-13ae8db5bf02",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "17:15:00",
+      "competition": "Friday U10 Boys 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "St Francis U10 Boys Bullets",
+      "awayTeam": "PHOENIX Thunder",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": []
+    },
+    {
+      "id": "2a375817-125e-4e26-83e8-750c4944dd40",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "18:45:00",
+      "competition": "Friday U12 Boys 3",
+      "venue": "Girton Grammar",
+      "court": "Court 1",
+      "homeTeam": "PHOENIX Son's",
+      "awayTeam": "Beavers Dragons",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U12 Boys Aqua",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U12 Boys Red",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Chiefs",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Dragons",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "PHOENIX Son's",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "acaeacb5-4f1c-49e6-94af-3c018fbc0c84",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "18:00:00",
+      "competition": "Friday U12 Boys 7",
+      "venue": "Girton Grammar",
+      "court": "Court 1",
+      "homeTeam": "PHOENIX Phantoms",
+      "awayTeam": "Beavers Cubs",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U12 Boys Platinum",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U12 Boys Teal",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Cubs",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Bunjils U12 Boys Bandicoots",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Heathcote Panthers 12's ",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "PHOENIX Phantoms",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "U12 Boys Girton Pumas",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "Victory U12 Boys Mavericks",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "74c088b1-d239-4c25-bfb6-8b2c11ce6296",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "19:30:00",
+      "competition": "Friday U12 Boys 8",
+      "venue": "Victory Christian College",
+      "court": "Court 1",
+      "homeTeam": "PHOENIX Flames",
+      "awayTeam": "Strath Suns",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "PHOENIX Flames",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "St Francis U12 Boys Titans",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Strath BM81's",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Strath Suns",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Super Flamingos ",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "U12 Boys Girton Lions",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Victory U12 Boys Stars",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "a7ac172f-efbd-47d2-9287-8d7e9260de6b",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "21:00:00",
+      "competition": "Friday U16 Boys 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 2",
+      "homeTeam": "PHOENIX Go Buckets",
+      "awayTeam": "Generals U16 Boys Gullys",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U16 Boys Copper",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U16 Boys Navy",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Bob",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Bucks",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Beavers Cobras",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "Beavers Hurricanes",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Beavers Warriors",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "Generals U16 Boys Bulls",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 9,
+          "team": "Generals U16 Boys Gullys",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 10,
+          "team": "PHOENIX Go Buckets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 11,
+          "team": "Strath Rockets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 12,
+          "team": "Victory U16 Boys Warriors",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "17ec680f-6718-4a01-8f49-dbdef7bdf438",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "20:15:00",
+      "competition": "Friday U16 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "PHOENIX Gooney Tunes",
+      "awayTeam": "Aztec U16 Boys White",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Beavers Rockets",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U16 Boys Bronze",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Aztec U16 Boys White",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Fury",
+          "played": 1,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "PHOENIX Gooney Tunes",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "PHOENIX Splash",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Strath Sharks",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "Strath Wizards",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "cdc7bc72-a499-4fe0-943f-5393f2619654",
+      "roundNumber": 1,
+      "date": "2026-04-24",
+      "time": "18:45:00",
+      "competition": "Friday U16 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "PHOENIX Splash",
+      "awayTeam": "Aztec U16 Boys Bronze",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Beavers Rockets",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U16 Boys Bronze",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Aztec U16 Boys White",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Fury",
+          "played": 1,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "PHOENIX Gooney Tunes",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "PHOENIX Splash",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Strath Sharks",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "Strath Wizards",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "596de913-0371-4d7b-86a3-8a48ad112530",
+      "roundNumber": 1,
+      "date": "2026-04-22",
+      "time": "19:30:00",
+      "competition": "Wednesday U16 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 1",
+      "homeTeam": "PHOENIX Raiders",
+      "awayTeam": "Aztec U16 Boys Yellow",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U16 Boys Amber",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U16 Boys Mint",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Aztec U16 Boys Orange",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Aztec U16 Boys Red",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Aztec U16 Boys Yellow",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "Beavers Outlaws",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Generals U16 Boys Hornets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "PHOENIX Raiders",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 9,
+          "team": "Strath Saints",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 10,
+          "team": "U16 Boys Girton Strikers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "24ad7a1a-53b3-40c7-b7a9-54756fbea989",
+      "roundNumber": 1,
+      "date": "2026-04-22",
+      "time": "16:30:00",
+      "competition": "Wednesday U14 Boys 8",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "Aztec U14 Boys Teal",
+      "awayTeam": "PHOENIX Flyers",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U14 Boys Teal",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Beavers Bandits",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Cavs",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Celtics",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Bunjils U14 Boys Titans",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "FLAMINGO’S LEGACY ",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Generals U14 Boys Giants",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "PHOENIX Flyers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 9,
+          "team": "St Francis U14 Boys Boomers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 10,
+          "team": "U14 Boys Girton Eagles",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 11,
+          "team": "Victory U14 Boys Magic",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "4ef27b66-c2e4-4e53-aa50-d313738aeb1b",
+      "roundNumber": 1,
+      "date": "2026-04-22",
+      "time": "18:45:00",
+      "competition": "Wednesday U14 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "PHOENIX Legends",
+      "awayTeam": "U14’s FLYING FLAMINGOS ",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U14 Boys Blue",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Beavers Boomers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Lions",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Generals U14 Boys Lakers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "PHOENIX Legends",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "Strath Jordan's",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "U14’s FLYING FLAMINGOS ",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "58fd088c-8bdd-4250-9729-074736f39d52",
+      "roundNumber": 1,
+      "date": "2026-04-22",
+      "time": "19:30:00",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 3",
+      "homeTeam": "PHOENIX Gold Nuggets",
+      "awayTeam": "Strath Vipers",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U14 Boys Gold",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U14 Boys Silver",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Ignite",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Kennington",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Beavers Little Ballers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "Beavers Rampage",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Beavers Wizards",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "PHOENIX Gold Nuggets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 9,
+          "team": "PHOENIX Sweats",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 10,
+          "team": "Strath Vipers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 11,
+          "team": "Victory U14 Boys Celtics",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "f4ba5e01-daac-4796-bf7d-7f37342335e2",
+      "roundNumber": 1,
+      "date": "2026-04-22",
+      "time": "17:15:00",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 1",
+      "homeTeam": "Beavers Wizards",
+      "awayTeam": "PHOENIX Sweats",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U14 Boys Gold",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U14 Boys Silver",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Ignite",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Kennington",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Beavers Little Ballers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "Beavers Rampage",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Beavers Wizards",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "PHOENIX Gold Nuggets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 9,
+          "team": "PHOENIX Sweats",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 10,
+          "team": "Strath Vipers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 11,
+          "team": "Victory U14 Boys Celtics",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "049cb0e4-bc55-4e80-9e2f-a8d6b60b9e78",
+      "roundNumber": 1,
+      "date": "2026-04-22",
+      "time": "18:45:00",
+      "competition": "Wednesday U14 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "Beavers Ballers",
+      "awayTeam": "PHOENIX Two Blues",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U14 Boys Black",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U14 Boys Mint",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Aztec U14 Boys White",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Ballers",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Generals U14 Boys Sharks",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "PHOENIX Two Blues",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "74b44602-3110-4547-b256-4cad7c87b3c6",
+      "roundNumber": 1,
+      "date": "2026-04-21",
+      "time": "18:45:00",
+      "competition": "Tuesday U16 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8",
+      "homeTeam": "PHOENIX Tulips",
+      "awayTeam": "Aztec U16 Girls Aqua",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Beavers Spring Chicks",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U16 Girls Aqua",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "Aztec U16 Girls Purple",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "Bunjils U16 Girls Burra",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "PHOENIX Tulips",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "U16 Girls Girton Crystals",
+          "played": 1,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
+      "roundNumber": 1,
+      "date": "2026-04-21",
+      "time": "17:15:00",
+      "competition": "Tuesday U12 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "Strath Shooting Stars",
+      "awayTeam": "PHOENIX Stars",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U12 Girls Black",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 2,
+          "team": "Beavers Belles",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 3,
+          "team": "PHOENIX Stars",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 4,
+          "team": "St Francis U12 Girls Hornets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 5,
+          "team": "Strath Shooting Stars",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    {
+      "id": "abbf0db6-51f0-4991-bb92-3fad639ae34d",
+      "roundNumber": 1,
+      "date": "2026-04-20",
+      "time": "18:45:00",
+      "competition": "Monday U14 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8",
+      "homeTeam": "PHOENIX Diamonds",
+      "awayTeam": "Aztec U14 Girls Yellow",
+      "homeScore": 14,
+      "awayScore": 13,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Willow Preece",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Abbey Canterford",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Amelia Kellow",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ava Turley",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lexi Stanley",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lyla Robertson",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Willow Walsh",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ava Hundt",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ena Harris",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Hope Grant",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Kristina Johnn",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Marlee Brennan",
+            "team": "Aztec U14 Girls Yellow",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "Aztec U14 Girls Purple",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
+          "team": "U14 Girls Girton Gems",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 3,
+          "team": "PHOENIX Diamonds",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 4,
+          "team": "Aztec U14 Girls Yellow",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 5,
+          "team": "Beavers Starlets",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 6,
+          "team": "Aztec U14 Girls Pink",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        }
+      ]
+    },
+    {
+      "id": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
+      "roundNumber": 1,
+      "date": "2026-04-20",
+      "time": "17:15:00",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "PHOENIX Go Getters",
+      "awayTeam": "PHOENIX Firebirds",
+      "homeScore": 3,
+      "awayScore": 28,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Evie Ducat",
+            "team": "PHOENIX Firebirds",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Reagan Ogilvie",
+            "team": "PHOENIX Firebirds",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Avah Brown",
+            "team": "PHOENIX Firebirds",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Clementine Weekley",
+            "team": "PHOENIX Go Getters",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eliza Howard",
+            "team": "PHOENIX Firebirds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ava McLean",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Charlotte Hamilton",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eleanor Reid",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Evelyn Robertson",
+            "team": "PHOENIX Firebirds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Harper Armstrong",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Madison Fiske",
+            "team": "PHOENIX Firebirds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Paige Alberts",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
+      "ladders": [
+        {
+          "rank": 1,
+          "team": "PHOENIX Firebirds",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
+          "team": "St Francis U10 Girls Fearless Flames",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 3,
+          "team": "Bunjils U10 Girls Blue",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 4,
+          "team": "Aztec U10 Girls Silver",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 5,
+          "team": "St Francis U10 Girls Swish Sisters",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 6,
+          "team": "PINK FLAMINGO’S",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 7,
+          "team": "Aztec U10 Girls Aqua",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 8,
+          "team": "DIAMOND FLAMINGO’s",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 9,
+          "team": "PHOENIX Go Getters",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        }
+      ]
+    }
+  ],
+  "ladders": {
+    "Friday U18 Boys 2": [
+      {
+        "rank": 1,
+        "team": "Aztec U18 Boys Orange",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U18 Boys Yellow",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Bunjils U18 Boys ALPHA",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "PHOENIX Roughnuts",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Friday U18 Boys 5": [
+      {
+        "rank": 1,
+        "team": "Aztec U18 Boys Steel",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U18 Boys White",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Bunjils U18 Boys Bravo",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Generals U18 Boys Boomers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Generals U18 Boys Lions",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "Generals U18 Boys Rockets",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "PHOENIX TBA U18 Boys (Callum)",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Friday U18 Boys 3": [
+      {
+        "rank": 1,
+        "team": "Aztec U18 Boys Bronze",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U18 Boys Silver",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "PHOENIX Green Machines",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Strath Blazers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Strath Eagles",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Friday U12 Boys 3": [
+      {
+        "rank": 1,
+        "team": "Aztec U12 Boys Aqua",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U12 Boys Red",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Beavers Chiefs",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Beavers Dragons",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "PHOENIX Son's",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Friday U12 Boys 7": [
+      {
+        "rank": 1,
+        "team": "Aztec U12 Boys Platinum",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U12 Boys Teal",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Beavers Cubs",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Bunjils U12 Boys Bandicoots",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Heathcote Panthers 12's ",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "PHOENIX Phantoms",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "U12 Boys Girton Pumas",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 8,
+        "team": "Victory U12 Boys Mavericks",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Friday U12 Boys 8": [
+      {
+        "rank": 1,
+        "team": "PHOENIX Flames",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "St Francis U12 Boys Titans",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Strath BM81's",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Strath Suns",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Super Flamingos ",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "U12 Boys Girton Lions",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "Victory U12 Boys Stars",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Friday U16 Boys 4": [
+      {
+        "rank": 1,
+        "team": "Aztec U16 Boys Copper",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U16 Boys Navy",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Beavers Bob",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Beavers Bucks",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Beavers Cobras",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "Beavers Hurricanes",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "Beavers Warriors",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 8,
+        "team": "Generals U16 Boys Bulls",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 9,
+        "team": "Generals U16 Boys Gullys",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 10,
+        "team": "PHOENIX Go Buckets",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 11,
+        "team": "Strath Rockets",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 12,
+        "team": "Victory U16 Boys Warriors",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Friday U16 Boys 7": [
+      {
+        "rank": 1,
+        "team": "Beavers Rockets",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U16 Boys Bronze",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Aztec U16 Boys White",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Beavers Fury",
+        "played": 1,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "PHOENIX Gooney Tunes",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "PHOENIX Splash",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "Strath Sharks",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 8,
+        "team": "Strath Wizards",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Wednesday U16 Boys 2": [
+      {
+        "rank": 1,
+        "team": "Aztec U16 Boys Amber",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U16 Boys Mint",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Aztec U16 Boys Orange",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Aztec U16 Boys Red",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Aztec U16 Boys Yellow",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "Beavers Outlaws",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "Generals U16 Boys Hornets",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 8,
+        "team": "PHOENIX Raiders",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 9,
+        "team": "Strath Saints",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 10,
+        "team": "U16 Boys Girton Strikers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Wednesday U14 Boys 8": [
+      {
+        "rank": 1,
+        "team": "Aztec U14 Boys Teal",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Beavers Bandits",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Beavers Cavs",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Beavers Celtics",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Bunjils U14 Boys Titans",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "FLAMINGO’S LEGACY ",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "Generals U14 Boys Giants",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 8,
+        "team": "PHOENIX Flyers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 9,
+        "team": "St Francis U14 Boys Boomers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 10,
+        "team": "U14 Boys Girton Eagles",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 11,
+        "team": "Victory U14 Boys Magic",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Wednesday U14 Boys 7": [
+      {
+        "rank": 1,
+        "team": "Aztec U14 Boys Blue",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Beavers Boomers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Beavers Lions",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Generals U14 Boys Lakers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "PHOENIX Legends",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "Strath Jordan's",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "U14’s FLYING FLAMINGOS ",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Wednesday U14 Boys 5": [
+      {
+        "rank": 1,
+        "team": "Aztec U14 Boys Gold",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U14 Boys Silver",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Beavers Ignite",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Beavers Kennington",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Beavers Little Ballers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "Beavers Rampage",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 7,
+        "team": "Beavers Wizards",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 8,
+        "team": "PHOENIX Gold Nuggets",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 9,
+        "team": "PHOENIX Sweats",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 10,
+        "team": "Strath Vipers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 11,
+        "team": "Victory U14 Boys Celtics",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Wednesday U14 Boys 2": [
+      {
+        "rank": 1,
+        "team": "Aztec U14 Boys Black",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U14 Boys Mint",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Aztec U14 Boys White",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Beavers Ballers",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Generals U14 Boys Sharks",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "PHOENIX Two Blues",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Tuesday U16 Girls 3": [
+      {
+        "rank": 1,
+        "team": "Beavers Spring Chicks",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 2,
+        "team": "Aztec U16 Girls Aqua",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "Aztec U16 Girls Purple",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "Bunjils U16 Girls Burra",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "PHOENIX Tulips",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 6,
+        "team": "U16 Girls Girton Crystals",
+        "played": 1,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Tuesday U12 Girls 4": [
+      {
+        "rank": 1,
+        "team": "Aztec U12 Girls Black",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 2,
+        "team": "Beavers Belles",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 3,
+        "team": "PHOENIX Stars",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 4,
+        "team": "St Francis U12 Girls Hornets",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      },
+      {
+        "rank": 5,
+        "team": "Strath Shooting Stars",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 0
+      }
+    ],
+    "Monday U14 Girls 4": [
+      {
+        "rank": 1,
+        "team": "Aztec U14 Girls Purple",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 2,
+        "team": "U14 Girls Girton Gems",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 3,
+        "team": "PHOENIX Diamonds",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 4,
+        "team": "Aztec U14 Girls Yellow",
+        "played": 1,
+        "won": 0,
+        "lost": 1,
+        "drawn": 0,
+        "points": 1
+      },
+      {
+        "rank": 5,
+        "team": "Beavers Starlets",
+        "played": 1,
+        "won": 0,
+        "lost": 1,
+        "drawn": 0,
+        "points": 1
+      },
+      {
+        "rank": 6,
+        "team": "Aztec U14 Girls Pink",
+        "played": 1,
+        "won": 0,
+        "lost": 1,
+        "drawn": 0,
+        "points": 1
+      }
+    ],
+    "Monday U10 Girls 3": [
+      {
+        "rank": 1,
+        "team": "PHOENIX Firebirds",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 2,
+        "team": "St Francis U10 Girls Fearless Flames",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 3,
+        "team": "Bunjils U10 Girls Blue",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 4,
+        "team": "Aztec U10 Girls Silver",
+        "played": 1,
+        "won": 1,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 5,
+        "team": "St Francis U10 Girls Swish Sisters",
+        "played": 0,
+        "won": 0,
+        "lost": 0,
+        "drawn": 0,
+        "points": 3
+      },
+      {
+        "rank": 6,
+        "team": "PINK FLAMINGO’S",
+        "played": 1,
+        "won": 0,
+        "lost": 1,
+        "drawn": 0,
+        "points": 1
+      },
+      {
+        "rank": 7,
+        "team": "Aztec U10 Girls Aqua",
+        "played": 1,
+        "won": 0,
+        "lost": 1,
+        "drawn": 0,
+        "points": 1
+      },
+      {
+        "rank": 8,
+        "team": "DIAMOND FLAMINGO’s",
+        "played": 1,
+        "won": 0,
+        "lost": 1,
+        "drawn": 0,
+        "points": 1
+      },
+      {
+        "rank": 9,
+        "team": "PHOENIX Go Getters",
+        "played": 1,
+        "won": 0,
+        "lost": 1,
+        "drawn": 0,
+        "points": 1
+      }
+    ]
+  }
+}

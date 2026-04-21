@@ -60,6 +60,10 @@ function normalizeGame(game) {
   const competitors = game.competitors ?? [];
   const home = competitors.find(c => c.isHomeTeam);
   const away = competitors.find(c => !c.isHomeTeam);
+  const rawStatus = String(game.status ?? 'UPCOMING').toLowerCase();
+  const status = rawStatus === 'final' || rawStatus === 'completed' ? 'COMPLETED'
+    : rawStatus === 'in-progress' || rawStatus === 'live' ? 'IN_PROGRESS'
+    : 'UPCOMING';
 
   return {
     id: game.id,
@@ -72,21 +76,52 @@ function normalizeGame(game) {
     awayTeam: away?.name ?? 'TBD',
     homeScore: home?.scoreTotal ?? null,
     awayScore: away?.scoreTotal ?? null,
-    status: (game.status ?? 'UPCOMING').toUpperCase(),
+    status,
     round: game.round?.name ?? null,
+    playerStats: null,
   };
+}
+
+function normalizePlayerStats(summary) {
+  const competitors = summary.competitors ?? [];
+  const teamNameById = new Map(competitors.map((team) => [team.id, team.name ?? 'Unknown']));
+  const appearances = Array.isArray(summary.appearances) ? summary.appearances : [];
+
+  const players = appearances
+    .filter((appearance) => String(appearance.roleType ?? '').toLowerCase() === 'player')
+    .map((appearance) => ({
+      name: [appearance.firstName, appearance.lastName].filter(Boolean).join(' ').trim() || 'Unknown',
+      team: teamNameById.get(appearance.teamID) ?? 'Unknown',
+      points: Number(appearance.scoreTotal ?? 0),
+      fouls: 0,
+      assists: 0,
+      rebounds: 0,
+    }))
+    .sort((a, b) => b.points - a.points || a.name.localeCompare(b.name));
+
+  return players.length ? { players } : null;
 }
 
 function normalizeLadderRow(row, rank) {
   return {
-    rank,
-    team: row.team?.name ?? row.teamName ?? '—',
+    rank: row.ranking != null ? Number(row.ranking) + 1 : rank,
+    team: row.team?.name ?? row.teamName ?? row.name ?? '—',
     played: row.played ?? 0,
     won: row.won ?? 0,
     lost: row.lost ?? 0,
     drawn: row.drawn ?? 0,
-    points: row.points ?? 0,
+    points: row.points ?? row.competitionPoints ?? 0,
   };
+}
+
+function flattenLadderPayload(payload) {
+  const flattened = [];
+  for (const entry of payload?.data ?? []) {
+    for (const ladder of entry?.ladders ?? []) {
+      flattened.push(...(ladder?.standings ?? []));
+    }
+  }
+  return flattened;
 }
 
 async function main() {
@@ -150,7 +185,7 @@ async function main() {
     let ladder = [];
     try {
       const rows = await apiFetch(`/v1/grades/${gradeId}/ladder`);
-      ladder = (rows.data ?? rows).map((row, i) => normalizeLadderRow(row, i + 1));
+      ladder = flattenLadderPayload(rows).map((row, i) => normalizeLadderRow(row, i + 1));
       console.log(`  Ladder: ${ladder.length} team(s)`);
     } catch (err) {
       console.warn(`  ⚠ Ladder: ${err.message}`);
@@ -167,11 +202,8 @@ async function main() {
     }
 
     // Assign to each team in this grade
-    gradeTeams.forEach(team => {
-      // Filter games for this specific team
-      const teamGames = games.filter(g =>
-        g.homeTeam === team.name || g.awayTeam === team.name
-      );
+    for (const team of gradeTeams) {
+      const teamGames = games.filter(g => g.homeTeam === team.name || g.awayTeam === team.name);
 
       // Sort by date (most recent first for completed, upcoming next)
       teamGames.sort((a, b) => {
@@ -180,14 +212,27 @@ async function main() {
         return new Date(b.date) - new Date(a.date);
       });
 
+      const enrichedGames = [];
+      for (const game of teamGames) {
+        if (game.status === 'COMPLETED') {
+          try {
+            const summary = await apiFetch(`/v1/games/${game.id}/summary`);
+            game.playerStats = normalizePlayerStats(summary.data ?? summary);
+          } catch (err) {
+            console.warn(`  ⚠ Stats: ${err.message}`);
+          }
+        }
+        enrichedGames.push(game);
+      }
+
       teamDetails[team.slug] = {
         teamId: team.id,
         teamName: team.name,
         gradeName: gradeName,
-        fixture: teamGames,
+        fixture: enrichedGames,
         ladder: ladder,
       };
-    });
+    }
   }
 
   const output = {

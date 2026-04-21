@@ -1,81 +1,101 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { buildGameDetailViewModel } from '../../lib/scores/fixtures';
-import { findFixtureById, loadWeeklyArtifact } from '../../lib/scores/artifact';
-import { validateLiveScoresPayload } from '../../lib/playhq/contracts';
-import { loadLiveJsonSnapshot } from '../../lib/playhq/server-live-data';
+import { loadWeeklyArtifact } from '../../lib/scores/artifact';
+import { renderGameDetail } from '../../lib/playhq/round-renderer';
 import { renderGameDetailStateHtml } from '../../lib/playhq/renderers';
 
-export function getStaticPaths() {
-  const publicPath = join(process.cwd(), 'public', 'live-data', 'scores.json');
-  const scriptPath = join(process.cwd(), 'scripts', 'weekly-games-data.json');
-  const artifact = loadLiveJsonSnapshot(publicPath, loadWeeklyArtifact(scriptPath), validateLiveScoresPayload);
-  const fixtures = [artifact.days.monday, artifact.days.tuesday, artifact.days.wednesday, artifact.days.friday].flat();
+function loadFallbackGame(gameId: string) {
+  const teamsDetailsPath = join(process.cwd(), 'scripts', 'teams-details.json');
+  if (existsSync(teamsDetailsPath)) {
+    try {
+      const parsed = JSON.parse(readFileSync(teamsDetailsPath, 'utf8'));
+      for (const team of Object.values(parsed.teamDetails ?? {})) {
+        const game = (team as any)?.fixture?.find((item: any) => String(item?.id) === gameId);
+        if (game) {
+          return game;
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
 
-  return fixtures
-    .filter((fixture) => fixture?.fixtureId)
-    .map((fixture) => ({
-      params: { gameId: String(fixture.fixtureId) },
-      props: { game: buildGameDetailViewModel(fixture) },
-    }));
+  const roundsDir = join(process.cwd(), 'public', 'live-data', 'rounds');
+  if (existsSync(roundsDir)) {
+    for (const file of readdirSync(roundsDir)) {
+      if (!/^round-\d+\.json$/.test(file)) continue;
+      try {
+        const parsed = JSON.parse(readFileSync(join(roundsDir, file), 'utf8'));
+        const game = (parsed.games ?? []).find((item: any) => String(item?.id) === gameId);
+        if (game) return game;
+      } catch {
+        // ignore malformed round files during dev
+      }
+    }
+  }
+
+  const artifact = loadWeeklyArtifact();
+  const fixtures = [artifact.days.monday, artifact.days.tuesday, artifact.days.wednesday, artifact.days.friday].flat();
+  return fixtures.find((fixture) => String(fixture?.fixtureId) === gameId) ?? null;
+}
+
+export function getStaticPaths() {
+  const ids = new Set<string>();
+  const roundsDir = join(process.cwd(), 'public', 'live-data', 'rounds');
+
+  if (existsSync(roundsDir)) {
+    for (const file of readdirSync(roundsDir)) {
+      if (!/^round-\d+\.json$/.test(file)) continue;
+      try {
+        const parsed = JSON.parse(readFileSync(join(roundsDir, file), 'utf8'));
+        for (const game of parsed.games ?? []) {
+          if (game?.id) ids.add(String(game.id));
+        }
+      } catch {
+        // ignore malformed round files during dev
+      }
+    }
+  }
+
+  const artifact = loadWeeklyArtifact();
+  const fixtures = [artifact.days.monday, artifact.days.tuesday, artifact.days.wednesday, artifact.days.friday].flat();
+  for (const fixture of fixtures) {
+    if (fixture?.fixtureId) ids.add(String(fixture.fixtureId));
+  }
+
+  const teamsDetailsPath = join(process.cwd(), 'scripts', 'teams-details.json');
+  if (existsSync(teamsDetailsPath)) {
+    try {
+      const parsed = JSON.parse(readFileSync(teamsDetailsPath, 'utf8'));
+      for (const team of Object.values(parsed.teamDetails ?? {})) {
+        for (const game of (team as any)?.fixture ?? []) {
+          if (game?.id) ids.add(String(game.id));
+        }
+      }
+    } catch {
+      // ignore
+    }
+  }
+
+  return [...ids].map((gameId) => ({ params: { gameId } }));
 }
 
 const gameId = Astro.params.gameId ?? '';
-const game = (() => {
-  const publicPath = join(process.cwd(), 'public', 'live-data', 'scores.json');
-  const scriptPath = join(process.cwd(), 'scripts', 'weekly-games-data.json');
-  const artifact = loadLiveJsonSnapshot(publicPath, loadWeeklyArtifact(scriptPath), validateLiveScoresPayload);
-  const fixture = findFixtureById(artifact, gameId);
-  return fixture ? buildGameDetailViewModel(fixture) : null;
-})();
+const initialGame = loadFallbackGame(gameId);
 ---
 
-<BaseLayout title={game ? `${game.homeTeam} vs ${game.awayTeam}` : 'Game Not Found'}>
+<BaseLayout title="Game Details">
   <section class="bg-brand-purple py-12 px-4 text-center">
-    <h1 class="text-3xl sm:text-4xl font-black text-white uppercase tracking-tight">Game Details</h1>
+    <h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Game Details</h1>
   </section>
 
-  <div
-    data-live-game-detail-root
-    data-game-id={gameId}
-    data-live-data-url="/live-data/scores.json"
-    data-live-refresh-ms="300000"
-    data-stale-threshold-minutes="15"
-    set:html={renderGameDetailStateHtml(game)}
-  ></div>
+  <section class="px-4 py-8 sm:px-6 lg:px-8">
+    <div id="game-detail-message" class="mx-auto max-w-4xl rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-700" hidden>
+      Loading game details...
+    </div>
+    <div id="game-detail-root" class="mt-6" set:html={initialGame ? renderGameDetail(initialGame) : renderGameDetailStateHtml(null)}></div>
+  </section>
 
-  <script>
-    import { buildGameDetailViewModel } from '../../lib/scores/fixtures';
-    import { validateLiveScoresPayload } from '../../lib/playhq/contracts';
-    import { renderGameDetailStateHtml } from '../../lib/playhq/renderers';
-
-    async function refreshGameDetail(root: HTMLElement) {
-      const url = root.getAttribute('data-live-data-url');
-      const gameId = root.getAttribute('data-game-id');
-      if (!url || !gameId) return;
-
-      try {
-        const response = await fetch(url, { cache: 'no-store' });
-        if (!response.ok) return;
-
-        const payload = await response.json();
-        const validation = validateLiveScoresPayload(payload);
-        if (!validation.ok) return;
-
-        const fixtures = Object.values(payload.days ?? {}).flat();
-        const fixture = fixtures.find((item) => item?.fixtureId === gameId);
-        const viewModel = fixture ? buildGameDetailViewModel(fixture) : null;
-        root.innerHTML = renderGameDetailStateHtml(viewModel);
-        document.title = viewModel ? `${viewModel.homeTeam} vs ${viewModel.awayTeam}` : 'Game Not Found';
-      } catch {
-        // Keep the last known rendered state if refresh fails.
-      }
-    }
-
-    document.querySelectorAll('[data-live-game-detail-root]').forEach((root) => {
-      refreshGameDetail(root);
-      setInterval(() => refreshGameDetail(root), Number(root.getAttribute('data-live-refresh-ms') ?? '300000'));
-    });
-  </script>
 </BaseLayout>

@@ -1,160 +1,136 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import {
-  existsSync,
-  readFileSync,
-} from 'node:fs';
-import { join } from 'node:path';
-import { EMPTY_WEEKLY_ARTIFACT, loadWeeklyArtifact } from '../lib/scores/artifact';
-import { validateLiveScoresPayload } from '../lib/playhq/contracts';
-import { isLiveDataStale } from '../lib/playhq/live-data';
-import { renderScoresPageStateHtml } from '../lib/playhq/renderers';
-import { loadLiveJsonSnapshot } from '../lib/playhq/server-live-data';
-import type { WeeklyArtifact } from '../lib/scores/rendering';
-
-function loadInitialWeeklyArtifact(): WeeklyArtifact {
-  const publicPath = join(process.cwd(), 'public', 'live-data', 'scores.json');
-  const scriptPath = join(process.cwd(), 'scripts', 'weekly-games-data.json');
-
-  if (existsSync(publicPath)) {
-    try {
-      const candidate = JSON.parse(readFileSync(publicPath, 'utf-8'));
-      if (validateLiveScoresPayload(candidate).ok) return candidate as WeeklyArtifact;
-    } catch {
-      // fall through to script snapshot
-    }
-  }
-
-  if (existsSync(scriptPath)) {
-    try {
-      const candidate = JSON.parse(readFileSync(scriptPath, 'utf-8'));
-      if (validateLiveScoresPayload(candidate).ok) return candidate as WeeklyArtifact;
-    } catch {
-      // fall through to empty state
-    }
-  }
-
-  return loadWeeklyArtifact(scriptPath) ?? EMPTY_WEEKLY_ARTIFACT;
-}
-
-const scoresData = loadInitialWeeklyArtifact();
-const lastUpdated = scoresData.generatedAt
-  ? new Date(scoresData.generatedAt).toLocaleString('en-AU', {
-      dateStyle: 'long',
-      timeStyle: 'short',
-    })
-  : 'Unknown';
-const isInitialStale = scoresData.generatedAt ? isLiveDataStale(scoresData.generatedAt, 15) : false;
 ---
 
 <BaseLayout title="Scores" description="Bendigo Phoenix Basketball latest scores and results.">
-  <!-- Page Hero -->
-  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none">
-      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Live Updates</p>
-      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">THIS WEEK'S GAMES</h1>
-      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
-      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
-        Follow weekly results, fixtures, and game-day outcomes across all divisions.
-      </p>
-    </div>
+  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center">
+    <h1 class="text-4xl sm:text-5xl font-black uppercase tracking-tight text-white">This Season's Games</h1>
+    <p class="mx-auto mt-4 max-w-2xl text-purple-200">Follow weekly results, fixtures, and game-day outcomes across all divisions.</p>
   </section>
 
-  <!-- Last Updated -->
-  <section class="bg-brand-black py-3 px-4">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-      <p class="text-gray-400 text-xs flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-brand-gold inline-block animate-pulse"></span>
-        Last updated: <span class="text-white font-medium" data-live-last-updated>{lastUpdated}</span>
-      </p>
-      {isInitialStale ? (
-        <p class="text-xs text-amber-200" data-live-stale-banner>
-          Showing last known weekly data. Live refresh is temporarily unavailable.
-        </p>
-      ) : (
-        <p class="text-xs text-amber-200" data-live-stale-banner hidden></p>
-      )}
-    </div>
-  </section>
-
-  <!-- Scores Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex items-center justify-between mb-2">
-        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide">Games by Day</h2>
+  <section class="bg-brand-offwhite px-4 py-10 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div id="scores-unavailable" hidden class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-red-800">
+        Scores unavailable.
       </div>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
+
+      <nav id="round-nav" role="navigation" aria-label="Round navigation" class="mt-6 flex flex-wrap gap-3"></nav>
 
       <!-- Responsive grid class retained for compatibility with existing layout tests: grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 -->
-      <div
-        class="scores-live-root"
-        data-live-scores-root
-        data-live-data-url="/live-data/scores.json"
-        data-live-refresh-ms="300000"
-        data-stale-threshold-minutes="15"
-        set:html={renderScoresPageStateHtml(scoresData)}
-      ></div>
+      <div id="round-content" aria-live="polite" class="mt-8">
+        <p class="text-gray-600">Loading scores...</p>
+      </div>
     </div>
   </section>
 
   <script>
-    import { validateLiveScoresPayload } from '../lib/playhq/contracts';
-    import { isLiveDataStale } from '../lib/playhq/live-data';
-    import { renderScoresPageStateHtml } from '../lib/playhq/renderers';
+    import { loadRoundFile, loadRoundsIndex } from '../lib/scores/round-navigation';
+    import { renderGameCard } from '../lib/playhq/round-renderer';
 
-    const refreshMs = 300000;
+    const DAY_ORDER = ['monday', 'tuesday', 'wednesday', 'friday'];
+    const DAY_LABELS = {
+      monday: 'Monday',
+      tuesday: 'Tuesday',
+      wednesday: 'Wednesday',
+      friday: 'Friday',
+    };
 
-    function formatLastUpdated(iso: string | null | undefined): string {
-      if (!iso) return 'Unknown';
-      const dt = new Date(iso);
-      if (Number.isNaN(dt.valueOf())) return 'Unknown';
-      return dt.toLocaleString('en-AU', { dateStyle: 'long', timeStyle: 'short' });
-    }
+    const navEl = document.getElementById('round-nav');
+    const contentEl = document.getElementById('round-content');
+    const unavailableEl = document.getElementById('scores-unavailable');
+    let activeRound = null;
 
-    async function refreshScores(root: HTMLElement) {
-      const url = root.getAttribute('data-live-data-url');
-      if (!url) return;
-
-      try {
-        const response = await fetch(url, { cache: 'no-store' });
-        if (!response.ok) return;
-
-        const payload = await response.json();
-        const validation = validateLiveScoresPayload(payload);
-        if (!validation.ok) return;
-
-        const staleThresholdMinutes = Number(root.getAttribute('data-stale-threshold-minutes') ?? '15');
-        if (payload.generatedAt && isLiveDataStale(payload.generatedAt, staleThresholdMinutes)) {
-          payload.status = payload.status === 'error' ? 'error' : 'stale';
-          payload.staleBanner = payload.staleBanner ?? 'Showing last known weekly data. Live refresh is temporarily unavailable.';
-        }
-
-        root.innerHTML = renderScoresPageStateHtml(payload);
-
-        const lastUpdatedEl = document.querySelector('[data-live-last-updated]') as HTMLElement | null;
-        if (lastUpdatedEl) lastUpdatedEl.textContent = formatLastUpdated(payload.generatedAt);
-
-        const staleEl = document.querySelector('[data-live-stale-banner]') as HTMLElement | null;
-        if (staleEl) {
-          if (payload.status === 'stale') {
-            staleEl.textContent = payload.staleBanner ?? 'Showing last known weekly data. Live refresh is temporarily unavailable.';
-            staleEl.hidden = false;
-          } else {
-            staleEl.textContent = '';
-            staleEl.hidden = true;
-          }
-        }
-      } catch {
-        // Keep the last known rendered state if refresh fails.
+    function showUnavailable(message = 'Scores unavailable.') {
+      if (unavailableEl) {
+        unavailableEl.textContent = message;
+        unavailableEl.hidden = false;
       }
+      if (contentEl) contentEl.innerHTML = '';
+      if (navEl) navEl.innerHTML = '';
     }
 
-    document.querySelectorAll('[data-live-scores-root]').forEach((root) => {
-      refreshScores(root);
-      setInterval(() => refreshScores(root), refreshMs);
-    });
+    function dayKeyForDate(dateString) {
+      if (!dateString) return 'friday';
+      const date = new Date(`${dateString}T12:00:00`);
+      const day = date.getDay();
+      if (day === 1) return 'monday';
+      if (day === 2) return 'tuesday';
+      if (day === 3) return 'wednesday';
+      return 'friday';
+    }
+
+    function timeToMinutes(timeString) {
+      if (!timeString) return Number.POSITIVE_INFINITY;
+      const [hours, minutes] = timeString.split(':').map(Number);
+      if (Number.isNaN(hours) || Number.isNaN(minutes)) return Number.POSITIVE_INFINITY;
+      return hours * 60 + minutes;
+    }
+
+    function renderRound(round) {
+      if (!contentEl) return;
+      if (!round) {
+        contentEl.innerHTML = '<p class="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-amber-900">Results for this round are not yet available.</p>';
+        return;
+      }
+
+      const grouped = Object.fromEntries(DAY_ORDER.map((day) => [day, []]));
+      for (const game of round.games || []) {
+        const day = dayKeyForDate(game.date);
+        grouped[day].push(game);
+      }
+      for (const day of DAY_ORDER) {
+        grouped[day].sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time));
+      }
+
+      contentEl.innerHTML = `
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-4">
+          ${DAY_ORDER.map((day) => `
+            <section class="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
+              <h3 class="text-lg font-black uppercase tracking-wide text-brand-purple">${DAY_LABELS[day]}</h3>
+              <div class="mt-4 space-y-4">
+                ${(grouped[day].length ? grouped[day] : []).map((game) => renderGameCard(game)).join('') || '<p class="rounded-xl border border-dashed border-gray-200 px-3 py-6 text-center text-sm text-gray-500">No games</p>'}
+              </div>
+            </section>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    async function loadAndRenderRound(roundNumber, index) {
+      activeRound = roundNumber;
+      if (navEl) {
+        navEl.querySelectorAll('button[data-round]').forEach((btn) => {
+          btn.setAttribute('aria-pressed', String(btn.dataset.round === String(roundNumber)));
+        });
+      }
+      renderRound(null);
+      const round = await loadRoundFile(roundNumber);
+      if (!round) {
+        renderRound(null);
+        return;
+      }
+      renderRound(round);
+    }
+
+    const index = await loadRoundsIndex();
+    if (!index) {
+      showUnavailable('Scores unavailable. Please try again later.');
+    } else {
+      if (navEl) {
+        navEl.innerHTML = index.availableRounds.map((roundNumber) => `
+          <button
+            type="button"
+            class="min-h-[44px] rounded-full border border-brand-purple px-4 py-2 text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-brand-gold"
+            aria-pressed="${roundNumber === index.currentRound ? 'true' : 'false'}"
+            data-round="${roundNumber}"
+          >Round ${roundNumber}</button>
+        `).join('');
+
+        navEl.querySelectorAll('button[data-round]').forEach((button) => {
+          button.addEventListener('click', () => loadAndRenderRound(Number(button.dataset.round), index));
+        });
+      }
+      await loadAndRenderRound(index.currentRound, index);
+    }
   </script>
 </BaseLayout>

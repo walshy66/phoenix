@@ -1,0 +1,51 @@
+name: Monday Round Finalise
+
+on:
+  schedule:
+    - cron: '0 14 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monday-round-finalise
+  cancel-in-progress: false
+
+jobs:
+  finalise-round:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Write round files and deploy
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: bv
+          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
+          PLAYHQ_SEASON_NAME: ${{ secrets.PLAYHQ_SEASON_NAME }}
+          PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: node scripts/write-round-files.js
+
+      - name: Validate round files
+        run: npm run rounds:check
