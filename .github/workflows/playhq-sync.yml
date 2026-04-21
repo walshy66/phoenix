@@ -1,0 +1,146 @@
+name: PlayHQ Sync
+
+on:
+  schedule:
+    # Weekly static refreshes / round finalisation.
+    - cron: '5 14 * * 6'
+    - cron: '0 14 * * 0'
+    - cron: '0 15 * * 0'
+    # Live scoreboard polling during Melbourne game windows.
+    - cron: '*/2 6-13 * * 1,2,3,5'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: What should run?
+        required: true
+        default: full
+        type: choice
+        options:
+          - full
+          - static
+          - live-poll
+
+permissions:
+  contents: write
+
+jobs:
+  refresh-static-data:
+    name: Refresh static site data
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    concurrency:
+      group: playhq-sync-static
+      cancel-in-progress: true
+    if: >-
+      (github.event_name == 'workflow_dispatch' && (inputs.mode == 'full' || inputs.mode == 'static'))
+      || github.event.schedule == '5 14 * * 6'
+      || github.event.schedule == '0 14 * * 0'
+      || github.event.schedule == '0 15 * * 0'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh Teams data
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
+          PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
+        run: |
+          node scripts/scrape-playhq-teams.js
+          node scripts/scrape-playhq-teams-details.js
+
+      - name: Refresh scores, weekly fixtures, and home data
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
+          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
+          PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
+          PLAYHQ_CLUB_MATCH: ${{ secrets.PLAYHQ_CLUB_NAME }}
+          PLAYHQ_SEASON_NAME: ${{ secrets.PLAYHQ_SEASON_NAME }}
+        run: |
+          npm run scores:refresh
+          npm run scores:check
+          node scripts/scrape-weekly-games.js
+          node scripts/check-weekly-games-data.js
+          npm run home-scores:refresh
+          npm run home-scores:check
+
+      - name: Refresh round files
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
+          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
+          PLAYHQ_SEASON_NAME: ${{ secrets.PLAYHQ_SEASON_NAME }}
+          PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
+        run: |
+          node scripts/write-round-files.js
+          npm run rounds:check
+
+      - name: Publish static artifacts to public/live-data
+        run: |
+          mkdir -p public/live-data
+          cp scripts/weekly-games-data.json public/live-data/fixtures.json
+          cp scripts/scores-data.json public/live-data/completed-scores.json
+          cp scripts/home-games-data.json public/live-data/home-games.json
+
+      - name: Commit refreshed data files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add scripts/teams-data.json scripts/teams-details.json scripts/scores-data.json scripts/weekly-games-data.json scripts/home-games-data.json public/live-data/fixtures.json public/live-data/completed-scores.json public/live-data/home-games.json public/live-data/rounds/round-*.json public/live-data/rounds/rounds-index.json
+
+          if git diff --cached --quiet; then
+            echo "No static data changes to commit"
+            exit 0
+          fi
+
+          git commit -m "chore(playhq): sync static site data"
+          git push
+
+  poll-live-scores:
+    name: Poll live scores
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    concurrency:
+      group: playhq-sync-live-poll
+      cancel-in-progress: true
+    if: >-
+      (github.event_name == 'workflow_dispatch' && (inputs.mode == 'full' || inputs.mode == 'live-poll'))
+      || github.event.schedule == '*/2 6-13 * * 1,2,3,5'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Poll live scores and deploy
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: bv
+          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
+          PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: node scripts/poll-live-scores.js
