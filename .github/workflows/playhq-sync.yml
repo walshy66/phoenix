@@ -2,12 +2,13 @@ name: PlayHQ Sync
 
 on:
   schedule:
-    # Weekly static refreshes / round finalisation.
+    # Static refresh cadence during Melbourne game windows.
+    - cron: '30-59/10 5 * * 1,2,3,5'
+    - cron: '*/10 6-13 * * 1,2,3,5'
+    # Weekly round finalisation / warm-up.
     - cron: '5 14 * * 6'
     - cron: '0 14 * * 0'
     - cron: '0 15 * * 0'
-    # Live scoreboard polling during Melbourne game windows.
-    - cron: '*/2 6-13 * * 1,2,3,5'
   workflow_dispatch:
     inputs:
       mode:
@@ -18,7 +19,6 @@ on:
         options:
           - full
           - static
-          - live-poll
 
 permissions:
   contents: write
@@ -33,6 +33,8 @@ jobs:
       cancel-in-progress: true
     if: >-
       (github.event_name == 'workflow_dispatch' && (inputs.mode == 'full' || inputs.mode == 'static'))
+      || github.event.schedule == '30-59/10 5 * * 1,2,3,5'
+      || github.event.schedule == '*/10 6-13 * * 1,2,3,5'
       || github.event.schedule == '5 14 * * 6'
       || github.event.schedule == '0 14 * * 0'
       || github.event.schedule == '0 15 * * 0'
@@ -105,42 +107,3 @@ jobs:
 
           git commit -m "chore(playhq): sync static site data"
           git push
-
-  poll-live-scores:
-    name: Poll live scores
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    concurrency:
-      group: playhq-sync-live-poll
-      cancel-in-progress: true
-    if: >-
-      (github.event_name == 'workflow_dispatch' && (inputs.mode == 'full' || inputs.mode == 'live-poll'))
-      || github.event.schedule == '*/2 6-13 * * 1,2,3,5'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Setup Node
-        uses: actions/setup-node@v5
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Poll live scores and deploy
-        env:
-          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
-          PLAYHQ_TENANT: bv
-          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
-          PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_PORT: ${{ secrets.FTP_PORT }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASS: ${{ secrets.FTP_PASS }}
-          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
-        run: node scripts/poll-live-scores.js
