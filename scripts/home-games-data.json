@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-21T04:19:20.050Z",
+  "generatedAt": "2026-04-21T11:27:48.385Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,34 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
-      "homeTeam": "Strath Shooting Stars",
-      "awayTeam": "PHOENIX Stars",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-21",
-      "kickoffTime": "17:15:00",
-      "kickoffDisplay": "17:15",
-      "competition": "Tuesday U12 Girls 4",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7"
-    },
-    {
-      "gameId": "74b44602-3110-4547-b256-4cad7c87b3c6",
-      "homeTeam": "PHOENIX Tulips",
-      "awayTeam": "Aztec U16 Girls Aqua",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-21",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Tuesday U16 Girls 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 8"
-    },
     {
       "gameId": "24ad7a1a-53b3-40c7-b7a9-54756fbea989",
       "homeTeam": "Aztec U14 Boys Teal",
@@ -261,6 +233,34 @@
       "competition": "Friday U18 Boys 3",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4"
+    },
+    {
+      "gameId": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
+      "homeTeam": "Strath Shooting Stars",
+      "awayTeam": "PHOENIX Stars",
+      "homeScore": 7,
+      "awayScore": 33,
+      "status": "completed",
+      "kickoffDate": "2026-04-21",
+      "kickoffTime": "17:15:00",
+      "kickoffDisplay": "17:15",
+      "competition": "Tuesday U12 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7"
+    },
+    {
+      "gameId": "74b44602-3110-4547-b256-4cad7c87b3c6",
+      "homeTeam": "PHOENIX Tulips",
+      "awayTeam": "Aztec U16 Girls Aqua",
+      "homeScore": 36,
+      "awayScore": 40,
+      "status": "completed",
+      "kickoffDate": "2026-04-21",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Tuesday U16 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8"
     },
     {
       "gameId": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
