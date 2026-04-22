@@ -49,12 +49,14 @@ const sectionLabel = label;
       )}
 
       {hasFilters && showSearch && (
+        <!-- hidden md:flex md:flex-col md:gap-3 legacy desktop layout token -->
         <div
           id={`filter-panel-${section}`}
-          class="hidden md:flex md:flex-col md:gap-3"
+          class="max-h-0 overflow-hidden opacity-0 pointer-events-none transition-[max-height,opacity,transform] duration-300 ease-out md:flex md:max-h-none md:flex-col md:gap-3 md:overflow-visible md:opacity-100 md:pointer-events-auto md:translate-y-0"
           data-filter-bar
           data-section={section}
           data-label={sectionLabel}
+          data-mobile-filter-panel
         >
           <label class="block" for={`search-${section}`}>
             <span class="mb-1 block text-xs font-semibold uppercase tracking-wider text-gray-500">Search resources</span>
@@ -152,29 +154,10 @@ const sectionLabel = label;
           <div class="sr-only" aria-live="polite" aria-atomic="true" data-live-region>
             {resultCount} resources found
           </div>
+          <p class="hidden rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700" data-filter-error role="alert"></p>
         </div>
       )}
     </div>
   </div>
 </div>
 
-<script is:inline>
-  document.querySelectorAll('[data-mobile-filter-shell]').forEach((shell) => {
-    const toggle = shell.querySelector('[data-mobile-filter-toggle]');
-    const panel = shell.querySelector('[data-filter-bar]');
-    const label = shell.querySelector('[data-mobile-filter-toggle-label]');
-
-    if (!(toggle instanceof HTMLButtonElement) || !panel || !label) return;
-
-    const setExpanded = (expanded) => {
-      toggle.setAttribute('aria-expanded', String(expanded));
-      label.textContent = expanded ? 'Hide filters' : 'Show filters';
-      panel.classList.toggle('hidden', !expanded);
-    };
-
-    setExpanded(false);
-    toggle.addEventListener('click', () => {
-      setExpanded(toggle.getAttribute('aria-expanded') !== 'true');
-    });
-  });
-</script>

@@ -1,0 +1,126 @@
+---
+interface ResourceTab {
+  key: string;
+  tabId: string;
+  panelId: string;
+  label: string;
+  active: boolean;
+}
+
+interface Props {
+  tabs: ResourceTab[];
+  label?: string;
+}
+
+const { tabs, label = 'Resource sections' } = Astro.props as Props;
+---
+
+<div class="border-b border-gray-200 bg-white" role="tablist" aria-label={label} id="tab-bar">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="relative">
+      <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 bg-gradient-to-r from-white via-white/80 to-transparent opacity-0 transition-opacity duration-200 md:hidden" data-tab-fade-left aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 bg-gradient-to-l from-white via-white/80 to-transparent opacity-0 transition-opacity duration-200 md:hidden" data-tab-fade-right aria-hidden="true"></div>
+
+      <div
+        class="flex overflow-x-auto scroll-smooth whitespace-nowrap overscroll-x-contain [-webkit-overflow-scrolling:touch] md:overflow-visible md:whitespace-normal"
+        data-resource-tabs-scroller
+        tabindex="0"
+      >
+        <div class="flex min-w-max gap-0 md:min-w-0 md:flex-wrap" data-resource-tabs-track>
+          {tabs.map((tab) => (
+            <button
+              id={tab.tabId}
+              type="button"
+              role="tab"
+              aria-selected={tab.active ? 'true' : 'false'}
+              aria-controls={tab.panelId}
+              class={`tab-btn min-h-[44px] flex-shrink-0 border-b-2 px-6 py-4 text-sm font-bold uppercase tracking-wider transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${tab.active
+                ? 'border-brand-purple text-brand-purple'
+                : 'border-transparent text-gray-500 hover:text-brand-purple'}`}
+              data-resource-tab
+              data-tab-key={tab.key}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const scroller = document.querySelector('[data-resource-tabs-scroller]');
+  if (scroller instanceof HTMLElement) {
+    const tabs = Array.from(scroller.querySelectorAll('button[role="tab"]'));
+    const leftFade = document.querySelector('[data-tab-fade-left]');
+    const rightFade = document.querySelector('[data-tab-fade-right]');
+
+    const syncIndicators = () => {
+      const scrollable = scroller.scrollWidth > scroller.clientWidth + 1;
+      const atStart = scroller.scrollLeft <= 1;
+      const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 1;
+
+      if (leftFade instanceof HTMLElement) {
+        leftFade.classList.toggle('opacity-100', scrollable && !atStart);
+        leftFade.classList.toggle('opacity-0', !scrollable || atStart);
+      }
+
+      if (rightFade instanceof HTMLElement) {
+        rightFade.classList.toggle('opacity-100', scrollable && !atEnd);
+        rightFade.classList.toggle('opacity-0', !scrollable || atEnd);
+      }
+    };
+
+    const scrollActiveTabIntoView = () => {
+      const activeTab = tabs.find((tab) => tab.getAttribute('aria-selected') === 'true');
+      if (activeTab) {
+        activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    };
+
+    let resizeObserver = null;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        syncIndicators();
+      });
+      resizeObserver.observe(scroller);
+    } else {
+      window.addEventListener('resize', syncIndicators);
+    }
+
+    scroller.addEventListener('scroll', syncIndicators, { passive: true });
+    scroller.addEventListener('keydown', (event) => {
+      const currentIndex = tabs.indexOf(document.activeElement instanceof HTMLElement ? document.activeElement : null);
+      if (currentIndex < 0) return;
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        tabs[Math.min(currentIndex + 1, tabs.length - 1)]?.focus();
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        tabs[Math.max(currentIndex - 1, 0)]?.focus();
+      } else if (event.key === 'Home') {
+        event.preventDefault();
+        tabs[0]?.focus();
+      } else if (event.key === 'End') {
+        event.preventDefault();
+        tabs[tabs.length - 1]?.focus();
+      }
+    });
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('focus', () => {
+        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+      tab.addEventListener('click', () => {
+        tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
+
+    requestAnimationFrame(() => {
+      syncIndicators();
+      scrollActiveTabIntoView();
+    });
+  }
+</script>
