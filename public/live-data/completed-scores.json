@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T08:00:46.676Z",
+  "lastUpdated": "2026-04-22T08:33:34.240Z",
   "scores": [
     {
       "id": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
@@ -266,9 +266,9 @@
       "court": "Court 1",
       "homeTeam": "Beavers Wizards",
       "awayTeam": "PHOENIX Sweats",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 45,
+      "awayScore": 22,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -893,6 +893,17 @@
     "Wednesday U14 Boys 8": [
       {
         "position": 1,
+        "teamName": "Beavers Cavs",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 63,
+        "pointsAgainst": 4,
+        "percentage": 1575,
+        "points": 3
+      },
+      {
+        "position": 2,
         "teamName": "PHOENIX Flyers",
         "played": 1,
         "wins": 1,
@@ -903,7 +914,7 @@
         "points": 3
       },
       {
-        "position": 2,
+        "position": 3,
         "teamName": "Beavers Celtics",
         "played": 1,
         "wins": 1,
@@ -914,7 +925,18 @@
         "points": 3
       },
       {
-        "position": 3,
+        "position": 4,
+        "teamName": "Bunjils U14 Boys Titans",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 33,
+        "pointsAgainst": 23,
+        "percentage": 143.48,
+        "points": 3
+      },
+      {
+        "position": 5,
         "teamName": "Beavers Bandits",
         "played": 0,
         "wins": 0,
@@ -925,7 +947,18 @@
         "points": 3
       },
       {
-        "position": 4,
+        "position": 6,
+        "teamName": "FLAMINGO’S LEGACY ",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 23,
+        "pointsAgainst": 33,
+        "percentage": 69.7,
+        "points": 1
+      },
+      {
+        "position": 7,
         "teamName": "Generals U14 Boys Giants",
         "played": 1,
         "wins": 0,
@@ -936,7 +969,7 @@
         "points": 1
       },
       {
-        "position": 5,
+        "position": 8,
         "teamName": "Aztec U14 Boys Teal",
         "played": 1,
         "wins": 0,
@@ -947,40 +980,18 @@
         "points": 1
       },
       {
-        "position": 6,
-        "teamName": "Beavers Cavs",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 7,
-        "teamName": "Bunjils U14 Boys Titans",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 8,
-        "teamName": "FLAMINGO’S LEGACY ",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 9,
+        "teamName": "Victory U14 Boys Magic",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 4,
+        "pointsAgainst": 63,
+        "percentage": 6.35,
+        "points": 1
+      },
+      {
+        "position": 10,
         "teamName": "St Francis U14 Boys Boomers",
         "played": 0,
         "wins": 0,
@@ -991,19 +1002,8 @@
         "points": 0
       },
       {
-        "position": 10,
-        "teamName": "U14 Boys Girton Eagles",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 11,
-        "teamName": "Victory U14 Boys Magic",
+        "teamName": "U14 Boys Girton Eagles",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1017,16 +1017,38 @@
       {
         "position": 1,
         "teamName": "Aztec U14 Boys Blue",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 35,
+        "pointsAgainst": 14,
+        "percentage": 250,
+        "points": 3
+      },
+      {
+        "position": 2,
+        "teamName": "Generals U14 Boys Lakers",
         "played": 0,
         "wins": 0,
         "losses": 0,
         "pointsFor": 0,
         "pointsAgainst": 0,
         "percentage": 0,
-        "points": 0
+        "points": 3
       },
       {
-        "position": 2,
+        "position": 3,
+        "teamName": "Beavers Lions",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 14,
+        "pointsAgainst": 35,
+        "percentage": 40,
+        "points": 1
+      },
+      {
+        "position": 4,
         "teamName": "Beavers Boomers",
         "played": 0,
         "wins": 0,
@@ -1037,30 +1059,8 @@
         "points": 0
       },
       {
-        "position": 3,
-        "teamName": "Beavers Lions",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 4,
-        "teamName": "Generals U14 Boys Lakers",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 5,
-        "teamName": "PHOENIX Legends",
+        "teamName": "U14’s FLYING FLAMINGOS ",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1071,7 +1071,7 @@
       },
       {
         "position": 6,
-        "teamName": "Strath Jordan's",
+        "teamName": "PHOENIX Legends",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1082,7 +1082,7 @@
       },
       {
         "position": 7,
-        "teamName": "U14’s FLYING FLAMINGOS ",
+        "teamName": "Strath Jordan's",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1095,6 +1095,17 @@
     "Wednesday U14 Boys 6": [
       {
         "position": 1,
+        "teamName": "Generals U14 Boys Alley Oops",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 29,
+        "pointsAgainst": 17,
+        "percentage": 170.59,
+        "points": 3
+      },
+      {
+        "position": 2,
         "teamName": "Beavers St Joeys",
         "played": 0,
         "wins": 0,
@@ -1105,7 +1116,7 @@
         "points": 3
       },
       {
-        "position": 2,
+        "position": 3,
         "teamName": "Beavers Raptors",
         "played": 1,
         "wins": 1,
@@ -1116,7 +1127,18 @@
         "points": 3
       },
       {
-        "position": 3,
+        "position": 4,
+        "teamName": "Aztec U14 Boys Bronze",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 17,
+        "pointsAgainst": 29,
+        "percentage": 58.62,
+        "points": 1
+      },
+      {
+        "position": 5,
         "teamName": "Heathcote Panthers 14s",
         "played": 1,
         "wins": 0,
@@ -1127,7 +1149,7 @@
         "points": 0
       },
       {
-        "position": 4,
+        "position": 6,
         "teamName": "(Flaming) Flamingos ",
         "played": 0,
         "wins": 0,
@@ -1138,30 +1160,8 @@
         "points": 0
       },
       {
-        "position": 5,
-        "teamName": "U14 Boys Girton Lightning",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 6,
-        "teamName": "Aztec U14 Boys Bronze",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 7,
-        "teamName": "Generals U14 Boys Alley Oops",
+        "teamName": "U14 Boys Girton Lightning",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1196,6 +1196,28 @@
     "Wednesday U14 Boys 5": [
       {
         "position": 1,
+        "teamName": "Beavers Wizards",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 45,
+        "pointsAgainst": 22,
+        "percentage": 204.55,
+        "points": 3
+      },
+      {
+        "position": 2,
+        "teamName": "Beavers Kennington",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 34,
+        "pointsAgainst": 33,
+        "percentage": 103.03,
+        "points": 3
+      },
+      {
+        "position": 3,
         "teamName": "Victory U14 Boys Celtics",
         "played": 0,
         "wins": 0,
@@ -1206,52 +1228,30 @@
         "points": 3
       },
       {
-        "position": 2,
-        "teamName": "Aztec U14 Boys Gold",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 3,
-        "teamName": "Aztec U14 Boys Silver",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 4,
-        "teamName": "Beavers Ignite",
-        "played": 0,
+        "teamName": "Aztec U14 Boys Silver",
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 33,
+        "pointsAgainst": 34,
+        "percentage": 97.06,
+        "points": 1
       },
       {
         "position": 5,
-        "teamName": "Beavers Kennington",
-        "played": 0,
+        "teamName": "PHOENIX Sweats",
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 22,
+        "pointsAgainst": 45,
+        "percentage": 48.89,
+        "points": 1
       },
       {
         "position": 6,
-        "teamName": "Beavers Little Ballers",
+        "teamName": "Strath Vipers",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1262,7 +1262,7 @@
       },
       {
         "position": 7,
-        "teamName": "Beavers Rampage",
+        "teamName": "Aztec U14 Boys Gold",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1273,7 +1273,7 @@
       },
       {
         "position": 8,
-        "teamName": "Beavers Wizards",
+        "teamName": "Beavers Little Ballers",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1284,7 +1284,7 @@
       },
       {
         "position": 9,
-        "teamName": "PHOENIX Gold Nuggets",
+        "teamName": "Beavers Ignite",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1295,7 +1295,7 @@
       },
       {
         "position": 10,
-        "teamName": "PHOENIX Sweats",
+        "teamName": "Beavers Rampage",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -1306,7 +1306,7 @@
       },
       {
         "position": 11,
-        "teamName": "Strath Vipers",
+        "teamName": "PHOENIX Gold Nuggets",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -5868,6 +5868,17 @@
     },
     {
       "position": 1,
+      "teamName": "Beavers Cavs",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 63,
+      "pointsAgainst": 4,
+      "percentage": 1575,
+      "points": 3
+    },
+    {
+      "position": 2,
       "teamName": "PHOENIX Flyers",
       "played": 1,
       "wins": 1,
@@ -5878,7 +5889,7 @@
       "points": 3
     },
     {
-      "position": 2,
+      "position": 3,
       "teamName": "Beavers Celtics",
       "played": 1,
       "wins": 1,
@@ -5889,7 +5900,18 @@
       "points": 3
     },
     {
-      "position": 3,
+      "position": 4,
+      "teamName": "Bunjils U14 Boys Titans",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 33,
+      "pointsAgainst": 23,
+      "percentage": 143.48,
+      "points": 3
+    },
+    {
+      "position": 5,
       "teamName": "Beavers Bandits",
       "played": 0,
       "wins": 0,
@@ -5900,7 +5922,18 @@
       "points": 3
     },
     {
-      "position": 4,
+      "position": 6,
+      "teamName": "FLAMINGO’S LEGACY ",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 23,
+      "pointsAgainst": 33,
+      "percentage": 69.7,
+      "points": 1
+    },
+    {
+      "position": 7,
       "teamName": "Generals U14 Boys Giants",
       "played": 1,
       "wins": 0,
@@ -5911,7 +5944,7 @@
       "points": 1
     },
     {
-      "position": 5,
+      "position": 8,
       "teamName": "Aztec U14 Boys Teal",
       "played": 1,
       "wins": 0,
@@ -5922,40 +5955,18 @@
       "points": 1
     },
     {
-      "position": 6,
-      "teamName": "Beavers Cavs",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 7,
-      "teamName": "Bunjils U14 Boys Titans",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 8,
-      "teamName": "FLAMINGO’S LEGACY ",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 9,
+      "teamName": "Victory U14 Boys Magic",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 4,
+      "pointsAgainst": 63,
+      "percentage": 6.35,
+      "points": 1
+    },
+    {
+      "position": 10,
       "teamName": "St Francis U14 Boys Boomers",
       "played": 0,
       "wins": 0,
@@ -5966,19 +5977,8 @@
       "points": 0
     },
     {
-      "position": 10,
-      "teamName": "U14 Boys Girton Eagles",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 11,
-      "teamName": "Victory U14 Boys Magic",
+      "teamName": "U14 Boys Girton Eagles",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -5990,16 +5990,38 @@
     {
       "position": 1,
       "teamName": "Aztec U14 Boys Blue",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 35,
+      "pointsAgainst": 14,
+      "percentage": 250,
+      "points": 3
+    },
+    {
+      "position": 2,
+      "teamName": "Generals U14 Boys Lakers",
       "played": 0,
       "wins": 0,
       "losses": 0,
       "pointsFor": 0,
       "pointsAgainst": 0,
       "percentage": 0,
-      "points": 0
+      "points": 3
     },
     {
-      "position": 2,
+      "position": 3,
+      "teamName": "Beavers Lions",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 14,
+      "pointsAgainst": 35,
+      "percentage": 40,
+      "points": 1
+    },
+    {
+      "position": 4,
       "teamName": "Beavers Boomers",
       "played": 0,
       "wins": 0,
@@ -6010,51 +6032,7 @@
       "points": 0
     },
     {
-      "position": 3,
-      "teamName": "Beavers Lions",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 4,
-      "teamName": "Generals U14 Boys Lakers",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 5,
-      "teamName": "PHOENIX Legends",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 6,
-      "teamName": "Strath Jordan's",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 7,
       "teamName": "U14’s FLYING FLAMINGOS ",
       "played": 0,
       "wins": 0,
@@ -6065,63 +6043,8 @@
       "points": 0
     },
     {
-      "position": 1,
-      "teamName": "Beavers St Joeys",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 3
-    },
-    {
-      "position": 2,
-      "teamName": "Beavers Raptors",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 3
-    },
-    {
-      "position": 3,
-      "teamName": "Heathcote Panthers 14s",
-      "played": 1,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 4,
-      "teamName": "(Flaming) Flamingos ",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 5,
-      "teamName": "U14 Boys Girton Lightning",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 6,
-      "teamName": "Aztec U14 Boys Bronze",
+      "teamName": "PHOENIX Legends",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -6132,7 +6055,84 @@
     },
     {
       "position": 7,
+      "teamName": "Strath Jordan's",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 0
+    },
+    {
+      "position": 1,
       "teamName": "Generals U14 Boys Alley Oops",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 29,
+      "pointsAgainst": 17,
+      "percentage": 170.59,
+      "points": 3
+    },
+    {
+      "position": 2,
+      "teamName": "Beavers St Joeys",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 3
+    },
+    {
+      "position": 3,
+      "teamName": "Beavers Raptors",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 3
+    },
+    {
+      "position": 4,
+      "teamName": "Aztec U14 Boys Bronze",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 17,
+      "pointsAgainst": 29,
+      "percentage": 58.62,
+      "points": 1
+    },
+    {
+      "position": 5,
+      "teamName": "Heathcote Panthers 14s",
+      "played": 1,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 0
+    },
+    {
+      "position": 6,
+      "teamName": "(Flaming) Flamingos ",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 0
+    },
+    {
+      "position": 7,
+      "teamName": "U14 Boys Girton Lightning",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -6165,6 +6165,28 @@
     },
     {
       "position": 1,
+      "teamName": "Beavers Wizards",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 45,
+      "pointsAgainst": 22,
+      "percentage": 204.55,
+      "points": 3
+    },
+    {
+      "position": 2,
+      "teamName": "Beavers Kennington",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 34,
+      "pointsAgainst": 33,
+      "percentage": 103.03,
+      "points": 3
+    },
+    {
+      "position": 3,
       "teamName": "Victory U14 Boys Celtics",
       "played": 0,
       "wins": 0,
@@ -6175,52 +6197,30 @@
       "points": 3
     },
     {
-      "position": 2,
-      "teamName": "Aztec U14 Boys Gold",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 3,
-      "teamName": "Aztec U14 Boys Silver",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 4,
-      "teamName": "Beavers Ignite",
-      "played": 0,
+      "teamName": "Aztec U14 Boys Silver",
+      "played": 1,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "losses": 1,
+      "pointsFor": 33,
+      "pointsAgainst": 34,
+      "percentage": 97.06,
+      "points": 1
     },
     {
       "position": 5,
-      "teamName": "Beavers Kennington",
-      "played": 0,
+      "teamName": "PHOENIX Sweats",
+      "played": 1,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "losses": 1,
+      "pointsFor": 22,
+      "pointsAgainst": 45,
+      "percentage": 48.89,
+      "points": 1
     },
     {
       "position": 6,
-      "teamName": "Beavers Little Ballers",
+      "teamName": "Strath Vipers",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -6231,7 +6231,7 @@
     },
     {
       "position": 7,
-      "teamName": "Beavers Rampage",
+      "teamName": "Aztec U14 Boys Gold",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -6242,7 +6242,7 @@
     },
     {
       "position": 8,
-      "teamName": "Beavers Wizards",
+      "teamName": "Beavers Little Ballers",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -6253,7 +6253,7 @@
     },
     {
       "position": 9,
-      "teamName": "PHOENIX Gold Nuggets",
+      "teamName": "Beavers Ignite",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -6264,7 +6264,7 @@
     },
     {
       "position": 10,
-      "teamName": "PHOENIX Sweats",
+      "teamName": "Beavers Rampage",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -6275,7 +6275,7 @@
     },
     {
       "position": 11,
-      "teamName": "Strath Vipers",
+      "teamName": "PHOENIX Gold Nuggets",
       "played": 0,
       "wins": 0,
       "losses": 0,

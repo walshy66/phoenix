@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-22T08:01:27.564Z",
+  "generatedAt": "2026-04-22T08:34:20.899Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,20 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "f4ba5e01-daac-4796-bf7d-7f37342335e2",
-      "homeTeam": "Beavers Wizards",
-      "awayTeam": "PHOENIX Sweats",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-22",
-      "kickoffTime": "17:15:00",
-      "kickoffDisplay": "17:15",
-      "competition": "Wednesday U14 Boys 5",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 1"
-    },
     {
       "gameId": "4ef27b66-c2e4-4e53-aa50-d313738aeb1b",
       "homeTeam": "PHOENIX Legends",
@@ -275,6 +261,20 @@
       "competition": "Wednesday U14 Boys 8",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4"
+    },
+    {
+      "gameId": "f4ba5e01-daac-4796-bf7d-7f37342335e2",
+      "homeTeam": "Beavers Wizards",
+      "awayTeam": "PHOENIX Sweats",
+      "homeScore": 45,
+      "awayScore": 22,
+      "status": "completed",
+      "kickoffDate": "2026-04-22",
+      "kickoffTime": "17:15:00",
+      "kickoffDisplay": "17:15",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 1"
     },
     {
       "gameId": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
