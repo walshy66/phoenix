@@ -131,7 +131,6 @@ export function renderHomeGamesStateHtml(artifact: { status: 'success' | 'stale'
 
   return `
     <div class="home-scores-carousel max-w-7xl mx-auto px-4" data-count="${artifact.games.length}" aria-roledescription="carousel" aria-label="Latest games">
-      ${artifact.status === 'stale' ? `<p class="mb-3 text-xs text-amber-200" role="status">${escapeHtml(artifact.staleBanner ?? 'Showing last known results. Live refresh is temporarily unavailable.')}</p>` : ''}
       <div class="relative overflow-hidden">
         <div class="home-scores-track flex transition-transform duration-500 ease-out" aria-live="polite">
           ${artifact.games.map((game, idx) => `
