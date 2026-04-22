@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FilterBar from '../../components/FilterBar.astro';
+import ResourceTabs from '../../components/ResourceTabs.astro';
 import ResourceItem from '../../components/ResourceItem.astro';
 import ResourceModal from '../../components/ResourceModal.astro';
 import coachingResources from '../../data/coaching-resources.json';
@@ -39,12 +40,23 @@ const filteredInitial = {
 const coachingAvailableSkills = extractAvailableSkills(sectionResources.coaching_resources, 'coaching_resources');
 const playerAvailableSkills = extractAvailableSkills(sectionResources.player_resources, 'player_resources');
 
-const tabs: Array<{ key: ResourceSection; tabId: string; panelId: string; label: string }> = [
-  { key: 'coaching_resources', tabId: 'tab-coaching', panelId: 'panel-coaching', label: 'Coaching Resources' },
-  { key: 'player_resources', tabId: 'tab-players', panelId: 'panel-players', label: 'Player Resources' },
-  { key: 'manager', tabId: 'tab-managers', panelId: 'panel-managers', label: 'Manager Resources' },
-  { key: 'guides', tabId: 'tab-guides', panelId: 'panel-guides', label: 'Guides' },
-  { key: 'forms', tabId: 'tab-forms', panelId: 'panel-forms', label: 'Forms' },
+const requestedTab = Astro.url.searchParams.get('tab');
+const activeSection: ResourceSection = requestedTab === 'players'
+  ? 'player_resources'
+  : requestedTab === 'manager'
+    ? 'manager'
+    : requestedTab === 'guides'
+      ? 'guides'
+      : requestedTab === 'forms'
+        ? 'forms'
+        : 'coaching_resources';
+
+const tabs: Array<{ key: ResourceSection; tabId: string; panelId: string; label: string; active: boolean }> = [
+  { key: 'coaching_resources', tabId: 'tab-coaching', panelId: 'panel-coaching', label: 'Coaching Resources', active: activeSection === 'coaching_resources' },
+  { key: 'player_resources', tabId: 'tab-players', panelId: 'panel-players', label: 'Player Resources', active: activeSection === 'player_resources' },
+  { key: 'manager', tabId: 'tab-managers', panelId: 'panel-managers', label: 'Manager Resources', active: activeSection === 'manager' },
+  { key: 'guides', tabId: 'tab-guides', panelId: 'panel-guides', label: 'Guides', active: activeSection === 'guides' },
+  { key: 'forms', tabId: 'tab-forms', panelId: 'panel-forms', label: 'Forms', active: activeSection === 'forms' },
 ];
 
 const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Submission&body=Resource%20Title%3A%0AResource%20URL%3A%0ADescription%3A%0ACategory%3A%0AAge%20Group%3A`;
@@ -62,31 +74,11 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
     </div>
   </section>
 
-  <div class="border-b border-gray-200 bg-white" role="tablist" aria-label="Resource sections" id="tab-bar">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap gap-0">
-        <button id="tab-coaching" role="tab" aria-selected="true" aria-controls="panel-coaching" class="tab-btn border-b-2 border-brand-purple px-6 py-4 text-sm font-bold uppercase tracking-wider text-brand-purple transition-colors focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
-          Coaching Resources
-        </button>
-        <button id="tab-players" role="tab" aria-selected="false" aria-controls="panel-players" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
-          Player Resources
-        </button>
-        <button id="tab-managers" role="tab" aria-selected="false" aria-controls="panel-managers" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
-          Manager Resources
-        </button>
-        <button id="tab-guides" role="tab" aria-selected="false" aria-controls="panel-guides" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
-          Guides
-        </button>
-        <button id="tab-forms" role="tab" aria-selected="false" aria-controls="panel-forms" class="tab-btn border-b-2 border-transparent px-6 py-4 text-sm font-bold uppercase tracking-wider text-gray-500 transition-colors hover:text-brand-purple focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset">
-          Forms
-        </button>
-      </div>
-    </div>
-  </div>
+  <ResourceTabs tabs={tabs} />
 
   <div class="bg-brand-offwhite min-h-screen px-4 py-8 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl space-y-10">
-      <section id="panel-coaching" role="tabpanel" aria-labelledby="tab-coaching">
+      <section id="panel-coaching" role="tabpanel" aria-labelledby="tab-coaching" class={activeSection === 'coaching_resources' ? '' : 'hidden'}>
         <FilterBar
           section="coaching_resources"
           label={getSectionLabel('coaching_resources')}
@@ -118,7 +110,7 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
         </div>
       </section>
 
-      <section id="panel-players" role="tabpanel" aria-labelledby="tab-players" class="hidden">
+      <section id="panel-players" role="tabpanel" aria-labelledby="tab-players" class={activeSection === 'player_resources' ? '' : 'hidden'}>
         <FilterBar
           section="player_resources"
           label={getSectionLabel('player_resources')}
@@ -150,7 +142,7 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
         </div>
       </section>
 
-      <section id="panel-managers" role="tabpanel" aria-labelledby="tab-managers" class="hidden">
+      <section id="panel-managers" role="tabpanel" aria-labelledby="tab-managers" class={activeSection === 'manager' ? '' : 'hidden'}>
         <div class="mb-4 flex items-center justify-between gap-3">
           <h2 class="text-2xl font-black uppercase tracking-tight text-brand-black">Manager Resources</h2>
         </div>
@@ -166,7 +158,7 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
         )}
       </section>
 
-      <section id="panel-guides" role="tabpanel" aria-labelledby="tab-guides" class="hidden">
+      <section id="panel-guides" role="tabpanel" aria-labelledby="tab-guides" class={activeSection === 'guides' ? '' : 'hidden'}>
         <div class="mb-4 flex items-center justify-between gap-3">
           <h2 class="text-2xl font-black uppercase tracking-tight text-brand-black">Guides</h2>
         </div>
@@ -182,7 +174,7 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
         )}
       </section>
 
-      <section id="panel-forms" role="tabpanel" aria-labelledby="tab-forms" class="hidden">
+      <section id="panel-forms" role="tabpanel" aria-labelledby="tab-forms" class={activeSection === 'forms' ? '' : 'hidden'}>
         <div class="mb-4 flex items-center justify-between gap-3">
           <h2 class="text-2xl font-black uppercase tracking-tight text-brand-black">Forms</h2>
         </div>
