@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T07:11:19.127Z",
+  "lastUpdated": "2026-04-22T07:58:49.778Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1136,34 +1136,176 @@
           "address": "91 Inglis Street",
           "homeTeam": "Aztec U14 Boys Teal",
           "awayTeam": "PHOENIX Flyers",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 8,
+          "awayScore": 36,
+          "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Max Dixon",
+                "team": "PHOENIX Flyers",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hudson Chiswell",
+                "team": "PHOENIX Flyers",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Peter Graham",
+                "team": "PHOENIX Flyers",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Zafari Rowland",
+                "team": "Aztec U14 Boys Teal",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Chase Henderson",
+                "team": "PHOENIX Flyers",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Arlie Thacker",
+                "team": "PHOENIX Flyers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Levi Hartland",
+                "team": "PHOENIX Flyers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Muchovey Thomas",
+                "team": "PHOENIX Flyers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Zanzibar Rowland",
+                "team": "Aztec U14 Boys Teal",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Arlon Hambly-Jones",
+                "team": "Aztec U14 Boys Teal",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hunter Pearce",
+                "team": "Aztec U14 Boys Teal",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jett Patullo",
+                "team": "Aztec U14 Boys Teal",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Micah Plant",
+                "team": "Aztec U14 Boys Teal",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Otto Luedecke",
+                "team": "Aztec U14 Boys Teal",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
         {
           "rank": 1,
-          "team": "Aztec U14 Boys Teal",
-          "played": 0,
-          "won": 0,
+          "team": "PHOENIX Flyers",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 2,
+          "team": "Beavers Celtics",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 3,
           "team": "Beavers Bandits",
           "played": 0,
           "won": 0,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
-          "rank": 3,
+          "rank": 4,
+          "team": "Generals U14 Boys Giants",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 5,
+          "team": "Aztec U14 Boys Teal",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 6,
           "team": "Beavers Cavs",
           "played": 0,
           "won": 0,
@@ -1172,16 +1314,7 @@
           "points": 0
         },
         {
-          "rank": 4,
-          "team": "Beavers Celtics",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 5,
+          "rank": 7,
           "team": "Bunjils U14 Boys Titans",
           "played": 0,
           "won": 0,
@@ -1190,26 +1323,8 @@
           "points": 0
         },
         {
-          "rank": 6,
-          "team": "FLAMINGO’S LEGACY ",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 7,
-          "team": "Generals U14 Boys Giants",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 8,
-          "team": "PHOENIX Flyers",
+          "team": "FLAMINGO’S LEGACY ",
           "played": 0,
           "won": 0,
           "lost": 0,

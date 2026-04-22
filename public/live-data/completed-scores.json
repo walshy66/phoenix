@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T07:12:49.545Z",
+  "lastUpdated": "2026-04-22T08:00:46.676Z",
   "scores": [
     {
       "id": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
@@ -221,9 +221,9 @@
       "court": "Court 4",
       "homeTeam": "Aztec U14 Boys Teal",
       "awayTeam": "PHOENIX Flyers",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 8,
+      "awayScore": 36,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -893,17 +893,28 @@
     "Wednesday U14 Boys 8": [
       {
         "position": 1,
-        "teamName": "Aztec U14 Boys Teal",
-        "played": 0,
-        "wins": 0,
+        "teamName": "PHOENIX Flyers",
+        "played": 1,
+        "wins": 1,
         "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "pointsFor": 36,
+        "pointsAgainst": 8,
+        "percentage": 450,
+        "points": 3
       },
       {
         "position": 2,
+        "teamName": "Beavers Celtics",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 51,
+        "pointsAgainst": 22,
+        "percentage": 231.82,
+        "points": 3
+      },
+      {
+        "position": 3,
         "teamName": "Beavers Bandits",
         "played": 0,
         "wins": 0,
@@ -911,10 +922,32 @@
         "pointsFor": 0,
         "pointsAgainst": 0,
         "percentage": 0,
-        "points": 0
+        "points": 3
       },
       {
-        "position": 3,
+        "position": 4,
+        "teamName": "Generals U14 Boys Giants",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 22,
+        "pointsAgainst": 51,
+        "percentage": 43.14,
+        "points": 1
+      },
+      {
+        "position": 5,
+        "teamName": "Aztec U14 Boys Teal",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 8,
+        "pointsAgainst": 36,
+        "percentage": 22.22,
+        "points": 1
+      },
+      {
+        "position": 6,
         "teamName": "Beavers Cavs",
         "played": 0,
         "wins": 0,
@@ -925,18 +958,7 @@
         "points": 0
       },
       {
-        "position": 4,
-        "teamName": "Beavers Celtics",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 5,
+        "position": 7,
         "teamName": "Bunjils U14 Boys Titans",
         "played": 0,
         "wins": 0,
@@ -947,30 +969,8 @@
         "points": 0
       },
       {
-        "position": 6,
-        "teamName": "FLAMINGO’S LEGACY ",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 7,
-        "teamName": "Generals U14 Boys Giants",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 8,
-        "teamName": "PHOENIX Flyers",
+        "teamName": "FLAMINGO’S LEGACY ",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -5868,17 +5868,28 @@
     },
     {
       "position": 1,
-      "teamName": "Aztec U14 Boys Teal",
-      "played": 0,
-      "wins": 0,
+      "teamName": "PHOENIX Flyers",
+      "played": 1,
+      "wins": 1,
       "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "pointsFor": 36,
+      "pointsAgainst": 8,
+      "percentage": 450,
+      "points": 3
     },
     {
       "position": 2,
+      "teamName": "Beavers Celtics",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 51,
+      "pointsAgainst": 22,
+      "percentage": 231.82,
+      "points": 3
+    },
+    {
+      "position": 3,
       "teamName": "Beavers Bandits",
       "played": 0,
       "wins": 0,
@@ -5886,10 +5897,32 @@
       "pointsFor": 0,
       "pointsAgainst": 0,
       "percentage": 0,
-      "points": 0
+      "points": 3
     },
     {
-      "position": 3,
+      "position": 4,
+      "teamName": "Generals U14 Boys Giants",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 22,
+      "pointsAgainst": 51,
+      "percentage": 43.14,
+      "points": 1
+    },
+    {
+      "position": 5,
+      "teamName": "Aztec U14 Boys Teal",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 8,
+      "pointsAgainst": 36,
+      "percentage": 22.22,
+      "points": 1
+    },
+    {
+      "position": 6,
       "teamName": "Beavers Cavs",
       "played": 0,
       "wins": 0,
@@ -5900,18 +5933,7 @@
       "points": 0
     },
     {
-      "position": 4,
-      "teamName": "Beavers Celtics",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 5,
+      "position": 7,
       "teamName": "Bunjils U14 Boys Titans",
       "played": 0,
       "wins": 0,
@@ -5922,30 +5944,8 @@
       "points": 0
     },
     {
-      "position": 6,
-      "teamName": "FLAMINGO’S LEGACY ",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 7,
-      "teamName": "Generals U14 Boys Giants",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 8,
-      "teamName": "PHOENIX Flyers",
+      "teamName": "FLAMINGO’S LEGACY ",
       "played": 0,
       "wins": 0,
       "losses": 0,
