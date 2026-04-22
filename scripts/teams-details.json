@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T09:46:31.725Z",
+  "lastUpdated": "2026-04-22T10:55:12.108Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1288,7 +1288,7 @@
         },
         {
           "rank": 4,
-          "team": "Bunjils U14 Boys Titans",
+          "team": "St Francis U14 Boys Boomers",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -1297,6 +1297,15 @@
         },
         {
           "rank": 5,
+          "team": "Bunjils U14 Boys Titans",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 6,
           "team": "Beavers Bandits",
           "played": 0,
           "won": 0,
@@ -1305,7 +1314,7 @@
           "points": 3
         },
         {
-          "rank": 6,
+          "rank": 7,
           "team": "FLAMINGO’S LEGACY ",
           "played": 1,
           "won": 0,
@@ -1314,17 +1323,8 @@
           "points": 1
         },
         {
-          "rank": 7,
-          "team": "Generals U14 Boys Giants",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 8,
-          "team": "Aztec U14 Boys Teal",
+          "team": "U14 Boys Girton Eagles",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1333,7 +1333,7 @@
         },
         {
           "rank": 9,
-          "team": "Victory U14 Boys Magic",
+          "team": "Generals U14 Boys Giants",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1342,21 +1342,21 @@
         },
         {
           "rank": 10,
-          "team": "St Francis U14 Boys Boomers",
-          "played": 0,
+          "team": "Aztec U14 Boys Teal",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 11,
-          "team": "U14 Boys Girton Eagles",
-          "played": 0,
+          "team": "Victory U14 Boys Magic",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -1374,11 +1374,110 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Gold Nuggets",
           "awayTeam": "Strath Vipers",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 36,
+          "awayScore": 41,
+          "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "William Mangan",
+                "team": "Strath Vipers",
+                "points": 21,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Henry Stewart-Eeles",
+                "team": "Strath Vipers",
+                "points": 13,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harry Fitzpatrick",
+                "team": "PHOENIX Gold Nuggets",
+                "points": 11,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lennox Maltby",
+                "team": "PHOENIX Gold Nuggets",
+                "points": 9,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mason Barker",
+                "team": "PHOENIX Gold Nuggets",
+                "points": 9,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Thomas Evans",
+                "team": "PHOENIX Gold Nuggets",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jordan Dea",
+                "team": "Strath Vipers",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jordan Bell",
+                "team": "Strath Vipers",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nash Hobbs",
+                "team": "PHOENIX Gold Nuggets",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Chase King",
+                "team": "Strath Vipers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Eli Lautenbacher",
+                "team": "PHOENIX Gold Nuggets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "Strath Vipers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
@@ -1411,7 +1510,7 @@
         },
         {
           "rank": 4,
-          "team": "Beavers Kennington",
+          "team": "Strath Vipers",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -1420,6 +1519,15 @@
         },
         {
           "rank": 5,
+          "team": "Beavers Kennington",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 6,
           "team": "Victory U14 Boys Celtics",
           "played": 0,
           "won": 0,
@@ -1428,7 +1536,7 @@
           "points": 3
         },
         {
-          "rank": 6,
+          "rank": 7,
           "team": "Aztec U14 Boys Silver",
           "played": 1,
           "won": 0,
@@ -1437,17 +1545,8 @@
           "points": 1
         },
         {
-          "rank": 7,
-          "team": "Aztec U14 Boys Gold",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 8,
-          "team": "PHOENIX Sweats",
+          "team": "PHOENIX Gold Nuggets",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1456,7 +1555,7 @@
         },
         {
           "rank": 9,
-          "team": "Beavers Ignite",
+          "team": "Aztec U14 Boys Gold",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1465,21 +1564,21 @@
         },
         {
           "rank": 10,
-          "team": "Strath Vipers",
-          "played": 0,
+          "team": "PHOENIX Sweats",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 11,
-          "team": "PHOENIX Gold Nuggets",
-          "played": 0,
+          "team": "Beavers Ignite",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -1649,7 +1748,7 @@
         },
         {
           "rank": 4,
-          "team": "Beavers Kennington",
+          "team": "Strath Vipers",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -1658,6 +1757,15 @@
         },
         {
           "rank": 5,
+          "team": "Beavers Kennington",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 6,
           "team": "Victory U14 Boys Celtics",
           "played": 0,
           "won": 0,
@@ -1666,7 +1774,7 @@
           "points": 3
         },
         {
-          "rank": 6,
+          "rank": 7,
           "team": "Aztec U14 Boys Silver",
           "played": 1,
           "won": 0,
@@ -1675,17 +1783,8 @@
           "points": 1
         },
         {
-          "rank": 7,
-          "team": "Aztec U14 Boys Gold",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 8,
-          "team": "PHOENIX Sweats",
+          "team": "PHOENIX Gold Nuggets",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1694,7 +1793,7 @@
         },
         {
           "rank": 9,
-          "team": "Beavers Ignite",
+          "team": "Aztec U14 Boys Gold",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1703,21 +1802,21 @@
         },
         {
           "rank": 10,
-          "team": "Strath Vipers",
-          "played": 0,
+          "team": "PHOENIX Sweats",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 11,
-          "team": "PHOENIX Gold Nuggets",
-          "played": 0,
+          "team": "Beavers Ignite",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -2079,7 +2178,7 @@
         },
         {
           "rank": 2,
-          "team": "PHOENIX Two Blues",
+          "team": "Aztec U14 Boys White",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -2088,16 +2187,16 @@
         },
         {
           "rank": 3,
-          "team": "Beavers Ballers",
+          "team": "PHOENIX Two Blues",
           "played": 1,
-          "won": 0,
-          "lost": 1,
+          "won": 1,
+          "lost": 0,
           "drawn": 0,
-          "points": 1
+          "points": 3
         },
         {
           "rank": 4,
-          "team": "Aztec U14 Boys Black",
+          "team": "Beavers Ballers",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -2107,20 +2206,20 @@
         {
           "rank": 5,
           "team": "Aztec U14 Boys Mint",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 6,
-          "team": "Aztec U14 Boys White",
-          "played": 0,
+          "team": "Aztec U14 Boys Black",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -2448,120 +2547,6 @@
         }
       ]
     },
-    "phoenix-raiders": {
-      "teamId": "34b3d8d9-d8e8-40ff-aa24-2ee017cf990a",
-      "teamName": "PHOENIX Raiders",
-      "gradeName": "Wednesday U16 Boys 2",
-      "fixture": [
-        {
-          "id": "596de913-0371-4d7b-86a3-8a48ad112530",
-          "date": "2026-04-22",
-          "time": "19:30:00",
-          "venue": "Red Energy Arena (Bendigo Stadium)",
-          "court": "Court 1",
-          "address": "91 Inglis Street",
-          "homeTeam": "PHOENIX Raiders",
-          "awayTeam": "Aztec U16 Boys Yellow",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
-          "round": "Round 1",
-          "playerStats": null
-        }
-      ],
-      "ladder": [
-        {
-          "rank": 1,
-          "team": "Aztec U16 Boys Amber",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 2,
-          "team": "Aztec U16 Boys Mint",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 3,
-          "team": "Aztec U16 Boys Orange",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 4,
-          "team": "Aztec U16 Boys Red",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 5,
-          "team": "Aztec U16 Boys Yellow",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 6,
-          "team": "Beavers Outlaws",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 7,
-          "team": "Generals U16 Boys Hornets",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 8,
-          "team": "PHOENIX Raiders",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 9,
-          "team": "Strath Saints",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 10,
-          "team": "U16 Boys Girton Strikers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        }
-      ]
-    },
     "phoenix-tulips": {
       "teamId": "b9547239-f041-403a-865a-c96e59f39574",
       "teamName": "PHOENIX Tulips",
@@ -2756,6 +2741,243 @@
           "rank": 6,
           "team": "U16 Girls Girton Crystals",
           "played": 1,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        }
+      ]
+    },
+    "phoenix-zinger-boxes": {
+      "teamId": "34b3d8d9-d8e8-40ff-aa24-2ee017cf990a",
+      "teamName": "PHOENIX Zinger Boxes",
+      "gradeName": "Wednesday U16 Boys 2",
+      "fixture": [
+        {
+          "id": "596de913-0371-4d7b-86a3-8a48ad112530",
+          "date": "2026-04-22",
+          "time": "19:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 1",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Zinger Boxes",
+          "awayTeam": "Aztec U16 Boys Yellow",
+          "homeScore": 50,
+          "awayScore": 37,
+          "status": "COMPLETED",
+          "round": "Round 1",
+          "playerStats": {
+            "players": [
+              {
+                "name": "Asha O'brien-Cox",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 14,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Levii Harrison",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 14,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Adley Booker",
+                "team": "Aztec U16 Boys Yellow",
+                "points": 12,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tifanashe Mudoti",
+                "team": "Aztec U16 Boys Yellow",
+                "points": 12,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cooper Myers",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harrison Oates",
+                "team": "Aztec U16 Boys Yellow",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lorenzo Caruso-Ascui",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lachlan Colville",
+                "team": "Aztec U16 Boys Yellow",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ashdon Beesley/ Jordon",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ben Houlahan",
+                "team": "Aztec U16 Boys Yellow",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lewis Van Veen",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Arlo Vellacott",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cail Francis",
+                "team": "Aztec U16 Boys Yellow",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Henry Sherwood",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Louis Parsons",
+                "team": "PHOENIX Zinger Boxes",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
+        }
+      ],
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "PHOENIX Raiders",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
+          "team": "Aztec U16 Boys Amber",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 3,
+          "team": "Aztec U16 Boys Red",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 4,
+          "team": "Aztec U16 Boys Yellow",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 5,
+          "team": "Aztec U16 Boys Mint",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 6,
+          "team": "Aztec U16 Boys Orange",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 7,
+          "team": "Beavers Outlaws",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 8,
+          "team": "Generals U16 Boys Hornets",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 9,
+          "team": "Strath Saints",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
+          "rank": 10,
+          "team": "U16 Boys Girton Strikers",
+          "played": 0,
           "won": 0,
           "lost": 0,
           "drawn": 0,

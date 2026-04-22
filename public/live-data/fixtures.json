@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-22T09:48:05.732Z",
+  "generatedAt": "2026-04-22T10:56:41.087Z",
   "window": {
     "timezone": "Australia/Melbourne",
     "startDate": "2026-04-20",
@@ -132,7 +132,7 @@
       },
       {
         "fixtureId": "596de913-0371-4d7b-86a3-8a48ad112530",
-        "homeTeam": "PHOENIX Raiders",
+        "homeTeam": "PHOENIX Zinger Boxes",
         "awayTeam": "Aztec U16 Boys Yellow",
         "grade": "Wednesday U16 Boys 2",
         "venue": "Red Energy Arena (Bendigo Stadium)",
@@ -293,7 +293,7 @@
     },
     "596de913-0371-4d7b-86a3-8a48ad112530": {
       "fixtureId": "596de913-0371-4d7b-86a3-8a48ad112530",
-      "homeTeam": "PHOENIX Raiders",
+      "homeTeam": "PHOENIX Zinger Boxes",
       "awayTeam": "Aztec U16 Boys Yellow",
       "grade": "Wednesday U16 Boys 2",
       "venue": "Red Energy Arena (Bendigo Stadium)",

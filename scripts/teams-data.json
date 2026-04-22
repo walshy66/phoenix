@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T09:45:49.810Z",
+  "lastUpdated": "2026-04-22T10:54:34.560Z",
   "teams": [
     {
       "id": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -107,13 +107,6 @@
       "coaches": []
     },
     {
-      "id": "34b3d8d9-d8e8-40ff-aa24-2ee017cf990a",
-      "name": "PHOENIX Raiders",
-      "gradeName": "Wednesday U16 Boys 2",
-      "slug": "phoenix-raiders",
-      "coaches": []
-    },
-    {
       "id": "cebb840a-46be-4e46-8035-5c3ab90da6de",
       "name": "PHOENIX Splash",
       "gradeName": "Friday U16 Boys 7",
@@ -125,6 +118,13 @@
       "name": "PHOENIX Tulips",
       "gradeName": "Tuesday U16 Girls 3",
       "slug": "phoenix-tulips",
+      "coaches": []
+    },
+    {
+      "id": "34b3d8d9-d8e8-40ff-aa24-2ee017cf990a",
+      "name": "PHOENIX Zinger Boxes",
+      "gradeName": "Wednesday U16 Boys 2",
+      "slug": "phoenix-zinger-boxes",
       "coaches": []
     },
     {

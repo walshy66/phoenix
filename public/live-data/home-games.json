@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-22T09:48:50.389Z",
+  "generatedAt": "2026-04-22T10:57:19.062Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,34 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "596de913-0371-4d7b-86a3-8a48ad112530",
-      "homeTeam": "PHOENIX Raiders",
-      "awayTeam": "Aztec U16 Boys Yellow",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-22",
-      "kickoffTime": "19:30:00",
-      "kickoffDisplay": "19:30",
-      "competition": "Wednesday U16 Boys 2",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 1"
-    },
-    {
-      "gameId": "58fd088c-8bdd-4250-9729-074736f39d52",
-      "homeTeam": "PHOENIX Gold Nuggets",
-      "awayTeam": "Strath Vipers",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-22",
-      "kickoffTime": "19:30:00",
-      "kickoffDisplay": "19:30",
-      "competition": "Wednesday U14 Boys 5",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 3"
-    },
     {
       "gameId": "865a40e2-3451-48a2-920d-13ae8db5bf02",
       "homeTeam": "St Francis U10 Boys Bullets",
@@ -275,6 +247,34 @@
       "competition": "Wednesday U14 Boys 2",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4"
+    },
+    {
+      "gameId": "596de913-0371-4d7b-86a3-8a48ad112530",
+      "homeTeam": "PHOENIX Zinger Boxes",
+      "awayTeam": "Aztec U16 Boys Yellow",
+      "homeScore": 50,
+      "awayScore": 37,
+      "status": "completed",
+      "kickoffDate": "2026-04-22",
+      "kickoffTime": "19:30:00",
+      "kickoffDisplay": "19:30",
+      "competition": "Wednesday U16 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 1"
+    },
+    {
+      "gameId": "58fd088c-8bdd-4250-9729-074736f39d52",
+      "homeTeam": "PHOENIX Gold Nuggets",
+      "awayTeam": "Strath Vipers",
+      "homeScore": 36,
+      "awayScore": 41,
+      "status": "completed",
+      "kickoffDate": "2026-04-22",
+      "kickoffTime": "19:30:00",
+      "kickoffDisplay": "19:30",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 3"
     },
     {
       "gameId": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
