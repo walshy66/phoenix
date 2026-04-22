@@ -1,11 +1,26 @@
 {
-  "lastUpdated": "2026-04-21T14:00:38.913Z",
+  "lastUpdated": "2026-04-22T07:11:19.127Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
       "teamName": "PHOENIX Firebirds",
       "gradeName": "Monday U10 Girls 3",
       "fixture": [
+        {
+          "id": "8d13c32c-b030-4f02-96d5-771e909e771b",
+          "date": "2026-04-27",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 6",
+          "address": "91 Inglis Street",
+          "homeTeam": "Bunjils U10 Girls Blue",
+          "awayTeam": "PHOENIX Firebirds",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
         {
           "id": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
           "date": "2026-04-20",
@@ -226,6 +241,21 @@
       "teamName": "PHOENIX Go Getters",
       "gradeName": "Monday U10 Girls 3",
       "fixture": [
+        {
+          "id": "8e64b02a-37ba-4ada-828f-2a9eb6d7e5a9",
+          "date": "2026-04-27",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PINK FLAMINGO’S",
+          "awayTeam": "PHOENIX Go Getters",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
         {
           "id": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
           "date": "2026-04-20",
@@ -882,6 +912,21 @@
       "gradeName": "Monday U14 Girls 4",
       "fixture": [
         {
+          "id": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
+          "date": "2026-04-27",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Starlets",
+          "awayTeam": "PHOENIX Diamonds",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
+        {
           "id": "abbf0db6-51f0-4991-bb92-3fad639ae34d",
           "date": "2026-04-20",
           "time": "18:45:00",
@@ -1224,6 +1269,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Victory U14 Boys Celtics",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
           "team": "Aztec U14 Boys Gold",
           "played": 0,
           "won": 0,
@@ -1232,7 +1286,7 @@
           "points": 0
         },
         {
-          "rank": 2,
+          "rank": 3,
           "team": "Aztec U14 Boys Silver",
           "played": 0,
           "won": 0,
@@ -1241,7 +1295,7 @@
           "points": 0
         },
         {
-          "rank": 3,
+          "rank": 4,
           "team": "Beavers Ignite",
           "played": 0,
           "won": 0,
@@ -1250,7 +1304,7 @@
           "points": 0
         },
         {
-          "rank": 4,
+          "rank": 5,
           "team": "Beavers Kennington",
           "played": 0,
           "won": 0,
@@ -1259,7 +1313,7 @@
           "points": 0
         },
         {
-          "rank": 5,
+          "rank": 6,
           "team": "Beavers Little Ballers",
           "played": 0,
           "won": 0,
@@ -1268,7 +1322,7 @@
           "points": 0
         },
         {
-          "rank": 6,
+          "rank": 7,
           "team": "Beavers Rampage",
           "played": 0,
           "won": 0,
@@ -1277,7 +1331,7 @@
           "points": 0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "team": "Beavers Wizards",
           "played": 0,
           "won": 0,
@@ -1286,7 +1340,7 @@
           "points": 0
         },
         {
-          "rank": 8,
+          "rank": 9,
           "team": "PHOENIX Gold Nuggets",
           "played": 0,
           "won": 0,
@@ -1295,7 +1349,7 @@
           "points": 0
         },
         {
-          "rank": 9,
+          "rank": 10,
           "team": "PHOENIX Sweats",
           "played": 0,
           "won": 0,
@@ -1304,17 +1358,8 @@
           "points": 0
         },
         {
-          "rank": 10,
-          "team": "Strath Vipers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 11,
-          "team": "Victory U14 Boys Celtics",
+          "team": "Strath Vipers",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -1347,6 +1392,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Victory U14 Boys Celtics",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 2,
           "team": "Aztec U14 Boys Gold",
           "played": 0,
           "won": 0,
@@ -1355,7 +1409,7 @@
           "points": 0
         },
         {
-          "rank": 2,
+          "rank": 3,
           "team": "Aztec U14 Boys Silver",
           "played": 0,
           "won": 0,
@@ -1364,7 +1418,7 @@
           "points": 0
         },
         {
-          "rank": 3,
+          "rank": 4,
           "team": "Beavers Ignite",
           "played": 0,
           "won": 0,
@@ -1373,7 +1427,7 @@
           "points": 0
         },
         {
-          "rank": 4,
+          "rank": 5,
           "team": "Beavers Kennington",
           "played": 0,
           "won": 0,
@@ -1382,7 +1436,7 @@
           "points": 0
         },
         {
-          "rank": 5,
+          "rank": 6,
           "team": "Beavers Little Ballers",
           "played": 0,
           "won": 0,
@@ -1391,7 +1445,7 @@
           "points": 0
         },
         {
-          "rank": 6,
+          "rank": 7,
           "team": "Beavers Rampage",
           "played": 0,
           "won": 0,
@@ -1400,7 +1454,7 @@
           "points": 0
         },
         {
-          "rank": 7,
+          "rank": 8,
           "team": "Beavers Wizards",
           "played": 0,
           "won": 0,
@@ -1409,7 +1463,7 @@
           "points": 0
         },
         {
-          "rank": 8,
+          "rank": 9,
           "team": "PHOENIX Gold Nuggets",
           "played": 0,
           "won": 0,
@@ -1418,7 +1472,7 @@
           "points": 0
         },
         {
-          "rank": 9,
+          "rank": 10,
           "team": "PHOENIX Sweats",
           "played": 0,
           "won": 0,
@@ -1427,17 +1481,8 @@
           "points": 0
         },
         {
-          "rank": 10,
-          "team": "Strath Vipers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 11,
-          "team": "Victory U14 Boys Celtics",
+          "team": "Strath Vipers",
           "played": 0,
           "won": 0,
           "lost": 0,
