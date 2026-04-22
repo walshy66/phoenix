@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T08:31:52.502Z",
+  "lastUpdated": "2026-04-22T09:46:31.725Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1393,7 +1393,7 @@
         },
         {
           "rank": 2,
-          "team": "Beavers Kennington",
+          "team": "Beavers Little Ballers",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -1402,6 +1402,24 @@
         },
         {
           "rank": 3,
+          "team": "Beavers Rampage",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Kennington",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 5,
           "team": "Victory U14 Boys Celtics",
           "played": 0,
           "won": 0,
@@ -1410,7 +1428,7 @@
           "points": 3
         },
         {
-          "rank": 4,
+          "rank": 6,
           "team": "Aztec U14 Boys Silver",
           "played": 1,
           "won": 0,
@@ -1419,7 +1437,16 @@
           "points": 1
         },
         {
-          "rank": 5,
+          "rank": 7,
+          "team": "Aztec U14 Boys Gold",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 8,
           "team": "PHOENIX Sweats",
           "played": 1,
           "won": 0,
@@ -1428,44 +1455,17 @@
           "points": 1
         },
         {
-          "rank": 6,
-          "team": "Strath Vipers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 7,
-          "team": "Aztec U14 Boys Gold",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 8,
-          "team": "Beavers Little Ballers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 9,
           "team": "Beavers Ignite",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 10,
-          "team": "Beavers Rampage",
+          "team": "Strath Vipers",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -1631,7 +1631,7 @@
         },
         {
           "rank": 2,
-          "team": "Beavers Kennington",
+          "team": "Beavers Little Ballers",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -1640,6 +1640,24 @@
         },
         {
           "rank": 3,
+          "team": "Beavers Rampage",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 4,
+          "team": "Beavers Kennington",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 5,
           "team": "Victory U14 Boys Celtics",
           "played": 0,
           "won": 0,
@@ -1648,7 +1666,7 @@
           "points": 3
         },
         {
-          "rank": 4,
+          "rank": 6,
           "team": "Aztec U14 Boys Silver",
           "played": 1,
           "won": 0,
@@ -1657,7 +1675,16 @@
           "points": 1
         },
         {
-          "rank": 5,
+          "rank": 7,
+          "team": "Aztec U14 Boys Gold",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 8,
           "team": "PHOENIX Sweats",
           "played": 1,
           "won": 0,
@@ -1666,44 +1693,17 @@
           "points": 1
         },
         {
-          "rank": 6,
-          "team": "Strath Vipers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 7,
-          "team": "Aztec U14 Boys Gold",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 8,
-          "team": "Beavers Little Ballers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 9,
           "team": "Beavers Ignite",
-          "played": 0,
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 10,
-          "team": "Beavers Rampage",
+          "team": "Strath Vipers",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -1735,11 +1735,142 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Legends",
           "awayTeam": "U14’s FLYING FLAMINGOS ",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 21,
+          "awayScore": 12,
+          "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Ace Witt",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nathaniel Sordan",
+                "team": "PHOENIX Legends",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tobias Bennett",
+                "team": "PHOENIX Legends",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mason Byrne",
+                "team": "PHOENIX Legends",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Xavier Dixon",
+                "team": "PHOENIX Legends",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Caleb Heath",
+                "team": "PHOENIX Legends",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Albert Henkel",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Heath Bourke",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Max Henkel",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Aston Fitzpatrick",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cohen Woodward",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Darcy White",
+                "team": "PHOENIX Legends",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Dean Kentish",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hamish Wildman",
+                "team": "PHOENIX Legends",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Parker Witt",
+                "team": "U14’s FLYING FLAMINGOS ",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Will Fiske",
+                "team": "PHOENIX Legends",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
@@ -1754,6 +1885,24 @@
         },
         {
           "rank": 2,
+          "team": "Beavers Boomers",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 3,
+          "team": "PHOENIX Legends",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 4,
           "team": "Generals U14 Boys Lakers",
           "played": 0,
           "won": 0,
@@ -1762,8 +1911,8 @@
           "points": 3
         },
         {
-          "rank": 3,
-          "team": "Beavers Lions",
+          "rank": 5,
+          "team": "U14’s FLYING FLAMINGOS ",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1771,40 +1920,22 @@
           "points": 1
         },
         {
-          "rank": 4,
-          "team": "Beavers Boomers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 5,
-          "team": "U14’s FLYING FLAMINGOS ",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 6,
-          "team": "PHOENIX Legends",
-          "played": 0,
+          "team": "Strath Jordan's",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 7,
-          "team": "Strath Jordan's",
-          "played": 0,
+          "team": "Beavers Lions",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -1822,25 +1953,159 @@
           "address": "91 Inglis Street",
           "homeTeam": "Beavers Ballers",
           "awayTeam": "PHOENIX Two Blues",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 37,
+          "awayScore": 39,
+          "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Fraser Rhoden",
+                "team": "PHOENIX Two Blues",
+                "points": 17,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hunter Horby",
+                "team": "Beavers Ballers",
+                "points": 12,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Oscar Barras",
+                "team": "Beavers Ballers",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Alex Hinton",
+                "team": "PHOENIX Two Blues",
+                "points": 9,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Bailey Stone",
+                "team": "PHOENIX Two Blues",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Scott Davis",
+                "team": "Beavers Ballers",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ned McMahon",
+                "team": "Beavers Ballers",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Alfie Hinton",
+                "team": "PHOENIX Two Blues",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "George Basha",
+                "team": "Beavers Ballers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jacob Hazeldene",
+                "team": "PHOENIX Two Blues",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Evan Saunders",
+                "team": "PHOENIX Two Blues",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jacob Hoffrichter",
+                "team": "Beavers Ballers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Noah Hill",
+                "team": "PHOENIX Two Blues",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
         {
           "rank": 1,
-          "team": "Aztec U14 Boys Black",
-          "played": 0,
-          "won": 0,
+          "team": "Generals U14 Boys Sharks",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 2,
+          "team": "PHOENIX Two Blues",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Ballers",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 4,
+          "team": "Aztec U14 Boys Black",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 5,
           "team": "Aztec U14 Boys Mint",
           "played": 0,
           "won": 0,
@@ -1849,35 +2114,8 @@
           "points": 0
         },
         {
-          "rank": 3,
-          "team": "Aztec U14 Boys White",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 4,
-          "team": "Beavers Ballers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 5,
-          "team": "Generals U14 Boys Sharks",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 6,
-          "team": "PHOENIX Two Blues",
+          "team": "Aztec U14 Boys White",
           "played": 0,
           "won": 0,
           "lost": 0,
