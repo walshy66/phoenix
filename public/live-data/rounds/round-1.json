@@ -1,7 +1,7 @@
 {
   "roundNumber": 1,
   "season": "Winter 2026",
-  "lastUpdated": "2026-04-24T07:20:48.931Z",
+  "lastUpdated": "2026-04-24T08:17:59.440Z",
   "status": "upcoming",
   "games": [
     {
@@ -2455,10 +2455,133 @@
       "court": "Court 7",
       "homeTeam": "St Francis U10 Boys Bullets",
       "awayTeam": "PHOENIX Thunder",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 24,
+      "awayScore": 21,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Vincent Dickens",
+            "team": "St Francis U10 Boys Bullets",
+            "points": 9,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Henry Sefton",
+            "team": "St Francis U10 Boys Bullets",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Cooper Shovan",
+            "team": "PHOENIX Thunder",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Arlo Rasmussen",
+            "team": "PHOENIX Thunder",
+            "points": 3,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Miller Cuddy",
+            "team": "PHOENIX Thunder",
+            "points": 3,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Phoenix Barry",
+            "team": "PHOENIX Thunder",
+            "points": 3,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lake Hatzi-Moore",
+            "team": "St Francis U10 Boys Bullets",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Mac Smalley",
+            "team": "St Francis U10 Boys Bullets",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Noah Wildman",
+            "team": "PHOENIX Thunder",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Otis Johnson",
+            "team": "PHOENIX Thunder",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Franklin Barnfield",
+            "team": "PHOENIX Thunder",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jack Dixon",
+            "team": "PHOENIX Thunder",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Mitchell Joppich",
+            "team": "St Francis U10 Boys Bullets",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Patrick Morrissey",
+            "team": "St Francis U10 Boys Bullets",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ted Ayres",
+            "team": "St Francis U10 Boys Bullets",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": []
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T07:19:05.566Z",
+  "generatedAt": "2026-04-24T08:16:05.185Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,20 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "865a40e2-3451-48a2-920d-13ae8db5bf02",
-      "homeTeam": "St Francis U10 Boys Bullets",
-      "awayTeam": "PHOENIX Thunder",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-24",
-      "kickoffTime": "17:15:00",
-      "kickoffDisplay": "17:15",
-      "competition": "Friday U10 Boys 4",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7"
-    },
     {
       "gameId": "acaeacb5-4f1c-49e6-94af-3c018fbc0c84",
       "homeTeam": "PHOENIX Phantoms",
@@ -205,6 +191,20 @@
       "competition": "Tuesday U16 Girls 3",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4"
+    },
+    {
+      "gameId": "865a40e2-3451-48a2-920d-13ae8db5bf02",
+      "homeTeam": "St Francis U10 Boys Bullets",
+      "awayTeam": "PHOENIX Thunder",
+      "homeScore": 24,
+      "awayScore": 21,
+      "status": "completed",
+      "kickoffDate": "2026-04-24",
+      "kickoffTime": "17:15:00",
+      "kickoffDisplay": "17:15",
+      "competition": "Friday U10 Boys 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7"
     },
     {
       "gameId": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
