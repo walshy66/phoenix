@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-24T08:13:24.887Z",
+  "lastUpdated": "2026-04-24T09:57:46.793Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -728,26 +728,26 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Aztec U12 Boys Platinum",
-          "played": 0,
-          "won": 0,
+          "team": "Heathcote Panthers 12's ",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 2,
-          "team": "Aztec U12 Boys Teal",
-          "played": 0,
-          "won": 0,
+          "team": "Victory U12 Boys Mavericks",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 3,
-          "team": "Beavers Cubs",
-          "played": 0,
+          "team": "U12 Boys Girton Pumas",
+          "played": 1,
           "won": 0,
           "lost": 0,
           "drawn": 0,
@@ -756,7 +756,7 @@
         {
           "rank": 4,
           "team": "Bunjils U12 Boys Bandicoots",
-          "played": 0,
+          "played": 1,
           "won": 0,
           "lost": 0,
           "drawn": 0,
@@ -764,15 +764,6 @@
         },
         {
           "rank": 5,
-          "team": "Heathcote Panthers 12's ",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 6,
           "team": "PHOENIX Phantoms",
           "played": 0,
           "won": 0,
@@ -781,8 +772,17 @@
           "points": 0
         },
         {
+          "rank": 6,
+          "team": "Aztec U12 Boys Platinum",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
+        },
+        {
           "rank": 7,
-          "team": "U12 Boys Girton Pumas",
+          "team": "Aztec U12 Boys Teal",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -791,7 +791,7 @@
         },
         {
           "rank": 8,
-          "team": "Victory U12 Boys Mavericks",
+          "team": "Beavers Cubs",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -2517,7 +2517,7 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Beavers Rockets",
+          "team": "PHOENIX Splash",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -2526,21 +2526,21 @@
         },
         {
           "rank": 2,
-          "team": "Aztec U16 Boys Bronze",
-          "played": 0,
-          "won": 0,
+          "team": "Beavers Rockets",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 3,
-          "team": "Aztec U16 Boys White",
-          "played": 0,
+          "team": "Aztec U16 Boys Bronze",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 4,
@@ -2553,7 +2553,7 @@
         },
         {
           "rank": 5,
-          "team": "PHOENIX Gooney Tunes",
+          "team": "Strath Sharks",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -2562,7 +2562,7 @@
         },
         {
           "rank": 6,
-          "team": "PHOENIX Splash",
+          "team": "PHOENIX Gooney Tunes",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -2571,7 +2571,7 @@
         },
         {
           "rank": 7,
-          "team": "Strath Sharks",
+          "team": "Aztec U16 Boys White",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -2603,17 +2603,116 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Splash",
           "awayTeam": "Aztec U16 Boys Bronze",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 39,
+          "awayScore": 18,
+          "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Louis Stehle",
+                "team": "PHOENIX Splash",
+                "points": 17,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Noah Withers",
+                "team": "PHOENIX Splash",
+                "points": 12,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Korbin Hull",
+                "team": "Aztec U16 Boys Bronze",
+                "points": 9,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nathaniel Sordan",
+                "team": "PHOENIX Splash",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Deacon Lovell",
+                "team": "Aztec U16 Boys Bronze",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nate Hartley",
+                "team": "Aztec U16 Boys Bronze",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Rylan Davies",
+                "team": "PHOENIX Splash",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Benjamin Stewart",
+                "team": "Aztec U16 Boys Bronze",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Charlie Tierney",
+                "team": "Aztec U16 Boys Bronze",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Luke Bennett",
+                "team": "PHOENIX Splash",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mason Torossian",
+                "team": "Aztec U16 Boys Bronze",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Oakley OBrien-smith",
+                "team": "PHOENIX Splash",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
         {
           "rank": 1,
-          "team": "Beavers Rockets",
+          "team": "PHOENIX Splash",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -2622,21 +2721,21 @@
         },
         {
           "rank": 2,
-          "team": "Aztec U16 Boys Bronze",
-          "played": 0,
-          "won": 0,
+          "team": "Beavers Rockets",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 3,
-          "team": "Aztec U16 Boys White",
-          "played": 0,
+          "team": "Aztec U16 Boys Bronze",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 4,
@@ -2649,7 +2748,7 @@
         },
         {
           "rank": 5,
-          "team": "PHOENIX Gooney Tunes",
+          "team": "Strath Sharks",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -2658,7 +2757,7 @@
         },
         {
           "rank": 6,
-          "team": "PHOENIX Splash",
+          "team": "PHOENIX Gooney Tunes",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -2667,7 +2766,7 @@
         },
         {
           "rank": 7,
-          "team": "Strath Sharks",
+          "team": "Aztec U16 Boys White",
           "played": 0,
           "won": 0,
           "lost": 0,

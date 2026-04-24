@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T08:16:05.185Z",
+  "generatedAt": "2026-04-24T09:59:43.123Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -37,20 +37,6 @@
       "competition": "Friday U12 Boys 3",
       "venue": "Girton Grammar",
       "court": "Court 1"
-    },
-    {
-      "gameId": "cdc7bc72-a499-4fe0-943f-5393f2619654",
-      "homeTeam": "PHOENIX Splash",
-      "awayTeam": "Aztec U16 Boys Bronze",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-24",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Friday U16 Boys 7",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 4"
     },
     {
       "gameId": "74c088b1-d239-4c25-bfb6-8b2c11ce6296",
@@ -205,6 +191,20 @@
       "competition": "Friday U10 Boys 4",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 7"
+    },
+    {
+      "gameId": "cdc7bc72-a499-4fe0-943f-5393f2619654",
+      "homeTeam": "PHOENIX Splash",
+      "awayTeam": "Aztec U16 Boys Bronze",
+      "homeScore": 39,
+      "awayScore": 18,
+      "status": "completed",
+      "kickoffDate": "2026-04-24",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Friday U16 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4"
     },
     {
       "gameId": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
