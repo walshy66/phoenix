@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-24T11:16:06.181Z",
+  "lastUpdated": "2026-04-24T12:10:52.311Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -2375,11 +2375,118 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Go Buckets",
           "awayTeam": "Generals U16 Boys Gullys",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 59,
+          "awayScore": 39,
+          "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Darcy Mullen",
+                "team": "PHOENIX Go Buckets",
+                "points": 20,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ely Vincent",
+                "team": "PHOENIX Go Buckets",
+                "points": 16,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Oliver Scholtz",
+                "team": "Generals U16 Boys Gullys",
+                "points": 13,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Koby McCallum",
+                "team": "PHOENIX Go Buckets",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jake Collett",
+                "team": "PHOENIX Go Buckets",
+                "points": 9,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "CHARLES KOCHAR",
+                "team": "Generals U16 Boys Gullys",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hadley Galea",
+                "team": "Generals U16 Boys Gullys",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Fraser Maddren",
+                "team": "Generals U16 Boys Gullys",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Henry Dewhurst",
+                "team": "PHOENIX Go Buckets",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Toby Eddy",
+                "team": "Generals U16 Boys Gullys",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lucas Gardiner",
+                "team": "Generals U16 Boys Gullys",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Brodie Barry",
+                "team": "Generals U16 Boys Gullys",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tasman Bell",
+                "team": "PHOENIX Go Buckets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
@@ -2394,7 +2501,7 @@
         },
         {
           "rank": 2,
-          "team": "Victory U16 Boys Warriors",
+          "team": "PHOENIX Go Buckets",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -2403,7 +2510,7 @@
         },
         {
           "rank": 3,
-          "team": "Beavers Bucks",
+          "team": "Victory U16 Boys Warriors",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -2412,7 +2519,7 @@
         },
         {
           "rank": 4,
-          "team": "Beavers Hurricanes",
+          "team": "Beavers Bucks",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -2421,6 +2528,15 @@
         },
         {
           "rank": 5,
+          "team": "Beavers Hurricanes",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 6,
           "team": "Beavers Cobras",
           "played": 1,
           "won": 0,
@@ -2429,7 +2545,7 @@
           "points": 1
         },
         {
-          "rank": 6,
+          "rank": 7,
           "team": "Beavers Bob",
           "played": 1,
           "won": 0,
@@ -2438,7 +2554,7 @@
           "points": 1
         },
         {
-          "rank": 7,
+          "rank": 8,
           "team": "Beavers Warriors",
           "played": 1,
           "won": 0,
@@ -2447,7 +2563,16 @@
           "points": 1
         },
         {
-          "rank": 8,
+          "rank": 9,
+          "team": "Generals U16 Boys Gullys",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 10,
           "team": "Generals U16 Boys Bulls",
           "played": 1,
           "won": 0,
@@ -2456,16 +2581,7 @@
           "points": 1
         },
         {
-          "rank": 9,
-          "team": "PHOENIX Go Buckets",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 10,
+          "rank": 11,
           "team": "Aztec U16 Boys Copper",
           "played": 0,
           "won": 0,
@@ -2474,17 +2590,8 @@
           "points": 0
         },
         {
-          "rank": 11,
-          "team": "Aztec U16 Boys Silver",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 12,
-          "team": "Generals U16 Boys Gullys",
+          "team": "Aztec U16 Boys Silver",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -3483,7 +3590,7 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Bunjils U18 Boys ALPHA",
+          "team": "Aztec U18 Boys Yellow",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -3492,6 +3599,15 @@
         },
         {
           "rank": 2,
+          "team": "Bunjils U18 Boys ALPHA",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 3,
           "team": "PHOENIX Roughnuts",
           "played": 1,
           "won": 0,
@@ -3500,22 +3616,13 @@
           "points": 1
         },
         {
-          "rank": 3,
-          "team": "Aztec U18 Boys Orange",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 4,
-          "team": "Aztec U18 Boys Yellow",
-          "played": 0,
+          "team": "Aztec U18 Boys Orange",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -3537,13 +3644,24 @@
           "awayScore": 0,
           "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Dominic McWilliams",
+                "team": "PHOENIX Suns",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
         {
           "rank": 1,
-          "team": "PHOENIX Suns",
+          "team": "Strath Blazers",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -3552,12 +3670,12 @@
         },
         {
           "rank": 2,
-          "team": "Aztec U18 Boys Bronze",
+          "team": "PHOENIX Suns",
           "played": 1,
-          "won": 0,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 3,
@@ -3566,21 +3684,21 @@
           "won": 0,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 4,
-          "team": "Strath Blazers",
-          "played": 0,
+          "team": "Strath Eagles",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         },
         {
           "rank": 5,
-          "team": "Strath Eagles",
-          "played": 0,
+          "team": "Aztec U18 Boys Bronze",
+          "played": 1,
           "won": 0,
           "lost": 0,
           "drawn": 0,
@@ -3612,52 +3730,52 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Aztec U18 Boys Steel",
-          "played": 0,
-          "won": 0,
+          "team": "Bunjils U18 Boys Bravo",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 2,
-          "team": "Aztec U18 Boys White",
-          "played": 0,
-          "won": 0,
+          "team": "Aztec U18 Boys Steel",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 3,
-          "team": "Bunjils U18 Boys Bravo",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 4,
-          "team": "Generals U18 Boys Boomers",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 5,
           "team": "Generals U18 Boys Lions",
           "played": 0,
           "won": 0,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
+        },
+        {
+          "rank": 4,
+          "team": "Generals U18 Boys Boomers",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
+        },
+        {
+          "rank": 5,
+          "team": "Aztec U18 Boys White",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 1
         },
         {
           "rank": 6,
-          "team": "Generals U18 Boys Rockets",
+          "team": "PHOENIX Wembys",
           "played": 0,
           "won": 0,
           "lost": 0,
@@ -3666,7 +3784,7 @@
         },
         {
           "rank": 7,
-          "team": "PHOENIX TBA U18 Boys (Callum)",
+          "team": "Generals U18 Boys Rockets",
           "played": 0,
           "won": 0,
           "lost": 0,
