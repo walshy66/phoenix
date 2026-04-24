@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-24T12:12:39.333Z",
+  "lastUpdated": "2026-04-24T14:11:32.551Z",
   "scores": [
     {
       "id": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
@@ -101,9 +101,9 @@
       "court": "Court 5",
       "homeTeam": "Generals U18 Boys Rockets",
       "awayTeam": "PHOENIX Wembys",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 37,
+      "awayScore": 13,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -4266,6 +4266,28 @@
     "Friday U18 Boys 6": [
       {
         "position": 1,
+        "teamName": "Been Brothers",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 52,
+        "pointsAgainst": 14,
+        "percentage": 371.43,
+        "points": 3
+      },
+      {
+        "position": 2,
+        "teamName": "Generals U18 Boys Gladiators",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 35,
+        "pointsAgainst": 27,
+        "percentage": 129.63,
+        "points": 3
+      },
+      {
+        "position": 3,
         "teamName": "U18 Boys Girton Magic",
         "played": 1,
         "wins": 1,
@@ -4276,53 +4298,31 @@
         "points": 3
       },
       {
-        "position": 2,
-        "teamName": "Beavers Stars",
+        "position": 4,
+        "teamName": "Strath Ballers",
         "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 3,
-        "teamName": "Been Brothers",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 4,
-        "teamName": "Generals U18 Boys Gladiators",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 27,
+        "pointsAgainst": 35,
+        "percentage": 77.14,
+        "points": 1
       },
       {
         "position": 5,
         "teamName": "Generals U18 Boys Goon Squad",
-        "played": 0,
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 14,
+        "pointsAgainst": 52,
+        "percentage": 26.92,
+        "points": 1
       },
       {
         "position": 6,
-        "teamName": "Strath Ballers",
-        "played": 0,
+        "teamName": "Beavers Stars",
+        "played": 1,
         "wins": 0,
         "losses": 0,
         "pointsFor": 0,
@@ -4334,6 +4334,17 @@
     "Friday U18 Boys 5": [
       {
         "position": 1,
+        "teamName": "Generals U18 Boys Rockets",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 37,
+        "pointsAgainst": 13,
+        "percentage": 284.62,
+        "points": 3
+      },
+      {
+        "position": 2,
         "teamName": "Bunjils U18 Boys Bravo",
         "played": 1,
         "wins": 1,
@@ -4344,7 +4355,7 @@
         "points": 3
       },
       {
-        "position": 2,
+        "position": 3,
         "teamName": "Aztec U18 Boys Steel",
         "played": 1,
         "wins": 1,
@@ -4355,7 +4366,7 @@
         "points": 3
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Generals U18 Boys Lions",
         "played": 0,
         "wins": 0,
@@ -4366,7 +4377,7 @@
         "points": 3
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Generals U18 Boys Boomers",
         "played": 1,
         "wins": 0,
@@ -4377,7 +4388,7 @@
         "points": 1
       },
       {
-        "position": 5,
+        "position": 6,
         "teamName": "Aztec U18 Boys White",
         "played": 1,
         "wins": 0,
@@ -4388,26 +4399,15 @@
         "points": 1
       },
       {
-        "position": 6,
-        "teamName": "PHOENIX Wembys",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 7,
-        "teamName": "Generals U18 Boys Rockets",
-        "played": 0,
+        "teamName": "PHOENIX Wembys",
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 1,
+        "pointsFor": 13,
+        "pointsAgainst": 37,
+        "percentage": 35.14,
+        "points": 1
       }
     ],
     "Friday U18 Boys 3": [
@@ -9319,6 +9319,28 @@
     },
     {
       "position": 1,
+      "teamName": "Been Brothers",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 52,
+      "pointsAgainst": 14,
+      "percentage": 371.43,
+      "points": 3
+    },
+    {
+      "position": 2,
+      "teamName": "Generals U18 Boys Gladiators",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 35,
+      "pointsAgainst": 27,
+      "percentage": 129.63,
+      "points": 3
+    },
+    {
+      "position": 3,
       "teamName": "U18 Boys Girton Magic",
       "played": 1,
       "wins": 1,
@@ -9329,7 +9351,29 @@
       "points": 3
     },
     {
-      "position": 2,
+      "position": 4,
+      "teamName": "Strath Ballers",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 27,
+      "pointsAgainst": 35,
+      "percentage": 77.14,
+      "points": 1
+    },
+    {
+      "position": 5,
+      "teamName": "Generals U18 Boys Goon Squad",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 14,
+      "pointsAgainst": 52,
+      "percentage": 26.92,
+      "points": 1
+    },
+    {
+      "position": 6,
       "teamName": "Beavers Stars",
       "played": 1,
       "wins": 0,
@@ -9340,51 +9384,18 @@
       "points": 0
     },
     {
-      "position": 3,
-      "teamName": "Been Brothers",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 4,
-      "teamName": "Generals U18 Boys Gladiators",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 5,
-      "teamName": "Generals U18 Boys Goon Squad",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 6,
-      "teamName": "Strath Ballers",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 1,
+      "teamName": "Generals U18 Boys Rockets",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 37,
+      "pointsAgainst": 13,
+      "percentage": 284.62,
+      "points": 3
+    },
+    {
+      "position": 2,
       "teamName": "Bunjils U18 Boys Bravo",
       "played": 1,
       "wins": 1,
@@ -9395,7 +9406,7 @@
       "points": 3
     },
     {
-      "position": 2,
+      "position": 3,
       "teamName": "Aztec U18 Boys Steel",
       "played": 1,
       "wins": 1,
@@ -9406,7 +9417,7 @@
       "points": 3
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Generals U18 Boys Lions",
       "played": 0,
       "wins": 0,
@@ -9417,7 +9428,7 @@
       "points": 3
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Generals U18 Boys Boomers",
       "played": 1,
       "wins": 0,
@@ -9428,7 +9439,7 @@
       "points": 1
     },
     {
-      "position": 5,
+      "position": 6,
       "teamName": "Aztec U18 Boys White",
       "played": 1,
       "wins": 0,
@@ -9439,26 +9450,15 @@
       "points": 1
     },
     {
-      "position": 6,
-      "teamName": "PHOENIX Wembys",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 7,
-      "teamName": "Generals U18 Boys Rockets",
-      "played": 0,
+      "teamName": "PHOENIX Wembys",
+      "played": 1,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "losses": 1,
+      "pointsFor": 13,
+      "pointsAgainst": 37,
+      "percentage": 35.14,
+      "points": 1
     },
     {
       "position": 1,

@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-24T12:13:25.635Z",
+  "generatedAt": "2026-04-24T14:12:20.655Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
-    "startDate": "2026-04-17",
-    "endDate": "2026-05-01",
+    "startDate": "2026-04-18",
+    "endDate": "2026-05-02",
     "timezone": "Australia/Melbourne"
   },
   "staleBanner": null,
@@ -51,20 +51,6 @@
       "competition": "Friday U12 Boys 8",
       "venue": "Victory Christian College",
       "court": "Court 1"
-    },
-    {
-      "gameId": "2c846df1-9ece-4a12-9d1f-1380728dff67",
-      "homeTeam": "Generals U18 Boys Rockets",
-      "awayTeam": "PHOENIX Wembys",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-24",
-      "kickoffTime": "21:45:00",
-      "kickoffDisplay": "21:45",
-      "competition": "Friday U18 Boys 5",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 5"
     },
     {
       "gameId": "8e64b02a-37ba-4ada-828f-2a9eb6d7e5a9",
@@ -205,6 +191,20 @@
       "competition": "Friday U16 Boys 4",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 2"
+    },
+    {
+      "gameId": "2c846df1-9ece-4a12-9d1f-1380728dff67",
+      "homeTeam": "Generals U18 Boys Rockets",
+      "awayTeam": "PHOENIX Wembys",
+      "homeScore": 37,
+      "awayScore": 13,
+      "status": "completed",
+      "kickoffDate": "2026-04-24",
+      "kickoffTime": "21:45:00",
+      "kickoffDisplay": "21:45",
+      "competition": "Friday U18 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5"
     },
     {
       "gameId": "4a14bfab-bb61-4156-95d6-fe6db2d003df",

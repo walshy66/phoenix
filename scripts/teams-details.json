@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-24T12:10:52.311Z",
+  "lastUpdated": "2026-04-24T14:09:53.208Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -3720,17 +3720,132 @@
           "address": "91 Inglis Street",
           "homeTeam": "Generals U18 Boys Rockets",
           "awayTeam": "PHOENIX Wembys",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 37,
+          "awayScore": 13,
+          "status": "COMPLETED",
           "round": "Round 1",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Kirk Garley",
+                "team": "Generals U18 Boys Rockets",
+                "points": 18,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Miller Egan",
+                "team": "Generals U18 Boys Rockets",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Francesco Biasi",
+                "team": "Generals U18 Boys Rockets",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Callum Mangan",
+                "team": "PHOENIX Wembys",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Clifford Fitzgerald",
+                "team": "Generals U18 Boys Rockets",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Liam Hovenden",
+                "team": "PHOENIX Wembys",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Oliver Steen",
+                "team": "PHOENIX Wembys",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Bede Lord",
+                "team": "Generals U18 Boys Rockets",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Kartik Sharma",
+                "team": "PHOENIX Wembys",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Connor Sutton",
+                "team": "Generals U18 Boys Rockets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harry Ryan",
+                "team": "Generals U18 Boys Rockets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Namar Johal",
+                "team": "PHOENIX Wembys",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Namar Johal",
+                "team": "PHOENIX Wembys",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tayte Tyler",
+                "team": "PHOENIX Wembys",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         }
       ],
       "ladder": [
         {
           "rank": 1,
-          "team": "Bunjils U18 Boys Bravo",
+          "team": "Generals U18 Boys Rockets",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -3739,7 +3854,7 @@
         },
         {
           "rank": 2,
-          "team": "Aztec U18 Boys Steel",
+          "team": "Bunjils U18 Boys Bravo",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -3748,6 +3863,15 @@
         },
         {
           "rank": 3,
+          "team": "Aztec U18 Boys Steel",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 4,
           "team": "Generals U18 Boys Lions",
           "played": 0,
           "won": 0,
@@ -3756,7 +3880,7 @@
           "points": 3
         },
         {
-          "rank": 4,
+          "rank": 5,
           "team": "Generals U18 Boys Boomers",
           "played": 1,
           "won": 0,
@@ -3765,7 +3889,7 @@
           "points": 1
         },
         {
-          "rank": 5,
+          "rank": 6,
           "team": "Aztec U18 Boys White",
           "played": 1,
           "won": 0,
@@ -3774,22 +3898,13 @@
           "points": 1
         },
         {
-          "rank": 6,
-          "team": "PHOENIX Wembys",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
-        },
-        {
           "rank": 7,
-          "team": "Generals U18 Boys Rockets",
-          "played": 0,
+          "team": "PHOENIX Wembys",
+          "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     }
