@@ -1,6 +1,36 @@
 {
-  "lastUpdated": "2026-04-22T14:09:48.448Z",
+  "lastUpdated": "2026-04-24T07:18:18.097Z",
   "scores": [
+    {
+      "id": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
+      "roundNumber": 2,
+      "date": "2026-04-28",
+      "time": "18:45:00",
+      "competition": "Tuesday U16 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "Aztec U16 Girls Purple",
+      "awayTeam": "PHOENIX Tulips",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null
+    },
+    {
+      "id": "88fad284-6a25-4248-8a57-668df0e0b8d3",
+      "roundNumber": 2,
+      "date": "2026-04-28",
+      "time": "17:15:00",
+      "competition": "Tuesday U12 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "homeTeam": "Beavers Belles",
+      "awayTeam": "PHOENIX Stars",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null
+    },
     {
       "id": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
       "roundNumber": 2,
@@ -86,9 +116,9 @@
       "court": "Court 4",
       "homeTeam": "Aztec U18 Boys Bronze",
       "awayTeam": "PHOENIX Suns",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -466,38 +496,60 @@
       {
         "position": 1,
         "teamName": "Aztec U8 Boys Black",
-        "played": 0,
-        "wins": 0,
+        "played": 1,
+        "wins": 1,
         "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "pointsFor": 20,
+        "pointsAgainst": 4,
+        "percentage": 500,
+        "points": 3
       },
       {
         "position": 2,
-        "teamName": "Beavers Kings",
-        "played": 0,
-        "wins": 0,
+        "teamName": "St Francis U8 Boys Sonic",
+        "played": 1,
+        "wins": 1,
         "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "pointsFor": 21,
+        "pointsAgainst": 9,
+        "percentage": 233.33,
+        "points": 3
       },
       {
         "position": 3,
-        "teamName": "Beavers Rebels",
+        "teamName": "MIGHTY FLAMINGO’S ",
         "played": 0,
         "wins": 0,
         "losses": 0,
         "pointsFor": 0,
         "pointsAgainst": 0,
         "percentage": 0,
-        "points": 0
+        "points": 3
       },
       {
         "position": 4,
+        "teamName": "Beavers Rebels",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 9,
+        "pointsAgainst": 21,
+        "percentage": 42.86,
+        "points": 1
+      },
+      {
+        "position": 5,
+        "teamName": "Beavers Kings",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 4,
+        "pointsAgainst": 20,
+        "percentage": 20,
+        "points": 1
+      },
+      {
+        "position": 6,
         "teamName": "Beavers Titans",
         "played": 0,
         "wins": 0,
@@ -508,30 +560,8 @@
         "points": 0
       },
       {
-        "position": 5,
-        "teamName": "Generals U8 Boys Sharks",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 6,
-        "teamName": "MIGHTY FLAMINGO’S ",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 7,
-        "teamName": "St Francis U8 Boys Sonic",
+        "teamName": "Generals U8 Boys Sharks",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -825,6 +855,28 @@
       },
       {
         "position": 4,
+        "teamName": "Aztec U16 Boys Green",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 61,
+        "pointsAgainst": 59,
+        "percentage": 103.39,
+        "points": 3
+      },
+      {
+        "position": 5,
+        "teamName": "Aztec U16 Boys Black",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 59,
+        "pointsAgainst": 61,
+        "percentage": 96.72,
+        "points": 1
+      },
+      {
+        "position": 6,
         "teamName": "Strath Sigmas",
         "played": 1,
         "wins": 0,
@@ -835,7 +887,7 @@
         "points": 1
       },
       {
-        "position": 5,
+        "position": 7,
         "teamName": "Moama Grammar",
         "played": 1,
         "wins": 0,
@@ -846,7 +898,7 @@
         "points": 1
       },
       {
-        "position": 6,
+        "position": 8,
         "teamName": "Bunjils U16 Boys Swish",
         "played": 1,
         "wins": 0,
@@ -854,28 +906,6 @@
         "pointsFor": 12,
         "pointsAgainst": 35,
         "percentage": 34.29,
-        "points": 0
-      },
-      {
-        "position": 7,
-        "teamName": "Aztec U16 Boys Black",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 8,
-        "teamName": "Aztec U16 Boys Green",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
         "points": 0
       }
     ],
@@ -937,17 +967,6 @@
       },
       {
         "position": 6,
-        "teamName": "Beavers Bandits",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
-      },
-      {
-        "position": 7,
         "teamName": "FLAMINGO’S LEGACY ",
         "played": 1,
         "wins": 0,
@@ -958,7 +977,7 @@
         "points": 1
       },
       {
-        "position": 8,
+        "position": 7,
         "teamName": "U14 Boys Girton Eagles",
         "played": 1,
         "wins": 0,
@@ -969,7 +988,7 @@
         "points": 1
       },
       {
-        "position": 9,
+        "position": 8,
         "teamName": "Generals U14 Boys Giants",
         "played": 1,
         "wins": 0,
@@ -980,7 +999,7 @@
         "points": 1
       },
       {
-        "position": 10,
+        "position": 9,
         "teamName": "Aztec U14 Boys Teal",
         "played": 1,
         "wins": 0,
@@ -991,7 +1010,7 @@
         "points": 1
       },
       {
-        "position": 11,
+        "position": 10,
         "teamName": "Victory U14 Boys Magic",
         "played": 1,
         "wins": 0,
@@ -1000,6 +1019,17 @@
         "pointsAgainst": 63,
         "percentage": 6.35,
         "points": 1
+      },
+      {
+        "position": 11,
+        "teamName": "Strath Legends",
+        "played": 0,
+        "wins": 0,
+        "losses": 0,
+        "pointsFor": 0,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 0
       }
     ],
     "Wednesday U14 Boys 7": [
@@ -1161,17 +1191,6 @@
       },
       {
         "position": 8,
-        "teamName": "Strath Legends",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 8,
-        "pointsAgainst": 53,
-        "percentage": 15.09,
-        "points": 1
-      },
-      {
-        "position": 9,
         "teamName": "Heathcote Panthers 14s",
         "played": 1,
         "wins": 0,
@@ -1648,8 +1667,6 @@
         "points": 1
       }
     ],
-    "Tuesday U18 Girls 2": [],
-    "Tuesday U18 Girls 1": [],
     "Tuesday U16 Girls 3": [
       {
         "position": 1,
@@ -2447,18 +2464,18 @@
     "Sunday Men Division 4": [
       {
         "position": 1,
-        "teamName": "Bunnings Ballers",
-        "played": 0,
-        "wins": 0,
+        "teamName": "Fully Torqued",
+        "played": 1,
+        "wins": 1,
         "losses": 0,
         "pointsFor": 0,
         "pointsAgainst": 0,
         "percentage": 0,
-        "points": 0
+        "points": 3
       },
       {
         "position": 2,
-        "teamName": "DRUNKEN FLAMINGOS ",
+        "teamName": "Airballers Inc",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2469,7 +2486,7 @@
       },
       {
         "position": 3,
-        "teamName": "El Pedro’s ",
+        "teamName": "Bunnings Ballers",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2480,7 +2497,7 @@
       },
       {
         "position": 4,
-        "teamName": "Fully Torqued",
+        "teamName": "DRUNKEN FLAMINGOS ",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2491,7 +2508,7 @@
       },
       {
         "position": 5,
-        "teamName": "Globo Gym",
+        "teamName": "El Pedro’s ",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2502,7 +2519,7 @@
       },
       {
         "position": 6,
-        "teamName": "Headnoise",
+        "teamName": "Globo Gym",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2513,7 +2530,7 @@
       },
       {
         "position": 7,
-        "teamName": "Holloway Airballers",
+        "teamName": "Headnoise",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2524,7 +2541,7 @@
       },
       {
         "position": 8,
-        "teamName": "Knights",
+        "teamName": "Holloway Airballers",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2535,7 +2552,7 @@
       },
       {
         "position": 9,
-        "teamName": "Look Left",
+        "teamName": "Knights",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2546,7 +2563,7 @@
       },
       {
         "position": 10,
-        "teamName": "Strath Pluggerz",
+        "teamName": "Look Left",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -2557,6 +2574,17 @@
       },
       {
         "position": 11,
+        "teamName": "Strath Pluggerz",
+        "played": 1,
+        "wins": 0,
+        "losses": 0,
+        "pointsFor": 0,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 0
+      },
+      {
+        "position": 12,
         "teamName": "Wilds Warriors",
         "played": 0,
         "wins": 0,
@@ -4170,6 +4198,28 @@
     "Friday U8 Boys 2 Blue": [
       {
         "position": 1,
+        "teamName": "St Francis U8 Boys Dash",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 17,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 3
+      },
+      {
+        "position": 2,
+        "teamName": "Victory U8 Boys Nippers",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 0,
+        "pointsAgainst": 17,
+        "percentage": 0,
+        "points": 1
+      },
+      {
+        "position": 3,
         "teamName": "Aztec U8 Boys Yellow",
         "played": 0,
         "wins": 0,
@@ -4180,7 +4230,7 @@
         "points": 0
       },
       {
-        "position": 2,
+        "position": 4,
         "teamName": "Beavers Rocket Sharks",
         "played": 0,
         "wins": 0,
@@ -4191,30 +4241,8 @@
         "points": 0
       },
       {
-        "position": 3,
-        "teamName": "St Francis U8 Boys Bolts",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 4,
-        "teamName": "St Francis U8 Boys Dash",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 5,
-        "teamName": "Victory U8 Boys Nippers",
+        "teamName": "St Francis U8 Boys Bolts",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -4385,19 +4413,19 @@
     "Friday U18 Boys 3": [
       {
         "position": 1,
-        "teamName": "Aztec U18 Boys Bronze",
-        "played": 0,
-        "wins": 0,
+        "teamName": "PHOENIX Suns",
+        "played": 1,
+        "wins": 1,
         "losses": 0,
         "pointsFor": 0,
         "pointsAgainst": 0,
         "percentage": 0,
-        "points": 0
+        "points": 3
       },
       {
         "position": 2,
-        "teamName": "Aztec U18 Boys Silver",
-        "played": 0,
+        "teamName": "Aztec U18 Boys Bronze",
+        "played": 1,
         "wins": 0,
         "losses": 0,
         "pointsFor": 0,
@@ -4407,7 +4435,7 @@
       },
       {
         "position": 3,
-        "teamName": "PHOENIX Green Machines",
+        "teamName": "Aztec U18 Boys Silver",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -4442,6 +4470,39 @@
     "Friday U10 Boys 1": [
       {
         "position": 1,
+        "teamName": "Aztec U10 Boys Red",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 20,
+        "pointsAgainst": 7,
+        "percentage": 285.71,
+        "points": 3
+      },
+      {
+        "position": 2,
+        "teamName": "St Francis U10 Boys Thunder",
+        "played": 0,
+        "wins": 0,
+        "losses": 0,
+        "pointsFor": 0,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 3
+      },
+      {
+        "position": 3,
+        "teamName": "Beavers Golden State",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 7,
+        "pointsAgainst": 20,
+        "percentage": 35,
+        "points": 1
+      },
+      {
+        "position": 4,
         "teamName": "Aztec U10 Boys Aqua",
         "played": 0,
         "wins": 0,
@@ -4452,7 +4513,7 @@
         "points": 0
       },
       {
-        "position": 2,
+        "position": 5,
         "teamName": "Aztec U10 Boys Gold",
         "played": 0,
         "wins": 0,
@@ -4463,7 +4524,7 @@
         "points": 0
       },
       {
-        "position": 3,
+        "position": 6,
         "teamName": "Aztec U10 Boys Green",
         "played": 0,
         "wins": 0,
@@ -4474,41 +4535,8 @@
         "points": 0
       },
       {
-        "position": 4,
-        "teamName": "Aztec U10 Boys Navy",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 5,
-        "teamName": "Aztec U10 Boys Red",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
-        "position": 6,
-        "teamName": "Beavers Golden State",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
-      },
-      {
         "position": 7,
-        "teamName": "St Francis U10 Boys Thunder",
+        "teamName": "Aztec U10 Boys Navy",
         "played": 0,
         "wins": 0,
         "losses": 0,
@@ -5540,38 +5568,60 @@
     {
       "position": 1,
       "teamName": "Aztec U8 Boys Black",
-      "played": 0,
-      "wins": 0,
+      "played": 1,
+      "wins": 1,
       "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "pointsFor": 20,
+      "pointsAgainst": 4,
+      "percentage": 500,
+      "points": 3
     },
     {
       "position": 2,
-      "teamName": "Beavers Kings",
-      "played": 0,
-      "wins": 0,
+      "teamName": "St Francis U8 Boys Sonic",
+      "played": 1,
+      "wins": 1,
       "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
+      "pointsFor": 21,
+      "pointsAgainst": 9,
+      "percentage": 233.33,
+      "points": 3
     },
     {
       "position": 3,
-      "teamName": "Beavers Rebels",
+      "teamName": "MIGHTY FLAMINGO’S ",
       "played": 0,
       "wins": 0,
       "losses": 0,
       "pointsFor": 0,
       "pointsAgainst": 0,
       "percentage": 0,
-      "points": 0
+      "points": 3
     },
     {
       "position": 4,
+      "teamName": "Beavers Rebels",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 9,
+      "pointsAgainst": 21,
+      "percentage": 42.86,
+      "points": 1
+    },
+    {
+      "position": 5,
+      "teamName": "Beavers Kings",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 4,
+      "pointsAgainst": 20,
+      "percentage": 20,
+      "points": 1
+    },
+    {
+      "position": 6,
       "teamName": "Beavers Titans",
       "played": 0,
       "wins": 0,
@@ -5582,30 +5632,8 @@
       "points": 0
     },
     {
-      "position": 5,
-      "teamName": "Generals U8 Boys Sharks",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 6,
-      "teamName": "MIGHTY FLAMINGO’S ",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 7,
-      "teamName": "St Francis U8 Boys Sonic",
+      "teamName": "Generals U8 Boys Sharks",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -5891,6 +5919,28 @@
     },
     {
       "position": 4,
+      "teamName": "Aztec U16 Boys Green",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 61,
+      "pointsAgainst": 59,
+      "percentage": 103.39,
+      "points": 3
+    },
+    {
+      "position": 5,
+      "teamName": "Aztec U16 Boys Black",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 59,
+      "pointsAgainst": 61,
+      "percentage": 96.72,
+      "points": 1
+    },
+    {
+      "position": 6,
       "teamName": "Strath Sigmas",
       "played": 1,
       "wins": 0,
@@ -5901,7 +5951,7 @@
       "points": 1
     },
     {
-      "position": 5,
+      "position": 7,
       "teamName": "Moama Grammar",
       "played": 1,
       "wins": 0,
@@ -5912,7 +5962,7 @@
       "points": 1
     },
     {
-      "position": 6,
+      "position": 8,
       "teamName": "Bunjils U16 Boys Swish",
       "played": 1,
       "wins": 0,
@@ -5920,28 +5970,6 @@
       "pointsFor": 12,
       "pointsAgainst": 35,
       "percentage": 34.29,
-      "points": 0
-    },
-    {
-      "position": 7,
-      "teamName": "Aztec U16 Boys Black",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 8,
-      "teamName": "Aztec U16 Boys Green",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
       "points": 0
     },
     {
@@ -6001,17 +6029,6 @@
     },
     {
       "position": 6,
-      "teamName": "Beavers Bandits",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 3
-    },
-    {
-      "position": 7,
       "teamName": "FLAMINGO’S LEGACY ",
       "played": 1,
       "wins": 0,
@@ -6022,7 +6039,7 @@
       "points": 1
     },
     {
-      "position": 8,
+      "position": 7,
       "teamName": "U14 Boys Girton Eagles",
       "played": 1,
       "wins": 0,
@@ -6033,7 +6050,7 @@
       "points": 1
     },
     {
-      "position": 9,
+      "position": 8,
       "teamName": "Generals U14 Boys Giants",
       "played": 1,
       "wins": 0,
@@ -6044,7 +6061,7 @@
       "points": 1
     },
     {
-      "position": 10,
+      "position": 9,
       "teamName": "Aztec U14 Boys Teal",
       "played": 1,
       "wins": 0,
@@ -6055,7 +6072,7 @@
       "points": 1
     },
     {
-      "position": 11,
+      "position": 10,
       "teamName": "Victory U14 Boys Magic",
       "played": 1,
       "wins": 0,
@@ -6064,6 +6081,17 @@
       "pointsAgainst": 63,
       "percentage": 6.35,
       "points": 1
+    },
+    {
+      "position": 11,
+      "teamName": "Strath Legends",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 0
     },
     {
       "position": 1,
@@ -6221,17 +6249,6 @@
     },
     {
       "position": 8,
-      "teamName": "Strath Legends",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 8,
-      "pointsAgainst": 53,
-      "percentage": 15.09,
-      "points": 1
-    },
-    {
-      "position": 9,
       "teamName": "Heathcote Panthers 14s",
       "played": 1,
       "wins": 0,
@@ -7464,18 +7481,18 @@
     },
     {
       "position": 1,
-      "teamName": "Bunnings Ballers",
-      "played": 0,
-      "wins": 0,
+      "teamName": "Fully Torqued",
+      "played": 1,
+      "wins": 1,
       "losses": 0,
       "pointsFor": 0,
       "pointsAgainst": 0,
       "percentage": 0,
-      "points": 0
+      "points": 3
     },
     {
       "position": 2,
-      "teamName": "DRUNKEN FLAMINGOS ",
+      "teamName": "Airballers Inc",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7486,7 +7503,7 @@
     },
     {
       "position": 3,
-      "teamName": "El Pedro’s ",
+      "teamName": "Bunnings Ballers",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7497,7 +7514,7 @@
     },
     {
       "position": 4,
-      "teamName": "Fully Torqued",
+      "teamName": "DRUNKEN FLAMINGOS ",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7508,7 +7525,7 @@
     },
     {
       "position": 5,
-      "teamName": "Globo Gym",
+      "teamName": "El Pedro’s ",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7519,7 +7536,7 @@
     },
     {
       "position": 6,
-      "teamName": "Headnoise",
+      "teamName": "Globo Gym",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7530,7 +7547,7 @@
     },
     {
       "position": 7,
-      "teamName": "Holloway Airballers",
+      "teamName": "Headnoise",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7541,7 +7558,7 @@
     },
     {
       "position": 8,
-      "teamName": "Knights",
+      "teamName": "Holloway Airballers",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7552,7 +7569,7 @@
     },
     {
       "position": 9,
-      "teamName": "Look Left",
+      "teamName": "Knights",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7563,7 +7580,7 @@
     },
     {
       "position": 10,
-      "teamName": "Strath Pluggerz",
+      "teamName": "Look Left",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -7574,6 +7591,17 @@
     },
     {
       "position": 11,
+      "teamName": "Strath Pluggerz",
+      "played": 1,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 0
+    },
+    {
+      "position": 12,
       "teamName": "Wilds Warriors",
       "played": 0,
       "wins": 0,
@@ -9147,6 +9175,28 @@
     },
     {
       "position": 1,
+      "teamName": "St Francis U8 Boys Dash",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 17,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 3
+    },
+    {
+      "position": 2,
+      "teamName": "Victory U8 Boys Nippers",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 0,
+      "pointsAgainst": 17,
+      "percentage": 0,
+      "points": 1
+    },
+    {
+      "position": 3,
       "teamName": "Aztec U8 Boys Yellow",
       "played": 0,
       "wins": 0,
@@ -9157,7 +9207,7 @@
       "points": 0
     },
     {
-      "position": 2,
+      "position": 4,
       "teamName": "Beavers Rocket Sharks",
       "played": 0,
       "wins": 0,
@@ -9168,30 +9218,8 @@
       "points": 0
     },
     {
-      "position": 3,
-      "teamName": "St Francis U8 Boys Bolts",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 4,
-      "teamName": "St Francis U8 Boys Dash",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 5,
-      "teamName": "Victory U8 Boys Nippers",
+      "teamName": "St Francis U8 Boys Bolts",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -9356,19 +9384,19 @@
     },
     {
       "position": 1,
-      "teamName": "Aztec U18 Boys Bronze",
-      "played": 0,
-      "wins": 0,
+      "teamName": "PHOENIX Suns",
+      "played": 1,
+      "wins": 1,
       "losses": 0,
       "pointsFor": 0,
       "pointsAgainst": 0,
       "percentage": 0,
-      "points": 0
+      "points": 3
     },
     {
       "position": 2,
-      "teamName": "Aztec U18 Boys Silver",
-      "played": 0,
+      "teamName": "Aztec U18 Boys Bronze",
+      "played": 1,
       "wins": 0,
       "losses": 0,
       "pointsFor": 0,
@@ -9378,7 +9406,7 @@
     },
     {
       "position": 3,
-      "teamName": "PHOENIX Green Machines",
+      "teamName": "Aztec U18 Boys Silver",
       "played": 0,
       "wins": 0,
       "losses": 0,
@@ -9411,6 +9439,39 @@
     },
     {
       "position": 1,
+      "teamName": "Aztec U10 Boys Red",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 20,
+      "pointsAgainst": 7,
+      "percentage": 285.71,
+      "points": 3
+    },
+    {
+      "position": 2,
+      "teamName": "St Francis U10 Boys Thunder",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 3
+    },
+    {
+      "position": 3,
+      "teamName": "Beavers Golden State",
+      "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 7,
+      "pointsAgainst": 20,
+      "percentage": 35,
+      "points": 1
+    },
+    {
+      "position": 4,
       "teamName": "Aztec U10 Boys Aqua",
       "played": 0,
       "wins": 0,
@@ -9421,7 +9482,7 @@
       "points": 0
     },
     {
-      "position": 2,
+      "position": 5,
       "teamName": "Aztec U10 Boys Gold",
       "played": 0,
       "wins": 0,
@@ -9432,7 +9493,7 @@
       "points": 0
     },
     {
-      "position": 3,
+      "position": 6,
       "teamName": "Aztec U10 Boys Green",
       "played": 0,
       "wins": 0,
@@ -9443,41 +9504,8 @@
       "points": 0
     },
     {
-      "position": 4,
-      "teamName": "Aztec U10 Boys Navy",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 5,
-      "teamName": "Aztec U10 Boys Red",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
-      "position": 6,
-      "teamName": "Beavers Golden State",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
-    },
-    {
       "position": 7,
-      "teamName": "St Francis U10 Boys Thunder",
+      "teamName": "Aztec U10 Boys Navy",
       "played": 0,
       "wins": 0,
       "losses": 0,

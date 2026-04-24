@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-22T14:08:00.411Z",
+  "lastUpdated": "2026-04-24T07:16:30.656Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -752,6 +752,21 @@
       "gradeName": "Tuesday U12 Girls 4",
       "fixture": [
         {
+          "id": "88fad284-6a25-4248-8a57-668df0e0b8d3",
+          "date": "2026-04-28",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Belles",
+          "awayTeam": "PHOENIX Stars",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
+        {
           "id": "7512ca55-11b3-4f1f-a920-7c03486dbc9b",
           "date": "2026-04-21",
           "time": "17:15:00",
@@ -1306,15 +1321,6 @@
         },
         {
           "rank": 6,
-          "team": "Beavers Bandits",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 7,
           "team": "FLAMINGO’S LEGACY ",
           "played": 1,
           "won": 0,
@@ -1323,7 +1329,7 @@
           "points": 1
         },
         {
-          "rank": 8,
+          "rank": 7,
           "team": "U14 Boys Girton Eagles",
           "played": 1,
           "won": 0,
@@ -1332,7 +1338,7 @@
           "points": 1
         },
         {
-          "rank": 9,
+          "rank": 8,
           "team": "Generals U14 Boys Giants",
           "played": 1,
           "won": 0,
@@ -1341,7 +1347,7 @@
           "points": 1
         },
         {
-          "rank": 10,
+          "rank": 9,
           "team": "Aztec U14 Boys Teal",
           "played": 1,
           "won": 0,
@@ -1350,13 +1356,22 @@
           "points": 1
         },
         {
-          "rank": 11,
+          "rank": 10,
           "team": "Victory U14 Boys Magic",
           "played": 1,
           "won": 0,
           "lost": 1,
           "drawn": 0,
           "points": 1
+        },
+        {
+          "rank": 11,
+          "team": "Strath Legends",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
         }
       ]
     },
@@ -2553,6 +2568,21 @@
       "gradeName": "Tuesday U16 Girls 3",
       "fixture": [
         {
+          "id": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
+          "date": "2026-04-28",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "Aztec U16 Girls Purple",
+          "awayTeam": "PHOENIX Tulips",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
+        {
           "id": "74b44602-3110-4547-b256-4cad7c87b3c6",
           "date": "2026-04-21",
           "time": "18:45:00",
@@ -3059,9 +3089,9 @@
           "address": "91 Inglis Street",
           "homeTeam": "Aztec U18 Boys Bronze",
           "awayTeam": "PHOENIX Suns",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "round": "Round 1",
           "playerStats": null
         }
@@ -3069,17 +3099,17 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Aztec U18 Boys Bronze",
-          "played": 0,
-          "won": 0,
+          "team": "PHOENIX Suns",
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         },
         {
           "rank": 2,
-          "team": "Aztec U18 Boys Silver",
-          "played": 0,
+          "team": "Aztec U18 Boys Bronze",
+          "played": 1,
           "won": 0,
           "lost": 0,
           "drawn": 0,
@@ -3087,7 +3117,7 @@
         },
         {
           "rank": 3,
-          "team": "PHOENIX Green Machines",
+          "team": "Aztec U18 Boys Silver",
           "played": 0,
           "won": 0,
           "lost": 0,

@@ -1,7 +1,7 @@
 {
   "roundNumber": 1,
   "season": "Winter 2026",
-  "lastUpdated": "2026-04-22T14:12:26.260Z",
+  "lastUpdated": "2026-04-24T07:20:48.931Z",
   "status": "upcoming",
   "games": [
     {
@@ -502,17 +502,6 @@
         },
         {
           "position": 6,
-          "teamName": "Beavers Bandits",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
-        },
-        {
-          "position": 7,
           "teamName": "FLAMINGO’S LEGACY ",
           "played": 1,
           "wins": 0,
@@ -523,7 +512,7 @@
           "points": 1
         },
         {
-          "position": 8,
+          "position": 7,
           "teamName": "U14 Boys Girton Eagles",
           "played": 1,
           "wins": 0,
@@ -534,7 +523,7 @@
           "points": 1
         },
         {
-          "position": 9,
+          "position": 8,
           "teamName": "Generals U14 Boys Giants",
           "played": 1,
           "wins": 0,
@@ -545,7 +534,7 @@
           "points": 1
         },
         {
-          "position": 10,
+          "position": 9,
           "teamName": "Aztec U14 Boys Teal",
           "played": 1,
           "wins": 0,
@@ -556,7 +545,7 @@
           "points": 1
         },
         {
-          "position": 11,
+          "position": 10,
           "teamName": "Victory U14 Boys Magic",
           "played": 1,
           "wins": 0,
@@ -565,6 +554,17 @@
           "pointsAgainst": 63,
           "percentage": 6.35,
           "points": 1
+        },
+        {
+          "position": 11,
+          "teamName": "Strath Legends",
+          "played": 0,
+          "wins": 0,
+          "losses": 0,
+          "pointsFor": 0,
+          "pointsAgainst": 0,
+          "percentage": 0,
+          "points": 0
         }
       ]
     },
@@ -2383,26 +2383,26 @@
       "court": "Court 4",
       "homeTeam": "Aztec U18 Boys Bronze",
       "awayTeam": "PHOENIX Suns",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 0,
+      "awayScore": 0,
+      "status": "COMPLETED",
       "playerStats": null,
       "ladders": [
         {
           "position": 1,
-          "teamName": "Aztec U18 Boys Bronze",
-          "played": 0,
-          "wins": 0,
+          "teamName": "PHOENIX Suns",
+          "played": 1,
+          "wins": 1,
           "losses": 0,
           "pointsFor": 0,
           "pointsAgainst": 0,
           "percentage": 0,
-          "points": 0
+          "points": 3
         },
         {
           "position": 2,
-          "teamName": "Aztec U18 Boys Silver",
-          "played": 0,
+          "teamName": "Aztec U18 Boys Bronze",
+          "played": 1,
           "wins": 0,
           "losses": 0,
           "pointsFor": 0,
@@ -2412,7 +2412,7 @@
         },
         {
           "position": 3,
-          "teamName": "PHOENIX Green Machines",
+          "teamName": "Aztec U18 Boys Silver",
           "played": 0,
           "wins": 0,
           "losses": 0,
@@ -3309,17 +3309,6 @@
       },
       {
         "position": 6,
-        "teamName": "Beavers Bandits",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
-      },
-      {
-        "position": 7,
         "teamName": "FLAMINGO’S LEGACY ",
         "played": 1,
         "wins": 0,
@@ -3330,7 +3319,7 @@
         "points": 1
       },
       {
-        "position": 8,
+        "position": 7,
         "teamName": "U14 Boys Girton Eagles",
         "played": 1,
         "wins": 0,
@@ -3341,7 +3330,7 @@
         "points": 1
       },
       {
-        "position": 9,
+        "position": 8,
         "teamName": "Generals U14 Boys Giants",
         "played": 1,
         "wins": 0,
@@ -3352,7 +3341,7 @@
         "points": 1
       },
       {
-        "position": 10,
+        "position": 9,
         "teamName": "Aztec U14 Boys Teal",
         "played": 1,
         "wins": 0,
@@ -3363,7 +3352,7 @@
         "points": 1
       },
       {
-        "position": 11,
+        "position": 10,
         "teamName": "Victory U14 Boys Magic",
         "played": 1,
         "wins": 0,
@@ -3372,6 +3361,17 @@
         "pointsAgainst": 63,
         "percentage": 6.35,
         "points": 1
+      },
+      {
+        "position": 11,
+        "teamName": "Strath Legends",
+        "played": 0,
+        "wins": 0,
+        "losses": 0,
+        "pointsFor": 0,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 0
       }
     ],
     "Wednesday U14 Boys 7": [
@@ -4020,19 +4020,19 @@
     "Friday U18 Boys 3": [
       {
         "position": 1,
-        "teamName": "Aztec U18 Boys Bronze",
-        "played": 0,
-        "wins": 0,
+        "teamName": "PHOENIX Suns",
+        "played": 1,
+        "wins": 1,
         "losses": 0,
         "pointsFor": 0,
         "pointsAgainst": 0,
         "percentage": 0,
-        "points": 0
+        "points": 3
       },
       {
         "position": 2,
-        "teamName": "Aztec U18 Boys Silver",
-        "played": 0,
+        "teamName": "Aztec U18 Boys Bronze",
+        "played": 1,
         "wins": 0,
         "losses": 0,
         "pointsFor": 0,
@@ -4042,7 +4042,7 @@
       },
       {
         "position": 3,
-        "teamName": "PHOENIX Green Machines",
+        "teamName": "Aztec U18 Boys Silver",
         "played": 0,
         "wins": 0,
         "losses": 0,
