@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T14:11:32.742Z",
+  "generatedAt": "2026-04-25T14:59:06.690Z",
   "window": {
     "timezone": "Australia/Melbourne",
     "startDate": "2026-04-27",
@@ -77,10 +77,141 @@
         "squads": []
       }
     ],
-    "wednesday": [],
+    "wednesday": [
+      {
+        "fixtureId": "8be89f39-69d8-49af-9fb7-93afcb380e46",
+        "homeTeam": "Beavers Cavs",
+        "awayTeam": "PHOENIX Flyers",
+        "grade": "Wednesday U14 Boys 8",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 5",
+        "kickoffDate": "2026-04-29",
+        "kickoffTime": "16:30:00",
+        "kickoffAt": "2026-04-29T16:30:00",
+        "kickoffDisplay": "4:30 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "e5aba86c-2312-4d07-920d-c57599c0f27f",
+        "homeTeam": "Beavers Boomers",
+        "awayTeam": "PHOENIX Legends",
+        "grade": "Wednesday U14 Boys 7",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 7",
+        "kickoffDate": "2026-04-29",
+        "kickoffTime": "17:15:00",
+        "kickoffAt": "2026-04-29T17:15:00",
+        "kickoffDisplay": "5:15 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "4e875533-0fa6-41ab-a795-5580d55b4e62",
+        "homeTeam": "PHOENIX Two Blues",
+        "awayTeam": "Aztec U14 Boys Black",
+        "grade": "Wednesday U14 Boys 2",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 4",
+        "kickoffDate": "2026-04-29",
+        "kickoffTime": "18:00:00",
+        "kickoffAt": "2026-04-29T18:00:00",
+        "kickoffDisplay": "6:00 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "666fcffc-4d22-44e1-83cf-b53b8d9547a1",
+        "homeTeam": "PHOENIX Sweats",
+        "awayTeam": "Beavers Ignite",
+        "grade": "Wednesday U14 Boys 5",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 2",
+        "kickoffDate": "2026-04-29",
+        "kickoffTime": "18:45:00",
+        "kickoffAt": "2026-04-29T18:45:00",
+        "kickoffDisplay": "6:45 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "7eb57849-7b35-45bc-8670-11cd666a8882",
+        "homeTeam": "Generals U16 Boys Hornets",
+        "awayTeam": "PHOENIX Zinger Boxes",
+        "grade": "Wednesday U16 Boys 2",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 5",
+        "kickoffDate": "2026-04-29",
+        "kickoffTime": "19:30:00",
+        "kickoffAt": "2026-04-29T19:30:00",
+        "kickoffDisplay": "7:30 pm",
+        "squads": []
+      }
+    ],
     "friday": []
   },
   "fixturesById": {
+    "7eb57849-7b35-45bc-8670-11cd666a8882": {
+      "fixtureId": "7eb57849-7b35-45bc-8670-11cd666a8882",
+      "homeTeam": "Generals U16 Boys Hornets",
+      "awayTeam": "PHOENIX Zinger Boxes",
+      "grade": "Wednesday U16 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "19:30:00",
+      "kickoffAt": "2026-04-29T19:30:00",
+      "kickoffDisplay": "7:30 pm",
+      "squads": []
+    },
+    "8be89f39-69d8-49af-9fb7-93afcb380e46": {
+      "fixtureId": "8be89f39-69d8-49af-9fb7-93afcb380e46",
+      "homeTeam": "Beavers Cavs",
+      "awayTeam": "PHOENIX Flyers",
+      "grade": "Wednesday U14 Boys 8",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "16:30:00",
+      "kickoffAt": "2026-04-29T16:30:00",
+      "kickoffDisplay": "4:30 pm",
+      "squads": []
+    },
+    "e5aba86c-2312-4d07-920d-c57599c0f27f": {
+      "fixtureId": "e5aba86c-2312-4d07-920d-c57599c0f27f",
+      "homeTeam": "Beavers Boomers",
+      "awayTeam": "PHOENIX Legends",
+      "grade": "Wednesday U14 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "17:15:00",
+      "kickoffAt": "2026-04-29T17:15:00",
+      "kickoffDisplay": "5:15 pm",
+      "squads": []
+    },
+    "666fcffc-4d22-44e1-83cf-b53b8d9547a1": {
+      "fixtureId": "666fcffc-4d22-44e1-83cf-b53b8d9547a1",
+      "homeTeam": "PHOENIX Sweats",
+      "awayTeam": "Beavers Ignite",
+      "grade": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 2",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "18:45:00",
+      "kickoffAt": "2026-04-29T18:45:00",
+      "kickoffDisplay": "6:45 pm",
+      "squads": []
+    },
+    "4e875533-0fa6-41ab-a795-5580d55b4e62": {
+      "fixtureId": "4e875533-0fa6-41ab-a795-5580d55b4e62",
+      "homeTeam": "PHOENIX Two Blues",
+      "awayTeam": "Aztec U14 Boys Black",
+      "grade": "Wednesday U14 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "18:00:00",
+      "kickoffAt": "2026-04-29T18:00:00",
+      "kickoffDisplay": "6:00 pm",
+      "squads": []
+    },
     "06c96e9b-b0a8-419a-880b-4c04e918ccad": {
       "fixtureId": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
       "homeTeam": "Aztec U16 Girls Purple",

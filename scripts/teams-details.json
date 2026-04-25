@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-24T14:09:53.208Z",
+  "lastUpdated": "2026-04-25T14:57:28.143Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1266,6 +1266,21 @@
       "gradeName": "Wednesday U14 Boys 8",
       "fixture": [
         {
+          "id": "8be89f39-69d8-49af-9fb7-93afcb380e46",
+          "date": "2026-04-29",
+          "time": "16:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 5",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Cavs",
+          "awayTeam": "PHOENIX Flyers",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
+        {
           "id": "24ad7a1a-53b3-40c7-b7a9-54756fbea989",
           "date": "2026-04-22",
           "time": "16:30:00",
@@ -1726,6 +1741,21 @@
       "gradeName": "Wednesday U14 Boys 5",
       "fixture": [
         {
+          "id": "666fcffc-4d22-44e1-83cf-b53b8d9547a1",
+          "date": "2026-04-29",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 2",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Sweats",
+          "awayTeam": "Beavers Ignite",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
+        {
           "id": "f4ba5e01-daac-4796-bf7d-7f37342335e2",
           "date": "2026-04-22",
           "time": "17:15:00",
@@ -1964,6 +1994,21 @@
       "gradeName": "Wednesday U14 Boys 7",
       "fixture": [
         {
+          "id": "e5aba86c-2312-4d07-920d-c57599c0f27f",
+          "date": "2026-04-29",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Boomers",
+          "awayTeam": "PHOENIX Legends",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
+        {
           "id": "4ef27b66-c2e4-4e53-aa50-d313738aeb1b",
           "date": "2026-04-22",
           "time": "18:45:00",
@@ -2181,6 +2226,21 @@
       "teamName": "PHOENIX Two Blues",
       "gradeName": "Wednesday U14 Boys 2",
       "fixture": [
+        {
+          "id": "4e875533-0fa6-41ab-a795-5580d55b4e62",
+          "date": "2026-04-29",
+          "time": "18:00:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Two Blues",
+          "awayTeam": "Aztec U14 Boys Black",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
         {
           "id": "049cb0e4-bc55-4e80-9e2f-a8d6b60b9e78",
           "date": "2026-04-22",
@@ -3227,6 +3287,21 @@
       "teamName": "PHOENIX Zinger Boxes",
       "gradeName": "Wednesday U16 Boys 2",
       "fixture": [
+        {
+          "id": "7eb57849-7b35-45bc-8670-11cd666a8882",
+          "date": "2026-04-29",
+          "time": "19:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 5",
+          "address": "91 Inglis Street",
+          "homeTeam": "Generals U16 Boys Hornets",
+          "awayTeam": "PHOENIX Zinger Boxes",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 2",
+          "playerStats": null
+        },
         {
           "id": "596de913-0371-4d7b-86a3-8a48ad112530",
           "date": "2026-04-22",
