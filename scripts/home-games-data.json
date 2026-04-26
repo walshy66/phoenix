@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-25T14:59:54.886Z",
+  "generatedAt": "2026-04-26T14:41:01.074Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
-    "startDate": "2026-04-19",
-    "endDate": "2026-05-03",
+    "startDate": "2026-04-20",
+    "endDate": "2026-05-04",
     "timezone": "Australia/Melbourne"
   },
   "staleBanner": null,
@@ -223,7 +223,7 @@
     {
       "gameId": "e3e40b4e-aaef-4e53-b8d5-74bc40ff12ab",
       "homeTeam": "Bunjils U18 Boys ALPHA",
-      "awayTeam": "PHOENIX Roughnuts",
+      "awayTeam": "PHOENIX Smartmeal",
       "homeScore": 39,
       "awayScore": 35,
       "status": "completed",

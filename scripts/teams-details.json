@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-25T14:57:28.143Z",
+  "lastUpdated": "2026-04-26T14:38:47.156Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -3534,9 +3534,9 @@
         }
       ]
     },
-    "phoenix-roughnuts": {
+    "phoenix-smartmeal": {
       "teamId": "1590fe16-0928-42ee-a4db-d082e9da7867",
-      "teamName": "PHOENIX Roughnuts",
+      "teamName": "PHOENIX Smartmeal",
       "gradeName": "Friday U18 Boys 2",
       "fixture": [
         {
@@ -3547,7 +3547,7 @@
           "court": "Court 3",
           "address": "91 Inglis Street",
           "homeTeam": "Bunjils U18 Boys ALPHA",
-          "awayTeam": "PHOENIX Roughnuts",
+          "awayTeam": "PHOENIX Smartmeal",
           "homeScore": 39,
           "awayScore": 35,
           "status": "COMPLETED",
@@ -3564,7 +3564,7 @@
               },
               {
                 "name": "Asha O'brien-Cox",
-                "team": "PHOENIX Roughnuts",
+                "team": "PHOENIX Smartmeal",
                 "points": 11,
                 "fouls": 0,
                 "assists": 0,
@@ -3572,7 +3572,7 @@
               },
               {
                 "name": "Harry Allison",
-                "team": "PHOENIX Roughnuts",
+                "team": "PHOENIX Smartmeal",
                 "points": 11,
                 "fouls": 0,
                 "assists": 0,
@@ -3596,7 +3596,7 @@
               },
               {
                 "name": "Alexander Biggs",
-                "team": "PHOENIX Roughnuts",
+                "team": "PHOENIX Smartmeal",
                 "points": 6,
                 "fouls": 0,
                 "assists": 0,
@@ -3612,7 +3612,7 @@
               },
               {
                 "name": "Dominic Laurie",
-                "team": "PHOENIX Roughnuts",
+                "team": "PHOENIX Smartmeal",
                 "points": 3,
                 "fouls": 0,
                 "assists": 0,
@@ -3628,7 +3628,7 @@
               },
               {
                 "name": "Levii Harrison",
-                "team": "PHOENIX Roughnuts",
+                "team": "PHOENIX Smartmeal",
                 "points": 2,
                 "fouls": 0,
                 "assists": 0,
@@ -3636,7 +3636,7 @@
               },
               {
                 "name": "Tom Reynolds",
-                "team": "PHOENIX Roughnuts",
+                "team": "PHOENIX Smartmeal",
                 "points": 2,
                 "fouls": 0,
                 "assists": 0,
