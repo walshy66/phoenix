@@ -33,6 +33,7 @@ export interface Resource {
   createdAt: string;
   updatedAt: string;
   sourceDomain?: string;
+  modalTarget?: string;
 }
 
 export interface ActiveFilters {

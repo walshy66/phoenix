@@ -1,0 +1,327 @@
+---
+const positions = [
+  {
+    id: 'overview',
+    label: 'Overview',
+    src: '/images/positions/roles_1.jpeg',
+    alt: 'Basketball positions and responsibilities overview image showing two players in action.',
+  },
+  {
+    id: 'point-guard',
+    label: 'Point Guard',
+    src: '/images/positions/roles_pg.jpeg',
+    alt: 'Point guard responsibilities image showing the lead ball-handler role and court organisation.',
+  },
+  {
+    id: 'shooting-guard',
+    label: 'Shooting Guard',
+    src: '/images/positions/roles_sg.jpeg',
+    alt: 'Shooting guard responsibilities image showing scoring, spacing and perimeter play.',
+  },
+  {
+    id: 'small-forward',
+    label: 'Small Forward',
+    src: '/images/positions/roles_sf.jpeg',
+    alt: 'Small forward responsibilities image showing versatility, rebounding and wing defence.',
+  },
+  {
+    id: 'power-forward',
+    label: 'Power Forward',
+    src: '/images/positions/roles_pf.jpeg',
+    alt: 'Power forward responsibilities image showing screening, rebounding and interior play.',
+  },
+  {
+    id: 'center',
+    label: 'Center',
+    src: '/images/positions/roles_c.jpeg',
+    alt: 'Center responsibilities image showing rim protection, rebounds and paint presence.',
+  },
+];
+---
+
+<div
+  id="position-responsibilities-modal"
+  class="fixed inset-0 z-[80] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="position-responsibilities-title"
+  data-position-carousel-open="false"
+>
+  <div id="position-responsibilities-backdrop" class="absolute inset-0 bg-black/70" aria-hidden="true"></div>
+
+  <div class="relative z-10 flex h-full w-full items-center justify-center p-3 sm:p-4">
+    <div class="flex h-full w-full flex-col overflow-hidden bg-brand-offwhite shadow-2xl md:h-[90vh] md:w-[95vw] md:rounded-2xl">
+      <header class="flex items-start justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3 sm:px-6">
+        <div class="min-w-0 flex-1">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-brand-gold">Position Responsibilities</p>
+          <h2 id="position-responsibilities-title" class="truncate text-lg font-black uppercase tracking-tight text-brand-black sm:text-xl">
+            Basketball Positions &amp; Responsibilities
+          </h2>
+        </div>
+        <button
+          id="position-responsibilities-close"
+          type="button"
+          class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-brand-purple transition-colors hover:bg-purple-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40"
+          aria-label="Close position responsibilities carousel"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </header>
+
+      <div class="flex min-h-0 flex-1 flex-col gap-4 overflow-hidden p-4 sm:p-6">
+        <div class="flex items-center justify-between gap-3">
+          <p id="position-responsibilities-status" class="text-sm font-semibold text-gray-600" aria-live="polite">
+            Slide 1 of 6 — Overview
+          </p>
+          <p class="text-xs uppercase tracking-wide text-gray-400">Use arrow keys or buttons to navigate</p>
+        </div>
+
+        <div class="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-white p-3 sm:p-4">
+          <button
+            id="position-responsibilities-prev"
+            type="button"
+            class="absolute left-2 top-1/2 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-brand-purple shadow-lg ring-1 ring-black/5 transition hover:bg-brand-purple hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 sm:left-4"
+            aria-label="Previous position"
+          >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <div class="relative h-full w-full max-w-5xl overflow-hidden">
+            {positions.map((position, index) => (
+              <figure
+                class:list={['absolute inset-0 flex items-center justify-center transition-opacity duration-300 motion-reduce:transition-none', index === 0 ? 'opacity-100' : 'pointer-events-none opacity-0']}
+                data-position-slide
+                data-position-index={index}
+                aria-roledescription="slide"
+                aria-label={`${index + 1} of ${positions.length}: ${position.label}`}
+              >
+                <div class="flex h-full w-full items-center justify-center overflow-hidden rounded-xl bg-white">
+                  <img
+                    src={position.src}
+                    alt={position.alt}
+                    class="h-full w-full object-contain"
+                    data-position-image
+                  />
+                </div>
+              </figure>
+            ))}
+          </div>
+
+          <button
+            id="position-responsibilities-next"
+            type="button"
+            class="absolute right-2 top-1/2 z-20 inline-flex min-h-[44px] min-w-[44px] -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-brand-purple shadow-lg ring-1 ring-black/5 transition hover:bg-brand-purple hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40 sm:right-4"
+            aria-label="Next position"
+          >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <div id="position-responsibilities-fallback" class="hidden rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+          <p id="position-responsibilities-fallback-message" class="mb-3 font-medium"></p>
+          <button
+            type="button"
+            id="position-responsibilities-fallback-close"
+            class="inline-flex min-h-[44px] items-center rounded-full bg-brand-purple px-4 py-2 text-sm font-bold text-white transition hover:bg-purple-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40"
+          >
+            Close carousel
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const positions = [
+    { label: 'Overview', src: '/images/positions/roles_1.jpeg' },
+    { label: 'Point Guard', src: '/images/positions/roles_pg.jpeg' },
+    { label: 'Shooting Guard', src: '/images/positions/roles_sg.jpeg' },
+    { label: 'Small Forward', src: '/images/positions/roles_sf.jpeg' },
+    { label: 'Power Forward', src: '/images/positions/roles_pf.jpeg' },
+    { label: 'Center', src: '/images/positions/roles_c.jpeg' },
+  ];
+
+  const modal = document.getElementById('position-responsibilities-modal');
+  const backdrop = document.getElementById('position-responsibilities-backdrop');
+  const closeBtn = document.getElementById('position-responsibilities-close');
+  const prevBtn = document.getElementById('position-responsibilities-prev');
+  const nextBtn = document.getElementById('position-responsibilities-next');
+  const statusEl = document.getElementById('position-responsibilities-status');
+  const fallbackBox = document.getElementById('position-responsibilities-fallback');
+  const fallbackMessage = document.getElementById('position-responsibilities-fallback-message');
+  const fallbackClose = document.getElementById('position-responsibilities-fallback-close');
+  const slides = Array.from(document.querySelectorAll('[data-position-slide]'));
+  const slideImages = Array.from(document.querySelectorAll('[data-position-image]'));
+  const triggerSelector = '[data-resource-modal-target="position-responsibilities"]';
+
+  const FOCUSABLE = 'button, [href], [tabindex]:not([tabindex="-1"])';
+  const AUTO_ADVANCE_MS = 8000;
+
+  let currentIndex = 0;
+  let autoAdvanceId = null;
+  let triggerEl = null;
+  let isOpen = false;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function updateStatus() {
+    if (!statusEl) return;
+    const current = positions[currentIndex];
+    statusEl.textContent = `Slide ${currentIndex + 1} of ${positions.length} — ${current.label}`;
+  }
+
+  function renderSlides() {
+    slides.forEach((slide, index) => {
+      const active = index === currentIndex;
+      slide.classList.toggle('opacity-100', active);
+      slide.classList.toggle('opacity-0', !active);
+      slide.classList.toggle('pointer-events-none', !active);
+      slide.setAttribute('aria-hidden', String(!active));
+    });
+    updateStatus();
+  }
+
+  function showFallback(message) {
+    if (!fallbackBox || !fallbackMessage) return;
+    fallbackMessage.textContent = message;
+    fallbackBox.classList.remove('hidden');
+  }
+
+  function hideFallback() {
+    if (!fallbackBox || !fallbackMessage) return;
+    fallbackBox.classList.add('hidden');
+    fallbackMessage.textContent = '';
+  }
+
+  function resetTimer() {
+    if (autoAdvanceId) {
+      window.clearInterval(autoAdvanceId);
+      autoAdvanceId = null;
+    }
+
+    if (!isOpen || prefersReducedMotion) return;
+
+    autoAdvanceId = window.setInterval(() => {
+      currentIndex = (currentIndex + 1) % positions.length;
+      renderSlides();
+    }, AUTO_ADVANCE_MS);
+  }
+
+  function goToIndex(index) {
+    currentIndex = (index + positions.length) % positions.length;
+    hideFallback();
+    renderSlides();
+    resetTimer();
+  }
+
+  function openModal() {
+    if (!modal || isOpen) return;
+    isOpen = true;
+    currentIndex = 0;
+    hideFallback();
+    renderSlides();
+    modal.classList.remove('hidden');
+    modal.setAttribute('data-position-carousel-open', 'true');
+    document.body.classList.add('overflow-hidden');
+    resetTimer();
+
+    window.requestAnimationFrame(() => {
+      closeBtn?.focus();
+    });
+  }
+
+  function closeModal() {
+    if (!modal || !isOpen) return;
+    isOpen = false;
+    if (autoAdvanceId) {
+      window.clearInterval(autoAdvanceId);
+      autoAdvanceId = null;
+    }
+    modal.classList.add('hidden');
+    modal.setAttribute('data-position-carousel-open', 'false');
+    document.body.classList.remove('overflow-hidden');
+    hideFallback();
+
+    if (triggerEl && typeof triggerEl.focus === 'function') {
+      triggerEl.focus();
+    }
+  }
+
+  function trapFocus(event) {
+    // focus trap keeps tab navigation within the modal while open
+    if (event.key !== 'Tab' || !isOpen || !modal || modal.classList.contains('hidden')) return;
+
+    const nodes = Array.from(modal.querySelectorAll(FOCUSABLE)).filter((el) => {
+      return !el.hasAttribute('disabled') && !el.classList.contains('hidden');
+    });
+
+    if (!nodes.length) return;
+
+    const first = nodes[0];
+    const last = nodes[nodes.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+
+  function openFromTrigger(trigger) {
+    triggerEl = trigger;
+    openModal();
+  }
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) return;
+    const trigger = target.closest(triggerSelector);
+    if (!(trigger instanceof HTMLElement)) return;
+    event.preventDefault();
+    openFromTrigger(trigger);
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  backdrop?.addEventListener('click', closeModal);
+  fallbackClose?.addEventListener('click', closeModal);
+  prevBtn?.addEventListener('click', () => goToIndex(currentIndex - 1));
+  nextBtn?.addEventListener('click', () => goToIndex(currentIndex + 1));
+
+  slideImages.forEach((img) => {
+    img.addEventListener('error', () => {
+      if (!isOpen) return;
+      showFallback('One of the position images could not be loaded. Please close the carousel and try again later.');
+    });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!isOpen || !modal || modal.classList.contains('hidden')) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      goToIndex(currentIndex + 1);
+      return;
+    }
+
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      goToIndex(currentIndex - 1);
+      return;
+    }
+
+    trapFocus(event);
+  });
+</script>
