@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FilterBar from '../../components/FilterBar.astro';
 import ResourceTabs from '../../components/ResourceTabs.astro';
 import ResourceItem from '../../components/ResourceItem.astro';
+import PositionResponsibilitiesCarousel from '../../components/PositionResponsibilitiesCarousel.astro';
 import ResourceModal from '../../components/ResourceModal.astro';
 import coachingResources from '../../data/coaching-resources.json';
 import playerResources from '../../data/player-resources.json';
@@ -19,9 +20,36 @@ import {
 } from '../../lib/resources/filters';
 import { extractAvailableSkills } from '../../lib/resources/skills';
 
+const createPositionResponsibilitiesResource = (section: ResourceSection, id: string): Resource & { modalTarget: string } => ({
+  id,
+  title: 'Basketball Positions & Responsibilities',
+  description: 'Open a carousel of the role overview and position responsibility images.',
+  section,
+  type: 'image_jpeg',
+  url: '#',
+  modalTarget: 'position-responsibilities',
+  createdAt: '2026-04-25T00:00:00Z',
+  updatedAt: '2026-04-25T00:00:00Z',
+  tags: {
+    age: ['U8', 'U10', 'U12', 'U14', 'U16+'],
+    category: ['Group'],
+    skill: ['Positioning', 'Communication'],
+  },
+});
+
+const coachingResourcesWithPositionResponsibilities: Resource[] = [
+  createPositionResponsibilitiesResource('coaching_resources', 'coaching-position-responsibilities'),
+  ...coachingResources,
+];
+
+const playerResourcesWithPositionResponsibilities: Resource[] = [
+  createPositionResponsibilitiesResource('player_resources', 'player-position-responsibilities'),
+  ...playerResources,
+];
+
 const sectionResources: Record<ResourceSection, Resource[]> = {
-  coaching_resources: coachingResources,
-  player_resources: playerResources,
+  coaching_resources: coachingResourcesWithPositionResponsibilities,
+  player_resources: playerResourcesWithPositionResponsibilities,
   manager: managerResources,
   guides,
   forms,
@@ -210,6 +238,7 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
   </div>
 
   <ResourceModal />
+  <PositionResponsibilitiesCarousel />
 </BaseLayout>
 
 <script id="resources-page-data" type="application/json" set:html={JSON.stringify({ sectionResources })}></script>

@@ -359,5 +359,31 @@
         "Rules"
       ]
     }
+  },
+  {
+    "id": "player-016",
+    "title": "Rebounding Example",
+    "section": "player_resources",
+    "type": "external_link",
+    "createdAt": "2026-04-27T00:00:00Z",
+    "updatedAt": "2026-04-27T00:00:00Z",
+    "description": "A Facebook reel highlighting rebounding effort, positioning and finishing possessions for players of all ages.",
+    "url": "https://www.facebook.com/reel/2437039610059944",
+    "sourceDomain": "Facebook",
+    "tags": {
+      "age": [
+        "U8",
+        "U10",
+        "U12",
+        "U14",
+        "U16+"
+      ],
+      "category": [
+        "Group"
+      ],
+      "skill": [
+        "Rebounding"
+      ]
+    }
   }
 ]
