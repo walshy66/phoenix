@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorStrip from '../components/SponsorStrip.astro';
 import HeroCircularCarousel from '../components/HeroCircularCarousel.astro';
 import HomeScoresCarousel from '../components/HomeScoresCarousel.astro';
+import { HOME_SCORES_ENABLED } from '../lib/home-scores/feature-flags';
 import { join } from 'node:path';
 import { loadLiveJsonSnapshot } from '../lib/playhq/server-live-data';
 import { validateLiveHomeGamesPayload } from '../lib/playhq/contracts';
@@ -107,7 +108,7 @@ function loadInitialHomeArtifact(): HomeGamesArtifact {
   return loadLiveJsonSnapshot(scriptPath, fallbackArtifact, validateLiveHomeGamesPayload);
 }
 
-const homeGamesArtifact = loadInitialHomeArtifact();
+const homeGamesArtifact = HOME_SCORES_ENABLED ? loadInitialHomeArtifact() : null;
 ---
 
 <BaseLayout title="Home">
@@ -135,7 +136,9 @@ const homeGamesArtifact = loadInitialHomeArtifact();
   </section>
 
 
-  <HomeScoresCarousel artifact={homeGamesArtifact} liveRefreshMs={300000} />
+  {HOME_SCORES_ENABLED && (
+    <HomeScoresCarousel artifact={homeGamesArtifact} liveRefreshMs={300000} />
+  )}
 
   <!-- Quick Link Cards -->
   <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
