@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-27T12:15:10.846Z",
+  "generatedAt": "2026-04-27T14:33:58.708Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
-    "startDate": "2026-04-20",
-    "endDate": "2026-05-04",
+    "startDate": "2026-04-21",
+    "endDate": "2026-05-05",
     "timezone": "Australia/Melbourne"
   },
   "staleBanner": null,
@@ -525,34 +525,6 @@
       "kickoffTime": "18:45:00",
       "kickoffDisplay": "18:45",
       "competition": "Tuesday U16 Girls 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 8"
-    },
-    {
-      "gameId": "3ddf1e76-9acb-4856-bd07-43f1adf9d475",
-      "homeTeam": "PHOENIX Go Getters",
-      "awayTeam": "PHOENIX Firebirds",
-      "homeScore": 3,
-      "awayScore": 28,
-      "status": "completed",
-      "kickoffDate": "2026-04-20",
-      "kickoffTime": "17:15:00",
-      "kickoffDisplay": "17:15",
-      "competition": "Monday U10 Girls 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7"
-    },
-    {
-      "gameId": "abbf0db6-51f0-4991-bb92-3fad639ae34d",
-      "homeTeam": "PHOENIX Diamonds",
-      "awayTeam": "Aztec U14 Girls Yellow",
-      "homeScore": 14,
-      "awayScore": 13,
-      "status": "completed",
-      "kickoffDate": "2026-04-20",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Monday U14 Girls 4",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 8"
     }

@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T12:14:15.911Z",
+  "lastUpdated": "2026-04-27T14:33:13.913Z",
   "scores": [
     {
       "id": "c249015b-438d-432f-a75d-5b73d90d7899",
@@ -3633,6 +3633,17 @@
     "Monday Men H Grade Reserve": [
       {
         "position": 1,
+        "teamName": "Rocket Surgeons",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 103,
+        "pointsAgainst": 29,
+        "percentage": 355.17,
+        "points": 6
+      },
+      {
+        "position": 2,
         "teamName": "Bunjils Senior Men Hoopers",
         "played": 2,
         "wins": 2,
@@ -3643,7 +3654,7 @@
         "points": 6
       },
       {
-        "position": 2,
+        "position": 3,
         "teamName": "Strath Bullets",
         "played": 1,
         "wins": 1,
@@ -3654,7 +3665,18 @@
         "points": 6
       },
       {
-        "position": 3,
+        "position": 4,
+        "teamName": "SIMMO",
+        "played": 2,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 61,
+        "pointsAgainst": 59,
+        "percentage": 103.39,
+        "points": 5
+      },
+      {
+        "position": 5,
         "teamName": "Flamin Cheetoz",
         "played": 2,
         "wins": 1,
@@ -3665,7 +3687,7 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 6,
         "teamName": "Doopys",
         "played": 1,
         "wins": 0,
@@ -3676,18 +3698,7 @@
         "points": 4
       },
       {
-        "position": 5,
-        "teamName": "Rocket Surgeons",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 29,
-        "pointsAgainst": 20,
-        "percentage": 145,
-        "points": 3
-      },
-      {
-        "position": 6,
+        "position": 7,
         "teamName": "The Beers",
         "played": 2,
         "wins": 0,
@@ -3698,37 +3709,26 @@
         "points": 3
       },
       {
-        "position": 7,
-        "teamName": "SIMMO",
-        "played": 1,
+        "position": 8,
+        "teamName": "Crust n em",
+        "played": 2,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 27,
-        "pointsAgainst": 27,
-        "percentage": 100,
+        "losses": 2,
+        "pointsFor": 52,
+        "pointsAgainst": 63,
+        "percentage": 82.54,
         "points": 2
       },
       {
-        "position": 8,
-        "teamName": "LeGoats",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 26,
-        "pointsAgainst": 35,
-        "percentage": 74.29,
-        "points": 1
-      },
-      {
         "position": 9,
-        "teamName": "Crust n em",
-        "played": 1,
+        "teamName": "LeGoats",
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 20,
-        "pointsAgainst": 29,
-        "percentage": 68.97,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 35,
+        "pointsAgainst": 109,
+        "percentage": 32.11,
+        "points": 2
       }
     ],
     "Monday Men H Grade": [
@@ -3745,6 +3745,17 @@
       },
       {
         "position": 2,
+        "teamName": "Clarky Boys",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 88,
+        "pointsAgainst": 69,
+        "percentage": 127.54,
+        "points": 6
+      },
+      {
+        "position": 3,
         "teamName": "Wild Ringers",
         "played": 2,
         "wins": 2,
@@ -3755,7 +3766,7 @@
         "points": 6
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Fadeaways",
         "played": 2,
         "wins": 1,
@@ -3766,7 +3777,7 @@
         "points": 5
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Get Smart",
         "played": 1,
         "wins": 0,
@@ -3777,7 +3788,18 @@
         "points": 5
       },
       {
-        "position": 5,
+        "position": 6,
+        "teamName": "Milkos",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 92,
+        "pointsAgainst": 78,
+        "percentage": 117.95,
+        "points": 4
+      },
+      {
+        "position": 7,
         "teamName": "Maiden Gully Boyz",
         "played": 2,
         "wins": 1,
@@ -3788,7 +3810,7 @@
         "points": 4
       },
       {
-        "position": 6,
+        "position": 8,
         "teamName": "Aztec Senior Men Green",
         "played": 1,
         "wins": 0,
@@ -3799,7 +3821,7 @@
         "points": 4
       },
       {
-        "position": 7,
+        "position": 9,
         "teamName": "KlawBall",
         "played": 2,
         "wins": 1,
@@ -3810,7 +3832,7 @@
         "points": 4
       },
       {
-        "position": 8,
+        "position": 10,
         "teamName": "Justin’s Beavers 2 ",
         "played": 2,
         "wins": 1,
@@ -3821,18 +3843,18 @@
         "points": 3
       },
       {
-        "position": 9,
-        "teamName": "Clarky Boys",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 45,
-        "pointsAgainst": 38,
-        "percentage": 118.42,
-        "points": 3
+        "position": 11,
+        "teamName": "The Rim Reapers",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 83,
+        "pointsAgainst": 109,
+        "percentage": 76.15,
+        "points": 2
       },
       {
-        "position": 10,
+        "position": 12,
         "teamName": "Air Ballers ",
         "played": 2,
         "wins": 0,
@@ -3843,37 +3865,15 @@
         "points": 2
       },
       {
-        "position": 11,
-        "teamName": "Milkos",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 28,
-        "pointsAgainst": 33,
-        "percentage": 84.85,
-        "points": 1
-      },
-      {
-        "position": 12,
-        "teamName": "The Rim Reapers",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 38,
-        "pointsAgainst": 45,
-        "percentage": 84.44,
-        "points": 1
-      },
-      {
         "position": 13,
         "teamName": "Bricklyn Nuts",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 19,
-        "pointsAgainst": 69,
-        "percentage": 27.54,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 50,
+        "pointsAgainst": 112,
+        "percentage": 44.64,
+        "points": 2
       }
     ],
     "Monday Men G Grade": [
@@ -3912,6 +3912,17 @@
       },
       {
         "position": 4,
+        "teamName": "Wetball",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 99,
+        "pointsAgainst": 99,
+        "percentage": 100,
+        "points": 4
+      },
+      {
+        "position": 5,
         "teamName": "Justin’s beavers",
         "played": 2,
         "wins": 1,
@@ -3922,18 +3933,18 @@
         "points": 4
       },
       {
-        "position": 5,
+        "position": 6,
         "teamName": "Strath Airbenders",
-        "played": 0,
+        "played": 1,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
+        "losses": 1,
+        "pointsFor": 45,
+        "pointsAgainst": 58,
+        "percentage": 77.59,
+        "points": 4
       },
       {
-        "position": 6,
+        "position": 7,
         "teamName": "CACTUS",
         "played": 2,
         "wins": 0,
@@ -3942,17 +3953,6 @@
         "pointsAgainst": 112,
         "percentage": 63.39,
         "points": 2
-      },
-      {
-        "position": 7,
-        "teamName": "Wetball",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 41,
-        "pointsAgainst": 54,
-        "percentage": 75.93,
-        "points": 1
       }
     ],
     "Monday Men F Grade": [
@@ -4081,6 +4081,17 @@
       },
       {
         "position": 3,
+        "teamName": "Jingled ",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 117,
+        "pointsAgainst": 84,
+        "percentage": 139.29,
+        "points": 6
+      },
+      {
+        "position": 4,
         "teamName": "Kamakazies",
         "played": 2,
         "wins": 1,
@@ -4091,7 +4102,18 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 5,
+        "teamName": "The Barry Lirds",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 91,
+        "pointsAgainst": 95,
+        "percentage": 95.79,
+        "points": 4
+      },
+      {
+        "position": 6,
         "teamName": "Bunjils Senior Men",
         "played": 1,
         "wins": 0,
@@ -4102,7 +4124,7 @@
         "points": 4
       },
       {
-        "position": 5,
+        "position": 7,
         "teamName": "FTC",
         "played": 2,
         "wins": 1,
@@ -4111,28 +4133,6 @@
         "pointsAgainst": 113,
         "percentage": 72.57,
         "points": 4
-      },
-      {
-        "position": 6,
-        "teamName": "Jingled ",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 57,
-        "pointsAgainst": 32,
-        "percentage": 178.13,
-        "points": 3
-      },
-      {
-        "position": 7,
-        "teamName": "The Barry Lirds",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 39,
-        "pointsAgainst": 35,
-        "percentage": 111.43,
-        "points": 3
       },
       {
         "position": 8,
@@ -4171,6 +4171,17 @@
       },
       {
         "position": 2,
+        "teamName": "Beavers Simonds Homes",
+        "played": 2,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 103,
+        "pointsAgainst": 98,
+        "percentage": 105.1,
+        "points": 5
+      },
+      {
+        "position": 3,
         "teamName": "NABA",
         "played": 2,
         "wins": 1,
@@ -4181,7 +4192,7 @@
         "points": 4
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Golden Eagles ",
         "played": 2,
         "wins": 1,
@@ -4192,7 +4203,7 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Chargers",
         "played": 2,
         "wins": 1,
@@ -4203,7 +4214,7 @@
         "points": 4
       },
       {
-        "position": 5,
+        "position": 6,
         "teamName": "The First Dance",
         "played": 2,
         "wins": 1,
@@ -4214,7 +4225,7 @@
         "points": 4
       },
       {
-        "position": 6,
+        "position": 7,
         "teamName": "Dreamers 2.0",
         "played": 2,
         "wins": 1,
@@ -4225,7 +4236,7 @@
         "points": 4
       },
       {
-        "position": 7,
+        "position": 8,
         "teamName": "WDT Ballers",
         "played": 1,
         "wins": 0,
@@ -4236,18 +4247,18 @@
         "points": 4
       },
       {
-        "position": 8,
-        "teamName": "Beavers Simonds Homes",
+        "position": 9,
+        "teamName": "196ers",
         "played": 1,
-        "wins": 1,
+        "wins": 0,
         "losses": 0,
-        "pointsFor": 42,
-        "pointsAgainst": 37,
-        "percentage": 113.51,
-        "points": 3
+        "pointsFor": 61,
+        "pointsAgainst": 61,
+        "percentage": 100,
+        "points": 2
       },
       {
-        "position": 9,
+        "position": 10,
         "teamName": "Slam Drunks",
         "played": 2,
         "wins": 0,
@@ -4256,17 +4267,6 @@
         "pointsAgainst": 92,
         "percentage": 57.61,
         "points": 2
-      },
-      {
-        "position": 10,
-        "teamName": "196ers",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
       }
     ],
     "Monday Men B/C Grade": [
@@ -8682,6 +8682,17 @@
     },
     {
       "position": 1,
+      "teamName": "Rocket Surgeons",
+      "played": 2,
+      "wins": 2,
+      "losses": 0,
+      "pointsFor": 103,
+      "pointsAgainst": 29,
+      "percentage": 355.17,
+      "points": 6
+    },
+    {
+      "position": 2,
       "teamName": "Bunjils Senior Men Hoopers",
       "played": 2,
       "wins": 2,
@@ -8692,7 +8703,7 @@
       "points": 6
     },
     {
-      "position": 2,
+      "position": 3,
       "teamName": "Strath Bullets",
       "played": 1,
       "wins": 1,
@@ -8703,7 +8714,18 @@
       "points": 6
     },
     {
-      "position": 3,
+      "position": 4,
+      "teamName": "SIMMO",
+      "played": 2,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 61,
+      "pointsAgainst": 59,
+      "percentage": 103.39,
+      "points": 5
+    },
+    {
+      "position": 5,
       "teamName": "Flamin Cheetoz",
       "played": 2,
       "wins": 1,
@@ -8714,7 +8736,7 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 6,
       "teamName": "Doopys",
       "played": 1,
       "wins": 0,
@@ -8725,18 +8747,7 @@
       "points": 4
     },
     {
-      "position": 5,
-      "teamName": "Rocket Surgeons",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 29,
-      "pointsAgainst": 20,
-      "percentage": 145,
-      "points": 3
-    },
-    {
-      "position": 6,
+      "position": 7,
       "teamName": "The Beers",
       "played": 2,
       "wins": 0,
@@ -8747,37 +8758,26 @@
       "points": 3
     },
     {
-      "position": 7,
-      "teamName": "SIMMO",
-      "played": 1,
+      "position": 8,
+      "teamName": "Crust n em",
+      "played": 2,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 27,
-      "pointsAgainst": 27,
-      "percentage": 100,
+      "losses": 2,
+      "pointsFor": 52,
+      "pointsAgainst": 63,
+      "percentage": 82.54,
       "points": 2
     },
     {
-      "position": 8,
-      "teamName": "LeGoats",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 26,
-      "pointsAgainst": 35,
-      "percentage": 74.29,
-      "points": 1
-    },
-    {
       "position": 9,
-      "teamName": "Crust n em",
-      "played": 1,
+      "teamName": "LeGoats",
+      "played": 2,
       "wins": 0,
-      "losses": 1,
-      "pointsFor": 20,
-      "pointsAgainst": 29,
-      "percentage": 68.97,
-      "points": 1
+      "losses": 2,
+      "pointsFor": 35,
+      "pointsAgainst": 109,
+      "percentage": 32.11,
+      "points": 2
     },
     {
       "position": 1,
@@ -8792,6 +8792,17 @@
     },
     {
       "position": 2,
+      "teamName": "Clarky Boys",
+      "played": 2,
+      "wins": 2,
+      "losses": 0,
+      "pointsFor": 88,
+      "pointsAgainst": 69,
+      "percentage": 127.54,
+      "points": 6
+    },
+    {
+      "position": 3,
       "teamName": "Wild Ringers",
       "played": 2,
       "wins": 2,
@@ -8802,7 +8813,7 @@
       "points": 6
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Fadeaways",
       "played": 2,
       "wins": 1,
@@ -8813,7 +8824,7 @@
       "points": 5
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Get Smart",
       "played": 1,
       "wins": 0,
@@ -8824,7 +8835,18 @@
       "points": 5
     },
     {
-      "position": 5,
+      "position": 6,
+      "teamName": "Milkos",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "pointsFor": 92,
+      "pointsAgainst": 78,
+      "percentage": 117.95,
+      "points": 4
+    },
+    {
+      "position": 7,
       "teamName": "Maiden Gully Boyz",
       "played": 2,
       "wins": 1,
@@ -8835,7 +8857,7 @@
       "points": 4
     },
     {
-      "position": 6,
+      "position": 8,
       "teamName": "Aztec Senior Men Green",
       "played": 1,
       "wins": 0,
@@ -8846,7 +8868,7 @@
       "points": 4
     },
     {
-      "position": 7,
+      "position": 9,
       "teamName": "KlawBall",
       "played": 2,
       "wins": 1,
@@ -8857,7 +8879,7 @@
       "points": 4
     },
     {
-      "position": 8,
+      "position": 10,
       "teamName": "Justin’s Beavers 2 ",
       "played": 2,
       "wins": 1,
@@ -8868,18 +8890,18 @@
       "points": 3
     },
     {
-      "position": 9,
-      "teamName": "Clarky Boys",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 45,
-      "pointsAgainst": 38,
-      "percentage": 118.42,
-      "points": 3
+      "position": 11,
+      "teamName": "The Rim Reapers",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 83,
+      "pointsAgainst": 109,
+      "percentage": 76.15,
+      "points": 2
     },
     {
-      "position": 10,
+      "position": 12,
       "teamName": "Air Ballers ",
       "played": 2,
       "wins": 0,
@@ -8890,37 +8912,15 @@
       "points": 2
     },
     {
-      "position": 11,
-      "teamName": "Milkos",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 28,
-      "pointsAgainst": 33,
-      "percentage": 84.85,
-      "points": 1
-    },
-    {
-      "position": 12,
-      "teamName": "The Rim Reapers",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 38,
-      "pointsAgainst": 45,
-      "percentage": 84.44,
-      "points": 1
-    },
-    {
       "position": 13,
       "teamName": "Bricklyn Nuts",
-      "played": 1,
+      "played": 2,
       "wins": 0,
-      "losses": 1,
-      "pointsFor": 19,
-      "pointsAgainst": 69,
-      "percentage": 27.54,
-      "points": 1
+      "losses": 2,
+      "pointsFor": 50,
+      "pointsAgainst": 112,
+      "percentage": 44.64,
+      "points": 2
     },
     {
       "position": 1,
@@ -8957,6 +8957,17 @@
     },
     {
       "position": 4,
+      "teamName": "Wetball",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "pointsFor": 99,
+      "pointsAgainst": 99,
+      "percentage": 100,
+      "points": 4
+    },
+    {
+      "position": 5,
       "teamName": "Justin’s beavers",
       "played": 2,
       "wins": 1,
@@ -8967,18 +8978,18 @@
       "points": 4
     },
     {
-      "position": 5,
+      "position": 6,
       "teamName": "Strath Airbenders",
-      "played": 0,
+      "played": 1,
       "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 3
+      "losses": 1,
+      "pointsFor": 45,
+      "pointsAgainst": 58,
+      "percentage": 77.59,
+      "points": 4
     },
     {
-      "position": 6,
+      "position": 7,
       "teamName": "CACTUS",
       "played": 2,
       "wins": 0,
@@ -8987,17 +8998,6 @@
       "pointsAgainst": 112,
       "percentage": 63.39,
       "points": 2
-    },
-    {
-      "position": 7,
-      "teamName": "Wetball",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 41,
-      "pointsAgainst": 54,
-      "percentage": 75.93,
-      "points": 1
     },
     {
       "position": 1,
@@ -9122,6 +9122,17 @@
     },
     {
       "position": 3,
+      "teamName": "Jingled ",
+      "played": 2,
+      "wins": 2,
+      "losses": 0,
+      "pointsFor": 117,
+      "pointsAgainst": 84,
+      "percentage": 139.29,
+      "points": 6
+    },
+    {
+      "position": 4,
       "teamName": "Kamakazies",
       "played": 2,
       "wins": 1,
@@ -9132,7 +9143,18 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 5,
+      "teamName": "The Barry Lirds",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "pointsFor": 91,
+      "pointsAgainst": 95,
+      "percentage": 95.79,
+      "points": 4
+    },
+    {
+      "position": 6,
       "teamName": "Bunjils Senior Men",
       "played": 1,
       "wins": 0,
@@ -9143,7 +9165,7 @@
       "points": 4
     },
     {
-      "position": 5,
+      "position": 7,
       "teamName": "FTC",
       "played": 2,
       "wins": 1,
@@ -9152,28 +9174,6 @@
       "pointsAgainst": 113,
       "percentage": 72.57,
       "points": 4
-    },
-    {
-      "position": 6,
-      "teamName": "Jingled ",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 57,
-      "pointsAgainst": 32,
-      "percentage": 178.13,
-      "points": 3
-    },
-    {
-      "position": 7,
-      "teamName": "The Barry Lirds",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 39,
-      "pointsAgainst": 35,
-      "percentage": 111.43,
-      "points": 3
     },
     {
       "position": 8,
@@ -9210,6 +9210,17 @@
     },
     {
       "position": 2,
+      "teamName": "Beavers Simonds Homes",
+      "played": 2,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 103,
+      "pointsAgainst": 98,
+      "percentage": 105.1,
+      "points": 5
+    },
+    {
+      "position": 3,
       "teamName": "NABA",
       "played": 2,
       "wins": 1,
@@ -9220,7 +9231,7 @@
       "points": 4
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Golden Eagles ",
       "played": 2,
       "wins": 1,
@@ -9231,7 +9242,7 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Chargers",
       "played": 2,
       "wins": 1,
@@ -9242,7 +9253,7 @@
       "points": 4
     },
     {
-      "position": 5,
+      "position": 6,
       "teamName": "The First Dance",
       "played": 2,
       "wins": 1,
@@ -9253,7 +9264,7 @@
       "points": 4
     },
     {
-      "position": 6,
+      "position": 7,
       "teamName": "Dreamers 2.0",
       "played": 2,
       "wins": 1,
@@ -9264,7 +9275,7 @@
       "points": 4
     },
     {
-      "position": 7,
+      "position": 8,
       "teamName": "WDT Ballers",
       "played": 1,
       "wins": 0,
@@ -9275,18 +9286,18 @@
       "points": 4
     },
     {
-      "position": 8,
-      "teamName": "Beavers Simonds Homes",
+      "position": 9,
+      "teamName": "196ers",
       "played": 1,
-      "wins": 1,
+      "wins": 0,
       "losses": 0,
-      "pointsFor": 42,
-      "pointsAgainst": 37,
-      "percentage": 113.51,
-      "points": 3
+      "pointsFor": 61,
+      "pointsAgainst": 61,
+      "percentage": 100,
+      "points": 2
     },
     {
-      "position": 9,
+      "position": 10,
       "teamName": "Slam Drunks",
       "played": 2,
       "wins": 0,
@@ -9295,17 +9306,6 @@
       "pointsAgainst": 92,
       "percentage": 57.61,
       "points": 2
-    },
-    {
-      "position": 10,
-      "teamName": "196ers",
-      "played": 0,
-      "wins": 0,
-      "losses": 0,
-      "pointsFor": 0,
-      "pointsAgainst": 0,
-      "percentage": 0,
-      "points": 0
     },
     {
       "position": 1,
