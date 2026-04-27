@@ -1,7 +1,7 @@
 {
   "roundNumber": 2,
   "season": "Winter 2026",
-  "lastUpdated": "2026-04-27T07:50:10.058Z",
+  "lastUpdated": "2026-04-27T08:39:25.017Z",
   "status": "upcoming",
   "games": [
     {
@@ -893,10 +893,125 @@
       "court": "Court 4",
       "homeTeam": "PINK FLAMINGO’S",
       "awayTeam": "PHOENIX Go Getters",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 9,
+      "awayScore": 10,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Ava McLean",
+            "team": "PHOENIX Go Getters",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Olive Olsen",
+            "team": "PINK FLAMINGO’S",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Clementine Weekley",
+            "team": "PHOENIX Go Getters",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Charli Kentish",
+            "team": "PINK FLAMINGO’S",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Charlotte Hamilton",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eleanor Reid",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Elliemae Price",
+            "team": "PINK FLAMINGO’S",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Emily Rutledge",
+            "team": "PINK FLAMINGO’S",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Harper Armstrong",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lexie Heyward",
+            "team": "PINK FLAMINGO’S",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Paige Alberts",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Sylvie Scarlett",
+            "team": "PINK FLAMINGO’S",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Go Getters",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
@@ -911,6 +1026,17 @@
         },
         {
           "position": 2,
+          "teamName": "Bunjils U10 Girls Blue",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 65,
+          "pointsAgainst": 17,
+          "percentage": 382.35,
+          "points": 6
+        },
+        {
+          "position": 3,
           "teamName": "St Francis U10 Girls Swish Sisters",
           "played": 1,
           "wins": 1,
@@ -921,7 +1047,18 @@
           "points": 6
         },
         {
-          "position": 3,
+          "position": 4,
+          "teamName": "PHOENIX Firebirds",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 37,
+          "pointsAgainst": 22,
+          "percentage": 168.18,
+          "points": 4
+        },
+        {
+          "position": 5,
           "teamName": "Aztec U10 Girls Silver",
           "played": 2,
           "wins": 1,
@@ -932,7 +1069,7 @@
           "points": 4
         },
         {
-          "position": 4,
+          "position": 6,
           "teamName": "DIAMOND FLAMINGO’s",
           "played": 2,
           "wins": 1,
@@ -943,29 +1080,29 @@
           "points": 4
         },
         {
-          "position": 5,
-          "teamName": "PHOENIX Firebirds",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 28,
-          "pointsAgainst": 3,
-          "percentage": 933.33,
-          "points": 3
-        },
-        {
-          "position": 6,
-          "teamName": "Bunjils U10 Girls Blue",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 46,
-          "pointsAgainst": 8,
-          "percentage": 575,
-          "points": 3
-        },
-        {
           "position": 7,
+          "teamName": "PHOENIX Go Getters",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 13,
+          "pointsAgainst": 37,
+          "percentage": 35.14,
+          "points": 4
+        },
+        {
+          "position": 8,
+          "teamName": "PINK FLAMINGO’S",
+          "played": 2,
+          "wins": 0,
+          "losses": 2,
+          "pointsFor": 17,
+          "pointsAgainst": 36,
+          "percentage": 47.22,
+          "points": 2
+        },
+        {
+          "position": 9,
           "teamName": "Aztec U10 Girls Aqua",
           "played": 2,
           "wins": 0,
@@ -974,28 +1111,6 @@
           "pointsAgainst": 68,
           "percentage": 25,
           "points": 2
-        },
-        {
-          "position": 8,
-          "teamName": "PINK FLAMINGO’S",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 8,
-          "pointsAgainst": 26,
-          "percentage": 30.77,
-          "points": 1
-        },
-        {
-          "position": 9,
-          "teamName": "PHOENIX Go Getters",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 3,
-          "pointsAgainst": 28,
-          "percentage": 10.71,
-          "points": 1
         }
       ]
     },
@@ -1009,10 +1124,117 @@
       "court": "Court 6",
       "homeTeam": "Bunjils U10 Girls Blue",
       "awayTeam": "PHOENIX Firebirds",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 19,
+      "awayScore": 9,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Gemma Guijarro",
+            "team": "Bunjils U10 Girls Blue",
+            "points": 8,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lilah Winspear",
+            "team": "Bunjils U10 Girls Blue",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Reagan Ogilvie",
+            "team": "PHOENIX Firebirds",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Emily M Tully",
+            "team": "Bunjils U10 Girls Blue",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Evie Ducat",
+            "team": "PHOENIX Firebirds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Avah Brown",
+            "team": "PHOENIX Firebirds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Charlie Downes",
+            "team": "Bunjils U10 Girls Blue",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eliza Howard",
+            "team": "PHOENIX Firebirds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Evelyn Robertson",
+            "team": "PHOENIX Firebirds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jesee Johnson",
+            "team": "Bunjils U10 Girls Blue",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Madison Fiske",
+            "team": "PHOENIX Firebirds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Pait Brooker",
+            "team": "Bunjils U10 Girls Blue",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Willow Hadden",
+            "team": "Bunjils U10 Girls Blue",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
@@ -1027,6 +1249,17 @@
         },
         {
           "position": 2,
+          "teamName": "Bunjils U10 Girls Blue",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 65,
+          "pointsAgainst": 17,
+          "percentage": 382.35,
+          "points": 6
+        },
+        {
+          "position": 3,
           "teamName": "St Francis U10 Girls Swish Sisters",
           "played": 1,
           "wins": 1,
@@ -1037,7 +1270,18 @@
           "points": 6
         },
         {
-          "position": 3,
+          "position": 4,
+          "teamName": "PHOENIX Firebirds",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 37,
+          "pointsAgainst": 22,
+          "percentage": 168.18,
+          "points": 4
+        },
+        {
+          "position": 5,
           "teamName": "Aztec U10 Girls Silver",
           "played": 2,
           "wins": 1,
@@ -1048,7 +1292,7 @@
           "points": 4
         },
         {
-          "position": 4,
+          "position": 6,
           "teamName": "DIAMOND FLAMINGO’s",
           "played": 2,
           "wins": 1,
@@ -1059,29 +1303,29 @@
           "points": 4
         },
         {
-          "position": 5,
-          "teamName": "PHOENIX Firebirds",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 28,
-          "pointsAgainst": 3,
-          "percentage": 933.33,
-          "points": 3
-        },
-        {
-          "position": 6,
-          "teamName": "Bunjils U10 Girls Blue",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 46,
-          "pointsAgainst": 8,
-          "percentage": 575,
-          "points": 3
-        },
-        {
           "position": 7,
+          "teamName": "PHOENIX Go Getters",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 13,
+          "pointsAgainst": 37,
+          "percentage": 35.14,
+          "points": 4
+        },
+        {
+          "position": 8,
+          "teamName": "PINK FLAMINGO’S",
+          "played": 2,
+          "wins": 0,
+          "losses": 2,
+          "pointsFor": 17,
+          "pointsAgainst": 36,
+          "percentage": 47.22,
+          "points": 2
+        },
+        {
+          "position": 9,
           "teamName": "Aztec U10 Girls Aqua",
           "played": 2,
           "wins": 0,
@@ -1090,28 +1334,6 @@
           "pointsAgainst": 68,
           "percentage": 25,
           "points": 2
-        },
-        {
-          "position": 8,
-          "teamName": "PINK FLAMINGO’S",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 8,
-          "pointsAgainst": 26,
-          "percentage": 30.77,
-          "points": 1
-        },
-        {
-          "position": 9,
-          "teamName": "PHOENIX Go Getters",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 3,
-          "pointsAgainst": 28,
-          "percentage": 10.71,
-          "points": 1
         }
       ]
     },
@@ -2582,6 +2804,17 @@
       },
       {
         "position": 2,
+        "teamName": "Bunjils U10 Girls Blue",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 65,
+        "pointsAgainst": 17,
+        "percentage": 382.35,
+        "points": 6
+      },
+      {
+        "position": 3,
         "teamName": "St Francis U10 Girls Swish Sisters",
         "played": 1,
         "wins": 1,
@@ -2592,7 +2825,18 @@
         "points": 6
       },
       {
-        "position": 3,
+        "position": 4,
+        "teamName": "PHOENIX Firebirds",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 37,
+        "pointsAgainst": 22,
+        "percentage": 168.18,
+        "points": 4
+      },
+      {
+        "position": 5,
         "teamName": "Aztec U10 Girls Silver",
         "played": 2,
         "wins": 1,
@@ -2603,7 +2847,7 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 6,
         "teamName": "DIAMOND FLAMINGO’s",
         "played": 2,
         "wins": 1,
@@ -2614,29 +2858,29 @@
         "points": 4
       },
       {
-        "position": 5,
-        "teamName": "PHOENIX Firebirds",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 28,
-        "pointsAgainst": 3,
-        "percentage": 933.33,
-        "points": 3
-      },
-      {
-        "position": 6,
-        "teamName": "Bunjils U10 Girls Blue",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 46,
-        "pointsAgainst": 8,
-        "percentage": 575,
-        "points": 3
-      },
-      {
         "position": 7,
+        "teamName": "PHOENIX Go Getters",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 13,
+        "pointsAgainst": 37,
+        "percentage": 35.14,
+        "points": 4
+      },
+      {
+        "position": 8,
+        "teamName": "PINK FLAMINGO’S",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 17,
+        "pointsAgainst": 36,
+        "percentage": 47.22,
+        "points": 2
+      },
+      {
+        "position": 9,
         "teamName": "Aztec U10 Girls Aqua",
         "played": 2,
         "wins": 0,
@@ -2645,28 +2889,6 @@
         "pointsAgainst": 68,
         "percentage": 25,
         "points": 2
-      },
-      {
-        "position": 8,
-        "teamName": "PINK FLAMINGO’S",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 8,
-        "pointsAgainst": 26,
-        "percentage": 30.77,
-        "points": 1
-      },
-      {
-        "position": 9,
-        "teamName": "PHOENIX Go Getters",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 3,
-        "pointsAgainst": 28,
-        "percentage": 10.71,
-        "points": 1
       }
     ],
     "Friday U18 Boys 5": [
