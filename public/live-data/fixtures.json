@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-26T15:53:13.730Z",
+  "generatedAt": "2026-04-27T07:47:16.894Z",
   "window": {
     "timezone": "Australia/Melbourne",
     "startDate": "2026-04-27",
@@ -144,9 +144,140 @@
         "squads": []
       }
     ],
-    "friday": []
+    "friday": [
+      {
+        "fixtureId": "dc51cd4e-db3f-4151-9b2d-f88b5e01f66d",
+        "homeTeam": "PHOENIX Thunder",
+        "awayTeam": "Aztec U10 Boys Orange",
+        "grade": "Friday U10 Boys 4",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 7",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "17:15:00",
+        "kickoffAt": "2026-05-01T17:15:00",
+        "kickoffDisplay": "5:15 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "59da423b-e094-4bda-aeff-9d23e401645f",
+        "homeTeam": "St Francis U12 Boys Titans",
+        "awayTeam": "PHOENIX Flames",
+        "grade": "Friday U12 Boys 8",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 6",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "18:00:00",
+        "kickoffAt": "2026-05-01T18:00:00",
+        "kickoffDisplay": "6:00 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "ac4e4231-b5d1-4880-865b-0e67c67a99fb",
+        "homeTeam": "Victory U12 Boys Mavericks",
+        "awayTeam": "PHOENIX Phantoms",
+        "grade": "Friday U12 Boys 7",
+        "venue": "Bendigo South East College",
+        "court": "Court 1",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "18:45:00",
+        "kickoffAt": "2026-05-01T18:45:00",
+        "kickoffDisplay": "6:45 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "cbba9944-fba9-43bf-b1db-5a2ff18b0504",
+        "homeTeam": "Beavers Cobras",
+        "awayTeam": "PHOENIX Go Buckets",
+        "grade": "Friday U16 Boys 4",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 2",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "19:30:00",
+        "kickoffAt": "2026-05-01T19:30:00",
+        "kickoffDisplay": "7:30 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "c249015b-438d-432f-a75d-5b73d90d7899",
+        "homeTeam": "PHOENIX Smartmeal",
+        "awayTeam": "Aztec U18 Boys Orange",
+        "grade": "Friday U18 Boys 2",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 3",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "20:15:00",
+        "kickoffAt": "2026-05-01T20:15:00",
+        "kickoffDisplay": "8:15 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "0709957e-bf03-410d-8d9f-742f26b5352d",
+        "homeTeam": "Strath Sharks",
+        "awayTeam": "PHOENIX Gooney Tunes",
+        "grade": "Friday U16 Boys 7",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 4",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "20:15:00",
+        "kickoffAt": "2026-05-01T20:15:00",
+        "kickoffDisplay": "8:15 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "2614d412-e9f6-4d0e-b579-2b14fee85182",
+        "homeTeam": "Beavers Rockets",
+        "awayTeam": "PHOENIX Splash",
+        "grade": "Friday U16 Boys 7",
+        "venue": "Bendigo South East College",
+        "court": "Court 3",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "21:00:00",
+        "kickoffAt": "2026-05-01T21:00:00",
+        "kickoffDisplay": "9:00 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "3811f460-89aa-481a-91df-088f84ef0842",
+        "homeTeam": "PHOENIX Wembys",
+        "awayTeam": "Aztec U18 Boys Steel",
+        "grade": "Friday U18 Boys 5",
+        "venue": "Red Energy Arena (Bendigo Stadium)",
+        "court": "Court 7",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "21:00:00",
+        "kickoffAt": "2026-05-01T21:00:00",
+        "kickoffDisplay": "9:00 pm",
+        "squads": []
+      },
+      {
+        "fixtureId": "7ab103c0-316f-4e41-b3f2-9c34f86d0b04",
+        "homeTeam": "Strath Eagles",
+        "awayTeam": "PHOENIX Suns",
+        "grade": "Friday U18 Boys 3",
+        "venue": "Bendigo South East College",
+        "court": "Court 2",
+        "kickoffDate": "2026-05-01",
+        "kickoffTime": "21:00:00",
+        "kickoffAt": "2026-05-01T21:00:00",
+        "kickoffDisplay": "9:00 pm",
+        "squads": []
+      }
+    ]
   },
   "fixturesById": {
+    "c249015b-438d-432f-a75d-5b73d90d7899": {
+      "fixtureId": "c249015b-438d-432f-a75d-5b73d90d7899",
+      "homeTeam": "PHOENIX Smartmeal",
+      "awayTeam": "Aztec U18 Boys Orange",
+      "grade": "Friday U18 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 3",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "20:15:00",
+      "kickoffAt": "2026-05-01T20:15:00",
+      "kickoffDisplay": "8:15 pm",
+      "squads": []
+    },
     "7eb57849-7b35-45bc-8670-11cd666a8882": {
       "fixtureId": "7eb57849-7b35-45bc-8670-11cd666a8882",
       "homeTeam": "Generals U16 Boys Hornets",
@@ -275,6 +406,110 @@
       "kickoffTime": "17:15:00",
       "kickoffAt": "2026-04-27T17:15:00",
       "kickoffDisplay": "5:15 pm",
+      "squads": []
+    },
+    "3811f460-89aa-481a-91df-088f84ef0842": {
+      "fixtureId": "3811f460-89aa-481a-91df-088f84ef0842",
+      "homeTeam": "PHOENIX Wembys",
+      "awayTeam": "Aztec U18 Boys Steel",
+      "grade": "Friday U18 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "21:00:00",
+      "kickoffAt": "2026-05-01T21:00:00",
+      "kickoffDisplay": "9:00 pm",
+      "squads": []
+    },
+    "7ab103c0-316f-4e41-b3f2-9c34f86d0b04": {
+      "fixtureId": "7ab103c0-316f-4e41-b3f2-9c34f86d0b04",
+      "homeTeam": "Strath Eagles",
+      "awayTeam": "PHOENIX Suns",
+      "grade": "Friday U18 Boys 3",
+      "venue": "Bendigo South East College",
+      "court": "Court 2",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "21:00:00",
+      "kickoffAt": "2026-05-01T21:00:00",
+      "kickoffDisplay": "9:00 pm",
+      "squads": []
+    },
+    "dc51cd4e-db3f-4151-9b2d-f88b5e01f66d": {
+      "fixtureId": "dc51cd4e-db3f-4151-9b2d-f88b5e01f66d",
+      "homeTeam": "PHOENIX Thunder",
+      "awayTeam": "Aztec U10 Boys Orange",
+      "grade": "Friday U10 Boys 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "17:15:00",
+      "kickoffAt": "2026-05-01T17:15:00",
+      "kickoffDisplay": "5:15 pm",
+      "squads": []
+    },
+    "ac4e4231-b5d1-4880-865b-0e67c67a99fb": {
+      "fixtureId": "ac4e4231-b5d1-4880-865b-0e67c67a99fb",
+      "homeTeam": "Victory U12 Boys Mavericks",
+      "awayTeam": "PHOENIX Phantoms",
+      "grade": "Friday U12 Boys 7",
+      "venue": "Bendigo South East College",
+      "court": "Court 1",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "18:45:00",
+      "kickoffAt": "2026-05-01T18:45:00",
+      "kickoffDisplay": "6:45 pm",
+      "squads": []
+    },
+    "59da423b-e094-4bda-aeff-9d23e401645f": {
+      "fixtureId": "59da423b-e094-4bda-aeff-9d23e401645f",
+      "homeTeam": "St Francis U12 Boys Titans",
+      "awayTeam": "PHOENIX Flames",
+      "grade": "Friday U12 Boys 8",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 6",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "18:00:00",
+      "kickoffAt": "2026-05-01T18:00:00",
+      "kickoffDisplay": "6:00 pm",
+      "squads": []
+    },
+    "cbba9944-fba9-43bf-b1db-5a2ff18b0504": {
+      "fixtureId": "cbba9944-fba9-43bf-b1db-5a2ff18b0504",
+      "homeTeam": "Beavers Cobras",
+      "awayTeam": "PHOENIX Go Buckets",
+      "grade": "Friday U16 Boys 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 2",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "19:30:00",
+      "kickoffAt": "2026-05-01T19:30:00",
+      "kickoffDisplay": "7:30 pm",
+      "squads": []
+    },
+    "2614d412-e9f6-4d0e-b579-2b14fee85182": {
+      "fixtureId": "2614d412-e9f6-4d0e-b579-2b14fee85182",
+      "homeTeam": "Beavers Rockets",
+      "awayTeam": "PHOENIX Splash",
+      "grade": "Friday U16 Boys 7",
+      "venue": "Bendigo South East College",
+      "court": "Court 3",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "21:00:00",
+      "kickoffAt": "2026-05-01T21:00:00",
+      "kickoffDisplay": "9:00 pm",
+      "squads": []
+    },
+    "0709957e-bf03-410d-8d9f-742f26b5352d": {
+      "fixtureId": "0709957e-bf03-410d-8d9f-742f26b5352d",
+      "homeTeam": "Strath Sharks",
+      "awayTeam": "PHOENIX Gooney Tunes",
+      "grade": "Friday U16 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "20:15:00",
+      "kickoffAt": "2026-05-01T20:15:00",
+      "kickoffDisplay": "8:15 pm",
       "squads": []
     }
   }
