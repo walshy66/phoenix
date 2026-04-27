@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-27T08:35:04.114Z",
+  "lastUpdated": "2026-04-27T10:35:41.928Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1653,11 +1653,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "Beavers Starlets",
           "awayTeam": "PHOENIX Diamonds",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 11,
+          "awayScore": 12,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Ava Turley",
+                "team": "PHOENIX Diamonds",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Londyn Orchard",
+                "team": "Beavers Starlets",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Elsie Keena",
+                "team": "Beavers Starlets",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ellie Holmberg",
+                "team": "Beavers Starlets",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Diamonds",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Diamonds",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Willow Walsh",
+                "team": "PHOENIX Diamonds",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Aamira Fakehinde",
+                "team": "Beavers Starlets",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hannah McClellan",
+                "team": "Beavers Starlets",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Emilia Holmberg",
+                "team": "Beavers Starlets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lexi Stanley",
+                "team": "PHOENIX Diamonds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lyla Robertson",
+                "team": "PHOENIX Diamonds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "Beavers Starlets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Diamonds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "abbf0db6-51f0-4991-bb92-3fad639ae34d",
@@ -1802,56 +1917,47 @@
         {
           "rank": 1,
           "team": "Aztec U14 Girls Purple",
-          "played": 1,
-          "won": 1,
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 2,
-          "team": "U14 Girls Girton Gems",
-          "played": 1,
-          "won": 1,
+          "team": "PHOENIX Diamonds",
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 3,
-          "team": "PHOENIX Diamonds",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 4,
-          "team": "Aztec U14 Girls Yellow",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
-          "rank": 5,
-          "team": "Beavers Starlets",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
-          "rank": 6,
           "team": "Aztec U14 Girls Pink",
           "played": 1,
           "won": 0,
           "lost": 1,
           "drawn": 0,
-          "points": 1
+          "points": 4
+        },
+        {
+          "rank": 4,
+          "team": "U14 Girls Girton Gems",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 5,
+          "team": "Beavers Starlets",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "drawn": 0,
+          "points": 2
         }
       ]
     },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-27T08:37:31.736Z",
+  "generatedAt": "2026-04-27T10:38:03.634Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,20 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
-      "homeTeam": "Beavers Starlets",
-      "awayTeam": "PHOENIX Diamonds",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-27",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Monday U14 Girls 4",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7"
-    },
     {
       "gameId": "88fad284-6a25-4248-8a57-668df0e0b8d3",
       "homeTeam": "Beavers Belles",
@@ -275,6 +261,20 @@
       "competition": "Monday U10 Girls 3",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 6"
+    },
+    {
+      "gameId": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
+      "homeTeam": "Beavers Starlets",
+      "awayTeam": "PHOENIX Diamonds",
+      "homeScore": 11,
+      "awayScore": 12,
+      "status": "completed",
+      "kickoffDate": "2026-04-27",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Monday U14 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7"
     },
     {
       "gameId": "865a40e2-3451-48a2-920d-13ae8db5bf02",

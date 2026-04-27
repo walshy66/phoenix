@@ -1,7 +1,7 @@
 {
   "roundNumber": 2,
   "season": "Winter 2026",
-  "lastUpdated": "2026-04-27T08:39:25.017Z",
+  "lastUpdated": "2026-04-27T10:39:59.525Z",
   "status": "upcoming",
   "games": [
     {
@@ -810,68 +810,150 @@
       "court": "Court 7",
       "homeTeam": "Beavers Starlets",
       "awayTeam": "PHOENIX Diamonds",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 11,
+      "awayScore": 12,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Ava Turley",
+            "team": "PHOENIX Diamonds",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Londyn Orchard",
+            "team": "Beavers Starlets",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Elsie Keena",
+            "team": "Beavers Starlets",
+            "points": 3,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ellie Holmberg",
+            "team": "Beavers Starlets",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Willow Walsh",
+            "team": "PHOENIX Diamonds",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Aamira Fakehinde",
+            "team": "Beavers Starlets",
+            "points": 1,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Hannah McClellan",
+            "team": "Beavers Starlets",
+            "points": 1,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Emilia Holmberg",
+            "team": "Beavers Starlets",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lexi Stanley",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lyla Robertson",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "Beavers Starlets",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
           "teamName": "Aztec U14 Girls Purple",
-          "played": 1,
-          "wins": 1,
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 36,
-          "pointsAgainst": 22,
-          "percentage": 163.64,
-          "points": 3
+          "pointsFor": 68,
+          "pointsAgainst": 32,
+          "percentage": 212.5,
+          "points": 6
         },
         {
           "position": 2,
-          "teamName": "U14 Girls Girton Gems",
-          "played": 1,
-          "wins": 1,
+          "teamName": "PHOENIX Diamonds",
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 16,
-          "pointsAgainst": 12,
-          "percentage": 133.33,
-          "points": 3
+          "pointsFor": 26,
+          "pointsAgainst": 24,
+          "percentage": 108.33,
+          "points": 6
         },
         {
           "position": 3,
-          "teamName": "PHOENIX Diamonds",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 14,
-          "pointsAgainst": 13,
-          "percentage": 107.69,
-          "points": 3
-        },
-        {
-          "position": 4,
-          "teamName": "Aztec U14 Girls Yellow",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 13,
-          "pointsAgainst": 14,
-          "percentage": 92.86,
-          "points": 1
-        },
-        {
-          "position": 5,
-          "teamName": "Beavers Starlets",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 12,
-          "pointsAgainst": 16,
-          "percentage": 75,
-          "points": 1
-        },
-        {
-          "position": 6,
           "teamName": "Aztec U14 Girls Pink",
           "played": 1,
           "wins": 0,
@@ -879,7 +961,29 @@
           "pointsFor": 22,
           "pointsAgainst": 36,
           "percentage": 61.11,
-          "points": 1
+          "points": 4
+        },
+        {
+          "position": 4,
+          "teamName": "U14 Girls Girton Gems",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 26,
+          "pointsAgainst": 44,
+          "percentage": 59.09,
+          "points": 4
+        },
+        {
+          "position": 5,
+          "teamName": "Beavers Starlets",
+          "played": 2,
+          "wins": 0,
+          "losses": 2,
+          "pointsFor": 23,
+          "pointsAgainst": 28,
+          "percentage": 82.14,
+          "points": 2
         }
       ]
     },
@@ -2726,60 +2830,27 @@
       {
         "position": 1,
         "teamName": "Aztec U14 Girls Purple",
-        "played": 1,
-        "wins": 1,
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 36,
-        "pointsAgainst": 22,
-        "percentage": 163.64,
-        "points": 3
+        "pointsFor": 68,
+        "pointsAgainst": 32,
+        "percentage": 212.5,
+        "points": 6
       },
       {
         "position": 2,
-        "teamName": "U14 Girls Girton Gems",
-        "played": 1,
-        "wins": 1,
+        "teamName": "PHOENIX Diamonds",
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 16,
-        "pointsAgainst": 12,
-        "percentage": 133.33,
-        "points": 3
+        "pointsFor": 26,
+        "pointsAgainst": 24,
+        "percentage": 108.33,
+        "points": 6
       },
       {
         "position": 3,
-        "teamName": "PHOENIX Diamonds",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 14,
-        "pointsAgainst": 13,
-        "percentage": 107.69,
-        "points": 3
-      },
-      {
-        "position": 4,
-        "teamName": "Aztec U14 Girls Yellow",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 13,
-        "pointsAgainst": 14,
-        "percentage": 92.86,
-        "points": 1
-      },
-      {
-        "position": 5,
-        "teamName": "Beavers Starlets",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 12,
-        "pointsAgainst": 16,
-        "percentage": 75,
-        "points": 1
-      },
-      {
-        "position": 6,
         "teamName": "Aztec U14 Girls Pink",
         "played": 1,
         "wins": 0,
@@ -2787,7 +2858,29 @@
         "pointsFor": 22,
         "pointsAgainst": 36,
         "percentage": 61.11,
-        "points": 1
+        "points": 4
+      },
+      {
+        "position": 4,
+        "teamName": "U14 Girls Girton Gems",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 26,
+        "pointsAgainst": 44,
+        "percentage": 59.09,
+        "points": 4
+      },
+      {
+        "position": 5,
+        "teamName": "Beavers Starlets",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 23,
+        "pointsAgainst": 28,
+        "percentage": 82.14,
+        "points": 2
       }
     ],
     "Monday U10 Girls 3": [
