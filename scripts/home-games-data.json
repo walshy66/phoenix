@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-27T14:33:58.708Z",
+  "generatedAt": "2026-04-28T07:47:45.229Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -233,6 +233,48 @@
       "competition": "Friday U16 Boys 7",
       "venue": "Bendigo South East College",
       "court": "Court 3"
+    },
+    {
+      "gameId": "0f233b45-1e3f-492c-84df-e06e1eb43fb9",
+      "homeTeam": "PHOENIX Go Getters",
+      "awayTeam": "St Francis U10 Girls Swish Sisters",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "kickoffDate": "2026-05-04",
+      "kickoffTime": "17:15:00",
+      "kickoffDisplay": "17:15",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5"
+    },
+    {
+      "gameId": "d747b3e8-fcc1-497e-b92a-46abd8f92d3f",
+      "homeTeam": "PHOENIX Firebirds",
+      "awayTeam": "DIAMOND FLAMINGO’s",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "kickoffDate": "2026-05-04",
+      "kickoffTime": "17:15:00",
+      "kickoffDisplay": "17:15",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4"
+    },
+    {
+      "gameId": "00448033-454f-4472-9def-2a74fbe0b7bb",
+      "homeTeam": "PHOENIX Diamonds",
+      "awayTeam": "Aztec U14 Girls Pink",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "kickoffDate": "2026-05-04",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Monday U14 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8"
     },
     {
       "gameId": "8e64b02a-37ba-4ada-828f-2a9eb6d7e5a9",

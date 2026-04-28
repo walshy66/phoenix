@@ -1,11 +1,26 @@
 {
-  "lastUpdated": "2026-04-27T14:31:35.387Z",
+  "lastUpdated": "2026-04-28T07:44:49.465Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
       "teamName": "PHOENIX Firebirds",
       "gradeName": "Monday U10 Girls 3",
       "fixture": [
+        {
+          "id": "d747b3e8-fcc1-497e-b92a-46abd8f92d3f",
+          "date": "2026-05-04",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Firebirds",
+          "awayTeam": "DIAMOND FLAMINGO’s",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "8d13c32c-b030-4f02-96d5-771e909e771b",
           "date": "2026-04-27",
@@ -348,6 +363,21 @@
       "teamName": "PHOENIX Go Getters",
       "gradeName": "Monday U10 Girls 3",
       "fixture": [
+        {
+          "id": "0f233b45-1e3f-492c-84df-e06e1eb43fb9",
+          "date": "2026-05-04",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 5",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Go Getters",
+          "awayTeam": "St Francis U10 Girls Swish Sisters",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "8e64b02a-37ba-4ada-828f-2a9eb6d7e5a9",
           "date": "2026-04-27",
@@ -1644,6 +1674,21 @@
       "teamName": "PHOENIX Diamonds",
       "gradeName": "Monday U14 Girls 4",
       "fixture": [
+        {
+          "id": "00448033-454f-4472-9def-2a74fbe0b7bb",
+          "date": "2026-05-04",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 8",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Diamonds",
+          "awayTeam": "Aztec U14 Girls Pink",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
           "date": "2026-04-27",
