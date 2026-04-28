@@ -1,7 +1,7 @@
 {
   "roundNumber": 2,
   "season": "Winter 2026",
-  "lastUpdated": "2026-04-28T07:49:48.153Z",
+  "lastUpdated": "2026-04-28T08:37:58.393Z",
   "status": "upcoming",
   "games": [
     {
@@ -738,21 +738,128 @@
       "court": "Court 7",
       "homeTeam": "Beavers Belles",
       "awayTeam": "PHOENIX Stars",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 8,
+      "awayScore": 22,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Imogen Clee",
+            "team": "PHOENIX Stars",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ivy Adams",
+            "team": "PHOENIX Stars",
+            "points": 8,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Kahlee Everitt",
+            "team": "Beavers Belles",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Addy Hartley",
+            "team": "PHOENIX Stars",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Leni Sanders",
+            "team": "Beavers Belles",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Pearl Patton",
+            "team": "PHOENIX Stars",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ada Perryman",
+            "team": "Beavers Belles",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ava Clark",
+            "team": "Beavers Belles",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Claire Barber",
+            "team": "PHOENIX Stars",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eleanor Todeschini",
+            "team": "PHOENIX Stars",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Grace King",
+            "team": "Beavers Belles",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Isabelle Rankin",
+            "team": "PHOENIX Stars",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Phoebe Belk",
+            "team": "Beavers Belles",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
           "teamName": "PHOENIX Stars",
-          "played": 1,
-          "wins": 1,
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 33,
-          "pointsAgainst": 7,
-          "percentage": 471.43,
-          "points": 3
+          "pointsFor": 55,
+          "pointsAgainst": 15,
+          "percentage": 366.67,
+          "points": 6
         },
         {
           "position": 2,
@@ -763,7 +870,7 @@
           "pointsFor": 23,
           "pointsAgainst": 8,
           "percentage": 287.5,
-          "points": 3
+          "points": 6
         },
         {
           "position": 3,
@@ -779,13 +886,13 @@
         {
           "position": 4,
           "teamName": "Beavers Belles",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 8,
-          "pointsAgainst": 23,
-          "percentage": 34.78,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 16,
+          "pointsAgainst": 45,
+          "percentage": 35.56,
+          "points": 2
         },
         {
           "position": 5,
@@ -2773,13 +2880,13 @@
       {
         "position": 1,
         "teamName": "PHOENIX Stars",
-        "played": 1,
-        "wins": 1,
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 33,
-        "pointsAgainst": 7,
-        "percentage": 471.43,
-        "points": 3
+        "pointsFor": 55,
+        "pointsAgainst": 15,
+        "percentage": 366.67,
+        "points": 6
       },
       {
         "position": 2,
@@ -2790,7 +2897,7 @@
         "pointsFor": 23,
         "pointsAgainst": 8,
         "percentage": 287.5,
-        "points": 3
+        "points": 6
       },
       {
         "position": 3,
@@ -2806,13 +2913,13 @@
       {
         "position": 4,
         "teamName": "Beavers Belles",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 8,
-        "pointsAgainst": 23,
-        "percentage": 34.78,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 16,
+        "pointsAgainst": 45,
+        "percentage": 35.56,
+        "points": 2
       },
       {
         "position": 5,
