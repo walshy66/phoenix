@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T08:33:52.731Z",
+  "lastUpdated": "2026-04-28T10:35:46.745Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1750,15 +1750,15 @@
         {
           "rank": 3,
           "team": "St Francis U12 Girls Hornets",
-          "played": 0,
-          "won": 0,
+          "played": 1,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 4,
-          "team": "Beavers Belles",
+          "team": "Strath Shooting Stars",
           "played": 2,
           "won": 0,
           "lost": 2,
@@ -1767,12 +1767,12 @@
         },
         {
           "rank": 5,
-          "team": "Strath Shooting Stars",
-          "played": 1,
+          "team": "Beavers Belles",
+          "played": 2,
           "won": 0,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 1
+          "points": 2
         }
       ]
     },
@@ -3960,11 +3960,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "Aztec U16 Girls Purple",
           "awayTeam": "PHOENIX Tulips",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 28,
+          "awayScore": 11,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Mollie Edwards",
+                "team": "Aztec U16 Girls Purple",
+                "points": 18,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lucie Edwards",
+                "team": "Aztec U16 Girls Purple",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Alana Lee",
+                "team": "Aztec U16 Girls Purple",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Aleeah Mander",
+                "team": "PHOENIX Tulips",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Vaydah Burchell",
+                "team": "PHOENIX Tulips",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Eleanor Symons",
+                "team": "PHOENIX Tulips",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jayla Bradley",
+                "team": "PHOENIX Tulips",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Billie Moss",
+                "team": "Aztec U16 Girls Purple",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hannah Torney",
+                "team": "Aztec U16 Girls Purple",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Isabelle Robertson",
+                "team": "Aztec U16 Girls Purple",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Madeline Gibbons",
+                "team": "Aztec U16 Girls Purple",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Matilda evans",
+                "team": "PHOENIX Tulips",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Verity Sleep",
+                "team": "PHOENIX Tulips",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Zoya Fahad",
+                "team": "Aztec U16 Girls Purple",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "74b44602-3110-4547-b256-4cad7c87b3c6",
@@ -4108,57 +4223,57 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Bunjils U16 Girls Burra",
-          "played": 1,
-          "won": 1,
+          "team": "Beavers Spring Chicks",
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 2,
-          "team": "Aztec U16 Girls Aqua",
-          "played": 1,
+          "team": "Bunjils U16 Girls Burra",
+          "played": 2,
           "won": 1,
           "lost": 0,
-          "drawn": 0,
-          "points": 3
+          "drawn": 1,
+          "points": 5
         },
         {
           "rank": 3,
-          "team": "Beavers Spring Chicks",
-          "played": 1,
+          "team": "Aztec U16 Girls Purple",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 4,
-          "team": "PHOENIX Tulips",
-          "played": 1,
-          "won": 0,
+          "team": "Aztec U16 Girls Aqua",
+          "played": 2,
+          "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 1
+          "points": 4
         },
         {
           "rank": 5,
-          "team": "Aztec U16 Girls Purple",
-          "played": 1,
+          "team": "U16 Girls Girton Crystals",
+          "played": 2,
           "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
+          "lost": 0,
+          "drawn": 1,
+          "points": 2
         },
         {
           "rank": 6,
-          "team": "U16 Girls Girton Crystals",
-          "played": 1,
+          "team": "PHOENIX Tulips",
+          "played": 2,
           "won": 0,
-          "lost": 0,
+          "lost": 2,
           "drawn": 0,
-          "points": 0
+          "points": 2
         }
       ]
     },

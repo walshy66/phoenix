@@ -1,7 +1,7 @@
 {
   "roundNumber": 2,
   "season": "Winter 2026",
-  "lastUpdated": "2026-04-28T08:37:58.393Z",
+  "lastUpdated": "2026-04-28T10:39:51.738Z",
   "status": "upcoming",
   "games": [
     {
@@ -655,76 +655,191 @@
       "court": "Court 4",
       "homeTeam": "Aztec U16 Girls Purple",
       "awayTeam": "PHOENIX Tulips",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 28,
+      "awayScore": 11,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Mollie Edwards",
+            "team": "Aztec U16 Girls Purple",
+            "points": 18,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lucie Edwards",
+            "team": "Aztec U16 Girls Purple",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Alana Lee",
+            "team": "Aztec U16 Girls Purple",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Aleeah Mander",
+            "team": "PHOENIX Tulips",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Vaydah Burchell",
+            "team": "PHOENIX Tulips",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eleanor Symons",
+            "team": "PHOENIX Tulips",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jayla Bradley",
+            "team": "PHOENIX Tulips",
+            "points": 1,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Billie Moss",
+            "team": "Aztec U16 Girls Purple",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Hannah Torney",
+            "team": "Aztec U16 Girls Purple",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Isabelle Robertson",
+            "team": "Aztec U16 Girls Purple",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Madeline Gibbons",
+            "team": "Aztec U16 Girls Purple",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Matilda evans",
+            "team": "PHOENIX Tulips",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Verity Sleep",
+            "team": "PHOENIX Tulips",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Zoya Fahad",
+            "team": "Aztec U16 Girls Purple",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
-          "teamName": "Bunjils U16 Girls Burra",
-          "played": 1,
-          "wins": 1,
+          "teamName": "Beavers Spring Chicks",
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 24,
-          "pointsAgainst": 21,
-          "percentage": 114.29,
-          "points": 3
+          "pointsFor": 31,
+          "pointsAgainst": 23,
+          "percentage": 134.78,
+          "points": 6
         },
         {
           "position": 2,
-          "teamName": "Aztec U16 Girls Aqua",
-          "played": 1,
+          "teamName": "Bunjils U16 Girls Burra",
+          "played": 2,
           "wins": 1,
           "losses": 0,
-          "pointsFor": 40,
-          "pointsAgainst": 36,
-          "percentage": 111.11,
-          "points": 3
+          "pointsFor": 46,
+          "pointsAgainst": 43,
+          "percentage": 106.98,
+          "points": 5
         },
         {
           "position": 3,
-          "teamName": "Beavers Spring Chicks",
-          "played": 1,
+          "teamName": "Aztec U16 Girls Purple",
+          "played": 2,
           "wins": 1,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
+          "losses": 1,
+          "pointsFor": 49,
+          "pointsAgainst": 35,
+          "percentage": 140,
+          "points": 4
         },
         {
           "position": 4,
-          "teamName": "PHOENIX Tulips",
-          "played": 1,
-          "wins": 0,
+          "teamName": "Aztec U16 Girls Aqua",
+          "played": 2,
+          "wins": 1,
           "losses": 1,
-          "pointsFor": 36,
-          "pointsAgainst": 40,
-          "percentage": 90,
-          "points": 1
+          "pointsFor": 63,
+          "pointsAgainst": 67,
+          "percentage": 94.03,
+          "points": 4
         },
         {
           "position": 5,
-          "teamName": "Aztec U16 Girls Purple",
-          "played": 1,
+          "teamName": "U16 Girls Girton Crystals",
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 21,
-          "pointsAgainst": 24,
-          "percentage": 87.5,
-          "points": 1
+          "losses": 0,
+          "pointsFor": 22,
+          "pointsAgainst": 22,
+          "percentage": 100,
+          "points": 2
         },
         {
           "position": 6,
-          "teamName": "U16 Girls Girton Crystals",
-          "played": 1,
+          "teamName": "PHOENIX Tulips",
+          "played": 2,
           "wins": 0,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 0
+          "losses": 2,
+          "pointsFor": 47,
+          "pointsAgainst": 68,
+          "percentage": 69.12,
+          "points": 2
         }
       ]
     },
@@ -875,16 +990,27 @@
         {
           "position": 3,
           "teamName": "St Francis U12 Girls Hornets",
-          "played": 0,
-          "wins": 0,
+          "played": 1,
+          "wins": 1,
           "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
+          "pointsFor": 15,
+          "pointsAgainst": 13,
+          "percentage": 115.38,
+          "points": 6
         },
         {
           "position": 4,
+          "teamName": "Strath Shooting Stars",
+          "played": 2,
+          "wins": 0,
+          "losses": 2,
+          "pointsFor": 20,
+          "pointsAgainst": 48,
+          "percentage": 41.67,
+          "points": 2
+        },
+        {
+          "position": 5,
           "teamName": "Beavers Belles",
           "played": 2,
           "wins": 0,
@@ -893,17 +1019,6 @@
           "pointsAgainst": 45,
           "percentage": 35.56,
           "points": 2
-        },
-        {
-          "position": 5,
-          "teamName": "Strath Shooting Stars",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 7,
-          "pointsAgainst": 33,
-          "percentage": 21.21,
-          "points": 1
         }
       ]
     },
@@ -2811,69 +2926,69 @@
     "Tuesday U16 Girls 3": [
       {
         "position": 1,
-        "teamName": "Bunjils U16 Girls Burra",
-        "played": 1,
-        "wins": 1,
+        "teamName": "Beavers Spring Chicks",
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 24,
-        "pointsAgainst": 21,
-        "percentage": 114.29,
-        "points": 3
+        "pointsFor": 31,
+        "pointsAgainst": 23,
+        "percentage": 134.78,
+        "points": 6
       },
       {
         "position": 2,
-        "teamName": "Aztec U16 Girls Aqua",
-        "played": 1,
+        "teamName": "Bunjils U16 Girls Burra",
+        "played": 2,
         "wins": 1,
         "losses": 0,
-        "pointsFor": 40,
-        "pointsAgainst": 36,
-        "percentage": 111.11,
-        "points": 3
+        "pointsFor": 46,
+        "pointsAgainst": 43,
+        "percentage": 106.98,
+        "points": 5
       },
       {
         "position": 3,
-        "teamName": "Beavers Spring Chicks",
-        "played": 1,
+        "teamName": "Aztec U16 Girls Purple",
+        "played": 2,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
+        "losses": 1,
+        "pointsFor": 49,
+        "pointsAgainst": 35,
+        "percentage": 140,
+        "points": 4
       },
       {
         "position": 4,
-        "teamName": "PHOENIX Tulips",
-        "played": 1,
-        "wins": 0,
+        "teamName": "Aztec U16 Girls Aqua",
+        "played": 2,
+        "wins": 1,
         "losses": 1,
-        "pointsFor": 36,
-        "pointsAgainst": 40,
-        "percentage": 90,
-        "points": 1
+        "pointsFor": 63,
+        "pointsAgainst": 67,
+        "percentage": 94.03,
+        "points": 4
       },
       {
         "position": 5,
-        "teamName": "Aztec U16 Girls Purple",
-        "played": 1,
+        "teamName": "U16 Girls Girton Crystals",
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 21,
-        "pointsAgainst": 24,
-        "percentage": 87.5,
-        "points": 1
+        "losses": 0,
+        "pointsFor": 22,
+        "pointsAgainst": 22,
+        "percentage": 100,
+        "points": 2
       },
       {
         "position": 6,
-        "teamName": "U16 Girls Girton Crystals",
-        "played": 1,
+        "teamName": "PHOENIX Tulips",
+        "played": 2,
         "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "losses": 2,
+        "pointsFor": 47,
+        "pointsAgainst": 68,
+        "percentage": 69.12,
+        "points": 2
       }
     ],
     "Tuesday U12 Girls 4": [
@@ -2902,16 +3017,27 @@
       {
         "position": 3,
         "teamName": "St Francis U12 Girls Hornets",
-        "played": 0,
-        "wins": 0,
+        "played": 1,
+        "wins": 1,
         "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
+        "pointsFor": 15,
+        "pointsAgainst": 13,
+        "percentage": 115.38,
+        "points": 6
       },
       {
         "position": 4,
+        "teamName": "Strath Shooting Stars",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 20,
+        "pointsAgainst": 48,
+        "percentage": 41.67,
+        "points": 2
+      },
+      {
+        "position": 5,
         "teamName": "Beavers Belles",
         "played": 2,
         "wins": 0,
@@ -2920,17 +3046,6 @@
         "pointsAgainst": 45,
         "percentage": 35.56,
         "points": 2
-      },
-      {
-        "position": 5,
-        "teamName": "Strath Shooting Stars",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 7,
-        "pointsAgainst": 33,
-        "percentage": 21.21,
-        "points": 1
       }
     ],
     "Monday U14 Girls 4": [

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-28T08:36:10.392Z",
+  "generatedAt": "2026-04-28T10:38:04.672Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,20 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
-      "homeTeam": "Aztec U16 Girls Purple",
-      "awayTeam": "PHOENIX Tulips",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-28",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Tuesday U16 Girls 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 4"
-    },
     {
       "gameId": "8be89f39-69d8-49af-9fb7-93afcb380e46",
       "homeTeam": "Beavers Cavs",
@@ -275,6 +261,20 @@
       "competition": "Tuesday U12 Girls 4",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 7"
+    },
+    {
+      "gameId": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
+      "homeTeam": "Aztec U16 Girls Purple",
+      "awayTeam": "PHOENIX Tulips",
+      "homeScore": 28,
+      "awayScore": 11,
+      "status": "completed",
+      "kickoffDate": "2026-04-28",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Tuesday U16 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4"
     },
     {
       "gameId": "8e64b02a-37ba-4ada-828f-2a9eb6d7e5a9",
