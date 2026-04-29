@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T09:06:48.503Z",
+  "generatedAt": "2026-04-29T10:30:24.389Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,34 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "666fcffc-4d22-44e1-83cf-b53b8d9547a1",
-      "homeTeam": "PHOENIX Sweats",
-      "awayTeam": "Beavers Ignite",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-29",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Wednesday U14 Boys 5",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 2"
-    },
-    {
-      "gameId": "7eb57849-7b35-45bc-8670-11cd666a8882",
-      "homeTeam": "Generals U16 Boys Hornets",
-      "awayTeam": "PHOENIX Zinger Boxes",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-29",
-      "kickoffTime": "19:30:00",
-      "kickoffDisplay": "19:30",
-      "competition": "Wednesday U16 Boys 2",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 5"
-    },
     {
       "gameId": "dc51cd4e-db3f-4151-9b2d-f88b5e01f66d",
       "homeTeam": "PHOENIX Thunder",
@@ -275,6 +247,34 @@
       "competition": "Wednesday U14 Boys 2",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4"
+    },
+    {
+      "gameId": "666fcffc-4d22-44e1-83cf-b53b8d9547a1",
+      "homeTeam": "PHOENIX Sweats",
+      "awayTeam": "Beavers Ignite",
+      "homeScore": 21,
+      "awayScore": 31,
+      "status": "completed",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 2"
+    },
+    {
+      "gameId": "7eb57849-7b35-45bc-8670-11cd666a8882",
+      "homeTeam": "Generals U16 Boys Hornets",
+      "awayTeam": "PHOENIX Zinger Boxes",
+      "homeScore": 25,
+      "awayScore": 52,
+      "status": "completed",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "19:30:00",
+      "kickoffDisplay": "19:30",
+      "competition": "Wednesday U16 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5"
     },
     {
       "gameId": "88fad284-6a25-4248-8a57-668df0e0b8d3",
