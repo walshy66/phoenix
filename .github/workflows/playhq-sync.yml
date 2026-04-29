@@ -2,9 +2,8 @@ name: PlayHQ Sync
 
 on:
   schedule:
-    # Static refresh cadence during Melbourne game windows.
-    - cron: '30-59/10 5 * * 1,2,3,5'
-    - cron: '*/10 6-13 * * 1,2,3,5'
+    # Hourly refresh cadence during Melbourne game windows.
+    - cron: '30 5-13 * * 1,2,3,5'
     # Weekly round finalisation / warm-up.
     - cron: '5 14 * * 6'
     - cron: '0 14 * * 0'
@@ -33,8 +32,7 @@ jobs:
       cancel-in-progress: true
     if: >-
       (github.event_name == 'workflow_dispatch' && (inputs.mode == 'full' || inputs.mode == 'static'))
-      || github.event.schedule == '30-59/10 5 * * 1,2,3,5'
-      || github.event.schedule == '*/10 6-13 * * 1,2,3,5'
+      || github.event.schedule == '30 5-13 * * 1,2,3,5'
       || github.event.schedule == '5 14 * * 6'
       || github.event.schedule == '0 14 * * 0'
       || github.event.schedule == '0 15 * * 0'
@@ -42,16 +40,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
+      - name: Check Melbourne refresh window
+        id: window
+        if: github.event_name == 'schedule'
+        run: |
+          # Melbourne local window: 4:30pm–11:30pm.
+          current_day=$(TZ=Australia/Melbourne date +%u)
+          current_time=$(TZ=Australia/Melbourne date +%H:%M)
+          within_window=false
+
+          if [[ "$current_day" =~ ^[1235]$ ]] && [[ "$current_time" > "16:29" ]] && [[ "$current_time" < "23:31" ]]; then
+            within_window=true
+          fi
+
+          echo "melbourne_day=$current_day" >> "$GITHUB_OUTPUT"
+          echo "melbourne_time=$current_time" >> "$GITHUB_OUTPUT"
+          echo "within_window=$within_window" >> "$GITHUB_OUTPUT"
+          echo "Melbourne time: $current_day $current_time (within window: $within_window)"
+
       - name: Setup Node
+        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
 
       - name: Install dependencies
+        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         run: npm ci
 
       - name: Refresh Teams data
+        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -61,6 +80,7 @@ jobs:
           node scripts/scrape-playhq-teams-details.js
 
       - name: Refresh scores, weekly fixtures, and home data
+        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -77,6 +97,7 @@ jobs:
           npm run home-scores:check
 
       - name: Refresh round files
+        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -88,6 +109,7 @@ jobs:
           npm run rounds:check
 
       - name: Publish static artifacts to public/live-data
+        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         run: |
           mkdir -p public/live-data
           cp scripts/weekly-games-data.json public/live-data/fixtures.json
@@ -95,6 +117,7 @@ jobs:
           cp scripts/home-games-data.json public/live-data/home-games.json
 
       - name: Commit refreshed data files
+        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
