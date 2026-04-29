@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T07:41:44.473Z",
+  "generatedAt": "2026-04-29T09:06:48.503Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,34 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "e5aba86c-2312-4d07-920d-c57599c0f27f",
-      "homeTeam": "Beavers Boomers",
-      "awayTeam": "PHOENIX Legends",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-29",
-      "kickoffTime": "17:15:00",
-      "kickoffDisplay": "17:15",
-      "competition": "Wednesday U14 Boys 7",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7"
-    },
-    {
-      "gameId": "4e875533-0fa6-41ab-a795-5580d55b4e62",
-      "homeTeam": "PHOENIX Two Blues",
-      "awayTeam": "Aztec U14 Boys Black",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-04-29",
-      "kickoffTime": "18:00:00",
-      "kickoffDisplay": "18:00",
-      "competition": "Wednesday U14 Boys 2",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 4"
-    },
     {
       "gameId": "666fcffc-4d22-44e1-83cf-b53b8d9547a1",
       "homeTeam": "PHOENIX Sweats",
@@ -275,6 +247,34 @@
       "competition": "Wednesday U14 Boys 8",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 5"
+    },
+    {
+      "gameId": "e5aba86c-2312-4d07-920d-c57599c0f27f",
+      "homeTeam": "Beavers Boomers",
+      "awayTeam": "PHOENIX Legends",
+      "homeScore": 26,
+      "awayScore": 36,
+      "status": "completed",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "17:15:00",
+      "kickoffDisplay": "17:15",
+      "competition": "Wednesday U14 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7"
+    },
+    {
+      "gameId": "4e875533-0fa6-41ab-a795-5580d55b4e62",
+      "homeTeam": "PHOENIX Two Blues",
+      "awayTeam": "Aztec U14 Boys Black",
+      "homeScore": 80,
+      "awayScore": 50,
+      "status": "completed",
+      "kickoffDate": "2026-04-29",
+      "kickoffTime": "18:00:00",
+      "kickoffDisplay": "18:00",
+      "competition": "Wednesday U14 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4"
     },
     {
       "gameId": "88fad284-6a25-4248-8a57-668df0e0b8d3",
