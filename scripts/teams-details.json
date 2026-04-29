@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T10:28:05.022Z",
+  "lastUpdated": "2026-04-29T12:06:20.937Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -5086,6 +5086,24 @@
         },
         {
           "rank": 2,
+          "team": "Strath Saints",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 3,
+          "team": "Aztec U16 Boys Amber",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 4,
           "team": "Aztec U16 Boys Orange",
           "played": 2,
           "won": 1,
@@ -5094,53 +5112,35 @@
           "points": 4
         },
         {
-          "rank": 3,
-          "team": "Strath Saints",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 4,
-          "team": "U16 Boys Girton Strikers",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
           "rank": 5,
-          "team": "Aztec U16 Boys Amber",
-          "played": 1,
+          "team": "Aztec U16 Boys Mint",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 6,
-          "team": "Aztec U16 Boys Mint",
-          "played": 1,
+          "team": "U16 Boys Girton Strikers",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 7,
-          "team": "Beavers Outlaws",
+          "team": "Aztec U16 Boys Red",
           "played": 2,
-          "won": 0,
-          "lost": 2,
+          "won": 1,
+          "lost": 1,
           "drawn": 0,
-          "points": 2
+          "points": 4
         },
         {
           "rank": 8,
-          "team": "Generals U16 Boys Hornets",
+          "team": "Aztec U16 Boys Yellow",
           "played": 2,
           "won": 0,
           "lost": 2,
@@ -5149,21 +5149,21 @@
         },
         {
           "rank": 9,
-          "team": "Aztec U16 Boys Red",
-          "played": 1,
+          "team": "Beavers Outlaws",
+          "played": 2,
           "won": 0,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 1
+          "points": 2
         },
         {
           "rank": 10,
-          "team": "Aztec U16 Boys Yellow",
-          "played": 1,
+          "team": "Generals U16 Boys Hornets",
+          "played": 2,
           "won": 0,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 1
+          "points": 2
         }
       ]
     },
