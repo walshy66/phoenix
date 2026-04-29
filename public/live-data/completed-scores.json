@@ -1,6 +1,36 @@
 {
-  "lastUpdated": "2026-04-28T12:18:12.512Z",
+  "lastUpdated": "2026-04-29T07:40:52.168Z",
   "scores": [
+    {
+      "id": "d39137eb-4af7-46a1-9c79-87e478407a02",
+      "roundNumber": 3,
+      "date": "2026-05-05",
+      "time": "19:30:00",
+      "competition": "Tuesday U16 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "PHOENIX Tulips",
+      "awayTeam": "Aztec U16 Girls Purple",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null
+    },
+    {
+      "id": "be42a70b-952f-486d-8194-3f1a6f110a78",
+      "roundNumber": 3,
+      "date": "2026-05-05",
+      "time": "16:30:00",
+      "competition": "Tuesday U12 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "homeTeam": "PHOENIX Stars",
+      "awayTeam": "Aztec U12 Girls Black",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null
+    },
     {
       "id": "00448033-454f-4472-9def-2a74fbe0b7bb",
       "roundNumber": 3,
@@ -206,9 +236,9 @@
       "court": "Court 5",
       "homeTeam": "Beavers Cavs",
       "awayTeam": "PHOENIX Flyers",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 50,
+      "awayScore": 16,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -908,8 +938,30 @@
     "Wednesday U18 Boys 1": [
       {
         "position": 1,
-        "teamName": "Generals U18 Boys Panthers",
+        "teamName": "Strath Warriors",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 40,
+        "pointsAgainst": 36,
+        "percentage": 111.11,
+        "points": 6
+      },
+      {
+        "position": 2,
+        "teamName": "Strath Mavericks",
         "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 41,
+        "pointsAgainst": 51,
+        "percentage": 80.39,
+        "points": 4
+      },
+      {
+        "position": 3,
+        "teamName": "Generals U18 Boys Panthers",
+        "played": 2,
         "wins": 1,
         "losses": 0,
         "pointsFor": 51,
@@ -918,18 +970,7 @@
         "points": 3
       },
       {
-        "position": 2,
-        "teamName": "Strath Warriors",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 40,
-        "pointsAgainst": 36,
-        "percentage": 111.11,
-        "points": 3
-      },
-      {
-        "position": 3,
+        "position": 4,
         "teamName": "Aztec U18 Boys Black",
         "played": 0,
         "wins": 0,
@@ -940,7 +981,7 @@
         "points": 3
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Beavers Blazers",
         "played": 1,
         "wins": 0,
@@ -948,17 +989,6 @@
         "pointsFor": 36,
         "pointsAgainst": 40,
         "percentage": 90,
-        "points": 1
-      },
-      {
-        "position": 5,
-        "teamName": "Strath Mavericks",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 41,
-        "pointsAgainst": 51,
-        "percentage": 80.39,
         "points": 1
       }
     ],
@@ -1168,27 +1198,49 @@
       {
         "position": 1,
         "teamName": "Beavers Cavs",
-        "played": 1,
-        "wins": 1,
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 63,
-        "pointsAgainst": 4,
-        "percentage": 1575,
-        "points": 3
+        "pointsFor": 113,
+        "pointsAgainst": 20,
+        "percentage": 565,
+        "points": 6
       },
       {
         "position": 2,
-        "teamName": "PHOENIX Flyers",
-        "played": 1,
-        "wins": 1,
+        "teamName": "Bunjils U14 Boys Titans",
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 36,
-        "pointsAgainst": 8,
-        "percentage": 450,
-        "points": 3
+        "pointsFor": 72,
+        "pointsAgainst": 42,
+        "percentage": 171.43,
+        "points": 6
       },
       {
         "position": 3,
+        "teamName": "St Francis U14 Boys Boomers",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 13,
+        "pointsAgainst": 8,
+        "percentage": 162.5,
+        "points": 6
+      },
+      {
+        "position": 4,
+        "teamName": "PHOENIX Flyers",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 52,
+        "pointsAgainst": 58,
+        "percentage": 89.66,
+        "points": 4
+      },
+      {
+        "position": 5,
         "teamName": "Beavers Celtics",
         "played": 1,
         "wins": 1,
@@ -1199,29 +1251,18 @@
         "points": 3
       },
       {
-        "position": 4,
-        "teamName": "St Francis U14 Boys Boomers",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 13,
-        "pointsAgainst": 8,
-        "percentage": 162.5,
-        "points": 3
-      },
-      {
-        "position": 5,
-        "teamName": "Bunjils U14 Boys Titans",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 33,
-        "pointsAgainst": 23,
-        "percentage": 143.48,
-        "points": 3
-      },
-      {
         "position": 6,
+        "teamName": "Generals U14 Boys Giants",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 41,
+        "pointsAgainst": 90,
+        "percentage": 45.56,
+        "points": 2
+      },
+      {
+        "position": 7,
         "teamName": "FLAMINGO’S LEGACY ",
         "played": 1,
         "wins": 0,
@@ -1232,7 +1273,7 @@
         "points": 1
       },
       {
-        "position": 7,
+        "position": 8,
         "teamName": "U14 Boys Girton Eagles",
         "played": 1,
         "wins": 0,
@@ -1240,17 +1281,6 @@
         "pointsFor": 8,
         "pointsAgainst": 13,
         "percentage": 61.54,
-        "points": 1
-      },
-      {
-        "position": 8,
-        "teamName": "Generals U14 Boys Giants",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 22,
-        "pointsAgainst": 51,
-        "percentage": 43.14,
         "points": 1
       },
       {
@@ -1988,6 +2018,17 @@
         "pointsAgainst": 68,
         "percentage": 69.12,
         "points": 2
+      },
+      {
+        "position": 7,
+        "teamName": "Beavers Gems",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 21,
+        "pointsAgainst": 102,
+        "percentage": 20.59,
+        "points": 2
       }
     ],
     "Tuesday U16 Girls 2": [
@@ -2045,22 +2086,22 @@
         "pointsAgainst": 76,
         "percentage": 47.37,
         "points": 2
-      },
-      {
-        "position": 6,
-        "teamName": "Beavers Gems",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 21,
-        "pointsAgainst": 102,
-        "percentage": 20.59,
-        "points": 2
       }
     ],
     "Tuesday U16 Girls 1": [
       {
         "position": 1,
+        "teamName": "Beavers Mystics",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 84,
+        "pointsAgainst": 92,
+        "percentage": 91.3,
+        "points": 7
+      },
+      {
+        "position": 2,
         "teamName": "Beavers Shadows",
         "played": 2,
         "wins": 2,
@@ -2071,7 +2112,7 @@
         "points": 6
       },
       {
-        "position": 2,
+        "position": 3,
         "teamName": "Generals U16 Girls Dabbers",
         "played": 2,
         "wins": 2,
@@ -2082,7 +2123,7 @@
         "points": 6
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Aztec U16 Girls Mint",
         "played": 2,
         "wins": 1,
@@ -2093,25 +2134,14 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Moama Grammar",
-        "played": 2,
+        "played": 3,
         "wins": 1,
         "losses": 1,
         "pointsFor": 71,
         "pointsAgainst": 77,
         "percentage": 92.21,
-        "points": 4
-      },
-      {
-        "position": 5,
-        "teamName": "Beavers Mystics",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 84,
-        "pointsAgainst": 92,
-        "percentage": 91.3,
         "points": 4
       },
       {
@@ -6054,8 +6084,30 @@
     },
     {
       "position": 1,
-      "teamName": "Generals U18 Boys Panthers",
+      "teamName": "Strath Warriors",
+      "played": 2,
+      "wins": 2,
+      "losses": 0,
+      "pointsFor": 40,
+      "pointsAgainst": 36,
+      "percentage": 111.11,
+      "points": 6
+    },
+    {
+      "position": 2,
+      "teamName": "Strath Mavericks",
       "played": 1,
+      "wins": 0,
+      "losses": 1,
+      "pointsFor": 41,
+      "pointsAgainst": 51,
+      "percentage": 80.39,
+      "points": 4
+    },
+    {
+      "position": 3,
+      "teamName": "Generals U18 Boys Panthers",
+      "played": 2,
       "wins": 1,
       "losses": 0,
       "pointsFor": 51,
@@ -6064,18 +6116,7 @@
       "points": 3
     },
     {
-      "position": 2,
-      "teamName": "Strath Warriors",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 40,
-      "pointsAgainst": 36,
-      "percentage": 111.11,
-      "points": 3
-    },
-    {
-      "position": 3,
+      "position": 4,
       "teamName": "Aztec U18 Boys Black",
       "played": 0,
       "wins": 0,
@@ -6086,7 +6127,7 @@
       "points": 3
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Beavers Blazers",
       "played": 1,
       "wins": 0,
@@ -6094,17 +6135,6 @@
       "pointsFor": 36,
       "pointsAgainst": 40,
       "percentage": 90,
-      "points": 1
-    },
-    {
-      "position": 5,
-      "teamName": "Strath Mavericks",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 41,
-      "pointsAgainst": 51,
-      "percentage": 80.39,
       "points": 1
     },
     {
@@ -6308,27 +6338,49 @@
     {
       "position": 1,
       "teamName": "Beavers Cavs",
-      "played": 1,
-      "wins": 1,
+      "played": 2,
+      "wins": 2,
       "losses": 0,
-      "pointsFor": 63,
-      "pointsAgainst": 4,
-      "percentage": 1575,
-      "points": 3
+      "pointsFor": 113,
+      "pointsAgainst": 20,
+      "percentage": 565,
+      "points": 6
     },
     {
       "position": 2,
-      "teamName": "PHOENIX Flyers",
-      "played": 1,
-      "wins": 1,
+      "teamName": "Bunjils U14 Boys Titans",
+      "played": 2,
+      "wins": 2,
       "losses": 0,
-      "pointsFor": 36,
-      "pointsAgainst": 8,
-      "percentage": 450,
-      "points": 3
+      "pointsFor": 72,
+      "pointsAgainst": 42,
+      "percentage": 171.43,
+      "points": 6
     },
     {
       "position": 3,
+      "teamName": "St Francis U14 Boys Boomers",
+      "played": 1,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 13,
+      "pointsAgainst": 8,
+      "percentage": 162.5,
+      "points": 6
+    },
+    {
+      "position": 4,
+      "teamName": "PHOENIX Flyers",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "pointsFor": 52,
+      "pointsAgainst": 58,
+      "percentage": 89.66,
+      "points": 4
+    },
+    {
+      "position": 5,
       "teamName": "Beavers Celtics",
       "played": 1,
       "wins": 1,
@@ -6339,29 +6391,18 @@
       "points": 3
     },
     {
-      "position": 4,
-      "teamName": "St Francis U14 Boys Boomers",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 13,
-      "pointsAgainst": 8,
-      "percentage": 162.5,
-      "points": 3
-    },
-    {
-      "position": 5,
-      "teamName": "Bunjils U14 Boys Titans",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 33,
-      "pointsAgainst": 23,
-      "percentage": 143.48,
-      "points": 3
-    },
-    {
       "position": 6,
+      "teamName": "Generals U14 Boys Giants",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 41,
+      "pointsAgainst": 90,
+      "percentage": 45.56,
+      "points": 2
+    },
+    {
+      "position": 7,
       "teamName": "FLAMINGO’S LEGACY ",
       "played": 1,
       "wins": 0,
@@ -6372,7 +6413,7 @@
       "points": 1
     },
     {
-      "position": 7,
+      "position": 8,
       "teamName": "U14 Boys Girton Eagles",
       "played": 1,
       "wins": 0,
@@ -6380,17 +6421,6 @@
       "pointsFor": 8,
       "pointsAgainst": 13,
       "percentage": 61.54,
-      "points": 1
-    },
-    {
-      "position": 8,
-      "teamName": "Generals U14 Boys Giants",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 22,
-      "pointsAgainst": 51,
-      "percentage": 43.14,
       "points": 1
     },
     {
@@ -7109,6 +7139,17 @@
       "points": 2
     },
     {
+      "position": 7,
+      "teamName": "Beavers Gems",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 21,
+      "pointsAgainst": 102,
+      "percentage": 20.59,
+      "points": 2
+    },
+    {
       "position": 1,
       "teamName": "Generals U16 Girls Fire",
       "played": 2,
@@ -7164,18 +7205,18 @@
       "points": 2
     },
     {
-      "position": 6,
-      "teamName": "Beavers Gems",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 21,
-      "pointsAgainst": 102,
-      "percentage": 20.59,
-      "points": 2
+      "position": 1,
+      "teamName": "Beavers Mystics",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 84,
+      "pointsAgainst": 92,
+      "percentage": 91.3,
+      "points": 7
     },
     {
-      "position": 1,
+      "position": 2,
       "teamName": "Beavers Shadows",
       "played": 2,
       "wins": 2,
@@ -7186,7 +7227,7 @@
       "points": 6
     },
     {
-      "position": 2,
+      "position": 3,
       "teamName": "Generals U16 Girls Dabbers",
       "played": 2,
       "wins": 2,
@@ -7197,7 +7238,7 @@
       "points": 6
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Aztec U16 Girls Mint",
       "played": 2,
       "wins": 1,
@@ -7208,25 +7249,14 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Moama Grammar",
-      "played": 2,
+      "played": 3,
       "wins": 1,
       "losses": 1,
       "pointsFor": 71,
       "pointsAgainst": 77,
       "percentage": 92.21,
-      "points": 4
-    },
-    {
-      "position": 5,
-      "teamName": "Beavers Mystics",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 84,
-      "pointsAgainst": 92,
-      "percentage": 91.3,
       "points": 4
     },
     {

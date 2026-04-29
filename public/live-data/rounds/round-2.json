@@ -1,7 +1,7 @@
 {
   "roundNumber": 2,
   "season": "Winter 2026",
-  "lastUpdated": "2026-04-28T12:20:51.771Z",
+  "lastUpdated": "2026-04-29T07:43:51.282Z",
   "status": "upcoming",
   "games": [
     {
@@ -202,35 +202,172 @@
       "court": "Court 5",
       "homeTeam": "Beavers Cavs",
       "awayTeam": "PHOENIX Flyers",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 50,
+      "awayScore": 16,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "William Reeves",
+            "team": "Beavers Cavs",
+            "points": 16,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Chace-James Braddock",
+            "team": "Beavers Cavs",
+            "points": 14,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Isaac Brennan",
+            "team": "Beavers Cavs",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Peter Graham",
+            "team": "PHOENIX Flyers",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Chase Henderson",
+            "team": "PHOENIX Flyers",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Cooper Guild",
+            "team": "Beavers Cavs",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jack Anderson",
+            "team": "Beavers Cavs",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Trae Gormly",
+            "team": "Beavers Cavs",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Hudson Chiswell",
+            "team": "PHOENIX Flyers",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jax Repper",
+            "team": "Beavers Cavs",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Levi Hartland",
+            "team": "PHOENIX Flyers",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Muchovey Thomas",
+            "team": "PHOENIX Flyers",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Arlie Thacker",
+            "team": "PHOENIX Flyers",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Max Dixon",
+            "team": "PHOENIX Flyers",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
           "teamName": "Beavers Cavs",
-          "played": 1,
-          "wins": 1,
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 63,
-          "pointsAgainst": 4,
-          "percentage": 1575,
-          "points": 3
+          "pointsFor": 113,
+          "pointsAgainst": 20,
+          "percentage": 565,
+          "points": 6
         },
         {
           "position": 2,
-          "teamName": "PHOENIX Flyers",
-          "played": 1,
-          "wins": 1,
+          "teamName": "Bunjils U14 Boys Titans",
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 36,
-          "pointsAgainst": 8,
-          "percentage": 450,
-          "points": 3
+          "pointsFor": 72,
+          "pointsAgainst": 42,
+          "percentage": 171.43,
+          "points": 6
         },
         {
           "position": 3,
+          "teamName": "St Francis U14 Boys Boomers",
+          "played": 1,
+          "wins": 1,
+          "losses": 0,
+          "pointsFor": 13,
+          "pointsAgainst": 8,
+          "percentage": 162.5,
+          "points": 6
+        },
+        {
+          "position": 4,
+          "teamName": "PHOENIX Flyers",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 52,
+          "pointsAgainst": 58,
+          "percentage": 89.66,
+          "points": 4
+        },
+        {
+          "position": 5,
           "teamName": "Beavers Celtics",
           "played": 1,
           "wins": 1,
@@ -241,29 +378,18 @@
           "points": 3
         },
         {
-          "position": 4,
-          "teamName": "St Francis U14 Boys Boomers",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 13,
-          "pointsAgainst": 8,
-          "percentage": 162.5,
-          "points": 3
-        },
-        {
-          "position": 5,
-          "teamName": "Bunjils U14 Boys Titans",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 33,
-          "pointsAgainst": 23,
-          "percentage": 143.48,
-          "points": 3
-        },
-        {
           "position": 6,
+          "teamName": "Generals U14 Boys Giants",
+          "played": 2,
+          "wins": 0,
+          "losses": 2,
+          "pointsFor": 41,
+          "pointsAgainst": 90,
+          "percentage": 45.56,
+          "points": 2
+        },
+        {
+          "position": 7,
           "teamName": "FLAMINGO’S LEGACY ",
           "played": 1,
           "wins": 0,
@@ -274,7 +400,7 @@
           "points": 1
         },
         {
-          "position": 7,
+          "position": 8,
           "teamName": "U14 Boys Girton Eagles",
           "played": 1,
           "wins": 0,
@@ -282,17 +408,6 @@
           "pointsFor": 8,
           "pointsAgainst": 13,
           "percentage": 61.54,
-          "points": 1
-        },
-        {
-          "position": 8,
-          "teamName": "Generals U14 Boys Giants",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 22,
-          "pointsAgainst": 51,
-          "percentage": 43.14,
           "points": 1
         },
         {
@@ -839,6 +954,17 @@
           "pointsFor": 47,
           "pointsAgainst": 68,
           "percentage": 69.12,
+          "points": 2
+        },
+        {
+          "position": 7,
+          "teamName": "Beavers Gems",
+          "played": 2,
+          "wins": 0,
+          "losses": 2,
+          "pointsFor": 21,
+          "pointsAgainst": 102,
+          "percentage": 20.59,
           "points": 2
         }
       ]
@@ -2534,27 +2660,49 @@
       {
         "position": 1,
         "teamName": "Beavers Cavs",
-        "played": 1,
-        "wins": 1,
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 63,
-        "pointsAgainst": 4,
-        "percentage": 1575,
-        "points": 3
+        "pointsFor": 113,
+        "pointsAgainst": 20,
+        "percentage": 565,
+        "points": 6
       },
       {
         "position": 2,
-        "teamName": "PHOENIX Flyers",
-        "played": 1,
-        "wins": 1,
+        "teamName": "Bunjils U14 Boys Titans",
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 36,
-        "pointsAgainst": 8,
-        "percentage": 450,
-        "points": 3
+        "pointsFor": 72,
+        "pointsAgainst": 42,
+        "percentage": 171.43,
+        "points": 6
       },
       {
         "position": 3,
+        "teamName": "St Francis U14 Boys Boomers",
+        "played": 1,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 13,
+        "pointsAgainst": 8,
+        "percentage": 162.5,
+        "points": 6
+      },
+      {
+        "position": 4,
+        "teamName": "PHOENIX Flyers",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 52,
+        "pointsAgainst": 58,
+        "percentage": 89.66,
+        "points": 4
+      },
+      {
+        "position": 5,
         "teamName": "Beavers Celtics",
         "played": 1,
         "wins": 1,
@@ -2565,29 +2713,18 @@
         "points": 3
       },
       {
-        "position": 4,
-        "teamName": "St Francis U14 Boys Boomers",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 13,
-        "pointsAgainst": 8,
-        "percentage": 162.5,
-        "points": 3
-      },
-      {
-        "position": 5,
-        "teamName": "Bunjils U14 Boys Titans",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 33,
-        "pointsAgainst": 23,
-        "percentage": 143.48,
-        "points": 3
-      },
-      {
         "position": 6,
+        "teamName": "Generals U14 Boys Giants",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 41,
+        "pointsAgainst": 90,
+        "percentage": 45.56,
+        "points": 2
+      },
+      {
+        "position": 7,
         "teamName": "FLAMINGO’S LEGACY ",
         "played": 1,
         "wins": 0,
@@ -2598,7 +2735,7 @@
         "points": 1
       },
       {
-        "position": 7,
+        "position": 8,
         "teamName": "U14 Boys Girton Eagles",
         "played": 1,
         "wins": 0,
@@ -2606,17 +2743,6 @@
         "pointsFor": 8,
         "pointsAgainst": 13,
         "percentage": 61.54,
-        "points": 1
-      },
-      {
-        "position": 8,
-        "teamName": "Generals U14 Boys Giants",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 22,
-        "pointsAgainst": 51,
-        "percentage": 43.14,
         "points": 1
       },
       {
@@ -2988,6 +3114,17 @@
         "pointsFor": 47,
         "pointsAgainst": 68,
         "percentage": 69.12,
+        "points": 2
+      },
+      {
+        "position": 7,
+        "teamName": "Beavers Gems",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 21,
+        "pointsAgainst": 102,
+        "percentage": 20.59,
         "points": 2
       }
     ],

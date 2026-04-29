@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-28T12:16:28.539Z",
+  "lastUpdated": "2026-04-29T07:38:57.398Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1500,6 +1500,21 @@
       "gradeName": "Tuesday U12 Girls 4",
       "fixture": [
         {
+          "id": "be42a70b-952f-486d-8194-3f1a6f110a78",
+          "date": "2026-05-05",
+          "time": "16:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 5",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Stars",
+          "awayTeam": "Aztec U12 Girls Black",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "88fad284-6a25-4248-8a57-668df0e0b8d3",
           "date": "2026-04-28",
           "time": "17:15:00",
@@ -2127,11 +2142,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "Beavers Cavs",
           "awayTeam": "PHOENIX Flyers",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 50,
+          "awayScore": 16,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "William Reeves",
+                "team": "Beavers Cavs",
+                "points": 16,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Chace-James Braddock",
+                "team": "Beavers Cavs",
+                "points": 14,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Isaac Brennan",
+                "team": "Beavers Cavs",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Peter Graham",
+                "team": "PHOENIX Flyers",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Chase Henderson",
+                "team": "PHOENIX Flyers",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cooper Guild",
+                "team": "Beavers Cavs",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jack Anderson",
+                "team": "Beavers Cavs",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Trae Gormly",
+                "team": "Beavers Cavs",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hudson Chiswell",
+                "team": "PHOENIX Flyers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jax Repper",
+                "team": "Beavers Cavs",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Levi Hartland",
+                "team": "PHOENIX Flyers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Muchovey Thomas",
+                "team": "PHOENIX Flyers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Arlie Thacker",
+                "team": "PHOENIX Flyers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Max Dixon",
+                "team": "PHOENIX Flyers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "24ad7a1a-53b3-40c7-b7a9-54756fbea989",
@@ -2268,23 +2398,41 @@
         {
           "rank": 1,
           "team": "Beavers Cavs",
-          "played": 1,
-          "won": 1,
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 2,
-          "team": "PHOENIX Flyers",
+          "team": "Bunjils U14 Boys Titans",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 3,
+          "team": "St Francis U14 Boys Boomers",
           "played": 1,
           "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
-          "rank": 3,
+          "rank": 4,
+          "team": "PHOENIX Flyers",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 5,
           "team": "Beavers Celtics",
           "played": 1,
           "won": 1,
@@ -2293,25 +2441,16 @@
           "points": 3
         },
         {
-          "rank": 4,
-          "team": "St Francis U14 Boys Boomers",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 5,
-          "team": "Bunjils U14 Boys Titans",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
           "rank": 6,
+          "team": "Generals U14 Boys Giants",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "drawn": 0,
+          "points": 2
+        },
+        {
+          "rank": 7,
           "team": "FLAMINGO’S LEGACY ",
           "played": 1,
           "won": 0,
@@ -2320,17 +2459,8 @@
           "points": 1
         },
         {
-          "rank": 7,
-          "team": "U14 Boys Girton Eagles",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 8,
-          "team": "Generals U14 Boys Giants",
+          "team": "U14 Boys Girton Eagles",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -3952,6 +4082,21 @@
       "gradeName": "Tuesday U16 Girls 3",
       "fixture": [
         {
+          "id": "d39137eb-4af7-46a1-9c79-87e478407a02",
+          "date": "2026-05-05",
+          "time": "19:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Tulips",
+          "awayTeam": "Aztec U16 Girls Purple",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
           "date": "2026-04-28",
           "time": "18:45:00",
@@ -4269,6 +4414,15 @@
         {
           "rank": 6,
           "team": "PHOENIX Tulips",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "drawn": 0,
+          "points": 2
+        },
+        {
+          "rank": 7,
+          "team": "Beavers Gems",
           "played": 2,
           "won": 0,
           "lost": 2,
