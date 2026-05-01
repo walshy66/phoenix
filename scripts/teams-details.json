@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-01T07:43:24.685Z",
+  "lastUpdated": "2026-05-01T10:08:04.940Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -737,11 +737,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Thunder",
           "awayTeam": "Aztec U10 Boys Orange",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 18,
+          "awayScore": 4,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Phoenix Barry",
+                "team": "PHOENIX Thunder",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Arlo Rasmussen",
+                "team": "PHOENIX Thunder",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Miller Cuddy",
+                "team": "PHOENIX Thunder",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Otis Johnson",
+                "team": "PHOENIX Thunder",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harry Ridge",
+                "team": "Aztec U10 Boys Orange",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Noah Wildman",
+                "team": "PHOENIX Thunder",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Astro Barri",
+                "team": "Aztec U10 Boys Orange",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Franklin Barnfield",
+                "team": "PHOENIX Thunder",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jack Dixon",
+                "team": "PHOENIX Thunder",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jack Gleisner",
+                "team": "Aztec U10 Boys Orange",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "James Woolhouse",
+                "team": "Aztec U10 Boys Orange",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Koa Ramm",
+                "team": "Aztec U10 Boys Orange",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Swayde Poloso",
+                "team": "Aztec U10 Boys Orange",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ziggy Anstee",
+                "team": "Aztec U10 Boys Orange",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "865a40e2-3451-48a2-920d-13ae8db5bf02",
@@ -898,11 +1013,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "St Francis U12 Boys Titans",
           "awayTeam": "PHOENIX Flames",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 4,
+          "awayScore": 29,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Memphis Johnson",
+                "team": "PHOENIX Flames",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mack Bond-Masters",
+                "team": "PHOENIX Flames",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Arthur Kelly",
+                "team": "PHOENIX Flames",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jett Wingrave",
+                "team": "PHOENIX Flames",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cooper Murphy",
+                "team": "PHOENIX Flames",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Fletcher Hartrey",
+                "team": "St Francis U12 Boys Titans",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lachlan Brown",
+                "team": "PHOENIX Flames",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nathan McCormack",
+                "team": "St Francis U12 Boys Titans",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Valentine Jackson",
+                "team": "PHOENIX Flames",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harry Barker",
+                "team": "St Francis U12 Boys Titans",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harry Herbert",
+                "team": "St Francis U12 Boys Titans",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lachlan St Clair",
+                "team": "St Francis U12 Boys Titans",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Liam Baker",
+                "team": "St Francis U12 Boys Titans",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Malachi Barry",
+                "team": "PHOENIX Flames",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "74c088b1-d239-4c25-bfb6-8b2c11ce6296",
@@ -1022,7 +1252,25 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Victory U12 Boys Stars",
+          "team": "Strath BM81's",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 2,
+          "team": "PHOENIX Flames",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 3,
+          "team": "Super Flamingos ",
           "played": 2,
           "won": 1,
           "lost": 1,
@@ -1030,31 +1278,13 @@
           "points": 4
         },
         {
-          "rank": 2,
-          "team": "Strath BM81's",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 3,
-          "team": "Super Flamingos ",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
           "rank": 4,
-          "team": "PHOENIX Flames",
-          "played": 1,
+          "team": "Victory U12 Boys Stars",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 5,
@@ -1068,11 +1298,11 @@
         {
           "rank": 6,
           "team": "St Francis U12 Boys Titans",
-          "played": 1,
+          "played": 2,
           "won": 0,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 1
+          "points": 2
         }
       ]
     },
@@ -1090,11 +1320,118 @@
           "address": "56 Ellis Street",
           "homeTeam": "Victory U12 Boys Mavericks",
           "awayTeam": "PHOENIX Phantoms",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 9,
+          "awayScore": 15,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Freddie McWilliams",
+                "team": "PHOENIX Phantoms",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jobe Hawkins/Hickey",
+                "team": "Victory U12 Boys Mavericks",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Eron Verma",
+                "team": "Victory U12 Boys Mavericks",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ethan Burge",
+                "team": "PHOENIX Phantoms",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jack Curry",
+                "team": "PHOENIX Phantoms",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mannix Armstrong",
+                "team": "PHOENIX Phantoms",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Phoenix Barry",
+                "team": "PHOENIX Phantoms",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Brady McLean",
+                "team": "PHOENIX Phantoms",
+                "points": 1,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ayaan Singh",
+                "team": "Victory U12 Boys Mavericks",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ephraim Joshy",
+                "team": "Victory U12 Boys Mavericks",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hudson Brock",
+                "team": "Victory U12 Boys Mavericks",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Leon Francis",
+                "team": "Victory U12 Boys Mavericks",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Phantoms",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "acaeacb5-4f1c-49e6-94af-3c018fbc0c84",
@@ -1239,65 +1576,65 @@
         {
           "rank": 1,
           "team": "Aztec U12 Boys Platinum",
-          "played": 1,
-          "won": 1,
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 2,
           "team": "Beavers Cubs",
-          "played": 1,
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 3,
-          "team": "Heathcote Panthers 12's ",
-          "played": 1,
+          "team": "PHOENIX Phantoms",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 4,
+          "team": "Aztec U12 Boys Teal",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 5,
+          "team": "Victory U12 Boys Mavericks",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 6,
+          "team": "Heathcote Panthers 12's ",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 7,
           "team": "U12 Boys Girton Pumas",
           "played": 1,
           "won": 0,
           "lost": 0,
           "drawn": 0,
           "points": 3
-        },
-        {
-          "rank": 5,
-          "team": "Victory U12 Boys Mavericks",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 6,
-          "team": "PHOENIX Phantoms",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
-          "rank": 7,
-          "team": "Aztec U12 Boys Teal",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
         }
       ]
     },
@@ -1440,48 +1777,48 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Beavers Chiefs",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 2,
           "team": "PHOENIX Son's",
           "played": 1,
           "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
+        },
+        {
+          "rank": 2,
+          "team": "Beavers Dragons",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
         },
         {
           "rank": 3,
-          "team": "Aztec U12 Boys Aqua",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
+          "team": "Aztec U12 Boys Red",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 4,
-          "team": "Beavers Dragons",
+          "team": "Aztec U12 Boys Aqua",
           "played": 1,
           "won": 0,
           "lost": 1,
           "drawn": 0,
-          "points": 1
+          "points": 4
         },
         {
           "rank": 5,
-          "team": "Aztec U12 Boys Red",
-          "played": 1,
-          "won": 0,
+          "team": "Beavers Chiefs",
+          "played": 2,
+          "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 1
+          "points": 4
         }
       ]
     },
@@ -3978,6 +4315,15 @@
         },
         {
           "rank": 2,
+          "team": "Beavers Bucks",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 3,
           "team": "Strath Rockets",
           "played": 2,
           "won": 1,
@@ -3986,17 +4332,8 @@
           "points": 3
         },
         {
-          "rank": 3,
-          "team": "PHOENIX Go Buckets",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
           "rank": 4,
-          "team": "Beavers Bucks",
+          "team": "PHOENIX Go Buckets",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -4024,11 +4361,11 @@
         {
           "rank": 7,
           "team": "Aztec U16 Boys Silver",
-          "played": 1,
+          "played": 2,
           "won": 0,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 1
+          "points": 2
         },
         {
           "rank": 8,
