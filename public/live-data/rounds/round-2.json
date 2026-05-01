@@ -1,7 +1,7 @@
 {
   "roundNumber": 2,
   "season": "Winter 2026",
-  "lastUpdated": "2026-05-01T10:11:58.187Z",
+  "lastUpdated": "2026-05-01T11:45:12.904Z",
   "status": "upcoming",
   "games": [
     {
@@ -2979,13 +2979,134 @@
       "court": "Court 2",
       "homeTeam": "Beavers Cobras",
       "awayTeam": "PHOENIX Go Buckets",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 40,
+      "awayScore": 41,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Ely Vincent",
+            "team": "PHOENIX Go Buckets",
+            "points": 14,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Archie Maplestone",
+            "team": "Beavers Cobras",
+            "points": 12,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lucas McCarthy",
+            "team": "Beavers Cobras",
+            "points": 11,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Henry Dewhurst",
+            "team": "PHOENIX Go Buckets",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Darcy Mullen",
+            "team": "PHOENIX Go Buckets",
+            "points": 7,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Koby McCallum",
+            "team": "PHOENIX Go Buckets",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Max Mcclure",
+            "team": "Beavers Cobras",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Harvey McMillan",
+            "team": "Beavers Cobras",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Nash McMaster",
+            "team": "Beavers Cobras",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Edward Perry",
+            "team": "Beavers Cobras",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jake Collett",
+            "team": "PHOENIX Go Buckets",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Tasman Bell",
+            "team": "PHOENIX Go Buckets",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
+          "teamName": "Beavers Hurricanes",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 92,
+          "pointsAgainst": 66,
+          "percentage": 139.39,
+          "points": 6
+        },
+        {
+          "position": 2,
+          "teamName": "PHOENIX Go Buckets",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 100,
+          "pointsAgainst": 79,
+          "percentage": 126.58,
+          "points": 6
+        },
+        {
+          "position": 3,
           "teamName": "Victory U16 Boys Warriors",
           "played": 2,
           "wins": 2,
@@ -2996,7 +3117,7 @@
           "points": 6
         },
         {
-          "position": 2,
+          "position": 4,
           "teamName": "Beavers Bucks",
           "played": 2,
           "wins": 2,
@@ -3007,7 +3128,29 @@
           "points": 6
         },
         {
-          "position": 3,
+          "position": 5,
+          "teamName": "Aztec U16 Boys Copper",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 77,
+          "pointsAgainst": 73,
+          "percentage": 105.48,
+          "points": 6
+        },
+        {
+          "position": 6,
+          "teamName": "Beavers Bob",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 64,
+          "pointsAgainst": 70,
+          "percentage": 91.43,
+          "points": 4
+        },
+        {
+          "position": 7,
           "teamName": "Strath Rockets",
           "played": 2,
           "wins": 1,
@@ -3018,40 +3161,7 @@
           "points": 3
         },
         {
-          "position": 4,
-          "teamName": "PHOENIX Go Buckets",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 59,
-          "pointsAgainst": 39,
-          "percentage": 151.28,
-          "points": 3
-        },
-        {
-          "position": 5,
-          "teamName": "Beavers Hurricanes",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 44,
-          "pointsAgainst": 37,
-          "percentage": 118.92,
-          "points": 3
-        },
-        {
-          "position": 6,
-          "teamName": "Aztec U16 Boys Copper",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 47,
-          "pointsAgainst": 44,
-          "percentage": 106.82,
-          "points": 3
-        },
-        {
-          "position": 7,
+          "position": 8,
           "teamName": "Aztec U16 Boys Silver",
           "played": 2,
           "wins": 0,
@@ -3062,59 +3172,48 @@
           "points": 2
         },
         {
-          "position": 8,
-          "teamName": "Beavers Cobras",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 37,
-          "pointsAgainst": 44,
-          "percentage": 84.09,
-          "points": 1
-        },
-        {
           "position": 9,
-          "teamName": "Beavers Bob",
-          "played": 1,
+          "teamName": "Beavers Cobras",
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 35,
-          "pointsAgainst": 43,
-          "percentage": 81.4,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 77,
+          "pointsAgainst": 85,
+          "percentage": 90.59,
+          "points": 2
         },
         {
           "position": 10,
           "teamName": "Beavers Warriors",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 29,
-          "pointsAgainst": 46,
-          "percentage": 63.04,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 56,
+          "pointsAgainst": 75,
+          "percentage": 74.67,
+          "points": 2
         },
         {
           "position": 11,
           "teamName": "Generals U16 Boys Gullys",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 39,
-          "pointsAgainst": 59,
-          "percentage": 66.1,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 68,
+          "pointsAgainst": 89,
+          "percentage": 76.4,
+          "points": 2
         },
         {
           "position": 12,
           "teamName": "Generals U16 Boys Bulls",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 25,
-          "pointsAgainst": 66,
-          "percentage": 37.88,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 54,
+          "pointsAgainst": 114,
+          "percentage": 47.37,
+          "points": 2
         }
       ]
     },
@@ -3135,6 +3234,28 @@
       "ladders": [
         {
           "position": 1,
+          "teamName": "PHOENIX Gooney Tunes",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 115,
+          "pointsAgainst": 41,
+          "percentage": 280.49,
+          "points": 6
+        },
+        {
+          "position": 2,
+          "teamName": "Strath Wizards",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 75,
+          "pointsAgainst": 35,
+          "percentage": 214.29,
+          "points": 6
+        },
+        {
+          "position": 3,
           "teamName": "Aztec U16 Boys White",
           "played": 1,
           "wins": 0,
@@ -3143,28 +3264,6 @@
           "pointsAgainst": 54,
           "percentage": 22.22,
           "points": 4
-        },
-        {
-          "position": 2,
-          "teamName": "PHOENIX Gooney Tunes",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 54,
-          "pointsAgainst": 12,
-          "percentage": 450,
-          "points": 3
-        },
-        {
-          "position": 3,
-          "teamName": "Strath Wizards",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 49,
-          "pointsAgainst": 26,
-          "percentage": 188.46,
-          "points": 3
         },
         {
           "position": 4,
@@ -3191,24 +3290,24 @@
         {
           "position": 6,
           "teamName": "Aztec U16 Boys Bronze",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 18,
-          "pointsAgainst": 39,
-          "percentage": 46.15,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 27,
+          "pointsAgainst": 65,
+          "percentage": 41.54,
+          "points": 2
         },
         {
           "position": 7,
           "teamName": "Strath Sharks",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 26,
-          "pointsAgainst": 49,
-          "percentage": 53.06,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 55,
+          "pointsAgainst": 110,
+          "percentage": 50,
+          "points": 2
         }
       ]
     },
@@ -3222,13 +3321,142 @@
       "court": "Court 4",
       "homeTeam": "Strath Sharks",
       "awayTeam": "PHOENIX Gooney Tunes",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 29,
+      "awayScore": 61,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Evan Saunders",
+            "team": "PHOENIX Gooney Tunes",
+            "points": 23,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Fraser Rhoden",
+            "team": "PHOENIX Gooney Tunes",
+            "points": 15,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Logan McEwen",
+            "team": "Strath Sharks",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eoghan Rowley",
+            "team": "Strath Sharks",
+            "points": 9,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Harry Fitzpatrick",
+            "team": "PHOENIX Gooney Tunes",
+            "points": 8,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Archer Harrington",
+            "team": "Strath Sharks",
+            "points": 7,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Beau Ferguson",
+            "team": "PHOENIX Gooney Tunes",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Noah Hill",
+            "team": "PHOENIX Gooney Tunes",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Xavier Williams",
+            "team": "PHOENIX Gooney Tunes",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Parker Jones",
+            "team": "Strath Sharks",
+            "points": 3,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Evan Cousins",
+            "team": "Strath Sharks",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Izaac McEwen",
+            "team": "Strath Sharks",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Logan Pattison",
+            "team": "Strath Sharks",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
+          "teamName": "PHOENIX Gooney Tunes",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 115,
+          "pointsAgainst": 41,
+          "percentage": 280.49,
+          "points": 6
+        },
+        {
+          "position": 2,
+          "teamName": "Strath Wizards",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 75,
+          "pointsAgainst": 35,
+          "percentage": 214.29,
+          "points": 6
+        },
+        {
+          "position": 3,
           "teamName": "Aztec U16 Boys White",
           "played": 1,
           "wins": 0,
@@ -3237,28 +3465,6 @@
           "pointsAgainst": 54,
           "percentage": 22.22,
           "points": 4
-        },
-        {
-          "position": 2,
-          "teamName": "PHOENIX Gooney Tunes",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 54,
-          "pointsAgainst": 12,
-          "percentage": 450,
-          "points": 3
-        },
-        {
-          "position": 3,
-          "teamName": "Strath Wizards",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 49,
-          "pointsAgainst": 26,
-          "percentage": 188.46,
-          "points": 3
         },
         {
           "position": 4,
@@ -3285,24 +3491,24 @@
         {
           "position": 6,
           "teamName": "Aztec U16 Boys Bronze",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 18,
-          "pointsAgainst": 39,
-          "percentage": 46.15,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 27,
+          "pointsAgainst": 65,
+          "percentage": 41.54,
+          "points": 2
         },
         {
           "position": 7,
           "teamName": "Strath Sharks",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 26,
-          "pointsAgainst": 49,
-          "percentage": 53.06,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 55,
+          "pointsAgainst": 110,
+          "percentage": 50,
+          "points": 2
         }
       ]
     }
@@ -4439,6 +4645,28 @@
     "Friday U16 Boys 4": [
       {
         "position": 1,
+        "teamName": "Beavers Hurricanes",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 92,
+        "pointsAgainst": 66,
+        "percentage": 139.39,
+        "points": 6
+      },
+      {
+        "position": 2,
+        "teamName": "PHOENIX Go Buckets",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 100,
+        "pointsAgainst": 79,
+        "percentage": 126.58,
+        "points": 6
+      },
+      {
+        "position": 3,
         "teamName": "Victory U16 Boys Warriors",
         "played": 2,
         "wins": 2,
@@ -4449,7 +4677,7 @@
         "points": 6
       },
       {
-        "position": 2,
+        "position": 4,
         "teamName": "Beavers Bucks",
         "played": 2,
         "wins": 2,
@@ -4460,7 +4688,29 @@
         "points": 6
       },
       {
-        "position": 3,
+        "position": 5,
+        "teamName": "Aztec U16 Boys Copper",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 77,
+        "pointsAgainst": 73,
+        "percentage": 105.48,
+        "points": 6
+      },
+      {
+        "position": 6,
+        "teamName": "Beavers Bob",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 64,
+        "pointsAgainst": 70,
+        "percentage": 91.43,
+        "points": 4
+      },
+      {
+        "position": 7,
         "teamName": "Strath Rockets",
         "played": 2,
         "wins": 1,
@@ -4471,40 +4721,7 @@
         "points": 3
       },
       {
-        "position": 4,
-        "teamName": "PHOENIX Go Buckets",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 59,
-        "pointsAgainst": 39,
-        "percentage": 151.28,
-        "points": 3
-      },
-      {
-        "position": 5,
-        "teamName": "Beavers Hurricanes",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 44,
-        "pointsAgainst": 37,
-        "percentage": 118.92,
-        "points": 3
-      },
-      {
-        "position": 6,
-        "teamName": "Aztec U16 Boys Copper",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 47,
-        "pointsAgainst": 44,
-        "percentage": 106.82,
-        "points": 3
-      },
-      {
-        "position": 7,
+        "position": 8,
         "teamName": "Aztec U16 Boys Silver",
         "played": 2,
         "wins": 0,
@@ -4515,64 +4732,75 @@
         "points": 2
       },
       {
-        "position": 8,
-        "teamName": "Beavers Cobras",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 37,
-        "pointsAgainst": 44,
-        "percentage": 84.09,
-        "points": 1
-      },
-      {
         "position": 9,
-        "teamName": "Beavers Bob",
-        "played": 1,
+        "teamName": "Beavers Cobras",
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 35,
-        "pointsAgainst": 43,
-        "percentage": 81.4,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 77,
+        "pointsAgainst": 85,
+        "percentage": 90.59,
+        "points": 2
       },
       {
         "position": 10,
         "teamName": "Beavers Warriors",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 29,
-        "pointsAgainst": 46,
-        "percentage": 63.04,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 56,
+        "pointsAgainst": 75,
+        "percentage": 74.67,
+        "points": 2
       },
       {
         "position": 11,
         "teamName": "Generals U16 Boys Gullys",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 39,
-        "pointsAgainst": 59,
-        "percentage": 66.1,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 68,
+        "pointsAgainst": 89,
+        "percentage": 76.4,
+        "points": 2
       },
       {
         "position": 12,
         "teamName": "Generals U16 Boys Bulls",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 25,
-        "pointsAgainst": 66,
-        "percentage": 37.88,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 54,
+        "pointsAgainst": 114,
+        "percentage": 47.37,
+        "points": 2
       }
     ],
     "Friday U16 Boys 7": [
       {
         "position": 1,
+        "teamName": "PHOENIX Gooney Tunes",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 115,
+        "pointsAgainst": 41,
+        "percentage": 280.49,
+        "points": 6
+      },
+      {
+        "position": 2,
+        "teamName": "Strath Wizards",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 75,
+        "pointsAgainst": 35,
+        "percentage": 214.29,
+        "points": 6
+      },
+      {
+        "position": 3,
         "teamName": "Aztec U16 Boys White",
         "played": 1,
         "wins": 0,
@@ -4581,28 +4809,6 @@
         "pointsAgainst": 54,
         "percentage": 22.22,
         "points": 4
-      },
-      {
-        "position": 2,
-        "teamName": "PHOENIX Gooney Tunes",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 54,
-        "pointsAgainst": 12,
-        "percentage": 450,
-        "points": 3
-      },
-      {
-        "position": 3,
-        "teamName": "Strath Wizards",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 49,
-        "pointsAgainst": 26,
-        "percentage": 188.46,
-        "points": 3
       },
       {
         "position": 4,
@@ -4629,24 +4835,24 @@
       {
         "position": 6,
         "teamName": "Aztec U16 Boys Bronze",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 18,
-        "pointsAgainst": 39,
-        "percentage": 46.15,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 27,
+        "pointsAgainst": 65,
+        "percentage": 41.54,
+        "points": 2
       },
       {
         "position": 7,
         "teamName": "Strath Sharks",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 26,
-        "pointsAgainst": 49,
-        "percentage": 53.06,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 55,
+        "pointsAgainst": 110,
+        "percentage": 50,
+        "points": 2
       }
     ]
   }

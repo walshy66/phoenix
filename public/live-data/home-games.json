@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-01T10:10:20.969Z",
+  "generatedAt": "2026-05-01T11:43:24.501Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,34 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "cbba9944-fba9-43bf-b1db-5a2ff18b0504",
-      "homeTeam": "Beavers Cobras",
-      "awayTeam": "PHOENIX Go Buckets",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-01",
-      "kickoffTime": "19:30:00",
-      "kickoffDisplay": "19:30",
-      "competition": "Friday U16 Boys 4",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 2"
-    },
-    {
-      "gameId": "0709957e-bf03-410d-8d9f-742f26b5352d",
-      "homeTeam": "Strath Sharks",
-      "awayTeam": "PHOENIX Gooney Tunes",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-01",
-      "kickoffTime": "20:15:00",
-      "kickoffDisplay": "20:15",
-      "competition": "Friday U16 Boys 7",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 4"
-    },
     {
       "gameId": "3811f460-89aa-481a-91df-088f84ef0842",
       "homeTeam": "PHOENIX Wembys",
@@ -277,6 +249,20 @@
       "court": "Court 1"
     },
     {
+      "gameId": "cbba9944-fba9-43bf-b1db-5a2ff18b0504",
+      "homeTeam": "Beavers Cobras",
+      "awayTeam": "PHOENIX Go Buckets",
+      "homeScore": 40,
+      "awayScore": 41,
+      "status": "completed",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "19:30:00",
+      "kickoffDisplay": "19:30",
+      "competition": "Friday U16 Boys 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 2"
+    },
+    {
       "gameId": "c249015b-438d-432f-a75d-5b73d90d7899",
       "homeTeam": "PHOENIX Smartmeal",
       "awayTeam": "Aztec U18 Boys Orange",
@@ -289,6 +275,20 @@
       "competition": "Friday U18 Boys 2",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 3"
+    },
+    {
+      "gameId": "0709957e-bf03-410d-8d9f-742f26b5352d",
+      "homeTeam": "Strath Sharks",
+      "awayTeam": "PHOENIX Gooney Tunes",
+      "homeScore": 29,
+      "awayScore": 61,
+      "status": "completed",
+      "kickoffDate": "2026-05-01",
+      "kickoffTime": "20:15:00",
+      "kickoffDisplay": "20:15",
+      "competition": "Friday U16 Boys 7",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4"
     },
     {
       "gameId": "8be89f39-69d8-49af-9fb7-93afcb380e46",
