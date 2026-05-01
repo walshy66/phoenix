@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-29T12:06:20.937Z",
+  "lastUpdated": "2026-05-01T07:43:24.685Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1022,6 +1022,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Victory U12 Boys Stars",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 2,
           "team": "Strath BM81's",
           "played": 1,
           "won": 1,
@@ -1030,7 +1039,7 @@
           "points": 3
         },
         {
-          "rank": 2,
+          "rank": 3,
           "team": "Super Flamingos ",
           "played": 1,
           "won": 1,
@@ -1039,7 +1048,7 @@
           "points": 3
         },
         {
-          "rank": 3,
+          "rank": 4,
           "team": "PHOENIX Flames",
           "played": 1,
           "won": 1,
@@ -1048,26 +1057,17 @@
           "points": 3
         },
         {
-          "rank": 4,
-          "team": "Strath Suns",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 5,
-          "team": "St Francis U12 Boys Titans",
-          "played": 1,
+          "team": "Strath Suns",
+          "played": 2,
           "won": 0,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 1
+          "points": 2
         },
         {
           "rank": 6,
-          "team": "Victory U12 Boys Stars",
+          "team": "St Francis U12 Boys Titans",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1082,7 +1082,7 @@
       "gradeName": "Friday U12 Boys 7",
       "fixture": [
         {
-          "id": "ac4e4231-b5d1-4880-865b-0e67c67a99fb",
+          "id": "d4059f02-0a1e-4c7b-9980-5826cc90e399",
           "date": "2026-05-01",
           "time": "18:45:00",
           "venue": "Bendigo South East College",
@@ -1105,8 +1105,8 @@
           "address": "22 Vine Street",
           "homeTeam": "PHOENIX Phantoms",
           "awayTeam": "Beavers Cubs",
-          "homeScore": 13,
-          "awayScore": 6,
+          "homeScore": 6,
+          "awayScore": 13,
           "status": "COMPLETED",
           "round": "Round 1",
           "playerStats": {
@@ -1247,7 +1247,7 @@
         },
         {
           "rank": 2,
-          "team": "PHOENIX Phantoms",
+          "team": "Beavers Cubs",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -1265,6 +1265,15 @@
         },
         {
           "rank": 4,
+          "team": "U12 Boys Girton Pumas",
+          "played": 1,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 5,
           "team": "Victory U12 Boys Mavericks",
           "played": 1,
           "won": 1,
@@ -1273,17 +1282,8 @@
           "points": 3
         },
         {
-          "rank": 5,
-          "team": "Beavers Cubs",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 6,
-          "team": "Aztec U12 Boys Teal",
+          "team": "PHOENIX Phantoms",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -1292,21 +1292,12 @@
         },
         {
           "rank": 7,
-          "team": "U12 Boys Girton Pumas",
+          "team": "Aztec U12 Boys Teal",
           "played": 1,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 0
-        },
-        {
-          "rank": 8,
-          "team": "Bunjils U12 Boys Bandicoots",
-          "played": 1,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
+          "points": 1
         }
       ]
     },
@@ -2134,6 +2125,21 @@
       "gradeName": "Wednesday U14 Boys 8",
       "fixture": [
         {
+          "id": "9aab7832-26cc-410d-bf56-10f15222362f",
+          "date": "2026-05-06",
+          "time": "16:30:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 5",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Flyers",
+          "awayTeam": "U14 Boys Girton Eagles",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "8be89f39-69d8-49af-9fb7-93afcb380e46",
           "date": "2026-04-29",
           "time": "16:30:00",
@@ -2397,15 +2403,6 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Beavers Cavs",
-          "played": 2,
-          "won": 2,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
-          "rank": 2,
           "team": "Bunjils U14 Boys Titans",
           "played": 2,
           "won": 2,
@@ -2414,7 +2411,7 @@
           "points": 6
         },
         {
-          "rank": 3,
+          "rank": 2,
           "team": "St Francis U14 Boys Boomers",
           "played": 1,
           "won": 1,
@@ -2423,7 +2420,7 @@
           "points": 6
         },
         {
-          "rank": 4,
+          "rank": 3,
           "team": "FLAMINGO’S LEGACY ",
           "played": 2,
           "won": 1,
@@ -2432,7 +2429,7 @@
           "points": 4
         },
         {
-          "rank": 5,
+          "rank": 4,
           "team": "PHOENIX Flyers",
           "played": 2,
           "won": 1,
@@ -2441,7 +2438,7 @@
           "points": 4
         },
         {
-          "rank": 6,
+          "rank": 5,
           "team": "Beavers Celtics",
           "played": 2,
           "won": 1,
@@ -2450,7 +2447,7 @@
           "points": 4
         },
         {
-          "rank": 7,
+          "rank": 6,
           "team": "Aztec U14 Boys Teal",
           "played": 2,
           "won": 1,
@@ -2459,7 +2456,7 @@
           "points": 4
         },
         {
-          "rank": 8,
+          "rank": 7,
           "team": "Strath Legends",
           "played": 1,
           "won": 1,
@@ -2468,7 +2465,7 @@
           "points": 3
         },
         {
-          "rank": 9,
+          "rank": 8,
           "team": "U14 Boys Girton Eagles",
           "played": 2,
           "won": 0,
@@ -2477,7 +2474,7 @@
           "points": 2
         },
         {
-          "rank": 10,
+          "rank": 9,
           "team": "Generals U14 Boys Giants",
           "played": 2,
           "won": 0,
@@ -2486,7 +2483,7 @@
           "points": 2
         },
         {
-          "rank": 11,
+          "rank": 10,
           "team": "Victory U14 Boys Magic",
           "played": 2,
           "won": 0,
@@ -2501,6 +2498,21 @@
       "teamName": "PHOENIX Gold Nuggets",
       "gradeName": "Wednesday U14 Boys 5",
       "fixture": [
+        {
+          "id": "65fe60de-1bc0-4af2-b1f1-1762d5a8f5b5",
+          "date": "2026-05-06",
+          "time": "20:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 3",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Rampage",
+          "awayTeam": "PHOENIX Gold Nuggets",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "58fd088c-8bdd-4250-9729-074736f39d52",
           "date": "2026-04-22",
@@ -2723,6 +2735,21 @@
       "teamName": "PHOENIX Sweats",
       "gradeName": "Wednesday U14 Boys 5",
       "fixture": [
+        {
+          "id": "3281e074-6ead-477b-851e-97cbe9bb7f85",
+          "date": "2026-05-06",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 2",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Little Ballers",
+          "awayTeam": "PHOENIX Sweats",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "666fcffc-4d22-44e1-83cf-b53b8d9547a1",
           "date": "2026-04-29",
@@ -3084,6 +3111,21 @@
       "gradeName": "Wednesday U14 Boys 7",
       "fixture": [
         {
+          "id": "078a5b87-cb3a-4225-93cd-4503d6a04705",
+          "date": "2026-05-06",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Legends",
+          "awayTeam": "Beavers Lions",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "e5aba86c-2312-4d07-920d-c57599c0f27f",
           "date": "2026-04-29",
           "time": "17:15:00",
@@ -3439,6 +3481,15 @@
           "lost": 2,
           "drawn": 0,
           "points": 2
+        },
+        {
+          "rank": 8,
+          "team": "Beavers Cavs",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
         }
       ]
     },
@@ -3447,6 +3498,21 @@
       "teamName": "PHOENIX Two Blues",
       "gradeName": "Wednesday U14 Boys 2",
       "fixture": [
+        {
+          "id": "a42d2d7e-9065-4ac6-93b5-255802b2723f",
+          "date": "2026-05-06",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "Aztec U14 Boys Mint",
+          "awayTeam": "PHOENIX Two Blues",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "4e875533-0fa6-41ab-a795-5580d55b4e62",
           "date": "2026-04-29",
@@ -3903,17 +3969,17 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Strath Rockets",
-          "played": 1,
-          "won": 1,
+          "team": "Victory U16 Boys Warriors",
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 2,
-          "team": "PHOENIX Go Buckets",
-          "played": 1,
+          "team": "Strath Rockets",
+          "played": 2,
           "won": 1,
           "lost": 0,
           "drawn": 0,
@@ -3921,7 +3987,7 @@
         },
         {
           "rank": 3,
-          "team": "Victory U16 Boys Warriors",
+          "team": "PHOENIX Go Buckets",
           "played": 1,
           "won": 1,
           "lost": 0,
@@ -4165,6 +4231,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Aztec U16 Boys White",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 2,
           "team": "PHOENIX Gooney Tunes",
           "played": 1,
           "won": 1,
@@ -4173,7 +4248,7 @@
           "points": 3
         },
         {
-          "rank": 2,
+          "rank": 3,
           "team": "Strath Wizards",
           "played": 1,
           "won": 1,
@@ -4182,7 +4257,7 @@
           "points": 3
         },
         {
-          "rank": 3,
+          "rank": 4,
           "team": "PHOENIX Splash",
           "played": 1,
           "won": 1,
@@ -4191,7 +4266,7 @@
           "points": 3
         },
         {
-          "rank": 4,
+          "rank": 5,
           "team": "Beavers Rockets",
           "played": 1,
           "won": 1,
@@ -4200,7 +4275,7 @@
           "points": 3
         },
         {
-          "rank": 5,
+          "rank": 6,
           "team": "Aztec U16 Boys Bronze",
           "played": 1,
           "won": 0,
@@ -4209,17 +4284,8 @@
           "points": 1
         },
         {
-          "rank": 6,
-          "team": "Strath Sharks",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 7,
-          "team": "Aztec U16 Boys White",
+          "team": "Strath Sharks",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -4366,6 +4432,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Aztec U16 Boys White",
+          "played": 1,
+          "won": 0,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 2,
           "team": "PHOENIX Gooney Tunes",
           "played": 1,
           "won": 1,
@@ -4374,7 +4449,7 @@
           "points": 3
         },
         {
-          "rank": 2,
+          "rank": 3,
           "team": "Strath Wizards",
           "played": 1,
           "won": 1,
@@ -4383,7 +4458,7 @@
           "points": 3
         },
         {
-          "rank": 3,
+          "rank": 4,
           "team": "PHOENIX Splash",
           "played": 1,
           "won": 1,
@@ -4392,7 +4467,7 @@
           "points": 3
         },
         {
-          "rank": 4,
+          "rank": 5,
           "team": "Beavers Rockets",
           "played": 1,
           "won": 1,
@@ -4401,7 +4476,7 @@
           "points": 3
         },
         {
-          "rank": 5,
+          "rank": 6,
           "team": "Aztec U16 Boys Bronze",
           "played": 1,
           "won": 0,
@@ -4410,17 +4485,8 @@
           "points": 1
         },
         {
-          "rank": 6,
-          "team": "Strath Sharks",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 7,
-          "team": "Aztec U16 Boys White",
+          "team": "Strath Sharks",
           "played": 1,
           "won": 0,
           "lost": 1,
@@ -4437,12 +4503,12 @@
         {
           "id": "d39137eb-4af7-46a1-9c79-87e478407a02",
           "date": "2026-05-05",
-          "time": "19:30:00",
+          "time": "18:45:00",
           "venue": "Red Energy Arena (Bendigo Stadium)",
-          "court": "Court 4",
+          "court": "Court 5",
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Tulips",
-          "awayTeam": "Aztec U16 Girls Purple",
+          "awayTeam": "Beavers Spring Chicks",
           "homeScore": null,
           "awayScore": null,
           "status": "UPCOMING",
@@ -4789,6 +4855,21 @@
       "teamName": "PHOENIX Zinger Boxes",
       "gradeName": "Wednesday U16 Boys 2",
       "fixture": [
+        {
+          "id": "007e4697-b707-4ba0-a713-5cf75d908985",
+          "date": "2026-05-06",
+          "time": "20:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Zinger Boxes",
+          "awayTeam": "Strath Saints",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "7eb57849-7b35-45bc-8670-11cd666a8882",
           "date": "2026-04-29",
@@ -5181,9 +5262,9 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Smartmeal",
           "awayTeam": "Aztec U18 Boys Orange",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 0,
+          "awayScore": 0,
+          "status": "COMPLETED",
           "round": "Round 2",
           "playerStats": null
         },
@@ -5313,6 +5394,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "PHOENIX Smartmeal",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 2,
           "team": "Aztec U18 Boys Yellow",
           "played": 1,
           "won": 1,
@@ -5321,7 +5411,7 @@
           "points": 3
         },
         {
-          "rank": 2,
+          "rank": 3,
           "team": "Bunjils U18 Boys ALPHA",
           "played": 1,
           "won": 1,
@@ -5330,18 +5420,9 @@
           "points": 3
         },
         {
-          "rank": 3,
-          "team": "PHOENIX Roughnuts",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
           "rank": 4,
           "team": "Aztec U18 Boys Orange",
-          "played": 1,
+          "played": 2,
           "won": 0,
           "lost": 1,
           "drawn": 0,

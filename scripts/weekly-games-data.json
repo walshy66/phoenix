@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T12:07:53.824Z",
+  "generatedAt": "2026-05-01T07:45:20.851Z",
   "window": {
     "timezone": "Australia/Melbourne",
     "startDate": "2026-04-27",
@@ -172,7 +172,7 @@
         "squads": []
       },
       {
-        "fixtureId": "ac4e4231-b5d1-4880-865b-0e67c67a99fb",
+        "fixtureId": "d4059f02-0a1e-4c7b-9980-5826cc90e399",
         "homeTeam": "Victory U12 Boys Mavericks",
         "awayTeam": "PHOENIX Phantoms",
         "grade": "Friday U12 Boys 7",
@@ -447,8 +447,8 @@
       "kickoffDisplay": "5:15 pm",
       "squads": []
     },
-    "ac4e4231-b5d1-4880-865b-0e67c67a99fb": {
-      "fixtureId": "ac4e4231-b5d1-4880-865b-0e67c67a99fb",
+    "d4059f02-0a1e-4c7b-9980-5826cc90e399": {
+      "fixtureId": "d4059f02-0a1e-4c7b-9980-5826cc90e399",
       "homeTeam": "Victory U12 Boys Mavericks",
       "awayTeam": "PHOENIX Phantoms",
       "grade": "Friday U12 Boys 7",
