@@ -1,8 +1,8 @@
 {
   "roundNumber": 2,
   "season": "Winter 2026",
-  "lastUpdated": "2026-05-01T11:45:12.904Z",
-  "status": "upcoming",
+  "lastUpdated": "2026-05-04T08:13:10.927Z",
+  "status": "completed",
   "games": [
     {
       "id": "c249015b-438d-432f-a75d-5b73d90d7899",
@@ -21,6 +21,17 @@
       "ladders": [
         {
           "position": 1,
+          "teamName": "Bunjils U18 Boys ALPHA",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 97,
+          "pointsAgainst": 63,
+          "percentage": 153.97,
+          "points": 6
+        },
+        {
+          "position": 2,
           "teamName": "PHOENIX Smartmeal",
           "played": 2,
           "wins": 1,
@@ -31,26 +42,15 @@
           "points": 4
         },
         {
-          "position": 2,
-          "teamName": "Aztec U18 Boys Yellow",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 50,
-          "pointsAgainst": 37,
-          "percentage": 135.14,
-          "points": 3
-        },
-        {
           "position": 3,
-          "teamName": "Bunjils U18 Boys ALPHA",
-          "played": 1,
+          "teamName": "Aztec U18 Boys Yellow",
+          "played": 2,
           "wins": 1,
-          "losses": 0,
-          "pointsFor": 39,
-          "pointsAgainst": 35,
-          "percentage": 111.43,
-          "points": 3
+          "losses": 1,
+          "pointsFor": 78,
+          "pointsAgainst": 95,
+          "percentage": 82.11,
+          "points": 4
         },
         {
           "position": 4,
@@ -1952,46 +1952,46 @@
         {
           "position": 1,
           "teamName": "St Francis U10 Girls Fearless Flames",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 28,
-          "pointsAgainst": 4,
-          "percentage": 700,
-          "points": 6
-        },
-        {
-          "position": 2,
-          "teamName": "Bunjils U10 Girls Blue",
           "played": 2,
           "wins": 2,
           "losses": 0,
-          "pointsFor": 65,
-          "pointsAgainst": 17,
-          "percentage": 382.35,
-          "points": 6
+          "pointsFor": 54,
+          "pointsAgainst": 8,
+          "percentage": 675,
+          "points": 9
+        },
+        {
+          "position": 2,
+          "teamName": "St Francis U10 Girls Swish Sisters",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 43,
+          "pointsAgainst": 9,
+          "percentage": 477.78,
+          "points": 9
         },
         {
           "position": 3,
-          "teamName": "St Francis U10 Girls Swish Sisters",
-          "played": 1,
-          "wins": 1,
+          "teamName": "Bunjils U10 Girls Blue",
+          "played": 3,
+          "wins": 3,
           "losses": 0,
-          "pointsFor": 15,
-          "pointsAgainst": 4,
-          "percentage": 375,
-          "points": 6
+          "pointsFor": 95,
+          "pointsAgainst": 21,
+          "percentage": 452.38,
+          "points": 9
         },
         {
           "position": 4,
           "teamName": "PHOENIX Firebirds",
-          "played": 2,
-          "wins": 1,
+          "played": 3,
+          "wins": 2,
           "losses": 1,
-          "pointsFor": 37,
-          "pointsAgainst": 22,
-          "percentage": 168.18,
-          "points": 4
+          "pointsFor": 54,
+          "pointsAgainst": 23,
+          "percentage": 234.78,
+          "points": 7
         },
         {
           "position": 5,
@@ -2002,51 +2002,51 @@
           "pointsFor": 30,
           "pointsAgainst": 23,
           "percentage": 130.43,
-          "points": 4
+          "points": 7
         },
         {
           "position": 6,
           "teamName": "DIAMOND FLAMINGO’s",
-          "played": 2,
+          "played": 3,
           "wins": 1,
-          "losses": 1,
-          "pointsFor": 26,
-          "pointsAgainst": 37,
-          "percentage": 70.27,
-          "points": 4
+          "losses": 2,
+          "pointsFor": 27,
+          "pointsAgainst": 54,
+          "percentage": 50,
+          "points": 5
         },
         {
           "position": 7,
           "teamName": "PHOENIX Go Getters",
-          "played": 2,
+          "played": 3,
           "wins": 1,
-          "losses": 1,
-          "pointsFor": 13,
-          "pointsAgainst": 37,
-          "percentage": 35.14,
-          "points": 4
+          "losses": 2,
+          "pointsFor": 18,
+          "pointsAgainst": 65,
+          "percentage": 27.69,
+          "points": 5
         },
         {
           "position": 8,
           "teamName": "PINK FLAMINGO’S",
-          "played": 2,
+          "played": 3,
           "wins": 0,
-          "losses": 2,
-          "pointsFor": 17,
-          "pointsAgainst": 36,
-          "percentage": 47.22,
-          "points": 2
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 66,
+          "percentage": 31.82,
+          "points": 3
         },
         {
           "position": 9,
           "teamName": "Aztec U10 Girls Aqua",
-          "played": 2,
+          "played": 3,
           "wins": 0,
-          "losses": 2,
-          "pointsFor": 17,
-          "pointsAgainst": 68,
-          "percentage": 25,
-          "points": 2
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 94,
+          "percentage": 22.34,
+          "points": 3
         }
       ]
     },
@@ -2175,46 +2175,46 @@
         {
           "position": 1,
           "teamName": "St Francis U10 Girls Fearless Flames",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 28,
-          "pointsAgainst": 4,
-          "percentage": 700,
-          "points": 6
-        },
-        {
-          "position": 2,
-          "teamName": "Bunjils U10 Girls Blue",
           "played": 2,
           "wins": 2,
           "losses": 0,
-          "pointsFor": 65,
-          "pointsAgainst": 17,
-          "percentage": 382.35,
-          "points": 6
+          "pointsFor": 54,
+          "pointsAgainst": 8,
+          "percentage": 675,
+          "points": 9
+        },
+        {
+          "position": 2,
+          "teamName": "St Francis U10 Girls Swish Sisters",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 43,
+          "pointsAgainst": 9,
+          "percentage": 477.78,
+          "points": 9
         },
         {
           "position": 3,
-          "teamName": "St Francis U10 Girls Swish Sisters",
-          "played": 1,
-          "wins": 1,
+          "teamName": "Bunjils U10 Girls Blue",
+          "played": 3,
+          "wins": 3,
           "losses": 0,
-          "pointsFor": 15,
-          "pointsAgainst": 4,
-          "percentage": 375,
-          "points": 6
+          "pointsFor": 95,
+          "pointsAgainst": 21,
+          "percentage": 452.38,
+          "points": 9
         },
         {
           "position": 4,
           "teamName": "PHOENIX Firebirds",
-          "played": 2,
-          "wins": 1,
+          "played": 3,
+          "wins": 2,
           "losses": 1,
-          "pointsFor": 37,
-          "pointsAgainst": 22,
-          "percentage": 168.18,
-          "points": 4
+          "pointsFor": 54,
+          "pointsAgainst": 23,
+          "percentage": 234.78,
+          "points": 7
         },
         {
           "position": 5,
@@ -2225,51 +2225,51 @@
           "pointsFor": 30,
           "pointsAgainst": 23,
           "percentage": 130.43,
-          "points": 4
+          "points": 7
         },
         {
           "position": 6,
           "teamName": "DIAMOND FLAMINGO’s",
-          "played": 2,
+          "played": 3,
           "wins": 1,
-          "losses": 1,
-          "pointsFor": 26,
-          "pointsAgainst": 37,
-          "percentage": 70.27,
-          "points": 4
+          "losses": 2,
+          "pointsFor": 27,
+          "pointsAgainst": 54,
+          "percentage": 50,
+          "points": 5
         },
         {
           "position": 7,
           "teamName": "PHOENIX Go Getters",
-          "played": 2,
+          "played": 3,
           "wins": 1,
-          "losses": 1,
-          "pointsFor": 13,
-          "pointsAgainst": 37,
-          "percentage": 35.14,
-          "points": 4
+          "losses": 2,
+          "pointsFor": 18,
+          "pointsAgainst": 65,
+          "percentage": 27.69,
+          "points": 5
         },
         {
           "position": 8,
           "teamName": "PINK FLAMINGO’S",
-          "played": 2,
+          "played": 3,
           "wins": 0,
-          "losses": 2,
-          "pointsFor": 17,
-          "pointsAgainst": 36,
-          "percentage": 47.22,
-          "points": 2
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 66,
+          "percentage": 31.82,
+          "points": 3
         },
         {
           "position": 9,
           "teamName": "Aztec U10 Girls Aqua",
-          "played": 2,
+          "played": 3,
           "wins": 0,
-          "losses": 2,
-          "pointsFor": 17,
-          "pointsAgainst": 68,
-          "percentage": 25,
-          "points": 2
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 94,
+          "percentage": 22.34,
+          "points": 3
         }
       ]
     },
@@ -2283,68 +2283,172 @@
       "court": "Court 7",
       "homeTeam": "PHOENIX Wembys",
       "awayTeam": "Aztec U18 Boys Steel",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 26,
+      "awayScore": 43,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Callum Mangan",
+            "team": "PHOENIX Wembys",
+            "points": 12,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Taj Ferguson",
+            "team": "Aztec U18 Boys Steel",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Max Scandolera",
+            "team": "Aztec U18 Boys Steel",
+            "points": 8,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jaxon Howard",
+            "team": "Aztec U18 Boys Steel",
+            "points": 7,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Arlen Shay",
+            "team": "Aztec U18 Boys Steel",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Bailey Holmberg",
+            "team": "Aztec U18 Boys Steel",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Sonny Terrill",
+            "team": "Aztec U18 Boys Steel",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Oliver Steen",
+            "team": "PHOENIX Wembys",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Tayte Tyler",
+            "team": "PHOENIX Wembys",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Liam Hovenden",
+            "team": "PHOENIX Wembys",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Kartik Sharma",
+            "team": "PHOENIX Wembys",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lucius Stevens",
+            "team": "PHOENIX Wembys",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Namar Johal",
+            "team": "PHOENIX Wembys",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "Aztec U18 Boys Steel",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
           "teamName": "Generals U18 Boys Rockets",
-          "played": 1,
-          "wins": 1,
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 37,
-          "pointsAgainst": 13,
-          "percentage": 284.62,
-          "points": 3
+          "pointsFor": 87,
+          "pointsAgainst": 31,
+          "percentage": 280.65,
+          "points": 6
         },
         {
           "position": 2,
-          "teamName": "Bunjils U18 Boys Bravo",
-          "played": 1,
-          "wins": 1,
+          "teamName": "Aztec U18 Boys Steel",
+          "played": 2,
+          "wins": 2,
           "losses": 0,
-          "pointsFor": 52,
-          "pointsAgainst": 38,
-          "percentage": 136.84,
-          "points": 3
+          "pointsFor": 87,
+          "pointsAgainst": 60,
+          "percentage": 145,
+          "points": 6
         },
         {
           "position": 3,
-          "teamName": "Aztec U18 Boys Steel",
-          "played": 1,
+          "teamName": "Bunjils U18 Boys Bravo",
+          "played": 2,
           "wins": 1,
-          "losses": 0,
-          "pointsFor": 44,
-          "pointsAgainst": 34,
-          "percentage": 129.41,
-          "points": 3
+          "losses": 1,
+          "pointsFor": 85,
+          "pointsAgainst": 72,
+          "percentage": 118.06,
+          "points": 4
         },
         {
           "position": 4,
-          "teamName": "Generals U18 Boys Lions",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
+          "teamName": "Generals U18 Boys Boomers",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 68,
+          "pointsAgainst": 77,
+          "percentage": 88.31,
+          "points": 4
         },
         {
           "position": 5,
-          "teamName": "Generals U18 Boys Boomers",
-          "played": 1,
-          "wins": 0,
-          "losses": 1,
-          "pointsFor": 34,
-          "pointsAgainst": 44,
-          "percentage": 77.27,
-          "points": 1
-        },
-        {
-          "position": 6,
           "teamName": "Aztec U18 Boys White",
           "played": 1,
           "wins": 0,
@@ -2352,18 +2456,29 @@
           "pointsFor": 38,
           "pointsAgainst": 52,
           "percentage": 73.08,
-          "points": 1
+          "points": 4
+        },
+        {
+          "position": 6,
+          "teamName": "Generals U18 Boys Lions",
+          "played": 1,
+          "wins": 0,
+          "losses": 1,
+          "pointsFor": 18,
+          "pointsAgainst": 50,
+          "percentage": 36,
+          "points": 4
         },
         {
           "position": 7,
           "teamName": "PHOENIX Wembys",
-          "played": 1,
+          "played": 2,
           "wins": 0,
-          "losses": 1,
-          "pointsFor": 13,
-          "pointsAgainst": 37,
-          "percentage": 35.14,
-          "points": 1
+          "losses": 2,
+          "pointsFor": 39,
+          "pointsAgainst": 80,
+          "percentage": 48.75,
+          "points": 2
         }
       ]
     },
@@ -2377,10 +2492,117 @@
       "court": "Court 2",
       "homeTeam": "Strath Eagles",
       "awayTeam": "PHOENIX Suns",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 53,
+      "awayScore": 37,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Lachlan Anderson",
+            "team": "Strath Eagles",
+            "points": 17,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Oscar Connolly",
+            "team": "Strath Eagles",
+            "points": 14,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "eshie gragasin",
+            "team": "PHOENIX Suns",
+            "points": 12,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ruben de Noronha",
+            "team": "Strath Eagles",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Dominic McWilliams",
+            "team": "PHOENIX Suns",
+            "points": 8,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Austin McPhail",
+            "team": "Strath Eagles",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "William Eldridge",
+            "team": "Strath Eagles",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "zhyden Abrera",
+            "team": "PHOENIX Suns",
+            "points": 5,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Jhade Teopiz",
+            "team": "PHOENIX Suns",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Justin Hidalgo",
+            "team": "PHOENIX Suns",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Zavier fuller",
+            "team": "PHOENIX Suns",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Robert Taylor",
+            "team": "Strath Eagles",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "seth fuller",
+            "team": "PHOENIX Suns",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
@@ -2391,51 +2613,51 @@
           "pointsFor": 52,
           "pointsAgainst": 50,
           "percentage": 104,
-          "points": 3
+          "points": 6
         },
         {
           "position": 2,
-          "teamName": "PHOENIX Suns",
-          "played": 1,
+          "teamName": "Strath Eagles",
+          "played": 2,
           "wins": 1,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
+          "losses": 1,
+          "pointsFor": 103,
+          "pointsAgainst": 89,
+          "percentage": 115.73,
+          "points": 4
         },
         {
           "position": 3,
-          "teamName": "Aztec U18 Boys Silver",
-          "played": 0,
-          "wins": 0,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
+          "teamName": "PHOENIX Suns",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 37,
+          "pointsAgainst": 53,
+          "percentage": 69.81,
+          "points": 4
         },
         {
           "position": 4,
-          "teamName": "Strath Eagles",
+          "teamName": "Aztec U18 Boys Silver",
           "played": 1,
           "wins": 0,
           "losses": 1,
-          "pointsFor": 50,
-          "pointsAgainst": 52,
-          "percentage": 96.15,
-          "points": 1
+          "pointsFor": 32,
+          "pointsAgainst": 53,
+          "percentage": 60.38,
+          "points": 4
         },
         {
           "position": 5,
           "teamName": "Aztec U18 Boys Bronze",
-          "played": 1,
-          "wins": 0,
+          "played": 2,
+          "wins": 1,
           "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 0
+          "pointsFor": 53,
+          "pointsAgainst": 32,
+          "percentage": 165.63,
+          "points": 3
         }
       ]
     },
@@ -3214,6 +3436,17 @@
           "pointsAgainst": 114,
           "percentage": 47.37,
           "points": 2
+        },
+        {
+          "position": 13,
+          "teamName": "Strath Bricks",
+          "played": 0,
+          "wins": 0,
+          "losses": 0,
+          "pointsFor": 0,
+          "pointsAgainst": 0,
+          "percentage": 0,
+          "points": 0
         }
       ]
     },
@@ -3227,10 +3460,117 @@
       "court": "Court 3",
       "homeTeam": "Beavers Rockets",
       "awayTeam": "PHOENIX Splash",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 58,
+      "awayScore": 33,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Elijah Jobe",
+            "team": "Beavers Rockets",
+            "points": 16,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Henry Connolly",
+            "team": "Beavers Rockets",
+            "points": 14,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Noah Withers",
+            "team": "PHOENIX Splash",
+            "points": 13,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Harvey Flood",
+            "team": "Beavers Rockets",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Tyler Guild",
+            "team": "Beavers Rockets",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Raphael Singe",
+            "team": "Beavers Rockets",
+            "points": 8,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Luke Bennett",
+            "team": "PHOENIX Splash",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Tobias Bennett",
+            "team": "PHOENIX Splash",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Nathaniel Sordan",
+            "team": "PHOENIX Splash",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Rylan Davies",
+            "team": "PHOENIX Splash",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Harrison Morgan",
+            "team": "PHOENIX Splash",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Noah Fuller",
+            "team": "Beavers Rockets",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Thomas Evans",
+            "team": "Beavers Rockets",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
@@ -3256,6 +3596,28 @@
         },
         {
           "position": 3,
+          "teamName": "Beavers Rockets",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 58,
+          "pointsAgainst": 33,
+          "percentage": 175.76,
+          "points": 6
+        },
+        {
+          "position": 4,
+          "teamName": "PHOENIX Splash",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 72,
+          "pointsAgainst": 76,
+          "percentage": 94.74,
+          "points": 4
+        },
+        {
+          "position": 5,
           "teamName": "Aztec U16 Boys White",
           "played": 1,
           "wins": 0,
@@ -3266,40 +3628,7 @@
           "points": 4
         },
         {
-          "position": 4,
-          "teamName": "PHOENIX Splash",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 39,
-          "pointsAgainst": 18,
-          "percentage": 216.67,
-          "points": 3
-        },
-        {
-          "position": 5,
-          "teamName": "Beavers Rockets",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
-        },
-        {
           "position": 6,
-          "teamName": "Aztec U16 Boys Bronze",
-          "played": 2,
-          "wins": 0,
-          "losses": 2,
-          "pointsFor": 27,
-          "pointsAgainst": 65,
-          "percentage": 41.54,
-          "points": 2
-        },
-        {
-          "position": 7,
           "teamName": "Strath Sharks",
           "played": 2,
           "wins": 0,
@@ -3308,6 +3637,17 @@
           "pointsAgainst": 110,
           "percentage": 50,
           "points": 2
+        },
+        {
+          "position": 7,
+          "teamName": "Beavers Mamba",
+          "played": 0,
+          "wins": 0,
+          "losses": 0,
+          "pointsFor": 0,
+          "pointsAgainst": 0,
+          "percentage": 0,
+          "points": 0
         }
       ]
     },
@@ -3457,6 +3797,28 @@
         },
         {
           "position": 3,
+          "teamName": "Beavers Rockets",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 58,
+          "pointsAgainst": 33,
+          "percentage": 175.76,
+          "points": 6
+        },
+        {
+          "position": 4,
+          "teamName": "PHOENIX Splash",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 72,
+          "pointsAgainst": 76,
+          "percentage": 94.74,
+          "points": 4
+        },
+        {
+          "position": 5,
           "teamName": "Aztec U16 Boys White",
           "played": 1,
           "wins": 0,
@@ -3467,40 +3829,7 @@
           "points": 4
         },
         {
-          "position": 4,
-          "teamName": "PHOENIX Splash",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 39,
-          "pointsAgainst": 18,
-          "percentage": 216.67,
-          "points": 3
-        },
-        {
-          "position": 5,
-          "teamName": "Beavers Rockets",
-          "played": 1,
-          "wins": 1,
-          "losses": 0,
-          "pointsFor": 0,
-          "pointsAgainst": 0,
-          "percentage": 0,
-          "points": 3
-        },
-        {
           "position": 6,
-          "teamName": "Aztec U16 Boys Bronze",
-          "played": 2,
-          "wins": 0,
-          "losses": 2,
-          "pointsFor": 27,
-          "pointsAgainst": 65,
-          "percentage": 41.54,
-          "points": 2
-        },
-        {
-          "position": 7,
           "teamName": "Strath Sharks",
           "played": 2,
           "wins": 0,
@@ -3509,6 +3838,17 @@
           "pointsAgainst": 110,
           "percentage": 50,
           "points": 2
+        },
+        {
+          "position": 7,
+          "teamName": "Beavers Mamba",
+          "played": 0,
+          "wins": 0,
+          "losses": 0,
+          "pointsFor": 0,
+          "pointsAgainst": 0,
+          "percentage": 0,
+          "points": 0
         }
       ]
     }
@@ -3517,6 +3857,17 @@
     "Friday U18 Boys 2": [
       {
         "position": 1,
+        "teamName": "Bunjils U18 Boys ALPHA",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 97,
+        "pointsAgainst": 63,
+        "percentage": 153.97,
+        "points": 6
+      },
+      {
+        "position": 2,
         "teamName": "PHOENIX Smartmeal",
         "played": 2,
         "wins": 1,
@@ -3527,26 +3878,15 @@
         "points": 4
       },
       {
-        "position": 2,
-        "teamName": "Aztec U18 Boys Yellow",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 50,
-        "pointsAgainst": 37,
-        "percentage": 135.14,
-        "points": 3
-      },
-      {
         "position": 3,
-        "teamName": "Bunjils U18 Boys ALPHA",
-        "played": 1,
+        "teamName": "Aztec U18 Boys Yellow",
+        "played": 2,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 39,
-        "pointsAgainst": 35,
-        "percentage": 111.43,
-        "points": 3
+        "losses": 1,
+        "pointsFor": 78,
+        "pointsAgainst": 95,
+        "percentage": 82.11,
+        "points": 4
       },
       {
         "position": 4,
@@ -4262,46 +4602,46 @@
       {
         "position": 1,
         "teamName": "St Francis U10 Girls Fearless Flames",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 28,
-        "pointsAgainst": 4,
-        "percentage": 700,
-        "points": 6
-      },
-      {
-        "position": 2,
-        "teamName": "Bunjils U10 Girls Blue",
         "played": 2,
         "wins": 2,
         "losses": 0,
-        "pointsFor": 65,
-        "pointsAgainst": 17,
-        "percentage": 382.35,
-        "points": 6
+        "pointsFor": 54,
+        "pointsAgainst": 8,
+        "percentage": 675,
+        "points": 9
+      },
+      {
+        "position": 2,
+        "teamName": "St Francis U10 Girls Swish Sisters",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 43,
+        "pointsAgainst": 9,
+        "percentage": 477.78,
+        "points": 9
       },
       {
         "position": 3,
-        "teamName": "St Francis U10 Girls Swish Sisters",
-        "played": 1,
-        "wins": 1,
+        "teamName": "Bunjils U10 Girls Blue",
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 15,
-        "pointsAgainst": 4,
-        "percentage": 375,
-        "points": 6
+        "pointsFor": 95,
+        "pointsAgainst": 21,
+        "percentage": 452.38,
+        "points": 9
       },
       {
         "position": 4,
         "teamName": "PHOENIX Firebirds",
-        "played": 2,
-        "wins": 1,
+        "played": 3,
+        "wins": 2,
         "losses": 1,
-        "pointsFor": 37,
-        "pointsAgainst": 22,
-        "percentage": 168.18,
-        "points": 4
+        "pointsFor": 54,
+        "pointsAgainst": 23,
+        "percentage": 234.78,
+        "points": 7
       },
       {
         "position": 5,
@@ -4312,111 +4652,100 @@
         "pointsFor": 30,
         "pointsAgainst": 23,
         "percentage": 130.43,
-        "points": 4
+        "points": 7
       },
       {
         "position": 6,
         "teamName": "DIAMOND FLAMINGO’s",
-        "played": 2,
+        "played": 3,
         "wins": 1,
-        "losses": 1,
-        "pointsFor": 26,
-        "pointsAgainst": 37,
-        "percentage": 70.27,
-        "points": 4
+        "losses": 2,
+        "pointsFor": 27,
+        "pointsAgainst": 54,
+        "percentage": 50,
+        "points": 5
       },
       {
         "position": 7,
         "teamName": "PHOENIX Go Getters",
-        "played": 2,
+        "played": 3,
         "wins": 1,
-        "losses": 1,
-        "pointsFor": 13,
-        "pointsAgainst": 37,
-        "percentage": 35.14,
-        "points": 4
+        "losses": 2,
+        "pointsFor": 18,
+        "pointsAgainst": 65,
+        "percentage": 27.69,
+        "points": 5
       },
       {
         "position": 8,
         "teamName": "PINK FLAMINGO’S",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 17,
-        "pointsAgainst": 36,
-        "percentage": 47.22,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 21,
+        "pointsAgainst": 66,
+        "percentage": 31.82,
+        "points": 3
       },
       {
         "position": 9,
         "teamName": "Aztec U10 Girls Aqua",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 17,
-        "pointsAgainst": 68,
-        "percentage": 25,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 21,
+        "pointsAgainst": 94,
+        "percentage": 22.34,
+        "points": 3
       }
     ],
     "Friday U18 Boys 5": [
       {
         "position": 1,
         "teamName": "Generals U18 Boys Rockets",
-        "played": 1,
-        "wins": 1,
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 37,
-        "pointsAgainst": 13,
-        "percentage": 284.62,
-        "points": 3
+        "pointsFor": 87,
+        "pointsAgainst": 31,
+        "percentage": 280.65,
+        "points": 6
       },
       {
         "position": 2,
-        "teamName": "Bunjils U18 Boys Bravo",
-        "played": 1,
-        "wins": 1,
+        "teamName": "Aztec U18 Boys Steel",
+        "played": 2,
+        "wins": 2,
         "losses": 0,
-        "pointsFor": 52,
-        "pointsAgainst": 38,
-        "percentage": 136.84,
-        "points": 3
+        "pointsFor": 87,
+        "pointsAgainst": 60,
+        "percentage": 145,
+        "points": 6
       },
       {
         "position": 3,
-        "teamName": "Aztec U18 Boys Steel",
-        "played": 1,
+        "teamName": "Bunjils U18 Boys Bravo",
+        "played": 2,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 44,
-        "pointsAgainst": 34,
-        "percentage": 129.41,
-        "points": 3
+        "losses": 1,
+        "pointsFor": 85,
+        "pointsAgainst": 72,
+        "percentage": 118.06,
+        "points": 4
       },
       {
         "position": 4,
-        "teamName": "Generals U18 Boys Lions",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
+        "teamName": "Generals U18 Boys Boomers",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 68,
+        "pointsAgainst": 77,
+        "percentage": 88.31,
+        "points": 4
       },
       {
         "position": 5,
-        "teamName": "Generals U18 Boys Boomers",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 34,
-        "pointsAgainst": 44,
-        "percentage": 77.27,
-        "points": 1
-      },
-      {
-        "position": 6,
         "teamName": "Aztec U18 Boys White",
         "played": 1,
         "wins": 0,
@@ -4424,18 +4753,29 @@
         "pointsFor": 38,
         "pointsAgainst": 52,
         "percentage": 73.08,
-        "points": 1
+        "points": 4
+      },
+      {
+        "position": 6,
+        "teamName": "Generals U18 Boys Lions",
+        "played": 1,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 18,
+        "pointsAgainst": 50,
+        "percentage": 36,
+        "points": 4
       },
       {
         "position": 7,
         "teamName": "PHOENIX Wembys",
-        "played": 1,
+        "played": 2,
         "wins": 0,
-        "losses": 1,
-        "pointsFor": 13,
-        "pointsAgainst": 37,
-        "percentage": 35.14,
-        "points": 1
+        "losses": 2,
+        "pointsFor": 39,
+        "pointsAgainst": 80,
+        "percentage": 48.75,
+        "points": 2
       }
     ],
     "Friday U18 Boys 3": [
@@ -4448,51 +4788,51 @@
         "pointsFor": 52,
         "pointsAgainst": 50,
         "percentage": 104,
-        "points": 3
+        "points": 6
       },
       {
         "position": 2,
-        "teamName": "PHOENIX Suns",
-        "played": 1,
+        "teamName": "Strath Eagles",
+        "played": 2,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
+        "losses": 1,
+        "pointsFor": 103,
+        "pointsAgainst": 89,
+        "percentage": 115.73,
+        "points": 4
       },
       {
         "position": 3,
-        "teamName": "Aztec U18 Boys Silver",
-        "played": 0,
-        "wins": 0,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
+        "teamName": "PHOENIX Suns",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 37,
+        "pointsAgainst": 53,
+        "percentage": 69.81,
+        "points": 4
       },
       {
         "position": 4,
-        "teamName": "Strath Eagles",
+        "teamName": "Aztec U18 Boys Silver",
         "played": 1,
         "wins": 0,
         "losses": 1,
-        "pointsFor": 50,
-        "pointsAgainst": 52,
-        "percentage": 96.15,
-        "points": 1
+        "pointsFor": 32,
+        "pointsAgainst": 53,
+        "percentage": 60.38,
+        "points": 4
       },
       {
         "position": 5,
         "teamName": "Aztec U18 Boys Bronze",
-        "played": 1,
-        "wins": 0,
+        "played": 2,
+        "wins": 1,
         "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 0
+        "pointsFor": 53,
+        "pointsAgainst": 32,
+        "percentage": 165.63,
+        "points": 3
       }
     ],
     "Friday U12 Boys 7": [
@@ -4774,6 +5114,17 @@
         "pointsAgainst": 114,
         "percentage": 47.37,
         "points": 2
+      },
+      {
+        "position": 13,
+        "teamName": "Strath Bricks",
+        "played": 0,
+        "wins": 0,
+        "losses": 0,
+        "pointsFor": 0,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 0
       }
     ],
     "Friday U16 Boys 7": [
@@ -4801,6 +5152,28 @@
       },
       {
         "position": 3,
+        "teamName": "Beavers Rockets",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 58,
+        "pointsAgainst": 33,
+        "percentage": 175.76,
+        "points": 6
+      },
+      {
+        "position": 4,
+        "teamName": "PHOENIX Splash",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 72,
+        "pointsAgainst": 76,
+        "percentage": 94.74,
+        "points": 4
+      },
+      {
+        "position": 5,
         "teamName": "Aztec U16 Boys White",
         "played": 1,
         "wins": 0,
@@ -4811,40 +5184,7 @@
         "points": 4
       },
       {
-        "position": 4,
-        "teamName": "PHOENIX Splash",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 39,
-        "pointsAgainst": 18,
-        "percentage": 216.67,
-        "points": 3
-      },
-      {
-        "position": 5,
-        "teamName": "Beavers Rockets",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 0,
-        "pointsAgainst": 0,
-        "percentage": 0,
-        "points": 3
-      },
-      {
         "position": 6,
-        "teamName": "Aztec U16 Boys Bronze",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 27,
-        "pointsAgainst": 65,
-        "percentage": 41.54,
-        "points": 2
-      },
-      {
-        "position": 7,
         "teamName": "Strath Sharks",
         "played": 2,
         "wins": 0,
@@ -4853,6 +5193,17 @@
         "pointsAgainst": 110,
         "percentage": 50,
         "points": 2
+      },
+      {
+        "position": 7,
+        "teamName": "Beavers Mamba",
+        "played": 0,
+        "wins": 0,
+        "losses": 0,
+        "pointsFor": 0,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 0
       }
     ]
   }

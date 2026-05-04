@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-01T11:41:05.874Z",
+  "lastUpdated": "2026-05-04T08:07:56.279Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -15,11 +15,110 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Firebirds",
           "awayTeam": "DIAMOND FLAMINGO’s",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 17,
+          "awayScore": 1,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Reagan Ogilvie",
+                "team": "PHOENIX Firebirds",
+                "points": 12,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Evelyn Robertson",
+                "team": "PHOENIX Firebirds",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Audrey Patterson",
+                "team": "DIAMOND FLAMINGO’s",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Avah Brown",
+                "team": "PHOENIX Firebirds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Eliza Howard",
+                "team": "PHOENIX Firebirds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Isabelle Marslen",
+                "team": "DIAMOND FLAMINGO’s",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ivy Cozens",
+                "team": "DIAMOND FLAMINGO’s",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Madison Fiske",
+                "team": "PHOENIX Firebirds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Olive Olsen",
+                "team": "DIAMOND FLAMINGO’s",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Peyton Reid",
+                "team": "DIAMOND FLAMINGO’s",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Remy Hartley",
+                "team": "DIAMOND FLAMINGO’s",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Sylvie Scarlett",
+                "team": "DIAMOND FLAMINGO’s",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "8d13c32c-b030-4f02-96d5-771e909e771b",
@@ -278,38 +377,38 @@
         {
           "rank": 1,
           "team": "St Francis U10 Girls Fearless Flames",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
-          "rank": 2,
-          "team": "Bunjils U10 Girls Blue",
           "played": 2,
           "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
+        },
+        {
+          "rank": 2,
+          "team": "St Francis U10 Girls Swish Sisters",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
         },
         {
           "rank": 3,
-          "team": "St Francis U10 Girls Swish Sisters",
-          "played": 1,
-          "won": 1,
+          "team": "Bunjils U10 Girls Blue",
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 4,
           "team": "PHOENIX Firebirds",
-          "played": 2,
-          "won": 1,
+          "played": 3,
+          "won": 2,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 5,
@@ -318,43 +417,43 @@
           "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 6,
           "team": "DIAMOND FLAMINGO’s",
-          "played": 2,
+          "played": 3,
           "won": 1,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 4
+          "points": 5
         },
         {
           "rank": 7,
           "team": "PHOENIX Go Getters",
-          "played": 2,
+          "played": 3,
           "won": 1,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 4
+          "points": 5
         },
         {
           "rank": 8,
           "team": "PINK FLAMINGO’S",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         },
         {
           "rank": 9,
           "team": "Aztec U10 Girls Aqua",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },
@@ -372,11 +471,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Go Getters",
           "awayTeam": "St Francis U10 Girls Swish Sisters",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 5,
+          "awayScore": 28,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Pippa Gregg",
+                "team": "St Francis U10 Girls Swish Sisters",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harper Stagg",
+                "team": "St Francis U10 Girls Swish Sisters",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Sailor Davies",
+                "team": "St Francis U10 Girls Swish Sisters",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ava McLean",
+                "team": "PHOENIX Go Getters",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Frankie McMillan",
+                "team": "St Francis U10 Girls Swish Sisters",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Sienna Mangan",
+                "team": "St Francis U10 Girls Swish Sisters",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Charlotte Hamilton",
+                "team": "PHOENIX Go Getters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Clementine Weekley",
+                "team": "PHOENIX Go Getters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Eleanor Reid",
+                "team": "PHOENIX Go Getters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harper Armstrong",
+                "team": "PHOENIX Go Getters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Isla Stuart",
+                "team": "St Francis U10 Girls Swish Sisters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Paige Alberts",
+                "team": "PHOENIX Go Getters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Go Getters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Go Getters",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "8e64b02a-37ba-4ada-828f-2a9eb6d7e5a9",
@@ -643,38 +857,38 @@
         {
           "rank": 1,
           "team": "St Francis U10 Girls Fearless Flames",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
-          "rank": 2,
-          "team": "Bunjils U10 Girls Blue",
           "played": 2,
           "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
+        },
+        {
+          "rank": 2,
+          "team": "St Francis U10 Girls Swish Sisters",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
         },
         {
           "rank": 3,
-          "team": "St Francis U10 Girls Swish Sisters",
-          "played": 1,
-          "won": 1,
+          "team": "Bunjils U10 Girls Blue",
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 4,
           "team": "PHOENIX Firebirds",
-          "played": 2,
-          "won": 1,
+          "played": 3,
+          "won": 2,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 5,
@@ -683,43 +897,43 @@
           "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 6,
           "team": "DIAMOND FLAMINGO’s",
-          "played": 2,
+          "played": 3,
           "won": 1,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 4
+          "points": 5
         },
         {
           "rank": 7,
           "team": "PHOENIX Go Getters",
-          "played": 2,
+          "played": 3,
           "won": 1,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 4
+          "points": 5
         },
         {
           "rank": 8,
           "team": "PINK FLAMINGO’S",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         },
         {
           "rank": 9,
           "team": "Aztec U10 Girls Aqua",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },
@@ -728,6 +942,21 @@
       "teamName": "PHOENIX Thunder",
       "gradeName": "Friday U10 Boys 4",
       "fixture": [
+        {
+          "id": "b5afd076-7da6-4513-88df-b829b5c36aae",
+          "date": "2026-05-08",
+          "time": "17:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 2",
+          "address": "91 Inglis Street",
+          "homeTeam": "Generals U10 Boys Cubs",
+          "awayTeam": "PHOENIX Thunder",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "dc51cd4e-db3f-4151-9b2d-f88b5e01f66d",
           "date": "2026-05-01",
@@ -1004,6 +1233,21 @@
       "teamName": "PHOENIX Flames",
       "gradeName": "Friday U12 Boys 8",
       "fixture": [
+        {
+          "id": "b767408b-8564-4363-a816-cdba537b21db",
+          "date": "2026-05-08",
+          "time": "18:00:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 6",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Flames",
+          "awayTeam": "Strath Suns",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "59da423b-e094-4bda-aeff-9d23e401645f",
           "date": "2026-05-01",
@@ -1643,6 +1887,21 @@
       "teamName": "PHOENIX Son's",
       "gradeName": "Friday U12 Boys 3",
       "fixture": [
+        {
+          "id": "90edbc86-0ce4-4ae4-b70d-610771466d9d",
+          "date": "2026-05-08",
+          "time": "18:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "Beavers Chiefs",
+          "awayTeam": "PHOENIX Son's",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "2a375817-125e-4e26-83e8-750c4944dd40",
           "date": "2026-04-24",
@@ -4166,6 +4425,21 @@
       "gradeName": "Friday U16 Boys 4",
       "fixture": [
         {
+          "id": "dafb2f4b-b4b2-47a6-848e-1c789ca660fb",
+          "date": "2026-05-08",
+          "time": "20:15:00",
+          "venue": "Bendigo South East College",
+          "court": "Court 3",
+          "address": "56 Ellis Street",
+          "homeTeam": "PHOENIX Go Buckets",
+          "awayTeam": "Beavers Warriors",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "cbba9944-fba9-43bf-b1db-5a2ff18b0504",
           "date": "2026-05-01",
           "time": "19:30:00",
@@ -4510,6 +4784,15 @@
           "lost": 2,
           "drawn": 0,
           "points": 2
+        },
+        {
+          "rank": 13,
+          "team": "Strath Bricks",
+          "played": 0,
+          "won": 0,
+          "lost": 0,
+          "drawn": 0,
+          "points": 0
         }
       ]
     },
@@ -4518,6 +4801,21 @@
       "teamName": "PHOENIX Gooney Tunes",
       "gradeName": "Friday U16 Boys 7",
       "fixture": [
+        {
+          "id": "87b56ca9-2c19-4c6d-9932-606e04141273",
+          "date": "2026-05-08",
+          "time": "20:15:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 7",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Gooney Tunes",
+          "awayTeam": "Strath Wizards",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
         {
           "id": "0709957e-bf03-410d-8d9f-742f26b5352d",
           "date": "2026-05-01",
@@ -4792,6 +5090,24 @@
         },
         {
           "rank": 3,
+          "team": "Beavers Rockets",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 4,
+          "team": "PHOENIX Splash",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 5,
           "team": "Aztec U16 Boys White",
           "played": 1,
           "won": 0,
@@ -4800,26 +5116,8 @@
           "points": 4
         },
         {
-          "rank": 4,
-          "team": "PHOENIX Splash",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 5,
-          "team": "Beavers Rockets",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
           "rank": 6,
-          "team": "Aztec U16 Boys Bronze",
+          "team": "Strath Sharks",
           "played": 2,
           "won": 0,
           "lost": 2,
@@ -4828,12 +5126,12 @@
         },
         {
           "rank": 7,
-          "team": "Strath Sharks",
-          "played": 2,
+          "team": "Beavers Mamba",
+          "played": 0,
           "won": 0,
-          "lost": 2,
+          "lost": 0,
           "drawn": 0,
-          "points": 2
+          "points": 0
         }
       ]
     },
@@ -4843,6 +5141,21 @@
       "gradeName": "Friday U16 Boys 7",
       "fixture": [
         {
+          "id": "67569e79-7373-4850-8736-6e10cd0f8d9a",
+          "date": "2026-05-08",
+          "time": "18:00:00",
+          "venue": "Bendigo South East College",
+          "court": "Court 3",
+          "address": "56 Ellis Street",
+          "homeTeam": "PHOENIX Splash",
+          "awayTeam": "Aztec U16 Boys White",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "2614d412-e9f6-4d0e-b579-2b14fee85182",
           "date": "2026-05-01",
           "time": "21:00:00",
@@ -4851,11 +5164,118 @@
           "address": "56 Ellis Street",
           "homeTeam": "Beavers Rockets",
           "awayTeam": "PHOENIX Splash",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 58,
+          "awayScore": 33,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Elijah Jobe",
+                "team": "Beavers Rockets",
+                "points": 16,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Henry Connolly",
+                "team": "Beavers Rockets",
+                "points": 14,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Noah Withers",
+                "team": "PHOENIX Splash",
+                "points": 13,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harvey Flood",
+                "team": "Beavers Rockets",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tyler Guild",
+                "team": "Beavers Rockets",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Raphael Singe",
+                "team": "Beavers Rockets",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Luke Bennett",
+                "team": "PHOENIX Splash",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tobias Bennett",
+                "team": "PHOENIX Splash",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nathaniel Sordan",
+                "team": "PHOENIX Splash",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Rylan Davies",
+                "team": "PHOENIX Splash",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harrison Morgan",
+                "team": "PHOENIX Splash",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Noah Fuller",
+                "team": "Beavers Rockets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Thomas Evans",
+                "team": "Beavers Rockets",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "cdc7bc72-a499-4fe0-943f-5393f2619654",
@@ -4993,6 +5413,24 @@
         },
         {
           "rank": 3,
+          "team": "Beavers Rockets",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 4,
+          "team": "PHOENIX Splash",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 4
+        },
+        {
+          "rank": 5,
           "team": "Aztec U16 Boys White",
           "played": 1,
           "won": 0,
@@ -5001,26 +5439,8 @@
           "points": 4
         },
         {
-          "rank": 4,
-          "team": "PHOENIX Splash",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
-          "rank": 5,
-          "team": "Beavers Rockets",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
           "rank": 6,
-          "team": "Aztec U16 Boys Bronze",
+          "team": "Strath Sharks",
           "played": 2,
           "won": 0,
           "lost": 2,
@@ -5029,12 +5449,12 @@
         },
         {
           "rank": 7,
-          "team": "Strath Sharks",
-          "played": 2,
+          "team": "Beavers Mamba",
+          "played": 0,
           "won": 0,
-          "lost": 2,
+          "lost": 0,
           "drawn": 0,
-          "points": 2
+          "points": 0
         }
       ]
     },
@@ -5797,6 +6217,21 @@
       "gradeName": "Friday U18 Boys 2",
       "fixture": [
         {
+          "id": "4bbc7815-0d07-402d-ac38-71d9c5802313",
+          "date": "2026-05-08",
+          "time": "21:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 3",
+          "address": "91 Inglis Street",
+          "homeTeam": "Aztec U18 Boys Yellow",
+          "awayTeam": "PHOENIX Smartmeal",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "c249015b-438d-432f-a75d-5b73d90d7899",
           "date": "2026-05-01",
           "time": "20:15:00",
@@ -5937,6 +6372,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Bunjils U18 Boys ALPHA",
+          "played": 2,
+          "won": 2,
+          "lost": 0,
+          "drawn": 0,
+          "points": 6
+        },
+        {
+          "rank": 2,
           "team": "PHOENIX Smartmeal",
           "played": 2,
           "won": 1,
@@ -5945,22 +6389,13 @@
           "points": 4
         },
         {
-          "rank": 2,
-          "team": "Aztec U18 Boys Yellow",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
-          "drawn": 0,
-          "points": 3
-        },
-        {
           "rank": 3,
-          "team": "Bunjils U18 Boys ALPHA",
-          "played": 1,
+          "team": "Aztec U18 Boys Yellow",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 4,
@@ -5979,6 +6414,21 @@
       "gradeName": "Friday U18 Boys 3",
       "fixture": [
         {
+          "id": "2f11289f-065e-435a-a828-17f30133958a",
+          "date": "2026-05-08",
+          "time": "21:00:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 4",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Suns",
+          "awayTeam": "Strath Blazers",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "7ab103c0-316f-4e41-b3f2-9c34f86d0b04",
           "date": "2026-05-01",
           "time": "21:00:00",
@@ -5987,11 +6437,118 @@
           "address": "56 Ellis Street",
           "homeTeam": "Strath Eagles",
           "awayTeam": "PHOENIX Suns",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 53,
+          "awayScore": 37,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Lachlan Anderson",
+                "team": "Strath Eagles",
+                "points": 17,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Oscar Connolly",
+                "team": "Strath Eagles",
+                "points": 14,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "eshie gragasin",
+                "team": "PHOENIX Suns",
+                "points": 12,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ruben de Noronha",
+                "team": "Strath Eagles",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Dominic McWilliams",
+                "team": "PHOENIX Suns",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Austin McPhail",
+                "team": "Strath Eagles",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "William Eldridge",
+                "team": "Strath Eagles",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "zhyden Abrera",
+                "team": "PHOENIX Suns",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jhade Teopiz",
+                "team": "PHOENIX Suns",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Justin Hidalgo",
+                "team": "PHOENIX Suns",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Zavier fuller",
+                "team": "PHOENIX Suns",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Robert Taylor",
+                "team": "Strath Eagles",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "seth fuller",
+                "team": "PHOENIX Suns",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "4a14bfab-bb61-4156-95d6-fe6db2d003df",
@@ -6028,43 +6585,43 @@
           "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 2,
-          "team": "PHOENIX Suns",
-          "played": 1,
+          "team": "Strath Eagles",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 3,
-          "team": "Aztec U18 Boys Silver",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
+          "team": "PHOENIX Suns",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 4,
-          "team": "Strath Eagles",
+          "team": "Aztec U18 Boys Silver",
           "played": 1,
           "won": 0,
           "lost": 1,
           "drawn": 0,
-          "points": 1
+          "points": 4
         },
         {
           "rank": 5,
           "team": "Aztec U18 Boys Bronze",
-          "played": 1,
-          "won": 0,
+          "played": 2,
+          "won": 1,
           "lost": 0,
           "drawn": 0,
-          "points": 0
+          "points": 3
         }
       ]
     },
@@ -6074,6 +6631,21 @@
       "gradeName": "Friday U18 Boys 5",
       "fixture": [
         {
+          "id": "ffd81708-c368-4c63-ba01-d6d51b8f913f",
+          "date": "2026-05-08",
+          "time": "21:45:00",
+          "venue": "Red Energy Arena (Bendigo Stadium)",
+          "court": "Court 5",
+          "address": "91 Inglis Street",
+          "homeTeam": "PHOENIX Wembys",
+          "awayTeam": "Bunjils U18 Boys Bravo",
+          "homeScore": null,
+          "awayScore": null,
+          "status": "UPCOMING",
+          "round": "Round 3",
+          "playerStats": null
+        },
+        {
           "id": "3811f460-89aa-481a-91df-088f84ef0842",
           "date": "2026-05-01",
           "time": "21:00:00",
@@ -6082,11 +6654,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Wembys",
           "awayTeam": "Aztec U18 Boys Steel",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 26,
+          "awayScore": 43,
+          "status": "COMPLETED",
           "round": "Round 2",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Callum Mangan",
+                "team": "PHOENIX Wembys",
+                "points": 12,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Taj Ferguson",
+                "team": "Aztec U18 Boys Steel",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Max Scandolera",
+                "team": "Aztec U18 Boys Steel",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jaxon Howard",
+                "team": "Aztec U18 Boys Steel",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Arlen Shay",
+                "team": "Aztec U18 Boys Steel",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Bailey Holmberg",
+                "team": "Aztec U18 Boys Steel",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Sonny Terrill",
+                "team": "Aztec U18 Boys Steel",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Oliver Steen",
+                "team": "PHOENIX Wembys",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tayte Tyler",
+                "team": "PHOENIX Wembys",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Liam Hovenden",
+                "team": "PHOENIX Wembys",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Kartik Sharma",
+                "team": "PHOENIX Wembys",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lucius Stevens",
+                "team": "PHOENIX Wembys",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Namar Johal",
+                "team": "PHOENIX Wembys",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "Aztec U18 Boys Steel",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "2c846df1-9ece-4a12-9d1f-1380728dff67",
@@ -6223,65 +6910,65 @@
         {
           "rank": 1,
           "team": "Generals U18 Boys Rockets",
-          "played": 1,
-          "won": 1,
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 2,
-          "team": "Bunjils U18 Boys Bravo",
-          "played": 1,
-          "won": 1,
+          "team": "Aztec U18 Boys Steel",
+          "played": 2,
+          "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 3
+          "points": 6
         },
         {
           "rank": 3,
-          "team": "Aztec U18 Boys Steel",
-          "played": 1,
+          "team": "Bunjils U18 Boys Bravo",
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 4,
-          "team": "Generals U18 Boys Lions",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
+          "team": "Generals U18 Boys Boomers",
+          "played": 2,
+          "won": 1,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 5,
-          "team": "Generals U18 Boys Boomers",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 1
-        },
-        {
-          "rank": 6,
           "team": "Aztec U18 Boys White",
           "played": 1,
           "won": 0,
           "lost": 1,
           "drawn": 0,
-          "points": 1
+          "points": 4
         },
         {
-          "rank": 7,
-          "team": "PHOENIX Wembys",
+          "rank": 6,
+          "team": "Generals U18 Boys Lions",
           "played": 1,
           "won": 0,
           "lost": 1,
           "drawn": 0,
-          "points": 1
+          "points": 4
+        },
+        {
+          "rank": 7,
+          "team": "PHOENIX Wembys",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "drawn": 0,
+          "points": 2
         }
       ]
     }
