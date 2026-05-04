@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-04T08:07:56.279Z",
+  "lastUpdated": "2026-05-04T10:34:27.056Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -2392,11 +2392,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Diamonds",
           "awayTeam": "Aztec U14 Girls Pink",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 22,
+          "awayScore": 28,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Lexi Stanley",
+                "team": "PHOENIX Diamonds",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Alix Taylor",
+                "team": "Aztec U14 Girls Pink",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ava Turley",
+                "team": "PHOENIX Diamonds",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Isabella Grinham-Reid",
+                "team": "Aztec U14 Girls Pink",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Niki Rothenberger",
+                "team": "Aztec U14 Girls Pink",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Willow Walsh",
+                "team": "PHOENIX Diamonds",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tilly Bird",
+                "team": "Aztec U14 Girls Pink",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Anaelle Soille",
+                "team": "Aztec U14 Girls Pink",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mikaylah Shearer",
+                "team": "Aztec U14 Girls Pink",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Baylee Mahon",
+                "team": "Aztec U14 Girls Pink",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lyla Robertson",
+                "team": "PHOENIX Diamonds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Diamonds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Diamonds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "PHOENIX Diamonds",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
@@ -2671,29 +2786,29 @@
         {
           "rank": 1,
           "team": "Aztec U14 Girls Purple",
-          "played": 2,
-          "won": 2,
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 2,
           "team": "PHOENIX Diamonds",
-          "played": 2,
+          "played": 3,
           "won": 2,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 6
+          "points": 7
         },
         {
           "rank": 3,
           "team": "Aztec U14 Girls Pink",
-          "played": 1,
-          "won": 0,
+          "played": 2,
+          "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 4,
@@ -2702,16 +2817,16 @@
           "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 5,
           "team": "Beavers Starlets",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },

@@ -1,7 +1,7 @@
 {
   "roundNumber": 3,
   "season": "Winter 2026",
-  "lastUpdated": "2026-05-04T08:13:12.659Z",
+  "lastUpdated": "2026-05-04T10:39:14.308Z",
   "status": "upcoming",
   "games": [
     {
@@ -959,43 +959,158 @@
       "court": "Court 8",
       "homeTeam": "PHOENIX Diamonds",
       "awayTeam": "Aztec U14 Girls Pink",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 22,
+      "awayScore": 28,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Lexi Stanley",
+            "team": "PHOENIX Diamonds",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Alix Taylor",
+            "team": "Aztec U14 Girls Pink",
+            "points": 8,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ava Turley",
+            "team": "PHOENIX Diamonds",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Isabella Grinham-Reid",
+            "team": "Aztec U14 Girls Pink",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Niki Rothenberger",
+            "team": "Aztec U14 Girls Pink",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Willow Walsh",
+            "team": "PHOENIX Diamonds",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Tilly Bird",
+            "team": "Aztec U14 Girls Pink",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Anaelle Soille",
+            "team": "Aztec U14 Girls Pink",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Mikaylah Shearer",
+            "team": "Aztec U14 Girls Pink",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Baylee Mahon",
+            "team": "Aztec U14 Girls Pink",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lyla Robertson",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Unknown",
+            "team": "PHOENIX Diamonds",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
           "teamName": "Aztec U14 Girls Purple",
-          "played": 2,
-          "wins": 2,
+          "played": 3,
+          "wins": 3,
           "losses": 0,
-          "pointsFor": 68,
-          "pointsAgainst": 32,
-          "percentage": 212.5,
-          "points": 6
+          "pointsFor": 101,
+          "pointsAgainst": 46,
+          "percentage": 219.57,
+          "points": 9
         },
         {
           "position": 2,
           "teamName": "PHOENIX Diamonds",
-          "played": 2,
+          "played": 3,
           "wins": 2,
-          "losses": 0,
-          "pointsFor": 26,
-          "pointsAgainst": 24,
-          "percentage": 108.33,
-          "points": 6
+          "losses": 1,
+          "pointsFor": 48,
+          "pointsAgainst": 52,
+          "percentage": 92.31,
+          "points": 7
         },
         {
           "position": 3,
           "teamName": "Aztec U14 Girls Pink",
-          "played": 1,
-          "wins": 0,
+          "played": 2,
+          "wins": 1,
           "losses": 1,
-          "pointsFor": 22,
-          "pointsAgainst": 36,
-          "percentage": 61.11,
-          "points": 4
+          "pointsFor": 50,
+          "pointsAgainst": 58,
+          "percentage": 86.21,
+          "points": 7
         },
         {
           "position": 4,
@@ -1006,18 +1121,18 @@
           "pointsFor": 26,
           "pointsAgainst": 44,
           "percentage": 59.09,
-          "points": 4
+          "points": 7
         },
         {
           "position": 5,
           "teamName": "Beavers Starlets",
-          "played": 2,
+          "played": 3,
           "wins": 0,
-          "losses": 2,
-          "pointsFor": 23,
-          "pointsAgainst": 28,
-          "percentage": 82.14,
-          "points": 2
+          "losses": 3,
+          "pointsFor": 37,
+          "pointsAgainst": 61,
+          "percentage": 60.66,
+          "points": 3
         }
       ]
     },
@@ -2845,35 +2960,35 @@
       {
         "position": 1,
         "teamName": "Aztec U14 Girls Purple",
-        "played": 2,
-        "wins": 2,
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 68,
-        "pointsAgainst": 32,
-        "percentage": 212.5,
-        "points": 6
+        "pointsFor": 101,
+        "pointsAgainst": 46,
+        "percentage": 219.57,
+        "points": 9
       },
       {
         "position": 2,
         "teamName": "PHOENIX Diamonds",
-        "played": 2,
+        "played": 3,
         "wins": 2,
-        "losses": 0,
-        "pointsFor": 26,
-        "pointsAgainst": 24,
-        "percentage": 108.33,
-        "points": 6
+        "losses": 1,
+        "pointsFor": 48,
+        "pointsAgainst": 52,
+        "percentage": 92.31,
+        "points": 7
       },
       {
         "position": 3,
         "teamName": "Aztec U14 Girls Pink",
-        "played": 1,
-        "wins": 0,
+        "played": 2,
+        "wins": 1,
         "losses": 1,
-        "pointsFor": 22,
-        "pointsAgainst": 36,
-        "percentage": 61.11,
-        "points": 4
+        "pointsFor": 50,
+        "pointsAgainst": 58,
+        "percentage": 86.21,
+        "points": 7
       },
       {
         "position": 4,
@@ -2884,18 +2999,18 @@
         "pointsFor": 26,
         "pointsAgainst": 44,
         "percentage": 59.09,
-        "points": 4
+        "points": 7
       },
       {
         "position": 5,
         "teamName": "Beavers Starlets",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 23,
-        "pointsAgainst": 28,
-        "percentage": 82.14,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 37,
+        "pointsAgainst": 61,
+        "percentage": 60.66,
+        "points": 3
       }
     ],
     "Monday U10 Girls 3": [
