@@ -42,24 +42,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="w-12 h-12 rounded-xl bg-brand-purple flex items-center justify-center text-2xl">
             ✉️
           </div>
-          <div>
+          <div class="w-full">
             <h3 class="font-bold text-brand-black text-base mb-2">Email Us</h3>
             <div class="space-y-3">
-              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:gap-3">
-                <span class="text-xs font-medium text-gray-700 sm:w-32">General Enquiries</span>
-                <a href="mailto:hello@bendigophoenix.org.au" class="inline-flex min-h-[44px] items-center text-brand-purple transition-colors break-all hover:text-brand-gold">
+              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+                <span class="text-xs font-medium text-gray-700 sm:w-20 sm:flex-shrink-0">General Enquiries</span>
+                <a href="mailto:hello@bendigophoenix.org.au" class="inline-flex min-h-[44px] items-center text-sm text-brand-purple transition-colors whitespace-nowrap hover:text-brand-gold sm:flex-1 sm:justify-end">
                   hello@bendigophoenix.org.au
                 </a>
               </div>
-              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:gap-3">
-                <span class="text-xs font-medium text-gray-700 sm:w-32">President</span>
-                <a href="mailto:president@bendigophoenix.org.au" class="inline-flex min-h-[44px] items-center text-brand-purple transition-colors break-all hover:text-brand-gold">
+              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+                <span class="text-xs font-medium text-gray-700 sm:w-20 sm:flex-shrink-0">President</span>
+                <a href="mailto:president@bendigophoenix.org.au" class="inline-flex min-h-[44px] items-center text-sm text-brand-purple transition-colors whitespace-nowrap hover:text-brand-gold sm:flex-1 sm:justify-end">
                   president@bendigophoenix.org.au
                 </a>
               </div>
-              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:gap-3">
-                <span class="text-xs font-medium text-gray-700 sm:w-32">Treasurer</span>
-                <a href="mailto:treasurer@bendigophoenix.org.au" class="inline-flex min-h-[44px] items-center text-brand-purple transition-colors break-all hover:text-brand-gold">
+              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
+                <span class="text-xs font-medium text-gray-700 sm:w-20 sm:flex-shrink-0">Treasurer</span>
+                <a href="mailto:treasurer@bendigophoenix.org.au" class="inline-flex min-h-[44px] items-center text-sm text-brand-purple transition-colors whitespace-nowrap hover:text-brand-gold sm:flex-1 sm:justify-end">
                   treasurer@bendigophoenix.org.au
                 </a>
               </div>
@@ -115,7 +115,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <h2 class="text-3xl sm:text-4xl font-black text-brand-black uppercase tracking-tight">Committee Office Bearers</h2>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
         <!-- Cameron Walsh - President -->
         <a href="mailto:president@bendigophoenix.org.au" class="card-hover bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm block">
           <img
@@ -130,15 +130,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <img
             src="/images/office-bearers/kylie.png"
             alt="Kylie Stewart, Secretary - Email hello@bendigophoenix.org.au"
-            class="w-full h-auto"
-          />
-        </a>
-
-        <!-- Ainsley Drummond - Treasurer -->
-        <a href="mailto:treasurer@bendigophoenix.org.au" class="card-hover bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm block">
-          <img
-            src="/images/office-bearers/ainsley.png"
-            alt="Ainsley Drummond, Treasurer - Email treasurer@bendigophoenix.org.au"
             class="w-full h-auto"
           />
         </a>
