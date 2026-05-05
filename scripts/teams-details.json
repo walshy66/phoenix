@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-05T07:33:31.227Z",
+  "lastUpdated": "2026-05-05T10:20:25.678Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -2481,29 +2481,29 @@
         {
           "rank": 3,
           "team": "St Francis U12 Girls Hornets",
-          "played": 1,
+          "played": 2,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 6
+          "points": 7
         },
         {
           "rank": 4,
-          "team": "Strath Shooting Stars",
-          "played": 2,
-          "won": 0,
+          "team": "Beavers Belles",
+          "played": 3,
+          "won": 1,
           "lost": 2,
           "drawn": 0,
           "points": 5
         },
         {
           "rank": 5,
-          "team": "Beavers Belles",
+          "team": "Strath Shooting Stars",
           "played": 2,
           "won": 0,
           "lost": 2,
           "drawn": 0,
-          "points": 2
+          "points": 5
         }
       ]
     },
@@ -5731,11 +5731,110 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Tulips",
           "awayTeam": "Beavers Spring Chicks",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 20,
+          "awayScore": 52,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Audrey Loy",
+                "team": "Beavers Spring Chicks",
+                "points": 13,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Maddison Bird",
+                "team": "Beavers Spring Chicks",
+                "points": 11,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Aleeah Mander",
+                "team": "PHOENIX Tulips",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mia Lancaster",
+                "team": "Beavers Spring Chicks",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Veronica Jones",
+                "team": "Beavers Spring Chicks",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jayla Bradley",
+                "team": "PHOENIX Tulips",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Olivia Walsh",
+                "team": "Beavers Spring Chicks",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Unknown",
+                "team": "Beavers Spring Chicks",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Eleanor Symons",
+                "team": "PHOENIX Tulips",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Verity Sleep",
+                "team": "PHOENIX Tulips",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Matilda evans",
+                "team": "PHOENIX Tulips",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Vaydah Burchell",
+                "team": "PHOENIX Tulips",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "06c96e9b-b0a8-419a-880b-4c04e918ccad",
@@ -6010,29 +6109,29 @@
         {
           "rank": 1,
           "team": "Beavers Spring Chicks",
-          "played": 2,
-          "won": 2,
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 2,
           "team": "Bunjils U16 Girls Burra",
-          "played": 2,
-          "won": 1,
+          "played": 3,
+          "won": 2,
           "lost": 0,
           "drawn": 1,
-          "points": 5
+          "points": 8
         },
         {
           "rank": 3,
           "team": "Aztec U16 Girls Purple",
-          "played": 2,
-          "won": 1,
+          "played": 3,
+          "won": 2,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 4,
@@ -6041,34 +6140,34 @@
           "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 5,
           "team": "U16 Girls Girton Crystals",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 1,
-          "points": 2
+          "points": 3
         },
         {
           "rank": 6,
           "team": "PHOENIX Tulips",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         },
         {
           "rank": 7,
           "team": "Beavers Gems",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },

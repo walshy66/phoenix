@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-05T07:36:20.970Z",
+  "generatedAt": "2026-05-05T10:23:08.374Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,20 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "d39137eb-4af7-46a1-9c79-87e478407a02",
-      "homeTeam": "PHOENIX Tulips",
-      "awayTeam": "Beavers Spring Chicks",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-05",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Tuesday U16 Girls 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 5"
-    },
     {
       "gameId": "9aab7832-26cc-410d-bf56-10f15222362f",
       "homeTeam": "PHOENIX Flyers",
@@ -287,6 +273,20 @@
       "kickoffTime": "16:30:00",
       "kickoffDisplay": "16:30",
       "competition": "Tuesday U12 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5"
+    },
+    {
+      "gameId": "d39137eb-4af7-46a1-9c79-87e478407a02",
+      "homeTeam": "PHOENIX Tulips",
+      "awayTeam": "Beavers Spring Chicks",
+      "homeScore": 20,
+      "awayScore": 52,
+      "status": "completed",
+      "kickoffDate": "2026-05-05",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Tuesday U16 Girls 3",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 5"
     },
