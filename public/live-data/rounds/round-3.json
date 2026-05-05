@@ -1,7 +1,7 @@
 {
   "roundNumber": 3,
   "season": "Winter 2026",
-  "lastUpdated": "2026-05-04T13:16:56.884Z",
+  "lastUpdated": "2026-05-05T07:38:37.032Z",
   "status": "upcoming",
   "games": [
     {
@@ -887,32 +887,131 @@
       "court": "Court 5",
       "homeTeam": "PHOENIX Stars",
       "awayTeam": "Aztec U12 Girls Black",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
-      "playerStats": null,
+      "homeScore": 24,
+      "awayScore": 18,
+      "status": "COMPLETED",
+      "playerStats": {
+        "players": [
+          {
+            "name": "Anna McGregor",
+            "team": "Aztec U12 Girls Black",
+            "points": 14,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Imogen Clee",
+            "team": "PHOENIX Stars",
+            "points": 10,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Claire Barber",
+            "team": "PHOENIX Stars",
+            "points": 6,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Ivy Adams",
+            "team": "PHOENIX Stars",
+            "points": 4,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Addy Hartley",
+            "team": "PHOENIX Stars",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Nylah Street",
+            "team": "Aztec U12 Girls Black",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Pearl Patton",
+            "team": "PHOENIX Stars",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Skyler Gregory",
+            "team": "Aztec U12 Girls Black",
+            "points": 2,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Audrey Morcombe",
+            "team": "Aztec U12 Girls Black",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Eleanor Todeschini",
+            "team": "PHOENIX Stars",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Gracie Martin",
+            "team": "Aztec U12 Girls Black",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          },
+          {
+            "name": "Lily Bateman",
+            "team": "Aztec U12 Girls Black",
+            "points": 0,
+            "fouls": 0,
+            "assists": 0,
+            "rebounds": 0
+          }
+        ]
+      },
       "ladders": [
         {
           "position": 1,
           "teamName": "PHOENIX Stars",
-          "played": 2,
-          "wins": 2,
+          "played": 3,
+          "wins": 3,
           "losses": 0,
-          "pointsFor": 55,
-          "pointsAgainst": 15,
-          "percentage": 366.67,
-          "points": 6
+          "pointsFor": 79,
+          "pointsAgainst": 33,
+          "percentage": 239.39,
+          "points": 9
         },
         {
           "position": 2,
           "teamName": "Aztec U12 Girls Black",
-          "played": 1,
+          "played": 2,
           "wins": 1,
-          "losses": 0,
-          "pointsFor": 23,
-          "pointsAgainst": 8,
-          "percentage": 287.5,
-          "points": 6
+          "losses": 1,
+          "pointsFor": 41,
+          "pointsAgainst": 32,
+          "percentage": 128.13,
+          "points": 7
         },
         {
           "position": 3,
@@ -934,7 +1033,7 @@
           "pointsFor": 20,
           "pointsAgainst": 48,
           "percentage": 41.67,
-          "points": 2
+          "points": 5
         },
         {
           "position": 5,
@@ -1837,15 +1936,15 @@
       ]
     },
     {
-      "id": "b767408b-8564-4363-a816-cdba537b21db",
+      "id": "ea14e2c2-0367-4afe-aa1d-0d1822867b19",
       "roundNumber": 3,
       "date": "2026-05-08",
-      "time": "18:00:00",
+      "time": "16:30:00",
       "competition": "Friday U12 Boys 8",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 6",
+      "venue": "Bendigo South East College",
+      "court": "Court 1",
       "homeTeam": "PHOENIX Flames",
-      "awayTeam": "Strath Suns",
+      "awayTeam": "Super Flamingos ",
       "homeScore": null,
       "awayScore": null,
       "status": "UPCOMING",
@@ -2903,24 +3002,24 @@
       {
         "position": 1,
         "teamName": "PHOENIX Stars",
-        "played": 2,
-        "wins": 2,
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 55,
-        "pointsAgainst": 15,
-        "percentage": 366.67,
-        "points": 6
+        "pointsFor": 79,
+        "pointsAgainst": 33,
+        "percentage": 239.39,
+        "points": 9
       },
       {
         "position": 2,
         "teamName": "Aztec U12 Girls Black",
-        "played": 1,
+        "played": 2,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 23,
-        "pointsAgainst": 8,
-        "percentage": 287.5,
-        "points": 6
+        "losses": 1,
+        "pointsFor": 41,
+        "pointsAgainst": 32,
+        "percentage": 128.13,
+        "points": 7
       },
       {
         "position": 3,
@@ -2942,7 +3041,7 @@
         "pointsFor": 20,
         "pointsAgainst": 48,
         "percentage": 41.67,
-        "points": 2
+        "points": 5
       },
       {
         "position": 5,

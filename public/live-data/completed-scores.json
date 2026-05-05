@@ -1,6 +1,51 @@
 {
-  "lastUpdated": "2026-05-04T13:13:39.518Z",
+  "lastUpdated": "2026-05-05T07:35:22.253Z",
   "scores": [
+    {
+      "id": "85ee4029-691b-4472-acc6-14e0998a64fd",
+      "roundNumber": 4,
+      "date": "2026-05-11",
+      "time": "18:00:00",
+      "competition": "Monday U14 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8",
+      "homeTeam": "U14 Girls Girton Gems",
+      "awayTeam": "PHOENIX Diamonds",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null
+    },
+    {
+      "id": "6209dfe1-ace5-469a-9b70-7aab44366c85",
+      "roundNumber": 4,
+      "date": "2026-05-11",
+      "time": "16:30:00",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "homeTeam": "Aztec U10 Girls Silver",
+      "awayTeam": "PHOENIX Go Getters",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null
+    },
+    {
+      "id": "874d42d9-de54-4d01-a5b9-83b246bdc8c7",
+      "roundNumber": 4,
+      "date": "2026-05-11",
+      "time": "18:00:00",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "St Francis U10 Girls Fearless Flames",
+      "awayTeam": "PHOENIX Firebirds",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null
+    },
     {
       "id": "4bbc7815-0d07-402d-ac38-71d9c5802313",
       "roundNumber": 3,
@@ -77,15 +122,15 @@
       "playerStats": null
     },
     {
-      "id": "b767408b-8564-4363-a816-cdba537b21db",
+      "id": "ea14e2c2-0367-4afe-aa1d-0d1822867b19",
       "roundNumber": 3,
       "date": "2026-05-08",
-      "time": "18:00:00",
+      "time": "16:30:00",
       "competition": "Friday U12 Boys 8",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 6",
+      "venue": "Bendigo South East College",
+      "court": "Court 1",
       "homeTeam": "PHOENIX Flames",
-      "awayTeam": "Strath Suns",
+      "awayTeam": "Super Flamingos ",
       "homeScore": null,
       "awayScore": null,
       "status": "UPCOMING",
@@ -251,9 +296,9 @@
       "court": "Court 5",
       "homeTeam": "PHOENIX Stars",
       "awayTeam": "Aztec U12 Girls Black",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 24,
+      "awayScore": 18,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -2475,24 +2520,24 @@
       {
         "position": 1,
         "teamName": "PHOENIX Stars",
-        "played": 2,
-        "wins": 2,
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 55,
-        "pointsAgainst": 15,
-        "percentage": 366.67,
-        "points": 6
+        "pointsFor": 79,
+        "pointsAgainst": 33,
+        "percentage": 239.39,
+        "points": 9
       },
       {
         "position": 2,
         "teamName": "Aztec U12 Girls Black",
-        "played": 1,
+        "played": 2,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 23,
-        "pointsAgainst": 8,
-        "percentage": 287.5,
-        "points": 6
+        "losses": 1,
+        "pointsFor": 41,
+        "pointsAgainst": 32,
+        "percentage": 128.13,
+        "points": 7
       },
       {
         "position": 3,
@@ -2514,7 +2559,7 @@
         "pointsFor": 20,
         "pointsAgainst": 48,
         "percentage": 41.67,
-        "points": 2
+        "points": 5
       },
       {
         "position": 5,
@@ -2531,6 +2576,17 @@
     "Tuesday U12 Girls 3": [
       {
         "position": 1,
+        "teamName": "Generals U12 Girls Jets",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 50,
+        "pointsAgainst": 23,
+        "percentage": 217.39,
+        "points": 9
+      },
+      {
+        "position": 2,
         "teamName": "Aztec U12 Girls Yellow",
         "played": 2,
         "wins": 2,
@@ -2538,18 +2594,7 @@
         "pointsFor": 37,
         "pointsAgainst": 11,
         "percentage": 336.36,
-        "points": 6
-      },
-      {
-        "position": 2,
-        "teamName": "Generals U12 Girls Jets",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 24,
-        "pointsAgainst": 7,
-        "percentage": 342.86,
-        "points": 6
+        "points": 9
       },
       {
         "position": 3,
@@ -2576,40 +2621,51 @@
       {
         "position": 5,
         "teamName": "Strath Starlights",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 15,
-        "pointsAgainst": 38,
-        "percentage": 39.47,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 31,
+        "pointsAgainst": 64,
+        "percentage": 48.44,
+        "points": 3
       }
     ],
     "Tuesday U12 Girls 2": [
       {
         "position": 1,
-        "teamName": "Aztec U12 Girls Amber",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 38,
-        "pointsAgainst": 20,
-        "percentage": 190,
-        "points": 6
+        "teamName": "Beavers Joeys",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 51,
+        "pointsAgainst": 89,
+        "percentage": 57.3,
+        "points": 7
       },
       {
         "position": 2,
-        "teamName": "Beavers Joeys",
+        "teamName": "Aztec U12 Girls Amber",
         "played": 2,
         "wins": 1,
         "losses": 1,
-        "pointsFor": 31,
-        "pointsAgainst": 71,
-        "percentage": 43.66,
-        "points": 4
+        "pointsFor": 56,
+        "pointsAgainst": 40,
+        "percentage": 140,
+        "points": 7
       },
       {
         "position": 3,
+        "teamName": "Beavers Revenge",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 23,
+        "pointsAgainst": 48,
+        "percentage": 47.92,
+        "points": 5
+      },
+      {
+        "position": 4,
         "teamName": "Beavers Kits",
         "played": 2,
         "wins": 1,
@@ -2620,7 +2676,7 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "St Francis U12 Girls Fever",
         "played": 2,
         "wins": 1,
@@ -2629,17 +2685,6 @@
         "pointsAgainst": 57,
         "percentage": 87.72,
         "points": 4
-      },
-      {
-        "position": 5,
-        "teamName": "Beavers Revenge",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 23,
-        "pointsAgainst": 48,
-        "percentage": 47.92,
-        "points": 2
       }
     ],
     "Tuesday U12 Girls 1": [
@@ -2656,6 +2701,17 @@
       },
       {
         "position": 2,
+        "teamName": "Generals U12 Girls Sparks",
+        "played": 3,
+        "wins": 1,
+        "losses": 0,
+        "pointsFor": 53,
+        "pointsAgainst": 56,
+        "percentage": 94.64,
+        "points": 5
+      },
+      {
+        "position": 3,
         "teamName": "Beavers Spirit",
         "played": 2,
         "wins": 1,
@@ -2666,7 +2722,7 @@
         "points": 4
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "St Francis U12 Girls Aces",
         "played": 1,
         "wins": 0,
@@ -2677,7 +2733,18 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 5,
+        "teamName": "Aztec U12 Girls Purple",
+        "played": 3,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 62,
+        "pointsAgainst": 102,
+        "percentage": 60.78,
+        "points": 4
+      },
+      {
+        "position": 6,
         "teamName": "Aztec U12 Girls Red",
         "played": 1,
         "wins": 1,
@@ -2686,33 +2753,22 @@
         "pointsAgainst": 18,
         "percentage": 105.56,
         "points": 3
-      },
-      {
-        "position": 5,
-        "teamName": "Generals U12 Girls Sparks",
-        "played": 2,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 32,
-        "pointsAgainst": 35,
-        "percentage": 91.43,
-        "points": 3
-      },
-      {
-        "position": 6,
-        "teamName": "Aztec U12 Girls Purple",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 41,
-        "pointsAgainst": 81,
-        "percentage": 50.62,
-        "points": 2
       }
     ],
     "Tuesday U12 Boys 1": [
       {
         "position": 1,
+        "teamName": "Aztec U12 Boys Black",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 150,
+        "pointsAgainst": 98,
+        "percentage": 153.06,
+        "points": 9
+      },
+      {
+        "position": 2,
         "teamName": "Beavers Cyclones",
         "played": 2,
         "wins": 2,
@@ -2720,17 +2776,6 @@
         "pointsFor": 80,
         "pointsAgainst": 49,
         "percentage": 163.27,
-        "points": 6
-      },
-      {
-        "position": 2,
-        "teamName": "Aztec U12 Boys Black",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 84,
-        "pointsAgainst": 67,
-        "percentage": 125.37,
         "points": 6
       },
       {
@@ -2779,6 +2824,17 @@
       },
       {
         "position": 7,
+        "teamName": "Beavers Fever",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 91,
+        "pointsAgainst": 149,
+        "percentage": 61.07,
+        "points": 3
+      },
+      {
+        "position": 8,
         "teamName": "Bunjils U12 Boys Ant Attack",
         "played": 2,
         "wins": 0,
@@ -2786,17 +2842,6 @@
         "pointsFor": 50,
         "pointsAgainst": 71,
         "percentage": 70.42,
-        "points": 2
-      },
-      {
-        "position": 8,
-        "teamName": "Beavers Fever",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 60,
-        "pointsAgainst": 83,
-        "percentage": 72.29,
         "points": 2
       }
     ],
@@ -4526,6 +4571,17 @@
       },
       {
         "position": 4,
+        "teamName": "The First Dance",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 127,
+        "pointsAgainst": 125,
+        "percentage": 101.6,
+        "points": 7
+      },
+      {
+        "position": 5,
         "teamName": "Beavers Simonds Homes",
         "played": 3,
         "wins": 1,
@@ -4536,7 +4592,7 @@
         "points": 6
       },
       {
-        "position": 5,
+        "position": 6,
         "teamName": "196ers",
         "played": 2,
         "wins": 1,
@@ -4547,7 +4603,7 @@
         "points": 5
       },
       {
-        "position": 6,
+        "position": 7,
         "teamName": "NABA",
         "played": 3,
         "wins": 1,
@@ -4558,7 +4614,18 @@
         "points": 5
       },
       {
-        "position": 7,
+        "position": 8,
+        "teamName": "Chargers",
+        "played": 3,
+        "wins": 1,
+        "losses": 2,
+        "pointsFor": 102,
+        "pointsAgainst": 109,
+        "percentage": 93.58,
+        "points": 5
+      },
+      {
+        "position": 9,
         "teamName": "Dreamers 2.0",
         "played": 3,
         "wins": 1,
@@ -4567,28 +4634,6 @@
         "pointsAgainst": 108,
         "percentage": 83.33,
         "points": 5
-      },
-      {
-        "position": 8,
-        "teamName": "Chargers",
-        "played": 3,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 68,
-        "pointsAgainst": 70,
-        "percentage": 97.14,
-        "points": 4
-      },
-      {
-        "position": 9,
-        "teamName": "The First Dance",
-        "played": 3,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 88,
-        "pointsAgainst": 91,
-        "percentage": 96.7,
-        "points": 4
       },
       {
         "position": 10,
@@ -5431,6 +5476,17 @@
         "pointsAgainst": 72,
         "percentage": 44.44,
         "points": 2
+      },
+      {
+        "position": 9,
+        "teamName": "St Francis U12 Boys Falcons",
+        "played": 0,
+        "wins": 0,
+        "losses": 0,
+        "pointsFor": 0,
+        "pointsAgainst": 0,
+        "percentage": 0,
+        "points": 0
       }
     ],
     "Friday U12 Boys 7": [
@@ -7575,24 +7631,24 @@
     {
       "position": 1,
       "teamName": "PHOENIX Stars",
-      "played": 2,
-      "wins": 2,
+      "played": 3,
+      "wins": 3,
       "losses": 0,
-      "pointsFor": 55,
-      "pointsAgainst": 15,
-      "percentage": 366.67,
-      "points": 6
+      "pointsFor": 79,
+      "pointsAgainst": 33,
+      "percentage": 239.39,
+      "points": 9
     },
     {
       "position": 2,
       "teamName": "Aztec U12 Girls Black",
-      "played": 1,
+      "played": 2,
       "wins": 1,
-      "losses": 0,
-      "pointsFor": 23,
-      "pointsAgainst": 8,
-      "percentage": 287.5,
-      "points": 6
+      "losses": 1,
+      "pointsFor": 41,
+      "pointsAgainst": 32,
+      "percentage": 128.13,
+      "points": 7
     },
     {
       "position": 3,
@@ -7614,7 +7670,7 @@
       "pointsFor": 20,
       "pointsAgainst": 48,
       "percentage": 41.67,
-      "points": 2
+      "points": 5
     },
     {
       "position": 5,
@@ -7629,6 +7685,17 @@
     },
     {
       "position": 1,
+      "teamName": "Generals U12 Girls Jets",
+      "played": 2,
+      "wins": 2,
+      "losses": 0,
+      "pointsFor": 50,
+      "pointsAgainst": 23,
+      "percentage": 217.39,
+      "points": 9
+    },
+    {
+      "position": 2,
       "teamName": "Aztec U12 Girls Yellow",
       "played": 2,
       "wins": 2,
@@ -7636,18 +7703,7 @@
       "pointsFor": 37,
       "pointsAgainst": 11,
       "percentage": 336.36,
-      "points": 6
-    },
-    {
-      "position": 2,
-      "teamName": "Generals U12 Girls Jets",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 24,
-      "pointsAgainst": 7,
-      "percentage": 342.86,
-      "points": 6
+      "points": 9
     },
     {
       "position": 3,
@@ -7674,38 +7730,49 @@
     {
       "position": 5,
       "teamName": "Strath Starlights",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 15,
-      "pointsAgainst": 38,
-      "percentage": 39.47,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 31,
+      "pointsAgainst": 64,
+      "percentage": 48.44,
+      "points": 3
     },
     {
       "position": 1,
-      "teamName": "Aztec U12 Girls Amber",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 38,
-      "pointsAgainst": 20,
-      "percentage": 190,
-      "points": 6
+      "teamName": "Beavers Joeys",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 51,
+      "pointsAgainst": 89,
+      "percentage": 57.3,
+      "points": 7
     },
     {
       "position": 2,
-      "teamName": "Beavers Joeys",
+      "teamName": "Aztec U12 Girls Amber",
       "played": 2,
       "wins": 1,
       "losses": 1,
-      "pointsFor": 31,
-      "pointsAgainst": 71,
-      "percentage": 43.66,
-      "points": 4
+      "pointsFor": 56,
+      "pointsAgainst": 40,
+      "percentage": 140,
+      "points": 7
     },
     {
       "position": 3,
+      "teamName": "Beavers Revenge",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 23,
+      "pointsAgainst": 48,
+      "percentage": 47.92,
+      "points": 5
+    },
+    {
+      "position": 4,
       "teamName": "Beavers Kits",
       "played": 2,
       "wins": 1,
@@ -7716,7 +7783,7 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "St Francis U12 Girls Fever",
       "played": 2,
       "wins": 1,
@@ -7725,17 +7792,6 @@
       "pointsAgainst": 57,
       "percentage": 87.72,
       "points": 4
-    },
-    {
-      "position": 5,
-      "teamName": "Beavers Revenge",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 23,
-      "pointsAgainst": 48,
-      "percentage": 47.92,
-      "points": 2
     },
     {
       "position": 1,
@@ -7750,6 +7806,17 @@
     },
     {
       "position": 2,
+      "teamName": "Generals U12 Girls Sparks",
+      "played": 3,
+      "wins": 1,
+      "losses": 0,
+      "pointsFor": 53,
+      "pointsAgainst": 56,
+      "percentage": 94.64,
+      "points": 5
+    },
+    {
+      "position": 3,
       "teamName": "Beavers Spirit",
       "played": 2,
       "wins": 1,
@@ -7760,7 +7827,7 @@
       "points": 4
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "St Francis U12 Girls Aces",
       "played": 1,
       "wins": 0,
@@ -7771,7 +7838,18 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 5,
+      "teamName": "Aztec U12 Girls Purple",
+      "played": 3,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 62,
+      "pointsAgainst": 102,
+      "percentage": 60.78,
+      "points": 4
+    },
+    {
+      "position": 6,
       "teamName": "Aztec U12 Girls Red",
       "played": 1,
       "wins": 1,
@@ -7782,29 +7860,18 @@
       "points": 3
     },
     {
-      "position": 5,
-      "teamName": "Generals U12 Girls Sparks",
-      "played": 2,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 32,
-      "pointsAgainst": 35,
-      "percentage": 91.43,
-      "points": 3
-    },
-    {
-      "position": 6,
-      "teamName": "Aztec U12 Girls Purple",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 41,
-      "pointsAgainst": 81,
-      "percentage": 50.62,
-      "points": 2
-    },
-    {
       "position": 1,
+      "teamName": "Aztec U12 Boys Black",
+      "played": 3,
+      "wins": 3,
+      "losses": 0,
+      "pointsFor": 150,
+      "pointsAgainst": 98,
+      "percentage": 153.06,
+      "points": 9
+    },
+    {
+      "position": 2,
       "teamName": "Beavers Cyclones",
       "played": 2,
       "wins": 2,
@@ -7812,17 +7879,6 @@
       "pointsFor": 80,
       "pointsAgainst": 49,
       "percentage": 163.27,
-      "points": 6
-    },
-    {
-      "position": 2,
-      "teamName": "Aztec U12 Boys Black",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 84,
-      "pointsAgainst": 67,
-      "percentage": 125.37,
       "points": 6
     },
     {
@@ -7871,6 +7927,17 @@
     },
     {
       "position": 7,
+      "teamName": "Beavers Fever",
+      "played": 3,
+      "wins": 0,
+      "losses": 3,
+      "pointsFor": 91,
+      "pointsAgainst": 149,
+      "percentage": 61.07,
+      "points": 3
+    },
+    {
+      "position": 8,
       "teamName": "Bunjils U12 Boys Ant Attack",
       "played": 2,
       "wins": 0,
@@ -7878,17 +7945,6 @@
       "pointsFor": 50,
       "pointsAgainst": 71,
       "percentage": 70.42,
-      "points": 2
-    },
-    {
-      "position": 8,
-      "teamName": "Beavers Fever",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 60,
-      "pointsAgainst": 83,
-      "percentage": 72.29,
       "points": 2
     },
     {
@@ -9576,6 +9632,17 @@
     },
     {
       "position": 4,
+      "teamName": "The First Dance",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 127,
+      "pointsAgainst": 125,
+      "percentage": 101.6,
+      "points": 7
+    },
+    {
+      "position": 5,
       "teamName": "Beavers Simonds Homes",
       "played": 3,
       "wins": 1,
@@ -9586,7 +9653,7 @@
       "points": 6
     },
     {
-      "position": 5,
+      "position": 6,
       "teamName": "196ers",
       "played": 2,
       "wins": 1,
@@ -9597,7 +9664,7 @@
       "points": 5
     },
     {
-      "position": 6,
+      "position": 7,
       "teamName": "NABA",
       "played": 3,
       "wins": 1,
@@ -9608,7 +9675,18 @@
       "points": 5
     },
     {
-      "position": 7,
+      "position": 8,
+      "teamName": "Chargers",
+      "played": 3,
+      "wins": 1,
+      "losses": 2,
+      "pointsFor": 102,
+      "pointsAgainst": 109,
+      "percentage": 93.58,
+      "points": 5
+    },
+    {
+      "position": 9,
       "teamName": "Dreamers 2.0",
       "played": 3,
       "wins": 1,
@@ -9617,28 +9695,6 @@
       "pointsAgainst": 108,
       "percentage": 83.33,
       "points": 5
-    },
-    {
-      "position": 8,
-      "teamName": "Chargers",
-      "played": 3,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 68,
-      "pointsAgainst": 70,
-      "percentage": 97.14,
-      "points": 4
-    },
-    {
-      "position": 9,
-      "teamName": "The First Dance",
-      "played": 3,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 88,
-      "pointsAgainst": 91,
-      "percentage": 96.7,
-      "points": 4
     },
     {
       "position": 10,
@@ -10453,6 +10509,17 @@
       "pointsAgainst": 72,
       "percentage": 44.44,
       "points": 2
+    },
+    {
+      "position": 9,
+      "teamName": "St Francis U12 Boys Falcons",
+      "played": 0,
+      "wins": 0,
+      "losses": 0,
+      "pointsFor": 0,
+      "pointsAgainst": 0,
+      "percentage": 0,
+      "points": 0
     },
     {
       "position": 1,

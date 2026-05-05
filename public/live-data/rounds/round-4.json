@@ -1,0 +1,472 @@
+{
+  "roundNumber": 4,
+  "season": "Winter 2026",
+  "lastUpdated": "2026-05-05T07:38:37.034Z",
+  "status": "upcoming",
+  "games": [
+    {
+      "id": "85ee4029-691b-4472-acc6-14e0998a64fd",
+      "roundNumber": 4,
+      "date": "2026-05-11",
+      "time": "18:00:00",
+      "competition": "Monday U14 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8",
+      "homeTeam": "U14 Girls Girton Gems",
+      "awayTeam": "PHOENIX Diamonds",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "position": 1,
+          "teamName": "Aztec U14 Girls Purple",
+          "played": 3,
+          "wins": 3,
+          "losses": 0,
+          "pointsFor": 101,
+          "pointsAgainst": 46,
+          "percentage": 219.57,
+          "points": 9
+        },
+        {
+          "position": 2,
+          "teamName": "PHOENIX Diamonds",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "pointsFor": 48,
+          "pointsAgainst": 52,
+          "percentage": 92.31,
+          "points": 7
+        },
+        {
+          "position": 3,
+          "teamName": "Aztec U14 Girls Pink",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 50,
+          "pointsAgainst": 58,
+          "percentage": 86.21,
+          "points": 7
+        },
+        {
+          "position": 4,
+          "teamName": "U14 Girls Girton Gems",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 26,
+          "pointsAgainst": 44,
+          "percentage": 59.09,
+          "points": 7
+        },
+        {
+          "position": 5,
+          "teamName": "Beavers Starlets",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 37,
+          "pointsAgainst": 61,
+          "percentage": 60.66,
+          "points": 3
+        }
+      ]
+    },
+    {
+      "id": "6209dfe1-ace5-469a-9b70-7aab44366c85",
+      "roundNumber": 4,
+      "date": "2026-05-11",
+      "time": "16:30:00",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "homeTeam": "Aztec U10 Girls Silver",
+      "awayTeam": "PHOENIX Go Getters",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "position": 1,
+          "teamName": "St Francis U10 Girls Fearless Flames",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 54,
+          "pointsAgainst": 8,
+          "percentage": 675,
+          "points": 9
+        },
+        {
+          "position": 2,
+          "teamName": "St Francis U10 Girls Swish Sisters",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 43,
+          "pointsAgainst": 9,
+          "percentage": 477.78,
+          "points": 9
+        },
+        {
+          "position": 3,
+          "teamName": "Bunjils U10 Girls Blue",
+          "played": 3,
+          "wins": 3,
+          "losses": 0,
+          "pointsFor": 95,
+          "pointsAgainst": 21,
+          "percentage": 452.38,
+          "points": 9
+        },
+        {
+          "position": 4,
+          "teamName": "PHOENIX Firebirds",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "pointsFor": 54,
+          "pointsAgainst": 23,
+          "percentage": 234.78,
+          "points": 7
+        },
+        {
+          "position": 5,
+          "teamName": "Aztec U10 Girls Silver",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 30,
+          "pointsAgainst": 23,
+          "percentage": 130.43,
+          "points": 7
+        },
+        {
+          "position": 6,
+          "teamName": "DIAMOND FLAMINGO’s",
+          "played": 3,
+          "wins": 1,
+          "losses": 2,
+          "pointsFor": 27,
+          "pointsAgainst": 54,
+          "percentage": 50,
+          "points": 5
+        },
+        {
+          "position": 7,
+          "teamName": "PHOENIX Go Getters",
+          "played": 3,
+          "wins": 1,
+          "losses": 2,
+          "pointsFor": 18,
+          "pointsAgainst": 65,
+          "percentage": 27.69,
+          "points": 5
+        },
+        {
+          "position": 8,
+          "teamName": "PINK FLAMINGO’S",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 66,
+          "percentage": 31.82,
+          "points": 3
+        },
+        {
+          "position": 9,
+          "teamName": "Aztec U10 Girls Aqua",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 94,
+          "percentage": 22.34,
+          "points": 3
+        }
+      ]
+    },
+    {
+      "id": "874d42d9-de54-4d01-a5b9-83b246bdc8c7",
+      "roundNumber": 4,
+      "date": "2026-05-11",
+      "time": "18:00:00",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4",
+      "homeTeam": "St Francis U10 Girls Fearless Flames",
+      "awayTeam": "PHOENIX Firebirds",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "position": 1,
+          "teamName": "St Francis U10 Girls Fearless Flames",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 54,
+          "pointsAgainst": 8,
+          "percentage": 675,
+          "points": 9
+        },
+        {
+          "position": 2,
+          "teamName": "St Francis U10 Girls Swish Sisters",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 43,
+          "pointsAgainst": 9,
+          "percentage": 477.78,
+          "points": 9
+        },
+        {
+          "position": 3,
+          "teamName": "Bunjils U10 Girls Blue",
+          "played": 3,
+          "wins": 3,
+          "losses": 0,
+          "pointsFor": 95,
+          "pointsAgainst": 21,
+          "percentage": 452.38,
+          "points": 9
+        },
+        {
+          "position": 4,
+          "teamName": "PHOENIX Firebirds",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "pointsFor": 54,
+          "pointsAgainst": 23,
+          "percentage": 234.78,
+          "points": 7
+        },
+        {
+          "position": 5,
+          "teamName": "Aztec U10 Girls Silver",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 30,
+          "pointsAgainst": 23,
+          "percentage": 130.43,
+          "points": 7
+        },
+        {
+          "position": 6,
+          "teamName": "DIAMOND FLAMINGO’s",
+          "played": 3,
+          "wins": 1,
+          "losses": 2,
+          "pointsFor": 27,
+          "pointsAgainst": 54,
+          "percentage": 50,
+          "points": 5
+        },
+        {
+          "position": 7,
+          "teamName": "PHOENIX Go Getters",
+          "played": 3,
+          "wins": 1,
+          "losses": 2,
+          "pointsFor": 18,
+          "pointsAgainst": 65,
+          "percentage": 27.69,
+          "points": 5
+        },
+        {
+          "position": 8,
+          "teamName": "PINK FLAMINGO’S",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 66,
+          "percentage": 31.82,
+          "points": 3
+        },
+        {
+          "position": 9,
+          "teamName": "Aztec U10 Girls Aqua",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 21,
+          "pointsAgainst": 94,
+          "percentage": 22.34,
+          "points": 3
+        }
+      ]
+    }
+  ],
+  "ladders": {
+    "Monday U14 Girls 4": [
+      {
+        "position": 1,
+        "teamName": "Aztec U14 Girls Purple",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 101,
+        "pointsAgainst": 46,
+        "percentage": 219.57,
+        "points": 9
+      },
+      {
+        "position": 2,
+        "teamName": "PHOENIX Diamonds",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 48,
+        "pointsAgainst": 52,
+        "percentage": 92.31,
+        "points": 7
+      },
+      {
+        "position": 3,
+        "teamName": "Aztec U14 Girls Pink",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 50,
+        "pointsAgainst": 58,
+        "percentage": 86.21,
+        "points": 7
+      },
+      {
+        "position": 4,
+        "teamName": "U14 Girls Girton Gems",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 26,
+        "pointsAgainst": 44,
+        "percentage": 59.09,
+        "points": 7
+      },
+      {
+        "position": 5,
+        "teamName": "Beavers Starlets",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 37,
+        "pointsAgainst": 61,
+        "percentage": 60.66,
+        "points": 3
+      }
+    ],
+    "Monday U10 Girls 3": [
+      {
+        "position": 1,
+        "teamName": "St Francis U10 Girls Fearless Flames",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 54,
+        "pointsAgainst": 8,
+        "percentage": 675,
+        "points": 9
+      },
+      {
+        "position": 2,
+        "teamName": "St Francis U10 Girls Swish Sisters",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 43,
+        "pointsAgainst": 9,
+        "percentage": 477.78,
+        "points": 9
+      },
+      {
+        "position": 3,
+        "teamName": "Bunjils U10 Girls Blue",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 95,
+        "pointsAgainst": 21,
+        "percentage": 452.38,
+        "points": 9
+      },
+      {
+        "position": 4,
+        "teamName": "PHOENIX Firebirds",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 54,
+        "pointsAgainst": 23,
+        "percentage": 234.78,
+        "points": 7
+      },
+      {
+        "position": 5,
+        "teamName": "Aztec U10 Girls Silver",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 30,
+        "pointsAgainst": 23,
+        "percentage": 130.43,
+        "points": 7
+      },
+      {
+        "position": 6,
+        "teamName": "DIAMOND FLAMINGO’s",
+        "played": 3,
+        "wins": 1,
+        "losses": 2,
+        "pointsFor": 27,
+        "pointsAgainst": 54,
+        "percentage": 50,
+        "points": 5
+      },
+      {
+        "position": 7,
+        "teamName": "PHOENIX Go Getters",
+        "played": 3,
+        "wins": 1,
+        "losses": 2,
+        "pointsFor": 18,
+        "pointsAgainst": 65,
+        "percentage": 27.69,
+        "points": 5
+      },
+      {
+        "position": 8,
+        "teamName": "PINK FLAMINGO’S",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 21,
+        "pointsAgainst": 66,
+        "percentage": 31.82,
+        "points": 3
+      },
+      {
+        "position": 9,
+        "teamName": "Aztec U10 Girls Aqua",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 21,
+        "pointsAgainst": 94,
+        "percentage": 22.34,
+        "points": 3
+      }
+    ]
+  }
+}

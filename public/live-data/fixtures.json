@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-04T13:13:39.807Z",
+  "generatedAt": "2026-05-05T07:35:22.511Z",
   "window": {
     "timezone": "Australia/Melbourne",
     "startDate": "2026-05-04",
@@ -159,6 +159,19 @@
     ],
     "friday": [
       {
+        "fixtureId": "ea14e2c2-0367-4afe-aa1d-0d1822867b19",
+        "homeTeam": "PHOENIX Flames",
+        "awayTeam": "Super Flamingos ",
+        "grade": "Friday U12 Boys 8",
+        "venue": "Bendigo South East College",
+        "court": "Court 1",
+        "kickoffDate": "2026-05-08",
+        "kickoffTime": "16:30:00",
+        "kickoffAt": "2026-05-08T16:30:00",
+        "kickoffDisplay": "4:30 pm",
+        "squads": []
+      },
+      {
         "fixtureId": "b5afd076-7da6-4513-88df-b829b5c36aae",
         "homeTeam": "Generals U10 Boys Cubs",
         "awayTeam": "PHOENIX Thunder",
@@ -169,19 +182,6 @@
         "kickoffTime": "17:15:00",
         "kickoffAt": "2026-05-08T17:15:00",
         "kickoffDisplay": "5:15 pm",
-        "squads": []
-      },
-      {
-        "fixtureId": "b767408b-8564-4363-a816-cdba537b21db",
-        "homeTeam": "PHOENIX Flames",
-        "awayTeam": "Strath Suns",
-        "grade": "Friday U12 Boys 8",
-        "venue": "Red Energy Arena (Bendigo Stadium)",
-        "court": "Court 6",
-        "kickoffDate": "2026-05-08",
-        "kickoffTime": "18:00:00",
-        "kickoffAt": "2026-05-08T18:00:00",
-        "kickoffDisplay": "6:00 pm",
         "squads": []
       },
       {
@@ -486,17 +486,17 @@
       "kickoffDisplay": "6:45 pm",
       "squads": []
     },
-    "b767408b-8564-4363-a816-cdba537b21db": {
-      "fixtureId": "b767408b-8564-4363-a816-cdba537b21db",
+    "ea14e2c2-0367-4afe-aa1d-0d1822867b19": {
+      "fixtureId": "ea14e2c2-0367-4afe-aa1d-0d1822867b19",
       "homeTeam": "PHOENIX Flames",
-      "awayTeam": "Strath Suns",
+      "awayTeam": "Super Flamingos ",
       "grade": "Friday U12 Boys 8",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 6",
+      "venue": "Bendigo South East College",
+      "court": "Court 1",
       "kickoffDate": "2026-05-08",
-      "kickoffTime": "18:00:00",
-      "kickoffAt": "2026-05-08T18:00:00",
-      "kickoffDisplay": "6:00 pm",
+      "kickoffTime": "16:30:00",
+      "kickoffAt": "2026-05-08T16:30:00",
+      "kickoffDisplay": "4:30 pm",
       "squads": []
     },
     "dafb2f4b-b4b2-47a6-848e-1c789ca660fb": {

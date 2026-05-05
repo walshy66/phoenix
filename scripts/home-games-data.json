@@ -1,29 +1,15 @@
 {
-  "generatedAt": "2026-05-04T13:14:42.813Z",
+  "generatedAt": "2026-05-05T07:36:20.970Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
-    "startDate": "2026-04-27",
-    "endDate": "2026-05-11",
+    "startDate": "2026-04-28",
+    "endDate": "2026-05-12",
     "timezone": "Australia/Melbourne"
   },
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "be42a70b-952f-486d-8194-3f1a6f110a78",
-      "homeTeam": "PHOENIX Stars",
-      "awayTeam": "Aztec U12 Girls Black",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-05",
-      "kickoffTime": "16:30:00",
-      "kickoffDisplay": "16:30",
-      "competition": "Tuesday U12 Girls 4",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 5"
-    },
     {
       "gameId": "d39137eb-4af7-46a1-9c79-87e478407a02",
       "homeTeam": "PHOENIX Tulips",
@@ -123,6 +109,20 @@
       "court": "Court 3"
     },
     {
+      "gameId": "ea14e2c2-0367-4afe-aa1d-0d1822867b19",
+      "homeTeam": "PHOENIX Flames",
+      "awayTeam": "Super Flamingos ",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "kickoffDate": "2026-05-08",
+      "kickoffTime": "16:30:00",
+      "kickoffDisplay": "16:30",
+      "competition": "Friday U12 Boys 8",
+      "venue": "Bendigo South East College",
+      "court": "Court 1"
+    },
+    {
       "gameId": "b5afd076-7da6-4513-88df-b829b5c36aae",
       "homeTeam": "Generals U10 Boys Cubs",
       "awayTeam": "PHOENIX Thunder",
@@ -135,20 +135,6 @@
       "competition": "Friday U10 Boys 4",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 2"
-    },
-    {
-      "gameId": "b767408b-8564-4363-a816-cdba537b21db",
-      "homeTeam": "PHOENIX Flames",
-      "awayTeam": "Strath Suns",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-08",
-      "kickoffTime": "18:00:00",
-      "kickoffDisplay": "18:00",
-      "competition": "Friday U12 Boys 8",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 6"
     },
     {
       "gameId": "67569e79-7373-4850-8736-6e10cd0f8d9a",
@@ -245,6 +231,62 @@
       "kickoffTime": "21:45:00",
       "kickoffDisplay": "21:45",
       "competition": "Friday U18 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5"
+    },
+    {
+      "gameId": "6209dfe1-ace5-469a-9b70-7aab44366c85",
+      "homeTeam": "Aztec U10 Girls Silver",
+      "awayTeam": "PHOENIX Go Getters",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "kickoffDate": "2026-05-11",
+      "kickoffTime": "16:30:00",
+      "kickoffDisplay": "16:30",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5"
+    },
+    {
+      "gameId": "85ee4029-691b-4472-acc6-14e0998a64fd",
+      "homeTeam": "U14 Girls Girton Gems",
+      "awayTeam": "PHOENIX Diamonds",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "kickoffDate": "2026-05-11",
+      "kickoffTime": "18:00:00",
+      "kickoffDisplay": "18:00",
+      "competition": "Monday U14 Girls 4",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 8"
+    },
+    {
+      "gameId": "874d42d9-de54-4d01-a5b9-83b246bdc8c7",
+      "homeTeam": "St Francis U10 Girls Fearless Flames",
+      "awayTeam": "PHOENIX Firebirds",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "upcoming",
+      "kickoffDate": "2026-05-11",
+      "kickoffTime": "18:00:00",
+      "kickoffDisplay": "18:00",
+      "competition": "Monday U10 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4"
+    },
+    {
+      "gameId": "be42a70b-952f-486d-8194-3f1a6f110a78",
+      "homeTeam": "PHOENIX Stars",
+      "awayTeam": "Aztec U12 Girls Black",
+      "homeScore": 24,
+      "awayScore": 18,
+      "status": "completed",
+      "kickoffDate": "2026-05-05",
+      "kickoffTime": "16:30:00",
+      "kickoffDisplay": "16:30",
+      "competition": "Tuesday U12 Girls 4",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 5"
     },
@@ -513,48 +555,6 @@
       "competition": "Tuesday U16 Girls 3",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4"
-    },
-    {
-      "gameId": "8e64b02a-37ba-4ada-828f-2a9eb6d7e5a9",
-      "homeTeam": "PINK FLAMINGO’S",
-      "awayTeam": "PHOENIX Go Getters",
-      "homeScore": 9,
-      "awayScore": 10,
-      "status": "completed",
-      "kickoffDate": "2026-04-27",
-      "kickoffTime": "17:15:00",
-      "kickoffDisplay": "17:15",
-      "competition": "Monday U10 Girls 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 4"
-    },
-    {
-      "gameId": "8d13c32c-b030-4f02-96d5-771e909e771b",
-      "homeTeam": "Bunjils U10 Girls Blue",
-      "awayTeam": "PHOENIX Firebirds",
-      "homeScore": 19,
-      "awayScore": 9,
-      "status": "completed",
-      "kickoffDate": "2026-04-27",
-      "kickoffTime": "17:15:00",
-      "kickoffDisplay": "17:15",
-      "competition": "Monday U10 Girls 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 6"
-    },
-    {
-      "gameId": "261f719c-621c-4af0-94ba-3c9742c1ca2e",
-      "homeTeam": "Beavers Starlets",
-      "awayTeam": "PHOENIX Diamonds",
-      "homeScore": 11,
-      "awayScore": 12,
-      "status": "completed",
-      "kickoffDate": "2026-04-27",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Monday U14 Girls 4",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7"
     }
   ]
 }
