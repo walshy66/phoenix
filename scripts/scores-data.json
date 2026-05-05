@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-05T10:22:16.700Z",
+  "lastUpdated": "2026-05-05T11:52:50.043Z",
   "scores": [
     {
       "id": "85ee4029-691b-4472-acc6-14e0998a64fd",
@@ -2180,68 +2180,68 @@
       {
         "position": 1,
         "teamName": "Bunjils U18 Girls Shannon",
-        "played": 2,
-        "wins": 2,
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 79,
-        "pointsAgainst": 30,
-        "percentage": 263.33,
-        "points": 6
+        "pointsFor": 119,
+        "pointsAgainst": 45,
+        "percentage": 264.44,
+        "points": 9
       },
       {
         "position": 2,
         "teamName": "U18 Girls Girton Gold",
-        "played": 2,
-        "wins": 2,
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 79,
-        "pointsAgainst": 31,
-        "percentage": 254.84,
-        "points": 6
+        "pointsFor": 136,
+        "pointsAgainst": 52,
+        "percentage": 261.54,
+        "points": 9
       },
       {
         "position": 3,
         "teamName": "Aztec U18 Girls Green",
-        "played": 2,
-        "wins": 1,
+        "played": 3,
+        "wins": 2,
         "losses": 1,
-        "pointsFor": 45,
-        "pointsAgainst": 54,
-        "percentage": 83.33,
-        "points": 4
+        "pointsFor": 93,
+        "pointsAgainst": 80,
+        "percentage": 116.25,
+        "points": 7
       },
       {
         "position": 4,
         "teamName": "Generals U18 Girls Lightning",
-        "played": 2,
+        "played": 3,
         "wins": 1,
-        "losses": 1,
-        "pointsFor": 44,
-        "pointsAgainst": 57,
-        "percentage": 77.19,
-        "points": 4
+        "losses": 2,
+        "pointsFor": 65,
+        "pointsAgainst": 114,
+        "percentage": 57.02,
+        "points": 5
       },
       {
         "position": 5,
         "teamName": "Aztec U18 Girls Yellow",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 36,
-        "pointsAgainst": 69,
-        "percentage": 52.17,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 62,
+        "pointsAgainst": 117,
+        "percentage": 52.99,
+        "points": 3
       },
       {
         "position": 6,
         "teamName": "Aztec U18 Girls Purple",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 27,
-        "pointsAgainst": 69,
-        "percentage": 39.13,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 42,
+        "pointsAgainst": 109,
+        "percentage": 38.53,
+        "points": 3
       }
     ],
     "Tuesday U16 Girls 3": [
@@ -2337,6 +2337,17 @@
       },
       {
         "position": 2,
+        "teamName": "Beavers Jets",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 88,
+        "pointsAgainst": 34,
+        "percentage": 258.82,
+        "points": 7
+      },
+      {
+        "position": 3,
         "teamName": "Strath OG Stars",
         "played": 2,
         "wins": 1,
@@ -2347,7 +2358,7 @@
         "points": 7
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Beavers Hype",
         "played": 3,
         "wins": 2,
@@ -2358,26 +2369,15 @@
         "points": 7
       },
       {
-        "position": 4,
-        "teamName": "Beavers Jets",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 56,
-        "pointsAgainst": 22,
-        "percentage": 254.55,
-        "points": 4
-      },
-      {
         "position": 5,
         "teamName": "Aztec U16 Girls Yellow",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 36,
-        "pointsAgainst": 76,
-        "percentage": 47.37,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 48,
+        "pointsAgainst": 108,
+        "percentage": 44.44,
+        "points": 3
       }
     ],
     "Tuesday U16 Girls 1": [
@@ -2394,6 +2394,17 @@
       },
       {
         "position": 2,
+        "teamName": "Generals U16 Girls Dabbers",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 134,
+        "pointsAgainst": 89,
+        "percentage": 150.56,
+        "points": 9
+      },
+      {
+        "position": 3,
         "teamName": "Beavers Mystics",
         "played": 3,
         "wins": 2,
@@ -2404,18 +2415,18 @@
         "points": 7
       },
       {
-        "position": 3,
-        "teamName": "Generals U16 Girls Dabbers",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 85,
-        "pointsAgainst": 43,
-        "percentage": 197.67,
-        "points": 6
+        "position": 4,
+        "teamName": "Aztec U16 Girls Mint",
+        "played": 3,
+        "wins": 1,
+        "losses": 2,
+        "pointsFor": 150,
+        "pointsAgainst": 147,
+        "percentage": 102.04,
+        "points": 5
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Aztec U16 Girls Green",
         "played": 3,
         "wins": 1,
@@ -2424,17 +2435,6 @@
         "pointsAgainst": 130,
         "percentage": 66.92,
         "points": 5
-      },
-      {
-        "position": 5,
-        "teamName": "Aztec U16 Girls Mint",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 104,
-        "pointsAgainst": 98,
-        "percentage": 106.12,
-        "points": 4
       },
       {
         "position": 6,
@@ -2644,17 +2644,6 @@
     "Tuesday U12 Girls 2": [
       {
         "position": 1,
-        "teamName": "Beavers Joeys",
-        "played": 3,
-        "wins": 2,
-        "losses": 1,
-        "pointsFor": 51,
-        "pointsAgainst": 89,
-        "percentage": 57.3,
-        "points": 7
-      },
-      {
-        "position": 2,
         "teamName": "Aztec U12 Girls Amber",
         "played": 2,
         "wins": 1,
@@ -2665,7 +2654,40 @@
         "points": 7
       },
       {
+        "position": 2,
+        "teamName": "St Francis U12 Girls Fever",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 86,
+        "pointsAgainst": 71,
+        "percentage": 121.13,
+        "points": 7
+      },
+      {
         "position": 3,
+        "teamName": "Beavers Joeys",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 51,
+        "pointsAgainst": 89,
+        "percentage": 57.3,
+        "points": 7
+      },
+      {
+        "position": 4,
+        "teamName": "Beavers Kits",
+        "played": 3,
+        "wins": 1,
+        "losses": 2,
+        "pointsFor": 52,
+        "pointsAgainst": 61,
+        "percentage": 85.25,
+        "points": 5
+      },
+      {
+        "position": 5,
         "teamName": "Beavers Revenge",
         "played": 2,
         "wins": 0,
@@ -2674,28 +2696,6 @@
         "pointsAgainst": 48,
         "percentage": 47.92,
         "points": 5
-      },
-      {
-        "position": 4,
-        "teamName": "Beavers Kits",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 38,
-        "pointsAgainst": 25,
-        "percentage": 152,
-        "points": 4
-      },
-      {
-        "position": 5,
-        "teamName": "St Francis U12 Girls Fever",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 50,
-        "pointsAgainst": 57,
-        "percentage": 87.72,
-        "points": 4
       }
     ],
     "Tuesday U12 Girls 1": [
@@ -2859,6 +2859,17 @@
     "Tuesday Men Division 4": [
       {
         "position": 1,
+        "teamName": "The Jebron Lames",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 141,
+        "pointsAgainst": 84,
+        "percentage": 167.86,
+        "points": 9
+      },
+      {
+        "position": 2,
         "teamName": "Double Cobras",
         "played": 1,
         "wins": 1,
@@ -2869,18 +2880,18 @@
         "points": 6
       },
       {
-        "position": 2,
-        "teamName": "The Jebron Lames",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 55,
-        "pointsAgainst": 39,
-        "percentage": 141.03,
-        "points": 6
+        "position": 3,
+        "teamName": "Backcourt violators",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 81,
+        "pointsAgainst": 88,
+        "percentage": 92.05,
+        "points": 5
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "OnDiddy",
         "played": 2,
         "wins": 1,
@@ -2891,7 +2902,7 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Beavers Ballers",
         "played": 1,
         "wins": 1,
@@ -2902,7 +2913,7 @@
         "points": 3
       },
       {
-        "position": 5,
+        "position": 6,
         "teamName": "Bunjils Senior Men Hillies",
         "played": 1,
         "wins": 1,
@@ -2913,31 +2924,31 @@
         "points": 3
       },
       {
-        "position": 6,
-        "teamName": "Backcourt violators",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 81,
-        "pointsAgainst": 88,
-        "percentage": 92.05,
-        "points": 2
-      },
-      {
         "position": 7,
         "teamName": "Team Moss",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 77,
-        "pointsAgainst": 140,
-        "percentage": 55,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 122,
+        "pointsAgainst": 226,
+        "percentage": 53.98,
+        "points": 3
       }
     ],
     "Tuesday Men Division 3": [
       {
         "position": 1,
+        "teamName": "Blue Devils",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 156,
+        "pointsAgainst": 101,
+        "percentage": 154.46,
+        "points": 9
+      },
+      {
+        "position": 2,
         "teamName": "Junortoun Jaguars ",
         "played": 2,
         "wins": 2,
@@ -2948,18 +2959,29 @@
         "points": 6
       },
       {
-        "position": 2,
-        "teamName": "Blue Devils",
+        "position": 3,
+        "teamName": "GREEN FN",
         "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 106,
-        "pointsAgainst": 55,
-        "percentage": 192.73,
-        "points": 6
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 78,
+        "pointsAgainst": 197,
+        "percentage": 39.59,
+        "points": 5
       },
       {
-        "position": 3,
+        "position": 4,
+        "teamName": "So Free",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 156,
+        "pointsAgainst": 99,
+        "percentage": 157.58,
+        "points": 4
+      },
+      {
+        "position": 5,
         "teamName": "Bore It",
         "played": 2,
         "wins": 1,
@@ -2970,7 +2992,7 @@
         "points": 4
       },
       {
-        "position": 4,
+        "position": 6,
         "teamName": "Masters",
         "played": 1,
         "wins": 0,
@@ -2981,18 +3003,7 @@
         "points": 4
       },
       {
-        "position": 5,
-        "teamName": "So Free",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 110,
-        "pointsAgainst": 49,
-        "percentage": 224.49,
-        "points": 3
-      },
-      {
-        "position": 6,
+        "position": 7,
         "teamName": "Beavers Dunkers",
         "played": 2,
         "wins": 0,
@@ -3001,41 +3012,30 @@
         "pointsAgainst": 122,
         "percentage": 63.93,
         "points": 2
-      },
-      {
-        "position": 7,
-        "teamName": "GREEN FN",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 78,
-        "pointsAgainst": 197,
-        "percentage": 39.59,
-        "points": 2
       }
     ],
     "Tuesday Men Division 2": [
       {
         "position": 1,
         "teamName": "Frank",
-        "played": 2,
-        "wins": 2,
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 94,
-        "pointsAgainst": 76,
-        "percentage": 123.68,
-        "points": 6
+        "pointsFor": 139,
+        "pointsAgainst": 118,
+        "percentage": 117.8,
+        "points": 9
       },
       {
         "position": 2,
-        "teamName": "Nine-Nine",
-        "played": 1,
+        "teamName": "Hoops! I did it again.",
+        "played": 2,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 47,
-        "pointsAgainst": 43,
-        "percentage": 109.3,
-        "points": 6
+        "losses": 1,
+        "pointsFor": 103,
+        "pointsAgainst": 70,
+        "percentage": 147.14,
+        "points": 7
       },
       {
         "position": 3,
@@ -3046,29 +3046,29 @@
         "pointsFor": 86,
         "pointsAgainst": 66,
         "percentage": 130.3,
-        "points": 4
+        "points": 7
       },
       {
         "position": 4,
-        "teamName": "Hoops! I did it again.",
-        "played": 1,
-        "wins": 0,
+        "teamName": "Nine-Nine",
+        "played": 2,
+        "wins": 1,
         "losses": 1,
-        "pointsFor": 34,
-        "pointsAgainst": 40,
-        "percentage": 85,
-        "points": 4
+        "pointsFor": 89,
+        "pointsAgainst": 88,
+        "percentage": 101.14,
+        "points": 7
       },
       {
         "position": 5,
         "teamName": "Green Fn's",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 61,
-        "pointsAgainst": 97,
-        "percentage": 62.89,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 91,
+        "pointsAgainst": 166,
+        "percentage": 54.82,
+        "points": 3
       }
     ],
     "Sunday Men Division 4": [
@@ -7312,68 +7312,68 @@
     {
       "position": 1,
       "teamName": "Bunjils U18 Girls Shannon",
-      "played": 2,
-      "wins": 2,
+      "played": 3,
+      "wins": 3,
       "losses": 0,
-      "pointsFor": 79,
-      "pointsAgainst": 30,
-      "percentage": 263.33,
-      "points": 6
+      "pointsFor": 119,
+      "pointsAgainst": 45,
+      "percentage": 264.44,
+      "points": 9
     },
     {
       "position": 2,
       "teamName": "U18 Girls Girton Gold",
-      "played": 2,
-      "wins": 2,
+      "played": 3,
+      "wins": 3,
       "losses": 0,
-      "pointsFor": 79,
-      "pointsAgainst": 31,
-      "percentage": 254.84,
-      "points": 6
+      "pointsFor": 136,
+      "pointsAgainst": 52,
+      "percentage": 261.54,
+      "points": 9
     },
     {
       "position": 3,
       "teamName": "Aztec U18 Girls Green",
-      "played": 2,
-      "wins": 1,
+      "played": 3,
+      "wins": 2,
       "losses": 1,
-      "pointsFor": 45,
-      "pointsAgainst": 54,
-      "percentage": 83.33,
-      "points": 4
+      "pointsFor": 93,
+      "pointsAgainst": 80,
+      "percentage": 116.25,
+      "points": 7
     },
     {
       "position": 4,
       "teamName": "Generals U18 Girls Lightning",
-      "played": 2,
+      "played": 3,
       "wins": 1,
-      "losses": 1,
-      "pointsFor": 44,
-      "pointsAgainst": 57,
-      "percentage": 77.19,
-      "points": 4
+      "losses": 2,
+      "pointsFor": 65,
+      "pointsAgainst": 114,
+      "percentage": 57.02,
+      "points": 5
     },
     {
       "position": 5,
       "teamName": "Aztec U18 Girls Yellow",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 36,
-      "pointsAgainst": 69,
-      "percentage": 52.17,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 62,
+      "pointsAgainst": 117,
+      "percentage": 52.99,
+      "points": 3
     },
     {
       "position": 6,
       "teamName": "Aztec U18 Girls Purple",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 27,
-      "pointsAgainst": 69,
-      "percentage": 39.13,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 42,
+      "pointsAgainst": 109,
+      "percentage": 38.53,
+      "points": 3
     },
     {
       "position": 1,
@@ -7465,6 +7465,17 @@
     },
     {
       "position": 2,
+      "teamName": "Beavers Jets",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 88,
+      "pointsAgainst": 34,
+      "percentage": 258.82,
+      "points": 7
+    },
+    {
+      "position": 3,
       "teamName": "Strath OG Stars",
       "played": 2,
       "wins": 1,
@@ -7475,7 +7486,7 @@
       "points": 7
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Beavers Hype",
       "played": 3,
       "wins": 2,
@@ -7486,26 +7497,15 @@
       "points": 7
     },
     {
-      "position": 4,
-      "teamName": "Beavers Jets",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 56,
-      "pointsAgainst": 22,
-      "percentage": 254.55,
-      "points": 4
-    },
-    {
       "position": 5,
       "teamName": "Aztec U16 Girls Yellow",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 36,
-      "pointsAgainst": 76,
-      "percentage": 47.37,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 48,
+      "pointsAgainst": 108,
+      "percentage": 44.44,
+      "points": 3
     },
     {
       "position": 1,
@@ -7520,6 +7520,17 @@
     },
     {
       "position": 2,
+      "teamName": "Generals U16 Girls Dabbers",
+      "played": 3,
+      "wins": 3,
+      "losses": 0,
+      "pointsFor": 134,
+      "pointsAgainst": 89,
+      "percentage": 150.56,
+      "points": 9
+    },
+    {
+      "position": 3,
       "teamName": "Beavers Mystics",
       "played": 3,
       "wins": 2,
@@ -7530,18 +7541,18 @@
       "points": 7
     },
     {
-      "position": 3,
-      "teamName": "Generals U16 Girls Dabbers",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 85,
-      "pointsAgainst": 43,
-      "percentage": 197.67,
-      "points": 6
+      "position": 4,
+      "teamName": "Aztec U16 Girls Mint",
+      "played": 3,
+      "wins": 1,
+      "losses": 2,
+      "pointsFor": 150,
+      "pointsAgainst": 147,
+      "percentage": 102.04,
+      "points": 5
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Aztec U16 Girls Green",
       "played": 3,
       "wins": 1,
@@ -7550,17 +7561,6 @@
       "pointsAgainst": 130,
       "percentage": 66.92,
       "points": 5
-    },
-    {
-      "position": 5,
-      "teamName": "Aztec U16 Girls Mint",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 104,
-      "pointsAgainst": 98,
-      "percentage": 106.12,
-      "points": 4
     },
     {
       "position": 6,
@@ -7762,17 +7762,6 @@
     },
     {
       "position": 1,
-      "teamName": "Beavers Joeys",
-      "played": 3,
-      "wins": 2,
-      "losses": 1,
-      "pointsFor": 51,
-      "pointsAgainst": 89,
-      "percentage": 57.3,
-      "points": 7
-    },
-    {
-      "position": 2,
       "teamName": "Aztec U12 Girls Amber",
       "played": 2,
       "wins": 1,
@@ -7783,7 +7772,40 @@
       "points": 7
     },
     {
+      "position": 2,
+      "teamName": "St Francis U12 Girls Fever",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 86,
+      "pointsAgainst": 71,
+      "percentage": 121.13,
+      "points": 7
+    },
+    {
       "position": 3,
+      "teamName": "Beavers Joeys",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 51,
+      "pointsAgainst": 89,
+      "percentage": 57.3,
+      "points": 7
+    },
+    {
+      "position": 4,
+      "teamName": "Beavers Kits",
+      "played": 3,
+      "wins": 1,
+      "losses": 2,
+      "pointsFor": 52,
+      "pointsAgainst": 61,
+      "percentage": 85.25,
+      "points": 5
+    },
+    {
+      "position": 5,
       "teamName": "Beavers Revenge",
       "played": 2,
       "wins": 0,
@@ -7792,28 +7814,6 @@
       "pointsAgainst": 48,
       "percentage": 47.92,
       "points": 5
-    },
-    {
-      "position": 4,
-      "teamName": "Beavers Kits",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 38,
-      "pointsAgainst": 25,
-      "percentage": 152,
-      "points": 4
-    },
-    {
-      "position": 5,
-      "teamName": "St Francis U12 Girls Fever",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 50,
-      "pointsAgainst": 57,
-      "percentage": 87.72,
-      "points": 4
     },
     {
       "position": 1,
@@ -7971,6 +7971,17 @@
     },
     {
       "position": 1,
+      "teamName": "The Jebron Lames",
+      "played": 2,
+      "wins": 2,
+      "losses": 0,
+      "pointsFor": 141,
+      "pointsAgainst": 84,
+      "percentage": 167.86,
+      "points": 9
+    },
+    {
+      "position": 2,
       "teamName": "Double Cobras",
       "played": 1,
       "wins": 1,
@@ -7981,18 +7992,18 @@
       "points": 6
     },
     {
-      "position": 2,
-      "teamName": "The Jebron Lames",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 55,
-      "pointsAgainst": 39,
-      "percentage": 141.03,
-      "points": 6
+      "position": 3,
+      "teamName": "Backcourt violators",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 81,
+      "pointsAgainst": 88,
+      "percentage": 92.05,
+      "points": 5
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "OnDiddy",
       "played": 2,
       "wins": 1,
@@ -8003,7 +8014,7 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Beavers Ballers",
       "played": 1,
       "wins": 1,
@@ -8014,7 +8025,7 @@
       "points": 3
     },
     {
-      "position": 5,
+      "position": 6,
       "teamName": "Bunjils Senior Men Hillies",
       "played": 1,
       "wins": 1,
@@ -8025,29 +8036,29 @@
       "points": 3
     },
     {
-      "position": 6,
-      "teamName": "Backcourt violators",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 81,
-      "pointsAgainst": 88,
-      "percentage": 92.05,
-      "points": 2
-    },
-    {
       "position": 7,
       "teamName": "Team Moss",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 77,
-      "pointsAgainst": 140,
-      "percentage": 55,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 122,
+      "pointsAgainst": 226,
+      "percentage": 53.98,
+      "points": 3
     },
     {
       "position": 1,
+      "teamName": "Blue Devils",
+      "played": 3,
+      "wins": 3,
+      "losses": 0,
+      "pointsFor": 156,
+      "pointsAgainst": 101,
+      "percentage": 154.46,
+      "points": 9
+    },
+    {
+      "position": 2,
       "teamName": "Junortoun Jaguars ",
       "played": 2,
       "wins": 2,
@@ -8058,18 +8069,29 @@
       "points": 6
     },
     {
-      "position": 2,
-      "teamName": "Blue Devils",
+      "position": 3,
+      "teamName": "GREEN FN",
       "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 106,
-      "pointsAgainst": 55,
-      "percentage": 192.73,
-      "points": 6
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 78,
+      "pointsAgainst": 197,
+      "percentage": 39.59,
+      "points": 5
     },
     {
-      "position": 3,
+      "position": 4,
+      "teamName": "So Free",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "pointsFor": 156,
+      "pointsAgainst": 99,
+      "percentage": 157.58,
+      "points": 4
+    },
+    {
+      "position": 5,
       "teamName": "Bore It",
       "played": 2,
       "wins": 1,
@@ -8080,7 +8102,7 @@
       "points": 4
     },
     {
-      "position": 4,
+      "position": 6,
       "teamName": "Masters",
       "played": 1,
       "wins": 0,
@@ -8091,18 +8113,7 @@
       "points": 4
     },
     {
-      "position": 5,
-      "teamName": "So Free",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 110,
-      "pointsAgainst": 49,
-      "percentage": 224.49,
-      "points": 3
-    },
-    {
-      "position": 6,
+      "position": 7,
       "teamName": "Beavers Dunkers",
       "played": 2,
       "wins": 0,
@@ -8113,37 +8124,26 @@
       "points": 2
     },
     {
-      "position": 7,
-      "teamName": "GREEN FN",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 78,
-      "pointsAgainst": 197,
-      "percentage": 39.59,
-      "points": 2
-    },
-    {
       "position": 1,
       "teamName": "Frank",
-      "played": 2,
-      "wins": 2,
+      "played": 3,
+      "wins": 3,
       "losses": 0,
-      "pointsFor": 94,
-      "pointsAgainst": 76,
-      "percentage": 123.68,
-      "points": 6
+      "pointsFor": 139,
+      "pointsAgainst": 118,
+      "percentage": 117.8,
+      "points": 9
     },
     {
       "position": 2,
-      "teamName": "Nine-Nine",
-      "played": 1,
+      "teamName": "Hoops! I did it again.",
+      "played": 2,
       "wins": 1,
-      "losses": 0,
-      "pointsFor": 47,
-      "pointsAgainst": 43,
-      "percentage": 109.3,
-      "points": 6
+      "losses": 1,
+      "pointsFor": 103,
+      "pointsAgainst": 70,
+      "percentage": 147.14,
+      "points": 7
     },
     {
       "position": 3,
@@ -8154,29 +8154,29 @@
       "pointsFor": 86,
       "pointsAgainst": 66,
       "percentage": 130.3,
-      "points": 4
+      "points": 7
     },
     {
       "position": 4,
-      "teamName": "Hoops! I did it again.",
-      "played": 1,
-      "wins": 0,
+      "teamName": "Nine-Nine",
+      "played": 2,
+      "wins": 1,
       "losses": 1,
-      "pointsFor": 34,
-      "pointsAgainst": 40,
-      "percentage": 85,
-      "points": 4
+      "pointsFor": 89,
+      "pointsAgainst": 88,
+      "percentage": 101.14,
+      "points": 7
     },
     {
       "position": 5,
       "teamName": "Green Fn's",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 61,
-      "pointsAgainst": 97,
-      "percentage": 62.89,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 91,
+      "pointsAgainst": 166,
+      "percentage": 54.82,
+      "points": 3
     },
     {
       "position": 1,
