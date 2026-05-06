@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T10:37:32.634Z",
+  "generatedAt": "2026-05-06T13:19:24.249Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,34 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "007e4697-b707-4ba0-a713-5cf75d908985",
-      "homeTeam": "PHOENIX Zinger Boxes",
-      "awayTeam": "Strath Saints",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-06",
-      "kickoffTime": "20:15:00",
-      "kickoffDisplay": "20:15",
-      "competition": "Wednesday U16 Boys 2",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 7"
-    },
-    {
-      "gameId": "65fe60de-1bc0-4af2-b1f1-1762d5a8f5b5",
-      "homeTeam": "Beavers Rampage",
-      "awayTeam": "PHOENIX Gold Nuggets",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-06",
-      "kickoffTime": "20:15:00",
-      "kickoffDisplay": "20:15",
-      "competition": "Wednesday U14 Boys 5",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 3"
-    },
     {
       "gameId": "ea14e2c2-0367-4afe-aa1d-0d1822867b19",
       "homeTeam": "PHOENIX Flames",
@@ -275,6 +247,34 @@
       "competition": "Wednesday U14 Boys 2",
       "venue": "Red Energy Arena (Bendigo Stadium)",
       "court": "Court 4"
+    },
+    {
+      "gameId": "007e4697-b707-4ba0-a713-5cf75d908985",
+      "homeTeam": "PHOENIX Zinger Boxes",
+      "awayTeam": "Strath Saints",
+      "homeScore": 41,
+      "awayScore": 27,
+      "status": "completed",
+      "kickoffDate": "2026-05-06",
+      "kickoffTime": "20:15:00",
+      "kickoffDisplay": "20:15",
+      "competition": "Wednesday U16 Boys 2",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 7"
+    },
+    {
+      "gameId": "65fe60de-1bc0-4af2-b1f1-1762d5a8f5b5",
+      "homeTeam": "Beavers Rampage",
+      "awayTeam": "PHOENIX Gold Nuggets",
+      "homeScore": 39,
+      "awayScore": 20,
+      "status": "completed",
+      "kickoffDate": "2026-05-06",
+      "kickoffTime": "20:15:00",
+      "kickoffDisplay": "20:15",
+      "competition": "Wednesday U14 Boys 5",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 3"
     },
     {
       "gameId": "be42a70b-952f-486d-8194-3f1a6f110a78",
