@@ -1,7 +1,7 @@
 {
   "roundNumber": 3,
   "season": "Winter 2026",
-  "lastUpdated": "2026-05-06T10:09:41.414Z",
+  "lastUpdated": "2026-05-06T10:40:01.122Z",
   "status": "upcoming",
   "games": [
     {
@@ -82,6 +82,28 @@
       "ladders": [
         {
           "position": 1,
+          "teamName": "Aztec U16 Boys Amber",
+          "played": 3,
+          "wins": 3,
+          "losses": 0,
+          "pointsFor": 118,
+          "pointsAgainst": 91,
+          "percentage": 129.67,
+          "points": 9
+        },
+        {
+          "position": 2,
+          "teamName": "Aztec U16 Boys Mint",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "pointsFor": 111,
+          "pointsAgainst": 102,
+          "percentage": 108.82,
+          "points": 7
+        },
+        {
+          "position": 3,
           "teamName": "PHOENIX Zinger Boxes",
           "played": 2,
           "wins": 2,
@@ -92,7 +114,7 @@
           "points": 6
         },
         {
-          "position": 2,
+          "position": 4,
           "teamName": "Strath Saints",
           "played": 2,
           "wins": 2,
@@ -103,18 +125,7 @@
           "points": 6
         },
         {
-          "position": 3,
-          "teamName": "Aztec U16 Boys Amber",
-          "played": 2,
-          "wins": 2,
-          "losses": 0,
-          "pointsFor": 76,
-          "pointsAgainst": 56,
-          "percentage": 135.71,
-          "points": 6
-        },
-        {
-          "position": 4,
+          "position": 5,
           "teamName": "Aztec U16 Boys Orange",
           "played": 2,
           "wins": 1,
@@ -122,17 +133,6 @@
           "pointsFor": 75,
           "pointsAgainst": 64,
           "percentage": 117.19,
-          "points": 4
-        },
-        {
-          "position": 5,
-          "teamName": "Aztec U16 Boys Mint",
-          "played": 2,
-          "wins": 1,
-          "losses": 1,
-          "pointsFor": 69,
-          "pointsAgainst": 66,
-          "percentage": 104.55,
           "points": 4
         },
         {
@@ -160,16 +160,27 @@
         {
           "position": 8,
           "teamName": "Aztec U16 Boys Yellow",
-          "played": 2,
+          "played": 3,
           "wins": 0,
-          "losses": 2,
-          "pointsFor": 62,
-          "pointsAgainst": 86,
-          "percentage": 72.09,
-          "points": 2
+          "losses": 3,
+          "pointsFor": 98,
+          "pointsAgainst": 128,
+          "percentage": 76.56,
+          "points": 3
         },
         {
           "position": 9,
+          "teamName": "Generals U16 Boys Hornets",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 88,
+          "pointsAgainst": 132,
+          "percentage": 66.67,
+          "points": 3
+        },
+        {
+          "position": 10,
           "teamName": "Beavers Outlaws",
           "played": 2,
           "wins": 0,
@@ -177,17 +188,6 @@
           "pointsFor": 64,
           "pointsAgainst": 96,
           "percentage": 66.67,
-          "points": 2
-        },
-        {
-          "position": 10,
-          "teamName": "Generals U16 Boys Hornets",
-          "played": 2,
-          "wins": 0,
-          "losses": 2,
-          "pointsFor": 53,
-          "pointsAgainst": 90,
-          "percentage": 58.89,
           "points": 2
         }
       ]
@@ -368,6 +368,17 @@
         },
         {
           "position": 5,
+          "teamName": "Strath Legends",
+          "played": 2,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 94,
+          "pointsAgainst": 30,
+          "percentage": 313.33,
+          "points": 6
+        },
+        {
+          "position": 6,
           "teamName": "Generals U14 Boys Giants",
           "played": 3,
           "wins": 1,
@@ -378,7 +389,7 @@
           "points": 5
         },
         {
-          "position": 6,
+          "position": 7,
           "teamName": "Beavers Celtics",
           "played": 3,
           "wins": 1,
@@ -389,26 +400,15 @@
           "points": 5
         },
         {
-          "position": 7,
-          "teamName": "Aztec U14 Boys Teal",
-          "played": 2,
-          "wins": 1,
-          "losses": 1,
-          "pointsFor": 40,
-          "pointsAgainst": 54,
-          "percentage": 74.07,
-          "points": 4
-        },
-        {
           "position": 8,
-          "teamName": "Strath Legends",
-          "played": 1,
+          "teamName": "Aztec U14 Boys Teal",
+          "played": 3,
           "wins": 1,
-          "losses": 0,
-          "pointsFor": 44,
-          "pointsAgainst": 2,
-          "percentage": 2200,
-          "points": 3
+          "losses": 2,
+          "pointsFor": 68,
+          "pointsAgainst": 104,
+          "percentage": 65.38,
+          "points": 5
         },
         {
           "position": 9,
@@ -1199,6 +1199,17 @@
         },
         {
           "position": 3,
+          "teamName": "Beavers Ballers",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "pointsFor": 144,
+          "pointsAgainst": 107,
+          "percentage": 134.58,
+          "points": 7
+        },
+        {
+          "position": 4,
           "teamName": "Aztec U14 Boys White",
           "played": 3,
           "wins": 1,
@@ -1207,17 +1218,6 @@
           "pointsAgainst": 134,
           "percentage": 93.28,
           "points": 5
-        },
-        {
-          "position": 4,
-          "teamName": "Beavers Ballers",
-          "played": 2,
-          "wins": 1,
-          "losses": 1,
-          "pointsFor": 77,
-          "pointsAgainst": 77,
-          "percentage": 100,
-          "points": 4
         },
         {
           "position": 5,
@@ -1233,13 +1233,13 @@
         {
           "position": 6,
           "teamName": "Aztec U14 Boys Black",
-          "played": 2,
+          "played": 3,
           "wins": 0,
-          "losses": 2,
-          "pointsFor": 77,
-          "pointsAgainst": 128,
-          "percentage": 60.16,
-          "points": 2
+          "losses": 3,
+          "pointsFor": 107,
+          "pointsAgainst": 195,
+          "percentage": 54.87,
+          "points": 3
         }
       ]
     },
@@ -2976,6 +2976,28 @@
     "Wednesday U16 Boys 2": [
       {
         "position": 1,
+        "teamName": "Aztec U16 Boys Amber",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 118,
+        "pointsAgainst": 91,
+        "percentage": 129.67,
+        "points": 9
+      },
+      {
+        "position": 2,
+        "teamName": "Aztec U16 Boys Mint",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 111,
+        "pointsAgainst": 102,
+        "percentage": 108.82,
+        "points": 7
+      },
+      {
+        "position": 3,
         "teamName": "PHOENIX Zinger Boxes",
         "played": 2,
         "wins": 2,
@@ -2986,7 +3008,7 @@
         "points": 6
       },
       {
-        "position": 2,
+        "position": 4,
         "teamName": "Strath Saints",
         "played": 2,
         "wins": 2,
@@ -2997,18 +3019,7 @@
         "points": 6
       },
       {
-        "position": 3,
-        "teamName": "Aztec U16 Boys Amber",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 76,
-        "pointsAgainst": 56,
-        "percentage": 135.71,
-        "points": 6
-      },
-      {
-        "position": 4,
+        "position": 5,
         "teamName": "Aztec U16 Boys Orange",
         "played": 2,
         "wins": 1,
@@ -3016,17 +3027,6 @@
         "pointsFor": 75,
         "pointsAgainst": 64,
         "percentage": 117.19,
-        "points": 4
-      },
-      {
-        "position": 5,
-        "teamName": "Aztec U16 Boys Mint",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 69,
-        "pointsAgainst": 66,
-        "percentage": 104.55,
         "points": 4
       },
       {
@@ -3054,16 +3054,27 @@
       {
         "position": 8,
         "teamName": "Aztec U16 Boys Yellow",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 62,
-        "pointsAgainst": 86,
-        "percentage": 72.09,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 98,
+        "pointsAgainst": 128,
+        "percentage": 76.56,
+        "points": 3
       },
       {
         "position": 9,
+        "teamName": "Generals U16 Boys Hornets",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 88,
+        "pointsAgainst": 132,
+        "percentage": 66.67,
+        "points": 3
+      },
+      {
+        "position": 10,
         "teamName": "Beavers Outlaws",
         "played": 2,
         "wins": 0,
@@ -3071,17 +3082,6 @@
         "pointsFor": 64,
         "pointsAgainst": 96,
         "percentage": 66.67,
-        "points": 2
-      },
-      {
-        "position": 10,
-        "teamName": "Generals U16 Boys Hornets",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 53,
-        "pointsAgainst": 90,
-        "percentage": 58.89,
         "points": 2
       }
     ],
@@ -3132,6 +3132,17 @@
       },
       {
         "position": 5,
+        "teamName": "Strath Legends",
+        "played": 2,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 94,
+        "pointsAgainst": 30,
+        "percentage": 313.33,
+        "points": 6
+      },
+      {
+        "position": 6,
         "teamName": "Generals U14 Boys Giants",
         "played": 3,
         "wins": 1,
@@ -3142,7 +3153,7 @@
         "points": 5
       },
       {
-        "position": 6,
+        "position": 7,
         "teamName": "Beavers Celtics",
         "played": 3,
         "wins": 1,
@@ -3153,26 +3164,15 @@
         "points": 5
       },
       {
-        "position": 7,
-        "teamName": "Aztec U14 Boys Teal",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 40,
-        "pointsAgainst": 54,
-        "percentage": 74.07,
-        "points": 4
-      },
-      {
         "position": 8,
-        "teamName": "Strath Legends",
-        "played": 1,
+        "teamName": "Aztec U14 Boys Teal",
+        "played": 3,
         "wins": 1,
-        "losses": 0,
-        "pointsFor": 44,
-        "pointsAgainst": 2,
-        "percentage": 2200,
-        "points": 3
+        "losses": 2,
+        "pointsFor": 68,
+        "pointsAgainst": 104,
+        "percentage": 65.38,
+        "points": 5
       },
       {
         "position": 9,
@@ -3435,6 +3435,17 @@
       },
       {
         "position": 3,
+        "teamName": "Beavers Ballers",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 144,
+        "pointsAgainst": 107,
+        "percentage": 134.58,
+        "points": 7
+      },
+      {
+        "position": 4,
         "teamName": "Aztec U14 Boys White",
         "played": 3,
         "wins": 1,
@@ -3443,17 +3454,6 @@
         "pointsAgainst": 134,
         "percentage": 93.28,
         "points": 5
-      },
-      {
-        "position": 4,
-        "teamName": "Beavers Ballers",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 77,
-        "pointsAgainst": 77,
-        "percentage": 100,
-        "points": 4
       },
       {
         "position": 5,
@@ -3469,13 +3469,13 @@
       {
         "position": 6,
         "teamName": "Aztec U14 Boys Black",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 77,
-        "pointsAgainst": 128,
-        "percentage": 60.16,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 107,
+        "pointsAgainst": 195,
+        "percentage": 54.87,
+        "points": 3
       }
     ],
     "Tuesday U16 Girls 3": [
