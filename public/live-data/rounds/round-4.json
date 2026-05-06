@@ -1,9 +1,103 @@
 {
   "roundNumber": 4,
   "season": "Winter 2026",
-  "lastUpdated": "2026-05-05T11:56:21.489Z",
+  "lastUpdated": "2026-05-06T10:09:41.415Z",
   "status": "upcoming",
   "games": [
+    {
+      "id": "8a5c3c64-7a6e-46d0-a316-7274fbf72768",
+      "roundNumber": 4,
+      "date": "2026-05-12",
+      "time": "19:30:00",
+      "competition": "Tuesday U16 Girls 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 5",
+      "homeTeam": "PHOENIX Tulips",
+      "awayTeam": "U16 Girls Girton Crystals",
+      "homeScore": null,
+      "awayScore": null,
+      "status": "UPCOMING",
+      "playerStats": null,
+      "ladders": [
+        {
+          "position": 1,
+          "teamName": "Beavers Spring Chicks",
+          "played": 3,
+          "wins": 3,
+          "losses": 0,
+          "pointsFor": 83,
+          "pointsAgainst": 43,
+          "percentage": 193.02,
+          "points": 9
+        },
+        {
+          "position": 2,
+          "teamName": "Bunjils U16 Girls Burra",
+          "played": 3,
+          "wins": 2,
+          "losses": 0,
+          "pointsFor": 74,
+          "pointsAgainst": 66,
+          "percentage": 112.12,
+          "points": 8
+        },
+        {
+          "position": 3,
+          "teamName": "Aztec U16 Girls Purple",
+          "played": 3,
+          "wins": 2,
+          "losses": 1,
+          "pointsFor": 75,
+          "pointsAgainst": 59,
+          "percentage": 127.12,
+          "points": 7
+        },
+        {
+          "position": 4,
+          "teamName": "Aztec U16 Girls Aqua",
+          "played": 2,
+          "wins": 1,
+          "losses": 1,
+          "pointsFor": 63,
+          "pointsAgainst": 67,
+          "percentage": 94.03,
+          "points": 7
+        },
+        {
+          "position": 5,
+          "teamName": "U16 Girls Girton Crystals",
+          "played": 3,
+          "wins": 0,
+          "losses": 1,
+          "pointsFor": 46,
+          "pointsAgainst": 48,
+          "percentage": 95.83,
+          "points": 3
+        },
+        {
+          "position": 6,
+          "teamName": "PHOENIX Tulips",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 67,
+          "pointsAgainst": 120,
+          "percentage": 55.83,
+          "points": 3
+        },
+        {
+          "position": 7,
+          "teamName": "Beavers Gems",
+          "played": 3,
+          "wins": 0,
+          "losses": 3,
+          "pointsFor": 44,
+          "pointsAgainst": 130,
+          "percentage": 33.85,
+          "points": 3
+        }
+      ]
+    },
     {
       "id": "85ee4029-691b-4472-acc6-14e0998a64fd",
       "roundNumber": 4,
@@ -310,6 +404,85 @@
     }
   ],
   "ladders": {
+    "Tuesday U16 Girls 3": [
+      {
+        "position": 1,
+        "teamName": "Beavers Spring Chicks",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 83,
+        "pointsAgainst": 43,
+        "percentage": 193.02,
+        "points": 9
+      },
+      {
+        "position": 2,
+        "teamName": "Bunjils U16 Girls Burra",
+        "played": 3,
+        "wins": 2,
+        "losses": 0,
+        "pointsFor": 74,
+        "pointsAgainst": 66,
+        "percentage": 112.12,
+        "points": 8
+      },
+      {
+        "position": 3,
+        "teamName": "Aztec U16 Girls Purple",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 75,
+        "pointsAgainst": 59,
+        "percentage": 127.12,
+        "points": 7
+      },
+      {
+        "position": 4,
+        "teamName": "Aztec U16 Girls Aqua",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 63,
+        "pointsAgainst": 67,
+        "percentage": 94.03,
+        "points": 7
+      },
+      {
+        "position": 5,
+        "teamName": "U16 Girls Girton Crystals",
+        "played": 3,
+        "wins": 0,
+        "losses": 1,
+        "pointsFor": 46,
+        "pointsAgainst": 48,
+        "percentage": 95.83,
+        "points": 3
+      },
+      {
+        "position": 6,
+        "teamName": "PHOENIX Tulips",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 67,
+        "pointsAgainst": 120,
+        "percentage": 55.83,
+        "points": 3
+      },
+      {
+        "position": 7,
+        "teamName": "Beavers Gems",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 44,
+        "pointsAgainst": 130,
+        "percentage": 33.85,
+        "points": 3
+      }
+    ],
     "Monday U14 Girls 4": [
       {
         "position": 1,
