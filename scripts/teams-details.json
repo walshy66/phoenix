@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T10:55:34.622Z",
+  "lastUpdated": "2026-05-08T12:55:54.223Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -5660,11 +5660,118 @@
           "address": "56 Ellis Street",
           "homeTeam": "PHOENIX Go Buckets",
           "awayTeam": "Beavers Warriors",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 53,
+          "awayScore": 34,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Darcy Mullen",
+                "team": "PHOENIX Go Buckets",
+                "points": 17,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Kingston Clark",
+                "team": "Beavers Warriors",
+                "points": 11,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Henry Dewhurst",
+                "team": "PHOENIX Go Buckets",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tasman Bell",
+                "team": "PHOENIX Go Buckets",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jake Collett",
+                "team": "PHOENIX Go Buckets",
+                "points": 9,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Baiiden Benbow",
+                "team": "Beavers Warriors",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harry Francis",
+                "team": "Beavers Warriors",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Elijah Hinton",
+                "team": "Beavers Warriors",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Ely Vincent",
+                "team": "PHOENIX Go Buckets",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Koby McCallum",
+                "team": "PHOENIX Go Buckets",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Sam Chapman",
+                "team": "Beavers Warriors",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Archie Walsh",
+                "team": "Beavers Warriors",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Finn Evans",
+                "team": "Beavers Warriors",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "cbba9944-fba9-43bf-b1db-5a2ff18b0504",
@@ -5915,7 +6022,7 @@
         },
         {
           "rank": 2,
-          "team": "Victory U16 Boys Warriors",
+          "team": "PHOENIX Go Buckets",
           "played": 3,
           "won": 3,
           "lost": 0,
@@ -5924,7 +6031,7 @@
         },
         {
           "rank": 3,
-          "team": "Beavers Hurricanes",
+          "team": "Victory U16 Boys Warriors",
           "played": 3,
           "won": 3,
           "lost": 0,
@@ -5933,7 +6040,7 @@
         },
         {
           "rank": 4,
-          "team": "Aztec U16 Boys Copper",
+          "team": "Beavers Hurricanes",
           "played": 3,
           "won": 3,
           "lost": 0,
@@ -5942,12 +6049,12 @@
         },
         {
           "rank": 5,
-          "team": "PHOENIX Go Buckets",
-          "played": 2,
-          "won": 2,
+          "team": "Aztec U16 Boys Copper",
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 6,
@@ -5996,7 +6103,7 @@
         },
         {
           "rank": 11,
-          "team": "Generals U16 Boys Gullys",
+          "team": "Beavers Warriors",
           "played": 3,
           "won": 0,
           "lost": 3,
@@ -6005,7 +6112,7 @@
         },
         {
           "rank": 12,
-          "team": "Generals U16 Boys Bulls",
+          "team": "Generals U16 Boys Gullys",
           "played": 3,
           "won": 0,
           "lost": 3,
@@ -6014,12 +6121,12 @@
         },
         {
           "rank": 13,
-          "team": "Beavers Warriors",
-          "played": 2,
+          "team": "Generals U16 Boys Bulls",
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },
@@ -6037,11 +6144,126 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Gooney Tunes",
           "awayTeam": "Strath Wizards",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 31,
+          "awayScore": 27,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Fox Robinson",
+                "team": "Strath Wizards",
+                "points": 11,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jack Riley",
+                "team": "Strath Wizards",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Fraser Rhoden",
+                "team": "PHOENIX Gooney Tunes",
+                "points": 8,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Harry Fitzpatrick",
+                "team": "PHOENIX Gooney Tunes",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Beau Ferguson",
+                "team": "PHOENIX Gooney Tunes",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Raven Menzel",
+                "team": "Strath Wizards",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Evan Saunders",
+                "team": "PHOENIX Gooney Tunes",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Xavier Williams",
+                "team": "PHOENIX Gooney Tunes",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Hunter Bourke",
+                "team": "PHOENIX Gooney Tunes",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Alex Connolly",
+                "team": "Strath Wizards",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cayden Humphrey",
+                "team": "Strath Wizards",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jack Edwards",
+                "team": "Strath Wizards",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jaia Richardson",
+                "team": "PHOENIX Gooney Tunes",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Patrick O’Connor",
+                "team": "Strath Wizards",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "0709957e-bf03-410d-8d9f-742f26b5352d",
@@ -6299,7 +6521,25 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "PHOENIX Splash",
+          "team": "Beavers Rockets",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
+        },
+        {
+          "rank": 2,
+          "team": "PHOENIX Gooney Tunes",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
+        },
+        {
+          "rank": 3,
+          "team": "Strath Wizards",
           "played": 3,
           "won": 2,
           "lost": 1,
@@ -6307,31 +6547,13 @@
           "points": 7
         },
         {
-          "rank": 2,
-          "team": "PHOENIX Gooney Tunes",
-          "played": 2,
-          "won": 2,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
-          "rank": 3,
-          "team": "Strath Wizards",
-          "played": 2,
-          "won": 2,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
           "rank": 4,
-          "team": "Beavers Rockets",
-          "played": 2,
+          "team": "PHOENIX Splash",
+          "played": 3,
           "won": 2,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 6
+          "points": 7
         },
         {
           "rank": 5,
@@ -6354,11 +6576,11 @@
         {
           "rank": 7,
           "team": "Strath Sharks",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },
@@ -6721,7 +6943,25 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "PHOENIX Splash",
+          "team": "Beavers Rockets",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
+        },
+        {
+          "rank": 2,
+          "team": "PHOENIX Gooney Tunes",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
+        },
+        {
+          "rank": 3,
+          "team": "Strath Wizards",
           "played": 3,
           "won": 2,
           "lost": 1,
@@ -6729,31 +6969,13 @@
           "points": 7
         },
         {
-          "rank": 2,
-          "team": "PHOENIX Gooney Tunes",
-          "played": 2,
-          "won": 2,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
-          "rank": 3,
-          "team": "Strath Wizards",
-          "played": 2,
-          "won": 2,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
           "rank": 4,
-          "team": "Beavers Rockets",
-          "played": 2,
+          "team": "PHOENIX Splash",
+          "played": 3,
           "won": 2,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 6
+          "points": 7
         },
         {
           "rank": 5,
@@ -6776,11 +6998,11 @@
         {
           "rank": 7,
           "team": "Strath Sharks",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },
@@ -7795,11 +8017,110 @@
           "address": "91 Inglis Street",
           "homeTeam": "Aztec U18 Boys Yellow",
           "awayTeam": "PHOENIX Smartmeal",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 38,
+          "awayScore": 35,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Alexander Biggs",
+                "team": "PHOENIX Smartmeal",
+                "points": 13,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Zack Dowdell",
+                "team": "Aztec U18 Boys Yellow",
+                "points": 11,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Kobe Turner",
+                "team": "Aztec U18 Boys Yellow",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Levii Harrison",
+                "team": "PHOENIX Smartmeal",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Lorenzo C",
+                "team": "PHOENIX Smartmeal",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Max Soulsby",
+                "team": "Aztec U18 Boys Yellow",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Will Redmond",
+                "team": "Aztec U18 Boys Yellow",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Dominic Laurie",
+                "team": "PHOENIX Smartmeal",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cooper Bray",
+                "team": "Aztec U18 Boys Yellow",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tyson Attard",
+                "team": "Aztec U18 Boys Yellow",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Cooper Pearce",
+                "team": "Aztec U18 Boys Yellow",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tom Reynolds",
+                "team": "PHOENIX Smartmeal",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "c249015b-438d-432f-a75d-5b73d90d7899",
@@ -7951,21 +8272,21 @@
         },
         {
           "rank": 2,
-          "team": "PHOENIX Smartmeal",
-          "played": 2,
-          "won": 1,
+          "team": "Aztec U18 Boys Yellow",
+          "played": 3,
+          "won": 2,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 3,
-          "team": "Aztec U18 Boys Yellow",
-          "played": 2,
+          "team": "PHOENIX Smartmeal",
+          "played": 3,
           "won": 1,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 4
+          "points": 5
         },
         {
           "rank": 4,
@@ -7992,11 +8313,118 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Suns",
           "awayTeam": "Strath Blazers",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 29,
+          "awayScore": 26,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Ari Sawyer",
+                "team": "Strath Blazers",
+                "points": 13,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jhade Teopiz",
+                "team": "PHOENIX Suns",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nick Hietbrink",
+                "team": "Strath Blazers",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Justin Hidalgo",
+                "team": "PHOENIX Suns",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "zhyden Abrera",
+                "team": "PHOENIX Suns",
+                "points": 5,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Dominic McWilliams",
+                "team": "PHOENIX Suns",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "eshie gragasin",
+                "team": "PHOENIX Suns",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Miller Cunnington",
+                "team": "Strath Blazers",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Riley Cawley",
+                "team": "Strath Blazers",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Fenton Phillips",
+                "team": "Strath Blazers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "seth fuller",
+                "team": "PHOENIX Suns",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Tae Tuohey",
+                "team": "Strath Blazers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Taeyang Kim",
+                "team": "Strath Blazers",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "7ab103c0-316f-4e41-b3f2-9c34f86d0b04",
@@ -8150,48 +8578,48 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Strath Eagles",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "drawn": 0,
+          "points": 7
+        },
+        {
+          "rank": 2,
           "team": "Strath Blazers",
-          "played": 1,
+          "played": 2,
+          "won": 1,
+          "lost": 1,
+          "drawn": 0,
+          "points": 7
+        },
+        {
+          "rank": 3,
+          "team": "PHOENIX Suns",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "drawn": 0,
+          "points": 7
+        },
+        {
+          "rank": 4,
+          "team": "Aztec U18 Boys Bronze",
+          "played": 2,
           "won": 1,
           "lost": 0,
           "drawn": 0,
           "points": 6
         },
         {
-          "rank": 2,
-          "team": "Strath Eagles",
-          "played": 2,
-          "won": 1,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
-          "rank": 3,
-          "team": "PHOENIX Suns",
-          "played": 2,
-          "won": 1,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
-          "rank": 4,
-          "team": "Aztec U18 Boys Silver",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
           "rank": 5,
-          "team": "Aztec U18 Boys Bronze",
+          "team": "Aztec U18 Boys Silver",
           "played": 2,
-          "won": 1,
-          "lost": 0,
+          "won": 0,
+          "lost": 2,
           "drawn": 0,
-          "points": 3
+          "points": 5
         }
       ]
     },
@@ -8209,11 +8637,102 @@
           "address": "91 Inglis Street",
           "homeTeam": "PHOENIX Wembys",
           "awayTeam": "Bunjils U18 Boys Bravo",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 46,
+          "awayScore": 33,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Tayte Tyler",
+                "team": "PHOENIX Wembys",
+                "points": 21,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Aston Rae",
+                "team": "Bunjils U18 Boys Bravo",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Manu Poingdestre",
+                "team": "Bunjils U18 Boys Bravo",
+                "points": 10,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Callum Mangan",
+                "team": "PHOENIX Wembys",
+                "points": 9,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Aari Hogan",
+                "team": "Bunjils U18 Boys Bravo",
+                "points": 7,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Oliver Steen",
+                "team": "PHOENIX Wembys",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Kartik Sharma",
+                "team": "PHOENIX Wembys",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Liam Hovenden",
+                "team": "PHOENIX Wembys",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Louis Jenkins",
+                "team": "Bunjils U18 Boys Bravo",
+                "points": 4,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Namar Johal",
+                "team": "PHOENIX Wembys",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nathaniel Younger",
+                "team": "Bunjils U18 Boys Bravo",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "3811f460-89aa-481a-91df-088f84ef0842",
@@ -8484,61 +9003,61 @@
           "won": 2,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 2,
           "team": "Aztec U18 Boys Steel",
-          "played": 2,
-          "won": 2,
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 3,
-          "team": "Bunjils U18 Boys Bravo",
-          "played": 2,
-          "won": 1,
+          "team": "Generals U18 Boys Boomers",
+          "played": 3,
+          "won": 2,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
         },
         {
           "rank": 4,
-          "team": "Generals U18 Boys Boomers",
-          "played": 2,
+          "team": "Bunjils U18 Boys Bravo",
+          "played": 3,
           "won": 1,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 4
+          "points": 5
         },
         {
           "rank": 5,
           "team": "Aztec U18 Boys White",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
-          "rank": 6,
-          "team": "Generals U18 Boys Lions",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
-          "rank": 7,
-          "team": "PHOENIX Wembys",
           "played": 2,
           "won": 0,
           "lost": 2,
           "drawn": 0,
-          "points": 2
+          "points": 5
+        },
+        {
+          "rank": 6,
+          "team": "PHOENIX Wembys",
+          "played": 3,
+          "won": 1,
+          "lost": 2,
+          "drawn": 0,
+          "points": 5
+        },
+        {
+          "rank": 7,
+          "team": "Generals U18 Boys Lions",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "drawn": 0,
+          "points": 5
         }
       ]
     }

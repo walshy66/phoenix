@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T10:57:13.613Z",
+  "lastUpdated": "2026-05-08T12:57:32.348Z",
   "scores": [
     {
       "id": "7d9fb890-392a-46c0-b048-a13b1f8b4d66",
@@ -161,9 +161,9 @@
       "court": "Court 3",
       "homeTeam": "Aztec U18 Boys Yellow",
       "awayTeam": "PHOENIX Smartmeal",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 38,
+      "awayScore": 35,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -176,9 +176,9 @@
       "court": "Court 5",
       "homeTeam": "PHOENIX Wembys",
       "awayTeam": "Bunjils U18 Boys Bravo",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 46,
+      "awayScore": 33,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -191,9 +191,9 @@
       "court": "Court 4",
       "homeTeam": "PHOENIX Suns",
       "awayTeam": "Strath Blazers",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 29,
+      "awayScore": 26,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -251,9 +251,9 @@
       "court": "Court 3",
       "homeTeam": "PHOENIX Go Buckets",
       "awayTeam": "Beavers Warriors",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 53,
+      "awayScore": 34,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -281,9 +281,9 @@
       "court": "Court 7",
       "homeTeam": "PHOENIX Gooney Tunes",
       "awayTeam": "Strath Wizards",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "UPCOMING",
+      "homeScore": 31,
+      "awayScore": 27,
+      "status": "COMPLETED",
       "playerStats": null
     },
     {
@@ -1052,25 +1052,25 @@
       },
       {
         "position": 2,
-        "teamName": "PHOENIX Smartmeal",
-        "played": 2,
-        "wins": 1,
+        "teamName": "Aztec U18 Boys Yellow",
+        "played": 3,
+        "wins": 2,
         "losses": 1,
-        "pointsFor": 35,
-        "pointsAgainst": 39,
-        "percentage": 89.74,
-        "points": 4
+        "pointsFor": 116,
+        "pointsAgainst": 130,
+        "percentage": 89.23,
+        "points": 7
       },
       {
         "position": 3,
-        "teamName": "Aztec U18 Boys Yellow",
-        "played": 2,
+        "teamName": "PHOENIX Smartmeal",
+        "played": 3,
         "wins": 1,
-        "losses": 1,
-        "pointsFor": 78,
-        "pointsAgainst": 95,
-        "percentage": 82.11,
-        "points": 4
+        "losses": 2,
+        "pointsFor": 70,
+        "pointsAgainst": 77,
+        "percentage": 90.91,
+        "points": 5
       },
       {
         "position": 4,
@@ -4959,28 +4959,50 @@
     "Friday U18 Boys 6": [
       {
         "position": 1,
-        "teamName": "Been Brothers",
-        "played": 2,
-        "wins": 2,
+        "teamName": "Generals U18 Boys Gladiators",
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 87,
-        "pointsAgainst": 33,
-        "percentage": 263.64,
-        "points": 6
+        "pointsFor": 120,
+        "pointsAgainst": 88,
+        "percentage": 136.36,
+        "points": 9
       },
       {
         "position": 2,
-        "teamName": "Generals U18 Boys Gladiators",
-        "played": 2,
+        "teamName": "Been Brothers",
+        "played": 3,
         "wins": 2,
-        "losses": 0,
-        "pointsFor": 75,
-        "pointsAgainst": 54,
-        "percentage": 138.89,
-        "points": 6
+        "losses": 1,
+        "pointsFor": 121,
+        "pointsAgainst": 78,
+        "percentage": 155.13,
+        "points": 7
       },
       {
         "position": 3,
+        "teamName": "U18 Boys Girton Magic",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 63,
+        "pointsAgainst": 76,
+        "percentage": 82.89,
+        "points": 7
+      },
+      {
+        "position": 4,
+        "teamName": "Strath Ballers",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 68,
+        "pointsAgainst": 79,
+        "percentage": 86.08,
+        "points": 5
+      },
+      {
+        "position": 5,
         "teamName": "Generals U18 Boys Goon Squad",
         "played": 2,
         "wins": 0,
@@ -4989,28 +5011,6 @@
         "pointsAgainst": 92,
         "percentage": 44.57,
         "points": 5
-      },
-      {
-        "position": 4,
-        "teamName": "Strath Ballers",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 27,
-        "pointsAgainst": 35,
-        "percentage": 77.14,
-        "points": 4
-      },
-      {
-        "position": 5,
-        "teamName": "U18 Boys Girton Magic",
-        "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 19,
-        "pointsAgainst": 35,
-        "percentage": 54.29,
-        "points": 4
       }
     ],
     "Friday U18 Boys 5": [
@@ -5023,122 +5023,111 @@
         "pointsFor": 87,
         "pointsAgainst": 31,
         "percentage": 280.65,
-        "points": 6
+        "points": 9
       },
       {
         "position": 2,
         "teamName": "Aztec U18 Boys Steel",
-        "played": 2,
-        "wins": 2,
+        "played": 3,
+        "wins": 3,
         "losses": 0,
-        "pointsFor": 87,
-        "pointsAgainst": 60,
-        "percentage": 145,
-        "points": 6
+        "pointsFor": 132,
+        "pointsAgainst": 99,
+        "percentage": 133.33,
+        "points": 9
       },
       {
         "position": 3,
-        "teamName": "Bunjils U18 Boys Bravo",
-        "played": 2,
-        "wins": 1,
+        "teamName": "Generals U18 Boys Boomers",
+        "played": 3,
+        "wins": 2,
         "losses": 1,
-        "pointsFor": 85,
-        "pointsAgainst": 72,
-        "percentage": 118.06,
-        "points": 4
+        "pointsFor": 106,
+        "pointsAgainst": 108,
+        "percentage": 98.15,
+        "points": 7
       },
       {
         "position": 4,
-        "teamName": "Generals U18 Boys Boomers",
-        "played": 2,
+        "teamName": "Bunjils U18 Boys Bravo",
+        "played": 3,
         "wins": 1,
-        "losses": 1,
-        "pointsFor": 68,
-        "pointsAgainst": 77,
-        "percentage": 88.31,
-        "points": 4
+        "losses": 2,
+        "pointsFor": 118,
+        "pointsAgainst": 118,
+        "percentage": 100,
+        "points": 5
       },
       {
         "position": 5,
         "teamName": "Aztec U18 Boys White",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 38,
-        "pointsAgainst": 52,
-        "percentage": 73.08,
-        "points": 4
-      },
-      {
-        "position": 6,
-        "teamName": "Generals U18 Boys Lions",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 18,
-        "pointsAgainst": 50,
-        "percentage": 36,
-        "points": 4
-      },
-      {
-        "position": 7,
-        "teamName": "PHOENIX Wembys",
         "played": 2,
         "wins": 0,
         "losses": 2,
-        "pointsFor": 39,
-        "pointsAgainst": 80,
-        "percentage": 48.75,
-        "points": 2
+        "pointsFor": 69,
+        "pointsAgainst": 90,
+        "percentage": 76.67,
+        "points": 5
+      },
+      {
+        "position": 6,
+        "teamName": "PHOENIX Wembys",
+        "played": 3,
+        "wins": 1,
+        "losses": 2,
+        "pointsFor": 85,
+        "pointsAgainst": 113,
+        "percentage": 75.22,
+        "points": 5
+      },
+      {
+        "position": 7,
+        "teamName": "Generals U18 Boys Lions",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 57,
+        "pointsAgainst": 95,
+        "percentage": 60,
+        "points": 5
       }
     ],
     "Friday U18 Boys 3": [
       {
         "position": 1,
-        "teamName": "Strath Blazers",
-        "played": 1,
-        "wins": 1,
-        "losses": 0,
-        "pointsFor": 52,
-        "pointsAgainst": 50,
-        "percentage": 104,
-        "points": 6
+        "teamName": "Strath Eagles",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 149,
+        "pointsAgainst": 111,
+        "percentage": 134.23,
+        "points": 7
       },
       {
         "position": 2,
-        "teamName": "Strath Eagles",
+        "teamName": "Strath Blazers",
         "played": 2,
         "wins": 1,
         "losses": 1,
-        "pointsFor": 103,
-        "pointsAgainst": 89,
-        "percentage": 115.73,
-        "points": 4
+        "pointsFor": 78,
+        "pointsAgainst": 79,
+        "percentage": 98.73,
+        "points": 7
       },
       {
         "position": 3,
         "teamName": "PHOENIX Suns",
-        "played": 2,
-        "wins": 1,
+        "played": 3,
+        "wins": 2,
         "losses": 1,
-        "pointsFor": 37,
-        "pointsAgainst": 53,
-        "percentage": 69.81,
-        "points": 4
+        "pointsFor": 66,
+        "pointsAgainst": 79,
+        "percentage": 83.54,
+        "points": 7
       },
       {
         "position": 4,
-        "teamName": "Aztec U18 Boys Silver",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 32,
-        "pointsAgainst": 53,
-        "percentage": 60.38,
-        "points": 4
-      },
-      {
-        "position": 5,
         "teamName": "Aztec U18 Boys Bronze",
         "played": 2,
         "wins": 1,
@@ -5146,7 +5135,18 @@
         "pointsFor": 53,
         "pointsAgainst": 32,
         "percentage": 165.63,
-        "points": 3
+        "points": 6
+      },
+      {
+        "position": 5,
+        "teamName": "Aztec U18 Boys Silver",
+        "played": 2,
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 54,
+        "pointsAgainst": 99,
+        "percentage": 54.55,
+        "points": 5
       }
     ],
     "Friday U10 Boys 1": [
@@ -5197,13 +5197,13 @@
       {
         "position": 5,
         "teamName": "St Francis U10 Boys Thunder",
-        "played": 1,
-        "wins": 0,
+        "played": 2,
+        "wins": 1,
         "losses": 1,
-        "pointsFor": 10,
-        "pointsAgainst": 21,
-        "percentage": 47.62,
-        "points": 4
+        "pointsFor": 32,
+        "pointsAgainst": 39,
+        "percentage": 82.05,
+        "points": 7
       },
       {
         "position": 6,
@@ -5219,13 +5219,13 @@
       {
         "position": 7,
         "teamName": "Aztec U10 Boys Gold",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 40,
-        "pointsAgainst": 62,
-        "percentage": 64.52,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 58,
+        "pointsAgainst": 84,
+        "percentage": 69.05,
+        "points": 3
       }
     ],
     "Friday U10 Boys 2": [],
@@ -5360,6 +5360,17 @@
       },
       {
         "position": 2,
+        "teamName": "Victory U12 Boys Pacers",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 98,
+        "pointsAgainst": 75,
+        "percentage": 130.67,
+        "points": 7
+      },
+      {
+        "position": 3,
         "teamName": "Strath Black Mambas",
         "played": 3,
         "wins": 2,
@@ -5368,17 +5379,6 @@
         "pointsAgainst": 72,
         "percentage": 101.39,
         "points": 7
-      },
-      {
-        "position": 3,
-        "teamName": "Victory U12 Boys Pacers",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 69,
-        "pointsAgainst": 43,
-        "percentage": 160.47,
-        "points": 6
       },
       {
         "position": 4,
@@ -5393,6 +5393,17 @@
       },
       {
         "position": 5,
+        "teamName": "Generals U12 Boys Nets",
+        "played": 3,
+        "wins": 1,
+        "losses": 2,
+        "pointsFor": 77,
+        "pointsAgainst": 114,
+        "percentage": 67.54,
+        "points": 5
+      },
+      {
+        "position": 6,
         "teamName": "Beavers Nets",
         "played": 3,
         "wins": 0,
@@ -5401,17 +5412,6 @@
         "pointsAgainst": 95,
         "percentage": 66.32,
         "points": 4
-      },
-      {
-        "position": 6,
-        "teamName": "Generals U12 Boys Nets",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 45,
-        "pointsAgainst": 85,
-        "percentage": 52.94,
-        "points": 2
       }
     ],
     "Friday U12 Boys 5": [
@@ -5462,24 +5462,24 @@
       {
         "position": 5,
         "teamName": "Beavers Borough",
-        "played": 2,
-        "wins": 0,
+        "played": 3,
+        "wins": 1,
         "losses": 2,
-        "pointsFor": 51,
-        "pointsAgainst": 76,
-        "percentage": 67.11,
-        "points": 2
+        "pointsFor": 70,
+        "pointsAgainst": 91,
+        "percentage": 76.92,
+        "points": 5
       },
       {
         "position": 6,
         "teamName": "Aztec U12 Boys Amber",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 13,
-        "pointsAgainst": 64,
-        "percentage": 20.31,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 28,
+        "pointsAgainst": 83,
+        "percentage": 33.73,
+        "points": 3
       }
     ],
     "Friday U12 Boys 6": [
@@ -5744,6 +5744,17 @@
       },
       {
         "position": 2,
+        "teamName": "PHOENIX Go Buckets",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 153,
+        "pointsAgainst": 113,
+        "percentage": 135.4,
+        "points": 9
+      },
+      {
+        "position": 3,
         "teamName": "Victory U16 Boys Warriors",
         "played": 3,
         "wins": 3,
@@ -5754,7 +5765,7 @@
         "points": 9
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Beavers Hurricanes",
         "played": 3,
         "wins": 3,
@@ -5765,7 +5776,7 @@
         "points": 9
       },
       {
-        "position": 4,
+        "position": 5,
         "teamName": "Aztec U16 Boys Copper",
         "played": 3,
         "wins": 3,
@@ -5774,17 +5785,6 @@
         "pointsAgainst": 101,
         "percentage": 116.83,
         "points": 9
-      },
-      {
-        "position": 5,
-        "teamName": "PHOENIX Go Buckets",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 100,
-        "pointsAgainst": 79,
-        "percentage": 126.58,
-        "points": 6
       },
       {
         "position": 6,
@@ -5843,6 +5843,17 @@
       },
       {
         "position": 11,
+        "teamName": "Beavers Warriors",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 90,
+        "pointsAgainst": 128,
+        "percentage": 70.31,
+        "points": 3
+      },
+      {
+        "position": 12,
         "teamName": "Generals U16 Boys Gullys",
         "played": 3,
         "wins": 0,
@@ -5853,7 +5864,7 @@
         "points": 3
       },
       {
-        "position": 12,
+        "position": 13,
         "teamName": "Generals U16 Boys Bulls",
         "played": 3,
         "wins": 0,
@@ -5862,22 +5873,22 @@
         "pointsAgainst": 170,
         "percentage": 42.35,
         "points": 3
-      },
-      {
-        "position": 13,
-        "teamName": "Beavers Warriors",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 56,
-        "pointsAgainst": 75,
-        "percentage": 74.67,
-        "points": 2
       }
     ],
     "Friday U16 Boys 5": [
       {
         "position": 1,
+        "teamName": "Strath Thunder",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 131,
+        "pointsAgainst": 90,
+        "percentage": 145.56,
+        "points": 9
+      },
+      {
+        "position": 2,
         "teamName": "Aztec U16 Boys Blue",
         "played": 2,
         "wins": 1,
@@ -5888,7 +5899,7 @@
         "points": 8
       },
       {
-        "position": 2,
+        "position": 3,
         "teamName": "Aztec U16 Boys Gold",
         "played": 3,
         "wins": 2,
@@ -5899,40 +5910,40 @@
         "points": 7
       },
       {
-        "position": 3,
-        "teamName": "Strath Thunder",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 93,
-        "pointsAgainst": 65,
-        "percentage": 143.08,
-        "points": 6
-      },
-      {
         "position": 4,
         "teamName": "Beavers B. Ballers",
-        "played": 2,
-        "wins": 1,
+        "played": 3,
+        "wins": 2,
         "losses": 1,
-        "pointsFor": 81,
-        "pointsAgainst": 76,
-        "percentage": 106.58,
-        "points": 4
+        "pointsFor": 137,
+        "pointsAgainst": 130,
+        "percentage": 105.38,
+        "points": 7
       },
       {
         "position": 5,
         "teamName": "Aztec U16 Boys Navy",
-        "played": 2,
+        "played": 3,
         "wins": 1,
-        "losses": 1,
-        "pointsFor": 72,
-        "pointsAgainst": 72,
-        "percentage": 100,
-        "points": 4
+        "losses": 2,
+        "pointsFor": 126,
+        "pointsAgainst": 128,
+        "percentage": 98.44,
+        "points": 5
       },
       {
         "position": 6,
+        "teamName": "Beavers Storm",
+        "played": 3,
+        "wins": 0,
+        "losses": 3,
+        "pointsFor": 83,
+        "pointsAgainst": 114,
+        "percentage": 72.81,
+        "points": 3
+      },
+      {
+        "position": 7,
         "teamName": "Strath Chairbenders",
         "played": 3,
         "wins": 0,
@@ -5941,17 +5952,6 @@
         "pointsAgainst": 144,
         "percentage": 58.33,
         "points": 3
-      },
-      {
-        "position": 7,
-        "teamName": "Beavers Storm",
-        "played": 2,
-        "wins": 0,
-        "losses": 2,
-        "pointsFor": 58,
-        "pointsAgainst": 76,
-        "percentage": 76.32,
-        "points": 2
       }
     ],
     "Friday U16 Boys 6": [
@@ -5968,6 +5968,17 @@
       },
       {
         "position": 2,
+        "teamName": "Victory U16 Boys Heat",
+        "played": 2,
+        "wins": 1,
+        "losses": 1,
+        "pointsFor": 85,
+        "pointsAgainst": 63,
+        "percentage": 134.92,
+        "points": 7
+      },
+      {
+        "position": 3,
         "teamName": "Heathcote Panthers 16's ",
         "played": 3,
         "wins": 2,
@@ -5978,7 +5989,7 @@
         "points": 7
       },
       {
-        "position": 3,
+        "position": 4,
         "teamName": "Aztec U16 Boys Aqua",
         "played": 2,
         "wins": 1,
@@ -5989,53 +6000,75 @@
         "points": 7
       },
       {
-        "position": 4,
-        "teamName": "Victory U16 Boys Heat",
-        "played": 1,
-        "wins": 0,
-        "losses": 1,
-        "pointsFor": 35,
-        "pointsAgainst": 38,
-        "percentage": 92.11,
-        "points": 4
-      },
-      {
         "position": 5,
-        "teamName": "Aztec U16 Boys Grey",
-        "played": 1,
-        "wins": 0,
+        "teamName": "Bunjils U16 Boys Ant isocial",
+        "played": 3,
+        "wins": 2,
         "losses": 1,
-        "pointsFor": 26,
-        "pointsAgainst": 41,
-        "percentage": 63.41,
-        "points": 4
+        "pointsFor": 67,
+        "pointsAgainst": 74,
+        "percentage": 90.54,
+        "points": 7
       },
       {
         "position": 6,
-        "teamName": "Bunjils U16 Boys Ant isocial",
+        "teamName": "Aztec U16 Boys Grey",
         "played": 2,
-        "wins": 1,
-        "losses": 1,
-        "pointsFor": 31,
-        "pointsAgainst": 47,
-        "percentage": 65.96,
-        "points": 4
+        "wins": 0,
+        "losses": 2,
+        "pointsFor": 53,
+        "pointsAgainst": 77,
+        "percentage": 68.83,
+        "points": 5
       },
       {
         "position": 7,
         "teamName": "Strath Shooters",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 24,
-        "pointsAgainst": 69,
-        "percentage": 34.78,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 49,
+        "pointsAgainst": 119,
+        "percentage": 41.18,
+        "points": 3
       }
     ],
     "Friday U16 Boys 7": [
       {
         "position": 1,
+        "teamName": "Beavers Rockets",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 122,
+        "pointsAgainst": 39,
+        "percentage": 312.82,
+        "points": 9
+      },
+      {
+        "position": 2,
+        "teamName": "PHOENIX Gooney Tunes",
+        "played": 3,
+        "wins": 3,
+        "losses": 0,
+        "pointsFor": 146,
+        "pointsAgainst": 68,
+        "percentage": 214.71,
+        "points": 9
+      },
+      {
+        "position": 3,
+        "teamName": "Strath Wizards",
+        "played": 3,
+        "wins": 2,
+        "losses": 1,
+        "pointsFor": 102,
+        "pointsAgainst": 66,
+        "percentage": 154.55,
+        "points": 7
+      },
+      {
+        "position": 4,
         "teamName": "PHOENIX Splash",
         "played": 3,
         "wins": 2,
@@ -6044,39 +6077,6 @@
         "pointsAgainst": 102,
         "percentage": 112.75,
         "points": 7
-      },
-      {
-        "position": 2,
-        "teamName": "PHOENIX Gooney Tunes",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 115,
-        "pointsAgainst": 41,
-        "percentage": 280.49,
-        "points": 6
-      },
-      {
-        "position": 3,
-        "teamName": "Strath Wizards",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 75,
-        "pointsAgainst": 35,
-        "percentage": 214.29,
-        "points": 6
-      },
-      {
-        "position": 4,
-        "teamName": "Beavers Rockets",
-        "played": 2,
-        "wins": 2,
-        "losses": 0,
-        "pointsFor": 58,
-        "pointsAgainst": 33,
-        "percentage": 175.76,
-        "points": 6
       },
       {
         "position": 5,
@@ -6103,13 +6103,13 @@
       {
         "position": 7,
         "teamName": "Strath Sharks",
-        "played": 2,
+        "played": 3,
         "wins": 0,
-        "losses": 2,
-        "pointsFor": 55,
-        "pointsAgainst": 110,
-        "percentage": 50,
-        "points": 2
+        "losses": 3,
+        "pointsFor": 61,
+        "pointsAgainst": 174,
+        "percentage": 35.06,
+        "points": 3
       }
     ],
     "Friday U16 Boys 8": [
@@ -6195,25 +6195,25 @@
     },
     {
       "position": 2,
-      "teamName": "PHOENIX Smartmeal",
-      "played": 2,
-      "wins": 1,
+      "teamName": "Aztec U18 Boys Yellow",
+      "played": 3,
+      "wins": 2,
       "losses": 1,
-      "pointsFor": 35,
-      "pointsAgainst": 39,
-      "percentage": 89.74,
-      "points": 4
+      "pointsFor": 116,
+      "pointsAgainst": 130,
+      "percentage": 89.23,
+      "points": 7
     },
     {
       "position": 3,
-      "teamName": "Aztec U18 Boys Yellow",
-      "played": 2,
+      "teamName": "PHOENIX Smartmeal",
+      "played": 3,
       "wins": 1,
-      "losses": 1,
-      "pointsFor": 78,
-      "pointsAgainst": 95,
-      "percentage": 82.11,
-      "points": 4
+      "losses": 2,
+      "pointsFor": 70,
+      "pointsAgainst": 77,
+      "percentage": 90.91,
+      "points": 5
     },
     {
       "position": 4,
@@ -10001,28 +10001,50 @@
     },
     {
       "position": 1,
-      "teamName": "Been Brothers",
-      "played": 2,
-      "wins": 2,
+      "teamName": "Generals U18 Boys Gladiators",
+      "played": 3,
+      "wins": 3,
       "losses": 0,
-      "pointsFor": 87,
-      "pointsAgainst": 33,
-      "percentage": 263.64,
-      "points": 6
+      "pointsFor": 120,
+      "pointsAgainst": 88,
+      "percentage": 136.36,
+      "points": 9
     },
     {
       "position": 2,
-      "teamName": "Generals U18 Boys Gladiators",
-      "played": 2,
+      "teamName": "Been Brothers",
+      "played": 3,
       "wins": 2,
-      "losses": 0,
-      "pointsFor": 75,
-      "pointsAgainst": 54,
-      "percentage": 138.89,
-      "points": 6
+      "losses": 1,
+      "pointsFor": 121,
+      "pointsAgainst": 78,
+      "percentage": 155.13,
+      "points": 7
     },
     {
       "position": 3,
+      "teamName": "U18 Boys Girton Magic",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 63,
+      "pointsAgainst": 76,
+      "percentage": 82.89,
+      "points": 7
+    },
+    {
+      "position": 4,
+      "teamName": "Strath Ballers",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 68,
+      "pointsAgainst": 79,
+      "percentage": 86.08,
+      "points": 5
+    },
+    {
+      "position": 5,
       "teamName": "Generals U18 Boys Goon Squad",
       "played": 2,
       "wins": 0,
@@ -10033,28 +10055,6 @@
       "points": 5
     },
     {
-      "position": 4,
-      "teamName": "Strath Ballers",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 27,
-      "pointsAgainst": 35,
-      "percentage": 77.14,
-      "points": 4
-    },
-    {
-      "position": 5,
-      "teamName": "U18 Boys Girton Magic",
-      "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 19,
-      "pointsAgainst": 35,
-      "percentage": 54.29,
-      "points": 4
-    },
-    {
       "position": 1,
       "teamName": "Generals U18 Boys Rockets",
       "played": 2,
@@ -10063,120 +10063,109 @@
       "pointsFor": 87,
       "pointsAgainst": 31,
       "percentage": 280.65,
-      "points": 6
+      "points": 9
     },
     {
       "position": 2,
       "teamName": "Aztec U18 Boys Steel",
-      "played": 2,
-      "wins": 2,
+      "played": 3,
+      "wins": 3,
       "losses": 0,
-      "pointsFor": 87,
-      "pointsAgainst": 60,
-      "percentage": 145,
-      "points": 6
+      "pointsFor": 132,
+      "pointsAgainst": 99,
+      "percentage": 133.33,
+      "points": 9
     },
     {
       "position": 3,
-      "teamName": "Bunjils U18 Boys Bravo",
-      "played": 2,
-      "wins": 1,
+      "teamName": "Generals U18 Boys Boomers",
+      "played": 3,
+      "wins": 2,
       "losses": 1,
-      "pointsFor": 85,
-      "pointsAgainst": 72,
-      "percentage": 118.06,
-      "points": 4
+      "pointsFor": 106,
+      "pointsAgainst": 108,
+      "percentage": 98.15,
+      "points": 7
     },
     {
       "position": 4,
-      "teamName": "Generals U18 Boys Boomers",
-      "played": 2,
+      "teamName": "Bunjils U18 Boys Bravo",
+      "played": 3,
       "wins": 1,
-      "losses": 1,
-      "pointsFor": 68,
-      "pointsAgainst": 77,
-      "percentage": 88.31,
-      "points": 4
+      "losses": 2,
+      "pointsFor": 118,
+      "pointsAgainst": 118,
+      "percentage": 100,
+      "points": 5
     },
     {
       "position": 5,
       "teamName": "Aztec U18 Boys White",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 38,
-      "pointsAgainst": 52,
-      "percentage": 73.08,
-      "points": 4
-    },
-    {
-      "position": 6,
-      "teamName": "Generals U18 Boys Lions",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 18,
-      "pointsAgainst": 50,
-      "percentage": 36,
-      "points": 4
-    },
-    {
-      "position": 7,
-      "teamName": "PHOENIX Wembys",
       "played": 2,
       "wins": 0,
       "losses": 2,
-      "pointsFor": 39,
-      "pointsAgainst": 80,
-      "percentage": 48.75,
-      "points": 2
+      "pointsFor": 69,
+      "pointsAgainst": 90,
+      "percentage": 76.67,
+      "points": 5
+    },
+    {
+      "position": 6,
+      "teamName": "PHOENIX Wembys",
+      "played": 3,
+      "wins": 1,
+      "losses": 2,
+      "pointsFor": 85,
+      "pointsAgainst": 113,
+      "percentage": 75.22,
+      "points": 5
+    },
+    {
+      "position": 7,
+      "teamName": "Generals U18 Boys Lions",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 57,
+      "pointsAgainst": 95,
+      "percentage": 60,
+      "points": 5
     },
     {
       "position": 1,
-      "teamName": "Strath Blazers",
-      "played": 1,
-      "wins": 1,
-      "losses": 0,
-      "pointsFor": 52,
-      "pointsAgainst": 50,
-      "percentage": 104,
-      "points": 6
+      "teamName": "Strath Eagles",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 149,
+      "pointsAgainst": 111,
+      "percentage": 134.23,
+      "points": 7
     },
     {
       "position": 2,
-      "teamName": "Strath Eagles",
+      "teamName": "Strath Blazers",
       "played": 2,
       "wins": 1,
       "losses": 1,
-      "pointsFor": 103,
-      "pointsAgainst": 89,
-      "percentage": 115.73,
-      "points": 4
+      "pointsFor": 78,
+      "pointsAgainst": 79,
+      "percentage": 98.73,
+      "points": 7
     },
     {
       "position": 3,
       "teamName": "PHOENIX Suns",
-      "played": 2,
-      "wins": 1,
+      "played": 3,
+      "wins": 2,
       "losses": 1,
-      "pointsFor": 37,
-      "pointsAgainst": 53,
-      "percentage": 69.81,
-      "points": 4
+      "pointsFor": 66,
+      "pointsAgainst": 79,
+      "percentage": 83.54,
+      "points": 7
     },
     {
       "position": 4,
-      "teamName": "Aztec U18 Boys Silver",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 32,
-      "pointsAgainst": 53,
-      "percentage": 60.38,
-      "points": 4
-    },
-    {
-      "position": 5,
       "teamName": "Aztec U18 Boys Bronze",
       "played": 2,
       "wins": 1,
@@ -10184,7 +10173,18 @@
       "pointsFor": 53,
       "pointsAgainst": 32,
       "percentage": 165.63,
-      "points": 3
+      "points": 6
+    },
+    {
+      "position": 5,
+      "teamName": "Aztec U18 Boys Silver",
+      "played": 2,
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 54,
+      "pointsAgainst": 99,
+      "percentage": 54.55,
+      "points": 5
     },
     {
       "position": 1,
@@ -10233,13 +10233,13 @@
     {
       "position": 5,
       "teamName": "St Francis U10 Boys Thunder",
-      "played": 1,
-      "wins": 0,
+      "played": 2,
+      "wins": 1,
       "losses": 1,
-      "pointsFor": 10,
-      "pointsAgainst": 21,
-      "percentage": 47.62,
-      "points": 4
+      "pointsFor": 32,
+      "pointsAgainst": 39,
+      "percentage": 82.05,
+      "points": 7
     },
     {
       "position": 6,
@@ -10255,13 +10255,13 @@
     {
       "position": 7,
       "teamName": "Aztec U10 Boys Gold",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 40,
-      "pointsAgainst": 62,
-      "percentage": 64.52,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 58,
+      "pointsAgainst": 84,
+      "percentage": 69.05,
+      "points": 3
     },
     {
       "position": 1,
@@ -10386,6 +10386,17 @@
     },
     {
       "position": 2,
+      "teamName": "Victory U12 Boys Pacers",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 98,
+      "pointsAgainst": 75,
+      "percentage": 130.67,
+      "points": 7
+    },
+    {
+      "position": 3,
       "teamName": "Strath Black Mambas",
       "played": 3,
       "wins": 2,
@@ -10394,17 +10405,6 @@
       "pointsAgainst": 72,
       "percentage": 101.39,
       "points": 7
-    },
-    {
-      "position": 3,
-      "teamName": "Victory U12 Boys Pacers",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 69,
-      "pointsAgainst": 43,
-      "percentage": 160.47,
-      "points": 6
     },
     {
       "position": 4,
@@ -10419,6 +10419,17 @@
     },
     {
       "position": 5,
+      "teamName": "Generals U12 Boys Nets",
+      "played": 3,
+      "wins": 1,
+      "losses": 2,
+      "pointsFor": 77,
+      "pointsAgainst": 114,
+      "percentage": 67.54,
+      "points": 5
+    },
+    {
+      "position": 6,
       "teamName": "Beavers Nets",
       "played": 3,
       "wins": 0,
@@ -10427,17 +10438,6 @@
       "pointsAgainst": 95,
       "percentage": 66.32,
       "points": 4
-    },
-    {
-      "position": 6,
-      "teamName": "Generals U12 Boys Nets",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 45,
-      "pointsAgainst": 85,
-      "percentage": 52.94,
-      "points": 2
     },
     {
       "position": 1,
@@ -10486,24 +10486,24 @@
     {
       "position": 5,
       "teamName": "Beavers Borough",
-      "played": 2,
-      "wins": 0,
+      "played": 3,
+      "wins": 1,
       "losses": 2,
-      "pointsFor": 51,
-      "pointsAgainst": 76,
-      "percentage": 67.11,
-      "points": 2
+      "pointsFor": 70,
+      "pointsAgainst": 91,
+      "percentage": 76.92,
+      "points": 5
     },
     {
       "position": 6,
       "teamName": "Aztec U12 Boys Amber",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 13,
-      "pointsAgainst": 64,
-      "percentage": 20.31,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 28,
+      "pointsAgainst": 83,
+      "percentage": 33.73,
+      "points": 3
     },
     {
       "position": 1,
@@ -10760,6 +10760,17 @@
     },
     {
       "position": 2,
+      "teamName": "PHOENIX Go Buckets",
+      "played": 3,
+      "wins": 3,
+      "losses": 0,
+      "pointsFor": 153,
+      "pointsAgainst": 113,
+      "percentage": 135.4,
+      "points": 9
+    },
+    {
+      "position": 3,
       "teamName": "Victory U16 Boys Warriors",
       "played": 3,
       "wins": 3,
@@ -10770,7 +10781,7 @@
       "points": 9
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Beavers Hurricanes",
       "played": 3,
       "wins": 3,
@@ -10781,7 +10792,7 @@
       "points": 9
     },
     {
-      "position": 4,
+      "position": 5,
       "teamName": "Aztec U16 Boys Copper",
       "played": 3,
       "wins": 3,
@@ -10790,17 +10801,6 @@
       "pointsAgainst": 101,
       "percentage": 116.83,
       "points": 9
-    },
-    {
-      "position": 5,
-      "teamName": "PHOENIX Go Buckets",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 100,
-      "pointsAgainst": 79,
-      "percentage": 126.58,
-      "points": 6
     },
     {
       "position": 6,
@@ -10859,6 +10859,17 @@
     },
     {
       "position": 11,
+      "teamName": "Beavers Warriors",
+      "played": 3,
+      "wins": 0,
+      "losses": 3,
+      "pointsFor": 90,
+      "pointsAgainst": 128,
+      "percentage": 70.31,
+      "points": 3
+    },
+    {
+      "position": 12,
       "teamName": "Generals U16 Boys Gullys",
       "played": 3,
       "wins": 0,
@@ -10869,7 +10880,7 @@
       "points": 3
     },
     {
-      "position": 12,
+      "position": 13,
       "teamName": "Generals U16 Boys Bulls",
       "played": 3,
       "wins": 0,
@@ -10880,18 +10891,18 @@
       "points": 3
     },
     {
-      "position": 13,
-      "teamName": "Beavers Warriors",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 56,
-      "pointsAgainst": 75,
-      "percentage": 74.67,
-      "points": 2
+      "position": 1,
+      "teamName": "Strath Thunder",
+      "played": 3,
+      "wins": 3,
+      "losses": 0,
+      "pointsFor": 131,
+      "pointsAgainst": 90,
+      "percentage": 145.56,
+      "points": 9
     },
     {
-      "position": 1,
+      "position": 2,
       "teamName": "Aztec U16 Boys Blue",
       "played": 2,
       "wins": 1,
@@ -10902,7 +10913,7 @@
       "points": 8
     },
     {
-      "position": 2,
+      "position": 3,
       "teamName": "Aztec U16 Boys Gold",
       "played": 3,
       "wins": 2,
@@ -10913,40 +10924,40 @@
       "points": 7
     },
     {
-      "position": 3,
-      "teamName": "Strath Thunder",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 93,
-      "pointsAgainst": 65,
-      "percentage": 143.08,
-      "points": 6
-    },
-    {
       "position": 4,
       "teamName": "Beavers B. Ballers",
-      "played": 2,
-      "wins": 1,
+      "played": 3,
+      "wins": 2,
       "losses": 1,
-      "pointsFor": 81,
-      "pointsAgainst": 76,
-      "percentage": 106.58,
-      "points": 4
+      "pointsFor": 137,
+      "pointsAgainst": 130,
+      "percentage": 105.38,
+      "points": 7
     },
     {
       "position": 5,
       "teamName": "Aztec U16 Boys Navy",
-      "played": 2,
+      "played": 3,
       "wins": 1,
-      "losses": 1,
-      "pointsFor": 72,
-      "pointsAgainst": 72,
-      "percentage": 100,
-      "points": 4
+      "losses": 2,
+      "pointsFor": 126,
+      "pointsAgainst": 128,
+      "percentage": 98.44,
+      "points": 5
     },
     {
       "position": 6,
+      "teamName": "Beavers Storm",
+      "played": 3,
+      "wins": 0,
+      "losses": 3,
+      "pointsFor": 83,
+      "pointsAgainst": 114,
+      "percentage": 72.81,
+      "points": 3
+    },
+    {
+      "position": 7,
       "teamName": "Strath Chairbenders",
       "played": 3,
       "wins": 0,
@@ -10955,17 +10966,6 @@
       "pointsAgainst": 144,
       "percentage": 58.33,
       "points": 3
-    },
-    {
-      "position": 7,
-      "teamName": "Beavers Storm",
-      "played": 2,
-      "wins": 0,
-      "losses": 2,
-      "pointsFor": 58,
-      "pointsAgainst": 76,
-      "percentage": 76.32,
-      "points": 2
     },
     {
       "position": 1,
@@ -10980,6 +10980,17 @@
     },
     {
       "position": 2,
+      "teamName": "Victory U16 Boys Heat",
+      "played": 2,
+      "wins": 1,
+      "losses": 1,
+      "pointsFor": 85,
+      "pointsAgainst": 63,
+      "percentage": 134.92,
+      "points": 7
+    },
+    {
+      "position": 3,
       "teamName": "Heathcote Panthers 16's ",
       "played": 3,
       "wins": 2,
@@ -10990,7 +11001,7 @@
       "points": 7
     },
     {
-      "position": 3,
+      "position": 4,
       "teamName": "Aztec U16 Boys Aqua",
       "played": 2,
       "wins": 1,
@@ -11001,51 +11012,73 @@
       "points": 7
     },
     {
-      "position": 4,
-      "teamName": "Victory U16 Boys Heat",
-      "played": 1,
-      "wins": 0,
-      "losses": 1,
-      "pointsFor": 35,
-      "pointsAgainst": 38,
-      "percentage": 92.11,
-      "points": 4
-    },
-    {
       "position": 5,
-      "teamName": "Aztec U16 Boys Grey",
-      "played": 1,
-      "wins": 0,
+      "teamName": "Bunjils U16 Boys Ant isocial",
+      "played": 3,
+      "wins": 2,
       "losses": 1,
-      "pointsFor": 26,
-      "pointsAgainst": 41,
-      "percentage": 63.41,
-      "points": 4
+      "pointsFor": 67,
+      "pointsAgainst": 74,
+      "percentage": 90.54,
+      "points": 7
     },
     {
       "position": 6,
-      "teamName": "Bunjils U16 Boys Ant isocial",
+      "teamName": "Aztec U16 Boys Grey",
       "played": 2,
-      "wins": 1,
-      "losses": 1,
-      "pointsFor": 31,
-      "pointsAgainst": 47,
-      "percentage": 65.96,
-      "points": 4
+      "wins": 0,
+      "losses": 2,
+      "pointsFor": 53,
+      "pointsAgainst": 77,
+      "percentage": 68.83,
+      "points": 5
     },
     {
       "position": 7,
       "teamName": "Strath Shooters",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 24,
-      "pointsAgainst": 69,
-      "percentage": 34.78,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 49,
+      "pointsAgainst": 119,
+      "percentage": 41.18,
+      "points": 3
     },
     {
       "position": 1,
+      "teamName": "Beavers Rockets",
+      "played": 3,
+      "wins": 3,
+      "losses": 0,
+      "pointsFor": 122,
+      "pointsAgainst": 39,
+      "percentage": 312.82,
+      "points": 9
+    },
+    {
+      "position": 2,
+      "teamName": "PHOENIX Gooney Tunes",
+      "played": 3,
+      "wins": 3,
+      "losses": 0,
+      "pointsFor": 146,
+      "pointsAgainst": 68,
+      "percentage": 214.71,
+      "points": 9
+    },
+    {
+      "position": 3,
+      "teamName": "Strath Wizards",
+      "played": 3,
+      "wins": 2,
+      "losses": 1,
+      "pointsFor": 102,
+      "pointsAgainst": 66,
+      "percentage": 154.55,
+      "points": 7
+    },
+    {
+      "position": 4,
       "teamName": "PHOENIX Splash",
       "played": 3,
       "wins": 2,
@@ -11054,39 +11087,6 @@
       "pointsAgainst": 102,
       "percentage": 112.75,
       "points": 7
-    },
-    {
-      "position": 2,
-      "teamName": "PHOENIX Gooney Tunes",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 115,
-      "pointsAgainst": 41,
-      "percentage": 280.49,
-      "points": 6
-    },
-    {
-      "position": 3,
-      "teamName": "Strath Wizards",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 75,
-      "pointsAgainst": 35,
-      "percentage": 214.29,
-      "points": 6
-    },
-    {
-      "position": 4,
-      "teamName": "Beavers Rockets",
-      "played": 2,
-      "wins": 2,
-      "losses": 0,
-      "pointsFor": 58,
-      "pointsAgainst": 33,
-      "percentage": 175.76,
-      "points": 6
     },
     {
       "position": 5,
@@ -11113,13 +11113,13 @@
     {
       "position": 7,
       "teamName": "Strath Sharks",
-      "played": 2,
+      "played": 3,
       "wins": 0,
-      "losses": 2,
-      "pointsFor": 55,
-      "pointsAgainst": 110,
-      "percentage": 50,
-      "points": 2
+      "losses": 3,
+      "pointsFor": 61,
+      "pointsAgainst": 174,
+      "percentage": 35.06,
+      "points": 3
     },
     {
       "position": 1,
