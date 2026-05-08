@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-08T09:01:13.335Z",
+  "generatedAt": "2026-05-08T09:52:01.067Z",
   "status": "success",
   "window": {
     "kind": "rolling-7-plus-7-days",
@@ -10,20 +10,6 @@
   "staleBanner": null,
   "error": null,
   "games": [
-    {
-      "gameId": "90edbc86-0ce4-4ae4-b70d-610771466d9d",
-      "homeTeam": "Beavers Chiefs",
-      "awayTeam": "PHOENIX Son's",
-      "homeScore": null,
-      "awayScore": null,
-      "status": "upcoming",
-      "kickoffDate": "2026-05-08",
-      "kickoffTime": "18:45:00",
-      "kickoffDisplay": "18:45",
-      "competition": "Friday U12 Boys 3",
-      "venue": "Red Energy Arena (Bendigo Stadium)",
-      "court": "Court 4"
-    },
     {
       "gameId": "dafb2f4b-b4b2-47a6-848e-1c789ca660fb",
       "homeTeam": "PHOENIX Go Buckets",
@@ -275,6 +261,20 @@
       "competition": "Friday U16 Boys 7",
       "venue": "Bendigo South East College",
       "court": "Court 3"
+    },
+    {
+      "gameId": "90edbc86-0ce4-4ae4-b70d-610771466d9d",
+      "homeTeam": "Beavers Chiefs",
+      "awayTeam": "PHOENIX Son's",
+      "homeScore": 37,
+      "awayScore": 20,
+      "status": "completed",
+      "kickoffDate": "2026-05-08",
+      "kickoffTime": "18:45:00",
+      "kickoffDisplay": "18:45",
+      "competition": "Friday U12 Boys 3",
+      "venue": "Red Energy Arena (Bendigo Stadium)",
+      "court": "Court 4"
     },
     {
       "gameId": "9aab7832-26cc-410d-bf56-10f15222362f",

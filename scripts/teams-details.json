@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T08:58:07.148Z",
+  "lastUpdated": "2026-05-08T09:49:09.938Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -1764,6 +1764,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Strath BM81's",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
+        },
+        {
+          "rank": 2,
           "team": "PHOENIX Flames",
           "played": 3,
           "won": 2,
@@ -1772,7 +1781,16 @@
           "points": 7
         },
         {
-          "rank": 2,
+          "rank": 3,
+          "team": "Victory U12 Boys Stars",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "drawn": 0,
+          "points": 7
+        },
+        {
+          "rank": 4,
           "team": "Super Flamingos ",
           "played": 3,
           "won": 2,
@@ -1781,40 +1799,22 @@
           "points": 7
         },
         {
-          "rank": 3,
-          "team": "Strath BM81's",
-          "played": 2,
-          "won": 2,
-          "lost": 0,
-          "drawn": 0,
-          "points": 6
-        },
-        {
-          "rank": 4,
-          "team": "Victory U12 Boys Stars",
-          "played": 2,
-          "won": 1,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
           "rank": 5,
-          "team": "Strath Suns",
-          "played": 2,
+          "team": "St Francis U12 Boys Titans",
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         },
         {
           "rank": 6,
-          "team": "St Francis U12 Boys Titans",
-          "played": 2,
+          "team": "Strath Suns",
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         }
       ]
     },
@@ -2087,6 +2087,15 @@
       "ladder": [
         {
           "rank": 1,
+          "team": "Aztec U12 Boys Platinum",
+          "played": 3,
+          "won": 3,
+          "lost": 0,
+          "drawn": 0,
+          "points": 9
+        },
+        {
+          "rank": 2,
           "team": "PHOENIX Phantoms",
           "played": 2,
           "won": 1,
@@ -2095,7 +2104,7 @@
           "points": 7
         },
         {
-          "rank": 2,
+          "rank": 3,
           "team": "Heathcote Panthers 12's ",
           "played": 3,
           "won": 2,
@@ -2104,16 +2113,25 @@
           "points": 7
         },
         {
-          "rank": 3,
-          "team": "Aztec U12 Boys Platinum",
-          "played": 2,
-          "won": 2,
-          "lost": 0,
-          "drawn": 0,
+          "rank": 4,
+          "team": "Aztec U12 Boys Teal",
+          "played": 3,
+          "won": 1,
+          "lost": 1,
+          "drawn": 1,
           "points": 6
         },
         {
-          "rank": 4,
+          "rank": 5,
+          "team": "Victory U12 Boys Mavericks",
+          "played": 3,
+          "won": 1,
+          "lost": 1,
+          "drawn": 1,
+          "points": 6
+        },
+        {
+          "rank": 6,
           "team": "Beavers Cubs",
           "played": 3,
           "won": 1,
@@ -2122,31 +2140,13 @@
           "points": 5
         },
         {
-          "rank": 5,
-          "team": "Aztec U12 Boys Teal",
-          "played": 2,
-          "won": 1,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
-          "rank": 6,
-          "team": "Victory U12 Boys Mavericks",
-          "played": 2,
-          "won": 1,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
           "rank": 7,
           "team": "U12 Boys Girton Pumas",
-          "played": 1,
+          "played": 2,
           "won": 0,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         }
       ]
     },
@@ -2164,11 +2164,134 @@
           "address": "91 Inglis Street",
           "homeTeam": "Beavers Chiefs",
           "awayTeam": "PHOENIX Son's",
-          "homeScore": null,
-          "awayScore": null,
-          "status": "UPCOMING",
+          "homeScore": 37,
+          "awayScore": 20,
+          "status": "COMPLETED",
           "round": "Round 3",
-          "playerStats": null
+          "playerStats": {
+            "players": [
+              {
+                "name": "Dylan Dyer",
+                "team": "PHOENIX Son's",
+                "points": 14,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Leon Slater",
+                "team": "Beavers Chiefs",
+                "points": 11,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Nixon Shiels",
+                "team": "Beavers Chiefs",
+                "points": 11,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Sam Wood",
+                "team": "Beavers Chiefs",
+                "points": 6,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Mason Smith",
+                "team": "Beavers Chiefs",
+                "points": 3,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Aedan Flood",
+                "team": "Beavers Chiefs",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Axel Nelson",
+                "team": "PHOENIX Son's",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Brooklyn Orchard",
+                "team": "Beavers Chiefs",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Riley Young",
+                "team": "PHOENIX Son's",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Thomas Williams",
+                "team": "Beavers Chiefs",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Xian De Clercq",
+                "team": "PHOENIX Son's",
+                "points": 2,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Braxton Barnes",
+                "team": "PHOENIX Son's",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Conna Buovac",
+                "team": "PHOENIX Son's",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Henry Dee",
+                "team": "Beavers Chiefs",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              },
+              {
+                "name": "Jax Nelson",
+                "team": "PHOENIX Son's",
+                "points": 0,
+                "fouls": 0,
+                "assists": 0,
+                "rebounds": 0
+              }
+            ]
+          }
         },
         {
           "id": "2a375817-125e-4e26-83e8-750c4944dd40",
@@ -2304,48 +2427,48 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "PHOENIX Son's",
-          "played": 1,
-          "won": 1,
-          "lost": 0,
+          "team": "Beavers Dragons",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
           "drawn": 0,
-          "points": 6
+          "points": 7
         },
         {
           "rank": 2,
-          "team": "Beavers Dragons",
-          "played": 2,
-          "won": 1,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
-          "rank": 3,
           "team": "Aztec U12 Boys Red",
           "played": 2,
           "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
+        },
+        {
+          "rank": 3,
+          "team": "Beavers Chiefs",
+          "played": 3,
+          "won": 2,
+          "lost": 1,
+          "drawn": 0,
+          "points": 7
         },
         {
           "rank": 4,
-          "team": "Aztec U12 Boys Aqua",
-          "played": 1,
-          "won": 0,
-          "lost": 1,
-          "drawn": 0,
-          "points": 4
-        },
-        {
-          "rank": 5,
-          "team": "Beavers Chiefs",
+          "team": "PHOENIX Son's",
           "played": 2,
           "won": 1,
           "lost": 1,
           "drawn": 0,
-          "points": 4
+          "points": 7
+        },
+        {
+          "rank": 5,
+          "team": "Aztec U12 Boys Aqua",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "drawn": 0,
+          "points": 5
         }
       ]
     },
@@ -5828,6 +5951,15 @@
         },
         {
           "rank": 6,
+          "team": "Aztec U16 Boys Silver",
+          "played": 2,
+          "won": 0,
+          "lost": 2,
+          "drawn": 0,
+          "points": 5
+        },
+        {
+          "rank": 7,
           "team": "Beavers Bob",
           "played": 2,
           "won": 1,
@@ -5836,7 +5968,7 @@
           "points": 4
         },
         {
-          "rank": 7,
+          "rank": 8,
           "team": "Strath Rockets",
           "played": 2,
           "won": 1,
@@ -5845,16 +5977,25 @@
           "points": 3
         },
         {
-          "rank": 8,
-          "team": "Aztec U16 Boys Silver",
-          "played": 2,
-          "won": 0,
-          "lost": 2,
+          "rank": 9,
+          "team": "Strath Bricks",
+          "played": 1,
+          "won": 1,
+          "lost": 0,
           "drawn": 0,
-          "points": 2
+          "points": 3
         },
         {
-          "rank": 9,
+          "rank": 10,
+          "team": "Generals U16 Boys Gullys",
+          "played": 3,
+          "won": 0,
+          "lost": 3,
+          "drawn": 0,
+          "points": 3
+        },
+        {
+          "rank": 11,
           "team": "Beavers Cobras",
           "played": 2,
           "won": 0,
@@ -5863,7 +6004,7 @@
           "points": 2
         },
         {
-          "rank": 10,
+          "rank": 12,
           "team": "Beavers Warriors",
           "played": 2,
           "won": 0,
@@ -5872,31 +6013,13 @@
           "points": 2
         },
         {
-          "rank": 11,
-          "team": "Generals U16 Boys Gullys",
-          "played": 2,
-          "won": 0,
-          "lost": 2,
-          "drawn": 0,
-          "points": 2
-        },
-        {
-          "rank": 12,
+          "rank": 13,
           "team": "Generals U16 Boys Bulls",
           "played": 2,
           "won": 0,
           "lost": 2,
           "drawn": 0,
           "points": 2
-        },
-        {
-          "rank": 13,
-          "team": "Strath Bricks",
-          "played": 0,
-          "won": 0,
-          "lost": 0,
-          "drawn": 0,
-          "points": 0
         }
       ]
     },
