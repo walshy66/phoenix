@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-08T09:49:09.938Z",
+  "lastUpdated": "2026-05-08T10:55:34.622Z",
   "teamDetails": {
     "phoenix-firebirds": {
       "teamId": "0ff87fac-299e-486a-aeba-5e761f0d590e",
@@ -5906,43 +5906,43 @@
       "ladder": [
         {
           "rank": 1,
-          "team": "Beavers Hurricanes",
-          "played": 2,
-          "won": 2,
+          "team": "Beavers Bucks",
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 2,
-          "team": "PHOENIX Go Buckets",
-          "played": 2,
-          "won": 2,
+          "team": "Victory U16 Boys Warriors",
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 3,
-          "team": "Victory U16 Boys Warriors",
-          "played": 2,
-          "won": 2,
+          "team": "Beavers Hurricanes",
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 4,
-          "team": "Beavers Bucks",
-          "played": 2,
-          "won": 2,
+          "team": "Aztec U16 Boys Copper",
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 5,
-          "team": "Aztec U16 Boys Copper",
+          "team": "PHOENIX Go Buckets",
           "played": 2,
           "won": 2,
           "lost": 0,
@@ -5961,20 +5961,20 @@
         {
           "rank": 7,
           "team": "Beavers Bob",
-          "played": 2,
+          "played": 3,
           "won": 1,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 4
+          "points": 5
         },
         {
           "rank": 8,
           "team": "Strath Rockets",
-          "played": 2,
+          "played": 3,
           "won": 1,
-          "lost": 0,
+          "lost": 1,
           "drawn": 0,
-          "points": 3
+          "points": 4
         },
         {
           "rank": 9,
@@ -5987,7 +5987,7 @@
         },
         {
           "rank": 10,
-          "team": "Generals U16 Boys Gullys",
+          "team": "Beavers Cobras",
           "played": 3,
           "won": 0,
           "lost": 3,
@@ -5996,25 +5996,25 @@
         },
         {
           "rank": 11,
-          "team": "Beavers Cobras",
-          "played": 2,
+          "team": "Generals U16 Boys Gullys",
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         },
         {
           "rank": 12,
-          "team": "Beavers Warriors",
-          "played": 2,
+          "team": "Generals U16 Boys Bulls",
+          "played": 3,
           "won": 0,
-          "lost": 2,
+          "lost": 3,
           "drawn": 0,
-          "points": 2
+          "points": 3
         },
         {
           "rank": 13,
-          "team": "Generals U16 Boys Bulls",
+          "team": "Beavers Warriors",
           "played": 2,
           "won": 0,
           "lost": 2,
@@ -7943,11 +7943,11 @@
         {
           "rank": 1,
           "team": "Bunjils U18 Boys ALPHA",
-          "played": 2,
-          "won": 2,
+          "played": 3,
+          "won": 3,
           "lost": 0,
           "drawn": 0,
-          "points": 6
+          "points": 9
         },
         {
           "rank": 2,
@@ -7970,11 +7970,11 @@
         {
           "rank": 4,
           "team": "Aztec U18 Boys Orange",
-          "played": 2,
+          "played": 3,
           "won": 0,
-          "lost": 1,
+          "lost": 2,
           "drawn": 0,
-          "points": 1
+          "points": 2
         }
       ]
     },
