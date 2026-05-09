@@ -4,14 +4,16 @@ import { getInitialCarouselIndex, getMaxCarouselIndex, getMelbourneIsoDate, getN
 describe('home-scores/carousel helpers', () => {
   test('returns responsive slides per view by breakpoint', () => {
     expect(getSlidesPerView(375)).toBe(1);
-    expect(getSlidesPerView(800)).toBe(2);
-    expect(getSlidesPerView(1280)).toBe(3);
+    expect(getSlidesPerView(700)).toBe(2);
+    expect(getSlidesPerView(800)).toBe(3);
+    expect(getSlidesPerView(1100)).toBe(4);
+    expect(getSlidesPerView(1280)).toBe(4);
   });
 
   test('calculates max carousel index from visible cards', () => {
     expect(getMaxCarouselIndex(1, 1)).toBe(0);
-    expect(getMaxCarouselIndex(3, 3)).toBe(0);
-    expect(getMaxCarouselIndex(6, 3)).toBe(3);
+    expect(getMaxCarouselIndex(4, 4)).toBe(0);
+    expect(getMaxCarouselIndex(7, 4)).toBe(3);
   });
 
   test('loops next index from last visible frame to first', () => {

@@ -87,15 +87,15 @@ const initialGame = loadFallbackGame(gameId);
 ---
 
 <BaseLayout title="Game Details">
-  <section class="bg-brand-purple py-12 px-4 text-center">
+  <section class="bg-brand-purple py-8 lg:py-6 px-4 text-center">
     <h1 class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-white">Game Details</h1>
   </section>
 
-  <section class="px-4 py-8 sm:px-6 lg:px-8">
+  <section class="px-4 py-4 sm:px-6 lg:px-8">
     <div id="game-detail-message" class="mx-auto max-w-4xl rounded-2xl border border-gray-200 bg-white px-4 py-3 text-gray-700" hidden>
       Loading game details...
     </div>
-    <div id="game-detail-root" class="mt-6" set:html={initialGame ? renderGameDetail(initialGame) : renderGameDetailStateHtml(null)}></div>
+    <div id="game-detail-root" set:html={initialGame ? renderGameDetail(initialGame) : renderGameDetailStateHtml(null)}></div>
   </section>
 
 </BaseLayout>

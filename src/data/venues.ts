@@ -40,7 +40,7 @@ export const VENUES: Venue[] = [
       {
         day: 'Sunday',
         timeSlots: [
-          { time: '4–5pm', ageGroups: ['U10s (Firebirds)', 'U14s (Boys)', 'U14 & U16 (Girls)'] },
+          { time: '4–5pm', ageGroups: ['U10 (Firebirds)', 'U14 (Boys)', 'U14 & U16 (Girls)'] },
           { time: '5–7pm', ageGroups: ['U16 & U18 Boys'] },
         ],
       },
@@ -63,8 +63,8 @@ export const VENUES: Venue[] = [
       {
         day: 'Wednesday',
         timeSlots: [
-          { time: '6–7pm', ageGroups: ['U10s (Thunder & Go Getters)'] },
-          { time: '7–8pm', ageGroups: ['U12s (Boys)'] },
+          { time: '6–7pm', ageGroups: ['U10 (Thunder & Go Getters)'] },
+          { time: '7–8pm', ageGroups: ['U12 (Boys)'] },
         ],
       },
     ],

@@ -85,7 +85,7 @@ function parseGradeName(name) {
   const gameNight = days.find(d => name.includes(d)) ?? 'TBC';
   
   const ageMatch = name.match(/U(\d+)/i);
-  const ageGroup = ageMatch ? `u${ageMatch[1]}s` : 'unknown';
+  const ageGroup = ageMatch ? `u${ageMatch[1]}` : 'unknown';
   
   const gender = name.includes('Boys') ? 'Boys' : name.includes('Girls') ? 'Girls' : 'TBC';
   
@@ -144,7 +144,7 @@ async function main() {
   }
 
   // Sort by age group order, then alphabetically
-  const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
+  const ageGroupOrder = ['u10', 'u12', 'u14', 'u16', 'u18'];
   allTeams.sort((a, b) => {
     const aGrade = parseGradeName(a.gradeName).ageGroup;
     const bGrade = parseGradeName(b.gradeName).ageGroup;

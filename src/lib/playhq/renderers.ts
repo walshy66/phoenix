@@ -35,6 +35,23 @@ export function formatGameTime(time: string | null | undefined): string {
   return time && /^\d{2}:\d{2}(:\d{2})?$/.test(time) ? time.slice(0, 5) : 'TBA';
 }
 
+export function formatHomeCardHeaderDate(date: string | null, time: string | null | undefined): string {
+  if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return `Date TBA · ${formatGameTime(time)}`;
+
+  const [year, , dayRaw] = date.split('-');
+  const day = Number(dayRaw);
+  const month = new Date(`${date}T00:00:00`).toLocaleDateString('en-AU', { month: 'short' });
+  const suffix = day % 10 === 1 && day % 100 !== 11
+    ? 'st'
+    : day % 10 === 2 && day % 100 !== 12
+      ? 'nd'
+      : day % 10 === 3 && day % 100 !== 13
+        ? 'rd'
+        : 'th';
+
+  return `${day}${suffix} ${month} ${year} · ${formatGameTime(time)}`;
+}
+
 export function renderHomeGameCard(game: HomeGameItem): string {
   const isPhoenixHome = game.homeTeam.toLowerCase().includes('phoenix');
   const phoenixScore = isPhoenixHome ? game.homeScore : game.awayScore;
@@ -67,42 +84,33 @@ export function renderHomeGameCard(game: HomeGameItem): string {
   } as const;
 
   const venueLabel = game.venue ?? 'Venue TBA';
-  const courtPillLabel = (() => {
-    if (!game.court) return 'TBA';
-    const trimmed = game.court.trim();
-    if (/^crt\s*/i.test(trimmed)) return trimmed;
-    const courtMatch = trimmed.match(/^court\s*(\d+)$/i);
-    if (courtMatch) return `Crt ${courtMatch[1]}`;
-    return trimmed;
-  })();
+  const venueCourtLabel = game.court ? `${venueLabel} · ${game.court}` : venueLabel;
+  const headerDate = formatHomeCardHeaderDate(game.kickoffDate, game.kickoffTime);
+  const statusBadge = isLive ? resultLabels.live : resultLabels[result];
+  const statusStyle = isLive ? resultStyles.live : resultStyles[result];
 
   return `
-    <div class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 ${result === 'win' ? 'win-indicator' : ''} flex flex-col">
-      <div class="bg-brand-black px-4 py-2 flex items-center justify-between">
-        <span class="text-gray-400 text-xs font-medium uppercase tracking-wide">${escapeHtml(game.competition ?? 'Latest Results')}</span>
-        ${(isCompleted || isLive) ? `<span class="text-xs font-bold px-2 py-0.5 rounded-full ${isLive ? resultStyles.live : resultStyles[result]}">${isLive ? 'LIVE' : resultLabels[result]}</span>` : `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-brand-purple text-white max-w-[56%] truncate" title="${escapeHtml(courtPillLabel)}">${escapeHtml(courtPillLabel)}</span>`}
+    <div class="card-hover bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 ${result === 'win' ? 'win-indicator' : ''} flex h-full min-h-[142px] flex-col">
+      <div class="bg-brand-black px-3 py-2 grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2">
+        <span class="text-gray-400 text-[10px] font-medium uppercase tracking-wide truncate" title="${escapeHtml(game.competition ?? 'Latest Results')}">${escapeHtml(game.competition ?? 'Latest Results')}</span>
+        <span class="text-gray-300 text-[10px] font-semibold whitespace-nowrap">${escapeHtml(headerDate)}</span>
+        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${statusStyle}">${statusBadge}</span>
       </div>
 
-      <div class="p-4 flex items-center justify-between gap-4">
-        <div class="flex-1 text-center ${isPhoenixHome ? 'text-brand-purple font-bold' : 'text-gray-600'}">
-          <p class="text-sm font-semibold leading-tight mb-2 ${isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}">${escapeHtml(game.homeTeam)}</p>
-          <p class="text-3xl font-bold">${game.homeScore !== null ? game.homeScore : '-'}</p>
+      <div class="px-4 py-3 flex-1 space-y-2">
+        <div class="flex items-center justify-between gap-3">
+          <p class="home-team-name text-sm font-semibold leading-tight ${isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}" title="${escapeHtml(game.homeTeam)}">${escapeHtml(game.homeTeam)}</p>
+          <p class="shrink-0 text-2xl font-black ${isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}">${game.homeScore !== null ? game.homeScore : '-'}</p>
         </div>
 
-        <div class="flex flex-col items-center">
-          <span class="text-gray-400 text-sm font-bold">VS</span>
-          <div class="w-0.5 h-8 bg-gray-200 my-1"></div>
-        </div>
-
-        <div class="flex-1 text-center ${!isPhoenixHome ? 'text-brand-purple font-bold' : 'text-gray-600'}">
-          <p class="text-sm font-semibold leading-tight mb-2 ${!isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}">${escapeHtml(game.awayTeam)}</p>
-          <p class="text-3xl font-bold">${game.awayScore !== null ? game.awayScore : '-'}</p>
+        <div class="flex items-center justify-between gap-3">
+          <p class="home-team-name text-sm font-semibold leading-tight ${!isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}" title="${escapeHtml(game.awayTeam)}">${escapeHtml(game.awayTeam)}</p>
+          <p class="shrink-0 text-2xl font-black ${!isPhoenixHome ? 'text-brand-purple' : 'text-gray-700'}">${game.awayScore !== null ? game.awayScore : '-'}</p>
         </div>
       </div>
 
-      <div class="px-4 pb-3 text-center">
-        <span class="text-gray-400 text-xs">${escapeHtml(formatGameDate(game.kickoffDate))} • ${escapeHtml(formatGameTime(game.kickoffTime))}</span>
-        <p class="text-gray-500 text-xs mt-1 truncate" title="${escapeHtml(venueLabel)}">${escapeHtml(venueLabel)}</p>
+      <div class="px-4 pb-3">
+        <p class="text-gray-500 text-[11px] leading-tight truncate" title="${escapeHtml(venueCourtLabel)}">${escapeHtml(venueCourtLabel)}</p>
       </div>
     </div>
   `;
@@ -132,10 +140,10 @@ export function renderHomeGamesStateHtml(artifact: { status: 'success' | 'stale'
   return `
     <div class="home-scores-carousel max-w-7xl mx-auto px-4" data-count="${artifact.games.length}" aria-roledescription="carousel" aria-label="Latest games">
       <div class="relative overflow-hidden">
-        <div class="home-scores-track flex transition-transform duration-500 ease-out" aria-live="polite">
+        <div class="home-scores-track flex transition-transform duration-1000 ease-in-out" aria-live="polite">
           ${artifact.games.map((game, idx) => `
-            <div class="home-slide w-full md:w-1/2 lg:w-1/3 shrink-0 px-2" data-index="${idx}" data-kickoff-date="${escapeHtml(game.kickoffDate ?? '')}">
-              <a href="/scores/${escapeHtml(game.gameId)}" class="block w-full focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl" aria-label="Open details for ${escapeHtml(game.homeTeam)} vs ${escapeHtml(game.awayTeam)}">
+            <div class="home-slide w-full sm:w-1/2 md:w-1/3 lg:w-1/4 shrink-0 px-2" data-index="${idx}" data-kickoff-date="${escapeHtml(game.kickoffDate ?? '')}" data-status="${escapeHtml(game.status ?? 'unknown')}">
+              <a href="/scores/${escapeHtml(game.gameId)}" class="block h-full w-full focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl" aria-label="Open details for ${escapeHtml(game.homeTeam)} vs ${escapeHtml(game.awayTeam)}">
                 ${renderHomeGameCard(game)}
               </a>
             </div>
@@ -144,7 +152,7 @@ export function renderHomeGamesStateHtml(artifact: { status: 'success' | 'stale'
       </div>
 
       ${artifact.games.length > 1 ? `
-        <div class="flex items-center justify-center gap-3" data-home-scores-controls>
+        <div class="mt-4 flex items-center justify-center gap-3" data-home-scores-controls>
           <button type="button" class="hs-nav hs-prev inline-flex min-w-[120px] items-center justify-center rounded-full border border-brand-gold bg-brand-gold px-4 py-2 text-sm font-bold tracking-wide text-white shadow-lg transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white disabled:cursor-not-allowed disabled:opacity-50" aria-label="Previous games">
             <span aria-hidden="true">←</span>
             <span class="ml-2">Previous</span>

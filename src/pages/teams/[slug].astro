@@ -101,7 +101,7 @@ const parseGradeName = (gradeName) => {
   }
   const [, gameNight, ageGroupStr, gender, divisionNum] = match;
   return {
-    ageGroup: ageGroupStr.toLowerCase() + 's',
+    ageGroup: ageGroupStr.toLowerCase(),
     gender,
     gameNight,
     division: `DIV ${divisionNum}`,
@@ -128,19 +128,25 @@ const formatTime = (timeStr) => {
   if (!timeStr) return 'TBC';
   return timeStr.substring(0, 5);
 };
+
+const formatRoundChip = (round) => {
+  if (!round) return null;
+  const match = String(round).match(/\d+/);
+  return match ? `R${match[0]}` : String(round);
+};
 ---
 
 <BaseLayout title={`${teamData.name} | Teams`} description={`Information about ${teamData.name} team at Bendigo Phoenix Basketball Club.`}>
   <!-- Page Hero -->
-  <section class="bg-brand-purple py-16 px-4 text-center relative overflow-hidden">
+  <section class="bg-brand-purple py-8 lg:py-6 px-4 text-center relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 pointer-events-none">
       <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">{parsed.ageGroup.toUpperCase()}</p>
       <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">{teamData.name}</h1>
-      <div class="flex justify-center gap-4 mt-6 flex-wrap">
-        <span class="bg-brand-gold text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.division}</span>
+      <div class="flex justify-center gap-3 mt-4 flex-wrap">
+        <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.ageGroup.toUpperCase()}</span>
+        <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.division}</span>
         <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.gameNight}</span>
         <span class="bg-white text-brand-purple px-3 py-1 rounded-full text-sm font-bold">{parsed.gender}</span>
       </div>
@@ -148,7 +154,7 @@ const formatTime = (timeStr) => {
   </section>
 
   <!-- Main Content -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+  <section class="py-8 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
     <div class="max-w-7xl mx-auto">
       <!-- 2-Column Layout: Schedule (Left) & Ladder (Right) -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -168,6 +174,7 @@ const formatTime = (timeStr) => {
                   const status = String(game.status || 'UPCOMING').toUpperCase();
                   const isLive = status === 'IN_PROGRESS' || status === 'LIVE';
                   const isCompleted = status === 'COMPLETED' || status === 'FINAL' || hasScore;
+                  const roundLabel = formatRoundChip(game.round);
                   
                   const resultLabel = isCompleted ? (
                     game.homeTeam === teamData.name
@@ -179,7 +186,7 @@ const formatTime = (timeStr) => {
                     <a 
                       key={game.id}
                       href={`/scores/${game.id}`}
-                      class={`block w-full text-left px-6 py-4 transition-colors duration-150 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-brand-offwhite'}`}
+                      class={`block w-full text-left px-6 py-3 transition-colors duration-150 cursor-pointer group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-brand-offwhite'}`}
                       aria-label={`Open details for ${game.homeTeam} vs ${game.awayTeam}`}
                     >
                       <div class="flex items-center justify-between gap-4">
@@ -195,41 +202,34 @@ const formatTime = (timeStr) => {
                                 LIVE
                               </span>
                             )}
-                            {isCompleted && !isLive && (
-                              <span class="inline-flex items-center rounded-full bg-brand-gold px-2 py-1 text-xs font-black uppercase tracking-widest text-brand-purple">
-                                FINAL
+                            {roundLabel && (
+                              <span class="inline-flex items-center rounded-full border border-brand-gold bg-white px-2 py-1 text-xs font-black uppercase tracking-widest text-brand-purple">
+                                {roundLabel}
                               </span>
                             )}
                             <p class="text-xs text-gray-500 font-medium uppercase">
                               {formatDate(game.date)} at {formatTime(game.time)}
                             </p>
                           </div>
-                          <p class="text-sm text-gray-600 mb-1">
-                            {game.venue}
-                          </p>
-                          {game.court && (
-                            <p class="text-xs text-gray-500">
-                              {game.court}
-                            </p>
-                          )}
-                          <div class="flex items-center justify-between">
-                            <div class="text-right pr-3">
-                              <p class={`font-bold text-sm ${isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                          <div class="grid grid-cols-1 gap-2 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)_auto] md:items-center md:gap-6">
+                            <div class="space-y-1 text-xs text-gray-500">
+                              <p class="truncate" title={game.venue}>{game.venue}</p>
+                              <p class="truncate">{game.court || 'Court TBC'}</p>
+                            </div>
+                            <div class="space-y-1">
+                              <p class={`truncate font-bold text-sm ${isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
                                 {game.homeTeam}
                               </p>
-                            </div>
-                            <div class="text-center px-2">
-                              {hasScore ? (
-                                <p class="font-black text-lg text-brand-purple">
-                                  {game.homeScore} – {game.awayScore}
-                                </p>
-                              ) : (
-                                <p class="text-gray-400 text-sm">vs</p>
-                              )}
-                            </div>
-                            <div class="text-left pl-3">
-                              <p class={`font-bold text-sm ${!isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                              <p class={`truncate font-bold text-sm ${!isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
                                 {game.awayTeam}
+                              </p>
+                            </div>
+                            <div class="space-y-1 text-right">
+                              <p class={`shrink-0 text-2xl font-black leading-5 ${isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                                {hasScore ? game.homeScore : '–'}
+                              </p>
+                              <p class={`shrink-0 text-2xl font-black leading-5 ${!isHome ? 'text-brand-purple' : 'text-gray-700'}`}>
+                                {hasScore ? game.awayScore : '–'}
                               </p>
                             </div>
                           </div>
@@ -276,7 +276,7 @@ const formatTime = (timeStr) => {
                     {teamDetails.ladder.map((row) => {
                       const isOurTeam = row.team === teamData.name;
                       return (
-                        <tr key={row.rank} class={isOurTeam ? 'bg-brand-gold bg-opacity-10 border-l-4 border-brand-gold' : ''}>
+                        <tr key={row.rank} class={isOurTeam ? 'border-4 border-brand-gold bg-white' : ''}>
                           <td class="px-3 py-3 font-bold text-gray-900">{row.rank}</td>
                           <td class="px-3 py-3">
                             <span class={isOurTeam ? 'font-bold text-brand-purple' : 'text-gray-900'}>

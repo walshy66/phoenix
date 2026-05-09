@@ -15,8 +15,9 @@ export function getMelbourneIsoDate(now = new Date()): string {
 }
 
 export function getSlidesPerView(viewportWidth: number): number {
-  if (viewportWidth >= 1024) return 3;
-  if (viewportWidth >= 768) return 2;
+  if (viewportWidth >= 1024) return 4;
+  if (viewportWidth >= 768) return 3;
+  if (viewportWidth >= 640) return 2;
   return 1;
 }
 
