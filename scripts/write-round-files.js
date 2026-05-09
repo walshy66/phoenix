@@ -148,6 +148,11 @@ function writeIndex(roundNumbers) {
 }
 
 function maybeDeploy(files) {
+  if (process.env.SCORE_SYNC_SKIP_FTP === '1') {
+    structuredLog('info', { event: 'ftp_skipped', reason: 'delegated_to_score_sync', fileCount: files.length });
+    return;
+  }
+
   const ftpHost = process.env.FTP_HOST;
   const ftpPort = process.env.FTP_PORT || '21';
   const ftpUser = process.env.FTP_USER;
@@ -185,7 +190,7 @@ async function main() {
 
   for (const roundNumber of roundNumbers) {
     const roundGames = byRound.get(roundNumber) ?? [];
-    const statsMap = await fetchPlayerStats(roundGames);
+    const statsMap = process.env.SCORE_SYNC_FAST === '1' ? new Map() : await fetchPlayerStats(roundGames);
     if (await writeRoundFile(roundNumber, roundGames, statsMap)) {
       completed.push(path.join(ROUNDS_DIR, `round-${roundNumber}.json`));
     }

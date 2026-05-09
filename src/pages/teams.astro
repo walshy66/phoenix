@@ -92,7 +92,7 @@ try {
 
 // Helper functions to derive team metadata from gradeName
 const parseGradeName = (gradeName) => {
-  // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10s', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
+  // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
   const match = gradeName.match(/^(\w+)\s+(U\d+)\s+(\w+)\s+(\d+)$/);
   if (!match) {
     return {
@@ -105,8 +105,7 @@ const parseGradeName = (gradeName) => {
 
   const [, gameNight, ageGroupStr, gender, divisionNum] = match;
 
-  // Convert U10 -> u10s
-  const ageGroup = ageGroupStr.toLowerCase() + 's';
+  const ageGroup = ageGroupStr.toLowerCase();
 
   // Convert division number to DIV format
   const division = `DIV ${divisionNum}`;
@@ -120,20 +119,19 @@ const parseGradeName = (gradeName) => {
 };
 
 // Order of age groups for display
-const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
+const ageGroupOrder = ['u10', 'u12', 'u14', 'u16', 'u18'];
 ---
 
 <BaseLayout title="Teams" description="Find your perfect team at Bendigo Phoenix Basketball Club.">
   <!-- Page Hero -->
-  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center relative overflow-hidden">
+  <section class="bg-brand-purple py-8 lg:py-6 px-4 text-center relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 pointer-events-none">
       <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
     </div>
     <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Bendigo Phoenix Juniors</p>
       <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">TEAMS</h1>
-      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
-      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
+      <div class="h-1 w-16 bg-brand-gold mx-auto mt-3"></div>
+      <p class="text-purple-200 mt-3 text-base max-w-xl mx-auto">
         Explore Phoenix teams by age group, division, and game night.
       </p>
     </div>
@@ -142,7 +140,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
   <!-- Filter Bar -->
   <section class="bg-white border-b border-gray-100 sticky top-16 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap gap-2 py-3" id="filter-bar">
+      <div class="flex flex-wrap gap-2 py-2" id="filter-bar">
         <button
           data-filter-type="all"
           data-filter-value="all"
@@ -183,42 +181,42 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
               <button
                 type="button"
                 data-filter-type="ageGroup"
-                data-filter-value="u10s"
+                data-filter-value="u10"
                 class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
               >
-                u10s
+                U10
               </button>
               <button
                 type="button"
                 data-filter-type="ageGroup"
-                data-filter-value="u12s"
+                data-filter-value="u12"
                 class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
               >
-                u12s
+                U12
               </button>
               <button
                 type="button"
                 data-filter-type="ageGroup"
-                data-filter-value="u14s"
+                data-filter-value="u14"
                 class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
               >
-                u14s
+                U14
               </button>
               <button
                 type="button"
                 data-filter-type="ageGroup"
-                data-filter-value="u16s"
+                data-filter-value="u16"
                 class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
               >
-                u16s
+                U16
               </button>
               <button
                 type="button"
                 data-filter-type="ageGroup"
-                data-filter-value="u18s"
+                data-filter-value="u18"
                 class="dropdown-item w-full text-left px-4 py-2 hover:bg-brand-offwhite"
               >
-                u18s
+                U18
               </button>
             </div>
           </div>
@@ -412,7 +410,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
   </section>
 
   <!-- Teams Grid -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
+  <section class="py-8 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
     <div class="max-w-7xl mx-auto" id="teams-container">
       {/* Teams will be grouped by ageGroup and rendered here - populated by JavaScript */}
       <div class="space-y-8" id="age-group-sections">
@@ -487,6 +485,10 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     gameDay: null,
     grade: null,
   };
+
+  function normalizeAgeGroup(value) {
+    return typeof value === 'string' ? value.replace(/^(u\d+)s$/i, '$1').toLowerCase() : value;
+  }
 
   function hasAnyActiveFilter() {
     return Boolean(currentFilters.gender || currentFilters.ageGroup || currentFilters.gameDay || currentFilters.grade);
@@ -570,7 +572,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     }
 
     if (type === 'gender') currentFilters.gender = value;
-    if (type === 'ageGroup') currentFilters.ageGroup = value;
+    if (type === 'ageGroup') currentFilters.ageGroup = normalizeAgeGroup(value);
     if (type === 'gameDay') currentFilters.gameDay = value.toLowerCase();
     if (type === 'grade') currentFilters.grade = value;
 
@@ -589,14 +591,14 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
           currentFilters = { gender: null, ageGroup: null, gameDay: null, grade: null };
           if (parsed.type !== 'all') {
             if (parsed.type === 'gender') currentFilters.gender = parsed.value;
-            if (parsed.type === 'ageGroup') currentFilters.ageGroup = parsed.value;
+            if (parsed.type === 'ageGroup') currentFilters.ageGroup = normalizeAgeGroup(parsed.value);
             if (parsed.type === 'gameDay') currentFilters.gameDay = String(parsed.value).toLowerCase();
             if (parsed.type === 'grade') currentFilters.grade = parsed.value;
           }
         } else {
           currentFilters = {
             gender: parsed?.gender ?? null,
-            ageGroup: parsed?.ageGroup ?? null,
+            ageGroup: normalizeAgeGroup(parsed?.ageGroup ?? null),
             gameDay: parsed?.gameDay ?? null,
             grade: parsed?.grade ?? null,
           };
@@ -607,7 +609,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
     }
 
     if (currentFilters.ageGroup) {
-      setDropdownButtonLabel(ageGroupBtn, currentFilters.ageGroup.charAt(0).toUpperCase() + currentFilters.ageGroup.slice(1));
+      setDropdownButtonLabel(ageGroupBtn, currentFilters.ageGroup.toUpperCase());
     }
     if (currentFilters.gameDay) {
       setDropdownButtonLabel(gameDayBtn, currentFilters.gameDay.charAt(0).toUpperCase() + currentFilters.gameDay.slice(1));
@@ -621,7 +623,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
 
   // Parse grade name function (same as in Astro)
   function parseGradeName(gradeName) {
-    // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10s', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
+    // Example: "Monday U10 Boys 1" -> { ageGroup: 'u10', gender: 'Boys', gameNight: 'Monday', division: 'DIV 1' }
     const match = gradeName.match(/^(\w+)\s+(U\d+)\s+(\w+)\s+(\d+)$/);
     if (!match) {
       return {
@@ -634,8 +636,7 @@ const ageGroupOrder = ['u10s', 'u12s', 'u14s', 'u16s', 'u18s'];
 
     const [, gameNight, ageGroupStr, gender, divisionNum] = match;
 
-    // Convert U10 -> u10s
-    const ageGroup = ageGroupStr.toLowerCase() + 's';
+    const ageGroup = ageGroupStr.toLowerCase();
 
     // Convert division number to DIV format
     const division = `DIV ${divisionNum}`;

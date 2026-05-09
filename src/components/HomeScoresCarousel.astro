@@ -41,7 +41,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="py-8 bg-brand-black" aria-label="Latest Results">
+<section class="pt-8 pb-6 bg-brand-black" aria-label="Latest Results">
   <div class="max-w-7xl mx-auto px-4 mb-4 flex items-center justify-between gap-3">
     <h2 class="text-white text-sm font-bold uppercase tracking-widest flex items-center gap-2">
       <span class="w-2 h-2 rounded-full bg-brand-gold inline-block animate-pulse"></span>
@@ -64,7 +64,14 @@ const {
   ></div>
 </section>
 
-<style>
+<style is:global>
+  .home-team-name {
+    display: -webkit-box;
+    min-height: 2.5rem;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
 </style>
 
 <script>
@@ -74,6 +81,63 @@ const {
   import { renderHomeGamesStateHtml } from '../lib/playhq/renderers';
 
   const carouselState = new WeakMap();
+
+  const melbournePartsFormatter = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    weekday: 'short',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+
+  function getMelbourneNowParts(now = new Date()) {
+    const parts = Object.fromEntries(melbournePartsFormatter.formatToParts(now).map((part) => [part.type, part.value]));
+    return {
+      isoDate: `${parts.year}-${parts.month}-${parts.day}`,
+      weekday: parts.weekday,
+      minutes: Number(parts.hour) * 60 + Number(parts.minute),
+    };
+  }
+
+  function addDaysToIsoDate(isoDate, days) {
+    const [year, month, day] = isoDate.split('-').map(Number);
+    const date = new Date(Date.UTC(year, month - 1, day + days));
+    return date.toISOString().slice(0, 10);
+  }
+
+  function getCurrentScoreCycleStartDate(nowParts) {
+    const weekdayOffsets = { Mon: 0, Tue: 1, Wed: 2, Thu: 3, Fri: 4, Sat: 5, Sun: 6 };
+    const weekdayOffset = weekdayOffsets[nowParts.weekday] ?? 0;
+    const afterMondayReset = nowParts.weekday !== 'Mon' || nowParts.minutes >= 16 * 60;
+    const daysSinceCycleStart = afterMondayReset ? weekdayOffset : 7;
+    return addDaysToIsoDate(nowParts.isoDate, -daysSinceCycleStart);
+  }
+
+  function getAutoScrollFrames(slides, slidesPerView, now = new Date()) {
+    const nowParts = getMelbourneNowParts(now);
+    const today = nowParts.isoDate;
+    const cycleStartDate = getCurrentScoreCycleStartDate(nowParts);
+    const maxIndex = getMaxCarouselIndex(slides.length, slidesPerView);
+    if (maxIndex === 0) return [];
+
+    const liveTodayFrames = slides
+      .filter((slide) => slide.date === today && ['live', 'in_progress', 'in-progress'].includes(slide.status))
+      .map((slide) => slide.index);
+
+    const eligibleIndexes = liveTodayFrames.length > 0
+      ? slides
+        .filter((slide) => slide.date === today && ['live', 'completed'].includes(slide.status))
+        .map((slide) => slide.index)
+      : slides
+        .filter((slide) => slide.status === 'completed' && slide.date >= cycleStartDate && slide.date <= today)
+        .map((slide) => slide.index);
+
+    if (eligibleIndexes.length <= slidesPerView) return [];
+    return [...new Set(eligibleIndexes.map((index) => Math.min(index, maxIndex)))];
+  }
 
   function bootstrapCarousel(root) {
     const existing = carouselState.get(root);
@@ -105,12 +169,19 @@ const {
     };
 
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const slideDates = Array.from(root.querySelectorAll('.home-slide')).map((slide) => slide.getAttribute('data-kickoff-date'));
+    const slideElements = Array.from(root.querySelectorAll('.home-slide'));
+    const slideDates = slideElements.map((slide) => slide.getAttribute('data-kickoff-date'));
+    const slideMeta = slideElements.map((slide, index) => ({
+      index,
+      date: slide.getAttribute('data-kickoff-date') ?? '',
+      status: (slide.getAttribute('data-status') ?? 'unknown').toLowerCase(),
+    }));
 
     const getViewportState = () => {
       const slidesPerView = getSlidesPerView(window.innerWidth);
       const maxIndex = getMaxCarouselIndex(count, slidesPerView);
-      return { slidesPerView, maxIndex };
+      const autoFrames = getAutoScrollFrames(slideMeta, slidesPerView);
+      return { slidesPerView, maxIndex, autoFrames };
     };
 
     const updateNavButtons = () => {
@@ -142,11 +213,21 @@ const {
     };
 
     const startAuto = () => {
-      const { maxIndex, slidesPerView } = getViewportState();
-      if (reducedMotion || maxIndex === 0) return;
+      const { autoFrames } = getViewportState();
+      if (reducedMotion || autoFrames.length <= 1) return;
       stopAuto();
+      if (!autoFrames.includes(state.index)) {
+        state.index = autoFrames[0];
+        render();
+      }
       state.autoTimer = setInterval(() => {
-        state.index = getNextIndex(state.index, count, slidesPerView);
+        const { autoFrames: currentFrames } = getViewportState();
+        if (currentFrames.length <= 1) {
+          stopAuto();
+          return;
+        }
+        const currentFrameIndex = currentFrames.indexOf(state.index);
+        state.index = currentFrames[currentFrameIndex >= 0 && currentFrameIndex < currentFrames.length - 1 ? currentFrameIndex + 1 : 0];
         render();
       }, autoAdvanceMs);
     };

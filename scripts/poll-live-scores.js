@@ -24,6 +24,11 @@ function writeOverlay(liveScores) {
 }
 
 function maybeDeploy() {
+  if (process.env.SCORE_SYNC_SKIP_FTP === '1') {
+    structuredLog('info', { event: 'ftp_skipped', reason: 'delegated_to_score_sync', fileCount: 1 });
+    return;
+  }
+
   const ftpHost = process.env.FTP_HOST;
   const ftpPort = process.env.FTP_PORT || '21';
   const ftpUser = process.env.FTP_USER;

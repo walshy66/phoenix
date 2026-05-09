@@ -2,12 +2,8 @@ name: PlayHQ Sync
 
 on:
   schedule:
-    # Hourly refresh cadence during Melbourne game windows.
-    - cron: '30 5-13 * * 1,2,3,5'
-    # Weekly round finalisation / warm-up.
-    - cron: '5 14 * * 6'
-    - cron: '0 14 * * 0'
-    - cron: '0 15 * * 0'
+    # 4pm AEST on Sunday and game days (Mon/Tue/Wed/Fri).
+    - cron: '0 6 * * 0,1,2,3,5'
   workflow_dispatch:
     inputs:
       mode:
@@ -20,57 +16,32 @@ on:
           - static
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: playhq-sync-rebuild
+  cancel-in-progress: true
 
 jobs:
-  refresh-static-data:
-    name: Refresh static site data
+  rebuild-and-deploy:
+    name: Full PlayHQ rebuild and deploy
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    concurrency:
-      group: playhq-sync-static
-      cancel-in-progress: true
-    if: >-
-      (github.event_name == 'workflow_dispatch' && (inputs.mode == 'full' || inputs.mode == 'static'))
-      || github.event.schedule == '30 5-13 * * 1,2,3,5'
-      || github.event.schedule == '5 14 * * 6'
-      || github.event.schedule == '0 14 * * 0'
-      || github.event.schedule == '0 15 * * 0'
     steps:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Check Melbourne refresh window
-        id: window
-        if: github.event_name == 'schedule'
-        run: |
-          # Melbourne local window: 4:30pm–11:30pm.
-          current_day=$(TZ=Australia/Melbourne date +%u)
-          current_time=$(TZ=Australia/Melbourne date +%H:%M)
-          within_window=false
-
-          if [[ "$current_day" =~ ^[1235]$ ]] && [[ "$current_time" > "16:29" ]] && [[ "$current_time" < "23:31" ]]; then
-            within_window=true
-          fi
-
-          echo "melbourne_day=$current_day" >> "$GITHUB_OUTPUT"
-          echo "melbourne_time=$current_time" >> "$GITHUB_OUTPUT"
-          echo "within_window=$within_window" >> "$GITHUB_OUTPUT"
-          echo "Melbourne time: $current_day $current_time (within window: $within_window)"
-
       - name: Setup Node
-        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         uses: actions/setup-node@v5
         with:
           node-version: 22
           cache: npm
 
       - name: Install dependencies
-        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         run: npm ci
 
-      - name: Refresh Teams data
-        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
+      - name: Refresh teams data
+        if: github.event_name == 'schedule' || inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -79,8 +50,8 @@ jobs:
           node scripts/scrape-playhq-teams.js
           node scripts/scrape-playhq-teams-details.js
 
-      - name: Refresh scores, weekly fixtures, and home data
-        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
+      - name: Refresh fixtures, schedule, scores, and ladders
+        if: github.event_name == 'schedule' || inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -96,8 +67,8 @@ jobs:
           npm run home-scores:refresh
           npm run home-scores:check
 
-      - name: Refresh round files
-        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
+      - name: Refresh round schedule files
+        if: github.event_name == 'schedule' || inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -109,24 +80,43 @@ jobs:
           npm run rounds:check
 
       - name: Publish static artifacts to public/live-data
-        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
         run: |
           mkdir -p public/live-data
           cp scripts/weekly-games-data.json public/live-data/fixtures.json
           cp scripts/scores-data.json public/live-data/completed-scores.json
           cp scripts/home-games-data.json public/live-data/home-games.json
 
-      - name: Commit refreshed data files
-        if: github.event_name == 'workflow_dispatch' || steps.window.outputs.within_window == 'true'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/teams-data.json scripts/teams-details.json scripts/scores-data.json scripts/weekly-games-data.json scripts/home-games-data.json public/live-data/fixtures.json public/live-data/completed-scores.json public/live-data/home-games.json public/live-data/rounds/round-*.json public/live-data/rounds/rounds-index.json
+      - name: Build site
+        run: npm run build
 
-          if git diff --cached --quiet; then
-            echo "No static data changes to commit"
-            exit 0
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Deploy to VentraIP via FTPS
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_REMOTE_DIR: ${{ secrets.FTP_REMOTE_DIR }}
+        run: |
+          if [ -z "$FTP_HOST" ] || [ -z "$FTP_PORT" ] || [ -z "$FTP_USER" ] || [ -z "$FTP_PASS" ]; then
+            echo "Missing one or more FTP secrets"
+            exit 1
           fi
 
-          git commit -m "chore(playhq): sync static site data"
-          git push
+          FTP_REMOTE_DIR="${FTP_REMOTE_DIR:-.}"
+          if [ "$FTP_REMOTE_DIR" = "public_html" ] || [ "$FTP_REMOTE_DIR" = "/public_html" ] || [[ "$FTP_REMOTE_DIR" == *"/public_html" ]]; then
+            echo "FTP_REMOTE_DIR must be the document root itself (use '.'), not a nested public_html folder."
+            exit 1
+          fi
+
+          lftp -c "
+            set ssl:verify-certificate yes;
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ftp:ssl-auth TLS;
+            open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" ftp://$FTP_HOST;
+            mirror --reverse --delete --verbose --exclude-glob live-data/live-scores.json dist/ \"$FTP_REMOTE_DIR\";
+            bye
+          "
