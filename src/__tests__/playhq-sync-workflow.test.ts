@@ -4,16 +4,19 @@ import { readFileSync } from 'node:fs';
 const workflow = readFileSync('.github/workflows/playhq-sync.yml', 'utf8');
 
 describe('playhq-sync workflow', () => {
-  test('runs once daily at 4pm AEST on game days and Sunday', () => {
-    expect(workflow).toContain("- cron: '0 6 * * 0,1,2,3,5'");
-    expect(workflow).not.toContain("30 5-13 * * 1,2,3,5");
+  test('runs hourly at :30 during the Melbourne evening game-day window', () => {
+    expect(workflow).toContain("- cron: '30 5-13 * * 1,2,3,5'");
+    expect(workflow).not.toContain("0 6 * * 0,1,2,3,5");
     expect(workflow).not.toContain("0 14 * * 0");
     expect(workflow).not.toContain("0 15 * * 0");
   });
 
-  test('does not gate scheduled runs behind Melbourne window checks', () => {
-    expect(workflow).not.toMatch(/Melbourne refresh window|within_window|Australia\/Melbourne/);
-    expect(workflow).not.toMatch(/steps\.window\.outputs\.within_window/);
+  test('gates scheduled runs against Melbourne local time', () => {
+    expect(workflow).toContain('Check Melbourne refresh window');
+    expect(workflow).toContain('Australia/Melbourne');
+    expect(workflow).toContain('4:30pm');
+    expect(workflow).toContain('11:30pm');
+    expect(workflow).toContain("steps.melbourne-window.outputs.should_run == 'true'");
   });
 
   test('keeps manual mode selector and performs full rebuild deploy without committing data', () => {

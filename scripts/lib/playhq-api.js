@@ -1,34 +1,13 @@
-import fs from 'node:fs';
-import path from 'node:path';
+import { buildPlayHQHeaders, getPlayHQConfig } from './playhq-config.js';
 
-function readLocalEnvVar(key) {
-  const envPath = path.join(process.cwd(), '.env.local');
-  if (!fs.existsSync(envPath)) return undefined;
-
-  const raw = fs.readFileSync(envPath, 'utf-8');
-  for (const line of raw.split(/\r?\n/)) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith('#')) continue;
-    const idx = trimmed.indexOf('=');
-    if (idx === -1) continue;
-    const k = trimmed.slice(0, idx).trim();
-    const v = trimmed.slice(idx + 1).trim().replace(/^['"]|['"]$/g, '');
-    if (k === key) return v;
-  }
-  return undefined;
-}
-
-export const API_BASE = process.env.PLAYHQ_API_BASE || readLocalEnvVar('PLAYHQ_API_BASE') || 'https://api.playhq.com';
-export const PLAYHQ_API_KEY = process.env.PLAYHQ_API_KEY || readLocalEnvVar('PLAYHQ_API_KEY') || 'PASTE_YOUR_API_KEY_HERE';
-export const TENANT = process.env.PLAYHQ_TENANT || readLocalEnvVar('PLAYHQ_TENANT') || 'bv';
-export const CLUB_NAME = process.env.PLAYHQ_CLUB_NAME || readLocalEnvVar('PLAYHQ_CLUB_NAME') || 'Phoenix';
+export const playHQConfig = getPlayHQConfig({ required: ['apiKey', 'tenant'] });
+export const API_BASE = playHQConfig.apiBase;
+export const PLAYHQ_API_KEY = playHQConfig.apiKey;
+export const TENANT = playHQConfig.tenant;
+export const CLUB_NAME = playHQConfig.clubMatch || playHQConfig.clubName;
 
 export function buildHeaders() {
-  return {
-    Accept: 'application/json',
-    'x-api-key': PLAYHQ_API_KEY,
-    'x-phq-tenant': TENANT,
-  };
+  return buildPlayHQHeaders(playHQConfig);
 }
 
 export function structuredLog(level, details) {
@@ -40,12 +19,24 @@ export function structuredLog(level, details) {
 }
 
 export async function apiFetch(endpoint) {
-  if (PLAYHQ_API_KEY === 'PASTE_YOUR_API_KEY_HERE') {
-    throw new Error('No API key configured');
-  }
   const res = await fetch(`${API_BASE}${endpoint}`, { headers: buildHeaders() });
   if (!res.ok) throw new Error(`PlayHQ API ${res.status} on ${endpoint}`);
   return res.json();
+}
+
+export async function fetchAllPages(basePath) {
+  const results = [];
+  let cursor = null;
+
+  do {
+    const sep = basePath.includes('?') ? '&' : '?';
+    const endpoint = cursor ? `${basePath}${sep}cursor=${cursor}` : basePath;
+    const data = await apiFetch(endpoint);
+    results.push(...(data.data ?? []));
+    cursor = data.metadata?.hasMore ? data.metadata.nextCursor : null;
+  } while (cursor);
+
+  return results;
 }
 
 export async function fetchGrades(seasonId) {
@@ -53,23 +44,22 @@ export async function fetchGrades(seasonId) {
   return data.data ?? [];
 }
 
+export async function fetchTeams(seasonId) {
+  return fetchAllPages(`/v1/seasons/${seasonId}/teams`);
+}
+
 export async function fetchGames(gradeId) {
-  const results = [];
-  let cursor = null;
-  do {
-    const sep = `/v1/grades/${gradeId}/games`.includes('?') ? '&' : '?';
-    const endpoint = cursor ? `/v1/grades/${gradeId}/games${sep}cursor=${cursor}` : `/v1/grades/${gradeId}/games`;
-    const data = await apiFetch(endpoint);
-    results.push(...(data.data ?? []));
-    cursor = data.metadata?.hasMore ? data.metadata.nextCursor : null;
-  } while (cursor);
-  return results;
+  return fetchAllPages(`/v1/grades/${gradeId}/games`);
 }
 
 export async function fetchLadder(gradeId) {
   const data = await apiFetch(`/v1/grades/${gradeId}/ladder`);
+  return flattenLadderPayload(data);
+}
+
+export function flattenLadderPayload(payload) {
   const rows = [];
-  for (const ladderSet of data.data ?? []) {
+  for (const ladderSet of payload.data ?? []) {
     for (const ladder of ladderSet.ladders ?? []) {
       rows.push(...(ladder.standings ?? []));
     }

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * PlayHQ Scraper — Bendigo Phoenix
+ * PlayHQ Scraper
  * Fetches ladder and fixture data from PlayHQ and writes scripts/scores-data.json.
  */
 
@@ -9,30 +9,28 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   CLUB_NAME,
-  PLAYHQ_API_KEY,
   fetchGrades,
   fetchGames,
   fetchLadder,
   normaliseGame,
   normaliseLadderRow,
   structuredLog,
+  playHQConfig,
 } from './lib/playhq-api.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const OUTPUT_FILE = path.join(__dirname, 'scores-data.json');
-const SEASON_IDS = [
-  'b3efb4fc-f645-4b5a-a777-50cc99464849',
-];
+const SEASON_IDS = playHQConfig.seasonIds;
 
-function isPhoenixGame(game) {
+function isClubGame(game) {
   const needle = CLUB_NAME.toLowerCase();
   return (game.competitors ?? []).some((c) => String(c.name ?? '').toLowerCase().includes(needle));
 }
 
 async function main() {
-  if (PLAYHQ_API_KEY === 'PASTE_YOUR_API_KEY_HERE') {
-    throw new Error('No API key configured. Set PLAYHQ_API_KEY before running scores:refresh.');
+  if (SEASON_IDS.length === 0) {
+    throw new Error('Missing required PlayHQ configuration: PLAYHQ_SEASON_IDS');
   }
 
   const allScores = [];
@@ -59,8 +57,8 @@ async function main() {
 
       try {
         const games = await fetchGames(grade.id);
-        const phoenixGames = games.filter(isPhoenixGame);
-        for (const rawGame of phoenixGames) {
+        const clubGames = games.filter(isClubGame);
+        for (const rawGame of clubGames) {
           const game = normaliseGame(rawGame, gradeName);
           if (game.roundNumber === null) {
             structuredLog('warn', { event: 'game_excluded', gameId: rawGame.id, reason: 'missing_round_number' });

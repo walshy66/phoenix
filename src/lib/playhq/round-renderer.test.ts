@@ -19,15 +19,18 @@ const baseGame: NormalisedGame = {
 };
 
 describe('renderGameCard', () => {
-  it('renders upcoming game without scores', () => {
+  it('renders upcoming game with placeholders and pending badge', () => {
     const html = renderGameCard(baseGame);
-    expect(html).toContain('VS');
+    expect(html).toContain('TBD');
+    expect(html).toContain('–');
+    expect(html).not.toContain('VS');
     expect(html).not.toContain('home-score');
   });
 
-  it('renders completed game with scores', () => {
+  it('renders completed game with scores and result badge', () => {
     const html = renderGameCard({ ...baseGame, status: 'COMPLETED', homeScore: 52, awayScore: 49 });
-    expect(html).toContain('FINAL');
+    expect(html).toContain('L');
+    expect(html).not.toContain('FINAL');
     expect(html).toContain('52');
     expect(html).toContain('49');
   });

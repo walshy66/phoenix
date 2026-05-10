@@ -2,13 +2,15 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { clubProfile } from '../config/club-profile';
 
 interface Props {
   title: string;
   description?: string;
 }
 
-const { title, description = 'Bendigo Phoenix Basketball Club — Where Community Meets Competition' } = Astro.props;
+const { title, description = clubProfile.meta.defaultDescription } = Astro.props;
+const pageTitle = `${title} | ${clubProfile.meta.siteTitle}`;
 ---
 
 <!doctype html>
@@ -19,12 +21,12 @@ const { title, description = 'Bendigo Phoenix Basketball Club — Where Communit
     <meta name="description" content={description} />
     <meta name="theme-color" content="#573F93" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <title>{title} | Bendigo Phoenix Basketball</title>
+    <title>{pageTitle}</title>
     <!-- Open Graph -->
-    <meta property="og:title" content={`${title} | Bendigo Phoenix Basketball`} />
+    <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bendigophoenix.org.au" />
+    <meta property="og:url" content={clubProfile.meta.siteUrl} />
   </head>
   <body class="min-h-screen flex flex-col bg-brand-offwhite">
     <Navbar />
