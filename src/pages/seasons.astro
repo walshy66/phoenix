@@ -6,19 +6,20 @@ import SeasonInfoModal from '../components/SeasonInfoModal.astro'
 import { SEASON_CARDS } from '../lib/seasons/constants'
 import { VENUES } from '../data/venues'
 import { SEASON_INFO_CARDS } from '../data/season-info'
+import { clubProfile, mailto } from '../config/club-profile'
 
 const isGradingActive = false
 const seasonInfoCards = Array.isArray(SEASON_INFO_CARDS) ? SEASON_INFO_CARDS : []
 ---
 
-<BaseLayout title="Seasons" description="Bendigo Phoenix Basketball season draw, costs, registration and grading information.">
+<BaseLayout title="Seasons" description={`${clubProfile.shortName} Basketball season draw, costs, registration and grading information.`}>
   <section class="relative overflow-hidden bg-brand-purple px-4 py-12 lg:py-8 text-center">
     <div class="pointer-events-none absolute inset-0 opacity-10">
       <div class="absolute -right-16 -top-16 h-64 w-64 rounded-full" style="background: #8B7536;"></div>
       <div class="absolute -bottom-16 -left-16 h-48 w-48 rounded-full" style="background: #8B7536;"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-3xl">
-      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-brand-gold">Bendigo Phoenix</p>
+      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-brand-gold">{clubProfile.shortName}</p>
       <h1 class="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">SEASONS</h1>
       <div class="mx-auto mt-4 h-1 w-16 bg-brand-gold"></div>
       <p class="mx-auto mt-4 max-w-xl text-base text-purple-200">
@@ -69,7 +70,7 @@ const seasonInfoCards = Array.isArray(SEASON_INFO_CARDS) ? SEASON_INFO_CARDS : [
           <h3 class="mb-1 text-base font-bold text-brand-black">Need Financial Assistance?</h3>
           <p class="text-sm leading-relaxed text-gray-600">
             Our <a href="/about#slam-dunk" class="font-semibold text-brand-purple underline hover:text-brand-gold">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
-            Contact us confidentially at <a href="mailto:hello@bendigophoenix.org.au" class="font-semibold text-brand-purple hover:text-brand-gold">hello@bendigophoenix.org.au</a>.
+            Contact us confidentially at <a href={mailto(clubProfile.contact.generalEmail)} class="font-semibold text-brand-purple hover:text-brand-gold">{clubProfile.contact.generalEmail}</a>.
           </p>
         </div>
       </div>

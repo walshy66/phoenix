@@ -21,7 +21,7 @@ describe('COA-58 sponsor page integration', () => {
     expect(content).toContain('grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4');
     expect(content).toContain('sponsorsData.sponsors.length > 0');
     expect(content).toContain('<SponsorCard sponsor={sponsorsData.sponsors[0]} layout="grid" isFirstSponsor />');
-    expect(content).toContain('mailto:hello@bendigophoenix.org.au?subject=Sponsorship%20Enquiry');
+    expect(content).toContain("href={mailto(clubProfile.contact.generalEmail, 'Sponsorship Enquiry')}");
     expect(content).toContain('your logo here');
     expect(content).toContain('OUR PROUD SPONSORS');
   });

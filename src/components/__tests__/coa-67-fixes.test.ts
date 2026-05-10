@@ -51,7 +51,7 @@ describe('COA-67 fixes', () => {
     const index = read('src/pages/index.astro')
 
     expect(index).toContain("/images/hero/players_needed.png")
-    expect(index).toContain("/images/hero/training.png")
+    expect(index).toContain("/images/hero/training_update.png")
     expect(index).toContain("/images/hero/volunteers_heros.png")
     expect(index).not.toContain("/images/hero/player_journal.png")
   })

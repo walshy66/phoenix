@@ -1,5 +1,11 @@
 ---
+import { clubProfile, mailto } from '../config/club-profile';
+
 const currentYear = new Date().getFullYear();
+const fallbackInitials = clubProfile.shortName
+  .split(' ')
+  .map((part) => part[0])
+  .join('');
 ---
 
 <footer class="bg-brand-purple text-white mt-auto">
@@ -10,16 +16,16 @@ const currentYear = new Date().getFullYear();
         <div class="mb-4">
           <img
             src="/images/logos/phoenix-logo.png"
-            alt="Phoenix United Basketball"
+            alt={clubProfile.name}
             class="h-20 w-auto"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           />
           <div class="hidden w-20 h-20 rounded-full bg-brand-gold flex items-center justify-center flex-shrink-0 text-white font-bold text-2xl leading-none">
-            PU
+            {fallbackInitials}
           </div>
         </div>
         <p class="text-purple-200 text-sm leading-relaxed">
-          Where Community Meets Competition. Proudly serving basketball in Bendigo.
+          {clubProfile.tagline}. Proudly serving basketball in {clubProfile.location.city}.
         </p>
       </div>
 
@@ -30,18 +36,18 @@ const currentYear = new Date().getFullYear();
           <p class="flex items-start gap-2">
             <span class="mt-0.5">📍</span>
             <span>
-              C/- Bendigo Stadium<br />
-              Inglis Street<br />
-              West Bendigo VIC 3550
+              {clubProfile.contact.postalAddress.map((line, index) => (
+                <>{line}{index < clubProfile.contact.postalAddress.length - 1 && <br />}</>
+              ))}
             </span>
           </p>
           <p class="flex items-center gap-2">
             <span>✉️</span>
             <a
-              href="mailto:hello@bendigophoenix.org.au"
+              href={mailto(clubProfile.contact.generalEmail)}
               class="hover:text-brand-gold transition-colors duration-150"
             >
-              hello@bendigophoenix.org.au
+              {clubProfile.contact.generalEmail}
             </a>
           </p>
         </address>
@@ -52,20 +58,20 @@ const currentYear = new Date().getFullYear();
         <h3 class="text-brand-gold font-bold text-sm uppercase tracking-wider mb-4">Follow Us</h3>
         <div class="space-y-2">
           <a
-            href="https://facebook.com/phoenixunitedbasketball"
+            href={clubProfile.socials.facebook.url}
             target="_blank"
             rel="noopener noreferrer"
             class="flex items-center gap-2 text-sm text-purple-200 hover:text-brand-gold transition-colors duration-150"
           >
-            <span>📘</span> Facebook
+            <span>📘</span> {clubProfile.socials.facebook.label}
           </a>
           <a
-            href="https://instagram.com/bendigophoenix"
+            href={clubProfile.socials.instagram.url}
             target="_blank"
             rel="noopener noreferrer"
             class="flex items-center gap-2 text-sm text-purple-200 hover:text-brand-gold transition-colors duration-150"
           >
-            <span>📷</span> Instagram
+            <span>📷</span> {clubProfile.socials.instagram.label}
           </a>
         </div>
       </div>
@@ -80,7 +86,7 @@ const currentYear = new Date().getFullYear();
     <!-- Bottom bar -->
     <div class="border-t border-purple-700 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
       <p class="text-purple-300 text-xs">
-        &copy; Phoenix United Basketball Development Club Inc. 2003 - {currentYear} All rights reserved.
+        &copy; {clubProfile.legalName} 2003 - {currentYear} All rights reserved.
       </p>
       <p class="text-purple-400 text-xs">
         <a

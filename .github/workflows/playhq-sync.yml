@@ -2,8 +2,9 @@ name: PlayHQ Sync
 
 on:
   schedule:
-    # 4pm AEST on Sunday and game days (Mon/Tue/Wed/Fri).
-    - cron: '0 6 * * 0,1,2,3,5'
+    # Hourly at :30 across the Melbourne evening refresh window on game days (Mon/Tue/Wed/Fri).
+    # The job below applies an Australia/Melbourne time gate so daylight saving is handled safely.
+    - cron: '30 5-13 * * 1,2,3,5'
   workflow_dispatch:
     inputs:
       mode:
@@ -40,18 +41,38 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check Melbourne refresh window
+        id: melbourne-window
+        if: github.event_name == 'schedule'
+        env:
+          TZ: Australia/Melbourne
+        run: |
+          # Scheduled cron runs in UTC. Gate on Melbourne local time so the
+          # PlayHQ refresh runs only between 4:30pm and 11:30pm on game days.
+          local_day="$(date +%u)"
+          local_time="$(date +%H%M)"
+
+          if [[ "$local_day" =~ ^(1|2|3|5)$ ]] && [ "$local_time" -ge 1630 ] && [ "$local_time" -le 2330 ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            echo "Within Australia/Melbourne refresh window (4:30pm-11:30pm)."
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+            echo "Outside Australia/Melbourne refresh window (4:30pm-11:30pm)."
+          fi
+
       - name: Refresh teams data
-        if: github.event_name == 'schedule' || inputs.mode == 'full'
+        if: (github.event_name == 'schedule' && steps.melbourne-window.outputs.should_run == 'true') || inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
           PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
+          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
         run: |
           node scripts/scrape-playhq-teams.js
           node scripts/scrape-playhq-teams-details.js
 
       - name: Refresh fixtures, schedule, scores, and ladders
-        if: github.event_name == 'schedule' || inputs.mode == 'full'
+        if: (github.event_name == 'schedule' && steps.melbourne-window.outputs.should_run == 'true') || inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -68,7 +89,7 @@ jobs:
           npm run home-scores:check
 
       - name: Refresh round schedule files
-        if: github.event_name == 'schedule' || inputs.mode == 'full'
+        if: (github.event_name == 'schedule' && steps.melbourne-window.outputs.should_run == 'true') || inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -80,6 +101,7 @@ jobs:
           npm run rounds:check
 
       - name: Publish static artifacts to public/live-data
+        if: github.event_name != 'schedule' || steps.melbourne-window.outputs.should_run == 'true'
         run: |
           mkdir -p public/live-data
           cp scripts/weekly-games-data.json public/live-data/fixtures.json
@@ -87,12 +109,15 @@ jobs:
           cp scripts/home-games-data.json public/live-data/home-games.json
 
       - name: Build site
+        if: github.event_name != 'schedule' || steps.melbourne-window.outputs.should_run == 'true'
         run: npm run build
 
       - name: Install lftp
+        if: github.event_name != 'schedule' || steps.melbourne-window.outputs.should_run == 'true'
         run: sudo apt-get update && sudo apt-get install -y lftp
 
       - name: Deploy to VentraIP via FTPS
+        if: github.event_name != 'schedule' || steps.melbourne-window.outputs.should_run == 'true'
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_PORT: ${{ secrets.FTP_PORT }}
