@@ -44,7 +44,7 @@ export function getPlayHQConfig(options = {}) {
   const config = {
     apiBase: valueFrom(env, readEnv, 'PLAYHQ_API_BASE') || 'https://api.playhq.com',
     apiKey: valueFrom(env, readEnv, 'PLAYHQ_API_KEY') || '',
-    tenant: valueFrom(env, readEnv, 'PLAYHQ_TENANT') || '',
+    tenant: valueFrom(env, readEnv, 'PLAYHQ_TENANT') || options.defaultTenant || 'bv',
     clubName: valueFrom(env, readEnv, 'PLAYHQ_CLUB_NAME') || '',
     clubMatch: valueFrom(env, readEnv, 'PLAYHQ_CLUB_MATCH') || valueFrom(env, readEnv, 'PLAYHQ_CLUB_NAME') || '',
     seasonIds: parseList(valueFrom(env, readEnv, 'PLAYHQ_SEASON_IDS')),

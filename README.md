@@ -121,7 +121,7 @@ Never commit secret values. Document the variable names and purpose only.
 | Name | Required for | Purpose |
 | --- | --- | --- |
 | `PLAYHQ_API_KEY` | PlayHQ refresh scripts | API key sent as the `x-api-key` header. |
-| `PLAYHQ_TENANT` | PlayHQ refresh scripts | PlayHQ tenant sent as the `x-phq-tenant` header. |
+| `PLAYHQ_TENANT` | PlayHQ refresh scripts | Optional PlayHQ tenant sent as the `x-phq-tenant` header. Defaults to `bv` if omitted. |
 | `PLAYHQ_CLUB_NAME` | PlayHQ refresh scripts | Club name used to identify Phoenix records. |
 | `PLAYHQ_CLUB_MATCH` | Optional PlayHQ matching override | Alternate match string when PlayHQ naming differs from the display club name. |
 | `PLAYHQ_SEASON_IDS` | PlayHQ refresh scripts | Comma-separated season IDs to include in sync output. |
