@@ -27,8 +27,14 @@ describe('PlayHQ configuration', () => {
     }
   });
 
-  test('central PlayHQ config fails explicitly when required values are missing', async () => {
+  test('central PlayHQ config defaults the tenant while failing explicitly for missing club-specific values', async () => {
     const { getPlayHQConfig } = await import(new URL('../../scripts/lib/playhq-config.js', import.meta.url).href);
+
+    const config = getPlayHQConfig({
+      env: {},
+      readLocalEnvVar: () => undefined,
+    });
+    expect(config.tenant).toBe('bv');
 
     expect(() =>
       getPlayHQConfig({
