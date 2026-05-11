@@ -18,6 +18,6 @@ describe('COA-87/COA-182 home page score feature flag behavior', () => {
     const index = read('src/pages/index.astro');
 
     expect(index).toContain('{HOME_SCORES_ENABLED && (');
-    expect(index).toContain('<HomeScoresCarousel artifact={homeGamesArtifact} liveRefreshMs={300000} />');
+    expect(index).toContain('<HomeScoresCarousel artifact={homeGamesArtifact} liveRefreshMs={120000} />');
   });
 });

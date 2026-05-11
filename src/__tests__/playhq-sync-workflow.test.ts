@@ -33,6 +33,7 @@ describe('playhq-sync workflow', () => {
     expect(workflow).toContain('npm run build');
     expect(workflow).toContain('Deploy to VentraIP via FTPS');
     expect(workflow).toContain('lftp -c');
+    expect(workflow).toContain('mirror --reverse --delete --verbose --ignore-time');
 
     expect(workflow).not.toMatch(/git add|git commit|git push/);
     expect(workflow).not.toContain('contents: write');
