@@ -248,9 +248,29 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
       <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Club Policies</h2>
       <div class="h-1 w-12 bg-brand-gold mb-8"></div>
 
+      <div class="sticky top-16 z-30 -mx-4 mb-8 border-y border-gray-100 bg-white/95 shadow-sm backdrop-blur sm:-mx-6 lg:-mx-8">
+        <div class="px-4 py-4 sm:px-6 lg:px-8">
+          <label for="policy-search" class="block max-w-xl">
+            <span class="mb-2 block text-xs font-semibold uppercase tracking-wider text-gray-500">Search policies...</span>
+            <input
+              id="policy-search"
+              type="search"
+              placeholder="Search policies..."
+              autofocus
+              class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-brand-black shadow-sm outline-none transition focus-visible:border-brand-purple focus-visible:ring-2 focus-visible:ring-brand-purple/40"
+            />
+          </label>
+        </div>
+      </div>
+
+      <div id="policies-empty" class="mb-6 hidden rounded-xl border border-dashed border-gray-300 bg-brand-offwhite px-4 py-6 text-center" aria-live="polite">
+        <p class="font-semibold text-brand-black">No results found</p>
+        <p class="mt-1 text-sm text-gray-600">Try a different policy name.</p>
+      </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="policies-grid">
         {policies.map((policy) => (
-          <div class="rounded-xl border border-gray-300 overflow-hidden bg-white hover:shadow-md transition-shadow flex flex-col items-center justify-center py-6 px-4 text-center min-h-[120px]">
+          <div data-policy-card data-policy-name={policy.name} class="rounded-xl border border-gray-300 overflow-hidden bg-white hover:shadow-md transition-shadow flex flex-col items-center justify-center py-6 px-4 text-center min-h-[120px]">
             <h3 class="font-bold text-brand-black text-sm mb-4">{policy.name}</h3>
             {policy.type === 'pdf' ? (
               <a
@@ -283,5 +303,31 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    const searchInput = document.getElementById('policy-search');
+    const policyCards = Array.from(document.querySelectorAll('[data-policy-card]'));
+    const emptyState = document.getElementById('policies-empty');
+
+    const filterPolicies = () => {
+      const query = (searchInput?.value ?? '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      policyCards.forEach((card) => {
+        const policyName = (card.getAttribute('data-policy-name') ?? '').toLowerCase();
+        const matches = query === '' || policyName.includes(query);
+
+        card.hidden = !matches;
+        if (matches) visibleCount += 1;
+      });
+
+      if (emptyState) {
+        emptyState.hidden = visibleCount !== 0;
+      }
+    };
+
+    searchInput?.addEventListener('input', filterPolicies);
+    filterPolicies();
+  </script>
 </BaseLayout>
 
