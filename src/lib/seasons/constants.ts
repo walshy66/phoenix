@@ -9,7 +9,7 @@ export const SEASON_CARDS: SeasonCardConfig[] = [
     clickable: true,
     navigationTarget: '/teams',
     navigationExternal: false,
-    statusBadgeLabel: 'Grading',
+    statusBadgeLabel: 'Live',
     icon: '❄️',
   },
   {
