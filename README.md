@@ -148,7 +148,7 @@ The main site deployment is defined in `.github/workflows/deploy.yml` as **Deplo
 3. Commit and push the branch.
 4. Open a PR or merge the branch into `main` when approved.
 5. A push to `main` runs the GitHub Actions workflow.
-6. The workflow installs dependencies with `npm ci`, builds with `npm run build`, installs `lftp`, and mirrors `dist/` to the configured FTPS destination. Deploys use `lftp mirror --ignore-time` so unchanged files are not re-uploaded just because a rebuild refreshed local timestamps.
+6. The workflow installs dependencies with `npm ci`, builds with `npm run build`, installs `lftp`, and mirrors `dist/` to the configured FTPS destination.
 7. Check the live site at `https://bendigophoenix.org.au` after the workflow is green.
 
 For more release detail and troubleshooting, see `docs/RELEASE_WORKFLOW.md`.
