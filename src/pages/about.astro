@@ -243,7 +243,7 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
   </section>
 
   <!-- Club Policies -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+  <section id="club-policies" class="scroll-mt-24 py-16 px-4 sm:px-6 lg:px-8 bg-white">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Club Policies</h2>
       <div class="h-1 w-12 bg-brand-gold mb-8"></div>
@@ -256,7 +256,6 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
               id="policy-search"
               type="search"
               placeholder="Search policies..."
-              autofocus
               class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-brand-black shadow-sm outline-none transition focus-visible:border-brand-purple focus-visible:ring-2 focus-visible:ring-brand-purple/40"
             />
           </label>
@@ -308,6 +307,10 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
     const searchInput = document.getElementById('policy-search');
     const policyCards = Array.from(document.querySelectorAll('[data-policy-card]'));
     const emptyState = document.getElementById('policies-empty');
+    const policiesSection = document.getElementById('club-policies');
+    const initialPolicySearch = new URLSearchParams(window.location.search).get('policy')
+      ?? new URLSearchParams(window.location.search).get('policies')
+      ?? '';
 
     const filterPolicies = () => {
       const query = (searchInput?.value ?? '').trim().toLowerCase();
@@ -323,11 +326,22 @@ const policies = clubPolicies.sort((a, b) => a.name.localeCompare(b.name));
 
       if (emptyState) {
         emptyState.hidden = visibleCount !== 0;
+        emptyState.classList.toggle('hidden', visibleCount !== 0);
       }
     };
 
+    if (initialPolicySearch && searchInput instanceof HTMLInputElement) {
+      searchInput.value = initialPolicySearch;
+      filterPolicies();
+      window.requestAnimationFrame(() => {
+        policiesSection?.scrollIntoView({ block: 'start' });
+        searchInput.focus({ preventScroll: true });
+      });
+    } else {
+      filterPolicies();
+    }
+
     searchInput?.addEventListener('input', filterPolicies);
-    filterPolicies();
   </script>
 </BaseLayout>
 
