@@ -35,3 +35,11 @@ specs/coa-27-resources/candidates/
 
 # local upload staging folder
 upload/
+
+# CI-generated live data (regenerated on every sync run)
+public/live-data/rounds/
+scripts/scores-data.json
+scripts/teams-data.json
+scripts/teams-details.json
+scripts/home-games-data.json
+scripts/weekly-games-data.json

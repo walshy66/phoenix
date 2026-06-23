@@ -62,7 +62,7 @@ export function renderGameCard(game: NormalisedGame, liveScores: LiveScores = {}
   const status = live?.status ?? game.status;
   const homeScore = live?.homeScore ?? game.homeScore;
   const awayScore = live?.awayScore ?? game.awayScore;
-  const href = `/scores/${encodeURIComponent(game.id)}`;
+  const href = `/scores/game?id=${encodeURIComponent(game.id)}`;
   const isPhoenixHome = game.homeTeam.toLowerCase().includes('phoenix');
   const result = getPhoenixResult(status, game.homeTeam, game.awayTeam, homeScore, awayScore);
 
