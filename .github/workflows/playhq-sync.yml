@@ -68,16 +68,23 @@ jobs:
             echo "Outside Australia/Melbourne refresh window (4:30pm-11:30pm)."
           fi
 
-      - name: Refresh teams data
+      - name: Refresh team list
         if: inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
           PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
           PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
-        run: |
-          node scripts/scrape-playhq-teams.js
-          node scripts/scrape-playhq-teams-details.js
+        run: node scripts/scrape-playhq-teams.js
+
+      - name: Refresh team details
+        if: (github.event_name == 'schedule' && steps.melbourne-window.outputs.should_run == 'true') || inputs.mode == 'full'
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
+          PLAYHQ_CLUB_NAME: ${{ secrets.PLAYHQ_CLUB_NAME }}
+          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
+        run: node scripts/scrape-playhq-teams-details.js
 
       - name: Refresh fixtures, schedule, scores, and ladders
         if: (github.event_name == 'schedule' && steps.melbourne-window.outputs.should_run == 'true') || inputs.mode == 'full'
