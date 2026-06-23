@@ -88,6 +88,23 @@ function getWeekMonday(dateStr) {
 // into a different display round — a game played on June 15 stays in the
 // June 15 block regardless of what round number PlayHQ assigned it.
 // Undated future fixtures are placed using the dominant week of their PlayHQ round.
+// Reads existing round file (if any) and returns a map of gameId → cached playerStats.
+// Used to avoid re-fetching stats for games that are already complete.
+function loadCachedStats(roundNumber) {
+  const file = path.join(ROUNDS_DIR, `round-${roundNumber}.json`);
+  if (!fs.existsSync(file)) return new Map();
+  try {
+    const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const map = new Map();
+    for (const game of data.games ?? []) {
+      if (game.playerStats?.players?.length > 0) map.set(game.id, game.playerStats);
+    }
+    return map;
+  } catch {
+    return new Map();
+  }
+}
+
 function groupByCalendarWeek(games) {
   const byWeek = new Map(); // 'YYYY-MM-DD' (Monday) → game[]
   const undated = [];
@@ -243,7 +260,15 @@ async function main() {
     allGames.push(...roundGames);
     roundNumbers.push(roundNumber);
 
-    const statsMap = process.env.SCORE_SYNC_FAST === '1' ? new Map() : await fetchPlayerStats(roundGames);
+    let statsMap;
+    if (process.env.SCORE_SYNC_FAST === '1') {
+      statsMap = new Map();
+    } else {
+      const cachedStats = loadCachedStats(roundNumber);
+      const needsStats = roundGames.filter((g) => g.status === 'COMPLETED' && !cachedStats.has(g.id));
+      const freshStats = needsStats.length > 0 ? await fetchPlayerStats(needsStats) : new Map();
+      statsMap = new Map([...cachedStats, ...freshStats]);
+    }
     await writeRoundFile(roundNumber, monday, roundGames, statsMap);
     completed.push(path.join(ROUNDS_DIR, `round-${roundNumber}.json`));
   }
