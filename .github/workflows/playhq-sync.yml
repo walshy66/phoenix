@@ -2,9 +2,9 @@ name: PlayHQ Sync
 
 on:
   schedule:
-    # Hourly at :30 across the Melbourne evening refresh window on game days (Mon/Tue/Wed/Fri).
+    # Every 10 minutes during the Melbourne evening refresh window on game days (Mon/Tue/Wed/Fri).
     # The job below applies an Australia/Melbourne time gate so daylight saving is handled safely.
-    - cron: '30 5-13 * * 1,2,3,5'
+    - cron: '*/10 5-13 * * 1,2,3,5'
   workflow_dispatch:
     inputs:
       mode:
@@ -27,7 +27,7 @@ jobs:
   rebuild-and-deploy:
     name: Full PlayHQ rebuild and deploy
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -107,6 +107,17 @@ jobs:
           cp scripts/weekly-games-data.json public/live-data/fixtures.json
           cp scripts/scores-data.json public/live-data/completed-scores.json
           cp scripts/home-games-data.json public/live-data/home-games.json
+          cp scripts/teams-details.json public/live-data/teams-details.json
+
+      - name: Generate live-data overlays from round files
+        if: github.event_name != 'schedule' || steps.melbourne-window.outputs.should_run == 'true'
+        env:
+          PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
+          PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
+          PLAYHQ_SEASON_IDS: ${{ secrets.PLAYHQ_SEASON_IDS }}
+        run: |
+          node scripts/write-home-games-from-rounds.js
+          node scripts/poll-live-scores.js
 
       - name: Build site
         if: github.event_name != 'schedule' || steps.melbourne-window.outputs.should_run == 'true'
@@ -142,6 +153,6 @@ jobs:
             set ftp:ssl-protect-data true;
             set ftp:ssl-auth TLS;
             open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" ftp://$FTP_HOST;
-            mirror --reverse --delete --verbose --exclude-glob live-data/live-scores.json dist/ \"$FTP_REMOTE_DIR\";
+            mirror --reverse --delete --verbose dist/ \"$FTP_REMOTE_DIR\";
             bye
           "

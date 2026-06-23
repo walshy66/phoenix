@@ -6,6 +6,7 @@ import { fetchGrades, fetchGames, fetchLadder, normaliseGame, normaliseLadderRow
 import { fetchPlayerStats } from './fetch-player-stats.js';
 
 const ROUNDS_DIR = path.join(process.cwd(), 'public', 'live-data', 'rounds');
+const GAME_INDEX_FILE = path.join(ROUNDS_DIR, 'game-index.json');
 const SOURCE_FILE = path.join(process.cwd(), 'scripts', 'scores-data.json');
 const TEAMS_DETAILS_FILE = path.join(process.cwd(), 'scripts', 'teams-details.json');
 const SEASON_IDS = (process.env.PLAYHQ_SEASON_IDS || '').split(',').map((v) => v.trim()).filter(Boolean);
@@ -108,15 +109,6 @@ function roundLadders(games) {
 async function writeRoundFile(roundNumber, games, statsMap) {
   fs.mkdirSync(ROUNDS_DIR, { recursive: true });
   const file = path.join(ROUNDS_DIR, `round-${roundNumber}.json`);
-  if (fs.existsSync(file)) {
-    try {
-      const existing = JSON.parse(fs.readFileSync(file, 'utf8'));
-      if (existing.status === 'completed') {
-        structuredLog('warn', { event: 'round_skipped', roundNumber, reason: 'already_completed' });
-        return false;
-      }
-    } catch {}
-  }
 
   const payload = {
     roundNumber,
@@ -145,6 +137,17 @@ function writeIndex(roundNumbers) {
   const index = { currentRound, availableRounds: sorted, lastUpdated: new Date().toISOString() };
   fs.writeFileSync(file, JSON.stringify(index, null, 2));
   structuredLog('info', { event: 'index_written', ...index });
+}
+
+function writeGameIndex(games) {
+  const map = {};
+  for (const game of games) {
+    if (game.id && game.roundNumber != null) {
+      map[game.id] = game.roundNumber;
+    }
+  }
+  fs.writeFileSync(GAME_INDEX_FILE, JSON.stringify({ lastUpdated: new Date().toISOString(), games: map }, null, 2));
+  structuredLog('info', { event: 'game_index_written', count: Object.keys(map).length });
 }
 
 function maybeDeploy(files) {
@@ -197,7 +200,8 @@ async function main() {
   }
 
   writeIndex(roundNumbers);
-  maybeDeploy([...completed, path.join(ROUNDS_DIR, 'rounds-index.json')]);
+  writeGameIndex(games);
+  maybeDeploy([...completed, path.join(ROUNDS_DIR, 'rounds-index.json'), GAME_INDEX_FILE]);
 }
 
 main().catch((err) => {
