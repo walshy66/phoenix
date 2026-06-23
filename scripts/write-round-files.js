@@ -75,17 +75,57 @@ async function fetchAllPhoenixGames() {
   return games;
 }
 
-function groupByRound(games) {
-  const byRound = new Map();
+// Returns the ISO date (YYYY-MM-DD) of the Monday that starts the week containing dateStr.
+function getWeekMonday(dateStr) {
+  const d = new Date(dateStr + 'T00:00:00');
+  const day = d.getDay(); // 0=Sun, 1=Mon … 6=Sat
+  d.setDate(d.getDate() + (day === 0 ? -6 : 1 - day));
+  return d.toISOString().slice(0, 10);
+}
+
+// Groups games into Monday-anchored calendar-week blocks.
+// This prevents rescheduled games (e.g. after a public holiday) from bleeding
+// into a different display round — a game played on June 15 stays in the
+// June 15 block regardless of what round number PlayHQ assigned it.
+// Undated future fixtures are placed using the dominant week of their PlayHQ round.
+function groupByCalendarWeek(games) {
+  const byWeek = new Map(); // 'YYYY-MM-DD' (Monday) → game[]
+  const undated = [];
+
   for (const game of games) {
-    if (game.roundNumber == null) {
-      structuredLog('warn', { event: 'game_excluded', gameId: game.id, reason: 'missing_round_number' });
-      continue;
-    }
-    if (!byRound.has(game.roundNumber)) byRound.set(game.roundNumber, []);
-    byRound.get(game.roundNumber).push(game);
+    if (!game.date) { undated.push(game); continue; }
+    const monday = getWeekMonday(game.date);
+    if (!byWeek.has(monday)) byWeek.set(monday, []);
+    byWeek.get(monday).push(game);
   }
-  return byRound;
+
+  if (undated.length > 0) {
+    // Build playhqRound → monday vote map from dated games
+    const roundVotes = new Map(); // playhqRound → Map<monday, count>
+    for (const [monday, weekGames] of byWeek) {
+      for (const g of weekGames) {
+        if (g.roundNumber == null) continue;
+        if (!roundVotes.has(g.roundNumber)) roundVotes.set(g.roundNumber, new Map());
+        const votes = roundVotes.get(g.roundNumber);
+        votes.set(monday, (votes.get(monday) ?? 0) + 1);
+      }
+    }
+
+    for (const game of undated) {
+      const votes = game.roundNumber != null ? roundVotes.get(game.roundNumber) : null;
+      if (!votes) {
+        structuredLog('warn', { event: 'game_excluded', gameId: game.id, reason: 'no_date_no_round_mapping' });
+        continue;
+      }
+      let bestMonday = null, best = 0;
+      for (const [monday, count] of votes) {
+        if (count > best) { bestMonday = monday; best = count; }
+      }
+      if (bestMonday) byWeek.get(bestMonday).push(game);
+    }
+  }
+
+  return byWeek;
 }
 
 function roundStatus(games) {
@@ -106,12 +146,13 @@ function roundLadders(games) {
   return ladders;
 }
 
-async function writeRoundFile(roundNumber, games, statsMap) {
+async function writeRoundFile(roundNumber, weekStartDate, games, statsMap) {
   fs.mkdirSync(ROUNDS_DIR, { recursive: true });
   const file = path.join(ROUNDS_DIR, `round-${roundNumber}.json`);
 
   const payload = {
     roundNumber,
+    weekStartDate,
     season: SEASON_NAME,
     lastUpdated: new Date().toISOString(),
     status: roundStatus(games),
@@ -123,7 +164,7 @@ async function writeRoundFile(roundNumber, games, statsMap) {
   };
 
   fs.writeFileSync(file, JSON.stringify(payload, null, 2));
-  structuredLog('info', { event: 'round_written', roundNumber, gameCount: games.length, status: payload.status });
+  structuredLog('info', { event: 'round_written', roundNumber, weekStartDate, gameCount: games.length, status: payload.status });
   return true;
 }
 
@@ -187,20 +228,28 @@ function maybeDeploy(files) {
 
 async function main() {
   const games = await fetchAllPhoenixGames();
-  const byRound = groupByRound(games);
-  const roundNumbers = [...byRound.keys()];
+
+  const byWeek = groupByCalendarWeek(games);
+  const sortedMondays = [...byWeek.keys()].sort();
+  const mondayToRound = new Map(sortedMondays.map((monday, i) => [monday, i + 1]));
+
+  const allGames = [];
+  const roundNumbers = [];
   const completed = [];
 
-  for (const roundNumber of roundNumbers) {
-    const roundGames = byRound.get(roundNumber) ?? [];
+  for (const monday of sortedMondays) {
+    const roundNumber = mondayToRound.get(monday);
+    const roundGames = byWeek.get(monday).map((g) => ({ ...g, roundNumber }));
+    allGames.push(...roundGames);
+    roundNumbers.push(roundNumber);
+
     const statsMap = process.env.SCORE_SYNC_FAST === '1' ? new Map() : await fetchPlayerStats(roundGames);
-    if (await writeRoundFile(roundNumber, roundGames, statsMap)) {
-      completed.push(path.join(ROUNDS_DIR, `round-${roundNumber}.json`));
-    }
+    await writeRoundFile(roundNumber, monday, roundGames, statsMap);
+    completed.push(path.join(ROUNDS_DIR, `round-${roundNumber}.json`));
   }
 
   writeIndex(roundNumbers);
-  writeGameIndex(games);
+  writeGameIndex(allGames);
   maybeDeploy([...completed, path.join(ROUNDS_DIR, 'rounds-index.json'), GAME_INDEX_FILE]);
 }
 
