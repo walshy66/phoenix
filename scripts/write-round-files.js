@@ -185,16 +185,47 @@ async function writeRoundFile(roundNumber, weekStartDate, games, statsMap) {
   return true;
 }
 
+function getMelbourneTodayISO() {
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Australia/Melbourne',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(new Date());
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function addDaysISO(dateStr, days) {
+  const date = new Date(`${dateStr}T00:00:00Z`);
+  date.setUTCDate(date.getUTCDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
 function writeIndex(roundNumbers) {
   const sorted = [...roundNumbers].sort((a, b) => a - b);
   const file = path.join(ROUNDS_DIR, 'rounds-index.json');
-  const currentRound = sorted.find((n) => {
-    const round = JSON.parse(fs.readFileSync(path.join(ROUNDS_DIR, `round-${n}.json`), 'utf8'));
-    return round.status === 'upcoming' || round.status === 'in-progress';
-  }) ?? (sorted[sorted.length - 1] ? sorted[sorted.length - 1] + 1 : 1);
+  const rounds = sorted.map((n) => JSON.parse(fs.readFileSync(path.join(ROUNDS_DIR, `round-${n}.json`), 'utf8')));
+  const today = getMelbourneTodayISO();
+
+  const activeRound = rounds.find((round) => {
+    const weekStart = round.weekStartDate;
+    if (!weekStart) return false;
+    const weekEndExclusive = addDaysISO(weekStart, 7);
+    return weekStart <= today && today < weekEndExclusive;
+  });
+  const liveRound = rounds.find((round) => round.status === 'in-progress');
+  const nextRound = rounds.find((round) => round.weekStartDate && round.weekStartDate > today);
+  const fallbackRound = rounds.findLast?.((round) => round.status === 'completed') ?? rounds[rounds.length - 1];
+  const currentRound = activeRound?.roundNumber
+    ?? liveRound?.roundNumber
+    ?? nextRound?.roundNumber
+    ?? fallbackRound?.roundNumber
+    ?? 1;
+
   const index = { currentRound, availableRounds: sorted, lastUpdated: new Date().toISOString() };
   fs.writeFileSync(file, JSON.stringify(index, null, 2));
-  structuredLog('info', { event: 'index_written', ...index });
+  structuredLog('info', { event: 'index_written', ...index, today });
 }
 
 function writeGameIndex(games) {
