@@ -47,12 +47,15 @@ describe('COA-67 fixes', () => {
     expect(contact).not.toContain('whitespace-nowrap')
   })
 
-  test('hero carousel does not include the player journal image', () => {
+  test('hero carousel uses the current uploaded announcement images', () => {
     const index = read('src/pages/index.astro')
 
+    expect(index).toContain("/images/hero/happy_holidays.png")
+    expect(index).toContain("/images/hero/calendar.png")
+    expect(index).toContain("/images/hero/big_plays.png")
     expect(index).toContain("/images/hero/players_needed.png")
-    expect(index).toContain("/images/hero/training_update.png")
-    expect(index).toContain("/images/hero/volunteers_heros.png")
     expect(index).not.toContain("/images/hero/player_journal.png")
+    expect(index).not.toContain("/images/hero/training_update.png")
+    expect(index).not.toContain("/images/hero/volunteers_heros.png")
   })
 })

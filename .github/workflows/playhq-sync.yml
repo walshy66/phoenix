@@ -69,7 +69,7 @@ jobs:
           fi
 
       - name: Refresh team list
-        if: inputs.mode == 'full'
+        if: (github.event_name == 'schedule' && steps.melbourne-window.outputs.should_run == 'true') || inputs.mode == 'full'
         env:
           PLAYHQ_API_KEY: ${{ secrets.PLAYHQ_API_KEY }}
           PLAYHQ_TENANT: ${{ secrets.PLAYHQ_TENANT }}
@@ -122,7 +122,11 @@ jobs:
           cp scripts/weekly-games-data.json public/live-data/fixtures.json
           cp scripts/scores-data.json public/live-data/completed-scores.json
           cp scripts/home-games-data.json public/live-data/home-games.json
-          cp scripts/teams-details.json public/live-data/teams-details.json
+          if [ -f scripts/teams-details.json ]; then
+            cp scripts/teams-details.json public/live-data/teams-details.json
+          else
+            echo "teams-details.json was not generated; continuing with score artifacts only."
+          fi
 
       - name: Generate live-data overlays from round files
         if: github.event_name != 'schedule' || steps.melbourne-window.outputs.should_run == 'true'
