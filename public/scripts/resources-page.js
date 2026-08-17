@@ -11,7 +11,7 @@
   }
 
   const sectionResources = data.sectionResources || {};
-  const sectionOrder = ['coaching_resources', 'player_resources', 'manager', 'guides', 'forms'];
+  const sectionOrder = ['coaching_resources', 'player_resources', 'manager', 'guides', 'forms', 'policies'];
   const interactiveSections = new Set(['coaching_resources', 'player_resources']);
   const submitResource = document.querySelector('[data-submit-resource]');
   const memoryStore = new Map();
@@ -28,7 +28,25 @@
     },
   };
 
-  let activeSection = 'coaching_resources';
+  const tabByQueryParam = {
+    coaching: 'coaching_resources',
+    players: 'player_resources',
+    manager: 'manager',
+    guides: 'guides',
+    forms: 'forms',
+    policies: 'policies',
+  };
+
+  function getInitialActiveSection() {
+    const requestedTab = new URLSearchParams(window.location.search).get('tab');
+    if (requestedTab && tabByQueryParam[requestedTab]) return tabByQueryParam[requestedTab];
+
+    const selectedTab = document.querySelector('[data-resource-tab][aria-selected="true"]');
+    const selectedKey = selectedTab?.getAttribute('data-tab-key');
+    return selectedKey && sectionOrder.includes(selectedKey) ? selectedKey : 'coaching_resources';
+  }
+
+  let activeSection = getInitialActiveSection();
   const searchTimers = new Map();
   const panelOpenClasses = ['max-h-[50vh]', 'overflow-y-auto', 'opacity-100', 'pointer-events-auto', 'translate-y-0'];
   const panelClosedClasses = ['max-h-0', 'overflow-hidden', 'opacity-0', 'pointer-events-none', '-translate-y-2'];
@@ -425,7 +443,8 @@
     if (section === 'player_resources') return 'tab-players';
     if (section === 'manager') return 'tab-managers';
     if (section === 'guides') return 'tab-guides';
-    return 'tab-forms';
+    if (section === 'forms') return 'tab-forms';
+    return 'tab-policies';
   }
 
   function getPanelId(section) {
@@ -433,7 +452,8 @@
     if (section === 'player_resources') return 'panel-players';
     if (section === 'manager') return 'panel-managers';
     if (section === 'guides') return 'panel-guides';
-    return 'panel-forms';
+    if (section === 'forms') return 'panel-forms';
+    return 'panel-policies';
   }
 
   function setActiveSection(section) {
@@ -620,6 +640,7 @@
     'tab-managers': 'manager',
     'tab-guides': 'guides',
     'tab-forms': 'forms',
+    'tab-policies': 'policies',
   }).forEach(([id, section]) => {
     document.getElementById(id)?.addEventListener('click', () => setActiveSection(section));
   });

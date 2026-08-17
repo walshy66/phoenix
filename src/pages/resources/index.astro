@@ -10,6 +10,7 @@ import playerResources from '../../data/player-resources.json';
 import managerResources from '../../data/manager-resources.json';
 import guides from '../../data/guides.json';
 import forms from '../../data/forms.json';
+import policies from '../../data/policies.json';
 import type { ActiveFilters, Resource, ResourceSection } from '../../lib/resources/types';
 import {
   filterResources,
@@ -53,6 +54,7 @@ const sectionResources: Record<ResourceSection, Resource[]> = {
   manager: managerResources,
   guides,
   forms,
+  policies,
 };
 
 const initialFilters: ActiveFilters = { age: [], category: [], skill: [] };
@@ -63,6 +65,7 @@ const filteredInitial = {
   manager: filterResources(sectionResources.manager, initialFilters, '', 'manager'),
   guides: filterResources(sectionResources.guides, initialFilters, '', 'guides'),
   forms: filterResources(sectionResources.forms, initialFilters, '', 'forms'),
+  policies: filterResources(sectionResources.policies, initialFilters, '', 'policies'),
 };
 
 const coachingAvailableSkills = extractAvailableSkills(sectionResources.coaching_resources, 'coaching_resources');
@@ -77,7 +80,9 @@ const activeSection: ResourceSection = requestedTab === 'players'
       ? 'guides'
       : requestedTab === 'forms'
         ? 'forms'
-        : 'coaching_resources';
+        : requestedTab === 'policies'
+          ? 'policies'
+          : 'coaching_resources';
 
 const tabs: Array<{ key: ResourceSection; tabId: string; panelId: string; label: string; active: boolean }> = [
   { key: 'coaching_resources', tabId: 'tab-coaching', panelId: 'panel-coaching', label: 'Coaching Resources', active: activeSection === 'coaching_resources' },
@@ -85,6 +90,7 @@ const tabs: Array<{ key: ResourceSection; tabId: string; panelId: string; label:
   { key: 'manager', tabId: 'tab-managers', panelId: 'panel-managers', label: 'Manager Resources', active: activeSection === 'manager' },
   { key: 'guides', tabId: 'tab-guides', panelId: 'panel-guides', label: 'Guides', active: activeSection === 'guides' },
   { key: 'forms', tabId: 'tab-forms', panelId: 'panel-forms', label: 'Forms', active: activeSection === 'forms' },
+  { key: 'policies', tabId: 'tab-policies', panelId: 'panel-policies', label: 'Club Policies', active: activeSection === 'policies' },
 ];
 
 const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Submission&body=Resource%20Title%3A%0AResource%20URL%3A%0ADescription%3A%0ACategory%3A%0AAge%20Group%3A`;
@@ -216,6 +222,17 @@ const submitHref = `mailto:president@bendigophoenix.org.au?subject=Resource%20Su
             <p class="text-lg font-bold text-brand-black">No forms available yet — check back soon.</p>
           </div>
         )}
+      </section>
+
+      <section id="panel-policies" role="tabpanel" aria-labelledby="tab-policies" class={activeSection === 'policies' ? '' : 'hidden'}>
+        <div class="mb-4 flex items-center justify-between gap-3">
+          <h2 class="text-2xl font-black uppercase tracking-tight text-brand-black">Club Policies</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" id="policies-grid">
+          {filteredInitial.policies.map((resource) => (
+            <ResourceItem resource={resource} accentColor="#573F93" />
+          ))}
+        </div>
       </section>
 
       <div class="border-t border-gray-200 pt-12 text-center" data-submit-resource>
