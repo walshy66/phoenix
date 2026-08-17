@@ -60,14 +60,14 @@ export function filterResources(
   results = filterBySkill(results, activeFilters.skill);
   results = searchByKeyword(results, searchKeyword);
 
-  return sortResources(results, section);
+  return sortResources(results);
 }
 
 export function getAvailableAgeGroups(section: 'coaching_resources' | 'player_resources'): string[] {
   return section === 'coaching_resources' ? [...COACHING_AGES] : [...PLAYER_AGES];
 }
 
-export function getAvailableCategories(section: 'coaching_resources' | 'player_resources' | 'manager' | 'guides' | 'forms'): string[] {
+export function getAvailableCategories(section: 'coaching_resources' | 'player_resources' | 'manager' | 'guides' | 'forms' | 'policies'): string[] {
   if (section === 'coaching_resources') {
     return [...COACHING_CATEGORIES];
   }
@@ -90,7 +90,8 @@ export function getSectionLabel(section: ResourceSection): string {
   if (section === 'player_resources') return 'Player Resources';
   if (section === 'manager') return 'Manager Resources';
   if (section === 'guides') return 'Guides';
-  return 'Forms';
+  if (section === 'forms') return 'Forms';
+  return 'Club Policies';
 }
 
 export function isInteractiveSection(section: ResourceSection): boolean {

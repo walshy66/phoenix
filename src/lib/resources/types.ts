@@ -1,4 +1,4 @@
-export type ResourceSection = 'coaching_resources' | 'player_resources' | 'manager' | 'guides' | 'forms';
+export type ResourceSection = 'coaching_resources' | 'player_resources' | 'manager' | 'guides' | 'forms' | 'policies';
 
 export type ResourceType =
   | 'youtube_link'
