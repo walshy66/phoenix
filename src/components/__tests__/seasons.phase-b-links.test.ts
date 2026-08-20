@@ -66,6 +66,8 @@ describe('seasons phase b preserved links and actions', () => {
 
     const clearance = SEASON_INFO_CARDS.find((card) => card.id === 'clearances')?.subCards[0]
     expect(clearance?.linkUrl).toBe('https://form.jotform.com/222288044427860')
+    expect(pageSource).toContain('data-zoom-src={clearanceCard.imageSrc}')
+    expect(pageSource).toContain('data-zoom-link-url={clearanceCard.linkUrl ?? \'\'}')
 
     expect(pageSource + modalSource + dataSource).not.toContain(publicRegistrationPath)
   })

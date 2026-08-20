@@ -43,6 +43,7 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
 const registrationCard = seasonInfoCards.find((card) => card.id === 'registration')
 const registrationFeesCard = registrationCard?.subCards.find((subCard) => subCard.id === 'registration-fees')
 const uniformsCard = seasonInfoCards.find((card) => card.id === 'uniforms')
+const clearanceCard = seasonInfoCards.find((card) => card.id === 'clearances')?.subCards[0]
 const uniformChecklistItems = [
   { label: 'Ordering', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-how-to') },
   { label: 'Numbers', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-numbers') },
@@ -232,7 +233,19 @@ const uniformChecklistItems = [
           <li class="rounded-lg bg-brand-offwhite/70 p-4">
             <strong class="text-brand-black">3. Clearances</strong>
             <p class="mt-1 text-sm text-gray-600">Submit any required clearance before the season begins.</p>
-            <button type="button" data-modal-id="clearances" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Clearance Information</button>
+            {clearanceCard && (
+              <button
+                type="button"
+                data-infographic-zoom-trigger
+                data-zoom-src={clearanceCard.imageSrc}
+                data-zoom-alt={clearanceCard.imageAlt}
+                data-zoom-link-url={clearanceCard.linkUrl ?? ''}
+                data-zoom-link-label={clearanceCard.linkLabel ?? `Open ${clearanceCard.title} in a new tab`}
+                class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+              >
+                Clearance Information
+              </button>
+            )}
           </li>
           <li class="rounded-lg bg-brand-offwhite/70 p-4">
             <strong class="text-brand-black">4. Training</strong>
