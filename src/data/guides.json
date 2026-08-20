@@ -40,6 +40,16 @@
     "updatedAt": "2026-04-11T00:00:00Z"
   },
   {
+    "id": "guide-016",
+    "title": "COACH - Whats in my coach kit",
+    "description": "Inventory of your coaching tools",
+    "section": "guides",
+    "type": "image_png",
+    "fileRef": "/uploads/coach_kit.png",
+    "createdAt": "2026-04-18T00:00:00Z",
+    "updatedAt": "2026-04-18T00:00:00Z"
+  },
+  {
     "id": "guide-013",
     "title": "Coach Coordinator",
     "description": "Guide for coordinating the club's coaching program and support activities.",
