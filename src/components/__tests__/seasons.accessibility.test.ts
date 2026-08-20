@@ -12,6 +12,8 @@ describe('seasons accessibility', () => {
   })
 
   test('external card explicitly marked as opening in new tab in label', () => {
-    expect(getSeasonAriaLabel(SEASON_CARDS[1])).toContain('opens in new tab')
+    const externalSeason = SEASON_CARDS.find((card) => card.navigationExternal)
+    expect(externalSeason).toBeDefined()
+    expect(getSeasonAriaLabel(externalSeason!)).toContain('opens in new tab')
   })
 })

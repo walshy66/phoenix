@@ -62,7 +62,7 @@ export const SEASON_INFO_CARDS: SeasonInfoCard[] = [
       },
       {
         id: 'uniform-2nd-hand',
-        title: '2nd Hand',
+        title: 'Second-hand',
         description: null,
         imageSrc: '/uploads/uniform_2nd_hand.png',
         imageAlt: 'Second-hand uniform availability and buying process',
