@@ -40,16 +40,6 @@ const continuingAndNewTeams = [
   'Phoenix Splash',
 ]
 const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
-const getInfoCard = (id: (typeof seasonInfoCards)[number]['id']) => seasonInfoCards.find((card) => card.id === id)
-const uniformsCard = getInfoCard('uniforms')
-const clearancesCard = getInfoCard('clearances')
-const registrationCard = getInfoCard('registration')
-const registrationFeesCard = registrationCard?.subCards.find((subCard) => subCard.id === 'registration-fees')
-const uniformNumbersCard = uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-numbers')
-const uniformLoanCard = uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-loan')
-const uniformSecondHandCard = uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-2nd-hand')
-const clearancePortalCard = clearancesCard?.subCards.find((subCard) => subCard.id === 'clearance-portal')
-const uniformOrderingUrl = 'https://www.stepinsports.com.au/product-category/phoenix-basketball/'
 ---
 
 <BaseLayout title="Seasons" description={`${clubProfile.shortName} Basketball season draw, costs, registration and grading information.`}>
@@ -67,157 +57,6 @@ const uniformOrderingUrl = 'https://www.stepinsports.com.au/product-category/pho
       </p>
     </div>
   </section>
-
-  {seasonInfoCards.length > 0 && (
-    <section aria-labelledby="season-info-heading" class="bg-brand-offwhite px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-7xl">
-        <p class="mb-2 text-sm font-bold uppercase tracking-widest text-brand-gold">Current & upcoming seasons</p>
-        <h2 id="season-info-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">
-          Season Information
-        </h2>
-        <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
-
-        <div class="grid grid-cols-1 gap-6 lg:grid-cols-2" aria-label="Season action panels">
-          <article class="flex h-full flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
-            <div class="mb-5 flex items-start justify-between gap-4">
-              <div>
-                <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand-gold">Current season</p>
-                <h3 class="text-2xl font-black text-brand-purple">Winter 2026</h3>
-              </div>
-              <span class="rounded-full bg-brand-purple px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">Live</span>
-            </div>
-            <p class="mb-6 flex-1 text-sm leading-relaxed text-gray-600">
-              Winter 2026 is underway. Find your team, confirm training details, and follow scores and results from one place.
-            </p>
-            <div class="grid gap-3 sm:grid-cols-3">
-              <a href="/teams" class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-4 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                View Teams
-              </a>
-              <a href="#training" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-4 py-3 text-center text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                Training
-              </a>
-              <a href="/scores" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-4 py-3 text-center text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                Scores & Results
-              </a>
-            </div>
-          </article>
-
-          <article class="flex h-full flex-col rounded-xl border-2 border-brand-gold bg-white p-6 shadow-sm">
-            <div class="mb-5 flex items-start justify-between gap-4">
-              <div>
-                <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand-gold">Next season</p>
-                <h3 class="text-2xl font-black text-brand-purple">Summer 2026/27</h3>
-              </div>
-              <span class="rounded-full bg-brand-gold px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-black">Enquire first</span>
-            </div>
-            <p class="mb-6 flex-1 text-sm leading-relaxed text-gray-600">
-              Summer team places are limited. Please enquire before registering so Phoenix can confirm the right team pathway.
-            </p>
-            <div class="grid gap-3 sm:grid-cols-2">
-              <button
-                type="button"
-                data-registration-enquiry-trigger
-                data-registration-enquiry-modal-id={SUMMER_2026_27_ENQUIRY_MODAL_ID}
-                class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-4 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
-              >
-                Registration Enquiry
-              </button>
-              <a href="#summer-checklist" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-4 py-3 text-center text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                Summer Checklist
-              </a>
-            </div>
-          </article>
-        </div>
-
-        <div id="summer-checklist" class="mt-10 scroll-mt-24">
-          <h3 class="mb-2 text-xl font-black uppercase tracking-wide text-brand-purple">Summer 2026/27 Checklist</h3>
-          <p class="mb-6 max-w-3xl text-sm leading-relaxed text-gray-600">
-            Work through these steps before the season starts. Existing documents still open in their established modal or enlarge behaviour.
-          </p>
-          <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-              <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand-gold">Step 1</p>
-              <h4 class="mb-2 text-lg font-bold text-brand-purple">Registration enquiry</h4>
-              <p class="mb-4 text-sm leading-relaxed text-gray-600">Email Phoenix first so we can confirm team availability before any private registration link is issued.</p>
-              <button
-                type="button"
-                data-registration-enquiry-trigger
-                data-registration-enquiry-modal-id={SUMMER_2026_27_ENQUIRY_MODAL_ID}
-                class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-5 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
-              >
-                Open enquiry popup
-              </button>
-            </article>
-
-            {registrationFeesCard && (
-              <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-                <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand-gold">Step 2</p>
-                <h4 class="mb-2 text-lg font-bold text-brand-purple">Fees</h4>
-                <p class="mb-4 text-sm leading-relaxed text-gray-600">Review the Summer 2026/27 fee schedule.</p>
-                <button
-                  type="button"
-                  data-infographic-zoom-trigger
-                  data-zoom-src={registrationFeesCard.imageSrc}
-                  data-zoom-alt={registrationFeesCard.imageAlt}
-                  class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-5 py-3 text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
-                >
-                  Enlarge fees
-                </button>
-              </article>
-            )}
-
-            <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-              <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand-gold">Step 3</p>
-              <h4 class="mb-2 text-lg font-bold text-brand-purple">Uniforms</h4>
-              <p class="mb-4 text-sm leading-relaxed text-gray-600">Order new gear, check number guidance, ask about the loan program, or browse second-hand options.</p>
-              <div class="grid gap-3 sm:grid-cols-2">
-                <a href={uniformOrderingUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-4 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                  Ordering
-                </a>
-                {uniformNumbersCard && (
-                  <button type="button" data-infographic-zoom-trigger data-zoom-src={uniformNumbersCard.imageSrc} data-zoom-alt={uniformNumbersCard.imageAlt} class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-4 py-3 text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                    Numbers
-                  </button>
-                )}
-                {uniformLoanCard && (
-                  <button type="button" data-infographic-zoom-trigger data-zoom-src={uniformLoanCard.imageSrc} data-zoom-alt={uniformLoanCard.imageAlt} class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-4 py-3 text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                    Loan Program
-                  </button>
-                )}
-                {uniformSecondHandCard?.linkUrl && (
-                  <a href={uniformSecondHandCard.linkUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-4 py-3 text-center text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                    Second-hand
-                  </a>
-                )}
-              </div>
-            </article>
-
-            {clearancePortalCard?.linkUrl && (
-              <article class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
-                <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand-gold">Step 4</p>
-                <h4 class="mb-2 text-lg font-bold text-brand-purple">Clearances</h4>
-                <p class="mb-4 text-sm leading-relaxed text-gray-600">If you are moving from another club, complete the existing Basketball Victoria clearance form.</p>
-                <a href={clearancePortalCard.linkUrl} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-5 py-3 text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                  Submit clearance
-                </a>
-              </article>
-            )}
-
-            <article id="training" class="scroll-mt-24 rounded-xl border border-gray-200 bg-white p-5 shadow-sm lg:col-span-2">
-              <p class="mb-2 text-xs font-bold uppercase tracking-wide text-brand-gold">Step 5</p>
-              <h4 class="mb-2 text-lg font-bold text-brand-purple">Training</h4>
-              <p class="text-sm leading-relaxed text-gray-600">Winter training details are available through the Training information modal. Summer 2026/27 training will be confirmed closer to season start.</p>
-              {getInfoCard('training') && (
-                <button type="button" data-modal-id="training" class="mt-4 inline-flex min-h-[44px] items-center justify-center rounded-lg border border-brand-purple px-5 py-3 text-sm font-bold text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
-                  View training information
-                </button>
-              )}
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-  )}
 
   {seasonInfoCards.map((card) => (
     <SeasonInfoModal card={card} venues={card.id === 'training' ? VENUES : []} />
@@ -303,16 +142,69 @@ const uniformOrderingUrl = 'https://www.stepinsports.com.au/product-category/pho
     </div>
   </div>
 
-  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+  <section aria-labelledby="season-info-heading" class="bg-brand-offwhite px-4 py-12 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2" id="seasons-grid">
-        {SEASON_CARDS.map((season) => <SeasonTile season={season} />)}
-      </div>
-    </div>
-  </section>
+      <h2 id="season-info-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">
+        Season Information
+      </h2>
+      <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
 
-  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
+      <div class="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <article class="rounded-xl border-2 border-brand-purple/40 bg-white p-6 shadow-sm">
+          <p class="mb-2 text-sm font-bold uppercase tracking-wide text-brand-gold">Current season</p>
+          <h3 class="mb-3 text-2xl font-black text-brand-purple">Winter 2026</h3>
+          <p class="mb-5 text-sm leading-relaxed text-gray-600">
+            Teams, training, and results links for the live Winter season.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href="/teams" class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-5 py-3 text-sm font-bold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">View Teams</a>
+            <a href="#training" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-5 py-3 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Training</a>
+            <a href="/scores" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-gold px-5 py-3 text-sm font-bold text-brand-black hover:bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Scores</a>
+          </div>
+        </article>
+
+        <article class="rounded-xl border-2 border-brand-gold bg-white p-6 shadow-sm">
+          <p class="mb-2 text-sm font-bold uppercase tracking-wide text-brand-gold">Next season</p>
+          <h3 class="mb-3 text-2xl font-black text-brand-purple">Summer 2026/27</h3>
+          <p class="mb-5 text-sm leading-relaxed text-gray-600">
+            Places are limited. Please enquire first so the club can confirm the right team pathway before registration.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <button
+              type="button"
+              data-registration-enquiry-trigger
+              data-registration-enquiry-modal-id={SUMMER_2026_27_ENQUIRY_MODAL_ID}
+              class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-5 py-3 text-sm font-bold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+            >
+              Enquire About Registration
+            </button>
+            <a href="#summer-checklist" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-gold px-5 py-3 text-sm font-bold text-brand-black hover:bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Summer Checklist</a>
+          </div>
+        </article>
+      </div>
+
+      <div id="summer-checklist" class="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h3 class="mb-4 text-xl font-black text-brand-purple">Summer 2026/27 Checklist</h3>
+        <ol class="grid gap-4 md:grid-cols-2">
+          <li class="rounded-lg bg-brand-offwhite/70 p-4"><strong class="text-brand-black">1. Enquire first</strong><p class="mt-1 text-sm text-gray-600">Use the enquiry popup before registering so team availability can be confirmed.</p></li>
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">2. Check uniforms</strong>
+            <p class="mt-1 text-sm text-gray-600">Review ordering, numbers, loan program, and second-hand options in the uniform information.</p>
+            <button type="button" data-modal-id="uniforms" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Uniform Information</button>
+          </li>
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">3. Complete clearances</strong>
+            <p class="mt-1 text-sm text-gray-600">Submit any required clearance before the season begins.</p>
+            <button type="button" data-modal-id="clearances" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Clearance Information</button>
+          </li>
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">4. Confirm costs</strong>
+            <p class="mt-1 text-sm text-gray-600">Review registration fees and contact the club if you need confidential support.</p>
+            <button type="button" data-modal-id="registration" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Registration Fees</button>
+          </li>
+        </ol>
+      </div>
+
       <div class="flex items-start gap-4 rounded-xl border-2 border-brand-gold bg-yellow-50 p-5">
         <span class="text-3xl">🤝</span>
         <div>
@@ -322,6 +214,61 @@ const uniformOrderingUrl = 'https://www.stepinsports.com.au/product-category/pho
             Contact us confidentially at <a href={mailto(clubProfile.contact.generalEmail)} class="font-semibold text-brand-purple hover:text-brand-gold">{clubProfile.contact.generalEmail}</a>.
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="training" aria-labelledby="training-heading" class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <h2 id="training-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">Training</h2>
+      <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
+
+      <div class="mb-8 rounded-xl border-2 border-brand-purple/30 bg-brand-offwhite p-6">
+        <h3 class="mb-2 text-xl font-black text-brand-purple">Winter 2026 Training Details</h3>
+        <p class="text-sm leading-relaxed text-gray-600">Confirmed Winter 2026 training sessions are listed below. Please check your team communications for any week-to-week updates.</p>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {VENUES.map((venue) => (
+          <article class="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+            <h3 class="mb-1 text-lg font-bold text-brand-black">{venue.name}</h3>
+            <p class="mb-4 text-sm text-gray-600">{venue.address}</p>
+            <div class="space-y-4">
+              {venue.trainingSchedule.map((session) => (
+                <div>
+                  <h4 class="mb-2 text-sm font-bold uppercase tracking-wide text-brand-purple">{session.day}</h4>
+                  <ul class="space-y-2">
+                    {session.timeSlots.map((slot) => (
+                      <li class="rounded-lg bg-brand-offwhite/80 p-3 text-sm text-gray-700">
+                        <strong class="text-brand-black">{slot.time}</strong> — {slot.ageGroups.join(', ')}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            {venue.mapUrl && (
+              <a href={venue.mapUrl} target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-5 py-3 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
+                Open {venue.shortCode} map
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-8 rounded-xl border border-gray-200 bg-brand-offwhite p-6">
+        <h3 class="mb-2 text-lg font-bold text-brand-black">Summer 2026/27 Training</h3>
+        <p class="text-sm leading-relaxed text-gray-600">Summer 2026/27 training details are TBC and will be confirmed closer to the season.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="season-history-heading" class="bg-brand-offwhite px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <h2 id="season-history-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">Season History & Links</h2>
+      <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2" id="seasons-grid">
+        {SEASON_CARDS.map((season) => <SeasonTile season={season} />)}
       </div>
     </div>
   </section>

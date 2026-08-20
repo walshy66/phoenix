@@ -11,7 +11,7 @@ describe('seasons integration data', () => {
     ])
   })
 
-  test('winter route is internal, upcoming summer opens enquiry, and previous summer is external', () => {
+  test('winter route is internal, next summer opens enquiry, and completed summer route is external', () => {
     expect(SEASON_CARDS[0].navigationTarget).toBe('/teams')
     expect(SEASON_CARDS[0].navigationExternal).toBe(false)
 

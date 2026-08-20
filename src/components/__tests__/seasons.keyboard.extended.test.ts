@@ -8,7 +8,7 @@ describe('seasons keyboard aria labels', () => {
     expect(getSeasonAriaLabel(SEASON_CARDS[0])).toContain('view Teams page')
   })
 
-  test('archive label communicates not available', () => {
+  test('disabled labels communicate not available', () => {
     expect(getSeasonAriaLabel(SEASON_CARDS[3])).toContain('Coming Soon')
     expect(getSeasonAriaLabel(SEASON_CARDS[3])).toContain('not yet available')
   })
