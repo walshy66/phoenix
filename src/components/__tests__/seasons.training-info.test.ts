@@ -23,13 +23,27 @@ describe('season information section', () => {
     expect(VENUES.map((v) => v.shortCode)).toEqual(['BSE', 'VCC'])
   })
 
-  test('renders Season Information heading before seasons grid', () => {
+  test('renders Season Information and Training in the approved order', () => {
     const seasonInfoIdx = pageSource.indexOf('season-info-heading')
-    const seasonsIdx = pageSource.indexOf('id="seasons-grid"')
+    const checklistIdx = pageSource.indexOf('id="summer-checklist"')
+    const bridgingIdx = pageSource.indexOf('Need Financial Assistance?')
+    const trainingIdx = pageSource.indexOf('id="training"')
 
     expect(seasonInfoIdx).toBeGreaterThan(-1)
-    expect(seasonsIdx).toBeGreaterThan(-1)
-    expect(seasonInfoIdx).toBeLessThan(seasonsIdx)
+    expect(bridgingIdx).toBeGreaterThan(seasonInfoIdx)
+    expect(checklistIdx).toBeGreaterThan(bridgingIdx)
+    expect(trainingIdx).toBeGreaterThan(checklistIdx)
+    expect(pageSource).not.toContain('id="seasons-grid"')
+  })
+
+  test('training section includes Winter 2026 details, Summer TBC note, and venue map links', () => {
+    expect(pageSource).toContain('Winter 2026 Training Details')
+    expect(pageSource).toContain('Summer 2026/27 training details are TBC')
+    VENUES.forEach((venue) => {
+      expect(venue.mapUrl).not.toBeNull()
+    })
+    expect(pageSource).toContain('VENUES.map')
+    expect(pageSource).toContain('venue.mapUrl')
   })
 
   test('modal markup includes dialog semantics and safe external links', () => {

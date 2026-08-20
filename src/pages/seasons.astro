@@ -1,9 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import SeasonTile from '../components/SeasonTile.astro'
-import SeasonInfoCard from '../components/SeasonInfoCard.astro'
 import SeasonInfoModal from '../components/SeasonInfoModal.astro'
-import { SEASON_CARDS, SUMMER_2026_27_ENQUIRY_MODAL_ID } from '../lib/seasons/constants'
+import { SUMMER_2026_27_ENQUIRY_MODAL_ID } from '../lib/seasons/constants'
 import { VENUES } from '../data/venues'
 import { SEASON_INFO_CARDS } from '../data/season-info'
 import { clubProfile, mailto } from '../config/club-profile'
@@ -41,6 +39,16 @@ const continuingAndNewTeams = [
   'Phoenix Splash',
 ]
 const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
+const registrationCard = seasonInfoCards.find((card) => card.id === 'registration')
+const registrationFeesCard = registrationCard?.subCards.find((subCard) => subCard.id === 'registration-fees')
+const uniformsCard = seasonInfoCards.find((card) => card.id === 'uniforms')
+const clearanceCard = seasonInfoCards.find((card) => card.id === 'clearances')?.subCards[0]
+const uniformChecklistItems = [
+  { label: 'Ordering', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-how-to') },
+  { label: 'Numbers', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-numbers') },
+  { label: 'Loan Program', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-loan') },
+  { label: 'Second-hand', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-2nd-hand') },
+].filter((item): item is { label: string; card: NonNullable<typeof item.card> } => Boolean(item.card))
 ---
 
 <BaseLayout title="Seasons" description={`${clubProfile.shortName} Basketball season draw, costs, registration and grading information.`}>
@@ -50,36 +58,13 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
       <div class="absolute -bottom-16 -left-16 h-48 w-48 rounded-full" style="background: #8B7536;"></div>
     </div>
     <div class="relative z-10 mx-auto max-w-3xl">
-      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-brand-gold">{clubProfile.shortName}</p>
       <h1 class="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">SEASONS</h1>
       <div class="mx-auto mt-4 h-1 w-16 bg-brand-gold"></div>
       <p class="mx-auto mt-4 max-w-xl text-base text-purple-200">
-        Find out everything you need to know about the current season — draw, registration, costs and grading.
+        Your hub for the current and upcoming seasons.
       </p>
     </div>
   </section>
-
-  {seasonInfoCards.length > 0 && (
-    <section aria-labelledby="season-info-heading" class="bg-brand-offwhite px-4 py-12 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-7xl">
-        <h2 id="season-info-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">
-          Season Information
-        </h2>
-        <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {seasonInfoCards.map((card) => (
-            <SeasonInfoCard
-              id={card.id}
-              label={card.label}
-              icon={card.icon}
-              description={card.description}
-              ariaLabel={`${card.label} — view ${card.label.toLowerCase()} information`}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
 
   {seasonInfoCards.map((card) => (
     <SeasonInfoModal card={card} venues={card.id === 'training' ? VENUES : []} />
@@ -165,17 +150,42 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
     </div>
   </div>
 
-  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+  <section aria-labelledby="season-info-heading" class="bg-brand-offwhite px-4 py-12 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2" id="seasons-grid">
-        {SEASON_CARDS.map((season) => <SeasonTile season={season} />)}
-      </div>
-    </div>
-  </section>
+      <div class="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <article class="rounded-xl border-2 border-brand-purple/40 bg-white p-6 shadow-sm">
+          <p class="mb-2 text-sm font-bold uppercase tracking-wide text-brand-gold">Current season</p>
+          <h3 class="mb-3 text-2xl font-black text-brand-purple">Winter 2026</h3>
+          <p class="mb-5 text-sm leading-relaxed text-gray-600">
+            Teams, training, and results links for the live Winter season.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href="/teams" class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-5 py-3 text-sm font-bold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">View Teams</a>
+            <a href="#training" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-5 py-3 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Training</a>
+            <a href="/scores" class="inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-gold px-5 py-3 text-sm font-bold text-brand-black hover:bg-yellow-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Scores</a>
+          </div>
+        </article>
 
-  <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <div class="flex items-start gap-4 rounded-xl border-2 border-brand-gold bg-yellow-50 p-5">
+        <article class="rounded-xl border-2 border-brand-gold bg-white p-6 shadow-sm">
+          <p class="mb-2 text-sm font-bold uppercase tracking-wide text-brand-gold">Next season</p>
+          <h3 class="mb-3 text-2xl font-black text-brand-purple">Summer 2026/27</h3>
+          <p class="mb-5 text-sm leading-relaxed text-gray-600">
+            Please enquire first so the club can confirm the right team pathway before registration.
+          </p>
+          <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <button
+              type="button"
+              data-registration-enquiry-trigger
+              data-registration-enquiry-modal-id={SUMMER_2026_27_ENQUIRY_MODAL_ID}
+              class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-5 py-3 text-sm font-bold text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+            >
+              Enquire About Registration
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="mb-8 flex items-start gap-4 rounded-xl border-2 border-brand-gold bg-yellow-50 p-5">
         <span class="text-3xl">🤝</span>
         <div>
           <h3 class="mb-1 text-base font-bold text-brand-black">Need Financial Assistance?</h3>
@@ -184,6 +194,114 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
             Contact us confidentially at <a href={mailto(clubProfile.contact.generalEmail)} class="font-semibold text-brand-purple hover:text-brand-gold">{clubProfile.contact.generalEmail}</a>.
           </p>
         </div>
+      </div>
+
+      <div id="summer-checklist" class="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+        <h3 class="mb-4 text-xl font-black text-brand-purple">Summer 2026/27 Checklist</h3>
+        <ol class="grid gap-4 md:grid-cols-2">
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">1. Fees</strong>
+            <p class="mt-1 text-sm text-gray-600">Review registration fees and contact the club if you need confidential support.</p>
+            {registrationFeesCard && (
+              <button
+                type="button"
+                data-infographic-zoom-trigger
+                data-zoom-src={registrationFeesCard.imageSrc}
+                data-zoom-alt={registrationFeesCard.imageAlt}
+                class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+              >
+                Registration Fees
+              </button>
+            )}
+          </li>
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">2. Uniforms</strong>
+            <p class="mt-1 text-sm text-gray-600">Tap a uniform option to open the full information image.</p>
+            <div class="mt-3 flex flex-wrap gap-2 text-xs font-bold text-brand-purple">
+              {uniformChecklistItems.map(({ label, card }) => (
+                <button
+                  type="button"
+                  data-infographic-zoom-trigger
+                  data-zoom-src={card.imageSrc}
+                  data-zoom-alt={card.imageAlt}
+                  data-zoom-link-url={card.linkUrl ?? ''}
+                  data-zoom-link-label={card.linkLabel ?? `Open ${card.title} in a new tab`}
+                  class="inline-flex min-h-[40px] items-center rounded-full border-2 border-brand-purple bg-white px-4 py-2 text-brand-purple shadow-sm transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </li>
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">3. Clearances</strong>
+            <p class="mt-1 text-sm text-gray-600">Submit any required clearance before the season begins.</p>
+            {clearanceCard && (
+              <button
+                type="button"
+                data-infographic-zoom-trigger
+                data-zoom-src={clearanceCard.imageSrc}
+                data-zoom-alt={clearanceCard.imageAlt}
+                data-zoom-link-url={clearanceCard.linkUrl ?? ''}
+                data-zoom-link-label={clearanceCard.linkLabel ?? `Open ${clearanceCard.title} in a new tab`}
+                class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+              >
+                Clearance Information
+              </button>
+            )}
+          </li>
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">4. Training</strong>
+            <p class="mt-1 text-sm text-gray-600">Check the confirmed Winter details and watch for Summer 2026/27 training updates.</p>
+            <a href="#training" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Training Details</a>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="training" aria-labelledby="training-heading" class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <h2 id="training-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">Training</h2>
+      <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
+
+      <div class="grid gap-6 lg:grid-cols-2">
+        <article class="rounded-xl border-2 border-brand-purple/30 bg-brand-offwhite p-6">
+          <h3 class="mb-5 text-xl font-black text-brand-purple">Winter 2026 Training Details</h3>
+          <div class="grid gap-4">
+            {VENUES.map((venue) => (
+              <div class="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+                <h4 class="mb-1 text-lg font-bold text-brand-black">{venue.name}</h4>
+                <p class="mb-4 text-sm text-gray-600">{venue.address}</p>
+                <div class="space-y-4">
+                  {venue.trainingSchedule.map((session) => (
+                    <div>
+                      <h5 class="mb-2 text-base font-black uppercase tracking-wide text-brand-purple">{session.day}</h5>
+                      <ul class="space-y-2">
+                        {session.timeSlots.map((slot) => (
+                          <li class="rounded-lg bg-brand-offwhite/80 p-3 text-sm text-gray-700">
+                            <strong class="text-brand-black">{slot.time}</strong> — {slot.ageGroups.join(', ')}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                {venue.mapUrl && (
+                  <a href={venue.mapUrl} target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-5 py-3 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">
+                    Open {venue.shortCode} map
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </article>
+
+        <article class="rounded-xl border border-gray-200 bg-brand-offwhite p-6">
+          <h3 class="mb-2 text-xl font-black text-brand-purple">Summer 2026/27 Training</h3>
+          <p class="text-sm leading-relaxed text-gray-600">Summer 2026/27 training details are TBC and will be confirmed closer to the season.</p>
+        </article>
       </div>
     </div>
   </section>
@@ -250,7 +368,9 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <img id="infographic-zoom-image" src="" alt="" class="h-auto max-h-[88vh] w-auto max-w-[92vw] object-contain" />
+        <a id="infographic-zoom-image-link" rel="noopener noreferrer" class="block cursor-default">
+          <img id="infographic-zoom-image" src="" alt="" class="h-auto max-h-[88vh] w-auto max-w-[92vw] object-contain" />
+        </a>
       </div>
     </div>
   </div>
@@ -263,6 +383,7 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
       let zoomTriggerEl: HTMLElement | null = null;
 
       const zoomOverlayEl = document.getElementById('infographic-zoom-overlay');
+      const zoomImageLinkEl = document.getElementById('infographic-zoom-image-link') as HTMLAnchorElement | null;
       const zoomImageEl = document.getElementById('infographic-zoom-image') as HTMLImageElement | null;
 
       function getModal(id: string): HTMLElement | null {
@@ -278,11 +399,26 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
         return zoomOverlayEl?.getAttribute('data-open') === 'true';
       }
 
-      function openZoom(src: string, alt: string, trigger: HTMLElement) {
+      function openZoom(src: string, alt: string, trigger: HTMLElement, linkUrl?: string, linkLabel?: string) {
         if (!zoomOverlayEl || !zoomImageEl) return;
         zoomTriggerEl = trigger;
         zoomImageEl.src = src;
         zoomImageEl.alt = alt || 'Expanded infographic';
+        if (zoomImageLinkEl) {
+          if (linkUrl) {
+            zoomImageLinkEl.href = linkUrl;
+            zoomImageLinkEl.target = '_blank';
+            zoomImageLinkEl.setAttribute('aria-label', linkLabel || 'Open related link in a new tab');
+            zoomImageLinkEl.classList.remove('cursor-default');
+            zoomImageLinkEl.classList.add('cursor-pointer', 'transition-opacity', 'hover:opacity-95');
+          } else {
+            zoomImageLinkEl.removeAttribute('href');
+            zoomImageLinkEl.removeAttribute('target');
+            zoomImageLinkEl.removeAttribute('aria-label');
+            zoomImageLinkEl.classList.add('cursor-default');
+            zoomImageLinkEl.classList.remove('cursor-pointer', 'transition-opacity', 'hover:opacity-95');
+          }
+        }
         zoomOverlayEl.classList.remove('hidden');
         zoomOverlayEl.setAttribute('data-open', 'true');
         const closeBtn = zoomOverlayEl.querySelector<HTMLElement>('[data-infographic-zoom-close]');
@@ -295,6 +431,13 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
         zoomOverlayEl.setAttribute('data-open', 'false');
         zoomImageEl.src = '';
         zoomImageEl.alt = '';
+        if (zoomImageLinkEl) {
+          zoomImageLinkEl.removeAttribute('href');
+          zoomImageLinkEl.removeAttribute('target');
+          zoomImageLinkEl.removeAttribute('aria-label');
+          zoomImageLinkEl.classList.add('cursor-default');
+          zoomImageLinkEl.classList.remove('cursor-pointer', 'transition-opacity', 'hover:opacity-95');
+        }
         if (restoreFocus && zoomTriggerEl) zoomTriggerEl.focus();
         zoomTriggerEl = null;
       }
@@ -371,7 +514,9 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
         trigger.addEventListener('click', () => {
           const src = trigger.dataset.zoomSrc;
           const alt = trigger.dataset.zoomAlt || 'Expanded infographic';
-          if (src) openZoom(src, alt, trigger);
+          const linkUrl = trigger.dataset.zoomLinkUrl || undefined;
+          const linkLabel = trigger.dataset.zoomLinkLabel || undefined;
+          if (src) openZoom(src, alt, trigger, linkUrl, linkLabel);
         });
       });
 
