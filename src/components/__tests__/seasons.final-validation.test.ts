@@ -12,9 +12,9 @@ describe('seasons final validation', () => {
     expect(pageSource).toContain('mailto(clubProfile.contact.generalEmail)')
   })
 
-  test('adds lower Season History & Links strip', () => {
-    expect(pageSource).toContain('Season History & Links')
-    expect(pageSource).toContain('id="seasons-grid"')
+  test('removes lower Season History & Links strip from the redesigned page', () => {
+    expect(pageSource).not.toContain('Season History & Links')
+    expect(pageSource).not.toContain('id="seasons-grid"')
   })
 
   test('uses BaseLayout wrapper', () => {

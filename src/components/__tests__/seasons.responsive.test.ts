@@ -10,11 +10,6 @@ describe('seasons responsive classes', () => {
     expect(pageSource).toContain('grid grid-cols-1 gap-6 lg:grid-cols-2')
   })
 
-  test('existing seasons grid remains 1/2 layout', () => {
-    expect(pageSource).toContain('id="seasons-grid"')
-    expect(pageSource).toContain('grid grid-cols-1 gap-6 sm:grid-cols-2')
-  })
-
   test('training, uniforms and registration modal grids collapse to one column on mobile', () => {
     expect(modalSource).toContain('grid grid-cols-1 gap-6 justify-items-center sm:grid-cols-2')
   })

@@ -1,8 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import SeasonTile from '../components/SeasonTile.astro'
 import SeasonInfoModal from '../components/SeasonInfoModal.astro'
-import { SEASON_CARDS, SUMMER_2026_27_ENQUIRY_MODAL_ID } from '../lib/seasons/constants'
+import { SUMMER_2026_27_ENQUIRY_MODAL_ID } from '../lib/seasons/constants'
 import { VENUES } from '../data/venues'
 import { SEASON_INFO_CARDS } from '../data/season-info'
 import { clubProfile, mailto } from '../config/club-profile'
@@ -309,16 +308,6 @@ const uniformChecklistItems = [
       <div class="mt-8 rounded-xl border border-gray-200 bg-brand-offwhite p-6">
         <h3 class="mb-2 text-lg font-bold text-brand-black">Summer 2026/27 Training</h3>
         <p class="text-sm leading-relaxed text-gray-600">Summer 2026/27 training details are TBC and will be confirmed closer to the season.</p>
-      </div>
-    </div>
-  </section>
-
-  <section aria-labelledby="season-history-heading" class="bg-brand-offwhite px-4 py-16 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <h2 id="season-history-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">Season History & Links</h2>
-      <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
-      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2" id="seasons-grid">
-        {SEASON_CARDS.map((season) => <SeasonTile season={season} />)}
       </div>
     </div>
   </section>

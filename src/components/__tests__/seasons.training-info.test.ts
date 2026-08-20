@@ -23,18 +23,17 @@ describe('season information section', () => {
     expect(VENUES.map((v) => v.shortCode)).toEqual(['BSE', 'VCC'])
   })
 
-  test('renders Season Information, Training, and Season History in the approved order', () => {
+  test('renders Season Information and Training in the approved order', () => {
     const seasonInfoIdx = pageSource.indexOf('season-info-heading')
     const checklistIdx = pageSource.indexOf('id="summer-checklist"')
     const bridgingIdx = pageSource.indexOf('Need Financial Assistance?')
     const trainingIdx = pageSource.indexOf('id="training"')
-    const seasonsIdx = pageSource.indexOf('id="seasons-grid"')
 
     expect(seasonInfoIdx).toBeGreaterThan(-1)
     expect(checklistIdx).toBeGreaterThan(seasonInfoIdx)
     expect(bridgingIdx).toBeGreaterThan(checklistIdx)
     expect(trainingIdx).toBeGreaterThan(bridgingIdx)
-    expect(seasonsIdx).toBeGreaterThan(trainingIdx)
+    expect(pageSource).not.toContain('id="seasons-grid"')
   })
 
   test('training section includes Winter 2026 details, Summer TBC note, and venue map links', () => {
