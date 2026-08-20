@@ -23,11 +23,13 @@ describe('season information section', () => {
     expect(VENUES.map((v) => v.shortCode)).toEqual(['BSE', 'VCC'])
   })
 
-  test('renders Season Information heading before seasons grid', () => {
+  test('renders redesigned Season Information panels and checklist before seasons grid', () => {
     const seasonInfoIdx = pageSource.indexOf('season-info-heading')
+    const checklistIdx = pageSource.indexOf('id="summer-checklist"')
     const seasonsIdx = pageSource.indexOf('id="seasons-grid"')
 
     expect(seasonInfoIdx).toBeGreaterThan(-1)
+    expect(checklistIdx).toBeGreaterThan(seasonInfoIdx)
     expect(seasonsIdx).toBeGreaterThan(-1)
     expect(seasonInfoIdx).toBeLessThan(seasonsIdx)
   })

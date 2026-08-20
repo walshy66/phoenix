@@ -6,14 +6,14 @@ describe('SEASON_CARDS', () => {
     expect(SEASON_CARDS).toHaveLength(4)
     expect(SEASON_CARDS.map((s) => s.id)).toEqual([
       'winter-2026',
-      'summer-2025-26',
       'summer-2026-27',
+      'summer-2025-26',
       'archive',
     ])
   })
 
-  test('has clickable state true,true,false,false', () => {
-    expect(SEASON_CARDS.map((s) => s.clickable)).toEqual([true, true, false, false])
+  test('has clickable state true,true,true,false', () => {
+    expect(SEASON_CARDS.map((s) => s.clickable)).toEqual([true, true, true, false])
   })
 
   test('has navigationExternal true only for Summer 2025/26', () => {
