@@ -91,15 +91,12 @@ const sponsorTiers = [
     <div class="max-w-7xl mx-auto">
       {upcomingEvents.length > 0 ? (
         <>
-          <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Upcoming Events</h2>
-          <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
           <div class="relative">
             <!-- Carousel Container -->
             <div class="overflow-hidden">
-              <div class="carousel-upcoming transition-transform duration-300 ease-in-out flex gap-6" style={`transform: translateX(0)`}>
+              <div class:list={['carousel-upcoming transition-transform duration-300 ease-in-out flex gap-6', upcomingEvents.length === 1 ? 'justify-center' : '']} style={`transform: translateX(0)`}>
                 {upcomingEvents.map(event => (
-                  <div class="flex-shrink-0 w-1/4">
+                  <div class={upcomingEvents.length === 1 ? 'flex-shrink-0 w-full max-w-4xl' : 'flex-shrink-0 w-1/4'}>
                     <EventTile
                       id={event.id}
                       title={event.title}
@@ -110,6 +107,7 @@ const sponsorTiers = [
                       image={event.image}
                       alt={event.alt || undefined}
                       category={event.category}
+                      featured={upcomingEvents.length === 1}
                     />
                   </div>
                 ))}
@@ -281,11 +279,11 @@ const sponsorTiers = [
         </a>
       </div>
 
-      <div class="mx-auto mt-8 grid max-w-5xl gap-6 md:grid-cols-2">
+      <div class="relative left-1/2 mt-8 grid w-[90vw] -translate-x-1/2 grid-cols-1 gap-6 lg:grid-cols-2">
         <div class="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
           <img
             src="/uploads/volunteers_needed.png"
-            alt="Volunteers wanted campaign information"
+            alt="Heroes needed volunteer recruitment poster asking parents, siblings, players over 16, family and friends to help as coaches, team managers and committee members"
             loading="lazy"
             width="1400"
             height="780"
