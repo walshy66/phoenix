@@ -220,6 +220,8 @@ const uniformChecklistItems = [
                   data-infographic-zoom-trigger
                   data-zoom-src={card.imageSrc}
                   data-zoom-alt={card.imageAlt}
+                  data-zoom-link-url={card.linkUrl ?? ''}
+                  data-zoom-link-label={card.linkLabel ?? `Open ${card.title} in a new tab`}
                   class="inline-flex min-h-[40px] items-center rounded-full border-2 border-brand-purple bg-white px-4 py-2 text-brand-purple shadow-sm transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
                 >
                   {label}
@@ -371,6 +373,17 @@ const uniformChecklistItems = [
           </svg>
         </button>
         <img id="infographic-zoom-image" src="" alt="" class="h-auto max-h-[88vh] w-auto max-w-[92vw] object-contain" />
+        <div id="infographic-zoom-link-wrap" class="hidden border-t border-gray-100 bg-white p-4 text-center">
+          <a
+            id="infographic-zoom-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+          >
+            Open link
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -384,6 +397,8 @@ const uniformChecklistItems = [
 
       const zoomOverlayEl = document.getElementById('infographic-zoom-overlay');
       const zoomImageEl = document.getElementById('infographic-zoom-image') as HTMLImageElement | null;
+      const zoomLinkWrapEl = document.getElementById('infographic-zoom-link-wrap');
+      const zoomLinkEl = document.getElementById('infographic-zoom-link') as HTMLAnchorElement | null;
 
       function getModal(id: string): HTMLElement | null {
         return document.getElementById(`season-info-modal-${id}`);
@@ -398,11 +413,24 @@ const uniformChecklistItems = [
         return zoomOverlayEl?.getAttribute('data-open') === 'true';
       }
 
-      function openZoom(src: string, alt: string, trigger: HTMLElement) {
+      function openZoom(src: string, alt: string, trigger: HTMLElement, linkUrl?: string, linkLabel?: string) {
         if (!zoomOverlayEl || !zoomImageEl) return;
         zoomTriggerEl = trigger;
         zoomImageEl.src = src;
         zoomImageEl.alt = alt || 'Expanded infographic';
+        if (zoomLinkWrapEl && zoomLinkEl) {
+          if (linkUrl) {
+            zoomLinkEl.href = linkUrl;
+            zoomLinkEl.textContent = linkLabel || 'Open related link';
+            zoomLinkEl.setAttribute('aria-label', linkLabel || 'Open related link in a new tab');
+            zoomLinkWrapEl.classList.remove('hidden');
+          } else {
+            zoomLinkWrapEl.classList.add('hidden');
+            zoomLinkEl.href = '#';
+            zoomLinkEl.textContent = 'Open link';
+            zoomLinkEl.removeAttribute('aria-label');
+          }
+        }
         zoomOverlayEl.classList.remove('hidden');
         zoomOverlayEl.setAttribute('data-open', 'true');
         const closeBtn = zoomOverlayEl.querySelector<HTMLElement>('[data-infographic-zoom-close]');
@@ -415,6 +443,12 @@ const uniformChecklistItems = [
         zoomOverlayEl.setAttribute('data-open', 'false');
         zoomImageEl.src = '';
         zoomImageEl.alt = '';
+        if (zoomLinkWrapEl && zoomLinkEl) {
+          zoomLinkWrapEl.classList.add('hidden');
+          zoomLinkEl.href = '#';
+          zoomLinkEl.textContent = 'Open link';
+          zoomLinkEl.removeAttribute('aria-label');
+        }
         if (restoreFocus && zoomTriggerEl) zoomTriggerEl.focus();
         zoomTriggerEl = null;
       }
@@ -491,7 +525,9 @@ const uniformChecklistItems = [
         trigger.addEventListener('click', () => {
           const src = trigger.dataset.zoomSrc;
           const alt = trigger.dataset.zoomAlt || 'Expanded infographic';
-          if (src) openZoom(src, alt, trigger);
+          const linkUrl = trigger.dataset.zoomLinkUrl || undefined;
+          const linkLabel = trigger.dataset.zoomLinkLabel || undefined;
+          if (src) openZoom(src, alt, trigger, linkUrl, linkLabel);
         });
       });
 
