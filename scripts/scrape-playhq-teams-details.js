@@ -69,15 +69,23 @@ function normalizePlayerStats(summary) {
   return players.length ? { players } : null;
 }
 
+function firstDefined(...values) {
+  return values.find((value) => value !== null && value !== undefined && value !== '');
+}
+
 function normalizeLadderRow(row, rank) {
   return {
     rank: row.ranking != null ? Number(row.ranking) + 1 : rank,
     team: row.team?.name ?? row.teamName ?? row.name ?? '—',
-    played: row.played ?? 0,
-    won: row.won ?? 0,
-    lost: row.lost ?? 0,
-    drawn: row.drawn ?? 0,
-    points: row.points ?? row.competitionPoints ?? 0,
+    played: firstDefined(row.played, row.gamesPlayed, 0),
+    won: firstDefined(row.won, row.wins, 0),
+    lost: firstDefined(row.lost, row.losses, 0),
+    drawn: firstDefined(row.drawn, row.draws, 0),
+    byes: firstDefined(row.byes, row.bye, row.bonus, row.bonusPoints, 0),
+    pointsFor: firstDefined(row.pointsFor, row.for, row.scoredFor, row.scoreFor),
+    pointsAgainst: firstDefined(row.pointsAgainst, row.against, row.scoredAgainst, row.scoreAgainst),
+    percentage: firstDefined(row.percentage, row.percent, row.pointsAverage),
+    points: firstDefined(row.points, row.competitionPoints, 0),
   };
 }
 
