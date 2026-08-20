@@ -21,7 +21,6 @@ describe('seasons phase b preserved links and actions', () => {
 
   test('summer checklist renders required steps in mobile stacking order', () => {
     const expectedOrder = [
-      'Registration enquiry',
       'Fees',
       'Uniforms',
       'Clearances',
@@ -37,11 +36,13 @@ describe('seasons phase b preserved links and actions', () => {
     }
   })
 
-  test('uniforms checklist exposes four mini-actions and preserves real links', () => {
+  test('uniforms checklist exposes four clickable mini-actions and preserves real links', () => {
     expect(pageSource).toContain('Ordering')
     expect(pageSource).toContain('Numbers')
     expect(pageSource).toContain('Loan Program')
     expect(pageSource).toContain('Second-hand')
+    expect(pageSource).not.toContain('Uniform Information</button>')
+    expect(pageSource).toContain('data-zoom-src={card.imageSrc}')
     expect(modalSource).toContain('https://www.stepinsports.com.au/product-category/phoenix-basketball/')
     expect(dataSource).toContain('https://www.facebook.com/share/p/18Nvdb7fjm/')
   })

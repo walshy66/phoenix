@@ -40,6 +40,15 @@ const continuingAndNewTeams = [
   'Phoenix Splash',
 ]
 const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
+const registrationCard = seasonInfoCards.find((card) => card.id === 'registration')
+const registrationFeesCard = registrationCard?.subCards.find((subCard) => subCard.id === 'registration-fees')
+const uniformsCard = seasonInfoCards.find((card) => card.id === 'uniforms')
+const uniformChecklistItems = [
+  { label: 'Ordering', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-how-to') },
+  { label: 'Numbers', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-numbers') },
+  { label: 'Loan Program', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-loan') },
+  { label: 'Second-hand', card: uniformsCard?.subCards.find((subCard) => subCard.id === 'uniform-2nd-hand') },
+].filter((item): item is { label: string; card: NonNullable<typeof item.card> } => Boolean(item.card))
 ---
 
 <BaseLayout title="Seasons" description={`${clubProfile.shortName} Basketball season draw, costs, registration and grading information.`}>
@@ -186,30 +195,45 @@ const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
       <div id="summer-checklist" class="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <h3 class="mb-4 text-xl font-black text-brand-purple">Summer 2026/27 Checklist</h3>
         <ol class="grid gap-4 md:grid-cols-2">
-          <li class="rounded-lg bg-brand-offwhite/70 p-4"><strong class="text-brand-black">1. Registration enquiry</strong><p class="mt-1 text-sm text-gray-600">Use the enquiry popup before registering so team availability can be confirmed.</p></li>
           <li class="rounded-lg bg-brand-offwhite/70 p-4">
-            <strong class="text-brand-black">2. Fees</strong>
+            <strong class="text-brand-black">1. Fees</strong>
             <p class="mt-1 text-sm text-gray-600">Review registration fees and contact the club if you need confidential support.</p>
-            <button type="button" data-modal-id="registration" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Registration Fees</button>
+            {registrationFeesCard && (
+              <button
+                type="button"
+                data-infographic-zoom-trigger
+                data-zoom-src={registrationFeesCard.imageSrc}
+                data-zoom-alt={registrationFeesCard.imageAlt}
+                class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+              >
+                Registration Fees
+              </button>
+            )}
           </li>
           <li class="rounded-lg bg-brand-offwhite/70 p-4">
-            <strong class="text-brand-black">3. Uniforms</strong>
-            <p class="mt-1 text-sm text-gray-600">Check each uniform action before ordering.</p>
+            <strong class="text-brand-black">2. Uniforms</strong>
+            <p class="mt-1 text-sm text-gray-600">Tap a uniform option to open the full information image.</p>
             <div class="mt-3 flex flex-wrap gap-2 text-xs font-bold text-brand-purple">
-              <span class="rounded-full bg-white px-3 py-2">Ordering</span>
-              <span class="rounded-full bg-white px-3 py-2">Numbers</span>
-              <span class="rounded-full bg-white px-3 py-2">Loan Program</span>
-              <span class="rounded-full bg-white px-3 py-2">Second-hand</span>
+              {uniformChecklistItems.map(({ label, card }) => (
+                <button
+                  type="button"
+                  data-infographic-zoom-trigger
+                  data-zoom-src={card.imageSrc}
+                  data-zoom-alt={card.imageAlt}
+                  class="inline-flex min-h-[40px] items-center rounded-full border-2 border-brand-purple bg-white px-4 py-2 text-brand-purple shadow-sm transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+                >
+                  {label}
+                </button>
+              ))}
             </div>
-            <button type="button" data-modal-id="uniforms" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Uniform Information</button>
           </li>
           <li class="rounded-lg bg-brand-offwhite/70 p-4">
-            <strong class="text-brand-black">4. Clearances</strong>
+            <strong class="text-brand-black">3. Clearances</strong>
             <p class="mt-1 text-sm text-gray-600">Submit any required clearance before the season begins.</p>
             <button type="button" data-modal-id="clearances" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Clearance Information</button>
           </li>
-          <li class="rounded-lg bg-brand-offwhite/70 p-4 md:col-span-2">
-            <strong class="text-brand-black">5. Training</strong>
+          <li class="rounded-lg bg-brand-offwhite/70 p-4">
+            <strong class="text-brand-black">4. Training</strong>
             <p class="mt-1 text-sm text-gray-600">Check the confirmed Winter details and watch for Summer 2026/27 training updates.</p>
             <a href="#training" class="mt-3 inline-flex min-h-[44px] items-center justify-center rounded-lg border-2 border-brand-purple px-4 py-2 text-sm font-bold text-brand-purple hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2">Training Details</a>
           </li>
