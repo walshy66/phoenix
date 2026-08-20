@@ -1,4 +1,16 @@
 ---
+id: "phoenix-welcome-day-2026"
+title: "Phoenix Welcome Day"
+date: "2026-09-13"
+time: "3:00pm U8s–U14s • 4:00pm U16s–U18s"
+location: "Bendigo South East (BSE)"
+description: "Face painting, games, giveaways and more. Check in from 2:45pm."
+image: "/images/hero/PHOENIX_Welcome_Day_promo.png"
+alt: "Phoenix Welcome Day poster for Sunday 13 September with face painting, games, giveaways and basketball kickoff times at Bendigo South East."
+status: "upcoming"
+---
+
+---
 id: "events-march-2026"
 title: "March 2026"
 date: "2026-03-01"
