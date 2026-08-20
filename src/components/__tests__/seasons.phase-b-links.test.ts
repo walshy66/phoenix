@@ -42,16 +42,17 @@ describe('seasons phase b preserved links and actions', () => {
     expect(pageSource).toContain('Numbers')
     expect(pageSource).toContain('Loan Program')
     expect(pageSource).toContain('Second-hand')
-    expect(pageSource).toContain('https://www.stepinsports.com.au/product-category/phoenix-basketball/')
+    expect(modalSource).toContain('https://www.stepinsports.com.au/product-category/phoenix-basketball/')
     expect(dataSource).toContain('https://www.facebook.com/share/p/18Nvdb7fjm/')
   })
 
   test('fees and image-only actions use existing zoom/enlarge behavior', () => {
     expect(pageSource).toContain('data-infographic-zoom-trigger')
-    expect(pageSource).toContain('data-zoom-src={registrationFeesCard.imageSrc}')
-    expect(pageSource).toContain('data-zoom-src={uniformNumbersCard.imageSrc}')
-    expect(pageSource).toContain('data-zoom-src={uniformLoanCard.imageSrc}')
     expect(modalSource).toContain('data-infographic-zoom-trigger')
+    expect(modalSource).toContain('data-zoom-src={subCard.imageSrc}')
+    expect(dataSource).toContain("id: 'registration-fees'")
+    expect(dataSource).toContain("id: 'uniform-numbers'")
+    expect(dataSource).toContain("id: 'uniform-loan'")
   })
 
   test('clearance and allowed playhq competition links remain, but public registration links are not exposed', () => {
