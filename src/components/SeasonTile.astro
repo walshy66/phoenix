@@ -16,16 +16,22 @@ const clickableClasses =
 
 const disabledClasses = 'cursor-not-allowed opacity-80'
 
+const isEnquiryTile = season.clickable && Boolean(season.enquiryModalId)
+
 const getTileToneClasses = (card: SeasonCardConfig) => {
   if (card.id === 'winter-2026') return 'border-2 border-brand-purple/60 bg-purple-100'
   if (card.id === 'summer-2025-26') return 'border-2 border-emerald-400/70 bg-emerald-100'
-  if (card.id === 'summer-2026-27') return 'border-2 border-rose-400/70 bg-rose-100'
+  if (card.id === 'summer-2026-27') return 'border-2 border-brand-gold/80 bg-yellow-100'
   return 'border-2 border-amber-400/70 bg-amber-100'
 }
 
 const getBadgeClasses = (card: SeasonCardConfig) => {
   if (card.status === 'active') {
     return 'bg-blue-500 text-white border border-blue-600'
+  }
+
+  if (card.status === 'registration_open') {
+    return 'bg-brand-gold text-brand-black border border-brand-gold'
   }
 
   if (card.status === 'completed') {
@@ -39,12 +45,26 @@ const getBadgeClasses = (card: SeasonCardConfig) => {
   return 'bg-gray-100 text-gray-400 border border-gray-200'
 }
 
-const ariaLabel = getSeasonAriaLabel(season)
+const ariaLabel = isEnquiryTile
+  ? `${season.name}, ${season.statusBadgeLabel}, open registration enquiry`
+  : getSeasonAriaLabel(season)
 const toneClasses = getTileToneClasses(season)
 const badgeClasses = `inline-block rounded-full px-3 py-1 text-xs font-bold ${getBadgeClasses(season)}`
 ---
 
-{season.clickable && season.navigationTarget && !season.navigationExternal ? (
+{isEnquiryTile ? (
+  <button
+    type="button"
+    data-registration-enquiry-trigger
+    data-registration-enquiry-modal-id={season.enquiryModalId}
+    aria-label={ariaLabel}
+    class={`${baseClasses} ${toneClasses} ${clickableClasses} w-full`}
+  >
+    <div class="mb-3 text-4xl leading-none" aria-hidden="true">{season.icon}</div>
+    <h3 class="mb-2 text-center text-base font-bold text-gray-900">{season.name}</h3>
+    <div class={badgeClasses}>{season.statusBadgeLabel}</div>
+  </button>
+) : season.clickable && season.navigationTarget && !season.navigationExternal ? (
   <a href={season.navigationTarget} aria-label={ariaLabel} class={`${baseClasses} ${toneClasses} ${clickableClasses}`}>
     <div class="mb-3 text-4xl leading-none" aria-hidden="true">{season.icon}</div>
     <h3 class="mb-2 text-center text-base font-bold text-gray-900">{season.name}</h3>
