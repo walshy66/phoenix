@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PROTOTYPE v2 — Phoenix Team Page Redesign</title>
+<style>
+  :root {
+    --purple:#573F93; --purple-dark:#453076; --gold:#8B7536; --gold-light:#c9ad5f;
+    --black:#111111; --offwhite:#F4F5F7; --white:#FFFFFF; --line:#e6e4ea; --muted:#6b6875;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:var(--offwhite); color:var(--black); padding-bottom:6rem; }
+  button { font:inherit; cursor:pointer; }
+  table { border-collapse:collapse; }
+
+  .proto-banner { background:var(--black); color:#cfcfd4; padding:.85rem 1.25rem; font-size:.78rem; line-height:1.5; }
+  .proto-banner b { color:#f4d97a; }
+  .proto-banner pre { margin:.4rem 0 0; background:#000; color:#9be29b; padding:.5rem .7rem; border-radius:.4rem; display:inline-block; font-size:.72rem; }
+
+  .hero { background:var(--purple); position:relative; overflow:hidden; padding:2.5rem 1.25rem 2rem; text-align:center; }
+  .hero .blob { position:absolute; top:-4rem; right:-4rem; width:16rem; height:16rem; border-radius:999px; background:var(--gold); opacity:.14; }
+  .hero-inner { position:relative; max-width:56rem; margin:0 auto; }
+  .hero h1 { color:#fff; font-weight:900; text-transform:uppercase; letter-spacing:-.02em; font-size:clamp(1.8rem,4.2vw,2.75rem); margin:0; }
+  .hero .bar { width:3.5rem; height:4px; background:var(--gold); margin:.7rem auto; }
+  .hero .pills { display:flex; justify-content:center; gap:.5rem; flex-wrap:wrap; margin-top:.8rem; }
+  .hero .pills span { background:#fff; color:var(--purple); font-weight:700; font-size:.78rem; padding:.35rem .75rem; border-radius:999px; }
+
+  .variant-label { display:inline-block; background:var(--gold); color:#fff; font-weight:800; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase; padding:.4rem .8rem; border-radius:999px; margin-bottom:1rem; }
+  .wrap { max-width:72rem; margin:0 auto; padding:1.75rem 1.25rem; }
+  .card { background:var(--white); border-radius:.9rem; border:1px solid var(--line); box-shadow:0 1px 2px rgba(17,17,17,.05); overflow:hidden; }
+  .section-head { background:var(--purple); color:#fff; padding:.9rem 1.1rem; display:flex; align-items:center; justify-content:space-between; gap:.75rem; flex-wrap:wrap; }
+  .section-head h2 { margin:0; font-size:1.05rem; font-weight:900; text-transform:uppercase; letter-spacing:.03em; }
+
+  /* ---------- controls ---------- */
+  .ctl-btn { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.4); color:#fff; font-weight:700; font-size:.78rem; padding:.4rem .8rem; border-radius:999px; }
+  .ctl-btn:hover { background:rgba(255,255,255,.28); }
+  .segmented { display:inline-flex; background:rgba(255,255,255,.14); border-radius:999px; padding:.2rem; gap:.15rem; }
+  .segmented button { background:transparent; border:0; color:#ded7ee; font-weight:700; font-size:.75rem; padding:.35rem .75rem; border-radius:999px; }
+  .segmented button.active { background:var(--gold); color:#fff; }
+  .chip-row { display:flex; gap:.4rem; flex-wrap:wrap; }
+  .chip { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.4); color:#fff; font-weight:700; font-size:.72rem; padding:.35rem .7rem; border-radius:999px; }
+  .chip.active { background:#fff; color:var(--purple); }
+  .density-toggle { display:flex; align-items:center; gap:.5rem; font-size:.78rem; color:var(--muted); font-weight:600; }
+  .density-toggle input { width:1.05rem; height:1.05rem; accent-color:var(--gold); }
+
+  /* ---------- ladder table ---------- */
+  .ladder { width:100%; font-size:.86rem; }
+  .ladder th { text-align:left; padding:.55rem .6rem; background:var(--offwhite); color:var(--muted); font-size:.68rem; text-transform:uppercase; letter-spacing:.04em; font-weight:800; border-bottom:2px solid var(--line); }
+  .ladder td { padding:.6rem .6rem; border-bottom:1px solid var(--line); white-space:nowrap; }
+  .ladder tbody tr:hover { background:#faf9fb; }
+  .ladder .pos { font-weight:900; color:var(--black); width:2rem; }
+  .ladder .team-name { font-weight:700; }
+  .ladder .pts { font-weight:900; color:var(--purple); }
+  .ladder tr.ours { background:#fbf6e8; }
+  .ladder tr.ours .team-name { color:var(--purple); }
+  .ladder tr.ours td:first-child { box-shadow: inset 3px 0 0 var(--gold); }
+  .col-group { display:none; }
+  .col-group.show { display:table-cell; }
+  .density-compact td, .density-compact th { padding-top:.35rem; padding-bottom:.35rem; }
+
+  /* ---------- schedule rows (shared visual language) ---------- */
+  .game-row { display:grid; grid-template-columns:3.5rem 1fr auto; gap:.9rem; align-items:center; padding:.9rem 1.1rem; border-bottom:1px solid var(--line); }
+  .game-row:last-child { border-bottom:0; }
+  .game-row:hover { background:#faf9fb; }
+  .game-date { text-align:center; }
+  .game-date b { display:block; font-size:1.15rem; color:var(--purple); font-weight:900; }
+  .game-date span { font-size:.62rem; text-transform:uppercase; color:var(--muted); font-weight:700; }
+  .game-meta p { margin:0; font-size:.72rem; color:var(--muted); }
+  .game-meta h3 { margin:.15rem 0; font-size:.94rem; font-weight:800; }
+  .game-score { text-align:right; font-weight:900; font-size:1.3rem; color:var(--purple); }
+  .pill { display:inline-flex; align-items:center; border-radius:999px; padding:.2rem .55rem; font-size:.65rem; font-weight:900; text-transform:uppercase; letter-spacing:.03em; }
+  .pill-w { background:#1f9d55; color:#fff; } .pill-l { background:#d33; color:#fff; } .pill-d { background:#888; color:#fff; }
+  .pill-live { background:#2563eb; color:#fff; } .pill-round { background:#fff; border:1px solid var(--gold); color:var(--purple); }
+  .game-score.is-live { color:#2563eb; }
+
+  /* ============ VARIANT A — Ladder Command (split, sticky ladder, progressive-detail button) ============ */
+  .variant-a .layout { display:grid; grid-template-columns:.82fr 1.18fr; gap:1.25rem; align-items:start; }
+  .variant-a .ladder-card { position:sticky; top:1rem; }
+  .variant-a .ladder th, .variant-a .ladder td { padding:.5rem .4rem; font-size:.82rem; }
+
+  /* stacked-names/stacked-scores schedule row (matches the production team page pattern) */
+  .cmd-row { display:grid; grid-template-columns:7.75rem 1fr 3.25rem 1rem; gap:.85rem; align-items:center; padding:.85rem 1.1rem; border-bottom:1px solid var(--line); }
+  .cmd-row:last-child { border-bottom:0; }
+  .cmd-row:hover { background:#faf9fb; cursor:pointer; }
+  .cmd-meta-top { display:flex; align-items:center; gap:.35rem; margin-bottom:.3rem; }
+  .cmd-datetime { margin:0; font-size:.72rem; color:var(--muted); font-weight:700; }
+  .cmd-venue { margin:.15rem 0 0; font-size:.68rem; color:var(--muted); line-height:1.3; }
+  .badge-circle { width:1.55rem; height:1.55rem; border-radius:999px; display:inline-flex; align-items:center; justify-content:center; font-weight:900; font-size:.68rem; color:#fff; flex:none; position:relative; }
+  .badge-circle.w { background:#1f9d55; } .badge-circle.l { background:#d33; } .badge-circle.d { background:#888; }
+  .badge-circle.live { background:#2563eb; }
+  .badge-circle.live::after { content:''; position:absolute; inset:-3px; border-radius:999px; border:2px solid #2563eb; opacity:.55; animation:liveRing 1.6s ease-out infinite; }
+  @keyframes liveRing { 0% { transform:scale(.85); opacity:.6; } 100% { transform:scale(1.4); opacity:0; } }
+  .pill-round-cmd { display:inline-flex; align-items:center; border-radius:999px; border:1px solid var(--gold); color:var(--purple); background:#fff; font-weight:800; font-size:.68rem; padding:.15rem .5rem; }
+  .cmd-teams { display:flex; flex-direction:column; gap:.6rem; min-width:0; }
+  .cmd-teams span { font-weight:800; font-size:.9rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .cmd-teams span.us { color:var(--purple); }
+  .cmd-teams span.them { color:var(--black); }
+  .cmd-scores { display:flex; flex-direction:column; gap:.6rem; text-align:right; }
+  .cmd-scores b { font-weight:900; font-size:1.15rem; color:var(--black); }
+  .cmd-scores b.us { color:var(--purple); }
+  .cmd-chevron { color:var(--gold); font-weight:900; font-size:1.1rem; text-align:right; }
+
+  @media (max-width:860px) {
+    .cmd-row { grid-template-columns:5.5rem 1fr 2.75rem .85rem; gap:.5rem; }
+    .cmd-venue { display:none; }
+  }
+
+  /* ============ VARIANT B — Full Ladder Table (PlayHQ style, stacked, column-group chips) ============ */
+  .variant-b .ladder th, .variant-b .ladder td { text-align:center; }
+  .variant-b .ladder th:nth-child(2), .variant-b .ladder td:nth-child(2) { text-align:left; }
+  .variant-b .round-block { margin-top:1.25rem; }
+  .round-title { font-weight:900; color:var(--purple); text-transform:uppercase; font-size:.85rem; letter-spacing:.03em; margin:1.1rem 0 .5rem; }
+
+  /* ============ VARIANT C — Team Hub Tabs (mobile-first, stat strip, tabs) ============ */
+  .stat-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:.75rem; margin-bottom:1.25rem; }
+  .stat-tile { background:var(--white); border:1px solid var(--line); border-radius:.9rem; padding:1rem .75rem; text-align:center; box-shadow:0 1px 2px rgba(17,17,17,.05); }
+  .stat-tile strong { display:block; font-size:1.7rem; font-weight:900; color:var(--purple); }
+  .stat-tile span { font-size:.68rem; color:var(--muted); text-transform:uppercase; font-weight:700; letter-spacing:.03em; }
+  .tabs { display:flex; background:var(--white); border:1px solid var(--line); border-radius:.9rem; padding:.3rem; margin-bottom:1rem; }
+  .tabs button { flex:1; background:transparent; border:0; padding:.7rem; font-weight:800; font-size:.85rem; border-radius:.65rem; color:var(--muted); }
+  .tabs button.active { background:var(--purple); color:#fff; }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  @media (max-width:860px) {
+    .variant-a .layout { grid-template-columns:1fr; }
+    .variant-a .ladder-card { position:static; }
+    .stat-strip { grid-template-columns:repeat(2,1fr); }
+    .game-row { grid-template-columns:2.75rem 1fr auto; gap:.6rem; }
+  }
+
+  .switcher { position:fixed; left:50%; bottom:1rem; transform:translateX(-50%); display:flex; gap:.4rem; background:var(--black); padding:.5rem; border-radius:999px; box-shadow:0 10px 26px rgba(0,0,0,.3); z-index:30; }
+  .switcher button { background:transparent; border:0; color:#c9c6d1; font-weight:800; font-size:.78rem; padding:.55rem .9rem; border-radius:999px; }
+  .switcher button.active { background:var(--gold); color:#fff; }
+</style>
+</head>
+<body>
+
+<div class="proto-banner">
+  <b>THROWAWAY PROTOTYPE — GitHub issue #59 (redesign team page)</b> · Not production code · Supersedes <code>scores-redesign-prototype.html</code>, which tried to cover the scores homepage, scores page and team page at once and ended up generic.
+  This one is scoped to exactly what the issue asks for: the individual <b>team page</b> (schedule + ladder), styled with the site's real brand tokens (<code>#573F93</code> purple / <code>#8B7536</code> gold / white cards), with the ladder able to show full PlayHQ-style stats and a way to choose how much detail is visible.
+  <br />Switch variants with the bottom bar or <code>?v=command</code>, <code>?v=fulltable</code>, <code>?v=hub</code>.
+  <pre id="proto-state"></pre>
+</div>
+
+<header class="hero">
+  <div class="blob"></div>
+  <div class="hero-inner">
+    <h1>Phoenix Diamonds</h1>
+    <div class="bar"></div>
+    <div class="pills">
+      <span>U14</span><span>DIV 2</span><span>Monday</span><span>Girls</span>
+    </div>
+  </div>
+</header>
+
+<!-- ================= VARIANT A ================= -->
+<section class="wrap variant-a" data-variant="command">
+  <div class="variant-label">Option 1 — Ladder Command</div>
+  <div class="layout">
+    <div class="card">
+      <div class="section-head"><h2>Schedule</h2></div>
+      <div data-a-schedule></div>
+    </div>
+    <div class="card ladder-card">
+      <div class="section-head">
+        <h2>Ladder</h2>
+        <button class="ctl-btn" data-a-detail-btn type="button">More detail →</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="ladder" data-a-ladder></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VARIANT B ================= -->
+<section class="wrap variant-b" data-variant="fulltable" hidden>
+  <div class="variant-label">Option 2 — Full Ladder Table (PlayHQ-style)</div>
+  <div class="card">
+    <div class="section-head">
+      <h2>Ladder — Monday U14 Girls Division 2</h2>
+      <div class="chip-row" data-b-chips>
+        <button class="chip active" data-group="core" type="button">Core</button>
+        <button class="chip" data-group="scoring" type="button">For / Against</button>
+        <button class="chip" data-group="extra" type="button">% &amp; Byes</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="ladder" data-b-ladder></table>
+    </div>
+  </div>
+  <div data-b-rounds></div>
+</section>
+
+<!-- ================= VARIANT C ================= -->
+<section class="wrap variant-c" data-variant="hub" hidden>
+  <div class="variant-label">Option 3 — Team Hub</div>
+  <div class="stat-strip">
+    <div class="stat-tile"><strong>2nd</strong><span>Ladder rank</span></div>
+    <div class="stat-tile"><strong>6-1-1</strong><span>W-L-D</span></div>
+    <div class="stat-tile"><strong>21</strong><span>Points</span></div>
+    <div class="stat-tile"><strong>W3</strong><span>Current streak</span></div>
+  </div>
+  <div class="tabs">
+    <button class="active" data-tab="schedule" type="button">Schedule</button>
+    <button data-tab="ladder" type="button">Ladder</button>
+  </div>
+  <div class="tab-panel active" data-tab-panel="schedule">
+    <div class="card"><div data-c-schedule></div></div>
+  </div>
+  <div class="tab-panel" data-tab-panel="ladder">
+    <div class="card">
+      <div class="section-head">
+        <h2>Ladder</h2>
+        <label class="density-toggle" style="color:#ded7ee;"><input type="checkbox" data-c-extra /> Show for/against &amp; %</label>
+      </div>
+      <div class="section-head" style="background:var(--purple-dark); padding-top:.5rem; padding-bottom:.5rem;">
+        <label class="density-toggle" style="color:#ded7ee;"><input type="checkbox" data-c-density /> Compact rows</label>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="ladder" data-c-ladder></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<nav class="switcher" aria-label="Prototype variant switcher">
+  <button type="button" data-switch="command">1 Command</button>
+  <button type="button" data-switch="fulltable">2 Full table</button>
+  <button type="button" data-switch="hub">3 Hub</button>
+</nav>
+
+<script>
+  const games = [
+    { round:'Round 5', date:'18 Aug', day:'MON', time:'17:15', opponent:'Girton Gems', home:true, homeScore:38, awayScore:31, status:'FINAL', venue:'Red Energy Arena', court:'Court 8' },
+    { round:'Round 6', date:'25 Aug', day:'MON', time:'16:30', opponent:'Strath Panthers', home:false, homeScore:29, awayScore:29, status:'FINAL', venue:'Red Energy Arena', court:'Court 3' },
+    { round:'Round 7', date:'1 Sep', day:'MON', time:'17:15', opponent:'Aztec Yellow', home:true, homeScore:19, awayScore:14, status:'LIVE', venue:'Red Energy Arena', court:'Court 5' },
+    { round:'Round 8', date:'8 Sep', day:'MON', time:'16:30', opponent:'Beavers Sparks', home:true, homeScore:null, awayScore:null, status:'UPCOMING', venue:'Red Energy Arena', court:'Court 2' },
+    { round:'Round 9', date:'15 Sep', day:'MON', time:'17:15', opponent:'Emerald Emus', home:false, homeScore:null, awayScore:null, status:'UPCOMING', venue:'Red Energy Arena', court:'Court 8' },
+  ];
+
+  const ladder = [
+    { pos:1, team:'Aztec U14 Girls Yellow', p:8, w:7, l:1, d:0, b:0, f:342, a:198, pct:172.7, pts:22 },
+    { pos:2, team:'PHOENIX Diamonds', p:8, w:6, l:1, d:1, b:0, f:318, a:222, pct:143.2, pts:21, ours:true },
+    { pos:3, team:'Girton Gems', p:8, w:5, l:3, d:0, b:1, f:287, a:254, pct:113.0, pts:18 },
+    { pos:4, team:'Strath Panthers', p:8, w:4, l:4, d:0, b:0, f:265, a:271, pct:97.8, pts:16 },
+    { pos:5, team:'Emerald Emus', p:8, w:3, l:4, d:1, b:0, f:240, a:255, pct:94.1, pts:14 },
+    { pos:6, team:'Beavers Sparks', p:8, w:2, l:6, d:0, b:1, f:201, a:299, pct:67.2, pts:12 },
+  ];
+
+  const esc = (v) => String(v).replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  function resultOf(g) {
+    if (g.status !== 'FINAL') return null;
+    if (g.homeScore === g.awayScore) return 'D';
+    const won = g.home ? g.homeScore > g.awayScore : g.awayScore > g.homeScore;
+    return won ? 'W' : 'L';
+  }
+
+  function scheduleRow(g) {
+    const res = resultOf(g);
+    const resPill = res ? `<span class="pill pill-${res.toLowerCase()}">${res}</span>` : (g.status === 'LIVE' ? `<span class="pill pill-live">LIVE</span>` : `<span class="pill pill-round">${esc(g.round)}</span>`);
+    const scoreText = g.status === 'FINAL' ? `${g.homeScore}–${g.awayScore}` : (g.status === 'LIVE' ? 'LIVE' : '—');
+    return `<article class="game-row">
+      <div class="game-date"><b>${esc(g.date.split(' ')[0])}</b><span>${esc(g.day)}</span></div>
+      <div class="game-meta">
+        <p>${resPill} &nbsp;${g.status === 'FINAL' ? esc(g.round) : ''}</p>
+        <h3>${g.home ? 'Diamonds' : esc(g.opponent)} vs ${g.home ? esc(g.opponent) : 'Diamonds'}</h3>
+        <p>${esc(g.venue)} · ${esc(g.court)}</p>
+      </div>
+      <div class="game-score">${esc(scoreText)}</div>
+    </article>`;
+  }
+
+  const roundNum = (g) => (String(g.round).match(/\d+/) || ['?'])[0];
+
+  // Option 1 (Ladder Command) swaps the date/round positions vs. the shared row above:
+  // round number sits in the left rail, the date moves into the meta line next to the result pill.
+  // Option 1 (Ladder Command): stacked home/away names with matching stacked scores,
+  // like the production team page. A live game still shows real score numbers —
+  // the blue pulsing badge is what signals "live", not the score text.
+  function scheduleRowCommand(g) {
+    const res = resultOf(g);
+    const badge = res ? `<span class="badge-circle ${res.toLowerCase()}">${res}</span>` : (g.status === 'LIVE' ? `<span class="badge-circle live"></span>` : '');
+    const homeTeam = g.home ? 'PHOENIX Diamonds' : g.opponent;
+    const awayTeam = g.home ? g.opponent : 'PHOENIX Diamonds';
+    const hasScore = g.homeScore !== null && g.awayScore !== null;
+    return `<article class="cmd-row">
+      <div class="cmd-meta">
+        <div class="cmd-meta-top">${badge}<span class="pill-round-cmd">R${esc(roundNum(g))}</span></div>
+        <p class="cmd-datetime">${esc(g.day)}, ${esc(g.date)}${g.time ? ' at ' + esc(g.time) : ''}</p>
+        <p class="cmd-venue">${esc(g.venue)}<br>${esc(g.court)}</p>
+      </div>
+      <div class="cmd-teams">
+        <span class="${g.home ? 'us' : 'them'}">${esc(homeTeam)}</span>
+        <span class="${g.home ? 'them' : 'us'}">${esc(awayTeam)}</span>
+      </div>
+      <div class="cmd-scores">
+        <b class="${g.home ? 'us' : ''}">${hasScore ? esc(g.homeScore) : '—'}</b>
+        <b class="${g.home ? '' : 'us'}">${hasScore ? esc(g.awayScore) : '—'}</b>
+      </div>
+      <div class="cmd-chevron">&rsaquo;</div>
+    </article>`;
+  }
+
+  function ladderRow(row, cols) {
+    const cells = [
+      `<td class="pos">${row.pos}</td>`,
+      `<td class="team-name">${esc(row.team)}</td>`,
+    ];
+    if (cols.has('p')) cells.push(`<td>${row.p}</td>`);
+    cells.push(`<td>${row.w}</td>`, `<td>${row.l}</td>`);
+    if (cols.has('d')) cells.push(`<td>${row.d}</td>`);
+    if (cols.has('b')) cells.push(`<td>${row.b}</td>`);
+    if (cols.has('f')) cells.push(`<td>${row.f}</td>`);
+    if (cols.has('a')) cells.push(`<td>${row.a}</td>`);
+    if (cols.has('pct')) cells.push(`<td>${row.pct}%</td>`);
+    cells.push(`<td class="pts">${row.pts}</td>`);
+    return `<tr class="${row.ours ? 'ours' : ''}">${cells.join('')}</tr>`;
+  }
+
+  function ladderHead(cols) {
+    const th = [`<th class="pos">#</th>`, `<th>Team</th>`];
+    if (cols.has('p')) th.push(`<th>P</th>`);
+    th.push(`<th>W</th>`, `<th>L</th>`);
+    if (cols.has('d')) th.push(`<th>D</th>`);
+    if (cols.has('b')) th.push(`<th>B</th>`);
+    if (cols.has('f')) th.push(`<th>F</th>`);
+    if (cols.has('a')) th.push(`<th>A</th>`);
+    if (cols.has('pct')) th.push(`<th>%</th>`);
+    th.push(`<th>Pts</th>`);
+    return `<thead><tr>${th.join('')}</tr></thead>`;
+  }
+
+  function renderLadder(target, cols) {
+    document.querySelector(target).innerHTML = ladderHead(cols) + `<tbody>${ladder.map((r) => ladderRow(r, cols)).join('')}</tbody>`;
+  }
+
+  // ---- 1. DOM refs + state (all declared up front, nothing below reads these before they exist) ----
+  const variants = Array.from(document.querySelectorAll('[data-variant]'));
+  const switchButtons = Array.from(document.querySelectorAll('[data-switch]'));
+  const stateEl = document.getElementById('proto-state');
+  let currentVariant = 'command';
+
+  const aLevels = [
+    { label:'Standard', cols:new Set(['p','d']) },
+    { label:'Full', cols:new Set(['p','d','b','f','a','pct']) },
+  ];
+  let aLevel = 0;
+
+  const bGroups = new Set(['core']);
+
+  // ---- 2. Function definitions (none of these run yet — safe to define in any order) ----
+  function setState() {
+    stateEl.textContent = JSON.stringify({
+      variant: currentVariant,
+      a_detailLevel: aLevels[aLevel].label,
+      b_columnGroups: Array.from(bGroups),
+      c_activeTab: document.querySelector('.tabs button.active')?.dataset.tab,
+      c_extraColumns: document.querySelector('[data-c-extra]')?.checked,
+      c_compactRows: document.querySelector('[data-c-density]')?.checked,
+      source: 'prototypes/team-page-redesign-v2-prototype.html',
+    }, null, 2);
+  }
+
+  function showVariant(name) {
+    currentVariant = ['command', 'fulltable', 'hub'].includes(name) ? name : 'command';
+    variants.forEach((el) => { el.hidden = el.dataset.variant !== currentVariant; });
+    switchButtons.forEach((btn) => btn.classList.toggle('active', btn.dataset.switch === currentVariant));
+    try {
+      const url = new URL(window.location.href); url.searchParams.set('v', currentVariant); history.replaceState(null, '', url);
+    } catch (e) { /* some browsers block history.replaceState on file:// URLs — safe to ignore */ }
+    setState();
+  }
+
+  function renderA() {
+    renderLadder('[data-a-ladder]', aLevels[aLevel].cols);
+    const btn = document.querySelector('[data-a-detail-btn]');
+    const next = aLevels[(aLevel + 1) % aLevels.length].label;
+    btn.textContent = `${aLevels[aLevel].label} — show ${next.toLowerCase()} →`;
+    setState();
+  }
+
+  function bCols() {
+    const cols = new Set();
+    if (bGroups.has('core')) { cols.add('p'); cols.add('d'); }
+    if (bGroups.has('scoring')) { cols.add('f'); cols.add('a'); }
+    if (bGroups.has('extra')) { cols.add('pct'); cols.add('b'); }
+    return cols;
+  }
+  function renderB() {
+    renderLadder('[data-b-ladder]', bCols());
+    document.querySelectorAll('[data-b-chips] .chip').forEach((chip) => chip.classList.toggle('active', bGroups.has(chip.dataset.group)));
+    setState();
+  }
+
+  function renderC() {
+    const extra = document.querySelector('[data-c-extra]').checked;
+    const density = document.querySelector('[data-c-density]').checked;
+    const cols = extra ? new Set(['p','d','f','a','pct','b']) : new Set([]);
+    renderLadder('[data-c-ladder]', cols);
+    document.querySelector('[data-c-ladder]').closest('table').classList.toggle('density-compact', density);
+    setState();
+  }
+
+  // ---- 3. Wire up event listeners (attaching a listener doesn't execute it yet) ----
+  document.querySelector('[data-a-detail-btn]').addEventListener('click', () => { aLevel = (aLevel + 1) % aLevels.length; renderA(); });
+  document.querySelectorAll('[data-b-chips] .chip').forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const g = chip.dataset.group;
+      bGroups.has(g) ? bGroups.delete(g) : bGroups.add(g);
+      renderB();
+    });
+  });
+  document.querySelector('[data-c-extra]').addEventListener('change', renderC);
+  document.querySelector('[data-c-density]').addEventListener('change', renderC);
+  document.querySelectorAll('.tabs button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tabs button').forEach((b) => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('[data-tab-panel]').forEach((panel) => panel.classList.toggle('active', panel.dataset.tabPanel === btn.dataset.tab));
+      setState();
+    });
+  });
+  switchButtons.forEach((btn) => btn.addEventListener('click', () => showVariant(btn.dataset.switch)));
+
+  // ---- 4. Initial render (everything above already exists, so setState() is now safe to call) ----
+  document.querySelector('[data-a-schedule]').innerHTML = games.slice().reverse().map(scheduleRowCommand).join('');
+  document.querySelector('[data-c-schedule]').innerHTML = games.map(scheduleRow).join('');
+  document.querySelector('[data-b-rounds]').innerHTML = ['Round 5', 'Round 6', 'Round 7'].map((round) => `
+    <div class="round-block">
+      <div class="round-title">${round}</div>
+      <div class="card">${games.filter((g) => g.round === round).map(scheduleRow).join('') || '<p style="padding:1rem;color:var(--muted);margin:0;">No games</p>'}</div>
+    </div>`).join('');
+  renderA();
+  renderB();
+  renderC();
+  showVariant(new URLSearchParams(window.location.search).get('v'));
+</script>
+</body>
+</html>
