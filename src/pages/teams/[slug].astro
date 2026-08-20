@@ -82,23 +82,23 @@ const parsed = parseGradeName(teamData.gradeName);
       <div id="team-loading" class="py-12 text-center text-gray-500">Loading team data&hellip;</div>
 
       <div id="team-content" hidden>
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div class="lg:col-span-2">
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-              <div class="bg-brand-purple text-white px-6 py-4">
+        <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-2 lg:gap-8" data-layout="ladder-command">
+          <div class="min-w-0" data-layout-region="schedule-left">
+            <div class="bg-white rounded-2xl shadow-sm border border-brand-gold/20 overflow-hidden">
+              <div class="bg-brand-purple text-white px-6 py-4 border-b-4 border-brand-gold">
                 <h2 class="text-2xl font-bold" style="color:white!important">SCHEDULE</h2>
               </div>
               <div id="schedule-list"></div>
             </div>
           </div>
-          <div>
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden sticky top-20">
-              <div class="bg-brand-purple text-white px-6 py-4">
+          <aside class="min-w-0 lg:sticky lg:top-24" data-layout-region="sticky-ladder-right" aria-label="Team ladder">
+            <div class="bg-white rounded-2xl shadow-sm border border-brand-gold/20 overflow-hidden">
+              <div class="bg-brand-purple text-white px-6 py-4 border-b-4 border-brand-gold">
                 <h2 class="text-2xl font-bold" style="color:white!important">LADDER</h2>
               </div>
               <div id="ladder-content"></div>
             </div>
-          </div>
+          </aside>
         </div>
         <div class="mt-12 text-center">
           <a href="/teams" class="inline-block px-6 py-3 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors duration-150 font-medium">
@@ -131,6 +131,20 @@ const parsed = parseGradeName(teamData.gradeName);
       return m ? `R${m[0]}` : String(round);
     }
 
+    function roundSortValue(game) {
+      const value = game?.roundNumber ?? game?.round;
+      const m = String(value ?? '').match(/\d+/);
+      return m ? Number(m[0]) : Number.NEGATIVE_INFINITY;
+    }
+
+    function isPhoenixTeam(name) {
+      return /phoenix/i.test(String(name ?? ''));
+    }
+
+    function teamNameClass(name) {
+      return isPhoenixTeam(name) ? 'text-brand-purple font-black' : 'text-gray-700 font-bold';
+    }
+
     function renderSchedule(fixture, teamName) {
       const el = document.getElementById('schedule-list');
       if (!fixture || !fixture.length) {
@@ -138,26 +152,37 @@ const parsed = parseGradeName(teamData.gradeName);
         return;
       }
 
-      el.innerHTML = '<div class="divide-y">' + fixture.map(game => {
+      const sortedFixture = fixture
+        .map((game, index) => ({ game, index }))
+        .sort((a, b) => {
+          const roundDiff = roundSortValue(b.game) - roundSortValue(a.game);
+          if (roundDiff !== 0) return roundDiff;
+          const dateDiff = Date.parse(b.game?.date ?? '') - Date.parse(a.game?.date ?? '');
+          if (!Number.isNaN(dateDiff) && dateDiff !== 0) return dateDiff;
+          return a.index - b.index;
+        })
+        .map(({ game }) => game);
+
+      el.innerHTML = '<div class="divide-y">' + sortedFixture.map(game => {
         const isHome = game.homeTeam === teamName;
         const hasScore = game.homeScore !== null && game.awayScore !== null && game.homeScore !== undefined && game.awayScore !== undefined;
         const status = String(game.status || 'UPCOMING').toUpperCase();
         const isLive = status === 'IN_PROGRESS' || status === 'LIVE';
-        const isCompleted = status === 'COMPLETED' || status === 'FINAL' || hasScore;
+        const isFinal = status === 'COMPLETED' || status === 'FINAL';
 
         let resultLabel = null;
-        if (isCompleted) {
-          const phoenixScore = isHome ? game.homeScore : game.awayScore;
-          const oppScore = isHome ? game.awayScore : game.homeScore;
+        if (!isLive && (isFinal || hasScore)) {
+          const phoenixScore = Number(isHome ? game.homeScore : game.awayScore);
+          const oppScore = Number(isHome ? game.awayScore : game.homeScore);
           resultLabel = phoenixScore > oppScore ? 'W' : phoenixScore < oppScore ? 'L' : 'D';
         }
 
         const roundLabel = roundChip(game.round ?? game.roundNumber);
         const resultPill = resultLabel
-          ? `<span class="inline-flex items-center rounded-full px-2 py-1 text-xs font-black uppercase tracking-widest ${resultLabel === 'W' ? 'bg-green-500 text-white' : resultLabel === 'L' ? 'bg-red-500 text-white' : 'bg-gray-400 text-white'}">${esc(resultLabel)}</span>`
+          ? `<span class="inline-flex h-7 w-7 items-center justify-center rounded-full text-xs font-black uppercase tracking-widest ${resultLabel === 'W' ? 'bg-emerald-600 text-white' : resultLabel === 'L' ? 'bg-rose-600 text-white' : 'bg-slate-500 text-white'}">${esc(resultLabel)}</span>`
           : '';
-        const livePill = isLive && !isCompleted
-          ? '<span class="inline-flex items-center rounded-full bg-red-500 px-2 py-1 text-xs font-black uppercase tracking-widest text-white animate-pulse">LIVE</span>'
+        const livePill = isLive
+          ? '<span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-400 text-xs font-black uppercase tracking-widest text-brand-purple animate-pulse">LIVE</span>'
           : '';
         const roundPill = roundLabel
           ? `<span class="inline-flex items-center rounded-full border border-brand-gold bg-white px-2 py-1 text-xs font-black uppercase tracking-widest text-brand-purple">${esc(roundLabel)}</span>`
@@ -165,28 +190,24 @@ const parsed = parseGradeName(teamData.gradeName);
 
         return `
           <a href="/scores/game?id=${esc(game.id)}"
-            class="block w-full text-left px-6 py-3 transition-colors duration-150 group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-red-50 hover:bg-red-100' : 'hover:bg-brand-offwhite'}"
+            class="block w-full text-left px-4 py-4 transition-colors duration-150 group focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-inset ${isLive ? 'bg-blue-50 hover:bg-blue-100' : 'hover:bg-brand-offwhite'}"
             aria-label="Open details for ${esc(game.homeTeam)} vs ${esc(game.awayTeam)}">
-            <div class="flex items-center justify-between gap-4">
-              <div class="flex-1">
+            <div class="grid grid-cols-[minmax(0,1fr)_auto_1rem] gap-3 md:grid-cols-[minmax(150px,0.8fr)_minmax(0,1fr)_auto_1rem] md:items-center md:gap-4">
+              <div class="col-span-3 min-w-0 space-y-1 text-xs text-gray-500 md:col-span-1">
                 <div class="mb-1 flex items-center gap-2 flex-wrap">
                   ${resultPill}${livePill}${roundPill}
-                  <p class="text-xs text-gray-500 font-medium uppercase">${esc(fmtDate(game.date))} at ${esc(fmtTime(game.time))}</p>
                 </div>
-                <div class="grid grid-cols-1 gap-2 md:grid-cols-[minmax(220px,0.8fr)_minmax(0,1fr)_auto] md:items-center md:gap-6">
-                  <div class="space-y-1 text-xs text-gray-500">
-                    <p class="truncate" title="${esc(game.venue)}">${esc(game.venue ?? 'Venue TBC')}</p>
-                    <p class="truncate">${esc(game.court ?? 'Court TBC')}</p>
-                  </div>
-                  <div class="space-y-1">
-                    <p class="truncate font-bold text-sm ${isHome ? 'text-brand-purple' : 'text-gray-700'}">${esc(game.homeTeam)}</p>
-                    <p class="truncate font-bold text-sm ${!isHome ? 'text-brand-purple' : 'text-gray-700'}">${esc(game.awayTeam)}</p>
-                  </div>
-                  <div class="space-y-1 text-right">
-                    <p class="shrink-0 text-2xl font-black leading-5 ${isHome ? 'text-brand-purple' : 'text-gray-700'}">${hasScore ? esc(game.homeScore) : '–'}</p>
-                    <p class="shrink-0 text-2xl font-black leading-5 ${!isHome ? 'text-brand-purple' : 'text-gray-700'}">${hasScore ? esc(game.awayScore) : '–'}</p>
-                  </div>
-                </div>
+                <p class="font-medium uppercase">${esc(fmtDate(game.date))} at ${esc(fmtTime(game.time))}</p>
+                <p class="break-words" title="${esc(game.venue)}">${esc(game.venue ?? 'Venue TBC')}</p>
+                <p class="break-words">${esc(game.court ?? 'Court TBC')}</p>
+              </div>
+              <div class="min-w-0 space-y-1">
+                <p class="truncate text-sm ${teamNameClass(game.homeTeam)}">${esc(game.homeTeam)}</p>
+                <p class="truncate text-sm ${teamNameClass(game.awayTeam)}">${esc(game.awayTeam)}</p>
+              </div>
+              <div class="space-y-1 text-right">
+                <p class="shrink-0 text-2xl font-black leading-5 ${isHome ? 'text-brand-purple' : 'text-gray-700'}">${hasScore ? esc(game.homeScore) : '–'}</p>
+                <p class="shrink-0 text-2xl font-black leading-5 ${!isHome ? 'text-brand-purple' : 'text-gray-700'}">${hasScore ? esc(game.awayScore) : '–'}</p>
               </div>
               <div class="text-brand-gold group-hover:translate-x-1 transition-transform duration-150">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -199,6 +220,13 @@ const parsed = parseGradeName(teamData.gradeName);
       }).join('') + '</div>';
     }
 
+    function ladderValue(row, keys, fallback = '–') {
+      for (const key of keys) {
+        if (row[key] !== null && row[key] !== undefined && row[key] !== '') return row[key];
+      }
+      return fallback;
+    }
+
     function renderLadder(ladder, teamName) {
       const el = document.getElementById('ladder-content');
       if (!ladder || !ladder.length) {
@@ -206,37 +234,69 @@ const parsed = parseGradeName(teamData.gradeName);
         return;
       }
 
+      const rows = ladder.map(row => {
+        const isOurs = (row.team ?? row.teamName) === teamName;
+        return `
+          <tr class="${isOurs ? 'border-l-4 border-brand-gold bg-brand-gold/10 shadow-[inset_0_0_0_1px_rgba(139,117,54,0.35)]' : ''}">
+            <td class="px-2 py-3 font-bold text-gray-900">${esc(row.rank ?? row.position ?? '')}</td>
+            <td class="px-2 py-3"><span class="block whitespace-normal break-words leading-tight ${isOurs ? 'font-black text-brand-purple' : 'text-gray-900'}">${esc(row.team ?? row.teamName ?? '')}</span></td>
+            <td class="px-2 py-3 text-right text-gray-700">${esc(ladderValue(row, ['played', 'gamesPlayed'], 0))}</td>
+            <td class="px-2 py-3 text-right text-gray-700">${esc(row.won ?? row.wins ?? 0)}</td>
+            <td class="px-2 py-3 text-right text-gray-700">${esc(row.lost ?? row.losses ?? 0)}</td>
+            <td class="px-2 py-3 text-right text-gray-700">${esc(row.drawn ?? row.draws ?? 0)}</td>
+            <td class="hidden px-2 py-3 text-right text-gray-700" data-ladder-full-cell>${esc(ladderValue(row, ['byes', 'bye', 'bonus', 'bonusPoints'], 0))}</td>
+            <td class="hidden px-2 py-3 text-right text-gray-700" data-ladder-full-cell>${esc(ladderValue(row, ['pointsFor', 'for', 'scoredFor']))}</td>
+            <td class="hidden px-2 py-3 text-right text-gray-700" data-ladder-full-cell>${esc(ladderValue(row, ['pointsAgainst', 'against', 'scoredAgainst']))}</td>
+            <td class="hidden px-2 py-3 text-right text-gray-700" data-ladder-full-cell>${esc(ladderValue(row, ['percentage', 'percent']))}</td>
+            <td class="px-2 py-3 text-right font-bold text-gray-900">${esc(row.points ?? 0)}</td>
+          </tr>
+        `;
+      }).join('');
+
       el.innerHTML = `
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
+        <div class="border-b border-gray-100 bg-white px-4 py-3">
+          <div class="inline-flex rounded-full border border-brand-purple/20 bg-brand-offwhite p-1" role="group" aria-label="Ladder detail level">
+            <button type="button" class="rounded-full bg-brand-purple px-3 py-1 text-xs font-black uppercase tracking-widest text-white" data-ladder-view="standard" aria-pressed="true">Standard</button>
+            <button type="button" class="rounded-full px-3 py-1 text-xs font-black uppercase tracking-widest text-brand-purple" data-ladder-view="full" aria-pressed="false">Full</button>
+          </div>
+        </div>
+        <div class="overflow-x-auto lg:overflow-visible">
+          <table class="w-full min-w-[480px] table-fixed text-[0.72rem] sm:text-xs lg:min-w-0">
             <thead class="bg-gray-50 border-b">
               <tr>
-                <th class="px-3 py-2 text-left text-xs font-bold text-gray-600">#</th>
-                <th class="px-3 py-2 text-left text-xs font-bold text-gray-600">Team</th>
-                <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">W</th>
-                <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">L</th>
-                <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">D</th>
-                <th class="px-3 py-2 text-center text-xs font-bold text-gray-600">Pts</th>
+                <th class="w-7 px-2 py-2 text-left font-bold text-gray-600">#</th>
+                <th class="w-28 px-2 py-2 text-left font-bold text-gray-600 sm:w-36">Team</th>
+                <th class="w-7 px-2 py-2 text-right font-bold text-gray-600">P</th>
+                <th class="w-7 px-2 py-2 text-right font-bold text-gray-600">W</th>
+                <th class="w-7 px-2 py-2 text-right font-bold text-gray-600">L</th>
+                <th class="w-7 px-2 py-2 text-right font-bold text-gray-600">D</th>
+                <th class="hidden w-7 px-2 py-2 text-right font-bold text-gray-600" data-ladder-full-cell>B</th>
+                <th class="hidden w-9 px-2 py-2 text-right font-bold text-gray-600" data-ladder-full-cell>F</th>
+                <th class="hidden w-9 px-2 py-2 text-right font-bold text-gray-600" data-ladder-full-cell>A</th>
+                <th class="hidden w-10 px-2 py-2 text-right font-bold text-gray-600" data-ladder-full-cell>%</th>
+                <th class="w-9 px-2 py-2 text-right font-bold text-gray-600">Pts</th>
               </tr>
             </thead>
-            <tbody class="divide-y">
-              ${ladder.map(row => {
-                const isOurs = (row.team ?? row.teamName) === teamName;
-                return `
-                  <tr class="${isOurs ? 'border-4 border-brand-gold bg-white' : ''}">
-                    <td class="px-3 py-3 font-bold text-gray-900">${esc(row.rank ?? row.position ?? '')}</td>
-                    <td class="px-3 py-3"><span class="${isOurs ? 'font-bold text-brand-purple' : 'text-gray-900'}">${esc(row.team ?? row.teamName ?? '')}</span></td>
-                    <td class="px-3 py-3 text-center text-gray-700">${esc(row.won ?? row.wins ?? 0)}</td>
-                    <td class="px-3 py-3 text-center text-gray-700">${esc(row.lost ?? row.losses ?? 0)}</td>
-                    <td class="px-3 py-3 text-center text-gray-700">${esc(row.drawn ?? 0)}</td>
-                    <td class="px-3 py-3 text-center font-bold text-gray-900">${esc(row.points ?? 0)}</td>
-                  </tr>
-                `;
-              }).join('')}
-            </tbody>
+            <tbody class="divide-y">${rows}</tbody>
           </table>
         </div>
       `;
+
+      const buttons = el.querySelectorAll('[data-ladder-view]');
+      const fullCells = el.querySelectorAll('[data-ladder-full-cell]');
+      const setView = (view) => {
+        const isFull = view === 'full';
+        fullCells.forEach(cell => cell.classList.toggle('hidden', !isFull));
+        buttons.forEach(button => {
+          const active = button.dataset.ladderView === view;
+          button.setAttribute('aria-pressed', String(active));
+          button.classList.toggle('bg-brand-purple', active);
+          button.classList.toggle('text-white', active);
+          button.classList.toggle('text-brand-purple', !active);
+        });
+      };
+      buttons.forEach(button => button.addEventListener('click', () => setView(button.dataset.ladderView)));
+      setView('standard');
     }
 
     async function loadTeamDetails() {
