@@ -30,9 +30,9 @@ describe('season information section', () => {
     const trainingIdx = pageSource.indexOf('id="training"')
 
     expect(seasonInfoIdx).toBeGreaterThan(-1)
-    expect(checklistIdx).toBeGreaterThan(seasonInfoIdx)
-    expect(bridgingIdx).toBeGreaterThan(checklistIdx)
-    expect(trainingIdx).toBeGreaterThan(bridgingIdx)
+    expect(bridgingIdx).toBeGreaterThan(seasonInfoIdx)
+    expect(checklistIdx).toBeGreaterThan(bridgingIdx)
+    expect(trainingIdx).toBeGreaterThan(checklistIdx)
     expect(pageSource).not.toContain('id="seasons-grid"')
   })
 

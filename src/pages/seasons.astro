@@ -185,6 +185,17 @@ const uniformChecklistItems = [
         </article>
       </div>
 
+      <div class="mb-8 flex items-start gap-4 rounded-xl border-2 border-brand-gold bg-yellow-50 p-5">
+        <span class="text-3xl">🤝</span>
+        <div>
+          <h3 class="mb-1 text-base font-bold text-brand-black">Need Financial Assistance?</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Our <a href="/about#slam-dunk" class="font-semibold text-brand-purple underline hover:text-brand-gold">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
+            Contact us confidentially at <a href={mailto(clubProfile.contact.generalEmail)} class="font-semibold text-brand-purple hover:text-brand-gold">{clubProfile.contact.generalEmail}</a>.
+          </p>
+        </div>
+      </div>
+
       <div id="summer-checklist" class="mb-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
         <h3 class="mb-4 text-xl font-black text-brand-purple">Summer 2026/27 Checklist</h3>
         <ol class="grid gap-4 md:grid-cols-2">
@@ -247,16 +258,6 @@ const uniformChecklistItems = [
         </ol>
       </div>
 
-      <div class="flex items-start gap-4 rounded-xl border-2 border-brand-gold bg-yellow-50 p-5">
-        <span class="text-3xl">🤝</span>
-        <div>
-          <h3 class="mb-1 text-base font-bold text-brand-black">Need Financial Assistance?</h3>
-          <p class="text-sm leading-relaxed text-gray-600">
-            Our <a href="/about#slam-dunk" class="font-semibold text-brand-purple underline hover:text-brand-gold">Slam Dunk Bridging Fund</a> is here to ensure no player misses out.
-            Contact us confidentially at <a href={mailto(clubProfile.contact.generalEmail)} class="font-semibold text-brand-purple hover:text-brand-gold">{clubProfile.contact.generalEmail}</a>.
-          </p>
-        </div>
-      </div>
     </div>
   </section>
 
