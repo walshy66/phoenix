@@ -3,13 +3,44 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import SeasonTile from '../components/SeasonTile.astro'
 import SeasonInfoCard from '../components/SeasonInfoCard.astro'
 import SeasonInfoModal from '../components/SeasonInfoModal.astro'
-import { SEASON_CARDS } from '../lib/seasons/constants'
+import { SEASON_CARDS, SUMMER_2026_27_ENQUIRY_MODAL_ID } from '../lib/seasons/constants'
 import { VENUES } from '../data/venues'
 import { SEASON_INFO_CARDS } from '../data/season-info'
 import { clubProfile, mailto } from '../config/club-profile'
 
 const isGradingActive = false
 const seasonInfoCards = Array.isArray(SEASON_INFO_CARDS) ? SEASON_INFO_CARDS : []
+const registrationEnquirySubject = 'Summer 2026/27 Registration Enquiry'
+const registrationEnquiryBody = [
+  'Player name:',
+  'Date of birth:',
+  'Current/previous Phoenix team or connection:',
+  'Team they are enquiring about:',
+  'Any other notes:',
+].join('\n\n')
+const registrationEnquiryMailto = `mailto:${clubProfile.contact.generalEmail}?subject=${encodeURIComponent(registrationEnquirySubject)}&body=${encodeURIComponent(registrationEnquiryBody)}`
+const continuingAndNewTeams = [
+  'Phoenix Possums (NEW U8 mixed)',
+  'Phoenix Go Getters',
+  'Phoenix Flames',
+  'Phoenix Thunder',
+  'Phoenix Firebirds (U12 girls)',
+  'Phoenix Gold Nuggets',
+  'Phoenix Sweats (U14 boys)',
+  'Phoenix Phantoms',
+  'Phoenix Diamonds (U14 girls)',
+  'Phoenix Stars',
+  'Phoenix NEW U16 (formerly Zinger Boxes)',
+  'Phoenix Gooney Tunes',
+  'Phoenix Flyers',
+  'Phoenix Two Blues',
+  'Phoenix Tulips',
+  'Phoenix NEW U16 Girls (formerly Diamonds)',
+  'Phoenix Zinger Boxes',
+  'Phoenix Go Buckets',
+  'Phoenix Splash',
+]
+const teamsStillBeingFinalised = ['U10 Girls', 'U10 Boys', 'U16 Boys']
 ---
 
 <BaseLayout title="Seasons" description={`${clubProfile.shortName} Basketball season draw, costs, registration and grading information.`}>
@@ -53,6 +84,86 @@ const seasonInfoCards = Array.isArray(SEASON_INFO_CARDS) ? SEASON_INFO_CARDS : [
   {seasonInfoCards.map((card) => (
     <SeasonInfoModal card={card} venues={card.id === 'training' ? VENUES : []} />
   ))}
+
+  <div
+    id={SUMMER_2026_27_ENQUIRY_MODAL_ID}
+    class="fixed inset-0 z-[80] hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="registration-enquiry-title"
+    data-open="false"
+  >
+    <div class="absolute inset-0 bg-black/40" aria-hidden="true" data-modal-backdrop></div>
+    <div class="relative z-10 flex h-full w-full items-center justify-center md:p-4">
+      <div class="flex h-full w-full flex-col overflow-hidden bg-brand-offwhite md:h-auto md:max-h-[90vh] md:w-[95vw] md:max-w-4xl md:rounded-xl md:shadow-xl">
+        <header class="flex items-center justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3 md:px-6">
+          <h2 id="registration-enquiry-title" class="text-lg font-black uppercase tracking-tight text-brand-black md:text-xl">
+            Summer 2026/27 Registration Enquiry
+          </h2>
+          <button
+            type="button"
+            data-close-btn
+            aria-label="Close Summer 2026/27 registration enquiry"
+            class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-brand-purple transition-colors hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+          >
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </header>
+
+        <div class="overflow-y-auto p-4 md:p-6">
+          <div class="mb-6 rounded-lg border-2 border-brand-gold bg-yellow-50 p-4 text-sm leading-relaxed text-gray-700">
+            <p class="mb-3">
+              Places are limited across Summer 2026/27 teams. Please enquire before registering so the club can confirm whether there is an appropriate team place available.
+            </p>
+            <p>
+              If the club sends you a private registration link, please do not share it with other families. Shared links can result in registrations being submitted for teams that are already full or still being finalised.
+            </p>
+          </div>
+
+          <div class="grid gap-6 lg:grid-cols-[1fr_0.75fr]">
+            <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+              <h3 class="mb-4 text-base font-bold text-brand-purple">Continuing & New Teams</h3>
+              <ul class="grid gap-2 text-sm text-gray-700 sm:grid-cols-2">
+                {continuingAndNewTeams.map((team) => (
+                  <li class="rounded-md bg-brand-offwhite/60 px-3 py-2">{team}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="space-y-6">
+              <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+                <h3 class="mb-4 text-base font-bold text-brand-purple">Teams Still Being Finalised</h3>
+                <ul class="space-y-2 text-sm text-gray-700">
+                  {teamsStillBeingFinalised.map((team) => (
+                    <li class="rounded-md bg-brand-offwhite/60 px-3 py-2">{team}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
+                <h3 class="mb-2 text-base font-bold text-brand-black">What to include in your email</h3>
+                <ul class="mb-5 space-y-2 text-sm text-gray-700">
+                  <li>Player name</li>
+                  <li>Date of birth</li>
+                  <li>Current/previous Phoenix team or connection</li>
+                  <li>Team they are enquiring about</li>
+                  <li>Any other notes</li>
+                </ul>
+                <a
+                  href={registrationEnquiryMailto}
+                  class="inline-flex min-h-[44px] w-full items-center justify-center rounded-lg bg-brand-purple px-6 py-3 text-center text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
+                >
+                  Email {clubProfile.contact.generalEmail}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <section class="bg-white px-4 py-16 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
@@ -158,6 +269,11 @@ const seasonInfoCards = Array.isArray(SEASON_INFO_CARDS) ? SEASON_INFO_CARDS : [
         return document.getElementById(`season-info-modal-${id}`);
       }
 
+      function getRegistrationEnquiryModal(id: string | undefined): HTMLElement | null {
+        if (!id) return null;
+        return document.getElementById(id);
+      }
+
       function isZoomOpen() {
         return zoomOverlayEl?.getAttribute('data-open') === 'true';
       }
@@ -230,6 +346,14 @@ const seasonInfoCards = Array.isArray(SEASON_INFO_CARDS) ? SEASON_INFO_CARDS : [
       document.querySelectorAll<HTMLButtonElement>('[data-modal-id]').forEach((btn) => {
         btn.addEventListener('click', () => {
           const modal = getModal(btn.dataset.modalId!);
+          if (modal) openModal(modal, btn);
+        });
+      });
+
+      // Wire Summer registration enquiry buttons
+      document.querySelectorAll<HTMLElement>('[data-registration-enquiry-trigger]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const modal = getRegistrationEnquiryModal(btn.dataset.registrationEnquiryModalId);
           if (modal) openModal(modal, btn);
         });
       });

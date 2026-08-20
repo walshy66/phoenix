@@ -1,5 +1,7 @@
 import type { SeasonCardConfig } from './types'
 
+export const SUMMER_2026_27_ENQUIRY_MODAL_ID = 'summer-2026-27-registration-enquiry'
+
 export const SEASON_CARDS: SeasonCardConfig[] = [
   {
     id: 'winter-2026',
@@ -13,6 +15,18 @@ export const SEASON_CARDS: SeasonCardConfig[] = [
     icon: '❄️',
   },
   {
+    id: 'summer-2026-27',
+    name: 'Summer 2026/27',
+    role: 'next',
+    status: 'registration_open',
+    clickable: true,
+    navigationTarget: null,
+    navigationExternal: false,
+    statusBadgeLabel: 'Registrations Open',
+    icon: '🔥',
+    enquiryModalId: SUMMER_2026_27_ENQUIRY_MODAL_ID,
+  },
+  {
     id: 'summer-2025-26',
     name: 'Summer 2025/26',
     role: 'previous',
@@ -23,17 +37,6 @@ export const SEASON_CARDS: SeasonCardConfig[] = [
     navigationExternal: true,
     statusBadgeLabel: 'Complete',
     icon: '🏁',
-  },
-  {
-    id: 'summer-2026-27',
-    name: 'Summer 2026/27',
-    role: 'next',
-    status: 'coming_soon',
-    clickable: false,
-    navigationTarget: null,
-    navigationExternal: false,
-    statusBadgeLabel: 'Not Taking Registrations',
-    icon: '🛑',
   },
   {
     id: 'archive',

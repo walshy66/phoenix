@@ -3,7 +3,7 @@
  */
 
 export type SeasonRole = 'current' | 'next' | 'previous' | 'archive'
-export type SeasonStatus = 'active' | 'coming_soon' | 'completed'
+export type SeasonStatus = 'active' | 'registration_open' | 'coming_soon' | 'completed'
 
 export interface Season {
   id: string
@@ -24,6 +24,7 @@ export interface SeasonCardConfig {
   navigationExternal: boolean
   statusBadgeLabel: string
   icon: string
+  enquiryModalId?: string
 }
 
 export interface KeyDate {
