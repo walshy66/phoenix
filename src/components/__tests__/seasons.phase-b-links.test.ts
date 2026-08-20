@@ -16,7 +16,7 @@ describe('seasons phase b preserved links and actions', () => {
     expect(pageSource).toContain('href="/scores"')
     expect(pageSource).toContain('Summer 2026/27')
     expect(pageSource).toContain('data-registration-enquiry-trigger')
-    expect(pageSource).toContain('href="#summer-checklist"')
+    expect(pageSource).not.toContain('Summer Checklist</a>')
   })
 
   test('summer checklist renders required steps in mobile stacking order', () => {
