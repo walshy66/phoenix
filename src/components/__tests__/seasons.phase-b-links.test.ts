@@ -44,7 +44,7 @@ describe('seasons phase b preserved links and actions', () => {
     expect(pageSource).not.toContain('Uniform Information</button>')
     expect(pageSource).toContain('data-zoom-src={card.imageSrc}')
     expect(pageSource).toContain('data-zoom-link-url={card.linkUrl ?? \'\'}')
-    expect(pageSource).toContain('id="infographic-zoom-link"')
+    expect(pageSource).toContain('id="infographic-zoom-image-link"')
     expect(modalSource).toContain('https://www.stepinsports.com.au/product-category/phoenix-basketball/')
     expect(dataSource).toContain('https://www.facebook.com/share/p/18Nvdb7fjm/')
   })

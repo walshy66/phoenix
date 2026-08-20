@@ -372,18 +372,9 @@ const uniformChecklistItems = [
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <img id="infographic-zoom-image" src="" alt="" class="h-auto max-h-[88vh] w-auto max-w-[92vw] object-contain" />
-        <div id="infographic-zoom-link-wrap" class="hidden border-t border-gray-100 bg-white p-4 text-center">
-          <a
-            id="infographic-zoom-link"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex min-h-[44px] items-center justify-center rounded-lg bg-brand-purple px-6 py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-brand-purple focus:ring-offset-2"
-          >
-            Open link
-          </a>
-        </div>
+        <a id="infographic-zoom-image-link" rel="noopener noreferrer" class="block cursor-default">
+          <img id="infographic-zoom-image" src="" alt="" class="h-auto max-h-[88vh] w-auto max-w-[92vw] object-contain" />
+        </a>
       </div>
     </div>
   </div>
@@ -396,9 +387,8 @@ const uniformChecklistItems = [
       let zoomTriggerEl: HTMLElement | null = null;
 
       const zoomOverlayEl = document.getElementById('infographic-zoom-overlay');
+      const zoomImageLinkEl = document.getElementById('infographic-zoom-image-link') as HTMLAnchorElement | null;
       const zoomImageEl = document.getElementById('infographic-zoom-image') as HTMLImageElement | null;
-      const zoomLinkWrapEl = document.getElementById('infographic-zoom-link-wrap');
-      const zoomLinkEl = document.getElementById('infographic-zoom-link') as HTMLAnchorElement | null;
 
       function getModal(id: string): HTMLElement | null {
         return document.getElementById(`season-info-modal-${id}`);
@@ -418,17 +408,19 @@ const uniformChecklistItems = [
         zoomTriggerEl = trigger;
         zoomImageEl.src = src;
         zoomImageEl.alt = alt || 'Expanded infographic';
-        if (zoomLinkWrapEl && zoomLinkEl) {
+        if (zoomImageLinkEl) {
           if (linkUrl) {
-            zoomLinkEl.href = linkUrl;
-            zoomLinkEl.textContent = linkLabel || 'Open related link';
-            zoomLinkEl.setAttribute('aria-label', linkLabel || 'Open related link in a new tab');
-            zoomLinkWrapEl.classList.remove('hidden');
+            zoomImageLinkEl.href = linkUrl;
+            zoomImageLinkEl.target = '_blank';
+            zoomImageLinkEl.setAttribute('aria-label', linkLabel || 'Open related link in a new tab');
+            zoomImageLinkEl.classList.remove('cursor-default');
+            zoomImageLinkEl.classList.add('cursor-pointer', 'transition-opacity', 'hover:opacity-95');
           } else {
-            zoomLinkWrapEl.classList.add('hidden');
-            zoomLinkEl.href = '#';
-            zoomLinkEl.textContent = 'Open link';
-            zoomLinkEl.removeAttribute('aria-label');
+            zoomImageLinkEl.removeAttribute('href');
+            zoomImageLinkEl.removeAttribute('target');
+            zoomImageLinkEl.removeAttribute('aria-label');
+            zoomImageLinkEl.classList.add('cursor-default');
+            zoomImageLinkEl.classList.remove('cursor-pointer', 'transition-opacity', 'hover:opacity-95');
           }
         }
         zoomOverlayEl.classList.remove('hidden');
@@ -443,11 +435,12 @@ const uniformChecklistItems = [
         zoomOverlayEl.setAttribute('data-open', 'false');
         zoomImageEl.src = '';
         zoomImageEl.alt = '';
-        if (zoomLinkWrapEl && zoomLinkEl) {
-          zoomLinkWrapEl.classList.add('hidden');
-          zoomLinkEl.href = '#';
-          zoomLinkEl.textContent = 'Open link';
-          zoomLinkEl.removeAttribute('aria-label');
+        if (zoomImageLinkEl) {
+          zoomImageLinkEl.removeAttribute('href');
+          zoomImageLinkEl.removeAttribute('target');
+          zoomImageLinkEl.removeAttribute('aria-label');
+          zoomImageLinkEl.classList.add('cursor-default');
+          zoomImageLinkEl.classList.remove('cursor-pointer', 'transition-opacity', 'hover:opacity-95');
         }
         if (restoreFocus && zoomTriggerEl) zoomTriggerEl.focus();
         zoomTriggerEl = null;
