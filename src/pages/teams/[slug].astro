@@ -110,6 +110,8 @@ const parsed = parseGradeName(teamData.gradeName);
   </section>
 
   <script>
+    import { fetchFreshestLiveJson } from '../../lib/playhq/live-data';
+
     function esc(str) {
       return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
@@ -306,9 +308,8 @@ const parsed = parseGradeName(teamData.gradeName);
       const teamName = section.dataset.teamName;
 
       try {
-        const res = await fetch(`/live-data/teams-details.json?t=${Date.now()}`);
-        if (!res.ok) throw new Error('unavailable');
-        const data = await res.json();
+        const data = await fetchFreshestLiveJson('teams-details.json');
+        if (!data) throw new Error('unavailable');
         const details = data.teamDetails?.[slug];
 
         if (!details) {

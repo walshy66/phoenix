@@ -4,7 +4,9 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fetchGrades, fetchGames, normaliseStatus, structuredLog } from './lib/playhq-api.js';
 
-const OUTPUT_PATH = path.join(process.cwd(), 'public', 'live-data', 'live-scores.json');
+const LIVE_DATA_DIR = path.join(process.cwd(), 'public', 'live-data');
+const LIVE_SNAPSHOT_DIR = path.join(process.cwd(), 'public', 'live-snapshot');
+const OUTPUT_PATH = path.join(LIVE_DATA_DIR, 'live-scores.json');
 const SEASON_IDS = (process.env.PLAYHQ_SEASON_IDS || '').split(',').map((v) => v.trim()).filter(Boolean);
 const FETCH_TIMEOUT_MS = 60_000;
 
@@ -21,6 +23,14 @@ async function withTimeout(promise, ms) {
 function writeOverlay(liveScores) {
   fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(liveScores, null, 2));
+}
+
+function syncLiveSnapshot() {
+  if (!fs.existsSync(LIVE_DATA_DIR)) return;
+  fs.rmSync(LIVE_SNAPSHOT_DIR, { recursive: true, force: true });
+  fs.mkdirSync(path.dirname(LIVE_SNAPSHOT_DIR), { recursive: true });
+  fs.cpSync(LIVE_DATA_DIR, LIVE_SNAPSHOT_DIR, { recursive: true });
+  structuredLog('info', { event: 'live_snapshot_written', source: 'public/live-data', outputPath: 'public/live-snapshot' });
 }
 
 function maybeDeploy() {
@@ -66,6 +76,7 @@ async function main() {
   }
 
   writeOverlay(liveScores);
+  syncLiveSnapshot();
   structuredLog('info', { event: 'live_scores_written', count: Object.keys(liveScores).length });
   maybeDeploy();
 }

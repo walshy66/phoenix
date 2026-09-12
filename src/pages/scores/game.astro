@@ -14,6 +14,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   </section>
 
   <script>
+    import { fetchFreshestLiveJson } from '../../lib/playhq/live-data';
     import { renderGameDetail } from '../../lib/playhq/round-renderer';
 
     const rootEl = document.getElementById('game-detail-root');
@@ -40,10 +41,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       }
 
       try {
-        const t = Date.now();
-        const indexRes = await fetch(`/live-data/rounds/game-index.json?t=${t}`);
-        if (!indexRes.ok) throw new Error('index unavailable');
-        const index = await indexRes.json();
+        const index = await fetchFreshestLiveJson('rounds/game-index.json');
+        if (!index) throw new Error('index unavailable');
 
         const roundNumber = index.games?.[gameId];
         if (!roundNumber) {
@@ -51,14 +50,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           return;
         }
 
-        const [roundRes, liveRes] = await Promise.all([
-          fetch(`/live-data/rounds/round-${roundNumber}.json?t=${t}`),
-          fetch(`/live-data/live-scores.json?t=${t}`).catch(() => null),
+        const [round, liveScores] = await Promise.all([
+          fetchFreshestLiveJson(`rounds/round-${roundNumber}.json`),
+          fetchFreshestLiveJson('live-scores.json'),
         ]);
 
-        if (!roundRes.ok) throw new Error('round unavailable');
-        const round = await roundRes.json();
-        const liveScores = liveRes?.ok ? await liveRes.json() : {};
+        if (!round) throw new Error('round unavailable');
 
         const game = (round.games ?? []).find((g) => g.id === gameId);
         if (!game) {

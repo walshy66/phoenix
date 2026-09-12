@@ -18,7 +18,7 @@ describe('COA-87 home score regression coverage', () => {
   test('the homepage score carousel reads the live scores overlay without regressing route pages', () => {
     const carousel = read('src/components/HomeScoresCarousel.astro');
 
-    expect(carousel).toContain("fetch('/live-data/live-scores.json', { cache: 'no-store' })");
+    expect(carousel).toContain("fetchFreshestLiveJson('live-scores.json')");
     expect(carousel).toContain('homeScore: typeof live.homeScore ===');
     expect(carousel).toContain("status: 'live'");
   });

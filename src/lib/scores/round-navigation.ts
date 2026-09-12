@@ -1,21 +1,16 @@
+import { fetchFreshestLiveJson } from '../playhq/live-data';
 import type { RoundFile, RoundsIndex } from './round-file';
 
 export async function loadRoundsIndex(): Promise<RoundsIndex | null> {
-  try {
-    const response = await fetch(`/live-data/rounds/rounds-index.json?t=${Date.now()}`);
-    if (!response.ok) return null;
-    return (await response.json()) as RoundsIndex;
-  } catch {
-    return null;
-  }
+  return fetchFreshestLiveJson<RoundsIndex>('rounds/rounds-index.json', (payload) => {
+    const index = payload as Partial<RoundsIndex> | null;
+    return !!index && Array.isArray(index.availableRounds) && typeof index.currentRound === 'number';
+  });
 }
 
 export async function loadRoundFile(roundNumber: number): Promise<RoundFile | null> {
-  try {
-    const response = await fetch(`/live-data/rounds/round-${roundNumber}.json?t=${Date.now()}`);
-    if (!response.ok) return null;
-    return (await response.json()) as RoundFile;
-  } catch {
-    return null;
-  }
+  return fetchFreshestLiveJson<RoundFile>(`rounds/round-${roundNumber}.json`, (payload) => {
+    const round = payload as Partial<RoundFile> | null;
+    return !!round && Array.isArray(round.games);
+  });
 }

@@ -77,7 +77,7 @@ const {
 <script>
   import { getInitialCarouselIndex, getMaxCarouselIndex, getNextIndex, getPrevIndex, getSlidesPerView } from '../lib/home-scores/carousel';
   import { validateLiveHomeGamesPayload } from '../lib/playhq/contracts';
-  import { isLiveDataStale } from '../lib/playhq/live-data';
+  import { fetchFreshestLiveJson, isLiveDataStale } from '../lib/playhq/live-data';
   import { renderHomeGamesStateHtml } from '../lib/playhq/renderers';
 
   const carouselState = new WeakMap();
@@ -285,25 +285,14 @@ const {
     if (!url) return;
 
     try {
-      const [homeResponse, liveResponse] = await Promise.all([
-        fetch(url, { cache: 'no-store' }),
-        fetch('/live-data/live-scores.json', { cache: 'no-store' }),
+      const [payload, liveScoresPayload] = await Promise.all([
+        fetchFreshestLiveJson(url, (candidate) => validateLiveHomeGamesPayload(candidate).ok),
+        fetchFreshestLiveJson('live-scores.json'),
       ]);
 
-      if (!homeResponse.ok) return;
+      if (!payload) return;
 
-      const payload = await homeResponse.json();
-      const validation = validateLiveHomeGamesPayload(payload);
-      if (!validation.ok) return;
-
-      let liveScores = {};
-      if (liveResponse.ok) {
-        try {
-          liveScores = await liveResponse.json();
-        } catch {
-          liveScores = {};
-        }
-      }
+      let liveScores = liveScoresPayload ?? {};
 
       if (liveScores && typeof liveScores === 'object') {
         payload.games = payload.games.map((game) => {
