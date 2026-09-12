@@ -7,6 +7,10 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.bendigophoenix\.org\.au$ [NC]
 RewriteRule ^$ https://bendigophoenix.org.au/ [R=302,L]
 
+# Backward compatibility for score links generated before the client-rendered
+# game detail route moved to /scores/game?id=<gameId>.
+RewriteRule ^scores/([0-9A-Fa-f-]{36})/?$ /scores/game/?id=$1 [R=302,L,QSA]
+
 RewriteRule ^seasons/training/?$ https://bendigophoenix.org.au/seasons/?modal=training [R=302,L,QSA]
 RewriteRule ^team/players/?$ https://bendigophoenix.org.au/resources/?modal=players [R=302,L,QSA]
 RewriteRule ^get-involved/volunteers/?$ https://bendigophoenix.org.au/get-involved/#volunteer-with-us [R=302,L,QSA]

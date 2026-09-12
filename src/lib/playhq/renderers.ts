@@ -143,7 +143,7 @@ export function renderHomeGamesStateHtml(artifact: { status: 'success' | 'stale'
         <div class="home-scores-track flex transition-transform duration-1000 ease-in-out" aria-live="polite">
           ${artifact.games.map((game, idx) => `
             <div class="home-slide w-full sm:w-1/2 md:w-1/3 lg:w-1/4 shrink-0 px-2" data-index="${idx}" data-kickoff-date="${escapeHtml(game.kickoffDate ?? '')}" data-status="${escapeHtml(game.status ?? 'unknown')}">
-              <a href="/scores/${escapeHtml(game.gameId)}" class="block h-full w-full focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl" aria-label="Open details for ${escapeHtml(game.homeTeam)} vs ${escapeHtml(game.awayTeam)}">
+              <a href="/scores/game?id=${escapeHtml(encodeURIComponent(game.gameId))}" class="block h-full w-full focus-visible:outline-2 focus-visible:outline-brand-gold rounded-xl" aria-label="Open details for ${escapeHtml(game.homeTeam)} vs ${escapeHtml(game.awayTeam)}">
                 ${renderHomeGameCard(game)}
               </a>
             </div>
@@ -207,7 +207,7 @@ export function renderScoresPageStateHtml(artifact: WeeklyArtifact): string {
             ${fixtures.length > 0 ? `
               <div class="space-y-4">
                 ${fixtures.map((fixture: any) => `
-                  <a href="/scores/${escapeHtml(fixture.fixtureId)}" class="block rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-brand-purple hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="Open game details for ${escapeHtml(fixture.homeTeam)} vs ${escapeHtml(fixture.awayTeam)}">
+                  <a href="/scores/game?id=${escapeHtml(encodeURIComponent(String(fixture.fixtureId ?? '')))}" class="block rounded-lg border border-gray-200 bg-white p-4 shadow-sm transition hover:border-brand-purple hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple" aria-label="Open game details for ${escapeHtml(fixture.homeTeam)} vs ${escapeHtml(fixture.awayTeam)}">
                     <p class="text-xs font-semibold uppercase tracking-wide text-brand-purple">${escapeHtml(fixture.grade ?? 'Game')}</p>
                     <h4 class="mt-1 text-sm font-bold text-brand-black">${escapeHtml(fixture.homeTeam)} vs ${escapeHtml(fixture.awayTeam)}</h4>
                     <p class="mt-2 text-sm text-gray-700">${escapeHtml(fixture.kickoffDisplay ?? 'TBA')}</p>

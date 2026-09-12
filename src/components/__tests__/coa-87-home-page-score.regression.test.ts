@@ -26,11 +26,13 @@ describe('COA-87 home score regression coverage', () => {
   test('the existing carousel implementation and scores routes remain intact', () => {
     const carousel = read('src/components/HomeScoresCarousel.astro');
     const scoresPage = read('src/pages/scores.astro');
-    const scoreDetailPage = read('src/pages/scores/[gameId].astro');
+    const scoreDetailPage = read('src/pages/scores/game.astro');
+    const renderers = read('src/lib/playhq/renderers.ts');
 
     expect(carousel).toContain('Latest Results');
     expect(carousel).toContain('data-home-scores-root');
     expect(scoresPage).toContain('BaseLayout');
     expect(scoreDetailPage).toContain('BaseLayout');
+    expect(renderers).toContain('/scores/game?id=${escapeHtml(encodeURIComponent(game.gameId))}');
   });
 });
