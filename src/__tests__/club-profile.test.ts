@@ -5,7 +5,7 @@ const highLeverageTemplateFiles = [
   'src/layouts/BaseLayout.astro',
   'src/components/Footer.astro',
   'src/pages/contact.astro',
-  'src/pages/seasons.astro',
+  'src/pages/play-basketball.astro',
   'src/pages/get-involved.astro',
 ];
 
@@ -54,7 +54,7 @@ describe('club profile config', () => {
       ['src/layouts/BaseLayout.astro', ['Bendigo Phoenix Basketball Club — Where Community Meets Competition', 'Bendigo Phoenix Basketball', 'https://bendigophoenix.org.au']],
       ['src/components/Footer.astro', ['Phoenix United Basketball Development Club Inc.', 'hello@bendigophoenix.org.au', 'https://facebook.com/phoenixunitedbasketball', 'https://instagram.com/bendigophoenix', 'Bendigo Stadium']],
       ['src/pages/contact.astro', ['hello@bendigophoenix.org.au', 'https://facebook.com/phoenixunitedbasketball', 'https://instagram.com/bendigophoenix', 'Bendigo Stadium']],
-      ['src/pages/seasons.astro', ['hello@bendigophoenix.org.au']],
+      ['src/pages/play-basketball.astro', ['hello@bendigophoenix.org.au']],
       ['src/pages/get-involved.astro', ['hello@bendigophoenix.org.au?subject=Sponsorship%20Enquiry', 'hello@bendigophoenix.org.au?subject=Volunteering%20Enquiry']],
     ]);
 

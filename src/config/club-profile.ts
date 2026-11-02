@@ -27,6 +27,10 @@ export const clubProfile = {
       handle: '@bendigophoenix',
     },
   },
+  basketball: {
+    // Club-level directory, not a season/team URL: visitors choose their current season in PlayHQ.
+    playhqUrl: 'https://www.playhq.com/basketball-victoria/org/phoenix-united-basketball-development-club-bendigo/90c7fb8e',
+  },
   meta: {
     siteTitle: 'Bendigo Phoenix Basketball',
     defaultDescription: 'Bendigo Phoenix Basketball Club — Where Community Meets Competition',

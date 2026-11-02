@@ -1,188 +1,89 @@
-# Phoenix operator and template guide
+# Bendigo Phoenix — evergreen club website
 
-Phoenix is an Astro-based basketball club website for Bendigo Phoenix. This repository is also the working template for future club sites, so keep club-specific details in the configuration and content files called out below rather than hard-coding them into components.
+A static Astro website for Bendigo Phoenix Basketball Club. The site deliberately avoids routine seasonal publishing and competition-data maintenance.
 
-## Clean checkout setup
+## Run and verify
 
-1. Install Node.js **22.12.0 or newer**.
-2. Clone the repository and enter the project directory.
-3. Install dependencies with `npm ci`.
-4. Create `.env.local` for local-only PlayHQ values if you need to refresh data locally. Do not commit `.env.local` or secret values.
-5. Run the relevant verification command before opening a PR.
+Requires Node.js **22.12.0 or newer**.
 
 ```bash
 npm ci
 npm run dev
+npm test
+npm run build
+npm run check:evergreen
+npm run preview
 ```
 
-## Local run, test, and build commands
+`check:evergreen` checks the **built** HTML, links and legacy redirects; run it after building. No PlayHQ credentials or network access are needed to build the website.
 
-| Command | Purpose |
+## Site structure and content ownership
+
+| Area | Purpose |
 | --- | --- |
-| `npm run dev` | Start the Astro dev server, usually at `http://localhost:4321`. |
-| `npm run test` | Run the Vitest test suite. |
-| `npm run build` | Build the production site into `dist/`. |
-| `npm run preview` | Preview the production build locally. |
-| `npm run playhq:refresh:local` | Refresh PlayHQ-derived local JSON artifacts and copy them into `public/live-data/`. |
-| `npm run scores:refresh` | Refresh raw PlayHQ scores into `scripts/scores-data.json`. |
-| `npm run scores:check` | Validate `scripts/scores-data.json`. |
-| `npm run home-scores:refresh` | Refresh home page game data into `scripts/home-games-data.json`. |
-| `npm run home-scores:check` | Validate `scripts/home-games-data.json`. |
-| `npm run rounds:check` | Validate generated round files. |
+| Home | Permanent club welcome and navigation. Uses a branded logo until a suitable evergreen photo is selected. |
+| Play Basketball | General joining guidance, uniforms, training communication, financial assistance and links to current information. |
+| Get Involved | Sponsorship and volunteering. No event listings. |
+| Resources | Existing coaching/player learning materials, tools, guides, forms and policies. |
+| About | Club history, values and Slam Dunk Bridging Fund. |
+| Contact | General enquiries via `hello@bendigophoenix.org.au`. No committee directory. |
 
-## Content editing map
+**Changing information belongs elsewhere:**
 
-Use these locations for routine club/operator edits:
+- Facebook: https://facebook.com/phoenixunitedbasketball — announcements, season updates and events.
+- PlayHQ: the club-level directory configured in `src/config/club-profile.ts` — visitors select a season/team for fixtures, results and ladders. Do not replace it with a season-specific URL.
+- Club/team communications: registration steps, current fees, available team places and training arrangements. Email remains an alternative for people without Facebook.
 
-| Area | Edit here |
+No on-site scores, team rosters, season calendars, PlayHQ scraping or overnight updates are required. There is no embedded Facebook/PlayHQ feed. Do not add an embed unless it is supported and does not require seasonal reconfiguration.
+
+“No maintenance” means **no routine or seasonal maintenance**, not a guarantee that contacts, sponsors, policies, dependencies or external links will never change.
+
+## Occasional editing map
+
+| Area | Location |
 | --- | --- |
-| Home page welcome copy | `content/home/welcome.md` |
-| About page copy | `content/about/about.md` and `content/about/slam-dunk.md` |
-| Season overview content | `content/seasons/current.md` |
-| Page routes | `src/pages/` |
-| Shared page sections/cards | `src/components/` |
-| Events | `src/data/events.md` |
-| Forms and guides | `src/data/forms.json`, `src/data/guides.json` |
-| Coaching/player/manager resources | `src/data/*-resources.json` |
-| Team lists and staff | `src/data/teams/teams.json`, `src/data/teams/staff.json` |
-| Static images | `public/images/` |
-| Live PlayHQ JSON served by the site | `public/live-data/` |
+| Club identity, general contact and social/PlayHQ links | `src/config/club-profile.ts` |
+| Homepage and eventual permanent photo | `src/pages/index.astro` |
+| Joining guidance | `src/pages/play-basketball.astro` |
+| About / financial assistance | `src/pages/about.astro`, `content/about/` |
+| Sponsorship / volunteering | `src/pages/get-involved.astro` |
+| Sponsor logos and links | `src/data/sponsors.json`, `public/images/sponsors/` |
+| Resources | `src/pages/resources/`, `src/data/*-resources.json`, `src/data/{guides,forms,policies}.json` |
+| Public documents and images | `public/resources/`, `public/images/`, `public/uploads/` |
+| Shared navigation / footer | `src/components/Navbar.astro`, `src/components/Footer.astro` |
 
-### Hero section images
+Existing resource content, About and financial-assistance content are intentionally unchanged by the evergreen redesign. The existing newsletter signup and sponsor strip are retained.
 
-Hero carousel slides are stored in `public/images/hero/` and configured in `src/pages/index.astro` in the `heroSlides` array.
+## Legacy links
 
-Image requirements:
+Astro emits static redirects for `/seasons`, `/teams`, `/team`, `/scores`, `/scores/game` and known old team URLs. These lead to `/play-basketball` and include a fallback link without JavaScript.
 
-- JPEG or WebP.
-- 16:9 landscape.
-- Recommended size: 1400×788px minimum, 1920×1080px for high-DPI screens.
-- Keep key content centred because narrow screens crop edges.
-- Provide meaningful `alt` text for every slide.
+`src/data/legacy-team-slugs.json` is a one-time migration list, **not** a current team list. It never needs a season refresh. `public/.htaccess` also redirects arbitrary old team/game URLs on Apache/cPanel, including URLs not in that list, and preserves useful old resource/volunteer links. Apache rewrite rules must be checked on hosting; Astro preview does not execute `.htaccess`.
 
-## Club profile and template configuration
+## Deployment
 
-The central club profile is `src/config/club-profile.ts`. Update this file when cloning for another club or changing Phoenix-level details:
+`.github/workflows/deploy.yml` builds and deploys static `dist/` to VentraIP/cPanel using FTPS when `main` changes or via manual dispatch. This is **deployment only**, not recurring data automation.
 
-- club name, legal name, short name, team prefix, and tagline
-- city/region/state
-- contact email addresses and postal address
-- social profile labels, URLs, and handles
-- default site metadata and canonical site URL
-- home venue identity
+Required GitHub secrets: `FTP_HOST`, `FTP_PORT`, `FTP_USER`, `FTP_PASS`; optional `FTP_REMOTE_DIR` (defaults to `.`). The remote directory must be the intended document root, not a nested `public_html` folder.
 
-Prefer importing `clubProfile` from this module rather than duplicating club details in pages/components.
+The mirror deletes obsolete remote output, including retired live-data files. PlayHQ sync and nightly team-detail workflows have been removed. They stop on GitHub after this branch is merged into the default branch; cancel any already-running old sync job before deployment. No production deployment is performed by local verification.
 
-## Sponsors, venues, and training data
+Historical PlayHQ scripts/helpers and feature components remain in the repository for reference, but are not used by active pages or deployment. Their optional developer commands are not required for operating this site. Older documents under `docs/` and `specs/` may describe the retired system; this README describes the current operating model.
 
-| Data | Edit here | Notes |
-| --- | --- | --- |
-| Sponsors | `src/data/sponsors.json` | Add sponsor `id`, display `name`, logo path, link, and joined date. Place logos under `public/images/sponsors/`. |
-| Sponsor CTA | `src/data/sponsors.json` | Update `ctaLink` if sponsorship enquiries move to another email or form. |
-| Venues | `src/data/venues.ts` | Update venue names, addresses, map links/embeds, labels, and per-venue training schedules used by the site. |
-| Simple training fallback | `src/data/teams/training.json` | Keep aligned with the current club training message where this data source is used. |
-| Team/staff data | `src/data/teams/*.json` | Update team and staff records when club structure changes. |
+## Pre-redesign backup
 
-## PlayHQ sync configuration and operation
+- Git restore tag: `backup-before-evergreen-20261025-093802`
+- Full local ZIP: `C:\Users\camer\Documents\phoenix-backups\phoenix-before-evergreen-20261025-093802.zip`
+- Redesign branch: `redesign/evergreen-20261025`
 
-PlayHQ configuration is centralised in `scripts/lib/playhq-config.js` and consumed by the PlayHQ refresh scripts. Keep club-specific PlayHQ values in environment variables or `.env.local`; do not hard-code them into scripts.
+The verified ZIP includes source, public assets, Git history and private local configuration. It excludes regenerable `node_modules`, `dist` and `.astro`. Keep it private. It is not a backup of files stored only on the hosting server.
 
-Local refresh flow:
+To inspect the old version without resetting current work:
 
 ```bash
-npm run playhq:refresh:local
+git switch -c restore/pre-evergreen backup-before-evergreen-20261025-093802
+npm ci
 npm run build
 ```
 
-`npm run playhq:refresh:local` runs the score, weekly game, and home score refresh/check sequence, then copies the generated artifacts into `public/live-data/scores.json` and `public/live-data/home-games.json` for local preview/builds.
-
-Lower-level commands are available when debugging a specific artifact:
-
-```bash
-npm run scores:refresh
-npm run scores:check
-node scripts/scrape-weekly-games.js
-node scripts/check-weekly-games-data.js
-npm run home-scores:refresh
-npm run home-scores:check
-```
-
-Production live data mapping:
-
-- `public/live-data/scores.json` powers `/scores` and `/scores/[gameId]`.
-- `public/live-data/home-games.json` powers the home page scores carousel.
-
-## Required environment variables and secrets
-
-Never commit secret values. Document the variable names and purpose only.
-
-### PlayHQ data refresh
-
-| Name | Required for | Purpose |
-| --- | --- | --- |
-| `PLAYHQ_API_KEY` | PlayHQ refresh scripts | API key sent as the `x-api-key` header. |
-| `PLAYHQ_TENANT` | PlayHQ refresh scripts | Optional PlayHQ tenant sent as the `x-phq-tenant` header. Defaults to `bv` if omitted. |
-| `PLAYHQ_CLUB_NAME` | PlayHQ refresh scripts | Club name used to identify Phoenix records. |
-| `PLAYHQ_CLUB_MATCH` | Optional PlayHQ matching override | Alternate match string when PlayHQ naming differs from the display club name. |
-| `PLAYHQ_SEASON_IDS` | PlayHQ refresh scripts | Comma-separated season IDs to include in sync output. |
-| `PLAYHQ_API_BASE` | Optional PlayHQ API override | Defaults to `https://api.playhq.com`; override only for testing/non-standard API targets. |
-
-### Production deployment
-
-These GitHub Actions secrets are used by `.github/workflows/deploy.yml` to publish `dist/` to VentraIP/cPanel via FTPS.
-
-| Name | Required | Purpose |
-| --- | --- | --- |
-| `FTP_HOST` | Yes | FTPS host. |
-| `FTP_PORT` | Yes | FTPS port. |
-| `FTP_USER` | Yes | FTPS username. |
-| `FTP_PASS` | Yes | FTPS password. |
-| `FTP_REMOTE_DIR` | Optional | Remote document root. Defaults to `.`. Must not point to a nested `public_html` directory. |
-
-## Deployment workflow
-
-The main site deployment is defined in `.github/workflows/deploy.yml` as **Deploy Phoenix Site**.
-
-1. Work on a feature branch.
-2. Run relevant checks locally, at minimum `npm run test` and `npm run build` for site/content changes.
-3. Commit and push the branch.
-4. Open a PR or merge the branch into `main` when approved.
-5. A push to `main` runs the GitHub Actions workflow.
-6. The workflow installs dependencies with `npm ci`, builds with `npm run build`, installs `lftp`, and mirrors `dist/` to the configured FTPS destination.
-7. Check the live site at `https://bendigophoenix.org.au` after the workflow is green.
-
-For more release detail and troubleshooting, see `docs/RELEASE_WORKFLOW.md`.
-
-## Clone this template for a new club
-
-When using Phoenix as the starting point for another club:
-
-1. Create a new repository from this codebase.
-2. Update package/repository metadata if the new club needs distinct naming.
-3. Replace the central club details in `src/config/club-profile.ts`.
-4. Replace PlayHQ environment values: `PLAYHQ_CLUB_NAME`, `PLAYHQ_CLUB_MATCH` if needed, and `PLAYHQ_SEASON_IDS`.
-5. Update content under `content/` for the new club voice, history, and calls to action.
-6. Replace sponsors in `src/data/sponsors.json` and sponsor logos under `public/images/sponsors/`.
-7. Replace venues/training in `src/data/venues.ts` and `src/data/teams/training.json`.
-8. Replace teams/staff/resources in `src/data/teams/` and `src/data/*-resources.json`.
-9. Replace images under `public/images/`, especially hero, team, season, sponsor, and about images.
-10. Update deployment secrets for the new hosting account.
-11. Run `npm run playhq:refresh:local`, `npm run test`, and `npm run build` before first deploy.
-12. Confirm no Bendigo Phoenix-specific names, URLs, emails, or assets remain except in intentional migration notes.
-
-## Template-readiness checklist
-
-Before declaring this repository ready to seed or operate another club site, confirm:
-
-- [ ] `README.md` reflects operator/template workflow, not starter-project instructions.
-- [ ] `src/config/club-profile.ts` is the source of truth for club identity and contact details.
-- [ ] Content files under `content/` are current for the target club.
-- [ ] Sponsors, venues, training, teams, staff, and resources are updated in `src/data/`.
-- [ ] PlayHQ variables are configured by name only in docs/scripts and secret values remain outside git.
-- [ ] `.env.local` is ignored and contains only local developer values.
-- [ ] `npm run playhq:refresh:local` succeeds for the target club when PlayHQ credentials are available.
-- [ ] `npm run test` passes.
-- [ ] `npm run build` passes.
-- [ ] Deployment secrets exist in GitHub Actions for the target hosting account.
-- [ ] The production deployment workflow has been checked after merge to `main`.
-- [ ] Browser verification covers home, scores, seasons, teams, about/contact, resources, sponsor displays, and image loading.
+Ensure your working tree is clean before switching. Do not restore old automation to production without explicitly deciding to resume it.

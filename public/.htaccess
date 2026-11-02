@@ -1,19 +1,13 @@
 RewriteEngine On
 
-# Temporary legacy newsletter redirects (302) through 2026-05-31.
-# These rules must work on both www and non-www hosts because some old links
-# or browser history entries may land on either hostname.
-
+# Preserve the canonical homepage and useful legacy newsletter links.
 RewriteCond %{HTTP_HOST} ^www\.bendigophoenix\.org\.au$ [NC]
-RewriteRule ^$ https://bendigophoenix.org.au/ [R=302,L]
+RewriteRule ^$ https://bendigophoenix.org.au/ [R=301,L]
 
-# Backward compatibility for score links generated before the client-rendered
-# game detail route moved to /scores/game?id=<gameId>.
-RewriteRule ^scores/([0-9A-Fa-f-]{36})/?$ /scores/game/?id=$1 [R=302,L,QSA]
+# More-specific legacy routes precede the retired season/team/score routes.
+RewriteRule ^team/players/?$ /resources/?tab=players [R=301,L]
+RewriteRule ^get-involved/volunteers/?$ /get-involved/#volunteer-with-us [R=301,L,NE,QSD]
+RewriteRule ^about/club-policies/?$ /resources/?tab=policies [R=301,L]
 
-RewriteRule ^seasons/training/?$ https://bendigophoenix.org.au/seasons/?modal=training [R=302,L,QSA]
-RewriteRule ^team/players/?$ https://bendigophoenix.org.au/resources/?modal=players [R=302,L,QSA]
-RewriteRule ^get-involved/volunteers/?$ https://bendigophoenix.org.au/get-involved/#volunteer-with-us [R=302,L,QSA]
-RewriteRule ^seasons/clearances/?$ https://bendigophoenix.org.au/seasons/?modal=clearances [R=302,L,QSA]
-RewriteRule ^seasons/uniforms/?$ https://bendigophoenix.org.au/seasons/?modal=uniforms [R=302,L,QSA]
-RewriteRule ^about/club-policies/?$ https://bendigophoenix.org.au/about/#club-policies [R=302,L,QSA]
+# Includes unknown team slugs and old game IDs. Drop obsolete query parameters.
+RewriteRule ^(?:seasons|teams|team|scores)(?:/.*)?$ /play-basketball [R=301,L,NE,QSD]
