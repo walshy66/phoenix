@@ -50,7 +50,6 @@
   const searchTimers = new Map();
   const panelOpenClasses = ['max-h-[50vh]', 'overflow-y-auto', 'opacity-100', 'pointer-events-auto', 'translate-y-0'];
   const panelClosedClasses = ['max-h-0', 'overflow-hidden', 'opacity-0', 'pointer-events-none', '-translate-y-2'];
-  const panelVisibleClasses = ['md:flex', 'md:max-h-none', 'md:flex-col', 'md:gap-3', 'md:overflow-visible', 'md:opacity-100', 'md:pointer-events-auto', 'md:translate-y-0'];
 
   function getStorage() {
     try {
@@ -292,16 +291,8 @@
     toggle.setAttribute('aria-expanded', String(open));
     label.textContent = open ? 'Hide filters' : 'Show filters';
 
-    if (isDesktop()) {
-      panel.classList.add(...panelVisibleClasses);
-      panel.classList.remove(...panelOpenClasses, ...panelClosedClasses);
-      panel.style.removeProperty('max-height');
-      panel.style.removeProperty('opacity');
-      panel.style.removeProperty('pointer-events');
-      panel.style.removeProperty('transform');
-      panel.style.removeProperty('overflow-y');
-      return;
-    }
+    const chevron = toggle.querySelector('[data-filter-chevron]');
+    if (chevron instanceof SVGElement) chevron.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
 
     if (open) {
       panel.classList.remove(...panelClosedClasses);
