@@ -2,343 +2,72 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorCard from '../components/SponsorCard.astro';
 import sponsorsData from '../data/sponsors.json';
-import EventTile from '../components/EventTile.astro';
-import EventModal from '../components/EventModal.astro';
-import { getUpcomingEvents, getPastEvents } from '../lib/events/filters';
 import { clubProfile, mailto } from '../config/club-profile';
 
-// Read and parse events from events.md
-const eventsData = await import('../data/events.md?raw');
-
-// Parse the markdown frontmatter blocks
-function parseEvents(raw) {
-  const blocks = raw.split(/^---\s*$/m);
-  const events = [];
-
-  for (let i = 1; i < blocks.length; i += 2) { // Skip first empty block
-    const frontmatter = blocks[i].trim();
-    if (!frontmatter) continue;
-
-    try {
-      // Parse YAML frontmatter
-      const event = {};
-      frontmatter.split('\n').forEach(line => {
-        const [key, ...valueParts] = line.split(': ');
-        if (key && valueParts.length > 0) {
-          const value = valueParts.join(': ').trim();
-          // Remove quotes if present
-          const cleanedValue = value.replace(/^["']|["']$/g, '');
-          event[key.trim()] = cleanedValue;
-        }
-      });
-
-      // Only add events with required fields
-      if (event.id && event.title && event.date && event.image && event.status) {
-        events.push(event);
-      }
-    } catch (e) {
-      console.warn('Failed to parse event block:', frontmatter.slice(0, 100));
-    }
-  }
-
-  return events;
-}
-
-const allEvents = parseEvents(eventsData.default);
-const upcomingEvents = getUpcomingEvents(allEvents);
-const pastEvents = getPastEvents(allEvents);
-
 const sponsorTiers = [
-  {
-    tier: 'Gold Sponsor',
-    amount: 'Contact us',
-    perks: ['Logo on jerseys', 'Major website presence', 'Social media shoutouts', 'Event recognition'],
-    accent: '#8B7536',
-  },
-  {
-    tier: 'Silver Sponsor',
-    amount: 'Contact us',
-    perks: ['Logo on team banner', 'Website listing', 'Social media mentions'],
-    accent: '#573F93',
-  },
-  {
-    tier: 'Bronze Sponsor',
-    amount: 'Contact us',
-    perks: ['Website listing', 'Acknowledgment in club communications'],
-    accent: '#111111',
-  },
+  { tier: 'Gold Sponsor', amount: 'Contact us', perks: ['Logo on jerseys', 'Major website presence', 'Social media shoutouts', 'Event recognition'], accent: '#8B7536' },
+  { tier: 'Silver Sponsor', amount: 'Contact us', perks: ['Logo on team banner', 'Website listing', 'Social media mentions'], accent: '#573F93' },
+  { tier: 'Bronze Sponsor', amount: 'Contact us', perks: ['Website listing', 'Acknowledgment in club communications'], accent: '#111111' },
 ];
 ---
 
-<BaseLayout title="Get Involved" description={`Get involved with ${clubProfile.shortName} Basketball — events, sponsorship and volunteering opportunities.`}>
-  <!-- Page Hero -->
-  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none">
-      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Community</p>
-      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">GET INVOLVED</h1>
-      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
-      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
-        There are many ways to be part of the {clubProfile.teamPrefix.toLowerCase()} family — play, volunteer, sponsor or support.
-      </p>
+<BaseLayout title="Get Involved" description={`Support ${clubProfile.shortName} Basketball through sponsorship and volunteering.`}>
+  <section class="relative overflow-hidden bg-brand-purple px-4 py-12 text-center lg:py-8">
+    <div class="mx-auto max-w-3xl">
+      <p class="mb-3 text-sm font-bold uppercase tracking-widest text-purple-200">Community</p>
+      <h1 class="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">Get Involved</h1>
+      <div class="mx-auto mt-4 h-1 w-16 bg-brand-gold"></div>
+      <p class="mx-auto mt-4 max-w-xl text-base text-purple-100">Help our community thrive — sponsor the club or volunteer your time.</p>
     </div>
   </section>
 
-  <!-- Events Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-7xl mx-auto">
-      {upcomingEvents.length > 0 ? (
-        <>
-          <div class="relative">
-            <!-- Carousel Container -->
-            <div class="overflow-hidden">
-              <div class:list={['carousel-upcoming transition-transform duration-300 ease-in-out flex gap-6', upcomingEvents.length === 1 ? 'justify-center' : '']} style={`transform: translateX(0)`}>
-                {upcomingEvents.map(event => (
-                  <div class={upcomingEvents.length === 1 ? 'flex-shrink-0 w-full max-w-4xl' : 'flex-shrink-0 w-1/4'}>
-                    <EventTile
-                      id={event.id}
-                      title={event.title}
-                      date={event.date}
-                      time={event.time || undefined}
-                      location={event.location || undefined}
-                      description={event.description || undefined}
-                      image={event.image}
-                      alt={event.alt || undefined}
-                      category={event.category}
-                      featured={upcomingEvents.length === 1}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <!-- Navigation Arrows -->
-            {upcomingEvents.length > 4 && (
-              <>
-                <button class="carousel-prev-upcoming absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Previous events">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                  </svg>
-                </button>
-                <button class="carousel-next-upcoming absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Next events">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </>
-            )}
-          </div>
-        </>
-      ) : (
-        <p class="text-gray-500 text-center py-8">No upcoming events scheduled. Check back soon!</p>
-      )}
-    </div>
-  </section>
-
-  {pastEvents.length > 0 ? (
-    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Past Events</h2>
-        <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
-        <div class="relative">
-          <!-- Carousel Container -->
-          <div class="overflow-hidden">
-            <div class="carousel-past transition-transform duration-300 ease-in-out flex gap-6" style={`transform: translateX(0)`}>
-              {pastEvents.map(event => (
-                <div class="flex-shrink-0 w-1/4">
-                  <EventTile
-                    id={event.id}
-                    title={event.title}
-                    date={event.date}
-                    time={event.time || undefined}
-                    location={event.location || undefined}
-                    description={event.description || undefined}
-                    image={event.image}
-                    alt={event.alt || undefined}
-                    category={event.category || 'Event'}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <!-- Navigation Arrows -->
-          {pastEvents.length > 4 && (
-            <>
-              <button class="carousel-prev-past absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Previous events">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button class="carousel-next-past absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 p-2 rounded-full bg-brand-purple text-white hover:bg-brand-purple/80 transition-colors z-10" aria-label="Next events">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </>
-          )}
-        </div>
-      </div>
-    </section>
-  ) : (
-    <p class="text-gray-500 text-center py-8 bg-brand-offwhite">No past events to display.</p>
-  )}
-
-  <EventModal />
-
-  <!-- Sponsors Section -->
-  <section id="sponsors" class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Sponsorship</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-4"></div>
-      <p class="text-gray-600 mb-4 max-w-2xl">
-        Sponsoring {clubProfile.name} is a great way to connect with the local community
-        while supporting the growth of basketball in {clubProfile.location.region}.
-      </p>
-
-      <a
-        href="/resources/sponsors/PHOENIX_SponsorProspectus_20251010.pdf"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 bg-brand-purple text-white px-6 py-3 rounded-lg font-bold text-sm hover:bg-purple-800 transition-colors mb-8"
-      >
-        Sponsor Prospectus
-      </a>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+  <section id="sponsors" class="bg-brand-offwhite px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">Sponsorship</h2>
+      <div class="mb-4 h-1 w-12 bg-brand-gold"></div>
+      <p class="mb-4 max-w-2xl text-gray-600">Sponsoring {clubProfile.name} is a great way to connect with the local community while supporting the growth of basketball in {clubProfile.location.region}.</p>
+      <a href="/resources/sponsors/PHOENIX_SponsorProspectus_20251010.pdf" target="_blank" rel="noopener noreferrer" class="mb-8 inline-flex min-h-[44px] items-center gap-2 rounded-lg bg-brand-purple px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-purple-800">Sponsor Prospectus<span class="sr-only"> (opens in a new tab)</span></a>
+      <div class="mb-10 grid grid-cols-1 gap-6 md:grid-cols-3">
         {sponsorTiers.map(tier => (
-          <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 card-hover">
+          <div class="card-hover overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
             <div class="h-2" style={`background-color: ${tier.accent};`}></div>
             <div class="p-6">
-              <h3 class="font-black text-brand-black text-xl mb-1">{tier.tier}</h3>
-              <p class="text-brand-purple font-bold text-sm mb-4">{tier.amount}</p>
-              <ul class="space-y-2">
-                {tier.perks.map(perk => (
-                  <li class="flex items-center gap-2 text-sm text-gray-600">
-                    <span class="text-brand-gold font-bold">✓</span>
-                    {perk}
-                  </li>
-                ))}
-              </ul>
-              <a
-                href={mailto(clubProfile.contact.generalEmail, 'Sponsorship Enquiry')}
-                class="mt-6 block text-center py-2.5 rounded-lg text-sm font-bold text-white transition-colors"
-                style={`background-color: ${tier.accent};`}
-              >
-                Get in Touch
-              </a>
+              <h3 class="mb-1 text-xl font-black text-brand-black">{tier.tier}</h3>
+              <p class="mb-4 text-sm font-bold text-brand-purple">{tier.amount}</p>
+              <ul class="space-y-2">{tier.perks.map(perk => (<li class="flex items-center gap-2 text-sm text-gray-600"><span class="font-bold text-brand-gold" aria-hidden="true">✓</span>{perk}</li>))}</ul>
+              <a href={mailto(clubProfile.contact.generalEmail, 'Sponsorship Enquiry')} class="mt-6 block rounded-lg py-2.5 text-center text-sm font-bold text-white transition-colors" style={`background-color: ${tier.accent};`}>Get in Touch</a>
             </div>
           </div>
         ))}
       </div>
-
-      <!-- Current Sponsors display -->
-      <div class="bg-white rounded-xl p-6 border border-gray-100">
-        <h3 class="text-center text-brand-purple font-bold text-sm uppercase tracking-widest mb-4">OUR PROUD SPONSORS</h3>
+      <div class="rounded-xl border border-gray-100 bg-white p-6">
+        <h3 class="mb-4 text-center text-sm font-bold uppercase tracking-widest text-brand-purple">OUR PROUD SPONSORS</h3>
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
           {sponsorsData.sponsors.length > 0 ? (
             <SponsorCard sponsor={sponsorsData.sponsors[0]} layout="grid" isFirstSponsor />
           ) : (
-            <div class="h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-dashed border-gray-300">
-              <span class="text-xs text-gray-400">your logo here</span>
-            </div>
+            <div class="flex h-24 items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100"><span class="text-xs text-gray-400">your logo here</span></div>
           )}
-          {Array.from({ length: 5 }).map((_, i) => (
-            <div class="h-24 bg-gray-100 rounded-lg flex items-center justify-center border border-dashed border-gray-300">
-              <span class="text-xs text-gray-400">your logo here</span>
-            </div>
-          ))}
+          {Array.from({ length: 5 }).map(() => (<div class="flex h-24 items-center justify-center rounded-lg border border-dashed border-gray-300 bg-gray-100"><span class="text-xs text-gray-400">your logo here</span></div>))}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Volunteers Section -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mx-auto bg-brand-purple rounded-2xl p-8 text-center">
-        <span class="text-5xl mb-4 block">🙋</span>
-        <h2 class="text-2xl font-black text-white uppercase tracking-wide mb-3">Volunteer With Us</h2>
-        <div class="h-1 w-12 bg-brand-gold mx-auto mb-5"></div>
-        <p class="text-purple-200 leading-relaxed mb-4">
-          Our club relies on the generosity of volunteers to operate. Whether you can help with score-keeping,
-          canteen duty, event organisation or social media — every contribution makes a difference.
-        </p>
-        <p class="text-purple-200 leading-relaxed mb-8">
-          We welcome parents, community members and basketball enthusiasts of all backgrounds.
-          No experience necessary — just a willingness to help!
-        </p>
-        <a
-          href={mailto(clubProfile.contact.generalEmail, 'Volunteering Enquiry')}
-          class="inline-flex items-center gap-2 bg-brand-gold text-white px-8 py-4 rounded-lg font-bold text-base hover:opacity-90 transition-opacity"
-        >
-          ✉️ Express Your Interest
-        </a>
+  <section id="volunteer-with-us" class="bg-white px-4 py-16 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="mx-auto max-w-3xl rounded-2xl bg-brand-purple p-8 text-center">
+        <span class="mb-4 block text-5xl" aria-hidden="true">🙋</span>
+        <h2 class="mb-3 text-2xl font-black uppercase tracking-wide text-white">Volunteer With Us</h2>
+        <div class="mx-auto mb-5 h-1 w-12 bg-brand-gold"></div>
+        <p class="mb-4 leading-relaxed text-purple-200">Our club relies on the generosity of volunteers to operate. Whether you can help with score-keeping, canteen duty, event organisation or social media — every contribution makes a difference.</p>
+        <p class="mb-8 leading-relaxed text-purple-200">We welcome parents, community members and basketball enthusiasts of all backgrounds. No experience necessary — just a willingness to help!</p>
+        <a href={mailto(clubProfile.contact.generalEmail, 'Volunteering Enquiry')} class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg bg-brand-gold px-8 py-4 text-base font-bold text-white transition-opacity hover:opacity-90">Express Your Interest</a>
       </div>
-
-      <div class="relative left-1/2 mt-8 grid w-[90vw] -translate-x-1/2 grid-cols-1 gap-6 lg:grid-cols-2">
-        <div class="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
-          <img
-            src="/uploads/volunteers_needed.png"
-            alt="Heroes needed volunteer recruitment poster asking parents, siblings, players over 16, family and friends to help as coaches, team managers and committee members"
-            loading="lazy"
-            width="1400"
-            height="780"
-            class="h-auto w-full object-cover"
-          />
-        </div>
-        <div class="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm">
-          <img
-            src="/uploads/volunteers_child_safety.png"
-            alt="Child safety requirements for volunteers"
-            loading="lazy"
-            width="1400"
-            height="780"
-            class="h-auto w-full object-cover"
-          />
-        </div>
+      <div class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div class="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm"><img src="/uploads/volunteers_needed.png" alt="Heroes needed volunteer recruitment poster asking parents, siblings, players over 16, family and friends to help as coaches, team managers and committee members" loading="lazy" width="1400" height="780" class="h-auto w-full object-cover" /></div>
+        <div class="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm"><img src="/uploads/volunteers_child_safety.png" alt="Child safety requirements for volunteers" loading="lazy" width="1400" height="780" class="h-auto w-full object-cover" /></div>
       </div>
     </div>
   </section>
-
-  <script>
-    function setupCarousel(carouselSelector: string, prevBtnSelector: string, nextBtnSelector: string) {
-      const carousel = document.querySelector(carouselSelector) as HTMLElement;
-      const prevBtn = document.querySelector(prevBtnSelector) as HTMLButtonElement;
-      const nextBtn = document.querySelector(nextBtnSelector) as HTMLButtonElement;
-
-      if (!carousel || !prevBtn || !nextBtn) return;
-
-      let position = 0;
-      const cardWidth = carousel.children[0]?.getBoundingClientRect().width || 0;
-      const gap = 24; // 6 * 4px (gap-6)
-      const cardPlusGap = cardWidth + gap;
-      const maxPosition = -(carousel.children.length - 4) * cardPlusGap;
-
-      function updateCarousel() {
-        carousel.style.transform = `translateX(${position}px)`;
-      }
-
-      prevBtn.addEventListener('click', () => {
-        if (position < 0) {
-          position += cardPlusGap;
-          updateCarousel();
-        }
-      });
-
-      nextBtn.addEventListener('click', () => {
-        if (position > maxPosition) {
-          position -= cardPlusGap;
-          updateCarousel();
-        }
-      });
-    }
-
-    // Setup both carousels
-    setupCarousel('.carousel-upcoming', '.carousel-prev-upcoming', '.carousel-next-upcoming');
-    setupCarousel('.carousel-past', '.carousel-prev-past', '.carousel-next-past');
-  </script>
 </BaseLayout>

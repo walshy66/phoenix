@@ -3,169 +3,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { clubProfile, mailto } from '../config/club-profile';
 ---
 
-<BaseLayout title="Contact" description={`Contact ${clubProfile.name} — address, email and social media.`}>
-  <!-- Page Hero -->
-  <section class="bg-brand-purple py-12 lg:py-8 px-4 text-center relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 pointer-events-none">
-      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full" style="background: #8B7536;"></div>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto">
-      <p class="text-brand-gold font-bold text-sm uppercase tracking-widest mb-3">Get In Touch</p>
-      <h1 class="text-4xl sm:text-5xl font-black text-white uppercase tracking-tight">CONTACT US</h1>
-      <div class="h-1 w-16 bg-brand-gold mx-auto mt-4"></div>
-      <p class="text-purple-200 mt-4 text-base max-w-xl mx-auto">
-        We'd love to hear from you. Reach out with any questions or enquiries.
-      </p>
+<BaseLayout title="Contact" description={`General enquiries for ${clubProfile.name}. Get in touch about playing, volunteering or sponsorship.`}>
+  <section class="bg-brand-purple px-4 py-12 text-center lg:py-8">
+    <div class="mx-auto max-w-3xl">
+      <h1 class="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl">Contact Us</h1>
+      <div class="mx-auto mt-4 h-1 w-16 bg-brand-gold"></div>
+      <p class="mt-4 text-base text-purple-100">We'd love to hear from you.</p>
     </div>
   </section>
-
-  <!-- Contact Cards -->
-  <section class="py-8 lg:py-12 px-4 sm:px-6 lg:px-8 bg-white">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Address -->
-        <div class="card-hover bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col items-start gap-4">
-          <div class="w-12 h-12 rounded-xl bg-brand-purple flex items-center justify-center text-2xl">
-            📍
-          </div>
-          <div>
-            <h3 class="font-bold text-brand-black text-base mb-2">Our Address</h3>
-            <address class="not-italic text-gray-500 text-sm leading-relaxed">
-              {clubProfile.contact.postalAddress.map((line, index) => (
-                <>{line}{index < clubProfile.contact.postalAddress.length - 1 && <br />}</>
-              ))}
-            </address>
-          </div>
-        </div>
-
-        <!-- Email -->
-        <div class="card-hover bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col items-start gap-4">
-          <div class="w-12 h-12 rounded-xl bg-brand-purple flex items-center justify-center text-2xl">
-            ✉️
-          </div>
-          <div class="w-full">
-            <h3 class="font-bold text-brand-black text-base mb-2">Email Us</h3>
-            <div class="space-y-3">
-              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
-                <span class="text-xs font-medium text-gray-700 sm:w-20 sm:flex-shrink-0">General Enquiries</span>
-                <a href={mailto(clubProfile.contact.generalEmail)} class="inline-flex min-h-[44px] items-center break-all text-sm text-brand-purple transition-colors hover:text-brand-gold sm:flex-1 sm:justify-end">
-                  {clubProfile.contact.generalEmail}
-                </a>
-              </div>
-              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
-                <span class="text-xs font-medium text-gray-700 sm:w-20 sm:flex-shrink-0">President</span>
-                <a href={mailto(clubProfile.contact.presidentEmail)} class="inline-flex min-h-[44px] items-center break-all text-sm text-brand-purple transition-colors hover:text-brand-gold sm:flex-1 sm:justify-end">
-                  {clubProfile.contact.presidentEmail}
-                </a>
-              </div>
-              <div class="flex flex-col gap-1 rounded-lg bg-brand-offwhite/40 p-3 sm:flex-row sm:items-center sm:justify-between sm:gap-2">
-                <span class="text-xs font-medium text-gray-700 sm:w-20 sm:flex-shrink-0">Treasurer</span>
-                <a href={mailto(clubProfile.contact.treasurerEmail)} class="inline-flex min-h-[44px] items-center break-all text-sm text-brand-purple transition-colors hover:text-brand-gold sm:flex-1 sm:justify-end">
-                  {clubProfile.contact.treasurerEmail}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Social -->
-        <div class="card-hover bg-white rounded-xl p-6 border border-gray-100 shadow-sm flex flex-col items-start gap-4">
-          <div class="w-12 h-12 rounded-xl bg-brand-purple flex items-center justify-center text-2xl">
-            📱
-          </div>
-          <div class="w-full">
-            <h3 class="font-bold text-brand-black text-base mb-3">Social Media</h3>
-            <div class="space-y-3">
-              <a
-                href={clubProfile.socials.facebook.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-3 p-2.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors group"
-              >
-                <span class="text-xl">📘</span>
-                <div>
-                  <p class="text-xs font-bold text-blue-800">Facebook</p>
-                  <p class="text-xs text-blue-600 group-hover:underline">{clubProfile.socials.facebook.handle}</p>
-                </div>
-              </a>
-              <a
-                href={clubProfile.socials.instagram.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-3 p-2.5 rounded-lg hover:opacity-90 transition-opacity group"
-                style="background: linear-gradient(135deg, #f9f0ff, #fce4ff);"
-              >
-                <span class="text-xl">📷</span>
-                <div>
-                  <p class="text-xs font-bold" style="color: #7c3aed;">Instagram</p>
-                  <p class="text-xs group-hover:underline" style="color: #a855f7;">{clubProfile.socials.instagram.handle}</p>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+  <section class="bg-brand-offwhite px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="enquiries-heading">
+    <div class="mx-auto max-w-3xl rounded-2xl border border-gray-200 bg-white p-6 text-center shadow-sm sm:p-12">
+      <h2 id="enquiries-heading" class="mb-4 text-2xl font-black text-brand-purple">General Enquiries</h2>
+      <p class="mx-auto mb-8 max-w-xl leading-relaxed text-gray-700">Have a question about joining Phoenix, volunteering, sponsorship or the club? Email our general enquiries inbox and we'll help you find the right information.</p>
+      <a href={mailto(clubProfile.contact.generalEmail)} class="inline-flex min-h-[48px] max-w-full items-center justify-center rounded-lg bg-brand-purple px-4 py-3 font-bold text-white hover:bg-purple-800 sm:px-6"><span class="break-all">{clubProfile.contact.generalEmail}</span></a>
+      <div class="mt-8 border-t border-gray-200 pt-6">
+        <p class="text-sm leading-relaxed text-gray-600">For club news and seasonal announcements, visit <a href={clubProfile.socials.facebook.url} target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-purple underline">Phoenix on Facebook<span class="sr-only"> (opens in a new tab)</span></a>. You can always email us if you don't use Facebook.</p>
       </div>
     </div>
   </section>
-
-  <!-- Committee -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50">
-    <div class="text-center mb-12 max-w-7xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-black text-brand-black uppercase tracking-tight">Committee Office Bearers</h2>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mx-auto mb-16 max-w-[90%]">
-        <!-- Cameron Walsh - President -->
-        <a href="mailto:president@bendigophoenix.org.au" class="card-hover bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm block">
-          <img
-            src="/images/office-bearers/cam.png"
-            alt="Cameron Walsh, President - Email president@bendigophoenix.org.au"
-            class="w-full h-auto"
-          />
-        </a>
-
-        <!-- Kylie Stewart - Secretary -->
-        <a href={mailto(clubProfile.contact.generalEmail)} class="card-hover bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm block">
-          <img
-            src="/images/office-bearers/kylie.png"
-            alt={`Kylie Stewart, Secretary - Email ${clubProfile.contact.generalEmail}`}
-            class="w-full h-auto"
-          />
-        </a>
-
-        <!-- KP -->
-        <a href="mailto:treasurer@bendigophoenix.org.au" class="card-hover bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm block">
-          <img
-            src="/images/office-bearers/kp.png"
-            alt="KP - Email treasurer@bendigophoenix.org.au"
-            class="w-full h-auto"
-          />
-        </a>
-    </div>
-
-    <div class="text-center mb-12 max-w-7xl mx-auto">
-      <h2 class="text-3xl sm:text-4xl font-black text-brand-black uppercase tracking-tight">Committee Members</h2>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mx-auto max-w-[90%] sm:max-w-[60%]">
-        <!-- Ash -->
-        <a href="mailto:president@bendigophoenix.org.au" class="card-hover bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm block">
-          <img
-            src="/images/office-bearers/ash.png"
-            alt="Ash - Email president@bendigophoenix.org.au"
-            class="w-full h-auto"
-          />
-        </a>
-
-        <!-- Amy -->
-        <a href="mailto:hello@bendigophoenix.org.au" class="card-hover bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm block">
-          <img
-            src="/images/office-bearers/amy.png"
-            alt="Amy - Email hello@bendigophoenix.org.au"
-            class="w-full h-auto"
-          />
-        </a>
-      </div>
-  </section>
-
 </BaseLayout>

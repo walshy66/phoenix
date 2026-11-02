@@ -29,8 +29,9 @@ const pageTitle = `${title} | ${clubProfile.meta.siteTitle}`;
     <meta property="og:url" content={clubProfile.meta.siteUrl} />
   </head>
   <body class="min-h-screen flex flex-col bg-brand-offwhite">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-6 focus:py-3 focus:text-brand-purple">Skip to content</a>
     <Navbar />
-    <main class="flex-1">
+    <main id="main-content" tabindex="-1" class="flex-1">
       <slot />
     </main>
     <Footer />

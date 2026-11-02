@@ -1,234 +1,55 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorStrip from '../components/SponsorStrip.astro';
-import HeroCircularCarousel from '../components/HeroCircularCarousel.astro';
-import HomeScoresCarousel from '../components/HomeScoresCarousel.astro';
-import { HOME_SCORES_ENABLED } from '../lib/home-scores/feature-flags';
-import { join } from 'node:path';
-import { loadLiveJsonSnapshot } from '../lib/playhq/server-live-data';
-import { validateLiveHomeGamesPayload } from '../lib/playhq/contracts';
-
-/**
- * HERO CAROUSEL SLIDES
- * --------------------
- * Add, remove or reorder slides here. Each slide must have:
- *   image    — path to landscape infographic image in /images/hero/
- *   alt      — screen-reader description of the image
- *   bgColor  — background colour shown while image loads (optional, default: #2a1a5e)
- *
- * Images display in 16:9 landscape format (640×360px recommended).
- * Use landscape-orientation infographics for best visual impact.
- */
-const heroSlides = [
-  { image: '/images/hero/PHOENIX_Welcome_Day_promo.png', alt: 'Phoenix Welcome Day promotional graphic', bgColor: '#3a2a6e' },
-  { image: '/images/hero/registration_players_needed.png', alt: 'Phoenix registration players needed promotional graphic', bgColor: '#3a2a6e' },
-  { image: '/images/hero/big_plays.png', alt: 'Big plays, big smiles announcement graphic', bgColor: '#4a356f' },
-];
+import { clubProfile } from '../config/club-profile';
 
 const quickLinks = [
-  {
-    title: 'Seasons',
-    href: '/seasons',
-    icon: '🗓️',
-    desc: 'Current draw, fixtures, registration & more',
-  },
-  {
-    title: 'Teams',
-    href: '/teams/',
-    icon: '🏀',
-    desc: 'Your team results and ladder',
-  },
-  {
-    title: 'Get Involved',
-    href: '/get-involved',
-    icon: '🙌',
-    desc: 'Volunteer, sponsor or attend our events',
-  },
-  {
-    title: 'Coaching Resources',
-    href: '/resources/',
-    icon: '📋',
-    desc: 'Drills, plays and training materials',
-  },
+  { title: 'Play Basketball', href: '/play-basketball', icon: '🏀', desc: 'Find your place at Phoenix and learn how to join.' },
+  { title: 'Get Involved', href: '/get-involved', icon: '🙌', desc: 'Support community basketball through sponsorship or volunteering.' },
+  { title: 'Resources', href: '/resources/', icon: '📋', desc: 'Explore coaching drills, player guides and practical tools.' },
+  { title: 'About Our Club', href: '/about', icon: '💜', desc: 'Discover our story, values and community.' },
 ];
-
-interface HomeGameItem {
-  gameId: string;
-  homeTeam: string;
-  awayTeam: string;
-  homeScore: number | null;
-  awayScore: number | null;
-  status: 'completed' | 'upcoming' | 'cancelled' | 'unknown';
-  kickoffDate: string | null;
-  kickoffTime: string | null;
-  kickoffDisplay: string;
-  competition: string | null;
-  venue: string | null;
-  court: string | null;
-}
-
-interface HomeGamesArtifact {
-  generatedAt: string;
-  status: 'success' | 'stale' | 'error';
-  window: {
-    kind: 'rolling-7-plus-7-days';
-    startDate: string;
-    endDate: string;
-    timezone: 'Australia/Melbourne';
-  };
-  staleBanner: string | null;
-  error: { code: string; message: string } | null;
-  games: HomeGameItem[];
-}
-
-const fallbackArtifact: HomeGamesArtifact = {
-  generatedAt: new Date().toISOString(),
-  status: 'error',
-  window: {
-    kind: 'rolling-7-plus-7-days',
-    startDate: '',
-    endDate: '',
-    timezone: 'Australia/Melbourne',
-  },
-  staleBanner: null,
-  error: {
-    code: 'ARTIFACT_MISSING',
-    message: 'Scores are temporarily unavailable. Please try again later.',
-  },
-  games: [],
-};
-
-function loadInitialHomeArtifact(): HomeGamesArtifact {
-  const publicPath = join(process.cwd(), 'public', 'live-data', 'home-games.json');
-  const scriptPath = join(process.cwd(), 'scripts', 'home-games-data.json');
-
-  const publicArtifact = loadLiveJsonSnapshot(publicPath, fallbackArtifact, validateLiveHomeGamesPayload);
-  if (publicArtifact !== fallbackArtifact) return publicArtifact;
-
-  return loadLiveJsonSnapshot(scriptPath, fallbackArtifact, validateLiveHomeGamesPayload);
-}
-
-const homeGamesArtifact = HOME_SCORES_ENABLED ? loadInitialHomeArtifact() : null;
 ---
 
 <BaseLayout title="Home">
-  <!-- ═══════════════════════════════════════════════════════
-       HERO — 3D cylinder carousel
-       ═══════════════════════════════════════════════════════ -->
-  <section
-    class="hero-section"
-    style="background: linear-gradient(160deg, #573F93 0%, #3a2a6e 50%, #111111 100%);"
-  >
-    <!-- Logo as angled background fill — looks like it's lying flat behind cards -->
-    <div class="hero-bg-logo" aria-hidden="true">
-      <img
-        src="/images/phoenix-united-logo.png"
-        alt=""
-        class="hero-bg-logo-img"
-        loading="eager"
-        decoding="auto"
-      />
-    </div>
-
-    <div class="hero-carousel-wrap">
-      <HeroCircularCarousel slides={heroSlides} autoAdvanceEnabled autoAdvanceMs={5000} />
+  <section class="welcome-hero px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="welcome-heading">
+    <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.3fr_1fr]">
+      <div>
+        <p class="mb-4 text-sm font-bold uppercase tracking-widest text-purple-200">{clubProfile.name}</p>
+        <h1 id="welcome-heading" class="max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl lg:text-6xl">Where Community<br /> Meets Competition</h1>
+        <div class="my-6 h-1 w-20 bg-brand-gold"></div>
+        <p class="max-w-xl text-lg leading-relaxed text-purple-100">Basketball brings us together. Be part of a welcoming club in {clubProfile.location.city} where players can build skills, make friends and enjoy the game.</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/play-basketball" class="inline-flex min-h-[48px] items-center justify-center rounded-lg bg-white px-6 py-3 font-bold text-brand-purple hover:bg-purple-100">Play Basketball</a>
+          <a href="/get-involved" class="inline-flex min-h-[48px] items-center justify-center rounded-lg border-2 border-white px-6 py-3 font-bold text-white hover:bg-white/10">Get Involved</a>
+        </div>
+      </div>
+      <!-- Permanent branded fallback until a suitable club photo is selected. -->
+      <div class="flex items-center justify-center rounded-3xl border border-white/20 bg-white/5 p-8 sm:p-12">
+        <img src="/images/phoenix-united-logo.png" alt="Phoenix United Basketball" width="1328" height="2088" class="h-auto w-full max-w-80 object-contain" fetchpriority="high" />
+      </div>
     </div>
   </section>
 
-
-  {HOME_SCORES_ENABLED && (
-    <HomeScoresCarousel artifact={homeGamesArtifact} liveRefreshMs={120000} />
-  )}
-
-  <!-- Quick Link Cards -->
-  <section class="py-16 px-4 sm:px-6 lg:px-8 bg-brand-offwhite">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-2xl font-bold text-brand-purple uppercase tracking-wide mb-2">Explore</h2>
-      <div class="h-1 w-12 bg-brand-gold mb-8"></div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+  <section class="bg-brand-offwhite px-4 py-16 sm:px-6 lg:px-8" aria-labelledby="explore-heading">
+    <div class="mx-auto max-w-7xl">
+      <h2 id="explore-heading" class="mb-2 text-2xl font-bold uppercase tracking-wide text-brand-purple">Explore Phoenix</h2>
+      <div class="mb-8 h-1 w-12 bg-brand-gold"></div>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {quickLinks.map(link => (
-          <a
-            href={link.href}
-            class="card-hover bg-brand-purple rounded-xl p-6 flex flex-col items-start gap-3 group"
-          >
-            <div class="w-12 h-12 rounded-lg flex items-center justify-center text-2xl" style="background-color: rgba(139,117,54,0.2);">
-              {link.icon}
-            </div>
-            <h3 class="text-white font-bold text-lg group-hover:text-brand-gold transition-colors">
-              {link.title}
-            </h3>
-            <p class="text-purple-200 text-sm leading-relaxed">{link.desc}</p>
-            <span class="mt-auto text-brand-gold text-sm font-medium flex items-center gap-1">
-              Learn more
-              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </span>
+          <a href={link.href} class="card-hover group flex flex-col items-start gap-3 rounded-xl bg-brand-purple p-6">
+            <span class="text-3xl" aria-hidden="true">{link.icon}</span>
+            <h3 class="text-lg font-bold text-white">{link.title}</h3>
+            <p class="text-sm leading-relaxed text-purple-100">{link.desc}</p>
+            <span class="mt-auto pt-2 text-sm font-bold text-white">Explore <span aria-hidden="true">→</span></span>
           </a>
         ))}
       </div>
     </div>
   </section>
-
-  <!-- Sponsor Strip -->
   <SponsorStrip />
 </BaseLayout>
 
 <style>
-  /* ─── Hero section ───────────────────────────────────── */
-  /*
-   * No overflow:hidden — any ancestor of a preserve-3d element with
-   * non-visible overflow flattens the 3D. Side cards clip at the
-   * viewport edge naturally; the body prevents horizontal scroll.
-   */
-  .hero-section {
-    position: relative;
-    padding-top: 72px;   /* clear fixed nav */
-    padding-bottom: 48px;
-  }
-
-  /* ─── Logo background — angled, fills space behind cards ─ */
-  /*
-   * The logo is positioned at the centre of the hero and tilted with
-   * rotateX so it appears to lie flat on a surface behind the cards.
-   * perspective() in the transform controls depth of the tilt.
-   * scaleY compensates for the vertical foreshortening so the logo
-   * still fills the hero height. opacity + filter keep it subtle.
-   */
-  .hero-bg-logo {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .hero-bg-logo-img {
-    /* Anchor to top-left so transform-origin keeps it in that corner */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 32%;
-    max-width: 360px;
-    height: auto;
-    opacity: 0.16;
-    filter: brightness(2.8) grayscale(10%);
-    transform: perspective(500px) rotateZ(-30deg) rotateX(55deg) scale(1.2);
-    transform-origin: top left;
-  }
-
-  /* ─── Carousel wrapper — centred and capped to match home cards ─── */
-  /*
-   * The carousel is now constrained to a 1200px max width so it lines up
-   * more closely with the home-page score card area while keeping spacing.
-   */
-  .hero-carousel-wrap {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
+  .welcome-hero { background: radial-gradient(ellipse at top right, #7959b6 0%, #573f93 40%, #271745 100%); }
 </style>

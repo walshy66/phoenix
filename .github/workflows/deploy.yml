@@ -16,14 +16,9 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: >-
-      github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
-
     steps:
       - name: Checkout
         uses: actions/checkout@v5
-        with:
-          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || github.ref_name }}
 
       - name: Setup Node
         uses: actions/setup-node@v5
@@ -36,6 +31,9 @@ jobs:
 
       - name: Build site
         run: npm run build
+
+      - name: Verify evergreen output
+        run: npm run check:evergreen
 
       - name: Install lftp
         run: sudo apt-get update && sudo apt-get install -y lftp
@@ -65,6 +63,6 @@ jobs:
             set ftp:ssl-protect-data true;
             set ftp:ssl-auth TLS;
             open -u \"$FTP_USER\",\"$FTP_PASS\" -p \"$FTP_PORT\" ftp://$FTP_HOST;
-            mirror --reverse --delete --verbose --exclude-glob 'live-data/**' dist/ \"$FTP_REMOTE_DIR\";
+            mirror --reverse --delete --verbose dist/ \"$FTP_REMOTE_DIR\";
             bye
           "

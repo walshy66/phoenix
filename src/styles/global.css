@@ -154,10 +154,12 @@ body {
 
 /* Mobile menu */
 #mobile-menu {
+  visibility: hidden;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease;
 }
 #mobile-menu.open {
+  visibility: visible;
   max-height: 500px;
 }

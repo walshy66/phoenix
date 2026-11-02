@@ -11,6 +11,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
+    "check:evergreen": "node scripts/check-evergreen-site.mjs",
     "scores:refresh": "node scripts/scrape-playhq.js",
     "scores:check": "node scripts/check-scores-data.js",
     "scores:refresh:weekly": "npm run scores:refresh && npm run scores:check",

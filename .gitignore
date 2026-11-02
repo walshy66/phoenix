@@ -36,8 +36,11 @@ specs/coa-27-resources/candidates/
 # local upload staging folder
 upload/
 
-# CI-generated live data (regenerated on every sync run)
-public/live-data/rounds/
+# Local browser verification output
+.playwright-cli/
+
+# Retired PlayHQ data: optional local experiments must not republish snapshots
+public/live-data/
 public/live-snapshot/
 scripts/scores-data.json
 scripts/teams-details.json
