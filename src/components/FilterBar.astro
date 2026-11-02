@@ -34,25 +34,27 @@ const sectionLabel = label;
   <div class="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
     <div class="flex flex-col gap-3" data-mobile-filter-shell data-section={section} data-label={sectionLabel}>
       {hasFilters && (
+        <!-- Former mobile-only control (md:hidden) is now intentionally available on desktop too. -->
         <button
           type="button"
-          class="inline-flex min-h-[44px] w-full items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-left shadow-sm transition hover:border-brand-purple md:hidden"
+          class="inline-flex min-h-[44px] w-full items-center justify-between gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-left shadow-sm transition hover:border-brand-purple focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple/40"
           data-mobile-filter-toggle
           aria-controls={`filter-panel-${section}`}
           aria-expanded="false"
         >
           <span class="text-sm font-semibold text-brand-black" data-mobile-filter-toggle-label>Show filters</span>
-          <span class="text-xs font-medium text-gray-500" data-mobile-filter-status>
-            {activeCount > 0 ? `${activeCount} active` : `${resultCount} results`}
+          <span class="flex items-center gap-3 text-xs font-medium text-gray-500">
+            <span data-mobile-filter-status>{activeCount > 0 ? `${activeCount} active` : `${resultCount} results`}</span>
+            <svg class="h-4 w-4 transition-transform" data-filter-chevron aria-hidden="true" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.51a.75.75 0 01-1.08 0l-4.25-4.51a.75.75 0 01.02-1.06z" clip-rule="evenodd" /></svg>
           </span>
         </button>
       )}
 
       {hasFilters && showSearch && (
-        <!-- hidden md:flex md:flex-col md:gap-3 legacy desktop layout token -->
+        <!-- Filter controls stay collapsed until requested at every viewport size. Legacy layout: hidden md:flex md:flex-col md:gap-3. -->
         <div
           id={`filter-panel-${section}`}
-          class="max-h-0 overflow-hidden opacity-0 pointer-events-none transition-[max-height,opacity,transform] duration-300 ease-out md:flex md:max-h-none md:flex-col md:gap-3 md:overflow-visible md:opacity-100 md:pointer-events-auto md:translate-y-0"
+          class="max-h-0 overflow-hidden opacity-0 pointer-events-none transition-[max-height,opacity,transform] duration-300 ease-out"
           data-filter-bar
           data-section={section}
           data-label={sectionLabel}
