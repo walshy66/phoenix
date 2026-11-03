@@ -19,7 +19,8 @@ console.log('PASS: evergreen joining guidance and season-independent onward link
 const contact = page('contact');
 assert.match(contact, /General Enquiries/);
 assert.match(contact, /mailto:hello@bendigophoenix.org.au/);
-assert.doesNotMatch(contact, /president@|treasurer@|office-bearers|Committee Members|Committee Office/);
+assert.match(contact, /mailto:president@bendigophoenix.org.au/);
+assert.doesNotMatch(contact, /treasurer@|office-bearers|Committee Members|Committee Office/);
 const involved = page('get-involved');
 assert.match(involved, /Sponsorship/);
 assert.match(involved, /Volunteer With Us/);
