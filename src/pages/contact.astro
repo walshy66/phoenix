@@ -17,6 +17,10 @@ import { clubProfile, mailto } from '../config/club-profile';
       <p class="mx-auto mb-8 max-w-xl leading-relaxed text-gray-700">Have a question about joining Phoenix, volunteering, sponsorship or the club? Email our general enquiries inbox and we'll help you find the right information.</p>
       <a href={mailto(clubProfile.contact.generalEmail)} class="inline-flex min-h-[48px] max-w-full items-center justify-center rounded-lg bg-brand-purple px-4 py-3 font-bold text-white hover:bg-purple-800 sm:px-6"><span class="break-all">{clubProfile.contact.generalEmail}</span></a>
       <div class="mt-8 border-t border-gray-200 pt-6">
+        <h3 class="mb-2 font-bold text-brand-purple">Contact the President</h3>
+        <a href="mailto:president@bendigophoenix.org.au" class="inline-flex min-h-[48px] max-w-full items-center justify-center rounded-lg border border-brand-purple px-4 py-3 font-bold text-brand-purple underline hover:bg-purple-50 sm:px-6">president@bendigophoenix.org.au</a>
+      </div>
+      <div class="mt-6 border-t border-gray-200 pt-6">
         <p class="text-sm leading-relaxed text-gray-600">For club news and seasonal announcements, visit <a href={clubProfile.socials.facebook.url} target="_blank" rel="noopener noreferrer" class="font-semibold text-brand-purple underline">Phoenix on Facebook<span class="sr-only"> (opens in a new tab)</span></a>. You can always email us if you don't use Facebook.</p>
       </div>
     </div>
